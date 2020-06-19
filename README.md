@@ -1,5 +1,7 @@
 HomeTeach Repository.
 
+Hometeach design [https://www.figma.com/file/FyJu6l5ZuT5SMToPWazQes/HOME-TEACH-CENTRAL-BOARD?node-id=0%3A1]
+
 Start by creating a fork of this repository.
 Then clone the forked repository into your local machine i.e. git clone "https://github.com/your-username/mobileforce-HomeTeach.git"
 
