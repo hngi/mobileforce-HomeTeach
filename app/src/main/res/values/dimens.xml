@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="recover_psd_marginTop">17dp</dimen>
+    <dimen name="btn_margin_glob">62dp</dimen>
+    <dimen name="margin_xl">16dp</dimen>
+    <dimen name="margintop_ckBox">8dp</dimen>
+    <dimen name="btn_margin_btm">32dp</dimen>
+    <dimen name="marginTop_recov_tv">24dp</dimen>
+</resources>

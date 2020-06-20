@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Home Teach</string>
+    <string name="recovery_password">Recovery Password</string>
+    <string name="password_recover_text_prompt">How do you want to recover your password?</string>
+    <string name="recover_using_email">Recover using Email</string>
+    <string name="recover_using_phone_number">Recover using Phone Number</string>
+    <string name="apply_btn_txt">Apply</string>
+    <string name="enter_email_recovery_prompt">Enter your Registered Email</string>
+    <string name="sample_email">johndoe@gmail.com</string>
+    <string name="email_recovery_subBtn">SUBMIT</string>
+    <string name="phone_number_prompt">Enter your Registered Phone Number</string>
+    <string name="phone_number">Phone Number</string>
 </resources>
