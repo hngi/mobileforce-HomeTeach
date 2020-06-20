@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">Home Teach</string>
+    <string name="signup_description">Get matched with prospective Teachers and students for academics,
+        skill acquisition and many more.
+    </string>
+    <string name="sign_up_text">SIGN UP</string>
+    <string name="full_hint">Full Name</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="phone_number_hint">Phone Number</string>
+    <string name="terms_and_conditions_text">Terms and Conditions</string>
+    <string name="i_have_read_the_text">I have read the</string>
+    <string name="sign_up_button_text">SIGN UP</string>
+    <string name="or_signup_using_social_media_text">Or signup using social media</string>
+    <string name="already_have_an_account_text">Already have an account?</string>
+    <string name="log_in_text">Log In</string>
 </resources>
