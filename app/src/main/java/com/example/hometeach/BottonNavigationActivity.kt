@@ -29,6 +29,7 @@ class BottonNavigationActivity : AppCompatActivity() {
                     return@setOnNavigationItemSelectedListener true
                 }
 
+
                 R.id.home -> {
                     loadFragment(ParentStudentHomepageFragment())
                     return@setOnNavigationItemSelectedListener true
