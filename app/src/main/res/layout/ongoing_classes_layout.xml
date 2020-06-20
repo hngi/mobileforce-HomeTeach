@@ -43,7 +43,7 @@
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="220dp"
             android:layout_height="7dp"
-            android:background="@color/parent" />
+            android:background="@color/progressbar" />
 
         <View
             android:layout_width="220dp"

@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/parent"
+    android:background="@color/white"
     android:orientation="vertical">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/test"
+        android:background="@color/background_color"
         android:orientation="vertical">
 
         <LinearLayout
@@ -32,8 +32,15 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="@string/username"
-
-                    android:textColor="@color/text_color2"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="John"
+                    android:id="@+id/username"
+                    android:textColor="@color/black"
                     android:textSize="14sp" />
 
                 <!--        <TextView-->
@@ -45,21 +52,23 @@
                 <!--            android:textColor="@color/text_color"-->
                 <!--            android:textSize="24sp" />-->
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <Button
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:layout_gravity="center"
                     android:layout_marginLeft="190dp"
-                    android:src="@drawable/bell"
-                    android:tint="@color/text_color2" />
+                    android:id="@+id/notification"
+                    android:background="@drawable/bell"
+                    android:tint="@color/black" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <Button
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:id="@+id/filter"
                     android:layout_gravity="center"
                     android:layout_marginLeft="15dp"
-                    android:src="@drawable/filter"
-                    android:tint="@color/text_color2" />
+                    android:background="@drawable/filter"
+                    android:tint="@color/black" />
 
 
             </LinearLayout>
@@ -67,196 +76,198 @@
 
             <SearchView
                 android:layout_width="354dp"
+                android:id="@+id/search"
                 android:layout_height="50dp"
                 android:layout_marginTop="0dp"
                 android:background="@drawable/seachview_background"
                 android:searchIcon="@drawable/search_icon"
-                android:tooltipText="Search for Teachers, Subject, Topics e.t.c" />
+                app:queryHint="@string/search_view_text"
+                />
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal">
+            <!--            <LinearLayout-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginLeft="40dp"-->
+            <!--                android:layout_marginTop="5dp"-->
+            <!--                android:orientation="horizontal">-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/filter"
-                    android:textColor="@color/text_color2" />
+            <!--                <TextView-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:text="@string/filter"-->
+            <!--                    android:textColor="@color/text_color2" />-->
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="50dp"
-                    android:layout_height="20dp"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginLeft="4dp"
-                    app:cardCornerRadius="5dp">
+            <!--                <androidx.cardview.widget.CardView-->
+            <!--                    android:layout_width="50dp"-->
+            <!--                    android:layout_height="20dp"-->
+            <!--                    android:layout_marginStart="4dp"-->
+            <!--                    android:layout_marginLeft="4dp"-->
+            <!--                    app:cardCornerRadius="5dp">-->
 
-                    <LinearLayout
-                        android:layout_width="49dp"
-                        android:layout_height="29dp"
-                        android:layout_gravity="center"
-                        android:orientation="horizontal">
+            <!--                    <LinearLayout-->
+            <!--                        android:layout_width="49dp"-->
+            <!--                        android:layout_height="29dp"-->
+            <!--                        android:layout_gravity="center"-->
+            <!--                        android:orientation="horizontal">-->
 
-                        <TextView
-                            android:layout_width="40dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="@string/grade_3"
-                            android:textSize="10sp" />
+            <!--                        <TextView-->
+            <!--                            android:layout_width="40dp"-->
+            <!--                            android:layout_height="wrap_content"-->
+            <!--                            android:layout_gravity="center"-->
+            <!--                            android:text="@string/grade_3"-->
+            <!--                            android:textSize="10sp" />-->
 
-                        <Button
-                            android:layout_width="10dp"
-                            android:layout_height="10dp"
-                            android:layout_gravity="center"
-                            android:background="@drawable/cancel" />
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
+            <!--                        <Button-->
+            <!--                            android:layout_width="10dp"-->
+            <!--                            android:layout_height="10dp"-->
+            <!--                            android:layout_gravity="center"-->
+            <!--                            android:background="@drawable/cancel" />-->
+            <!--                    </LinearLayout>-->
+            <!--                </androidx.cardview.widget.CardView>-->
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="50dp"
-                    android:layout_height="20dp"
-                    android:layout_marginLeft="4dp"
-                    app:cardCornerRadius="5dp">
+            <!--                <androidx.cardview.widget.CardView-->
+            <!--                    android:layout_width="50dp"-->
+            <!--                    android:layout_height="20dp"-->
+            <!--                    android:layout_marginLeft="4dp"-->
+            <!--                    app:cardCornerRadius="5dp">-->
 
-                    <LinearLayout
-                        android:layout_width="49dp"
-                        android:layout_height="29dp"
-                        android:layout_gravity="center"
-                        android:orientation="horizontal">
+            <!--                    <LinearLayout-->
+            <!--                        android:layout_width="49dp"-->
+            <!--                        android:layout_height="29dp"-->
+            <!--                        android:layout_gravity="center"-->
+            <!--                        android:orientation="horizontal">-->
 
-                        <TextView
-                            android:layout_width="40dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="@string/science"
-                            android:textSize="10sp" />
+            <!--                        <TextView-->
+            <!--                            android:layout_width="40dp"-->
+            <!--                            android:layout_height="wrap_content"-->
+            <!--                            android:layout_gravity="center"-->
+            <!--                            android:text="@string/science"-->
+            <!--                            android:textSize="10sp" />-->
 
-                        <Button
-                            android:layout_width="10dp"
-                            android:layout_height="10dp"
-                            android:layout_gravity="center"
-                            android:background="@drawable/cancel" />
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
+            <!--                        <Button-->
+            <!--                            android:layout_width="10dp"-->
+            <!--                            android:layout_height="10dp"-->
+            <!--                            android:layout_gravity="center"-->
+            <!--                            android:background="@drawable/cancel" />-->
+            <!--                    </LinearLayout>-->
+            <!--                </androidx.cardview.widget.CardView>-->
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="50dp"
-                    android:layout_height="20dp"
-                    android:layout_marginLeft="4dp"
-                    app:cardCornerRadius="5dp">
+            <!--                <androidx.cardview.widget.CardView-->
+            <!--                    android:layout_width="50dp"-->
+            <!--                    android:layout_height="20dp"-->
+            <!--                    android:layout_marginLeft="4dp"-->
+            <!--                    app:cardCornerRadius="5dp">-->
 
-                    <LinearLayout
-                        android:layout_width="49dp"
-                        android:layout_height="29dp"
-                        android:layout_gravity="center"
-                        android:orientation="horizontal">
+            <!--                    <LinearLayout-->
+            <!--                        android:layout_width="49dp"-->
+            <!--                        android:layout_height="29dp"-->
+            <!--                        android:layout_gravity="center"-->
+            <!--                        android:orientation="horizontal">-->
 
-                        <TextView
-                            android:layout_width="40dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="@string/maths"
-                            android:textSize="10sp" />
+            <!--                        <TextView-->
+            <!--                            android:layout_width="40dp"-->
+            <!--                            android:layout_height="wrap_content"-->
+            <!--                            android:layout_gravity="center"-->
+            <!--                            android:text="@string/maths"-->
+            <!--                            android:textSize="10sp" />-->
 
-                        <Button
-                            android:layout_width="10dp"
-                            android:layout_height="10dp"
-                            android:layout_gravity="center"
-                            android:background="@drawable/cancel" />
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-            </LinearLayout>
+            <!--                        <Button-->
+            <!--                            android:layout_width="10dp"-->
+            <!--                            android:layout_height="10dp"-->
+            <!--                            android:layout_gravity="center"-->
+            <!--                            android:background="@drawable/cancel" />-->
+            <!--                    </LinearLayout>-->
+            <!--                </androidx.cardview.widget.CardView>-->
+            <!--            </LinearLayout>-->
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal">
+            <!--            <LinearLayout-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginTop="5dp"-->
+            <!--                android:orientation="horizontal">-->
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="50dp"
-                    android:layout_height="20dp"
-                    android:layout_marginLeft="4dp"
-                    app:cardCornerRadius="5dp">
+            <!--                <androidx.cardview.widget.CardView-->
+            <!--                    android:layout_width="50dp"-->
+            <!--                    android:layout_height="20dp"-->
+            <!--                    android:layout_marginLeft="4dp"-->
+            <!--                    app:cardCornerRadius="5dp">-->
 
-                    <LinearLayout
-                        android:layout_width="49dp"
-                        android:layout_height="29dp"
-                        android:layout_gravity="center"
-                        android:orientation="horizontal">
+            <!--                    <LinearLayout-->
+            <!--                        android:layout_width="49dp"-->
+            <!--                        android:layout_height="29dp"-->
+            <!--                        android:layout_gravity="center"-->
+            <!--                        android:orientation="horizontal">-->
 
-                        <TextView
-                            android:layout_width="40dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="@string/any"
-                            android:textSize="10sp" />
+            <!--                        <TextView-->
+            <!--                            android:layout_width="40dp"-->
+            <!--                            android:layout_height="wrap_content"-->
+            <!--                            android:layout_gravity="center"-->
+            <!--                            android:text="@string/any"-->
+            <!--                            android:textSize="10sp" />-->
 
-                        <Button
-                            android:layout_width="10dp"
-                            android:layout_height="10dp"
-                            android:layout_gravity="center"
-                            android:background="@drawable/cancel" />
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
+            <!--                        <Button-->
+            <!--                            android:layout_width="10dp"-->
+            <!--                            android:layout_height="10dp"-->
+            <!--                            android:layout_gravity="center"-->
+            <!--                            android:background="@drawable/cancel" />-->
+            <!--                    </LinearLayout>-->
+            <!--                </androidx.cardview.widget.CardView>-->
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="55dp"
-                    android:layout_height="20dp"
-                    android:layout_marginLeft="4dp"
-                    app:cardCornerRadius="5dp">
+            <!--                <androidx.cardview.widget.CardView-->
+            <!--                    android:layout_width="55dp"-->
+            <!--                    android:layout_height="20dp"-->
+            <!--                    android:layout_marginLeft="4dp"-->
+            <!--                    app:cardCornerRadius="5dp">-->
 
-                    <LinearLayout
-                        android:layout_width="50dp"
-                        android:layout_height="29dp"
-                        android:layout_gravity="center"
-                        android:orientation="horizontal">
+            <!--                    <LinearLayout-->
+            <!--                        android:layout_width="65dp"-->
+            <!--                        android:layout_height="29dp"-->
+            <!--                        android:layout_gravity="center"-->
+            <!--                        android:orientation="horizontal">-->
 
-                        <TextView
-                            android:layout_width="50dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="@string/_2000n_hr"
-                            android:textSize="10sp" />
+            <!--                        <TextView-->
+            <!--                            android:layout_width="50dp"-->
+            <!--                            android:layout_height="wrap_content"-->
+            <!--                            android:layout_gravity="center"-->
+            <!--                            android:text="@string/_2000n_hr"-->
+            <!--                            android:textSize="10sp" />-->
 
-                        <Button
-                            android:layout_width="10dp"
-                            android:layout_height="10dp"
-                            android:layout_gravity="center"
-                            android:background="@drawable/cancel" />
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
+            <!--                        <Button-->
+            <!--                            android:layout_width="10dp"-->
+            <!--                            android:layout_height="10dp"-->
+            <!--                            android:layout_gravity="center"-->
+            <!--                            android:background="@drawable/cancel" />-->
+            <!--                    </LinearLayout>-->
+            <!--                </androidx.cardview.widget.CardView>-->
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="55dp"
-                    android:layout_height="20dp"
-                    android:layout_marginLeft="4dp"
-                    app:cardCornerRadius="5dp">
+            <!--                <androidx.cardview.widget.CardView-->
+            <!--                    android:layout_width="55dp"-->
+            <!--                    android:layout_height="20dp"-->
+            <!--                    android:layout_marginLeft="4dp"-->
+            <!--                    app:cardCornerRadius="5dp">-->
 
-                    <LinearLayout
-                        android:layout_width="53dp"
-                        android:layout_height="29dp"
-                        android:layout_gravity="center"
-                        android:orientation="horizontal">
+            <!--                    <LinearLayout-->
+            <!--                        android:layout_width="70dp"-->
+            <!--                        android:layout_height="29dp"-->
+            <!--                        android:layout_gravity="center"-->
+            <!--                        android:orientation="horizontal">-->
 
-                        <TextView
-                            android:layout_width="52dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="@string/within_lga"
-                            android:textSize="10sp" />
+            <!--                        <TextView-->
+            <!--                            android:layout_width="52dp"-->
+            <!--                            android:layout_height="wrap_content"-->
+            <!--                            android:layout_gravity="center"-->
+            <!--                            android:text="@string/within_lga"-->
+            <!--                            android:textSize="10sp" />-->
 
-                        <Button
-                            android:layout_width="10dp"
-                            android:layout_height="10dp"
-                            android:layout_gravity="center"
-                            android:background="@drawable/cancel" />
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-            </LinearLayout>
+            <!--                        <Button-->
+            <!--                            android:layout_width="10dp"-->
+            <!--                            android:layout_height="10dp"-->
+            <!--                            android:layout_gravity="center"-->
+            <!--                            android:background="@drawable/cancel" />-->
+            <!--                    </LinearLayout>-->
+            <!--                </androidx.cardview.widget.CardView>-->
+            <!--            </LinearLayout>-->
 
         </LinearLayout>
     </LinearLayout>
@@ -298,13 +309,22 @@
                     android:layout_height="21dp"
                     android:layout_marginBottom="5dp"
                     android:text="Ongoing  Classes"
-                    android:textColor="@color/text_color2" />
+                    android:textColor="@color/black" />
+                <TextView
+                    android:layout_width="135dp"
+                    android:layout_height="21dp"
+                    android:id="@+id/ongoing_view_all"
+                    android:layout_marginLeft="165dp"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/view_all"
+                    android:textColor="@color/background_color" />
 
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="115dp"
+                android:id="@+id/ongoing_classes_recycler_view"
                 android:scrollbars="horizontal" />
 
 
@@ -327,21 +347,23 @@
                     android:layout_height="21dp"
                     android:layout_marginBottom="5dp"
                     android:text="@string/upcoming_classes"
-                    android:textColor="@color/text_color2" />
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:layout_width="135dp"
                     android:layout_height="21dp"
+                    android:id="@+id/upcoming_view_all"
                     android:layout_marginLeft="165dp"
                     android:layout_marginTop="2dp"
                     android:text="@string/view_all"
-                    android:textColor="@color/text_color" />
+                    android:textColor="@color/background_color" />
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="115dp"
-                android:scrollbars="horizontal" />
+                android:scrollbars="horizontal"
+                android:id="@+id/upcoming_classes_recycler_view"/>
 
 
         </LinearLayout>
@@ -363,7 +385,7 @@
                     android:layout_height="21dp"
                     android:layout_marginBottom="5dp"
                     android:text="@string/top_tutors"
-                    android:textColor="@color/text_color2" />
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -371,7 +393,8 @@
                     android:layout_marginLeft="165dp"
                     android:layout_marginTop="2dp"
                     android:text="@string/view_all"
-                    android:textColor="@color/text_color" />
+                    android:id="@+id/top_tutors_view_all"
+                    android:textColor="@color/background_color" />
 
 
             </LinearLayout>
@@ -379,7 +402,8 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scrollbars="horizontal" />
+                android:scrollbars="horizontal"
+                android:id="@+id/top_tutors_recycler_view"/>
         </LinearLayout>
 
 

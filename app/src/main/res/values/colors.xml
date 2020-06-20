@@ -5,8 +5,10 @@
     <color name="colorAccent">#03DAC5</color>
 
 
-    <color name="parent">#E5EFE6</color>
-    <color name="text_color">#0CB91E</color>
-    <color name="text_color2">#000000</color>
-    <color name="test">#CDFCD9</color>
+    <color name="white">#FEFEFE</color>
+    <color name="view_all">#0CB91E</color>
+    <color name="background_color">#D6F5D9</color>
+    <color name="black">#000000</color>
+<!--    <color name="view_all">#1ABD2B</color>-->
+    <color name="progressbar">#8B9B8F</color>
 </resources>

@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/parent"
+    android:background="@color/white"
     android:orientation="vertical">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/test"
+        android:background="@color/background_color"
         android:orientation="vertical">
 
         <LinearLayout
@@ -22,7 +22,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal"
 
                 >
@@ -31,16 +31,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:textStyle="bold"
                     android:text="@string/username"
-                    android:textColor="@color/text_color2"
-                    android:textSize="14sp" />
+
+                    android:textColor="@color/black"
+                    android:textSize="25sp" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="John"
-                    android:textColor="@color/text_color2"
-                    android:textSize="14sp" />
+                    android:textStyle="bold"
+                    android:id="@+id/username"
+                    android:textColor="@color/black"
+                    android:textSize="25sp" />
 
                 <!--        <TextView-->
                 <!--            android:layout_width="wrap_content"-->
@@ -52,22 +56,22 @@
                 <!--            android:textSize="24sp" />-->
 
                 <Button
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="190dp"
+                    android:layout_marginLeft="120dp"
                     android:id="@+id/notification"
                     android:background="@drawable/bell"
-                    android:tint="@color/text_color2" />
+                    android:tint="@color/black" />
 
                 <Button
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:id="@+id/filter"
                     android:layout_gravity="center"
                     android:layout_marginLeft="15dp"
                     android:background="@drawable/filter"
-                    android:tint="@color/text_color2" />
+                    android:tint="@color/black" />
 
 
             </LinearLayout>
@@ -308,7 +312,17 @@
                     android:layout_height="21dp"
                     android:layout_marginBottom="5dp"
                     android:text="Ongoing  Classes"
-                    android:textColor="@color/text_color2" />
+                    android:textStyle="bold"
+                    android:textColor="@color/black" />
+                <TextView
+                    android:layout_width="135dp"
+                    android:layout_height="21dp"
+                    android:id="@+id/ongoing_view_all"
+                    android:layout_marginLeft="165dp"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/view_all"
+                    android:textStyle="bold"
+                    android:textColor="@color/view_all" />
 
             </LinearLayout>
 
@@ -338,7 +352,8 @@
                     android:layout_height="21dp"
                     android:layout_marginBottom="5dp"
                     android:text="@string/upcoming_classes"
-                    android:textColor="@color/text_color2" />
+                    android:textStyle="bold"
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:layout_width="135dp"
@@ -347,7 +362,8 @@
                     android:layout_marginLeft="165dp"
                     android:layout_marginTop="2dp"
                     android:text="@string/view_all"
-                    android:textColor="@color/text_color" />
+                    android:textStyle="bold"
+                    android:textColor="@color/view_all"/>
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -376,7 +392,8 @@
                     android:layout_height="21dp"
                     android:layout_marginBottom="5dp"
                     android:text="@string/top_tutors"
-                    android:textColor="@color/text_color2" />
+                    android:textStyle="bold"
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -384,8 +401,9 @@
                     android:layout_marginLeft="165dp"
                     android:layout_marginTop="2dp"
                     android:text="@string/view_all"
+                    android:textStyle="bold"
                     android:id="@+id/top_tutors_view_all"
-                    android:textColor="@color/text_color" />
+                    android:textColor="@color/view_all" />
 
 
             </LinearLayout>
