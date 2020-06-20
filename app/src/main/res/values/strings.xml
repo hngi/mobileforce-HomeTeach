@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Home Teach</string>
+    <string name="skip">Skip</string>
+    <string name="on_boarding_avatar">On boarding avatar</string>
+    <string name="on_boarding_text_1">Connect globally with many professional Teachers and instructors</string>
+    <string name="on_boarding_text_2">Find and match interesting subjects needed by prospective students</string>
+    <string name="on_boarding_text_3">Get taught on relevant topics and boost your knowledge</string>
 </resources>
