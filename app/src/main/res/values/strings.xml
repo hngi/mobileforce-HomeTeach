@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">Home Teach</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="username">Welcome, John</string>
+    <string name="upcoming_classes">Upcoming Classes</string>
+    <string name="top_tutors">Top Tutors</string>
+    <string name="view_all">view all</string>
+    <string name="filter">Filter</string>
+    <string name="rahman_djando">Rahman Djando</string>
+    <string name="math_tutor">Math Tutor</string>
+    <string name="alaye_chris">Alaye Chris</string>
+    <string name="within_lga">Within LGA</string>
+    <string name="_2000n_hr"><![CDATA[<2000N/hr]]></string>
+    <string name="grade_3">Grade 3</string>
+    <string name="science">Science</string>
+    <string name="maths">Maths</string>
+    <string name="any">Any</string>
+    <string name="search_view_text">Search for Teachers, Subjects, Topics etc.</string>
 </resources>
