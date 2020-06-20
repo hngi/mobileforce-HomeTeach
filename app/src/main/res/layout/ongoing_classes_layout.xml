@@ -36,7 +36,7 @@
         </LinearLayout>
 
         <ProgressBar
-            android:id="@+id/progressBar"
+            android:id="@+id/progress"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="220dp"
             android:layout_height="7dp"

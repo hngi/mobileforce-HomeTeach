@@ -32,7 +32,13 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="@string/username"
-
+                    android:textColor="@color/text_color2"
+                    android:textSize="14sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="John"
                     android:textColor="@color/text_color2"
                     android:textSize="14sp" />
 
@@ -45,20 +51,22 @@
                 <!--            android:textColor="@color/text_color"-->
                 <!--            android:textSize="24sp" />-->
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <Button
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:layout_gravity="center"
                     android:layout_marginLeft="190dp"
-                    android:src="@drawable/bell"
+                    android:id="@+id/notification"
+                    android:background="@drawable/bell"
                     android:tint="@color/text_color2" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <Button
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:id="@+id/filter"
                     android:layout_gravity="center"
                     android:layout_marginLeft="15dp"
-                    android:src="@drawable/filter"
+                    android:background="@drawable/filter"
                     android:tint="@color/text_color2" />
 
 
@@ -67,6 +75,7 @@
 
             <SearchView
                 android:layout_width="354dp"
+                android:id="@+id/search"
                 android:layout_height="50dp"
                 android:layout_marginTop="0dp"
                 android:background="@drawable/seachview_background"
@@ -306,6 +315,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="115dp"
+                android:id="@+id/ongoing_classes_recycler_view"
                 android:scrollbars="horizontal" />
 
 
@@ -333,6 +343,7 @@
                 <TextView
                     android:layout_width="135dp"
                     android:layout_height="21dp"
+                    android:id="@+id/upcoming_view_all"
                     android:layout_marginLeft="165dp"
                     android:layout_marginTop="2dp"
                     android:text="@string/view_all"
@@ -342,7 +353,8 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="115dp"
-                android:scrollbars="horizontal" />
+                android:scrollbars="horizontal"
+                android:id="@+id/upcoming_classes_recycler_view"/>
 
 
         </LinearLayout>
@@ -372,6 +384,7 @@
                     android:layout_marginLeft="165dp"
                     android:layout_marginTop="2dp"
                     android:text="@string/view_all"
+                    android:id="@+id/top_tutors_view_all"
                     android:textColor="@color/text_color" />
 
 
@@ -380,7 +393,8 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scrollbars="horizontal" />
+                android:scrollbars="horizontal"
+                android:id="@+id/top_tutors_recycler_view"/>
         </LinearLayout>
 
 

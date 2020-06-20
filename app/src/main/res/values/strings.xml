@@ -2,7 +2,7 @@
     <string name="app_name">Home Teach</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="username">Welcome, John</string>
+    <string name="username">Welcome, </string>
     <string name="upcoming_classes">Upcoming Classes</string>
     <string name="top_tutors">Top Tutors</string>
     <string name="view_all">view all</string>

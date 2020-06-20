@@ -45,7 +45,10 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation "androidx.fragment:fragment-ktx:$fragment_version"
 
-    //cycleIMageView Dependencies
+    //cycleImageView Dependencies
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+    //Picasso Dependencies
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
 
 }

@@ -22,6 +22,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/subject"
                 android:text="Math - Polynomials - Module 4"
                 android:textSize="12sp" />
 
@@ -46,6 +47,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/date"
             android:layout_marginLeft="10dp"
             android:text="29th June - 16:00pm"/>
         
@@ -61,7 +63,8 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_width="36dp"
-                android:layout_height="23dp"
+                android:layout_height="36dp"
+                android:id="@+id/teachers_image"
                 android:scaleType="centerCrop"
                 android:src="@drawable/img" />
 
@@ -75,19 +78,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/rahman_djando"
+                    android:id="@+id/teachers_name"
                     android:textSize="12sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/math_tutor"
+                    android:id="@+id/teachers_subject"
                     android:textSize="12sp" />
             </LinearLayout>
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:layout_marginLeft="50dp"
+                android:layout_marginLeft="45dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/calimage" />
 
