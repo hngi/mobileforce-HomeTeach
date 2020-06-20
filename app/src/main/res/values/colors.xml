@@ -9,4 +9,6 @@
     <color name="primaryTextColor">#333333</color>
     <color name="secondaryTextColor">#C4C4C4</color>
     <color name="colorAccent">#2F2E41</color>
+    <color name="colorBackground">#ECFCEE</color>
+    <color name="colorBoldText">#0CB91E</color>
 </resources>
