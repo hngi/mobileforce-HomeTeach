@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_parent_student_homepage.*
 
@@ -19,6 +20,7 @@ class ParentStudentHomepageFragment : Fragment() {
     private lateinit var ongoing_classes_recycler: RecyclerView
     private lateinit var upcoming_classes_recycler: RecyclerView
     private lateinit var top_tutors_recycler: RecyclerView
+    private lateinit var ongoing_classes_list:MutableList<OngoingClassesDataModel>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,6 +41,12 @@ class ParentStudentHomepageFragment : Fragment() {
         val filter = filter
         val top_tutors = top_tutors_view_all
         val upcoming_classes = upcoming_view_all
+        activity
+        ongoing_classes_recycler.apply {
+            layoutManager=LinearLayoutManager(activity) as RecyclerView.LayoutManager?
+        }
+        ongoing_classes_recycler.setHasFixedSize(true)
+
 
     }
 }

@@ -84,189 +84,189 @@
                 />
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal">
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginLeft="40dp"-->
+<!--                android:layout_marginTop="5dp"-->
+<!--                android:orientation="horizontal">-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/filter"
-                    android:textColor="@color/text_color2" />
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="@string/filter"-->
+<!--                    android:textColor="@color/text_color2" />-->
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="50dp"
-                    android:layout_height="20dp"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginLeft="4dp"
-                    app:cardCornerRadius="5dp">
+<!--                <androidx.cardview.widget.CardView-->
+<!--                    android:layout_width="50dp"-->
+<!--                    android:layout_height="20dp"-->
+<!--                    android:layout_marginStart="4dp"-->
+<!--                    android:layout_marginLeft="4dp"-->
+<!--                    app:cardCornerRadius="5dp">-->
 
-                    <LinearLayout
-                        android:layout_width="49dp"
-                        android:layout_height="29dp"
-                        android:layout_gravity="center"
-                        android:orientation="horizontal">
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="49dp"-->
+<!--                        android:layout_height="29dp"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:orientation="horizontal">-->
 
-                        <TextView
-                            android:layout_width="40dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="@string/grade_3"
-                            android:textSize="10sp" />
+<!--                        <TextView-->
+<!--                            android:layout_width="40dp"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_gravity="center"-->
+<!--                            android:text="@string/grade_3"-->
+<!--                            android:textSize="10sp" />-->
 
-                        <Button
-                            android:layout_width="10dp"
-                            android:layout_height="10dp"
-                            android:layout_gravity="center"
-                            android:background="@drawable/cancel" />
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
+<!--                        <Button-->
+<!--                            android:layout_width="10dp"-->
+<!--                            android:layout_height="10dp"-->
+<!--                            android:layout_gravity="center"-->
+<!--                            android:background="@drawable/cancel" />-->
+<!--                    </LinearLayout>-->
+<!--                </androidx.cardview.widget.CardView>-->
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="50dp"
-                    android:layout_height="20dp"
-                    android:layout_marginLeft="4dp"
-                    app:cardCornerRadius="5dp">
+<!--                <androidx.cardview.widget.CardView-->
+<!--                    android:layout_width="50dp"-->
+<!--                    android:layout_height="20dp"-->
+<!--                    android:layout_marginLeft="4dp"-->
+<!--                    app:cardCornerRadius="5dp">-->
 
-                    <LinearLayout
-                        android:layout_width="49dp"
-                        android:layout_height="29dp"
-                        android:layout_gravity="center"
-                        android:orientation="horizontal">
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="49dp"-->
+<!--                        android:layout_height="29dp"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:orientation="horizontal">-->
 
-                        <TextView
-                            android:layout_width="40dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="@string/science"
-                            android:textSize="10sp" />
+<!--                        <TextView-->
+<!--                            android:layout_width="40dp"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_gravity="center"-->
+<!--                            android:text="@string/science"-->
+<!--                            android:textSize="10sp" />-->
 
-                        <Button
-                            android:layout_width="10dp"
-                            android:layout_height="10dp"
-                            android:layout_gravity="center"
-                            android:background="@drawable/cancel" />
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
+<!--                        <Button-->
+<!--                            android:layout_width="10dp"-->
+<!--                            android:layout_height="10dp"-->
+<!--                            android:layout_gravity="center"-->
+<!--                            android:background="@drawable/cancel" />-->
+<!--                    </LinearLayout>-->
+<!--                </androidx.cardview.widget.CardView>-->
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="50dp"
-                    android:layout_height="20dp"
-                    android:layout_marginLeft="4dp"
-                    app:cardCornerRadius="5dp">
+<!--                <androidx.cardview.widget.CardView-->
+<!--                    android:layout_width="50dp"-->
+<!--                    android:layout_height="20dp"-->
+<!--                    android:layout_marginLeft="4dp"-->
+<!--                    app:cardCornerRadius="5dp">-->
 
-                    <LinearLayout
-                        android:layout_width="49dp"
-                        android:layout_height="29dp"
-                        android:layout_gravity="center"
-                        android:orientation="horizontal">
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="49dp"-->
+<!--                        android:layout_height="29dp"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:orientation="horizontal">-->
 
-                        <TextView
-                            android:layout_width="40dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="@string/maths"
-                            android:textSize="10sp" />
+<!--                        <TextView-->
+<!--                            android:layout_width="40dp"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_gravity="center"-->
+<!--                            android:text="@string/maths"-->
+<!--                            android:textSize="10sp" />-->
 
-                        <Button
-                            android:layout_width="10dp"
-                            android:layout_height="10dp"
-                            android:layout_gravity="center"
-                            android:background="@drawable/cancel" />
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-            </LinearLayout>
+<!--                        <Button-->
+<!--                            android:layout_width="10dp"-->
+<!--                            android:layout_height="10dp"-->
+<!--                            android:layout_gravity="center"-->
+<!--                            android:background="@drawable/cancel" />-->
+<!--                    </LinearLayout>-->
+<!--                </androidx.cardview.widget.CardView>-->
+<!--            </LinearLayout>-->
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal">
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="5dp"-->
+<!--                android:orientation="horizontal">-->
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="50dp"
-                    android:layout_height="20dp"
-                    android:layout_marginLeft="4dp"
-                    app:cardCornerRadius="5dp">
+<!--                <androidx.cardview.widget.CardView-->
+<!--                    android:layout_width="50dp"-->
+<!--                    android:layout_height="20dp"-->
+<!--                    android:layout_marginLeft="4dp"-->
+<!--                    app:cardCornerRadius="5dp">-->
 
-                    <LinearLayout
-                        android:layout_width="49dp"
-                        android:layout_height="29dp"
-                        android:layout_gravity="center"
-                        android:orientation="horizontal">
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="49dp"-->
+<!--                        android:layout_height="29dp"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:orientation="horizontal">-->
 
-                        <TextView
-                            android:layout_width="40dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="@string/any"
-                            android:textSize="10sp" />
+<!--                        <TextView-->
+<!--                            android:layout_width="40dp"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_gravity="center"-->
+<!--                            android:text="@string/any"-->
+<!--                            android:textSize="10sp" />-->
 
-                        <Button
-                            android:layout_width="10dp"
-                            android:layout_height="10dp"
-                            android:layout_gravity="center"
-                            android:background="@drawable/cancel" />
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
+<!--                        <Button-->
+<!--                            android:layout_width="10dp"-->
+<!--                            android:layout_height="10dp"-->
+<!--                            android:layout_gravity="center"-->
+<!--                            android:background="@drawable/cancel" />-->
+<!--                    </LinearLayout>-->
+<!--                </androidx.cardview.widget.CardView>-->
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="55dp"
-                    android:layout_height="20dp"
-                    android:layout_marginLeft="4dp"
-                    app:cardCornerRadius="5dp">
+<!--                <androidx.cardview.widget.CardView-->
+<!--                    android:layout_width="55dp"-->
+<!--                    android:layout_height="20dp"-->
+<!--                    android:layout_marginLeft="4dp"-->
+<!--                    app:cardCornerRadius="5dp">-->
 
-                    <LinearLayout
-                        android:layout_width="65dp"
-                        android:layout_height="29dp"
-                        android:layout_gravity="center"
-                        android:orientation="horizontal">
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="65dp"-->
+<!--                        android:layout_height="29dp"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:orientation="horizontal">-->
 
-                        <TextView
-                            android:layout_width="50dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="@string/_2000n_hr"
-                            android:textSize="10sp" />
+<!--                        <TextView-->
+<!--                            android:layout_width="50dp"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_gravity="center"-->
+<!--                            android:text="@string/_2000n_hr"-->
+<!--                            android:textSize="10sp" />-->
 
-                        <Button
-                            android:layout_width="10dp"
-                            android:layout_height="10dp"
-                            android:layout_gravity="center"
-                            android:background="@drawable/cancel" />
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
+<!--                        <Button-->
+<!--                            android:layout_width="10dp"-->
+<!--                            android:layout_height="10dp"-->
+<!--                            android:layout_gravity="center"-->
+<!--                            android:background="@drawable/cancel" />-->
+<!--                    </LinearLayout>-->
+<!--                </androidx.cardview.widget.CardView>-->
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="55dp"
-                    android:layout_height="20dp"
-                    android:layout_marginLeft="4dp"
-                    app:cardCornerRadius="5dp">
+<!--                <androidx.cardview.widget.CardView-->
+<!--                    android:layout_width="55dp"-->
+<!--                    android:layout_height="20dp"-->
+<!--                    android:layout_marginLeft="4dp"-->
+<!--                    app:cardCornerRadius="5dp">-->
 
-                    <LinearLayout
-                        android:layout_width="70dp"
-                        android:layout_height="29dp"
-                        android:layout_gravity="center"
-                        android:orientation="horizontal">
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="70dp"-->
+<!--                        android:layout_height="29dp"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:orientation="horizontal">-->
 
-                        <TextView
-                            android:layout_width="52dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="@string/within_lga"
-                            android:textSize="10sp" />
+<!--                        <TextView-->
+<!--                            android:layout_width="52dp"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_gravity="center"-->
+<!--                            android:text="@string/within_lga"-->
+<!--                            android:textSize="10sp" />-->
 
-                        <Button
-                            android:layout_width="10dp"
-                            android:layout_height="10dp"
-                            android:layout_gravity="center"
-                            android:background="@drawable/cancel" />
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-            </LinearLayout>
+<!--                        <Button-->
+<!--                            android:layout_width="10dp"-->
+<!--                            android:layout_height="10dp"-->
+<!--                            android:layout_gravity="center"-->
+<!--                            android:background="@drawable/cancel" />-->
+<!--                    </LinearLayout>-->
+<!--                </androidx.cardview.widget.CardView>-->
+<!--            </LinearLayout>-->
 
         </LinearLayout>
     </LinearLayout>
