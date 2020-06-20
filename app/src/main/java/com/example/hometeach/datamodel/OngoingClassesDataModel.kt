@@ -1,4 +1,4 @@
-package com.example.hometeach
+package com.example.hometeach.datamodel
 
 data class OngoingClassesDataModel(
     var subject: String,

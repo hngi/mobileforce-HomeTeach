@@ -1,4 +1,4 @@
-package com.example.hometeach
+package com.example.hometeach.datamodel
 
 data class ToptutorsDataModel
     (

@@ -1,10 +1,11 @@
-package com.example.hometeach
+package com.example.hometeach.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.view.menu.ActionMenuItemView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.hometeach.R
+import com.example.hometeach.datamodel.ToptutorsDataModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.top_tutors_layout.view.*
 
@@ -22,7 +23,9 @@ class ToptutorsAdapter(
                 , false
             )
 
-        return ToptutorsAdapter.RecyclerViewHolder(items)
+        return RecyclerViewHolder(
+            items
+        )
 
     }
 

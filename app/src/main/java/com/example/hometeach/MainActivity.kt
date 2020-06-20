@@ -2,6 +2,7 @@ package com.example.hometeach
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.hometeach.fragment.ParentStudentHomepageFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -33,7 +34,8 @@ class MainActivity : AppCompatActivity() {
                     return@OnNavigationItemReselectedListener
                 }
                 R.id.home -> {
-                    val fragment = ParentStudentHomepageFragment()
+                    val fragment =
+                        ParentStudentHomepageFragment()
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.frame_layout, fragment, fragment.javaClass.simpleName)
                         .commit()

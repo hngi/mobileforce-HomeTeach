@@ -1,4 +1,4 @@
-package com.example.hometeach
+package com.example.hometeach.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.hometeach.datamodel.OngoingClassesDataModel
+import com.example.hometeach.R
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.ongoing_classes_layout.view.*
 import kotlinx.android.synthetic.main.upcoming_classes_layout.view.subject
@@ -22,21 +24,23 @@ class OngoingClassesAdapter(
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): OngoingClassesAdapter.RecyclerViewHolder {
+    ): RecyclerViewHolder {
         val items = LayoutInflater.from(parent.context)
             .inflate(
                 R.layout.ongoing_classes_layout, parent
                 , false
             )
 
-        return OngoingClassesAdapter.RecyclerViewHolder(items)
+        return RecyclerViewHolder(
+            items
+        )
     }
 
     override fun getItemCount(): Int {
         return itemlist.size
     }
 
-    override fun onBindViewHolder(holder: OngoingClassesAdapter.RecyclerViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
         val currentItem = itemlist[position]
         holder.initialise(itemlist.get(position), listener)
     }

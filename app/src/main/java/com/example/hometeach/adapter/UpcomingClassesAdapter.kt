@@ -1,14 +1,16 @@
-package com.example.hometeach
+package com.example.hometeach.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.hometeach.R
+import com.example.hometeach.datamodel.UpcomingClassesDataModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.upcoming_classes_layout.view.*
 
-class UpcomingClassesAdapter(private var itemlist: List<UpcomingClassesDataModel>,val listener:OnUserClick) :
+class UpcomingClassesAdapter(private var itemlist: List<UpcomingClassesDataModel>, val listener: OnUserClick) :
     RecyclerView.Adapter<UpcomingClassesAdapter.RecyclerViewHolder>() {
 
 
@@ -19,7 +21,9 @@ class UpcomingClassesAdapter(private var itemlist: List<UpcomingClassesDataModel
                 , false
             )
 
-        return RecyclerViewHolder(items)
+        return RecyclerViewHolder(
+            items
+        )
     }
 
     override fun getItemCount(): Int {
