@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Home Teach</string>
+    <string name="explore_select_one">Select One</string>
+    <string name="explore_footer_text">Many Teachers and Students trusts our platform to create value,
+        choose according to your need.</string>
+    <string name="explore_tutor">Tutor</string>
+    <string name="explore_student">Student</string>
+    <string name="home_teach_logo_content_description">HomeTeach Logo Content Description</string>
+    <string name="student_and_tutor_illustration_content_description">Student and Tutor Illustration Content Description</string>
 </resources>
