@@ -204,7 +204,7 @@
         android:fontFamily="@font/philosopher"
         android:text="@string/teach_textview"
         android:textColor="@color/login_text_color"
-        android:textSize="@dimen/default_margin"
+        android:textSize="@dimen/large_text"
         app:layout_constraintBottom_toBottomOf="@+id/home_text_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
