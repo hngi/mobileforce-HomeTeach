@@ -59,11 +59,16 @@
 
 
             <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:scaleType="centerCrop"
                 android:id="@+id/teachers_image"
-                android:src="@drawable/img"/>
+               android:src="@drawable/img"/>
+
+<!--            <de.hdodenhof.circleimageview.CircleImageView-->
+<!--                android:layout_width="32dp"-->
+<!--                android:layout_height=""/>-->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

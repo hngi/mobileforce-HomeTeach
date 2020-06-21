@@ -10,6 +10,7 @@ import com.example.hometeach.datamodel.UpcomingClassesDataModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.upcoming_classes_layout.view.*
 
+
 class UpcomingClassesAdapter(private var itemlist: List<UpcomingClassesDataModel>, val listener: OnUserClick) :
     RecyclerView.Adapter<UpcomingClassesAdapter.RecyclerViewHolder>() {
 
@@ -48,7 +49,8 @@ class UpcomingClassesAdapter(private var itemlist: List<UpcomingClassesDataModel
             date.text = datamodel.date
             teachers_name.text = datamodel.teachers_name
             teachers_subject.text = datamodel.teachers_subject
-            Picasso.get().load(datamodel.teachers_image).into(teachers_image)
+
+           Picasso.get().load(datamodel.teachers_image).into(teachers_image)
 
 
             itemView.setOnClickListener {

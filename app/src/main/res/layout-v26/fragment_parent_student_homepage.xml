@@ -317,7 +317,7 @@
                     android:layout_marginLeft="165dp"
                     android:layout_marginTop="2dp"
                     android:text="@string/view_all"
-                    android:textColor="@color/background_color" />
+                    android:textColor="@color/view_all"/>
 
             </LinearLayout>
 
@@ -356,7 +356,7 @@
                     android:layout_marginLeft="165dp"
                     android:layout_marginTop="2dp"
                     android:text="@string/view_all"
-                    android:textColor="@color/background_color" />
+                    android:textColor="@color/view_all"/>
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -394,7 +394,7 @@
                     android:layout_marginTop="2dp"
                     android:text="@string/view_all"
                     android:id="@+id/top_tutors_view_all"
-                    android:textColor="@color/background_color" />
+                    android:textColor="@color/view_all"/>
 
 
             </LinearLayout>
