@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Home Teach</string>
+    <string name="log_in_textview">LOG IN</string>
+    <string name="home_textview">Home</string>
+    <string name="teach_textview">Teach</string>
+    <string name="email_input_field_hint">Johndoe@example.com</string>
+    <string name="password_input_field_hint">Password</string>
+    <string name="save_password_checkbox_text">Save password</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="alternative_login_hint">Or login using social media</string>
+    <string name="dont_have_an_account">Don\'t have an account?</string>
+    <string name="register_button">Register now</string>
 </resources>

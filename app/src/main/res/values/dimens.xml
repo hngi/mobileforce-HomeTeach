@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="custom_drawable_padding" type="dimen" format="float">3.0</item>
+    <dimen name="linear_layout_padding">0dp</dimen>
+    <dimen name="large_margin">42dp</dimen>
+    <dimen name="default_margin">32dp</dimen>
+    <dimen name="special_margin">24dp</dimen>
+    <dimen name="medium_margin">16dp</dimen>
+    <dimen name="small_margin">8dp</dimen>
+    <dimen name="large_text">36sp</dimen>
+    <dimen name="small_text">14sp</dimen>
+    <dimen name="large_linear_layout_width">344dp</dimen>
+    <dimen name="large_linear_layout_height">39dp</dimen>
+    <dimen name="small_linear_layout_width">112dp</dimen>
+    <dimen name="small_linear_layout_margin">150dp</dimen>
+    <dimen name="noDP">0dp</dimen>
+    <dimen name="button_image_height">40dp</dimen>
+    <dimen name="login_button_layout_height">55dp</dimen>
+</resources>
