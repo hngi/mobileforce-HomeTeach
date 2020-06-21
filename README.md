@@ -1,4 +1,4 @@
- # HomeTeach.
+ # HomeTeach ![Android Build](https://github.com/hngi/mobileforce-HomeTeach/workflows/Android%20Build/badge.svg)
 
 ## Description
 HomeTeach software provides a platform for experienced teachers in the society to register and retail their services. 
