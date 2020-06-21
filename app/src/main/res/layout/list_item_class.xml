@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/bg_main"
+    android:layout_height="wrap_content"
+    tools:context=".fragments.OngoingFragment">
+    <LinearLayout
+        android:id="@+id/classes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/bg_main"
+        android:padding="10dp"
+        tools:context=".fragment.ClassesFragment">
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/cardBackground"
+            app:cardCornerRadius="@dimen/card_radius"
+            app:contentPadding="@dimen/card_margin"
+            app:cardElevation="@dimen/card_elevation">
+            <!-- Card contents -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/subject_name"
+                    style="@style/TextAppearance.MaterialComponents.Headline6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    app:fontFamily="@font/ubuntu"
+                    android:text="@string/card_title"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/textColor"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:gravity="start"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginRight="8dp" />
+                <ProgressBar
+                    android:id="@+id/class_progress"
+                    style="@android:style/Widget.ProgressBar.Horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="7dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:progressDrawable="@drawable/curved_progress_bar"
+                    android:progress="50"/>
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:columnCount="3"
+                    android:layout_gravity="fill"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_column="0"
+                        style="@style/TextAppearance.MaterialComponents.Body1"
+                        android:layout_columnWeight="1"
+                        android:layout_row="0"
+                        app:fontFamily="@font/ubuntu"
+                        android:text="@string/next"
+                        android:textColor="@color/blackColor"/>
+                    <GridLayout
+                        android:columnCount="2"
+                        android:layout_column="1"
+                        android:layout_marginStart="10dp"
+                        android:layout_row="0"
+                        android:layout_columnWeight="1"
+                        android:orientation="horizontal"
+                        android:layout_marginLeft="10dp">
+                        <ImageView
+                            android:layout_column="0"
+                            android:layout_row="0"
+                            android:src="@drawable/ic_calender"/>
+
+                        <TextView
+                            android:layout_column="1"
+                            android:id="@+id/class_date"
+                            android:layout_row="0"
+                            style="@style/TextAppearance.MaterialComponents.Body1"
+                            app:fontFamily="@font/ubuntu"
+                            android:layout_marginStart="5dp"
+                            android:text="@string/date_text"
+                            android:textColor="@color/blackColor"
+                            android:layout_marginLeft="5dp" />
+                    </GridLayout>
+                    <GridLayout
+                        android:columnCount="2"
+                        android:layout_column="2"
+                        android:layout_marginStart="10dp"
+                        android:layout_row="0"
+                        android:layout_columnWeight="1"
+                        android:orientation="horizontal"
+                        android:layout_marginLeft="10dp">
+                        <ImageView
+                            android:layout_column="0"
+                            android:layout_row="0"
+                            android:src="@drawable/ic_time"/>
+
+                        <TextView
+                            android:id="@+id/class_time"
+                            android:layout_column="1"
+                            android:layout_row="0"
+                            android:layout_marginStart="5dp"
+                            style="@style/TextAppearance.MaterialComponents.Body1"
+                            app:fontFamily="@font/ubuntu"
+                            android:text="@string/time_text"
+                            android:textColor="@color/blackColor"
+                            android:layout_marginLeft="5dp" />
+                    </GridLayout>
+                </GridLayout>
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:columnCount="2"
+                    android:layout_gravity="fill"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_column="1"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="end|center_vertical"
+
+                        android:src="@drawable/ic_calculator"/>
+
+                    <GridLayout
+                        android:columnCount="2"
+                        android:rowCount="2"
+                        android:layout_column="0"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_columnWeight="0"
+                        android:orientation="horizontal"
+                        android:layout_marginLeft="0dp">
+
+
+                        <ImageView
+                            android:id="@+id/tutor_image"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_row="0"
+                            android:layout_rowSpan="2"
+                            android:layout_column="0"
+                            android:layout_marginEnd="10dp"
+                            android:scaleType="centerCrop"
+                            android:layout_marginRight="10dp" />
+                        <TextView
+                            android:id="@+id/tutor_name"
+                            android:layout_column="1"
+                            android:layout_row="0"
+                            style="@style/TextAppearance.MaterialComponents.Body1"
+                            app:fontFamily="@font/ubuntu"
+                            android:text="@string/tutor_name"
+                            android:textStyle="bold"
+
+                            android:textColor="@color/blackColor"/>
+                        <TextView
+                            android:id="@+id/tutor_subject"
+                            android:layout_column="1"
+                            android:layout_row="1"
+                            style="@style/TextAppearance.MaterialComponents.Caption"
+                            app:fontFamily="@font/ubuntu"
+                            android:text="@string/tutor_subject"
+                            android:textColor="@color/blackColor"/>
+                    </GridLayout>
+                </GridLayout>
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+
+</LinearLayout>

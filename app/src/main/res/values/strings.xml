@@ -12,4 +12,17 @@
     <string name="explore_student">Student</string>
     <string name="home_teach_logo_content_description">HomeTeach Logo Content Description</string>
     <string name="student_and_tutor_illustration_content_description">Student and Tutor Illustration Content Description</string>
+    <string name="card_title">Physics - Insulators - Module 3</string>
+    <string name="next">Next:</string>
+    <string name="time_text">16:00 - 18:00</string>
+    <string name="date_text">Tue, 10 July</string>
+    <string name="tutor_name">Rahman Django</string>
+    <string name="tutor_subject">Physics Tutor</string>
+    <string name="title_activity_classes">ClassesActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="subject_name">Math, Polynomials III</string>
+    <string name="subject_time">N2000/hr</string>
+    <string name="tutor_grade">Grade 2</string>
+    <string name="status">Status:</string>
 </resources>
