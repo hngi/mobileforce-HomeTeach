@@ -69,11 +69,11 @@ class OnBoardingActivity : AppCompatActivity() {
         })
 
         skipText.setOnClickListener {
-            startActivity(Intent(this, SplashActivity::class.java))
+            startActivity(Intent(this, ExploreActivity::class.java))
         }
 
         fab.setOnClickListener {
-            startActivity(Intent(this, SplashActivity::class.java))
+            startActivity(Intent(this, ExploreActivity::class.java))
         }
         setPageViewController()
     }
@@ -100,7 +100,7 @@ class OnBoardingActivity : AppCompatActivity() {
 
     private fun setPageViewController(){
         dotCount = adapter.count
-        dots = ArrayList<ImageView>(dotCount)
+        dots = ArrayList(dotCount)
         for (i in 0 until dotCount){
             dots.add(i, ImageView(this))
             dots[i].setImageDrawable(ContextCompat.getDrawable(this,
