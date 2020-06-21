@@ -1,4 +1,4 @@
-package com.example.hometeach
+package com.mobileforce.hometeach.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,6 +8,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.viewpager.widget.PagerAdapter
+import com.mobileforce.hometeach.R
+import com.mobileforce.hometeach.models.OnBoardItem
 
 class OnBoardAdapter(private val context: Context, onBoardItems: ArrayList<OnBoardItem>) : PagerAdapter() {
 
