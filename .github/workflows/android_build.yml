@@ -17,10 +17,10 @@ jobs:
 
       - name: Make gradlew executable
         run: chmod +x ./gradlew
-      
+        
       - name: Fix Android SDK
         run: sudo chmod -R a+w /usr/local/lib/android/sdk
-      
+
       - name: Run Tests
         run: ./gradlew test
 

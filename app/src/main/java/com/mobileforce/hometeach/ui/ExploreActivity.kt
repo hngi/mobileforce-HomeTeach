@@ -1,8 +1,8 @@
-package com.example.hometeach.explore
+package com.mobileforce.hometeach.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.hometeach.R
+import com.mobileforce.hometeach.R
 
 class ExploreActivity : AppCompatActivity() {
 
