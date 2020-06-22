@@ -17,7 +17,7 @@ class SplashActivity : AppCompatActivity() {
         Timer().schedule(object: TimerTask(){
             override fun run() {
                 //start OnBoarding activity
-                val intent = Intent(this@SplashActivity, OnBoardingActivity::class.java)
+                val intent = Intent(this@SplashActivity, ExploreActivity::class.java)
                 startActivity(intent)
                 //finish this activity
                 finish()
