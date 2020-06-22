@@ -37,6 +37,10 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+      - name: Fix Android SDK
+        run: sudo chmod -R a+w /usr/local/lib/android/sdk
       - name: Build debug APK
         run: bash ./gradlew assembleDebug --stacktrace
       - name: Upload APK
