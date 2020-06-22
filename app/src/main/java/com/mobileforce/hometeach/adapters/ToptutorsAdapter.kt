@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.hometeach.R
+import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.models.ToptutorsDataModel
 import com.squareup.picasso.Picasso
 

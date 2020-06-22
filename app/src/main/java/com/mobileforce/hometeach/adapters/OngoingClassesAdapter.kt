@@ -7,7 +7,7 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.mobileforce.hometeach.models.OngoingClassesDataModel
-import com.example.hometeach.R
+import com.mobileforce.hometeach.R
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.ongoing_classes_layout.view.*
 

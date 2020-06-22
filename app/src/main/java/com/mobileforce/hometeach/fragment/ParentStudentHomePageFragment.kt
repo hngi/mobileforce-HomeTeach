@@ -9,7 +9,7 @@ import android.widget.SearchView
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.hometeach.R
+import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.models.OngoingClassesDataModel
 import com.mobileforce.hometeach.models.ToptutorsDataModel
 import com.mobileforce.hometeach.models.UpcomingClassesDataModel
