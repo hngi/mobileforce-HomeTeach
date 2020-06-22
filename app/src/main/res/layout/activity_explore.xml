@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_for_explore_page"
-    tools:context=".explore.ExploreActivity">
+    tools:context="com.mobileforce.hometeach.ui.ExploreActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

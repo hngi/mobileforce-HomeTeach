@@ -1,11 +1,11 @@
-package com.example.hometeach.adapter
+package com.mobileforce.hometeach.adapters
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hometeach.R
-import com.example.hometeach.datamodel.ToptutorsDataModel
+import com.mobileforce.hometeach.models.ToptutorsDataModel
 import com.squareup.picasso.Picasso
 
 import kotlinx.android.synthetic.main.top_tutors_layout.view.*

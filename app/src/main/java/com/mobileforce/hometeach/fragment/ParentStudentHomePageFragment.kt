@@ -1,4 +1,4 @@
-package com.example.hometeach.fragment
+package com.mobileforce.hometeach.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,9 +10,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hometeach.R
-import com.example.hometeach.datamodel.OngoingClassesDataModel
-import com.example.hometeach.datamodel.ToptutorsDataModel
-import com.example.hometeach.datamodel.UpcomingClassesDataModel
+import com.mobileforce.hometeach.models.OngoingClassesDataModel
+import com.mobileforce.hometeach.models.ToptutorsDataModel
+import com.mobileforce.hometeach.models.UpcomingClassesDataModel
 import kotlinx.android.synthetic.main.fragment_parent_student_home_page.*
 
 //import kotlinx.android.synthetic.main.fragment_parent_student_homepage.*

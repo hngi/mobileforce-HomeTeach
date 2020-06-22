@@ -1,13 +1,13 @@
-package com.example.hometeach
+package com.mobileforce.hometeach.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.hometeach.fragment.ParentStudentHomepageFragment
+import com.mobileforce.hometeach.fragment.ParentStudentHomepageFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.botton_nav_layout.*
+import com.mobileforce.hometeach.R
+
+//import kotlinx.android.synthetic.main.activity_main.*
 
 class BottonNavigationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

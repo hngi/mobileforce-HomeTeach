@@ -1,4 +1,4 @@
-package com.example.hometeach.adapter
+package com.mobileforce.hometeach.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hometeach.R
-import com.example.hometeach.datamodel.UpcomingClassesDataModel
+import com.mobileforce.hometeach.models.UpcomingClassesDataModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.upcoming_classes_layout.view.*
 

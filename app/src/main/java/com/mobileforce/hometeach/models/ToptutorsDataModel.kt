@@ -1,4 +1,4 @@
-package com.example.hometeach.datamodel
+package com.mobileforce.hometeach.models
 
 data class ToptutorsDataModel
     (

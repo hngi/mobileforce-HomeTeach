@@ -1,4 +1,4 @@
-package com.example.hometeach
+package com.mobileforce.hometeach.models
 
 class OnBoardItem {
     var imageID: Int = 0
