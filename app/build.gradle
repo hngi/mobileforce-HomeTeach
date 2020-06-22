@@ -17,6 +17,11 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    buildFeatures {
+
+        dataBinding true
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -44,5 +49,10 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation "androidx.fragment:fragment-ktx:$fragment_version"
+
+
+
+    //CircularImageView
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 
 }
