@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Home Teach</string>
+    <string name="notifications">Notifications</string>
+
 </resources>
