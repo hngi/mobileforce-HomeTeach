@@ -67,6 +67,7 @@
                         style="@style/TextAppearance.MaterialComponents.Body1"
                         android:layout_columnWeight="1"
                         android:layout_row="0"
+                        android:text="Next"
                         app:fontFamily="@font/ubuntu"
                         android:textColor="@color/blackColor"/>
                     <GridLayout
