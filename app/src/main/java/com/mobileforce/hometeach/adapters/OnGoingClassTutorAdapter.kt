@@ -39,7 +39,7 @@ class OnGoingClassTutorAdapter : ListAdapter<OngoingClassModelTutor, OngoingTuto
 
 }
 
-class OngoingTutorViewHolder(val binding: ListItemClassTutorBinding) :
+class OngoingTutorViewHolder(private val binding: ListItemClassTutorBinding) :
     RecyclerView.ViewHolder(binding.root) {
     fun bind(tutorOngoing: OngoingClassModelTutor) {
         binding.tutorModel = tutorOngoing

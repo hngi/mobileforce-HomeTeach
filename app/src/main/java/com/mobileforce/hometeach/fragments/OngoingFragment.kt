@@ -27,8 +27,6 @@ class OngoingFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_ongoing, container, false)
-
-        return view
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -38,7 +36,7 @@ class OngoingFragment : Fragment() {
         ongoing_classes_list.add(OngoingClassModel("Mathematics - Module 1","Tue, 10 July","16:00 - 18:00","Alice Snow","https://via.placeholder.com/300/09f/fff.png",100,"Mathematics Tutor"))
 //        Log.d("count",ongoing_classes_list.size.toString())
         classes_recycler_view.apply {
-            layoutManager=LinearLayoutManager(activity,LinearLayoutManager.VERTICAL,false) as RecyclerView.LayoutManager?
+            layoutManager= LinearLayoutManager(activity,LinearLayoutManager.VERTICAL,false)
             adapter = OngoingRecyclerAdapter(ongoing_classes_list)
 
         }

@@ -29,8 +29,8 @@ class OngoingFragmentTutor :Fragment(){
 
     }
     companion object {
-        fun newInstance(): OngoingFragment =
-            OngoingFragment()
+        fun newInstance(): OngoingFragmentTutor =
+            OngoingFragmentTutor()
     }
 }
 
