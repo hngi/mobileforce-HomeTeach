@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ui.OnBoardingActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
-
+      
         <activity
             android:name=".ui.SplashActivity"
             android:theme="@style/SplashScreenTheme">
@@ -21,6 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+      
         <activity
             android:name=".ui.ExploreActivity"
             android:theme="@style/AppTheme.NoActionBar" />
