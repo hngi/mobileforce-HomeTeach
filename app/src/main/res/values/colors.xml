@@ -11,4 +11,17 @@
     <color name="colorAccent">#2F2E41</color>
     <color name="colorBackground">#ECFCEE</color>
     <color name="colorBoldText">#0CB91E</color>
+    <color name="progressBackground">#B2B2B2</color>
+    <color name="cardBackground">#F8F8F8</color>
+    <color name="progressTint">#0CB91E</color>
+    <color name="textColor">#333333</color>
+    <color name="blackColor">#000000</color>
+    <color name="bg_main">#E5E5E5</color>
+    <color name="tab_bg">#D6F5D9</color>
+    <color name="colorAppAccent">#0CB91E</color>
+    <color name="white">#FEFEFE</color>
+    <color name="view_all">#0CB91E</color>
+    <color name="background_color">#D6F5D9</color>
+    <color name="black">#000000</color>
+    <color name="progressbar">#8B9B8F</color>
 </resources>

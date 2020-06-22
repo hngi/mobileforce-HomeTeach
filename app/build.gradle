@@ -17,6 +17,11 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    buildFeatures {
+        dataBinding true
+        viewBinding true
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -26,6 +31,7 @@ android {
 }
 
 dependencies {
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     def fragment_version = "1.2.5"
     def nav_version = "2.3.0-rc01"
 
@@ -37,11 +43,20 @@ dependencies {
     implementation 'com.google.android.material:material:1.1.0'
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
-
+    //Picasso Dependencies
+    implementation 'com.squareup.picasso:picasso:2.71828'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation "androidx.fragment:fragment-ktx:$fragment_version"
 
+
+
+    //CircularImageView
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    //glide to loading images to views
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    kapt 'com.github.bumptech.glide:compiler:4.11.0'
 }
