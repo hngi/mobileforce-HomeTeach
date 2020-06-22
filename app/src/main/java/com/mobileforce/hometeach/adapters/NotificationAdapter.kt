@@ -4,11 +4,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.hometeach.Notifications
-import com.example.hometeach.R
+
+import com.mobileforce.hometeach.R
 import kotlinx.android.synthetic.main.parent_notification_layout.view.*
-import java.util.*
-import java.util.logging.Filter
+
 import kotlin.collections.ArrayList
 
 class NotificationAdapter (var  items: ArrayList<Notifications>, var clickListener: OnNotificationItemClickListener) : RecyclerView.Adapter<NotificationsViewHolder>() {
@@ -19,7 +18,8 @@ class NotificationAdapter (var  items: ArrayList<Notifications>, var clickListen
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotificationsViewHolder {
         lateinit var  notificationViewHolder: NotificationsViewHolder
 
-        notificationViewHolder = NotificationsViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.fragment_parent_notification, parent, false))
+        notificationViewHolder = NotificationsViewHolder(LayoutInflater.from(parent.context).inflate(
+            R.layout.fragment_notifications, parent, false))
         return notificationViewHolder
     }
 
@@ -32,7 +32,6 @@ class NotificationAdapter (var  items: ArrayList<Notifications>, var clickListen
         holder.initialize(items.get(position), clickListener)
 
     }
-
 }
 
 
