@@ -70,11 +70,13 @@ class OnBoardingActivity : AppCompatActivity() {
 
         skipText.setOnClickListener {
             startActivity(Intent(this, ExploreActivity::class.java))
+            //finish this activity
             finish()
         }
 
         fab.setOnClickListener {
             startActivity(Intent(this, ExploreActivity::class.java))
+            //finish this activity
             finish()
         }
         setPageViewController()
