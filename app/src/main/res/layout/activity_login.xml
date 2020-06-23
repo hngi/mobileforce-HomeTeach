@@ -80,7 +80,7 @@
         android:textColor="@color/primaryTextColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/signIn" />
 
     <LinearLayout
         android:id="@+id/socialMedia_linearLayout"
@@ -207,7 +207,7 @@
         app:layout_constraintTop_toBottomOf="@+id/email_input_field" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/signIn"
         android:layout_width="@dimen/large_linear_layout_width"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/default_margin"
