@@ -11,7 +11,8 @@
         android:theme="@style/AppTheme" >
         <activity android:name=".ui.EditTutorProfileActivity" >
         </activity>
-        <activity android:name=".ui.LoginActivity" />
+        <activity android:name=".ui.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".ui.OnBoardingActivity"
             android:theme="@style/AppTheme.NoActionBar" />
