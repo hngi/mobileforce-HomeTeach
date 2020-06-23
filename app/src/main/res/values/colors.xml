@@ -26,4 +26,5 @@
     <color name="background_color">#D6F5D9</color>
     <color name="black">#000000</color>
     <color name="progressbar">#8B9B8F</color>
+    <color name="login_button_text_color">#DEDEDE</color>
 </resources>
