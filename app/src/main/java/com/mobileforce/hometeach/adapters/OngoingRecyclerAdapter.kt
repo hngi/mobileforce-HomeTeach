@@ -3,63 +3,50 @@ package com.mobileforce.hometeach.adapters
 import android.graphics.*
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.ProgressBar
-import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.mobileforce.hometeach.R
+import com.mobileforce.hometeach.databinding.ListItemClassBinding
 import com.mobileforce.hometeach.models.OngoingClassModel
-import com.squareup.picasso.Picasso
 import com.squareup.picasso.Transformation
 
 
-class OngoingRecyclerAdapter(private val list: List<OngoingClassModel>)
-    : RecyclerView.Adapter<MovieViewHolder>() {
+class OngoingRecyclerAdapter : ListAdapter<OngoingClassModel, OngoingClassViewHolder>(DiffClass) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
-        return MovieViewHolder(inflater, parent)
+    companion object DiffClass : DiffUtil.ItemCallback<OngoingClassModel>() {
+        override fun areItemsTheSame(
+            oldItem: OngoingClassModel,
+            newItem: OngoingClassModel
+        ): Boolean {
+            return oldItem.subject == newItem.subject
+        }
+
+        override fun areContentsTheSame(
+            oldItem: OngoingClassModel,
+            newItem: OngoingClassModel
+        ): Boolean {
+            return oldItem == newItem
+        }
+
     }
 
-    override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        val classModel: OngoingClassModel = list[position]
-        holder.bind(classModel)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OngoingClassViewHolder {
+        return OngoingClassViewHolder(ListItemClassBinding.inflate(LayoutInflater.from(parent.context)))
     }
 
-    override fun getItemCount(): Int = list.size
+    override fun onBindViewHolder(holder: OngoingClassViewHolder, position: Int) {
+        val ongoingClassTutor = getItem(position)
+        holder.bind(ongoingClassTutor)
+    }
+
 
 }
-class MovieViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
-    RecyclerView.ViewHolder(inflater.inflate(R.layout.list_item_class, parent, false)) {
 
-    private var subjectView: TextView? = null
-    private var dateView: TextView? = null
-    private var timeView: TextView? = null
-    private var tutorNameView: TextView? = null
-    private var tutorImageView: ImageView? = null
-    private var tutorSubjectView: TextView? = null
-    private var progressView: ProgressBar? = null
-
-
-    init {
-        subjectView = itemView.findViewById(R.id.subject_name)
-        dateView = itemView.findViewById(R.id.class_date)
-        timeView = itemView.findViewById(R.id.class_time)
-        tutorNameView = itemView.findViewById(R.id.tutor_name)
-        tutorImageView = itemView.findViewById(R.id.tutor_image)
-        tutorSubjectView = itemView.findViewById(R.id.tutor_subject)
-        progressView = itemView.findViewById(R.id.class_progress)
-    }
-
-    fun bind(classmodel: OngoingClassModel) {
-        subjectView?.text = classmodel.subject
-        dateView?.text = classmodel.date
-        timeView?.text = classmodel.time
-        tutorNameView?.text = classmodel.tutorName
-        tutorSubjectView?.text = classmodel.tutorSubject
-        progressView?.progress = classmodel.progress
-
-        Picasso.get().load(classmodel.tutorImage).transform(CircleTransform()).placeholder(R.drawable.profile_image).error(R.drawable.profile_image).into(tutorImageView)
+class OngoingClassViewHolder(private val binding: ListItemClassBinding) :
+    RecyclerView.ViewHolder(binding.root) {
+    fun bind(classesOngoing: OngoingClassModel) {
+        binding.item = classesOngoing
+        binding.executePendingBindings()
     }
 
 }
