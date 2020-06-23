@@ -80,13 +80,6 @@ class OngoingFragment : Fragment() {
         }
         classes_recycler_view.setHasFixedSize(true)
 
-        val adapter =  OngoingRecyclerAdapter()
-        adapter.submitList(ongoing_classes_list)
-        classes_recycler_view.adapter = adapter
-        classes_recycler_view.hasFixedSize()
-//        classes_recycler_view.layoutManager= LinearLayoutManager(activity, LinearLayoutManager.VERTICAL,false)
-//        classes_recycler_view.setHasFixedSize(true)
-
     }
 
     companion object {
