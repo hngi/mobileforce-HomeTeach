@@ -73,10 +73,13 @@ class OngoingFragment : Fragment() {
             )
         )
 //        Log.d("count",ongoing_classes_list.size.toString())
+        
+        val adapter =  OngoingRecyclerAdapter()
+        adapter.submitList(ongoing_classes_list)
+        
         classes_recycler_view.apply {
             layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-            adapter = OngoingRecyclerAdapter(ongoing_classes_list)
-
+            adapter = adapter
         }
         classes_recycler_view.setHasFixedSize(true)
 
