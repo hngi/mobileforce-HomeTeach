@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/tutorHomePageFragment">
+
+    <fragment
+        android:id="@+id/chatListFragment"
+        android:name="com.mobileforce.hometeach.ui.message.ChatListFragment"
+        android:label="fragment_chat_list"
+        tools:layout="@layout/fragment_chat_list" />
+    <fragment
+        android:id="@+id/tutorHomePageFragment"
+        android:name="com.mobileforce.hometeach.ui.home.HomePageFragment"
+        android:label="fragment_home_page"
+        tools:layout="@layout/fragment_home_page" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.mobileforce.hometeach.ui.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+
+
+</navigation>
