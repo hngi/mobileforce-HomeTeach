@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.upcoming_classes_layout.view.teachers_name
 
 class OngoingClassesAdapter(
     private var itemlist: List<OngoingClassesDataModel>,
-    val listener: OnUserclick
+    val listener: OnUserclicked
 ) :
     RecyclerView.Adapter<OngoingClassesAdapter.RecyclerViewHolder>() {
     override fun onCreateViewHolder(
@@ -55,7 +55,7 @@ class OngoingClassesAdapter(
         val teachers_image = itemview.teachers_image
 
 
-        fun initialise(datamodel: OngoingClassesDataModel, listener: OnUserclick) {
+        fun initialise(datamodel: OngoingClassesDataModel, listener: OnUserclicked) {
 
             subject.text = datamodel.subject
             percent_complete.text = datamodel.completion
@@ -66,7 +66,7 @@ class OngoingClassesAdapter(
 
 
             itemView.setOnClickListener {
-                listener.onUserClick(datamodel, adapterPosition)
+                listener.OnUserclicked(datamodel, adapterPosition)
             }
 
         }
@@ -76,6 +76,6 @@ class OngoingClassesAdapter(
 
 }
 
-interface OnUserclick {
-    fun onUserClick(datamodel: OngoingClassesDataModel, position: Int)
+interface OnUserclicked {
+    fun OnUserclicked(datamodel: OngoingClassesDataModel, position: Int)
 }

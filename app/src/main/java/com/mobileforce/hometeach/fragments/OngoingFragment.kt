@@ -1,27 +1,33 @@
 package com.mobileforce.hometeach.fragments
 
+
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.ListView
+import androidx.databinding.BindingAdapter
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mobileforce.hometeach.R
-
+import com.mobileforce.hometeach.adapters.CircleTransform
 import com.mobileforce.hometeach.adapters.OngoingRecyclerAdapter
 import com.mobileforce.hometeach.models.OngoingClassModel
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_ongoing.*
-import kotlinx.android.synthetic.main.list_item_class.*
 
 /**
  * A simple [Fragment] subclass.
  */
 class OngoingFragment : Fragment() {
+
     private lateinit var listView: ListView
     private var ongoing_classes_list = mutableListOf<OngoingClassModel>()
+  
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,6 +37,7 @@ class OngoingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         // RecyclerView node initialized here
         ongoing_classes_list.add(
             OngoingClassModel(
@@ -73,6 +80,12 @@ class OngoingFragment : Fragment() {
         }
         classes_recycler_view.setHasFixedSize(true)
 
+        val adapter =  OngoingRecyclerAdapter()
+        adapter.submitList(ongoing_classes_list)
+        classes_recycler_view.adapter = adapter
+        classes_recycler_view.hasFixedSize()
+//        classes_recycler_view.layoutManager= LinearLayoutManager(activity, LinearLayoutManager.VERTICAL,false)
+//        classes_recycler_view.setHasFixedSize(true)
 
     }
 
@@ -80,4 +93,9 @@ class OngoingFragment : Fragment() {
         fun newInstance(): OngoingFragment =
             OngoingFragment()
     }
+}
+@BindingAdapter("tutor_image")
+fun setEventImage(imageView: ImageView, url: String?) {
+    Picasso.get().load(url).transform(CircleTransform()).placeholder(R.drawable.profile_image)
+        .error(R.drawable.profile_image).into(imageView)
 }

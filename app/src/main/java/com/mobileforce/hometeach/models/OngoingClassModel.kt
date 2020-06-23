@@ -1,6 +1,6 @@
 package com.mobileforce.hometeach.models
 
-class OngoingClassModel(
+data class OngoingClassModel(
     val subject: String,
     val date: String,
     val time: String,

@@ -11,7 +11,6 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ui.OnBoardingActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
-      
         <activity
             android:name=".ui.SplashActivity"
             android:theme="@style/SplashScreenTheme">
