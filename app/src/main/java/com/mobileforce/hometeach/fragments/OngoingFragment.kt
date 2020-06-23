@@ -90,8 +90,3 @@ class OngoingFragment : Fragment() {
             OngoingFragment()
     }
 }
-@BindingAdapter("tutor_image")
-fun setEventImage(imageView: ImageView, url: String?) {
-    Picasso.get().load(url).transform(CircleTransform()).placeholder(R.drawable.profile_image)
-        .error(R.drawable.profile_image).into(imageView)
-}
