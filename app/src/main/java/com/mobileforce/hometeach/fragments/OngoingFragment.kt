@@ -77,10 +77,8 @@ class OngoingFragment : Fragment() {
         val ongoingRecyclerAdapter =  OngoingRecyclerAdapter()
         adapter.submitList(ongoing_classes_list)
         
-        classes_recycler_view.apply {
-            layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-            adapter = ongoingRecyclerAdapter
-        }
+        classes_recycler_view.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+        classes_recycler_view.adapter = ongoingRecyclerAdapter
         classes_recycler_view.setHasFixedSize(true)
 
     }
