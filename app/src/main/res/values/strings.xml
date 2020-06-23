@@ -12,6 +12,7 @@
     <string name="explore_student">Student</string>
     <string name="home_teach_logo_content_description">HomeTeach Logo Content Description</string>
     <string name="student_and_tutor_illustration_content_description">Student and Tutor Illustration Content Description</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="username">Welcome, </string>
     <string name="upcoming_classes">Upcoming Classes</string>
     <string name="top_tutors">Top Tutors</string>
@@ -27,8 +28,17 @@
     <string name="maths">Maths</string>
     <string name="any">Any</string>
     <string name="search_view_text">Search for Teachers, Subjects, Topics etc.</string>
-    <string name="mark_essien_accepted_your_request">Mark Essien Accepted Your Request</string>
-    <string name="_9hrs_ago">9hrs ago</string>
-    <string name="new_">NEW</string>
-    <string name="notifications_parents">Notifications</string>
+    <string name="log_in_textview">LOG IN</string>
+
+    <string name="save_password_checkbox_text">Save password</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="alternative_login_hint">Or login using social media</string>
+    <string name="dont_have_an_account">Don\'t have an account?</string>
+    <string name="register_button">Register now</string>
+    <string name="email_input_field_hint">johndoe@example.com</string>
+    <string name="password_input_field_hint">********</string>
+    <string name="teach_textview">Teach</string>
+    <string name="home_textview">Home</string>
+    <string name="email_field_label">Email</string>
+    <string name="password_field_label">Password</string>
 </resources>
