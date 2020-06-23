@@ -1,4 +1,4 @@
-package com.example.hometeach.adapter
+package com.mobileforce.hometeach.adapters
 
 import android.graphics.*
 import android.view.LayoutInflater

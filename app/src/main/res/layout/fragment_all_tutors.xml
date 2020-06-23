@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragment.TutorsAllFragment">
+    tools:context=".fragments.TutorsAllFragment">
 
 
     <com.google.android.material.appbar.AppBarLayout
@@ -32,7 +32,7 @@
 
             <ImageView
                 android:layout_width="wrap_content"
-                app:srcCompat="@drawable/ic_notify"
+                android:src="@drawable/ic_notify"
                 android:layout_gravity ="end"
                 android:layout_marginRight="16dp"
                 android:layout_height="wrap_content"
