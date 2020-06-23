@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment.TutorsAllFragment">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$Behavior"
+        style="@style/Widget.Design.AppBarLayout"
+        app:elevation="20dp"
+        android:layout_height="wrap_content">
+
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            app:layout_scrollFlags="enterAlways|scroll"
+            android:layout_width="match_parent"
+            app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="Tutor List"
+                android:textSize="24sp"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"/>
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                app:srcCompat="@drawable/ic_notify"
+                android:layout_gravity ="end"
+                android:layout_marginRight="16dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_margin="20dp"
+            app:cardCornerRadius="8dp"
+            android:elevation="12dp"
+            android:clipChildren="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="UnusedAttribute">
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/search"
+                android:layout_width="match_parent"
+                app:queryHint="Search"
+                app:searchIcon="@drawable/ic_search_icon"
+                android:layout_height="wrap_content"/>
+
+
+        </androidx.cardview.widget.CardView>
+
+
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:overScrollMode="never"
+        android:clipToPadding="false"
+        android:id="@+id/tutor_all_list"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        tools:listitem="@layout/list_item_all_tutors"
+        android:layout_marginBottom="50dp"
+        app:spanCount="1"
+        />
+
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
