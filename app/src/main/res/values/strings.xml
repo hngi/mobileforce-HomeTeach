@@ -41,4 +41,7 @@
     <string name="home_textview">Home</string>
     <string name="email_field_label">Email</string>
     <string name="password_field_label">Password</string>
+    <string name="_9hrs_ago">9hrs ago</string>
+    <string name="mark_essien_accepted_your_friend_request">Mark Essien Accepted Your Friend Request</string>
+    <string name="new_">NEW</string>
 </resources>

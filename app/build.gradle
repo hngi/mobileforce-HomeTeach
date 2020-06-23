@@ -50,6 +50,9 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation "androidx.fragment:fragment-ktx:$fragment_version"
+    //cardview
+    implementation 'androidx.cardview:cardview:1.0.0'
+
 
 
 
