@@ -26,7 +26,12 @@ class ExploreActivity : AppCompatActivity() {
             .putBoolean("isFirstRun", false).apply()
 
         tutorButton.setOnClickListener {
-            startActivity(Intent(this, BottonNavigationActivity::class.java))
+            startActivity(Intent(this, LoginActivity::class.java))
+        }
+
+        studentButton.setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java))
+
         }
     }
 }
