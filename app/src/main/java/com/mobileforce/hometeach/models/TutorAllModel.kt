@@ -2,7 +2,7 @@ package com.mobileforce.hometeach.models
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
-import com.example.hometeach.adapter.CircleTransform
+import com.mobileforce.hometeach.adapters.CircleTransform
 import com.mobileforce.hometeach.R
 import com.squareup.picasso.Picasso
 
