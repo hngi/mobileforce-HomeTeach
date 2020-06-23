@@ -11,9 +11,9 @@
         android:title="Contact"
         android:id="@+id/contacts"/>
     <item
-        android:icon="@drawable/ic_notification"
+        android:icon="@drawable/ic_home"
         android:title="Home"
-        android:id="@+id/home"/>
+        android:id="@+id/tutorHomePageFragment"/>
     <item
         android:icon="@drawable/ic_message"
         android:title="Notification"
@@ -21,6 +21,6 @@
     <item
         android:icon="@drawable/ic_profile"
         android:title="Profile"
-        android:id="@+id/profile"/>
+        android:id="@+id/profileFragment"/>
 
 </menu>
