@@ -25,7 +25,7 @@
         <activity
             android:name=".ui.ExploreActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ui.BottonNavigationActivity"/>
+        <activity android:name=".ui.BottonNavigationActivity" />
     </application>
 
 </manifest>
