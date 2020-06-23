@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
             android:layout_marginLeft="50dp"
-            android:text="@string/notifications_parents"
+            android:text="Notification"
             android:textColor="#333333"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="@id/Arrow_back"
