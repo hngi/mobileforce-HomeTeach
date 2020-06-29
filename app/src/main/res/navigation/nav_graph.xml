@@ -14,12 +14,26 @@
         android:id="@+id/tutorHomePageFragment"
         android:name="com.mobileforce.hometeach.ui.home.HomePageFragment"
         android:label="fragment_home_page"
-        tools:layout="@layout/fragment_home_page" />
+        tools:layout="@layout/fragment_home_page" >
+        <action
+            android:id="@+id/action_tutorHomePageFragment_to_books"
+            app:destination="@id/books" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.mobileforce.hometeach.ui.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/books"
+        android:name="com.mobileforce.hometeach.ui.classes.parentstudent.ParentStudentClassFragment"
+        android:label="fragment_parent_student_class"
+        tools:layout="@layout/fragment_parent_student_class" />
+    <fragment
+        android:id="@+id/tutorClassFragment"
+        android:name="com.mobileforce.hometeach.ui.classes.tutor.TutorClassFragment"
+        android:label="fragment_tutor_class"
+        tools:layout="@layout/fragment_tutor_class" />
 
 
 </navigation>

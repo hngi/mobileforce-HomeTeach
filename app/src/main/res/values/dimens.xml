@@ -15,5 +15,7 @@
     <dimen name="button_image_height">40dp</dimen>
     <dimen name="social_linear_layout_margin">155dp</dimen>
     <dimen name="special_margin">24dp</dimen>
+    <dimen name="class_recycler_bottom">70dp</dimen>
+    <dimen name="class_recycler_top">25dp</dimen>
     <item name="custom_drawable_padding" type="dimen" format="float">3.0</item>
 </resources>
