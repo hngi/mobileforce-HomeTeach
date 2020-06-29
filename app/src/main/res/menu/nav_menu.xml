@@ -2,25 +2,25 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:icon="@drawable/menubook"
+        android:icon="@drawable/ic_classes"
         android:title="Books"
         android:id="@+id/books"/>
 
     <item
-        android:icon="@drawable/contact"
+        android:icon="@drawable/ic_withdraw"
         android:title="Contact"
         android:id="@+id/contacts"/>
     <item
-        android:icon="@drawable/home"
+        android:icon="@drawable/ic_home"
         android:title="Home"
-        android:id="@+id/home"/>
+        android:id="@+id/tutorHomePageFragment"/>
     <item
-        android:icon="@drawable/notification"
+        android:icon="@drawable/ic_message"
         android:title="Notification"
-        android:id="@+id/notification"/>
+        android:id="@+id/chatListFragment"/>
     <item
-        android:icon="@drawable/profile"
+        android:icon="@drawable/ic_profile"
         android:title="Profile"
-        android:id="@+id/profile"/>
+        android:id="@+id/profileFragment"/>
 
 </menu>

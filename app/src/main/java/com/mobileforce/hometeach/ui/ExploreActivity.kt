@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.mobileforce.hometeach.R
+import kotlinx.android.synthetic.main.activity_explore.*
 
 
 class ExploreActivity : AppCompatActivity() {
@@ -23,5 +24,14 @@ class ExploreActivity : AppCompatActivity() {
         }
         getSharedPreferences("PREFERENCE", Context.MODE_PRIVATE).edit()
             .putBoolean("isFirstRun", false).apply()
+
+        tutorButton.setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java))
+        }
+
+        studentButton.setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java))
+
+        }
     }
 }
