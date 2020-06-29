@@ -29,6 +29,7 @@
     <string name="any">Any</string>
     <string name="search_view_text">Search for Teachers, Subjects, Topics etc.</string>
     <string name="log_in_textview">LOG IN</string>
+    <string name="naira_symbol">\u20A6%.2f/hr</string>
 
     <string name="save_password_checkbox_text">Save password</string>
     <string name="forgot_password">Forgot password?</string>
@@ -44,4 +45,8 @@
     <string name="_9hrs_ago">9hrs ago</string>
     <string name="mark_essien_accepted_your_friend_request">Mark Essien Accepted Your Friend Request</string>
     <string name="new_">NEW</string>
+    <string name="classes">Classes</string>
+    <string name="approve">APPROVE</string>
+    <string name="cancel">CANCEL</string>
+    <string name="confirm">CONFIRM</string>
 </resources>

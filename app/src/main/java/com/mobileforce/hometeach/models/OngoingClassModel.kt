@@ -1,6 +1,7 @@
 package com.mobileforce.hometeach.models
 
 data class OngoingClassModel(
+    val id: Int,
     val subject: String,
     val date: String,
     val time: String,
@@ -10,7 +11,8 @@ data class OngoingClassModel(
     val tutorSubject: String) {
 }
 
-data class OngoingClassModelTutor(val subject: String,
+data class OngoingClassModelTutor(val id: Int,
+                                  val subject: String,
                                   val date: String,
                                   val time: String,
                                   val tutorName: String,
