@@ -2,11 +2,8 @@ package com.mobileforce.hometeach.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
-import com.mobileforce.hometeach.fragment.ParentStudentHomepageFragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.databinding.BottonNavLayoutBinding
 
