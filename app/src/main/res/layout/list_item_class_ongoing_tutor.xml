@@ -11,20 +11,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:background="@color/bg_main"
         android:layout_height="wrap_content"
         tools:context=".fragments.OngoingFragmentTutor">
-
-        <LinearLayout
-            android:id="@+id/classes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="center_horizontal"
-            android:background="@color/bg_main"
-            android:padding="10dp"
-            tools:context=".fragment.ClassesFragment">
-
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card"
                 android:layout_width="match_parent"
@@ -32,7 +20,7 @@
                 app:cardBackgroundColor="@color/cardBackground"
                 app:cardCornerRadius="@dimen/card_radius"
                 app:contentPadding="@dimen/card_margin"
-                app:cardElevation="@dimen/card_elevation">
+                android:layout_margin="@dimen/card_margin">
                 <!-- Card contents -->
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -199,6 +187,4 @@
 
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
-
-    </LinearLayout>
 </layout>
