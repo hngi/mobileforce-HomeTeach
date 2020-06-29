@@ -28,20 +28,17 @@
     <string name="maths">Maths</string>
     <string name="any">Any</string>
     <string name="search_view_text">Search for Teachers, Subjects, Topics etc.</string>
-    <string name="log_in_textview">LOG IN</string>
-
-    <string name="save_password_checkbox_text">Save password</string>
-    <string name="forgot_password">Forgot password?</string>
-    <string name="alternative_login_hint">Or login using social media</string>
-    <string name="dont_have_an_account">Don\'t have an account?</string>
-    <string name="register_button">Register now</string>
-    <string name="email_input_field_hint">johndoe@example.com</string>
-    <string name="password_input_field_hint">********</string>
-    <string name="teach_textview">Teach</string>
-    <string name="home_textview">Home</string>
-    <string name="email_field_label">Email</string>
-    <string name="password_field_label">Password</string>
+    <string name="mark_essien_accepted_your_friend_request">Mark essien accepted your friend request</string>
     <string name="_9hrs_ago">9hrs ago</string>
-    <string name="mark_essien_accepted_your_friend_request">Mark Essien Accepted Your Friend Request</string>
     <string name="new_">NEW</string>
+    <string name="recovery_password">Recovery Password</string>
+    <string name="enter_email_recovery_prompt">enter email recovery prompt</string>
+    <string name="sample_email">sample email</string>
+    <string name="email_recovery_subbtn">email recovery subBtn</string>
+    <string name="phone_number">Phone number</string>
+    <string name="phone_number_prompt">Phone number prompt</string>
+    <string name="password_recover_text_prompt">Password recover text prompt</string>
+    <string name="recover_using_email">recover using email</string>
+    <string name="recover_using_phone_number">Recover using phone number</string>
+    <string name="apply_btn_txt">apply btn txt</string>
 </resources>
