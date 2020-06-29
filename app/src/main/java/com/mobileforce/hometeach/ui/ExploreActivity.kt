@@ -26,7 +26,10 @@ class ExploreActivity : AppCompatActivity() {
             .putBoolean("isFirstRun", false).apply()
 
         tutorButton.setOnClickListener {
-            startActivity(Intent(this, LoginActivity::class.java))
+            // This was done just to help test the EditTutorProfile Fragment
+            // Please undo it whenever its no more needed
+            //startActivity(Intent(this, LoginActivity::class.java))
+            startActivity(Intent(this, BottonNavigationActivity::class.java))
         }
 
         studentButton.setOnClickListener {

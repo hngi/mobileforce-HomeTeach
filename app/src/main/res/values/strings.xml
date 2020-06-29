@@ -49,4 +49,70 @@
     <string name="approve">APPROVE</string>
     <string name="cancel">CANCEL</string>
     <string name="confirm">CONFIRM</string>
+    <string name="full_name">Full name</string>
+    <string name="description">Description</string>
+    <string name="upload_a_30_second_video_about_yourself">Upload a 30 second video about yourself</string>
+    <string name="upload">Upload</string>
+    <string name="clear">Clear</string>
+    <string name="file_must_not_be_more_than_30seconds_15mb">File must not be more than 30seconds/15mb</string>
+    <string name="select_field">Select Field</string>
+    <string name="major_course">Major Course</string>
+    <string name="other_courses">Other Courses</string>
+    <string name="separate_with">(separate with “,”)</string>
+    <string name="state_of_origin">State of origin</string>
+    <string name="address">Address</string>
+    <string name="rate">Rate</string>
+    <string name="credentials">Credentials</string>
+    <string name="rahman_djago_resume">Rahman Djago RESUME</string>
+    <string name="save">Save</string>
+    <string name="credential_icon">Credential icon</string>
+
+    <string-array name="fields_array">
+        <item>Science</item>
+        <item>Commercial</item>
+        <item>Arts</item>
+        <item>English</item>
+        <item>Non-Academic</item>
+        <item>Test preparation</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="origin_array">
+        <item>Abia</item>
+        <item>Adamawa</item>
+        <item>Akwa Ibom</item>
+        <item>Anambra</item>
+        <item>Bauchi</item>
+        <item>Bayelsa</item>
+        <item>Benue</item>
+        <item>Borno</item>
+        <item>Cross River</item>
+        <item>Delta</item>
+        <item>Ebonyi</item>
+        <item>Edo</item>
+        <item>Ekiti</item>
+        <item>Enugu</item>
+        <item>FCT Abuja</item>
+        <item>Gombe</item>
+        <item>Imo</item>
+        <item>Jigawa</item>
+        <item>Kaduna</item>
+        <item>Kano</item>
+        <item>Katsina</item>
+        <item>Kebbi</item>
+        <item>Kogi</item>
+        <item>Lagos</item>
+        <item>Nassarawa</item>
+        <item>Niger</item>
+        <item>Ogun</item>
+        <item>Ondo</item>
+        <item>Osun</item>
+        <item>Oyo</item>
+        <item>Plateau</item>
+        <item>Rivers</item>
+        <item>Sokoto</item>
+        <item>Taraba</item>
+        <item>Yobe</item>
+        <item>Zamfara</item>
+    </string-array>
 </resources>

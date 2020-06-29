@@ -25,4 +25,6 @@
     <color name="black">#000000</color>
     <color name="progressbar">#8B9B8F</color>
     <color name="login_button_text_color">#DEDEDE</color>
+    <color name="dividingViewColor">#B5B5B5</color>
+    <color name="fileWarningColor">#80424242</color>
 </resources>
