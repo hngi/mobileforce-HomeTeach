@@ -60,6 +60,9 @@ dependencies {
     //CircularImageView
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
+    //Picker
+    implementation 'com.github.joielechong:countrycodepicker:2.4.2'
+
     //glide to loading images to views
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     kapt 'com.github.bumptech.glide:compiler:4.11.0'
