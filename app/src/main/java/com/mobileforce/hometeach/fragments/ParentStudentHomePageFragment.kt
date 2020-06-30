@@ -1,4 +1,4 @@
-package com.mobileforce.hometeach.TutorDashBoardFragments
+package com.mobileforce.hometeach.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

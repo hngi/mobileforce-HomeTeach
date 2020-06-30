@@ -3,6 +3,7 @@ package com.mobileforce.hometeach.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.Navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.databinding.BottonNavLayoutBinding
 

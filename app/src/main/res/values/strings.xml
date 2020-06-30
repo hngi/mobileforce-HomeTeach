@@ -29,6 +29,7 @@
     <string name="any">Any</string>
     <string name="search_view_text">Search for Teachers, Subjects, Topics etc.</string>
     <string name="log_in_textview">LOG IN</string>
+    <string name="naira_symbol">\u20A6%.2f/hr</string>
 
     <string name="save_password_checkbox_text">Save password</string>
     <string name="forgot_password">Forgot password?</string>
@@ -44,6 +45,7 @@
     <string name="_9hrs_ago">9hrs ago</string>
     <string name="mark_essien_accepted_your_friend_request">Mark Essien Accepted Your Friend Request</string>
     <string name="new_">NEW</string>
+
     <string name="sign_out">SIGN OUT</string>
     <string name="card_details">Card Details</string>
     <string name="payments">Payments</string>
@@ -51,10 +53,7 @@
     <string name="rahman">Rahman,</string>
     <string name="modify">MODIFY</string>
     <string name="since_last_month">Since last month</string>
-    <string name="confirm">CONFIRM</string>
-    <string name="cancel">CANCEL</string>
     <string name="cancel_all">CANCEL ALL</string>
-    <string name="save">SAVE</string>
     <string name="social_security_number">Social Security Number</string>
     <string name="routing_number">Routing Number</string>
     <string name="please_enter_your_bank_information_below">Please enter your bank information below</string>
@@ -63,6 +62,84 @@
     <string name="please_enter_your_credit_card_information_below">Please enter your credit card information below</string>
     <string name="account_number">Account Number</string>
     <string name="account_name">Account Name</string>
-    <string name="classes">Classes</string>
 
+    <string name="classes">Classes</string>
+    <string name="approve">APPROVE</string>
+    <string name="cancel">CANCEL</string>
+    <string name="confirm">CONFIRM</string>
+    <string name="full_name">Full name</string>
+    <string name="description">Description</string>
+    <string name="upload_a_30_second_video_about_yourself">Upload a 30 second video about yourself</string>
+    <string name="upload">Upload</string>
+    <string name="clear">Clear</string>
+    <string name="file_must_not_be_more_than_30seconds_15mb">File must not be more than 30seconds/15mb</string>
+    <string name="select_field">Select Field</string>
+    <string name="major_course">Major Course</string>
+    <string name="other_courses">Other Courses</string>
+    <string name="separate_with">(separate with “,”)</string>
+    <string name="state_of_origin">State of origin</string>
+    <string name="address">Address</string>
+    <string name="rate">Rate</string>
+    <string name="credentials">Credentials</string>
+    <string name="rahman_djago_resume">Rahman Djago Resume</string>
+    <string name="rahman_djago_cv">Rahman Djago CV</string>
+    <string name="rahman_djago_letter">Rahman Djago Letter</string>
+    <string name="save">Save</string>
+    <string name="credential_icon">Credential icon</string>
+    <string name="add_more">Add More…</string>
+    <string name="close">Close</string>
+    <string name="open">Open</string>
+    <string name="delete">Delete</string>
+    <string name="document_image">Document image</string>
+    <string name="add_more_image">Add more image</string>
+
+    <string-array name="fields_array">
+        <item>Science</item>
+        <item>Commercial</item>
+        <item>Arts</item>
+        <item>English</item>
+        <item>Non-Academic</item>
+        <item>Test preparation</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="origin_array">
+        <item>Abia</item>
+        <item>Adamawa</item>
+        <item>Akwa Ibom</item>
+        <item>Anambra</item>
+        <item>Bauchi</item>
+        <item>Bayelsa</item>
+        <item>Benue</item>
+        <item>Borno</item>
+        <item>Cross River</item>
+        <item>Delta</item>
+        <item>Ebonyi</item>
+        <item>Edo</item>
+        <item>Ekiti</item>
+        <item>Enugu</item>
+        <item>FCT Abuja</item>
+        <item>Gombe</item>
+        <item>Imo</item>
+        <item>Jigawa</item>
+        <item>Kaduna</item>
+        <item>Kano</item>
+        <item>Katsina</item>
+        <item>Kebbi</item>
+        <item>Kogi</item>
+        <item>Lagos</item>
+        <item>Nassarawa</item>
+        <item>Niger</item>
+        <item>Ogun</item>
+        <item>Ondo</item>
+        <item>Osun</item>
+        <item>Oyo</item>
+        <item>Plateau</item>
+        <item>Rivers</item>
+        <item>Sokoto</item>
+        <item>Taraba</item>
+        <item>Yobe</item>
+        <item>Zamfara</item>
+    </string-array>
+>>>>>>> upstream/develop
 </resources>
