@@ -1,4 +1,4 @@
-package com.mobileforce.hometeach.adapters
+package com.mobileforce.hometeach.ui.withdrawalscreens.carddetails
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,9 +6,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mobileforce.hometeach.databinding.MyCardslistItemBinding
-import com.mobileforce.hometeach.models.MyCard
+import com.mobileforce.hometeach.ui.withdrawalscreens.MyCard
 
-class MyCardRecycler : ListAdapter<MyCard, MyCardsViewHolder>(DiffClass) {
+class MyCardRecycler : ListAdapter<MyCard, MyCardsViewHolder>(
+    DiffClass
+) {
 
     companion object DiffClass : DiffUtil.ItemCallback<MyCard>() {
         override fun areItemsTheSame(
@@ -28,7 +30,9 @@ class MyCardRecycler : ListAdapter<MyCard, MyCardsViewHolder>(DiffClass) {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyCardsViewHolder {
-        return MyCardsViewHolder(MyCardslistItemBinding.inflate(LayoutInflater.from(parent.context)))
+        return MyCardsViewHolder(
+            MyCardslistItemBinding.inflate(LayoutInflater.from(parent.context))
+        )
     }
 
     override fun onBindViewHolder(holder: MyCardsViewHolder, position: Int) {

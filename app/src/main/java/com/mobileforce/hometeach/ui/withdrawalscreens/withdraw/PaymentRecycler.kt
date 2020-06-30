@@ -1,16 +1,16 @@
-package com.mobileforce.hometeach.adapters
+package com.mobileforce.hometeach.ui.withdrawalscreens.withdraw
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.mobileforce.hometeach.databinding.ListItemClassBinding
 import com.mobileforce.hometeach.databinding.WithdrawalListItemBinding
-import com.mobileforce.hometeach.models.OngoingClassModel
-import com.mobileforce.hometeach.models.Payment
+import com.mobileforce.hometeach.ui.withdrawalscreens.Payment
 
-class PaymentRecycler : ListAdapter<Payment, PaymentViewHolder>(DiffClass) {
+class PaymentRecycler : ListAdapter<Payment, PaymentViewHolder>(
+    DiffClass
+) {
 
     companion object DiffClass : DiffUtil.ItemCallback<Payment>() {
         override fun areItemsTheSame(
@@ -30,7 +30,9 @@ class PaymentRecycler : ListAdapter<Payment, PaymentViewHolder>(DiffClass) {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PaymentViewHolder {
-        return PaymentViewHolder(WithdrawalListItemBinding.inflate(LayoutInflater.from(parent.context)))
+        return PaymentViewHolder(
+            WithdrawalListItemBinding.inflate(LayoutInflater.from(parent.context))
+        )
     }
 
     override fun onBindViewHolder(holder: PaymentViewHolder, position: Int) {

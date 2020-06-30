@@ -1,4 +1,4 @@
-package com.mobileforce.hometeach.adapters
+package com.mobileforce.hometeach.ui.withdrawalscreens.mybank
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,10 +6,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mobileforce.hometeach.databinding.MyBanklistItemBinding
-import com.mobileforce.hometeach.models.MyBank
-import com.mobileforce.hometeach.models.Payment
+import com.mobileforce.hometeach.ui.withdrawalscreens.MyBank
 
-class MyBankRecycler : ListAdapter<MyBank, MyBanksViewHolder>(DiffClass) {
+class MyBankRecycler : ListAdapter<MyBank, MyBanksViewHolder>(
+    DiffClass
+) {
 
     companion object DiffClass : DiffUtil.ItemCallback<MyBank>() {
         override fun areItemsTheSame(
@@ -29,7 +30,9 @@ class MyBankRecycler : ListAdapter<MyBank, MyBanksViewHolder>(DiffClass) {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyBanksViewHolder {
-        return MyBanksViewHolder(MyBanklistItemBinding.inflate(LayoutInflater.from(parent.context)))
+        return MyBanksViewHolder(
+            MyBanklistItemBinding.inflate(LayoutInflater.from(parent.context))
+        )
     }
 
     override fun onBindViewHolder(holder: MyBanksViewHolder, position: Int) {

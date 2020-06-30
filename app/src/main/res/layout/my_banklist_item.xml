@@ -6,7 +6,7 @@
     <data>
         <variable
             name="bank"
-            type="com.mobileforce.hometeach.models.MyBank" />
+            type="com.mobileforce.hometeach.ui.withdrawalscreens.MyBank" />
     </data>
 
     <LinearLayout

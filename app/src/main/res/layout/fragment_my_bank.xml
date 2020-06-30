@@ -55,7 +55,7 @@
         android:orientation="vertical"
         android:padding="50px"
         android:elevation="50dp"
-        tools:context=".ui.withdrawal.WithdrawalFragment">
+        tools:context=".ui.withdraw.WithdrawalFragment">
 
         <!-- TODO: Update blank fragment layout -->
         <com.google.android.material.card.MaterialCardView

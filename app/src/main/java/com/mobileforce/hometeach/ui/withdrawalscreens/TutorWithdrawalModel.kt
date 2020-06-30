@@ -1,6 +1,4 @@
-package com.mobileforce.hometeach.models
-
-import androidx.recyclerview.widget.DiffUtil
+package com.mobileforce.hometeach.ui.withdrawalscreens
 
 data class TutorWithdrawalModel(
     val _id: Int,
