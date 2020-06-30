@@ -66,6 +66,9 @@
     <string name="rahman_djago_resume">Rahman Djago RESUME</string>
     <string name="save">Save</string>
     <string name="credential_icon">Credential icon</string>
+    <string name="text_search">Search</string>
+    <string name="text_view_all">View all</string>
+    <string name="text_ongoing_classes">Ongoing Classes</string>
 
     <string-array name="fields_array">
         <item>Science</item>
