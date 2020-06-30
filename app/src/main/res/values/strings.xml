@@ -22,9 +22,8 @@
     <string name="math_tutor">Math Tutor</string>
     <string name="alaye_chris">Alaye Chris</string>
     <string name="within_lga">Within LGA</string>
-    <string name="_2000n_hr"><![CDATA[<2000N/hr]]></string>
+    <string name="_2000n_hr"><![CDATA[2000N/hr]]></string>
     <string name="grade_3">Grade 3</string>
-    <string name="science">Science</string>
     <string name="maths">Maths</string>
     <string name="any">Any</string>
     <string name="search_view_text">Search for Teachers, Subjects, Topics etc.</string>
@@ -41,4 +40,19 @@
     <string name="recover_using_email">recover using email</string>
     <string name="recover_using_phone_number">Recover using phone number</string>
     <string name="apply_btn_txt">apply btn txt</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="_34_lessons">34 Lessons</string>
+    <string name="_12_students">12 Students</string>
+    <string name="interest_science_maths_physics">Interest:Science, Maths, Physics</string>
+    <string name="available">Available</string>
+    <string name="science">Science</string>
+    <string name="_16">(16)</string>
+    <string name="i_teach_with_calmness_and_encouragement_my_lessons_are_not_boring_and_i_can_accomodate_student_s_with_low_affinity_to_studying_i_employ_modern_schema_for_tutoring_with_interactive_guides_and_learning_systems_having_schooled_at_different_educational_organizations_coupled_with_my_nce_certifcate_i_can_assure_you_premium_success_with_me_as_your_home_teacher">I teach with calmness and encouragement. My lessons are not boring and i can accomodate student’s with low affinity to studying. I employ modern schema for tutoring with interactive guides and learning systems. Having schooled at different educational organizations coupled with my NCE certifcate, I can assure you premium success with me as your Home-Teacher.</string>
+    <string name="rahman_django_resume">Rahman Django RESUME</string>
+    <string name="credentials">Credentials</string>
+    <string name="description">Description</string>
+    <string name="thursday_june_5_2020_n16_00_18_00">Thursday, June 5, 2020 \n16:00 - 18:00</string>
+    <string name="your_request_for_a_teacher_has_been_successfully_booked_and_awaiting_approval">Your request for a Teacher has been successfully booked and awaiting approval</string>
+    <string name="cancel">Cancel</string>
+    <string name="congratulations">Congratulations</string>
 </resources>
