@@ -6,62 +6,61 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.mobileforce.hometeach.R
+import com.mobileforce.hometeach.databinding.FragmentAddBankBinding
 
 
 class AddBankFragment : Fragment() {
     lateinit var navController: NavController
-
+       private lateinit var binding:FragmentAddBankBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_bank, container, false)
+        binding =  FragmentAddBankBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
-        val toolbar = view.findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
+        val toolbar = binding.toolbar
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             toolbar.setNavigationIcon(R.drawable.back_arrow)
         }
-        val acc_name = view.findViewById<EditText>(R.id.acc_name)
-        val txt_acc_name = acc_name.text
-        val acc_number = view.findViewById<EditText>(R.id.acc_number)
-        val txt_acc_number = acc_number.text
-        val acc_route = view.findViewById<EditText>(R.id.acc_route)
-        val txt_acc_route = acc_route.text
-        val ss_number = view.findViewById<EditText>(R.id.acc_security_number)
-        val txt_ss_number = ss_number.text
-        val btn_save = view.findViewById<Button>(R.id.save)
+        val accName = binding.accName
+        val txtAccName = accName.text
+        val accNumber =    binding.accNumber
+        val txtAccNumber = accNumber.text
+        val accRoute = binding.accRoute
+        val txtAccRoute = accRoute.text
+        val ssNumber = binding.accSecurityNumber
+        val txtSsNumber = ssNumber.text
+        val btnSave =binding.save
 
         toolbar.setNavigationOnClickListener {
 
             navController.navigate(R.id.myBanks)
         }
 
-        btn_save.setOnClickListener {
+        btnSave.setOnClickListener {
 
-            if (txt_acc_name.isNullOrEmpty())
+            if (txtAccName.isNullOrEmpty())
             {
 
             }
-            if (txt_acc_number.isNullOrEmpty())
+            if (txtAccNumber.isNullOrEmpty())
             {
 
             }
-            if (txt_acc_route.isNullOrEmpty())
+            if (txtAccRoute.isNullOrEmpty())
             {
 
             }
-            if (txt_ss_number.isNullOrEmpty())
+            if (txtSsNumber.isNullOrEmpty())
             {
 
             }

@@ -27,8 +27,6 @@ import java.util.*
  * Authored by enyason
  */
 class HomePageFragment : Fragment() {
-    private lateinit var tutor_classes_list: List<TutorClassesDataModel>
-    lateinit var navController: NavController
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

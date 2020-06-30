@@ -6,59 +6,60 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.mobileforce.hometeach.R
+import com.mobileforce.hometeach.databinding.FragmentAddCardDetailsBinding
 
 
 class AddCardDetails : Fragment() {
     lateinit var navController: NavController
+
+    lateinit var binding:FragmentAddCardDetailsBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_card_details, container, false)
+        binding =  FragmentAddCardDetailsBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
-        val toolbar = view.findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
+        val toolbar = binding.toolbar
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             toolbar.setNavigationIcon(R.drawable.back_arrow)
         }
-        val acc_name = view.findViewById<EditText>(R.id.acc_name)
-        val txt_accname = acc_name.text
-        val acc_number = view.findViewById<EditText>(R.id.acc_number)
-        val txt_accnumber = acc_number.text
-        val card_expiry_date = view.findViewById<EditText>(R.id.m_y)
-        val txt_card_expiry_date = card_expiry_date.text
-        val cw_number = view.findViewById<EditText>(R.id.cw)
-        val txt_cw_number = cw_number.text
-        val btn_save = view.findViewById<Button>(R.id.save)
+        val accName = binding.accName
+        val txtAccname = accName.text
+        val accNumber = binding.accNumber
+        val txtAccnumber = accNumber.text
+        val cardExpiryDate = binding.mY
+        val txtCardExpiryDate = cardExpiryDate.text
+        val cwNumber = binding.cw
+        val txtCwNumber = cwNumber.text
+        val btnSave =binding.save
 
-        btn_save.setOnClickListener {
+        btnSave.setOnClickListener {
 
-            if (txt_accname.isNullOrEmpty())
+            if (txtAccname.isNullOrEmpty())
             {
 
             }
 
-            if (txt_accnumber.isNullOrEmpty())
+            if (txtAccnumber.isNullOrEmpty())
             {
 
             }
 
-            if (txt_card_expiry_date.isNullOrEmpty())
+            if (txtCardExpiryDate.isNullOrEmpty())
             {
 
             }
 
-            if (txt_cw_number.isNullOrEmpty())
+            if (txtCwNumber.isNullOrEmpty())
             {
 
             }

@@ -6,10 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.CalendarView
-import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.adapters.OnItemtouch
 import com.mobileforce.hometeach.adapters.TutorClassesAdapter
+import com.mobileforce.hometeach.databinding.FragmentHomePageTutorBinding
 import com.mobileforce.hometeach.models.TutorClassesDataModel
 import kotlinx.android.synthetic.main.fragment_home_page_tutor.*
 import java.util.*
@@ -24,26 +21,28 @@ import java.util.*
 class HomePageTutorFragment : Fragment(), OnItemtouch {
     private lateinit var tutor_classes_list: List<TutorClassesDataModel>
     lateinit var navController: NavController
+    private lateinit var binding: FragmentHomePageTutorBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home_page_tutor, container, false)
+
+       binding =  FragmentHomePageTutorBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
-        val btn_sign_out = view.findViewById<Button>(R.id.signout)
-        val username = view.findViewById<TextView>(R.id.username)
-        var calendar = view.findViewById<CalendarView>(R.id.calendar)
-        val modify_btn = view.findViewById<Button>(R.id.modify_btn)
-        val card_detail = view.findViewById<LinearLayout>(R.id.card_details)
-        val withdrawal = view.findViewById<LinearLayout>(R.id.withdrawal)
-        val myBanks = view.findViewById<LinearLayout>(R.id.mybanks)
-        val tutor_classes_recycler = view.findViewById<RecyclerView>(R.id.tutor_classes)
+        val btnSignOut =  binding.signout
+        val username = binding.username
+        var calendar = binding.calendar
+        val modifyBtn = binding.modifyBtn
+        val cardDetail = binding.cardDetails
+        val withdrawal = binding.withdrawal
+        val myBanks = binding.mybanks
+        val tutorClassesRecycler = binding.tutorClasses
 
         // the two variable below are for testing purposes only
         var testurl = "https://twitter.com/markessien/status/1276935597895098368/photo/1"
@@ -54,9 +53,9 @@ class HomePageTutorFragment : Fragment(), OnItemtouch {
         )
         val adapter = TutorClassesAdapter(tutor_classes_list, this)
 
-        tutor_classes_recycler.adapter = adapter
+        tutorClassesRecycler.adapter = adapter
 
-        tutor_classes_recycler.apply {
+        tutorClassesRecycler.apply {
             layoutManager =
                 LinearLayoutManager(
                     activity,
@@ -64,9 +63,9 @@ class HomePageTutorFragment : Fragment(), OnItemtouch {
                     false
                 ) as RecyclerView.LayoutManager?
         }
-        tutor_classes_recycler.setHasFixedSize(true)
+        tutorClassesRecycler.setHasFixedSize(true)
 
-        modify_btn.setOnClickListener {
+        modifyBtn.setOnClickListener {
             date_picker()
         }
         withdrawal.setOnClickListener {
@@ -74,7 +73,7 @@ class HomePageTutorFragment : Fragment(), OnItemtouch {
             navController.navigate(R.id.makeWithdrawalFragment)
         }
 
-        card_detail.setOnClickListener {
+        cardDetail.setOnClickListener {
             navController.navigate(R.id.cardDetails)
         }
         mybanks.setOnClickListener {

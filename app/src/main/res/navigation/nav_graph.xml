@@ -25,7 +25,7 @@
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
-<<<<<<< HEAD
+
         android:id="@+id/makeWithdrawalFragment"
         android:name="com.mobileforce.hometeach.TutorDashBoardFragments.MakeWithdrawalFragment"
         android:label="MakeWithdrawalFragment"
@@ -50,7 +50,7 @@
         android:name="com.mobileforce.hometeach.TutorDashBoardFragments.AddCardDetails"
         android:label="AddCardDetails"
         tools:layout="@layout/fragment_add_card_details"/>
-=======
+<fragment
         android:id="@+id/books"
         android:name="com.mobileforce.hometeach.ui.classes.parentstudent.ParentStudentClassFragment"
         android:label="fragment_parent_student_class"
@@ -60,7 +60,7 @@
         android:name="com.mobileforce.hometeach.ui.classes.tutor.TutorClassFragment"
         android:label="fragment_tutor_class"
         tools:layout="@layout/fragment_tutor_class" />
->>>>>>> upstream/develop
+
 
 
 </navigation>
