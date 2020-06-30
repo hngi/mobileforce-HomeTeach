@@ -55,4 +55,15 @@
     <string name="your_request_for_a_teacher_has_been_successfully_booked_and_awaiting_approval">Your request for a Teacher has been successfully booked and awaiting approval</string>
     <string name="cancel">Cancel</string>
     <string name="congratulations">Congratulations</string>
+    <string name="password_field">Password</string>
+    <string name="email_field">Email</string>
+    <string name="login">Login</string>
+    <string name="enter_password_field">Enter password</string>
+    <string name="enter_email_field">Enter email</string>
+    <string name="register">Register</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="alternative_login_hint">Alternative_login hint</string>
+    <string name="forgot_password">Forgot password</string>
+    <string name="save_password">Save password</string>
+    <string name="full_name">Full name</string>
 </resources>
