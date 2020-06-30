@@ -112,6 +112,7 @@
             android:layout_marginTop="8dp"
             android:fontFamily="@font/ubuntu"
             android:text="Email"
+            android:textColor="#0A0A0A"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInput_fullname" />
 
@@ -152,6 +153,7 @@
             android:layout_marginTop="8dp"
             android:fontFamily="@font/ubuntu"
             android:text="Password"
+            android:textColor="#0B0B0B"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInput_email" />
 
@@ -198,6 +200,7 @@
             android:layout_marginTop="8dp"
             android:fontFamily="@font/ubuntu"
             android:text="Phone number"
+            android:textColor="#0B0B0B"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInput_password" />
 
@@ -232,6 +235,7 @@
             android:layout_marginRight="32dp"
             android:fontFamily="@font/ubuntu"
             android:text="I have read the "
+            android:textColor="#070707"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
