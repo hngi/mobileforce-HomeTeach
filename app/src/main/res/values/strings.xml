@@ -33,7 +33,7 @@
     <string name="recovery_password">Recovery Password</string>
     <string name="enter_email_recovery_prompt">enter email recovery prompt</string>
     <string name="sample_email">sample email</string>
-    <string name="email_recovery_subbtn">email recovery subBtn</string>
+    <string name="email_recovery_subbtn">Recover password</string>
     <string name="phone_number">Phone number</string>
     <string name="phone_number_prompt">Phone number prompt</string>
     <string name="password_recover_text_prompt">Password recover text prompt</string>
@@ -66,4 +66,19 @@
     <string name="forgot_password">Forgot password</string>
     <string name="save_password">Save password</string>
     <string name="full_name">Full name</string>
+    <string name="upload_a_30_seconds_video_about_yourself">Upload a 30 seconds video about yourself</string>
+    <string name="upload">Upload</string>
+    <string name="clear">Clear</string>
+    <string name="file_must_not_be_more_than_30seconds_15mb">File must not be more than 30seconds 15mb</string>
+    <string name="select_field">Select field</string>
+    <string name="major_course">Major course</string>
+    <string name="other_courses">Other courses</string>
+    <string name="separate_with">Separate with</string>
+    <string name="state_of_origin">State of origin</string>
+    <string name="address">Address</string>
+    <string name="rate">Rate</string>
+    <string name="save">Save</string>
+    <string name="classes">Classes</string>
+    <string name="approve">Approve</string>
+    <string name="confirm">Confirm</string>
 </resources>
