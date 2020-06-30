@@ -1,5 +1,6 @@
 package com.mobileforce.hometeach.fragment
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,17 +11,8 @@ import android.widget.CalendarView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.mobileforce.hometeach.R
+import java.util.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [HomePageTutorFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HomePageTutorFragment : Fragment() {
 
     override fun onCreateView(
@@ -34,11 +26,15 @@ class HomePageTutorFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val btn_sign_out = view.findViewById<Button>(R.id.signout)
-        val username =view.findViewById<TextView>(R.id.username)
+        val username = view.findViewById<TextView>(R.id.username)
         var calendar = view.findViewById<CalendarView>(R.id.calendar)
-        val modify_btn=view.findViewById<Button>(R.id.modify_btn)
-        val card_detail =view.findViewById<LinearLayout>(R.id.card_details)
-        val withdrawal =view.findViewById<LinearLayout>(R.id.withdrawal)
-        val myBanks =view.findViewById<LinearLayout>(R.id.mybanks)
+        val modify_btn = view.findViewById<Button>(R.id.modify_btn)
+        val card_detail = view.findViewById<LinearLayout>(R.id.card_details)
+        val withdrawal = view.findViewById<LinearLayout>(R.id.withdrawal)
+        val myBanks = view.findViewById<LinearLayout>(R.id.mybanks)
+
+
     }
+
+
 }

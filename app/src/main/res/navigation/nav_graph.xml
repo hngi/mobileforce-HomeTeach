@@ -20,6 +20,31 @@
         android:name="com.mobileforce.hometeach.ui.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/makeWithdrawalFragment"
+        android:name="com.mobileforce.hometeach.fragment.MakeWithdrawalFragment"
+        android:label="MakeWithdrawalFragment"
+        tools:layout="@layout/fragment_make_withdrawal"/>
+    <fragment
+        android:id="@+id/cardDetails"
+        android:name="com.mobileforce.hometeach.fragment.CardDetails"
+        android:label="CardDetails"
+        tools:layout="@layout/fragment_card_details"/>
+    <fragment
+        android:id="@+id/myBanks"
+        android:name="com.mobileforce.hometeach.fragment.MyBanks"
+        android:label="MyBanks"
+        tools:layout="@layout/fragment_my_banks"/>
+    <fragment
+        android:id="@+id/addBankFragment"
+        android:name="com.mobileforce.hometeach.fragment.AddBankFragment"
+        android:label="AddBankFragment"
+        tools:layout="@layout/fragment_add_bank"/>
+    <fragment
+        android:id="@+id/addCardDetails"
+        android:name="com.mobileforce.hometeach.fragment.AddCardDetails"
+        android:label="AddCardDetails"
+        tools:layout="@layout/fragment_add_card_details"/>
 
 
 </navigation>

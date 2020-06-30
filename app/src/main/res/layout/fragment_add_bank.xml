@@ -11,7 +11,7 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/primaryLightColor"
         app:title="Add Bank Details"
-        app:titleTextColor="@color/white"
+        app:titleTextColor="@color/black"
         app:popupTheme="@style/ThemeOverlay.AppCompat.ActionBar" />
 
     <LinearLayout
@@ -64,12 +64,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="15sp"
-        android:id="@+id/acc_name"
         android:layout_marginTop="10dp"
         android:text="@string/please_enter_your_bank_information_below"/>
     <EditText
         android:layout_width="350dp"
         android:layout_height="wrap_content"
+        android:id="@+id/acc_name"
         android:inputType="text"
         android:padding="12dp"
         android:layout_marginTop="15dp"

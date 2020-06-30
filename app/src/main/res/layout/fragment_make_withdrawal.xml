@@ -11,7 +11,7 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/primaryLightColor"
         app:title="Make Withdrawal"
-        app:titleTextColor="@color/white"
+        app:titleTextColor="@color/black"
         app:popupTheme="@style/ThemeOverlay.AppCompat.ActionBar" />
 
     <LinearLayout
@@ -73,6 +73,7 @@
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:inputType="number"
             android:background="@drawable/edit_text_background"
             android:padding="12dp" />
 

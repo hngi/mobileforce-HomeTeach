@@ -10,6 +10,9 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toolbar
+import androidx.appcompat.app.AlertDialog
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.mobileforce.hometeach.R
 import de.hdodenhof.circleimageview.CircleImageView
@@ -26,7 +29,7 @@ private const val ARG_PARAM2 = "param2"
  */
 class MakeWithdrawalFragment : Fragment() {
 
-
+    lateinit var navController: NavController
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,26 +41,44 @@ class MakeWithdrawalFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val toolbar = view.findViewById<Toolbar>(R.id.toolbar)
+        navController = Navigation.findNavController(view)
+        val toolbar = view.findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             toolbar.setNavigationIcon(R.drawable.back_arrow)
         }
-        val amount = view.findViewById<EditText>(R.id.amount)
-        val btn_cancel =view.findViewById<Button>(R.id.btn_cancel)
-        val btn_confirm =view.findViewById<Button>(R.id.btn_confirm)
+        var amount = view.findViewById<EditText>(R.id.amount)
+        val txt_amount = amount.text
+        val btn_cancel = view.findViewById<Button>(R.id.btn_cancel)
+        val btn_confirm = view.findViewById<Button>(R.id.btn_confirm)
         val withdrawal_history = view.findViewById<RecyclerView>(R.id.withdrawal_history_recycler)
         val username = view.findViewById<TextView>(R.id.username)
         val balance = view.findViewById<TextView>(R.id.balance)
         val user_image = view.findViewById<CircleImageView>(R.id.user_image)
 
-        btn_cancel.setOnClickListener {
+        toolbar.setNavigationOnClickListener {
 
+            navController.navigate(R.id.tutorHomePageFragment)
+        }
+
+        btn_cancel.setOnClickListener {
+            amount.setText("")
         }
 
         btn_confirm.setOnClickListener {
-
+            showDialog()
         }
+
+    }
+
+    private fun showDialog() {
+        val mDialogView = LayoutInflater.from(activity).inflate(R.layout.make_withdrawal_dialog, null)
+        val mBuilder = activity?.let { it1 ->
+            AlertDialog.Builder(it1)
+                .setView(mDialogView)
+        }
+        //show dialog
+        val mAlertDialog = mBuilder?.show()
+
 
     }
 }

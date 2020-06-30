@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="300dp"
+    android:layout_height="120dp"
+    android:layout_margin="10dp"
+    android:padding="10dp"
+    app:cardCornerRadius="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:id="@+id/tutor_subject"
+                android:layout_marginLeft="5dp"
+                android:text="Mathematics" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="110dp"
+                android:text="50"
+                android:id="@+id/completion"
+                android:textColor="@color/red" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="%Complete"
+                android:textColor="@color/red" />
+
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progress"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="220dp"
+            android:layout_height="20dp"
+            android:progressTint="@color/primaryDarkColor"
+            android:layout_gravity="center"
+            android:layout_margin="5dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="5dp"
+            android:orientation="horizontal">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_margin="10dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/tutor_image"
+                android:scaleType="centerCrop"
+                android:src="@drawable/profile_image" />
+
+            <LinearLayout
+               android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="John Doe"
+                    android:textColor="@color/black"
+                    android:id="@+id/tutor_name"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Grade 3"
+                    android:id="@+id/tutor_class"
+                    android:textColor="@color/black"
+                   />
+            </LinearLayout>
+
+            <TextView
+                android:layout_marginLeft="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Update"
+                android:layout_gravity="center"
+                android:textColor="@color/primaryDarkColor"
+                android:textSize="20sp"/>
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:tint="@color/primaryDarkColor"
+                android:src="@drawable/green_arrow"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

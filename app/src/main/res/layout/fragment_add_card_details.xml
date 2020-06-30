@@ -12,7 +12,7 @@
         android:background="@color/primaryLightColor"
         app:popupTheme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:title="Add Credit Card Details"
-        app:titleTextColor="@color/white" />
+        app:titleTextColor="@color/black" />
 
     <LinearLayout
         android:layout_width="match_parent"

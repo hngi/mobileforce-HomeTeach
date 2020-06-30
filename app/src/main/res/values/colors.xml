@@ -25,4 +25,5 @@
     <color name="black">#000000</color>
     <color name="progressbar">#8B9B8F</color>
     <color name="login_button_text_color">#DEDEDE</color>
+    <color name="red">#D41111</color>
 </resources>
