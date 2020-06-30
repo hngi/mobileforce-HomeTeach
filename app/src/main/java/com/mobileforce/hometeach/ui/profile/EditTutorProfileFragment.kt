@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import com.mobileforce.hometeach.R
 import com.tiper.MaterialSpinner
@@ -70,6 +71,14 @@ class EditTutorProfileFragment : Fragment() {
                 adapter = it
                 onItemSelectedListener = listener
             }
+        }
+
+        // Displays the Credentials DialogFragment
+        val viewAllCred = view.findViewById<TextView>(R.id.tv_view_all)
+        viewAllCred?.setOnClickListener {
+            val credentialDialog = CredentialDialog()
+            val trans = parentFragmentManager.beginTransaction()
+            credentialDialog.show(trans, "dialog")
         }
     }
 

@@ -63,9 +63,17 @@
     <string name="address">Address</string>
     <string name="rate">Rate</string>
     <string name="credentials">Credentials</string>
-    <string name="rahman_djago_resume">Rahman Djago RESUME</string>
+    <string name="rahman_djago_resume">Rahman Djago Resume</string>
+    <string name="rahman_djago_cv">Rahman Djago CV</string>
+    <string name="rahman_djago_letter">Rahman Djago Letter</string>
     <string name="save">Save</string>
     <string name="credential_icon">Credential icon</string>
+    <string name="add_more">Add More…</string>
+    <string name="close">Close</string>
+    <string name="open">Open</string>
+    <string name="delete">Delete</string>
+    <string name="document_image">Document image</string>
+    <string name="add_more_image">Add more image</string>
 
     <string-array name="fields_array">
         <item>Science</item>
