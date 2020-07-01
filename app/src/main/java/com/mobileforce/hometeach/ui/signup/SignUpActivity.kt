@@ -91,7 +91,7 @@ class SignUpActivity : AppCompatActivity() {
 
                     textInput_password.isHelperTextEnabled = true
                     textInput_password.error =
-                        "Hint: Password should contain at least 1 Special Character and should not be less than 6"
+                        "Hint: Password should not be less than 6 with at least 1 special character"
                     passwordValid = false
                 }
             }
