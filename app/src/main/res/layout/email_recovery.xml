@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
 
         android:fontFamily="@font/ubuntu"
-        android:text="@string/recovery_password"
+        android:text="@string/recover_password"
         android:textColor="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
 
         android:fontFamily="@font/ubuntu"
-        android:text="@string/enter_email_recovery_prompt"
+        android:text="@string/enter_your_registered_email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recover_pass_tv" />
@@ -39,7 +39,7 @@
 
         app:boxStrokeColor="@color/colorPrimary"
 
-        android:hint="@string/sample_email"
+        android:hint="@string/email_input_field_hint"
         app:endIconMode="custom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:fontFamily="@font/ubuntu_medium"
-        android:text="@string/email_recovery_subbtn"
+        android:text="@string/submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

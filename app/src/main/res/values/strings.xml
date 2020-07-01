@@ -111,6 +111,8 @@
     <string name="congratulations">Congratulations</string>
     <string name="recover_password">Recover_password</string>
     <string name="how_do_you_want_to_recover_your_password">How do you want to recover your password?</string>
+    <string name="enter_your_registered_email">Enter your registered email</string>
+    <string name="submit">Submit</string>
 
     <string-array name="fields_array">
         <item>Science</item>
