@@ -27,12 +27,8 @@ class ProfileFragment : Fragment() {
 
         // Just to help test the EditTutorProfile Fragment
         // Should be removed when not needed anymore
-//        val trans = parentFragmentManager.beginTransaction()
-//        val testText = view.findViewById<TextView>(R.id.test_text)
-//        testText.setOnClickListener {
-//            trans.add(R.id.fragment_cont, EditTutorProfileFragment.newInstance()).commit()
-//            testText.visibility = View.INVISIBLE
-//        }
+        val trans = parentFragmentManager.beginTransaction()
+
     }
 
 
