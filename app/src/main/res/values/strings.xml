@@ -22,63 +22,124 @@
     <string name="math_tutor">Math Tutor</string>
     <string name="alaye_chris">Alaye Chris</string>
     <string name="within_lga">Within LGA</string>
-    <string name="_2000n_hr"><![CDATA[2000N/hr]]></string>
+    <string name="_2000n_hr"><![CDATA[<2000N/hr]]></string>
     <string name="grade_3">Grade 3</string>
+    <string name="science">Science</string>
     <string name="maths">Maths</string>
     <string name="any">Any</string>
     <string name="search_view_text">Search for Teachers, Subjects, Topics etc.</string>
-    <string name="mark_essien_accepted_your_friend_request">Mark essien accepted your friend request</string>
+    <string name="log_in_textview">LOG IN</string>
+    <string name="naira_symbol">\u20A6%.2f/hr</string>
+
+    <string name="save_password_checkbox_text">Save password</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="alternative_login_hint">Or login using social media</string>
+    <string name="dont_have_an_account">Don\'t have an account?</string>
+    <string name="register_button">Register now</string>
+    <string name="email_input_field_hint">johndoe@example.com</string>
+    <string name="password_input_field_hint">********</string>
+    <string name="teach_textview">Teach</string>
+    <string name="home_textview">Home</string>
+    <string name="email_field_label">Email</string>
+    <string name="password_field_label">Password</string>
     <string name="_9hrs_ago">9hrs ago</string>
+    <string name="mark_essien_accepted_your_friend_request">Mark Essien Accepted Your Friend Request</string>
     <string name="new_">NEW</string>
-    <string name="recovery_password">Recovery Password</string>
-    <string name="enter_email_recovery_prompt">enter email recovery prompt</string>
-    <string name="sample_email">sample email</string>
-    <string name="email_recovery_subbtn">Recover password</string>
-    <string name="phone_number">Phone number</string>
-    <string name="phone_number_prompt">Phone number prompt</string>
-    <string name="password_recover_text_prompt">Password recover text prompt</string>
-    <string name="recover_using_email">recover using email</string>
-    <string name="recover_using_phone_number">Recover using phone number</string>
-    <string name="apply_btn_txt">apply btn txt</string>
-    <string name="edit_profile">Edit Profile</string>
-    <string name="_34_lessons">34 Lessons</string>
-    <string name="_12_students">12 Students</string>
-    <string name="interest_science_maths_physics">Interest:Science, Maths, Physics</string>
-    <string name="available">Available</string>
-    <string name="science">Science</string>
-    <string name="_16">(16)</string>
-    <string name="i_teach_with_calmness_and_encouragement_my_lessons_are_not_boring_and_i_can_accomodate_student_s_with_low_affinity_to_studying_i_employ_modern_schema_for_tutoring_with_interactive_guides_and_learning_systems_having_schooled_at_different_educational_organizations_coupled_with_my_nce_certifcate_i_can_assure_you_premium_success_with_me_as_your_home_teacher">I teach with calmness and encouragement. My lessons are not boring and i can accomodate student’s with low affinity to studying. I employ modern schema for tutoring with interactive guides and learning systems. Having schooled at different educational organizations coupled with my NCE certifcate, I can assure you premium success with me as your Home-Teacher.</string>
-    <string name="rahman_django_resume">Rahman Django RESUME</string>
-    <string name="credentials">Credentials</string>
-    <string name="description">Description</string>
-    <string name="thursday_june_5_2020_n16_00_18_00">Thursday, June 5, 2020 \n16:00 - 18:00</string>
-    <string name="your_request_for_a_teacher_has_been_successfully_booked_and_awaiting_approval">Your request for a Teacher has been successfully booked and awaiting approval</string>
-    <string name="cancel">Cancel</string>
-    <string name="congratulations">Congratulations</string>
-    <string name="password_field">Password</string>
-    <string name="email_field">Email</string>
-    <string name="login">Login</string>
-    <string name="enter_password_field">Enter password</string>
-    <string name="enter_email_field">Enter email</string>
-    <string name="register">Register</string>
-    <string name="don_t_have_an_account">Don\'t have an account?</string>
-    <string name="alternative_login_hint">Alternative_login hint</string>
-    <string name="forgot_password">Forgot password</string>
-    <string name="save_password">Save password</string>
+
+    <string name="sign_out">SIGN OUT</string>
+    <string name="card_details">Card Details</string>
+    <string name="payments">Payments</string>
+    <string name="welcome">Welcome</string>
+    <string name="rahman">Rahman,</string>
+    <string name="modify">MODIFY</string>
+    <string name="since_last_month">Since last month</string>
+    <string name="cancel_all">CANCEL ALL</string>
+    <string name="social_security_number">Social Security Number</string>
+    <string name="routing_number">Routing Number</string>
+    <string name="please_enter_your_bank_information_below">Please enter your bank information below</string>
+    <string name="cvv">CVV</string>
+    <string name="mm_yy">MM / YY</string>
+    <string name="please_enter_your_credit_card_information_below">Please enter your credit card information below</string>
+    <string name="account_number">Account Number</string>
+    <string name="account_name">Account Name</string>
+
+    <string name="classes">Classes</string>
+    <string name="approve">APPROVE</string>
+    <string name="cancel">CANCEL</string>
+    <string name="confirm">CONFIRM</string>
     <string name="full_name">Full name</string>
-    <string name="upload_a_30_seconds_video_about_yourself">Upload a 30 seconds video about yourself</string>
+    <string name="description">Description</string>
+    <string name="upload_a_30_second_video_about_yourself">Upload a 30 second video about yourself</string>
     <string name="upload">Upload</string>
     <string name="clear">Clear</string>
-    <string name="file_must_not_be_more_than_30seconds_15mb">File must not be more than 30seconds 15mb</string>
-    <string name="select_field">Select field</string>
-    <string name="major_course">Major course</string>
-    <string name="other_courses">Other courses</string>
-    <string name="separate_with">Separate with</string>
+    <string name="file_must_not_be_more_than_30seconds_15mb">File must not be more than 30seconds/15mb</string>
+    <string name="select_field">Select Field</string>
+    <string name="major_course">Major Course</string>
+    <string name="other_courses">Other Courses</string>
+    <string name="separate_with">(separate with “,”)</string>
     <string name="state_of_origin">State of origin</string>
     <string name="address">Address</string>
     <string name="rate">Rate</string>
+    <string name="credentials">Credentials</string>
+    <string name="rahman_djago_resume">Rahman Djago Resume</string>
+    <string name="rahman_djago_cv">Rahman Djago CV</string>
+    <string name="rahman_djago_letter">Rahman Djago Letter</string>
     <string name="save">Save</string>
-    <string name="classes">Classes</string>
-    <string name="approve">Approve</string>
-    <string name="confirm">Confirm</string>
+    <string name="credential_icon">Credential icon</string>
+    <string name="add_more">Add More…</string>
+    <string name="close">Close</string>
+    <string name="open">Open</string>
+    <string name="delete">Delete</string>
+    <string name="document_image">Document image</string>
+    <string name="add_more_image">Add more image</string>
+
+    <string-array name="fields_array">
+        <item>Science</item>
+        <item>Commercial</item>
+        <item>Arts</item>
+        <item>English</item>
+        <item>Non-Academic</item>
+        <item>Test preparation</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="origin_array">
+        <item>Abia</item>
+        <item>Adamawa</item>
+        <item>Akwa Ibom</item>
+        <item>Anambra</item>
+        <item>Bauchi</item>
+        <item>Bayelsa</item>
+        <item>Benue</item>
+        <item>Borno</item>
+        <item>Cross River</item>
+        <item>Delta</item>
+        <item>Ebonyi</item>
+        <item>Edo</item>
+        <item>Ekiti</item>
+        <item>Enugu</item>
+        <item>FCT Abuja</item>
+        <item>Gombe</item>
+        <item>Imo</item>
+        <item>Jigawa</item>
+        <item>Kaduna</item>
+        <item>Kano</item>
+        <item>Katsina</item>
+        <item>Kebbi</item>
+        <item>Kogi</item>
+        <item>Lagos</item>
+        <item>Nassarawa</item>
+        <item>Niger</item>
+        <item>Ogun</item>
+        <item>Ondo</item>
+        <item>Osun</item>
+        <item>Oyo</item>
+        <item>Plateau</item>
+        <item>Rivers</item>
+        <item>Sokoto</item>
+        <item>Taraba</item>
+        <item>Yobe</item>
+        <item>Zamfara</item>
+    </string-array>
+>>>>>>> upstream/develop
 </resources>
