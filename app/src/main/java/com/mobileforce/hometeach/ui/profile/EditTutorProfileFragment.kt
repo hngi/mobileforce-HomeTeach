@@ -52,25 +52,25 @@ class EditTutorProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        // Inflates the Spinner displaying the tutor's field
-//        fieldMaterialSpinner = view.findViewById(R.id.sp_select_field)
-//        ArrayAdapter.createFromResource(requireContext(), R.array.fields_array, android.R.layout.simple_spinner_item).let {
-//            it.setDropDownViewResource(android.R.layout.select_dialog_singlechoice)
-//            fieldMaterialSpinner.apply {
-//                adapter = it
-//                onItemSelectedListener = listener
-//            }
-//        }
+        // Inflates the Spinner displaying the tutor's field
+        fieldMaterialSpinner = view.findViewById(R.id.sp_select_field)
+        ArrayAdapter.createFromResource(requireContext(), R.array.fields_array, android.R.layout.simple_spinner_item).let {
+            it.setDropDownViewResource(android.R.layout.select_dialog_singlechoice)
+            fieldMaterialSpinner.apply {
+                adapter = it
+                onItemSelectedListener = listener
+            }
+        }
 
-//        // Inflates the Spinner displaying the states of origin
-//        originMaterialSpinner = view.findViewById(R.id.sp_select_origin)
-//        ArrayAdapter.createFromResource(requireContext(), R.array.origin_array, android.R.layout.simple_spinner_item).let {
-//            it.setDropDownViewResource(android.R.layout.select_dialog_singlechoice)
-//            originMaterialSpinner.apply {
-//                adapter = it
-//                onItemSelectedListener = listener
-//            }
-//        }
+        // Inflates the Spinner displaying the states of origin
+        originMaterialSpinner = view.findViewById(R.id.sp_select_origin)
+        ArrayAdapter.createFromResource(requireContext(), R.array.origin_array, android.R.layout.simple_spinner_item).let {
+            it.setDropDownViewResource(android.R.layout.select_dialog_singlechoice)
+            originMaterialSpinner.apply {
+                adapter = it
+                onItemSelectedListener = listener
+            }
+        }
     }
 
 }
