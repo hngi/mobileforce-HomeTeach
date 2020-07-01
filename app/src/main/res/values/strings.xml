@@ -45,6 +45,24 @@
     <string name="_9hrs_ago">9hrs ago</string>
     <string name="mark_essien_accepted_your_friend_request">Mark Essien Accepted Your Friend Request</string>
     <string name="new_">NEW</string>
+
+    <string name="sign_out">SIGN OUT</string>
+    <string name="card_details">Card Details</string>
+    <string name="payments">Payments</string>
+    <string name="welcome">Welcome</string>
+    <string name="rahman">Rahman,</string>
+    <string name="modify">MODIFY</string>
+    <string name="since_last_month">Since last month</string>
+    <string name="cancel_all">CANCEL ALL</string>
+    <string name="social_security_number">Social Security Number</string>
+    <string name="routing_number">Routing Number</string>
+    <string name="please_enter_your_bank_information_below">Please enter your bank information below</string>
+    <string name="cvv">CVV</string>
+    <string name="mm_yy">MM / YY</string>
+    <string name="please_enter_your_credit_card_information_below">Please enter your credit card information below</string>
+    <string name="account_number">Account Number</string>
+    <string name="account_name">Account Name</string>
+
     <string name="classes">Classes</string>
     <string name="approve">APPROVE</string>
     <string name="cancel">CANCEL</string>
@@ -123,4 +141,5 @@
         <item>Yobe</item>
         <item>Zamfara</item>
     </string-array>
+>>>>>>> upstream/develop
 </resources>
