@@ -399,6 +399,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/textInputLayout"
                     app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginRight="0dp"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
