@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="#E5E5E5"
     android:layout_height="match_parent"
+    android:background="#70E5E5E5"
     tools:context=".ui.profile.ProfileFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -12,78 +12,69 @@
         android:layout_height="match_parent">
 
 
-        <com.google.android.material.card.MaterialCardView
+        <LinearLayout
             android:id="@+id/materialCardView1"
-            style="@style/ProfileCardStyle"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="320dp"
-            app:cardBackgroundColor="@color/tab_bg"
-            app:cardElevation="2dp"
+            android:background="@drawable/videoview_bg"
+            android:orientation="vertical"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <TextView
+                android:id="@+id/tutor_name"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:drawableStart="@drawable/ic_arrow_back"
+                android:drawableLeft="@drawable/ic_arrow_back"
+                android:drawableEnd="@drawable/alarm"
+                android:drawableRight="@drawable/alarm"
+                android:gravity="center"
+                android:text="@string/rahman_djando"
+                android:textColor="#333333"
+                android:textSize="28sp" />
 
-                <TextView
-                    android:id="@+id/tutor_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableStart="@drawable/ic_arrow_back"
-                    android:drawableLeft="@drawable/ic_arrow_back"
+            <ImageView
 
-                    android:drawableEnd="@drawable/alarm"
-                    android:drawableRight="@drawable/alarm"
-                    android:gravity="center"
-                    android:text="@string/rahman_djando"
-                    android:textSize="28sp"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="228dp"
-                    android:adjustViewBounds="true"
-                    android:cropToPadding="false"
-                    android:src="@drawable/tutor_video"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tutor_name"
-
-                    tools:visibility="visible"
-                    tools:ignore="ContentDescription" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:background="@drawable/tutor_video"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tutor_name"
+                tools:ignore="ContentDescription"
+                tools:visibility="visible" />
 
 
-        </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
 
 
         <androidx.cardview.widget.CardView
             android:id="@+id/Tutor_Profile_cardView"
             android:layout_width="0dp"
-            android:layout_height="250dp"
-            android:layout_margin="16dp"
+            android:layout_height="220dp"
+            android:layout_margin="18dp"
             app:cardCornerRadius="10dp"
-            app:cardElevation="6dp"
+            app:cardElevation="@dimen/card_elevation"
+
+            app:contentPadding="9dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.35000002">
+            app:layout_constraintVertical_bias="0.32999998">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:padding="4dp"
                 android:layout_height="match_parent">
 
                 <ImageView
                     android:id="@+id/tutor_image"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_margin="10dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:src="@drawable/profile_image"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -97,8 +88,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="@string/_34_lessons"
-                    android:textSize="18sp"
+                    android:textColor="#333333"
+                    android:textSize="12sp"
                     android:textStyle="bold"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toLeftOf="@id/View_Id"
                     app:layout_constraintTop_toBottomOf="@id/tutor_image" />
@@ -107,7 +100,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/_12_students"
-                    android:textSize="15sp"
+                    android:textColor="#333333"
+                    android:textSize="12sp"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintLeft_toLeftOf="@id/Number_of_lessonsTv"
                     app:layout_constraintRight_toLeftOf="@id/View_Id"
                     app:layout_constraintTop_toBottomOf="@id/Number_of_lessonsTv" />
@@ -116,10 +111,9 @@
                     android:id="@+id/View_Id"
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
-                    android:layout_margin="10dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginLeft="10dp"
-                    android:background="@color/blackColor"
+                    android:background="#B5B5B5"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toRightOf="@id/tutor_image"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -129,8 +123,10 @@
                     style="@style/TextAppearance.AppCompat.Large"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:layout_marginLeft="10sp"
+                    android:layout_marginStart="6sp"
+                    android:layout_marginLeft="6sp"
                     android:text="@string/rahman_djando"
+                    android:textColor="#222222"
                     app:layout_constraintLeft_toRightOf="@id/View_Id"
                     app:layout_constraintTop_toTopOf="@id/View_Id" />
 
@@ -139,6 +135,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/price"
+                    android:textColor="#333333"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="@id/tutor_name_profile"
                     app:layout_constraintHorizontal_bias="0.86"
@@ -151,6 +148,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/_2000n_hr"
+                    android:textColor="#333333"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintHorizontal_bias="1.0"
@@ -163,24 +161,26 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/science"
+                    android:textColor="#333333"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintHorizontal_bias="0.64"
+                    app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintLeft_toLeftOf="@id/Amount_tv"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/teachers_rating_bar"
+                    app:layout_constraintTop_toBottomOf="@id/teachers_rating_bar1"
                     app:layout_constraintVertical_bias="0.41000003" />
 
                 <ImageView
                     android:id="@+id/calculator"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:src="@drawable/ic_calculator"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintLeft_toLeftOf="@id/Science_tv"
-                    app:layout_constraintRight_toRightOf="@id/Science_tv"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/Science_tv"
+                    app:layout_constraintVertical_bias="1.0"
                     tools:ignore="ContentDescription" />
 
                 <TextView
@@ -188,6 +188,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/math_tutor"
+                    android:textColor="#333333"
                     android:textSize="18sp"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintLeft_toLeftOf="@id/tutor_name_profile"
@@ -195,76 +196,107 @@
                     app:layout_constraintTop_toBottomOf="@id/tutor_name_profile" />
 
 
-                <RatingBar
-                    android:id="@+id/teachers_rating_bar"
-                    android:layout_width="196dp"
-                    android:layout_height="39dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="60dp"
-
-                    android:layout_marginRight="60dp"
-                    android:progressTint="@android:color/holo_orange_light"
-                    android:rating="4"
-                    app:layout_constraintEnd_toEndOf="parent"
+                <ImageView
+                    android:id="@+id/teachers_rating_bar1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:src="@drawable/ic_baseline_star"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintLeft_toLeftOf="@id/Tutor_subject"
+                    app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/Tutor_subject"
                     tools:ignore="UnusedAttribute" />
+
+                <ImageView
+                    android:id="@+id/teachers_rating_bar2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_star"
+                    app:layout_constraintBottom_toBottomOf="@id/teachers_rating_bar1"
+                    app:layout_constraintLeft_toRightOf="@id/teachers_rating_bar1"
+                    app:layout_constraintTop_toTopOf="@id/teachers_rating_bar1"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <ImageView
+                    android:id="@+id/teachers_rating_bar3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_star"
+                    app:layout_constraintBottom_toBottomOf="@id/teachers_rating_bar2"
+                    app:layout_constraintLeft_toRightOf="@id/teachers_rating_bar2"
+                    app:layout_constraintTop_toTopOf="@id/teachers_rating_bar2"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <ImageView
+                    android:id="@+id/teachers_rating_bar4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_star"
+                    app:layout_constraintBottom_toBottomOf="@id/teachers_rating_bar3"
+                    app:layout_constraintLeft_toRightOf="@id/teachers_rating_bar3"
+                    app:layout_constraintTop_toTopOf="@id/teachers_rating_bar3"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <ImageView
+                    android:id="@+id/teachers_rating_bar5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_star_border"
+                    app:layout_constraintBottom_toBottomOf="@id/teachers_rating_bar4"
+                    app:layout_constraintLeft_toRightOf="@id/teachers_rating_bar4"
+                    app:layout_constraintTop_toTopOf="@id/teachers_rating_bar4"
+                    app:layout_constraintVertical_bias="0.0" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/_16"
+                    android:textSize="18sp"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@id/teachers_rating_bar"
-                    app:layout_constraintLeft_toRightOf="@id/teachers_rating_bar"
-                    app:layout_constraintTop_toTopOf="@id/teachers_rating_bar" />
+                    app:layout_constraintBottom_toBottomOf="@id/teachers_rating_bar5"
+                    app:layout_constraintLeft_toRightOf="@id/teachers_rating_bar5"
+                    app:layout_constraintTop_toTopOf="@id/teachers_rating_bar5" />
 
                 <TextView
                     android:id="@+id/tutor_interest"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/interest_science_maths_physics"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
+                    android:textColor="#333333"
+                    android:textSize="13sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="@id/Tutor_subject"
-                    app:layout_constraintTop_toBottomOf="@id/teachers_rating_bar"
+                    app:layout_constraintTop_toBottomOf="@id/teachers_rating_bar1"
                     app:layout_constraintVertical_bias="0.22000003" />
 
-                <ImageView
-                    android:id="@+id/round_green"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:src="@drawable/ic_round_green"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="@id/Tutor_subject"
-                    app:layout_constraintTop_toBottomOf="@id/tutor_interest"
-                    app:layout_constraintVertical_bias="0.51"
-                    tools:ignore="ContentDescription" />
 
                 <TextView
                     style="@style/TextAppearance.AppCompat.Large"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_round_green"
+                    android:drawableLeft="@drawable/ic_round_green"
                     android:text="@string/available"
+                    android:textColor="#333333"
                     android:textSize="20sp"
-                    app:layout_constraintBottom_toBottomOf="@id/round_green"
-                    app:layout_constraintLeft_toRightOf="@id/round_green"
-                    app:layout_constraintTop_toTopOf="@id/round_green"
-                    app:layout_constraintVertical_bias="0.86" />
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="@id/tutor_interest"
+                    app:layout_constraintTop_toBottomOf="@id/tutor_interest"
+                    app:layout_constraintVertical_bias="0.64" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>
 
         <TextView
-            style="@style/TextAppearance.AppCompat.Large"
+            style="@style/TextAppearance.AppCompat.Medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
             android:text="@string/description"
-            android:textSize="30sp"
+            android:textColor="#333333"
+            android:textSize="28sp"
             app:layout_constraintBottom_toTopOf="@id/Tutor_Description_Detail_card"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="@id/Tutor_Description_Detail_card"
@@ -273,9 +305,10 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/Tutor_Description_Detail_card"
             android:layout_width="0dp"
-            android:layout_height="230dp"
+            android:layout_height="250dp"
             app:cardCornerRadius="30dp"
-            app:cardElevation="6dp"
+            app:cardElevation="@dimen/card_elevation"
+            app:contentPadding="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintLeft_toLeftOf="@id/Tutor_Profile_cardView"
@@ -286,7 +319,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
+                android:textColor="#333333"
                 android:text="@string/i_teach_with_calmness_and_encouragement_my_lessons_are_not_boring_and_i_can_accomodate_student_s_with_low_affinity_to_studying_i_employ_modern_schema_for_tutoring_with_interactive_guides_and_learning_systems_having_schooled_at_different_educational_organizations_coupled_with_my_nce_certifcate_i_can_assure_you_premium_success_with_me_as_your_home_teacher"
                 android:textSize="18sp" />
 
@@ -298,9 +331,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
             android:text="@string/credentials"
-            android:textColor="@android:color/black"
-            android:textSize="28sp"
-            android:textStyle="bold"
+            android:textColor="#333333"
+            android:textSize="20sp"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="@id/Tutor_Description_Detail_card"
             app:layout_constraintRight_toRightOf="parent"
@@ -316,6 +348,7 @@
             app:layout_constraintLeft_toRightOf="@id/Credentials_tv"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@id/Credentials_tv" />
+
         <ImageView
             android:id="@+id/Pdf_image"
             android:layout_width="50dp"
@@ -328,26 +361,28 @@
             app:layout_constraintTop_toBottomOf="@id/Credentials_tv"
             tools:ignore="ContentDescription" />
 
-<TextView
-    android:layout_width="wrap_content"
-    android:textStyle="bold"
-    style="@style/TextAppearance.AppCompat.Large"
-    android:text="@string/rahman_djago_resume"
-    app:layout_constraintBottom_toBottomOf="@id/Pdf_image"
-    app:layout_constraintTop_toTopOf="@id/Pdf_image"
-    app:layout_constraintLeft_toRightOf="@id/Pdf_image"
-    android:layout_height="wrap_content"/>
+        <TextView
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rahman_djago_resume"
+            android:textColor="#333333"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/Pdf_image"
+            app:layout_constraintLeft_toRightOf="@id/Pdf_image"
+            app:layout_constraintTop_toTopOf="@id/Pdf_image" />
+
         <com.google.android.material.button.MaterialButton
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_margin="18dp"
             android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:backgroundTint="@color/colorAccent"
             android:text="@string/edit_profile"
             android:textColor="#fff"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="10dp"
             app:cornerRadius="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/Pdf_image"
