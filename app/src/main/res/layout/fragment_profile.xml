@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="#E5E5E5"
     android:layout_height="match_parent"
+    android:background="#E5E5E5"
     tools:context=".ui.profile.ProfileFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -53,8 +53,8 @@
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tutor_name"
 
-                    tools:visibility="visible"
-                    tools:ignore="ContentDescription" />
+                    tools:ignore="ContentDescription"
+                    tools:visibility="visible" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -76,8 +76,8 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:padding="4dp"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:padding="4dp">
 
                 <ImageView
                     android:id="@+id/tutor_image"
@@ -129,6 +129,7 @@
                     style="@style/TextAppearance.AppCompat.Large"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
+                    android:layout_marginStart="10sp"
                     android:layout_marginLeft="10sp"
                     android:text="@string/rahman_djando"
                     app:layout_constraintLeft_toRightOf="@id/View_Id"
@@ -223,7 +224,7 @@
                     android:id="@+id/tutor_interest"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/interest_science_maths_physics"
+                    android:text="@string/interests_science_math_physics"
                     android:textSize="12sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -287,8 +288,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="@string/i_teach_with_calmness_and_encouragement_my_lessons_are_not_boring_and_i_can_accomodate_student_s_with_low_affinity_to_studying_i_employ_modern_schema_for_tutoring_with_interactive_guides_and_learning_systems_having_schooled_at_different_educational_organizations_coupled_with_my_nce_certifcate_i_can_assure_you_premium_success_with_me_as_your_home_teacher"
-                android:textSize="18sp" />
+android:text="@string/i_teach_with_calmness_and_encouragement_my_lessons_are_not_boring_and_i_can_accomodate_student_s_with_low_affinity_to_studying_i_employ_modern_schema_for_tutoring_with_interactive_guides_and_learning_systems_having_schooled_at_different_educational_organizations_coupled_with_my_nce_certifcate_i_can_assure_you_premium_success_with_me_as_your_home_teacher"                android:textSize="18sp" />
 
         </androidx.cardview.widget.CardView>
 
@@ -316,6 +316,7 @@
             app:layout_constraintLeft_toRightOf="@id/Credentials_tv"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@id/Credentials_tv" />
+
         <ImageView
             android:id="@+id/Pdf_image"
             android:layout_width="50dp"
@@ -328,26 +329,27 @@
             app:layout_constraintTop_toBottomOf="@id/Credentials_tv"
             tools:ignore="ContentDescription" />
 
-<TextView
-    android:layout_width="wrap_content"
-    android:textStyle="bold"
-    style="@style/TextAppearance.AppCompat.Large"
-    android:text="@string/rahman_djago_resume"
-    app:layout_constraintBottom_toBottomOf="@id/Pdf_image"
-    app:layout_constraintTop_toTopOf="@id/Pdf_image"
-    app:layout_constraintLeft_toRightOf="@id/Pdf_image"
-    android:layout_height="wrap_content"/>
+        <TextView
+            style="@style/TextAppearance.AppCompat.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rahman_djago_resume"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/Pdf_image"
+            app:layout_constraintLeft_toRightOf="@id/Pdf_image"
+            app:layout_constraintTop_toTopOf="@id/Pdf_image" />
+
         <com.google.android.material.button.MaterialButton
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_margin="18dp"
             android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:backgroundTint="@color/colorAccent"
             android:text="@string/edit_profile"
             android:textColor="#fff"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="10dp"
             app:cornerRadius="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/Pdf_image"
