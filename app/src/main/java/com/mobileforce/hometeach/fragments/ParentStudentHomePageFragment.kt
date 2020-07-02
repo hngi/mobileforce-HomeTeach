@@ -1,12 +1,12 @@
 package com.mobileforce.hometeach.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mobileforce.hometeach.R
@@ -15,12 +15,6 @@ import com.mobileforce.hometeach.models.ToptutorsDataModel
 import com.mobileforce.hometeach.models.UpcomingClassesDataModel
 import kotlinx.android.synthetic.main.fragment_parent_student_home_page.*
 
-//import kotlinx.android.synthetic.main.fragment_parent_student_homepage.*
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
