@@ -68,6 +68,7 @@ class HomePageFragment : Fragment() {
         bindingParent.root.findViewById<RelativeLayout>(R.id.actionMakepayment).setOnClickListener {
             // go to make payment
         }
+
         bindingParent.root.findViewById<RelativeLayout>(R.id.actionCardDetails).setOnClickListener {
 
             // go to card details
