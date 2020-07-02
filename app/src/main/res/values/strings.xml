@@ -92,6 +92,11 @@
     <string name="delete">Delete</string>
     <string name="document_image">Document image</string>
     <string name="add_more_image">Add more image</string>
+    <string name="text_search">Search</string>
+    <string name="text_view_all">View all</string>
+    <string name="text_ongoing_classes">Ongoing Classes</string>
+    <string name="text_payments">Payments</string>
+    <string name="text_sign_out">SIGN OUT</string>
 
     <string-array name="fields_array">
         <item>Science</item>
@@ -141,5 +146,4 @@
         <item>Yobe</item>
         <item>Zamfara</item>
     </string-array>
->>>>>>> upstream/develop
 </resources>
