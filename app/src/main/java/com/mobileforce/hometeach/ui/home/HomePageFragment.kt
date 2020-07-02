@@ -37,9 +37,6 @@ class HomePageFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-
-        println("user preference ${pref.userType}")
 
         return if (pref.userType == USER_STUDENT) {
 
