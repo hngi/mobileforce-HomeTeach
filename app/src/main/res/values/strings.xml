@@ -69,6 +69,8 @@
     <string name="text_search">Search</string>
     <string name="text_view_all">View all</string>
     <string name="text_ongoing_classes">Ongoing Classes</string>
+    <string name="text_payments">Payments</string>
+    <string name="text_sign_out">SIGN OUT</string>
 
     <string-array name="fields_array">
         <item>Science</item>

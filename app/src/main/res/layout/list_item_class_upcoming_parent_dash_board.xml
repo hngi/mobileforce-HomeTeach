@@ -5,14 +5,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card"
-    android:layout_width="match_parent"
+    android:layout_width="287dp"
+    android:layout_marginStart="16dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
     android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
     app:cardCornerRadius="@dimen/card_radius"
+    app:cardElevation="4dp"
     app:contentPadding="@dimen/card_margin">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/subject_name"
@@ -51,7 +56,7 @@
             android:layout_height="40dp"
             android:layout_marginTop="8dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/user_icon"
+            android:src="@drawable/profile_image"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view" />
 
