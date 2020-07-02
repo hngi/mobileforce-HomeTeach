@@ -392,6 +392,7 @@
                     android:layout_marginStart="4dp"
                     android:layout_marginLeft="4dp"
                     android:layout_marginTop="8dp"
+                    android:layout_marginEnd="0dp"
                     app:ccp_enableHint="true"
                     app:ccp_hideNameCode="true"
                     app:ccp_hidePhoneCode="false"
