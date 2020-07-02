@@ -97,6 +97,11 @@
     <string name="text_ongoing_classes">Ongoing Classes</string>
     <string name="text_payments">Payments</string>
     <string name="text_sign_out">SIGN OUT</string>
+    <string name="john_doe">John Doe</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="_09030000000">09030000000</string>
+    <string name="about">About</string>
+    <string name="i_love_mathematics_and_data_science_looking_to_build_my_kids_and_myself_also">I love mathematics and data science. Looking to build my kids and myself also.</string>
 
     <string-array name="fields_array">
         <item>Science</item>

@@ -1,42 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#68E5E5E5"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.profile.StudentProfileFragment">
 
- <com.google.android.material.card.MaterialCardView
-     android:layout_width="match_parent"
-     style="@style/ProfileCardStyle"
-     app:layout_constraintRight_toRightOf="parent"
-     app:layout_constraintLeft_toLeftOf="parent"
-     app:layout_constraintTop_toTopOf="parent"
-     app:cardBackgroundColor="@color/tab_bg"
-     android:layout_height="164dp">
+    <com.google.android.material.card.MaterialCardView
+        style="@style/ProfileCardStyle"
+        android:layout_width="match_parent"
+        android:layout_height="164dp"
+        app:cardBackgroundColor="@color/tab_bg"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-     <TextView
-         android:layout_width="match_parent"
-         android:textSize="28sp"
-         android:layout_marginTop="30dp"
-         android:drawableRight="@drawable/alarm"
-         android:drawableLeft="@drawable/ic_arrow_back"
-         android:gravity="center_horizontal"
-         android:layout_height="wrap_content"
-         android:text="@string/john_doe"
-         android:drawableEnd="@drawable/alarm"
-         android:drawableStart="@drawable/ic_arrow_back" />
- </com.google.android.material.card.MaterialCardView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:drawableStart="@drawable/ic_arrow_back"
+            android:drawableLeft="@drawable/ic_arrow_back"
+            android:drawableEnd="@drawable/alarm"
+            android:drawableRight="@drawable/alarm"
+            android:gravity="center_horizontal"
+            android:text="@string/john_doe"
+            android:textSize="28sp" />
+    </com.google.android.material.card.MaterialCardView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/materialCardView2"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        app:contentPadding="4dp"
         android:layout_margin="@dimen/card_margin"
         app:cardCornerRadius="@dimen/card_radius"
         app:cardElevation="@dimen/card_elevation"
+        app:contentPadding="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -90,36 +90,38 @@
 
     <TextView
         android:id="@+id/PhoneNumber_Tv"
+        style="@style/TextAppearance.AppCompat.Medium"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10sp"
         android:text="@string/phone_number"
         android:textStyle="bold"
-        android:layout_marginTop="10sp"
-        style="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintLeft_toLeftOf="@id/materialCardView2"
-        app:layout_constraintTop_toBottomOf="@id/materialCardView2"
-        android:layout_height="wrap_content"/>
+        app:layout_constraintTop_toBottomOf="@id/materialCardView2" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/PhoneNumber_cardView"
         android:layout_width="0dp"
-        app:cardElevation="@dimen/card_elevation"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_height="80dp"
         android:layout_margin="@dimen/card_margin"
-        app:layout_constraintTop_toBottomOf="@id/PhoneNumber_Tv"
         app:cardCornerRadius="@dimen/card_radius"
-        android:layout_height="80dp">
+        app:cardElevation="@dimen/card_elevation"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/PhoneNumber_Tv">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_margin="12dp"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_margin="12dp">
+
             <TextView
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/_09030000000"
-                app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_height="wrap_content"/>
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -127,38 +129,38 @@
 
     <TextView
         android:id="@+id/About_Tv"
+        style="@style/TextAppearance.AppCompat.Medium"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10sp"
         android:text="@string/about"
-        style="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintLeft_toLeftOf="@id/PhoneNumber_cardView"
-        app:layout_constraintTop_toBottomOf="@id/PhoneNumber_cardView"
-        android:layout_height="wrap_content"/>
+        app:layout_constraintTop_toBottomOf="@id/PhoneNumber_cardView" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/About_cardView"
         android:layout_width="0dp"
-        app:cardElevation="@dimen/card_elevation"
+        android:layout_height="80dp"
         android:layout_margin="@dimen/card_margin"
         app:cardCornerRadius="@dimen/card_radius"
-        app:layout_constraintRight_toRightOf="parent"
+        app:cardElevation="@dimen/card_elevation"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/About_Tv"
-        android:layout_height="80dp">
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/About_Tv">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_margin="12dp"
-            android:background="@color/white"
-            android:layout_height="match_parent">
+            android:background="@color/white">
 
             <TextView
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/i_love_mathematics_and_data_science_looking_to_build_my_kids_and_myself_also"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_height="wrap_content"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
