@@ -387,19 +387,17 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.rilixtech.widget.countrycodepicker.CountryCodePicker
-                    android:layout_width="122dp"
-                    android:layout_height="29dp"
-                    android:layout_marginStart="1dp"
-                    android:layout_marginLeft="1dp"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginEnd="0dp"
+                    android:layout_width="106dp"
+                    android:layout_height="33dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="8dp"
                     app:ccp_enableHint="true"
                     app:ccp_hideNameCode="true"
                     app:ccp_hidePhoneCode="false"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/textInputLayout"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginRight="0dp"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
