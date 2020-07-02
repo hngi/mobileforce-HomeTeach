@@ -9,6 +9,7 @@ import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
+import com.google.android.material.button.MaterialButton
 import com.mobileforce.hometeach.AppConstants.USER_STUDENT
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.adapters.RecyclerViewAdapter
@@ -65,11 +66,18 @@ class HomePageFragment : Fragment() {
     private fun setUpForStudent() {
 
         bindingParent.root.findViewById<RelativeLayout>(R.id.actionMakepayment).setOnClickListener {
-
+            // go to make payment
         }
         bindingParent.root.findViewById<RelativeLayout>(R.id.actionCardDetails).setOnClickListener {
 
+            // go to card details
         }
+
+        bindingParent.root.findViewById<MaterialButton>(R.id.signOut).setOnClickListener {
+
+            //sign out
+        }
+
         val onGoingAdapter = object :
             RecyclerViewAdapter<OngoingClassModelTutor>(TutorOngoingClassesAdapter.OngoingClassesDiffCallBack()) {
             override fun getLayoutRes() = R.layout.list_item_class_ongoing_parent_dash_board
