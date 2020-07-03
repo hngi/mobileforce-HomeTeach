@@ -119,9 +119,7 @@
                 android:layout_marginRight="1dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/layerOne"
-
-                >
+                app:layout_constraintTop_toBottomOf="@+id/layerOne">
 
 
                 <TextView
@@ -164,7 +162,7 @@
 
             <RelativeLayout
                 android:id="@+id/layerThree"
-                android:layout_width="409dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="1dp"
                 android:layout_marginLeft="1dp"
@@ -173,9 +171,7 @@
                 android:layout_marginRight="1dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/layerTwo"
-
-                >
+                app:layout_constraintTop_toBottomOf="@+id/layerTwo">
 
 
                 <TextView
@@ -207,12 +203,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/labelToptutors"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
                     android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
                     android:orientation="vertical"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/list_item_tutor_parent_dash_board" />
+                    tools:listitem="@layout/list_item_tutor_parent_dash_board"/>
 
             </RelativeLayout>
 
