@@ -1,49 +1,52 @@
-package com.mobileforce.hometeach.ui.withdrawalscreens.carddetails
+package com.mobileforce.hometeach.ui.studentpayments.carddetails
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import androidx.databinding.BindingAdapter
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.adapters.CircleTransform
-import com.mobileforce.hometeach.databinding.FragmentCarddetailsBinding
-import com.mobileforce.hometeach.ui.withdrawalscreens.MyCard
-import com.mobileforce.hometeach.ui.withdrawalscreens.MyCardModel
+import com.mobileforce.hometeach.databinding.FragmentStudentCardDetailsBinding
+import com.mobileforce.hometeach.ui.studentpayments.Payment
+import com.mobileforce.hometeach.ui.studentpayments.StudentCard
+import com.mobileforce.hometeach.ui.studentpayments.StudentCardModel
+import com.mobileforce.hometeach.ui.studentpayments.StudentPaymentModel
+import com.mobileforce.hometeach.ui.studentpayments.carddetails.StudentPaymentsRecycler
+import com.mobileforce.hometeach.ui.studentpayments.makepayments.StudentCardsRecycler
 import com.squareup.picasso.Picasso
 
-// Rename parameter arguments, choose names that match
+//Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [CarddetailsFragment.newInstance] factory method to
+ * Use the [StudentCardDetailsFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class CarddetailsFragment : Fragment() {
+class StudentCardDetailsFragment : Fragment() {
     // Rename and change types of parameters
-    private lateinit var card_list:MutableList<MyCard>
-    private lateinit var binding: FragmentCarddetailsBinding
+    private lateinit var card_list:MutableList<StudentCard>
+    private lateinit var binding: FragmentStudentCardDetailsBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentCarddetailsBinding.inflate(inflater, container, false)
+        binding = FragmentStudentCardDetailsBinding.inflate(inflater, container, false)
 
-        return binding.root
-       // return inflater.inflate(R.layout.fragment_carddetails, container, false)
+        return binding.root //inflater.inflate(R.layout.fragment_withdrawal, container, false)
+
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         card_list = mutableListOf()
         card_list.add(
-            MyCard(
+            StudentCard(
                 1,
                 R.drawable.ic_visa,
                 "....2019",
@@ -51,7 +54,7 @@ class CarddetailsFragment : Fragment() {
             )
         )
         card_list.add(
-            MyCard(
+            StudentCard(
                 2,
                 R.drawable.ic_master,
                 "....3200",
@@ -59,7 +62,7 @@ class CarddetailsFragment : Fragment() {
             )
         )
 
-        var cards = MyCardModel(
+        var cards = StudentCardModel(
             1,
             card_list,
             "Rahman Django",
@@ -72,16 +75,12 @@ class CarddetailsFragment : Fragment() {
 
 
         val adapter =
-            MyCardRecycler()
+            StudentCardsRecycler()
         adapter.submitList(cards.cards)
-        binding.mycardsRecyclerView.adapter = adapter
-        binding.mycardsRecyclerView.hasFixedSize()
+        binding.studentcardsRecyclerView .adapter = adapter
+        binding.studentcardsRecyclerView.hasFixedSize()
+
     }
 
 }
 
-@BindingAdapter("card_image")
-fun setEventImage(imageView: ImageView, url: Int) {
-    Picasso.get().load(url).placeholder(R.drawable.ic_master)
-        .error(R.drawable.ic_master).into(imageView)
-}

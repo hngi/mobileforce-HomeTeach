@@ -44,7 +44,7 @@ class HomePageFragment : Fragment() {
             bindingParent.root
         } else {
             /**
-             * TODO this is just for testing purpose, change to appropriate binding
+             * //this is just for testing purpose, change to appropriate binding
              */
             bindingParent = FragmentHomePageParentBinding.inflate(layoutInflater)
             bindingParent.root

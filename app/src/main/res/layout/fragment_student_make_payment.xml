@@ -6,12 +6,13 @@
     <data>
 
     </data>
+
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$Behavior"
         android:background="@color/bg_main"
         app:elevation="0dp"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/materialCardView"
@@ -25,36 +26,41 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
-        <com.google.android.material.appbar.MaterialToolbar
-            app:layout_scrollFlags="enterAlways|scroll"
-            android:layout_width="match_parent"
-            app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
-            android:layout_height="wrap_content">
+            <com.google.android.material.appbar.MaterialToolbar
+                app:layout_scrollFlags="enterAlways|scroll"
+                android:layout_width="match_parent"
+                app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:text="Make Withdrawal"
-                android:textSize="24sp"
-                android:layout_width="wrap_content"
-                android:layout_gravity="center"
-                android:layout_height="wrap_content"/>
+                <TextView
+                    android:text="Make Payment"
+                    android:textSize="24sp"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content"/>
 
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:src="@drawable/ic_notify"
-                android:layout_gravity ="end"
-                android:layout_marginRight="16dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:src="@drawable/ic_notify"
+                    android:layout_gravity ="end"
+                    android:layout_marginRight="16dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp" />
 
-        </com.google.android.material.appbar.MaterialToolbar>
+            </com.google.android.material.appbar.MaterialToolbar>
         </com.google.android.material.card.MaterialCardView>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:elevation="50dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="50px"
-            android:elevation="50dp"
+
 
             tools:context=".ui.withdraw.WithdrawalFragment">
 
@@ -176,12 +182,24 @@
                     />
 
             </com.google.android.material.textfield.TextInputLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="vertical"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                tools:listitem="@layout/students_card_list"
+                android:layout_marginBottom="0dp"
+                app:spanCount="1"
+                android:id="@+id/studentcards_recycler_view" />
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/normalButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Confirm"
-                android:layout_marginTop="18dp"
+                android:layout_marginTop="1dp"
                 android:textColor="#fff"
                 android:maxLines="1"
                 app:backgroundTint="@color/blackColor"
@@ -211,7 +229,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:gravity="start"
-                android:text="Withdrawal History"/>
+                android:text="Payment History"/>
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -220,12 +238,12 @@
                 android:orientation="vertical"
 
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                tools:listitem="@layout/withdrawal_list_item"
+                tools:listitem="@layout/students_payment_list"
                 android:layout_marginBottom="50dp"
                 app:spanCount="1"
-                android:id="@+id/withdrawal_recycler_view" />
+                android:id="@+id/payments_recycler_view" />
         </LinearLayout>
-
+        </androidx.core.widget.NestedScrollView>
     </com.google.android.material.appbar.AppBarLayout>
 
 </layout>

@@ -17,10 +17,5 @@
     <dimen name="special_margin">24dp</dimen>
     <dimen name="class_recycler_bottom">70dp</dimen>
     <dimen name="class_recycler_top">25dp</dimen>
-<!--    <dimen name="marginTop_recov_tv">margin top recovery</dimen>-->
-<!--    <dimen name="recover_psd_marginTop">recover pswd margin top</dimen>-->
-<!--    <dimen name="btn_margin_btm">btn margin btm</dimen>-->
-<!--    <dimen name="margin_xl">margin xl</dimen>-->
-<!--    <dimen name="btn_margin_glob">btn margin glob</dimen>-->
     <item name="custom_drawable_padding" type="dimen" format="float">3.0</item>
 </resources>

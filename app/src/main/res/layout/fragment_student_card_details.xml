@@ -9,9 +9,9 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$Behavior"
-        android:background="@color/bg_main"
+        android:background="#F2F2F2"
         app:elevation="0dp"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/materialCardView"
@@ -25,38 +25,38 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
-        <com.google.android.material.appbar.MaterialToolbar
-            app:layout_scrollFlags="enterAlways|scroll"
-            android:layout_width="match_parent"
-            app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
-            android:layout_height="wrap_content">
 
-            <TextView
-                android:text="Make Withdrawal"
-                android:textSize="24sp"
-                android:layout_width="wrap_content"
-                android:layout_gravity="center"
-                android:layout_height="wrap_content"/>
-
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:src="@drawable/ic_notify"
-                android:layout_gravity ="end"
-                android:layout_marginRight="16dp"
+            <com.google.android.material.appbar.MaterialToolbar
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp" />
+                app:layout_scrollFlags="enterAlways|scroll"
+                app:navigationIcon="@drawable/ic_baseline_arrow_back_24">
 
-        </com.google.android.material.appbar.MaterialToolbar>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Card Details"
+                    android:textSize="24sp" />
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    android:src="@drawable/ic_notify" />
+
+            </com.google.android.material.appbar.MaterialToolbar>
         </com.google.android.material.card.MaterialCardView>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="50px"
-            android:elevation="50dp"
 
-            tools:context=".ui.withdraw.WithdrawalFragment">
+            android:padding="50px"
+            android:elevation="50dp">
 
             <!-- Update blank fragment layout -->
             <com.google.android.material.card.MaterialCardView
@@ -64,9 +64,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
-                android:foregroundGravity="fill"
-                android:visibility="visible"
-                android:outlineSpotShadowColor="@android:color/darker_gray"
+                android:outlineSpotShadowColor="@android:color/transparent"
                 app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="@dimen/card_radius"
                 app:contentPadding="@dimen/card_margin"
@@ -150,68 +148,10 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:gravity="start"
-                android:text="Enter Amount"/>
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/outlinedTextField"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Enter Amount"
-                android:layout_marginTop="10dp"
-                app:hintAnimationEnabled="false"
-                app:hintEnabled="false"
-                android:maxLines="1"
-                app:boxCornerRadiusTopStart="10dp"
-                app:boxCornerRadiusBottomStart="10dp"
-                app:boxCornerRadiusBottomEnd="10dp"
-                app:boxCornerRadiusTopEnd="10dp"
-                app:boxStrokeColor="@color/tab_bg"
-                app:startIconDrawable="@drawable/ic_amount"
-                app:boxStrokeWidth="1dp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                android:text="Your saved cards"/>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Enter Amount"
-                    />
 
-            </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/normalButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Confirm"
-                android:layout_marginTop="18dp"
-                android:textColor="#fff"
-                android:maxLines="1"
-                app:backgroundTint="@color/blackColor"
-                app:cornerRadius="10dp"
-                style="@style/Widget.MaterialComponents.Button" />
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/outlinedButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Cancel"
-                android:textColor="@color/blackColor"
-                app:cornerRadius="10dp"
-                app:strokeWidth="2dp"
-                app:strokeColor="@color/colorAccent"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                />
-            <TextView
 
-                style="@style/TextAppearance.MaterialComponents.Headline6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
-                app:fontFamily="@font/ubuntu"
-                android:textAlignment="viewStart"
-                android:textColor="@color/textColor"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:gravity="start"
-                android:text="Withdrawal History"/>
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -220,12 +160,71 @@
                 android:orientation="vertical"
 
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                tools:listitem="@layout/withdrawal_list_item"
-                android:layout_marginBottom="50dp"
+                tools:listitem="@layout/students_card_list"
+                android:layout_marginBottom="10dp"
                 app:spanCount="1"
-                android:id="@+id/withdrawal_recycler_view" />
+                android:id="@+id/studentcards_recycler_view" />
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:outlineSpotShadowColor="@android:color/transparent"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/card_radius"
+                app:contentPaddingTop="10dp"
+                app:contentPaddingBottom="10dp"
+                app:cardElevation="@dimen/card_elevation">
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:columnCount="3"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_gravity="fill"
+                    android:orientation="horizontal"
+                    tools:ignore="MissingConstraints">
+
+                    <ImageView
+                        android:layout_column="0"
+                        style="@style/TextAppearance.MaterialComponents.Body1"
+                        android:layout_columnWeight="0.2"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_chip"
+                        app:fontFamily="@font/ubuntu"
+                        android:textColor="@color/blackColor" />
+
+                    <TextView
+                        android:layout_column="1"
+                        style="@style/TextAppearance.MaterialComponents.Body1"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="start"
+                        android:text="Add New Card"
+                        android:textStyle="bold"
+                        app:fontFamily="@font/ubuntu"
+                        android:textColor="@color/blackColor" />
+
+
+                    <ImageView
+                        android:layout_column="2"
+                        style="@style/TextAppearance.MaterialComponents.Body1"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="end"
+                        android:src="@drawable/ic_arrow_right"
+                        android:layout_marginRight="20dp"
+                        app:fontFamily="@font/ubuntu"
+                        android:textColor="@color/primaryColor" />
+                </GridLayout>
+            </com.google.android.material.card.MaterialCardView>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/normalButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Clear All"
+                android:layout_marginTop="18dp"
+                android:textColor="#fff"
+                app:backgroundTint="@color/blackColor"
+                app:cornerRadius="10dp"
+                style="@style/Widget.MaterialComponents.Button" />
         </LinearLayout>
-
     </com.google.android.material.appbar.AppBarLayout>
-
 </layout>
