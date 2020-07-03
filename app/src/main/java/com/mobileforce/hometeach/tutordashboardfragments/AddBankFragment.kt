@@ -1,4 +1,4 @@
-package com.mobileforce.hometeach.TutorDashBoardFragments
+package com.mobileforce.hometeach.tutordashboardfragments
 
 import android.os.Build
 import android.os.Bundle
@@ -10,22 +10,18 @@ import androidx.appcompat.app.AlertDialog
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.mobileforce.hometeach.R
-import com.mobileforce.hometeach.databinding.FragmentMakeWithdrawalBinding
+import com.mobileforce.hometeach.databinding.FragmentAddBankBinding
 
 
-class MakeWithdrawalFragment : Fragment() {
-
+class AddBankFragment : Fragment() {
     lateinit var navController: NavController
-    lateinit var binding:FragmentMakeWithdrawalBinding
-
+       private lateinit var binding:FragmentAddBankBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding =  FragmentMakeWithdrawalBinding.inflate(inflater, container, false)
-        val view = binding.root
-        return view
-
+        binding =  FragmentAddBankBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -35,32 +31,47 @@ class MakeWithdrawalFragment : Fragment() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             toolbar.setNavigationIcon(R.drawable.back_arrow)
         }
-        val amount = binding.amount
-        val txtAmount = amount.text
-        val btnCancel =binding.btnCancel
-        val btnConfirm = binding.btnConfirm
-        val withdrawalHistory = binding.withdrawalHistoryRecycler
-        val username =binding.username
-        val balance = binding.balance
-        val userImage = binding.userImage
+        val accName = binding.accName
+        val txtAccName = accName.text
+        val accNumber =    binding.accNumber
+        val txtAccNumber = accNumber.text
+        val accRoute = binding.accRoute
+        val txtAccRoute = accRoute.text
+        val ssNumber = binding.accSecurityNumber
+        val txtSsNumber = ssNumber.text
+        val btnSave =binding.save
 
         toolbar.setNavigationOnClickListener {
 
-            navController.navigate(R.id.tutorHomePageFragment)
+            navController.navigate(R.id.myBanks)
         }
 
-        btnCancel.setOnClickListener {
-            amount.setText("")
-        }
+        btnSave.setOnClickListener {
 
-        btnConfirm.setOnClickListener {
+            if (txtAccName.isNullOrEmpty())
+            {
+
+            }
+            if (txtAccNumber.isNullOrEmpty())
+            {
+
+            }
+            if (txtAccRoute.isNullOrEmpty())
+            {
+
+            }
+            if (txtSsNumber.isNullOrEmpty())
+            {
+
+            }
+
             showDialog()
         }
 
     }
 
     private fun showDialog() {
-        val mDialogView = LayoutInflater.from(activity).inflate(R.layout.make_withdrawal_dialog, null)
+        val mDialogView = LayoutInflater.from(activity).inflate(R.layout.save_bank_dialog, null)
         val mBuilder = activity?.let { it1 ->
             AlertDialog.Builder(it1)
                 .setView(mDialogView)

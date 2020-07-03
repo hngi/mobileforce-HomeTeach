@@ -27,27 +27,27 @@
     <fragment
 
         android:id="@+id/makeWithdrawalFragment"
-        android:name="com.mobileforce.hometeach.TutorDashBoardFragments.MakeWithdrawalFragment"
+        android:name="com.mobileforce.hometeach.tutordashboardfragments.MakeWithdrawalFragment"
         android:label="MakeWithdrawalFragment"
         tools:layout="@layout/fragment_make_withdrawal"/>
     <fragment
         android:id="@+id/cardDetails"
-        android:name="com.mobileforce.hometeach.TutorDashBoardFragments.CardDetails"
+        android:name="com.mobileforce.hometeach.tutordashboardfragments.CardDetailsFragment"
         android:label="CardDetails"
         tools:layout="@layout/fragment_card_details"/>
     <fragment
         android:id="@+id/myBanks"
-        android:name="com.mobileforce.hometeach.TutorDashBoardFragments.MyBanks"
+        android:name="com.mobileforce.hometeach.tutordashboardfragments.MyBanks"
         android:label="MyBanks"
         tools:layout="@layout/fragment_my_banks"/>
     <fragment
         android:id="@+id/addBankFragment"
-        android:name="com.mobileforce.hometeach.TutorDashBoardFragments.AddBankFragment"
+        android:name="com.mobileforce.hometeach.tutordashboardfragments.AddBankFragment"
         android:label="AddBankFragment"
         tools:layout="@layout/fragment_add_bank"/>
     <fragment
         android:id="@+id/addCardDetails"
-        android:name="com.mobileforce.hometeach.TutorDashBoardFragments.AddCardDetails"
+        android:name="com.mobileforce.hometeach.tutordashboardfragments.AddCardDetails"
         android:label="AddCardDetails"
         tools:layout="@layout/fragment_add_card_details"/>
 <fragment

@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    xmlns:tool="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    tool:context="com.mobileforce.hometeach.tutordashboardfragments.CardDetailsFragment">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"

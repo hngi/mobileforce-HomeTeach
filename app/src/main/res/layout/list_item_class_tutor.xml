@@ -23,7 +23,7 @@
             android:layout_gravity="center_horizontal"
             android:background="@color/bg_main"
             android:padding="10dp"
-            tools:context=".TutorDashBoardFragments.ClassesFragment">
+            tools:context=".tutordashboardfragments.ClassesFragment">
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card"
