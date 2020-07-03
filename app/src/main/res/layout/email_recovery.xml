@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
 
         android:fontFamily="@font/ubuntu"
-        android:text="@string/recover_password"
+        android:text="@string/password_recovery"
         android:textColor="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
