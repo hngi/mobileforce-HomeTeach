@@ -1,0 +1,38 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="8dp"
+    android:background="@color/bg_main">
+
+    <TextView
+        android:id="@+id/tv_message_outgoing"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:background="@drawable/bg_speech_bubble_outgoing"
+        android:maxWidth="300dp"
+        android:padding="8dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="16dp"
+        android:text="@string/hi_mr_sule_i_am_doing_great_how_are_you_too"
+        android:textColor="@color/textColor"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="64dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="16dp" />
+
+    <TextView
+        android:id="@+id/tv_message_outgoing_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/_12_00"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@id/tv_message_outgoing"
+        app:layout_constraintEnd_toStartOf="@id/tv_message_outgoing"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
