@@ -96,12 +96,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4">
 
+        <!--The icon here was replaced because it was causing App crash
+        It should be changed to something better-->
         <ImageButton
             android:id="@+id/facebook_button"
             android:layout_width="@dimen/button_image_height"
             android:layout_height="@dimen/button_image_height"
             android:layout_weight="1"
-            android:src="@drawable/ic_facebook_icon"
+            android:src="@drawable/add_more_icon"
             tools:ignore="ContentDescription" />
 
         <View
@@ -111,12 +113,14 @@
             android:layout_weight="0.2"
             android:background="?android:attr/listDivider" />
 
+    <!--The icon here was replaced because it was causing App crash
+        It should be changed to something better-->
         <ImageButton
             android:id="@+id/google_button"
             android:layout_width="@dimen/default_margin"
             android:layout_height="@dimen/button_image_height"
             android:layout_weight="1"
-            android:src="@drawable/ic_google_icon"
+            android:src="@drawable/add_more_icon"
             tools:ignore="ContentDescription" />
 
     </LinearLayout>
