@@ -1,4 +1,4 @@
-package com.mobileforce.hometeach.TutorDashBoardFragments
+package com.mobileforce.hometeach.tutordashboardfragments
 
 import android.os.Build
 import android.os.Bundle
@@ -11,7 +11,7 @@ import androidx.navigation.Navigation
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.databinding.FragmentCardDetailsBinding
 
-class CardDetails : Fragment() {
+class CardDetailsFragment : Fragment() {
 
     lateinit var navController: NavController
     lateinit var binding: FragmentCardDetailsBinding

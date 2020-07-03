@@ -38,7 +38,7 @@ class StudentMakePaymentFragment : Fragment() {
         binding = FragmentStudentMakePaymentBinding.inflate(inflater, container, false)
 
         return binding.root
-        // return inflater.inflate(R.layout.fragment_carddetails, container, false)
+        // return inflater.inflate(R.layout.fragment_card_detail, container, false)
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

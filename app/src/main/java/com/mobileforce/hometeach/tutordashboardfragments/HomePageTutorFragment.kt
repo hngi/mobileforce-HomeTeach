@@ -1,4 +1,4 @@
-package com.mobileforce.hometeach.TutorDashBoardFragments
+package com.mobileforce.hometeach.tutordashboardfragments
 
 import android.app.DatePickerDialog
 import android.os.Bundle
