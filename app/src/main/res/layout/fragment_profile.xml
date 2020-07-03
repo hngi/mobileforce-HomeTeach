@@ -262,7 +262,7 @@
                     android:id="@+id/tutor_interest"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/interest_science_maths_physics"
+                    android:text="@string/interests_science_math_physics"
                     android:textColor="#333333"
                     android:textSize="13sp"
                     app:layout_constraintBottom_toBottomOf="parent"
