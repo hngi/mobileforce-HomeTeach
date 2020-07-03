@@ -49,7 +49,6 @@
         </item>
     </style>
 
-
     <style name="ShapeAppearanceOverlay.MaterialCardView.Cut" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSizeTopRight">30dp</item>
@@ -63,4 +62,13 @@
 
     </style>
 
+    <style name="ProfileCardStyle" parent="@style/Widget.MaterialComponents.CardView">
+        <item name="shapeAppearance">@style/ShapeAppearanceOverlay.MaterialCardView.cut
+        </item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.MaterialCardView.cut" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeBottomLeft">50dp</item>
+    </style>
 </resources>

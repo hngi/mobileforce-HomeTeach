@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="primaryColor">#0CB91E</color>
+    <color name="colorPrimary">#0CB91E</color>
     <color name="primaryLightColor">#6DD578</color>
     <color name="primaryDarkColor">#088115</color>
     <color name="secondaryColor">#424242</color>
@@ -12,6 +13,7 @@
     <color name="colorBackground">#ECFCEE</color>
     <color name="colorBoldText">#0CB91E</color>
     <color name="progressBackground">#B2B2B2</color>
+    <color name="colorText">#333333</color>
     <color name="cardBackground">#F8F8F8</color>
     <color name="progressTint">#0CB91E</color>
     <color name="textColor">#333333</color>
