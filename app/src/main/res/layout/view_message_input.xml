@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/bg_main">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/message_input_container"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_margin="6dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/bg_input_message"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:context="com.example.chattutorial.ChannelActivity"
+            android:layout_marginRight="12dp">
+
+            <EditText
+                android:id="@+id/message_input"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:background="@android:color/transparent"
+                android:hint="@string/type_your_message"
+                android:inputType="text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/add_attachment"
+                android:layout_marginLeft="16dp"
+                android:autofillHints="" />
+
+            <ImageButton
+                android:id="@+id/add_attachment"
+                android:layout_width="22dp"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                android:layout_marginEnd="8dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/attach_icon"
+                app:layout_constraintRight_toLeftOf="@+id/send_msg"
+                android:layout_marginRight="8dp"
+                android:contentDescription="@string/attach_file_icon" />
+
+            <ImageButton
+                android:id="@+id/send_msg"
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="8dp"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/send_msg_icon"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginRight="8dp"
+                android:contentDescription="@string/send_message_icon" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
