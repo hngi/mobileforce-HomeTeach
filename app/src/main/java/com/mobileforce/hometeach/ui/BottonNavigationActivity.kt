@@ -7,9 +7,8 @@ import androidx.navigation.ui.setupWithNavController
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.databinding.BottonNavLayoutBinding
 
-//import kotlinx.android.synthetic.main.activity_main.*
 
-class BottonNavigationActivity : AppCompatActivity() {;
+class BottonNavigationActivity : AppCompatActivity() {
 
     lateinit var binding: BottonNavLayoutBinding
 
