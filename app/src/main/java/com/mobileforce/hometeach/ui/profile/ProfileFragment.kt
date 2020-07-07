@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.google.android.material.button.MaterialButton
 import com.mobileforce.hometeach.R
-import kotlinx.android.synthetic.main.fragment_profile.*
 
 /**
  * Authored by enyason
@@ -25,11 +25,20 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Just to help test the EditTutorProfile Fragment
-        // Should be removed when not needed anymore
-        val trans = parentFragmentManager.beginTransaction()
+        val editBtn = view.findViewById<MaterialButton>(R.id.edit_button)
+        editBtn.setOnClickListener {
+            val trans = parentFragmentManager.beginTransaction()
+            trans.add(R.id.nav_host_fragment, EditTutorProfileFragment.newInstance()).commit()
+        }
 
-    }
+        // Displays the Credentials DialogFragment
+        val viewAll = view.findViewById<TextView>(R.id.view_all)
+        viewAll.setOnClickListener {
+            val credentialDialog = CredentialDialog()
+            val trans = parentFragmentManager.beginTransaction()
+            credentialDialog.show(trans, "dialog")
+        }
+}
 
 
 }

@@ -1,5 +1,6 @@
 package com.mobileforce.hometeach.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,12 +15,10 @@ import com.mobileforce.hometeach.AppConstants.USER_STUDENT
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.adapters.RecyclerViewAdapter
 import com.mobileforce.hometeach.adapters.ViewHolder
-import com.mobileforce.hometeach.databinding.FragmentHomePageParentBinding
-import com.mobileforce.hometeach.databinding.ListItemClassOngoingParentDashBoardBinding
-import com.mobileforce.hometeach.databinding.ListItemClassUpcomingParentDashBoardBinding
-import com.mobileforce.hometeach.databinding.ListItemTutorParentDashBoardBinding
+import com.mobileforce.hometeach.databinding.*
 import com.mobileforce.hometeach.local.PreferenceHelper
 import com.mobileforce.hometeach.models.*
+import com.mobileforce.hometeach.ui.ExploreActivity
 import com.mobileforce.hometeach.ui.classes.adapters.recylerviewadapters.TutorOngoingClassesAdapter
 import org.koin.android.ext.android.inject
 import java.util.*
@@ -31,7 +30,8 @@ class HomePageFragment : Fragment() {
 
     private val pref: PreferenceHelper by inject()
 
-    lateinit var bindingParent: FragmentHomePageParentBinding
+    private lateinit var bindingParent: FragmentHomePageParentBinding
+    private lateinit var bindingTutor: FragmentHomePageTutorBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,15 +39,11 @@ class HomePageFragment : Fragment() {
     ): View? {
 
         return if (pref.userType == USER_STUDENT) {
-
             bindingParent = FragmentHomePageParentBinding.inflate(layoutInflater)
             bindingParent.root
         } else {
-            /**
-             * //this is just for testing purpose, change to appropriate binding
-             */
-            bindingParent = FragmentHomePageParentBinding.inflate(layoutInflater)
-            bindingParent.root
+            bindingTutor = FragmentHomePageTutorBinding.inflate(layoutInflater)
+            bindingTutor.root
         }
     }
 
@@ -56,8 +52,9 @@ class HomePageFragment : Fragment() {
 
         if (pref.userType == USER_STUDENT) {
             setUpForStudent()
+        } else {
+            setUpForTutor()
         }
-
     }
 
     private fun setUpForStudent() {
@@ -72,8 +69,7 @@ class HomePageFragment : Fragment() {
         }
 
         bindingParent.root.findViewById<MaterialButton>(R.id.signOut).setOnClickListener {
-
-            //sign out
+            startActivity(Intent(requireContext(), ExploreActivity::class.java))
         }
 
         val onGoingAdapter = object :
@@ -312,6 +308,12 @@ class HomePageFragment : Fragment() {
         topTutorsAdapter.submitList(topTutors)
 
 
+    }
+
+    private fun setUpForTutor(){
+        bindingTutor.signout.setOnClickListener {
+            startActivity(Intent(requireContext(), ExploreActivity::class.java))
+        }
     }
 
 }
