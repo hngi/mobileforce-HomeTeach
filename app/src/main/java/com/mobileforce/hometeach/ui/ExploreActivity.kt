@@ -25,27 +25,22 @@ class ExploreActivity : AppCompatActivity() {
                 .getBoolean("isFirstRun", true)
 
         if (isFirstRun) {
-            //show start activity
+            //show OnBoarding activity
             startActivity(Intent(this@ExploreActivity, OnBoardingActivity::class.java))
         }
         getSharedPreferences("PREFERENCE", Context.MODE_PRIVATE).edit()
             .putBoolean("isFirstRun", false).apply()
 
         tutorButton.setOnClickListener {
-
             //save user type to shared preference
             pref.userType = USER_TUTOR
-            // This was done just to help test the EditTutorProfile Fragment
-            // Please undo it whenever its no more needed
-            //startActivity(Intent(this, LoginActivity::class.java))
-            startActivity(Intent(this, BottonNavigationActivity::class.java))
+            startActivity(Intent(this, LoginActivity::class.java))
         }
 
         studentButton.setOnClickListener {
-            startActivity(Intent(this, LoginActivity::class.java))
             //save user type to shared preference
             pref.userType = USER_STUDENT
-
+            startActivity(Intent(this, LoginActivity::class.java))
         }
     }
 }
