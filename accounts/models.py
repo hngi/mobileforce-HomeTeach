@@ -4,11 +4,12 @@ from django.contrib.auth.models import (
 )
 from django.dispatch import receiver
 from django.db.models.signals import post_save
+from django.core.validators import RegexValidator
 from rest_framework.authtoken.models import Token
 from django.conf import settings
 
 class UserManager(BaseUserManager):
-    def create_user(self, email,first_name='', last_name='', password=None):
+    def create_user(self, email, full_name, phone_number, password=None):
         """
         Creates and saves a User with the given email and password.
         """
@@ -17,22 +18,22 @@ class UserManager(BaseUserManager):
 
         user = self.model(
             email=UserManager.normalize_email(email),
-            first_name=first_name,
-            last_name=last_name
+            phone_number=phone_number,
+            full_name=full_name
         )
 
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email,password,first_name='',last_name=''):
+    def create_superuser(self, email,password, full_name='', phone_number=''):
         """
         Creates and saves a superuser with the given email, password.
         """
         u = self.create_user(email=UserManager.normalize_email(email),
                             password=password,
-                             first_name=first_name,
-                             last_name=last_name
+                             full_name=full_name,
+                             phone_number=phone_number
                         )
         u.is_admin = True
         u.save(using=self._db)
@@ -45,8 +46,8 @@ class CustomUser(AbstractBaseUser):
                         max_length=255,
                         unique=True,
                     )
-    first_name = models.CharField(verbose_name='firstname', blank=True, max_length=150)
-    last_name = models.CharField(verbose_name='lastname',blank=True, max_length=150)
+    full_name = models.CharField(verbose_name='fullname', blank=True, max_length=150)
+    phone_number = models.CharField(max_length=15, validators=[RegexValidator(r'^\d{1,15}$')])
     is_active = models.BooleanField(default=True)
     is_tutor = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
@@ -56,13 +57,6 @@ class CustomUser(AbstractBaseUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
-    def get_full_name(self):
-        # The user is identified by their email address
-        return f'{self.last_name} {self.first_name}'
-
-    def get_short_name(self):
-        # The user is identified by their email address
-        return self.last_name
 
     def __str__(self):
         return self.email
