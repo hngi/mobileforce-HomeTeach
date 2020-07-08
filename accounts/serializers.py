@@ -1,7 +1,16 @@
 from django.conf import settings
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, authenticate
+from rest_framework.serializers import ModelSerializer,CharField,EmailField,ModelSerializer,SerializerMethodField,ValidationError
+from django.db import models
+from django.db.models import Q
+from accounts.models import CustomUser
+from rest_framework import exceptions
+from django.shortcuts import get_object_or_404
+from rest_framework.authtoken.models import Token
+
+
 
 User = get_user_model()
 
@@ -38,3 +47,42 @@ class RegistrationSerializer(serializers.ModelSerializer):
         user.set_password(password)
         user.save()
         return user
+
+
+User = get_user_model()
+class UserLoginSerializer(ModelSerializer):
+    token = CharField(max_length = 100, read_only = True)
+    email = EmailField(max_length = 100)
+
+    class Meta:
+        model = CustomUser  
+        fields = [ 
+        'email',
+        'password',
+        "token",
+         ]
+
+        extra_kwargs = {"password": {"write_only":True}}
+
+    def validate(self, data):
+        user_obj = None
+        email = data.get("email")
+        password = data["password"]
+        #token = Token.objects.get(user=data).key 
+        if not email:
+            raise ValidationError("Email cannot be blank")
+        user = CustomUser.objects.filter(email = email)
+        
+        
+        
+        if user.exists() and user.count==1:
+           
+            user_obj = user.First()
+        else:
+            raise ValidationError("Invalid username or Password")
+
+        if user_obj:
+            if not user_obj.check_password(password):
+                raise ValidationError("invalid password")
+
+        return data
