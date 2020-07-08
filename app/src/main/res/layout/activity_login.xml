@@ -158,7 +158,7 @@
             app:layout_constraintTop_toTopOf="@+id/checkBox2" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/ntm_login"
+            android:id="@+id/signIn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -255,6 +255,6 @@
             android:textColor="@color/primaryTextColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ntm_login" />
+            app:layout_constraintTop_toBottomOf="@+id/signIn" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
