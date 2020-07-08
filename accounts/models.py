@@ -48,7 +48,8 @@ class CustomUser(AbstractBaseUser):
                     )
     full_name = models.CharField(verbose_name='fullname', blank=True, max_length=150)
     phone_number = models.CharField(max_length=15, validators=[RegexValidator(r'^\d{1,15}$')])
-    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=False)
+    timestamp = models.DateTimeField(auto_now_add=True)
     is_tutor = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
 
