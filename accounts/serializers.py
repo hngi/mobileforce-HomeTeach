@@ -9,11 +9,10 @@ class RegistrationSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(required=True, validators=[UniqueValidator(queryset=User.objects.all())])
     first_name = serializers.CharField(required=False, default='', allow_blank=True)
     last_name = serializers.CharField(required=False, default='', allow_blank=True)
-    password2 = serializers.CharField(write_only=True, style={'input_type': 'password'})
 
     class Meta:
         model = User
-        fields = ['email','is_tutor', 'password','first_name', 'last_name', 'password2']
+        fields = ['email','is_tutor', 'password','first_name', 'last_name']
         extra_kwargs = {
             'password': {'write_only': True}
         }
