@@ -10,9 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.signup.SignUpActivity"></activity>
-
-        <activity android:name=".ui.EditTutorProfileActivity"></activity>
+        <activity android:name=".ui.signup.SignUpActivity" />
+        <activity android:name=".ui.EditTutorProfileActivity" />
         <activity
             android:name=".ui.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -22,7 +21,6 @@
         <activity
             android:name=".ui.SplashActivity"
             android:theme="@style/SplashScreenTheme">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

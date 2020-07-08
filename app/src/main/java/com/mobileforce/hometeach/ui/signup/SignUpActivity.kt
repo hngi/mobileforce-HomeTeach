@@ -13,6 +13,10 @@ import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.ui.LoginActivity
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import java.util.regex.Pattern
+/**
+ * Created by Peculiar C. Umeh on June 2020.
+ */
+
 
 class SignUpActivity : AppCompatActivity() {
 
