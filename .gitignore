@@ -12,6 +12,7 @@ root/local.py
 .venv
 venv/
 fenv
+homenv/
 hometeach/
 ENV/
 .idea/

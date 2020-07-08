@@ -11,7 +11,6 @@ from rest_framework.permissions import AllowAny
 UserLogin = get_user_model()
 
 class UserLoginView(APIView):
-    permission_classes = [AllowAny]
     serializer_class = UserLoginSerializer
 
     def post(self, request, *args, **kwargs):
