@@ -24,6 +24,7 @@ from django.core.mail import EmailMessage
 @api_view(['POST', ])
 @permission_classes([AllowAny, ])
 def api_register_view(request):
+    organization_email = request.POST.get('organization_email')
     serializer = RegistrationSerializer(data=request.data)
     data = {}
     if serializer.is_valid():
@@ -41,7 +42,7 @@ def api_register_view(request):
         content = Content("text/html", message)
         mail_subject = 'Activate your account.'
         to_email = serializer.validated_data.get('email')
-        mail = Mail('akinsolaademolatemitope@gmail.com', to_email, mail_subject, content)
+        mail = Mail(organization_email, to_email, mail_subject, content)
         sg.send(mail)
     else:
         data['errors'] = serializer.errors
