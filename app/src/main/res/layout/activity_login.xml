@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_for_explore_page"
+    android:background="@drawable/background_explore"
     tools:context=".ui.LoginActivity"
     tools:targetApi="11">
 
@@ -15,7 +15,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
 
 
         <TextView
@@ -201,6 +200,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/view4" />
 
+
         <ImageView
             android:id="@+id/imageView9"
             android:layout_width="wrap_content"
@@ -231,6 +231,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view4" />
 
+
         <TextView
             android:id="@+id/text_register_now"
             android:layout_width="wrap_content"
@@ -244,7 +245,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
 
         <TextView
             android:id="@+id/textView15"

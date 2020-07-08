@@ -23,9 +23,17 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this, SignUpActivity::class.java))
         }
 
+        binding.registerNowButton.setOnClickListener {
+            navigateToSignUp()
+        }
+
     }
 
     private fun navigateToDashBoard() {
         startActivity(Intent(this, BottonNavigationActivity::class.java))
+    }
+
+    private fun navigateToSignUp() {
+        startActivity(Intent(this, SignUpActivity::class.java))
     }
 }

@@ -52,7 +52,6 @@
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tutor_name"
-
                     tools:ignore="ContentDescription"
                     tools:visibility="visible" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -308,6 +307,7 @@
             app:layout_constraintTop_toBottomOf="@id/Tutor_Description_Detail_card" />
 
         <TextView
+            android:id="@+id/view_all"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/view_all"
@@ -341,19 +341,33 @@
             app:layout_constraintTop_toTopOf="@id/Pdf_image" />
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/edit_button"
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_margin="18dp"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="70dp"
             android:backgroundTint="@color/colorAccent"
             android:text="@string/edit_profile"
             android:textColor="#fff"
             app:cornerRadius="15dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/Pdf_image"
+            tools:ignore="UnusedAttribute" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/no_button"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="70dp"
+            android:backgroundTint="#E5E5E5"
+            android:textColor="#fff"
+            app:cornerRadius="15dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edit_button"
             tools:ignore="UnusedAttribute" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

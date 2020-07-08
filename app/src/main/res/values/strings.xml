@@ -130,6 +130,17 @@
     <string name="available">Available</string>
     <string name="i_teach_with_calmness_and_encouragement_my_lessons_are_not_boring_and_i_can_accomodate_student_s_with_low_affinity_to_studying_i_employ_modern_schema_for_tutoring_with_interactive_guides_and_learning_systems_having_schooled_at_different_educational_organizations_coupled_with_my_nce_certifcate_i_can_assure_you_premium_success_with_me_as_your_home_teacher">I teach with calmness and encouragement. My lessons are not boring and i can accomodate student’s with low affinity to studying. I employ modern schema for tutoring with interactive guides and learning systems. Having schooled at different educational organizations coupled with my NCE certifcate, I can assure you premium success with me as your Home-Teacher.</string>
     <string name="edit_profile">Edit profile</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="get_matched_with_prospective_teachers">Get matched with prospective Teachers</string>
+    <string name="and_student_for_academics_skill_acquistion">and student for academics, skill acquistion</string>
+    <string name="and_many_more">and many more.</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="i_have_read_the">I have read the</string>
+    <string name="terms_and_conditions">Terms and Conditions</string>
+    <string name="or_sign_up_using_social_media">Or sign up using social media</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="log_in">Log In</string>
 
     <string-array name="fields_array">
         <item>Science</item>
