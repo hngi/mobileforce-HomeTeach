@@ -1,19 +1,17 @@
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import status, parsers, renderers
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import AllowAny
-from .serializers import RegistrationSerializer
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from .serializers import RegistrationSerializer, UserLoginSerializer
 from rest_framework.authtoken.models import Token
 from django.shortcuts import render
 from django.db.models import Q
 from django.contrib.auth import get_user_model
 from rest_framework.status import HTTP_200_OK, HTTP_400_BAD_REQUEST
 from rest_framework.views import APIView
-from .serializers import UserLoginSerializer
-from rest_framework import parsers, renderers
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, logout, authenticate
 from sendgrid import SendGridAPIClient
 from django.template.loader import get_template
 from sendgrid.helpers.mail import *
@@ -38,28 +36,12 @@ class UserLoginView(APIView):
             return Response(data, status=HTTP_200_OK)
         return  Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
 
-# class UserLoginView(APIView):
-#     throttle_classes = ()
-#     permission_classes = ()
-#     parser_classes = (
-#         parsers.FormParser,
-#         parsers.MultiPartParser,
-#         parsers.JSONParser,
-#     )
 
-#     renderer_classes = (renderers.JSONRenderer,)
-
-#     def post(self, request):
-#         serializer = AuthCustomTokenSerializer(data=request.data)
-#         serializer.is_valid(raise_exception=True)
-#         user = serializer.validated_data['user']
-#         token, created = Token.objects.get_or_create(user=user)
-
-#         content = {
-#             'token': token.key,
-#         }
-
-#         return Response(content)
+class UserLogoutView(APIView):
+    permissions_classes = [IsAuthenticated]
+    def get(self, request):
+        logout(request)
+        return Response(status=HTTP_200_OK)
 
 
 @api_view(['POST', ])
