@@ -1,6 +1,0 @@
-{
-    "python.pythonPath": "fenv\\Scripts\\python.exe",
-    "python.linting.flake8Enabled": false,
-    "python.linting.pylintEnabled": true,
-    "python.linting.enabled": true
-}
