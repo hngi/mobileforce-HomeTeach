@@ -1,8 +1,8 @@
 package com.mobileforce.hometeach.data.sources
 
 class DataSourceFactory constructor(
-    private val localDataSource: DataSource,
-    private val remoteDataSource: DataSource
+    private val localDataSource: LocalDataSource,
+    private val remoteDataSource: RemoteDataSource
 ) {
 
     fun local(): DataSource {

@@ -45,8 +45,8 @@ val appModule = module {
 
     }
 
-    single<DataSource> { RemoteDataSource(get()) }
-    single<DataSource> { LocalDataSource(get()) }
+    single { RemoteDataSource(get()) }
+    single { LocalDataSource(get()) }
     single { DataSourceFactory(get(), get()) }
     single<UserRepository> { UserRepositoryImpl(get()) }
 
