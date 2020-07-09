@@ -69,7 +69,7 @@ MIDDLEWARE = [
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 db_from_env = dj_database_url.config(conn_max_age=600)
-DATABASES['default'].update(db_from_env)
+DATABASES = { 'default': dj_database_url.config() }
 
 ROOT_URLCONF = 'root.urls'
 
@@ -98,10 +98,10 @@ WSGI_APPLICATION = 'root.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': '',
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',
+        'NAME': 'hometeach',
+        'USER': 'hng',
+        'PASSWORD': 'hometeach',
+        'HOST': 'localhost',
         'PORT': '',
     }
 }
