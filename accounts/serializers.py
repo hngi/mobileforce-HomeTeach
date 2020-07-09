@@ -2,7 +2,7 @@ from django.conf import settings
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 from django.contrib.auth import get_user_model, authenticate
-from rest_framework.serializers import ModelSerializer,CharField,EmailField,ModelSerializer,SerializerMethodField,ValidationError
+from rest_framework.serializers import ModelSerializer,CharField,EmailField,SerializerMethodField,ValidationError
 from django.db import models
 from django.db.models import Q
 from accounts.models import CustomUser
@@ -39,8 +39,6 @@ class RegistrationSerializer(serializers.ModelSerializer):
 
         )
         user.is_tutor = self.validated_data['is_tutor']
-        # user.full_name = self.validated_data['full_name']
-        # user.phone_number = self.validated_data['phone_number']
 
         user.set_password(password)
         user.save()
@@ -76,7 +74,8 @@ class UserLoginSerializer(ModelSerializer):
         token = Token.objects.get(user=user_obj).key
         new_data = []
         new_data.append(token)
-        user_data = {'id': user_obj.pk, 'full_name': user_obj.full_name, 'phone_number':user_obj.phone_number, 'is_active': user_obj.is_active, 'is_admin': user_obj.is_admin,
+        user_data = {'id': user_obj.pk, 'full_name': user_obj.full_name, 'phone_number':user_obj.phone_number,
+                    'is_active': user_obj.is_active, 'is_admin': user_obj.is_admin,
                     'timestamp': user_obj.timestamp, 'is_tutor':user_obj.is_tutor, 'email': user_obj.email}
         new_data.append(user_data)
         return new_data
