@@ -8,9 +8,11 @@ from django.core.validators import RegexValidator
 from rest_framework.authtoken.models import Token
 from django.conf import settings
 
+
 from django.urls import reverse
 from django_rest_passwordreset.signals import reset_password_token_created
 from django.core.mail import send_mail  
+
 
 class UserManager(BaseUserManager):
     def create_user(self, email, full_name, phone_number, password=None):
