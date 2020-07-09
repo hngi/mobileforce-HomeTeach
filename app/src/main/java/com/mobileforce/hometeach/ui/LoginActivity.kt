@@ -6,6 +6,7 @@ import android.os.Bundle
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.databinding.ActivityLoginBinding
 import com.mobileforce.hometeach.ui.signup.SignUpActivity
+import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
 
@@ -18,8 +19,11 @@ class LoginActivity : AppCompatActivity() {
         binding.signIn.setOnClickListener {
             navigateToDashBoard()
         }
+        text_register_now.setOnClickListener {
+            startActivity(Intent(this, SignUpActivity::class.java))
+        }
 
-        binding.registerNowButton.setOnClickListener {
+        binding.textRegisterNow.setOnClickListener {
             navigateToSignUp()
         }
 
