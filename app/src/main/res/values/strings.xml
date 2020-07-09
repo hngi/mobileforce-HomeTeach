@@ -141,6 +141,7 @@
     <string name="or_sign_up_using_social_media">Or sign up using social media</string>
     <string name="already_have_an_account">Already have an account?</string>
     <string name="log_in">Log In</string>
+    <string name="recover_passwordd">Recover Password</string>
 
     <string-array name="fields_array">
         <item>Science</item>
