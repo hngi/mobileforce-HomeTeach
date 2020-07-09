@@ -11,12 +11,12 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$Behavior"
-        style="@style/Widget.Design.AppBarLayout"
-        app:elevation="20dp"
+        android:background="@color/colorBackground"
+        app:elevation="0dp"
         android:layout_height="wrap_content">
 
 
-        <com.google.android.material.appbar.CollapsingToolbarLayout
+        <com.google.android.material.appbar.MaterialToolbar
             app:layout_scrollFlags="enterAlways|scroll"
             android:layout_width="match_parent"
             app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
@@ -33,12 +33,12 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:src="@drawable/ic_notify"
-                android:layout_gravity ="end"
+                android:layout_gravity="end"
                 android:layout_marginRight="16dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp" />
 
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.MaterialToolbar>
 
         <androidx.cardview.widget.CardView
             android:layout_margin="20dp"
