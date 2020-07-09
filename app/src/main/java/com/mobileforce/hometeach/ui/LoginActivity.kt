@@ -33,6 +33,16 @@ class LoginActivity : AppCompatActivity() {
             forgotPassword()
         }
 
+        val mDialogView = LayoutInflater.from(this).inflate(R.layout.forgot_password_layout1, null)
+
+        if (mDialogView.recover_email_chBox.isChecked) {
+            mDialogView.apply.setBackgroundResource(R.drawable.apply_background)
+        } else if (mDialogView.recover_phone_chBox.isChecked) {
+            mDialogView.apply.setBackgroundResource(R.drawable.apply_background)
+        } else {
+
+        }
+
     }
 
     private fun navigateToDashBoard() {
