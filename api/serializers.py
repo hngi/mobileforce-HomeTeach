@@ -95,7 +95,7 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
         model = Profile
         depth = 1
         fields = ('id', 'email', 'full_name',
-                  'desc', 'field', 'major_course', 'other_courses', 'state', 'address', 
+                  'profile_pic', 'desc', 'field', 'major_course', 'other_courses', 'state', 'address', 
                   'user_url')
 
     def get_full_name(self, obj):
@@ -103,7 +103,7 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
         return request.user.get_full_name()
 
     def update(self, instance, validated_data):
-        # retrieve the User
+        # retrieve CustomUser
         user_data = validated_data.pop('user', None)
         for attr, value in user_data.items():
             setattr(instance.user, attr, value)
