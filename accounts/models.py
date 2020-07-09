@@ -8,6 +8,8 @@ from django.core.validators import RegexValidator
 from rest_framework.authtoken.models import Token
 from django.conf import settings
 
+
+    
 class UserManager(BaseUserManager):
     def create_user(self, email, full_name, phone_number, password=None):
         """
