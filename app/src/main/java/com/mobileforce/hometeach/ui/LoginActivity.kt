@@ -23,7 +23,7 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this, SignUpActivity::class.java))
         }
 
-        binding.registerNowButton.setOnClickListener {
+        binding.textRegisterNow.setOnClickListener {
             navigateToSignUp()
         }
 
