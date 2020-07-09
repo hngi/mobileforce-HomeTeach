@@ -136,6 +136,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+MEDIA_URL =  '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
 DEFAULT_AUTHENTICATION_CLASSES = [
         'rest_framework.authentication.TokenAuthentication',
      ]
@@ -156,3 +159,5 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'apikey'
 EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_API_KEY')
+
+

@@ -8,6 +8,7 @@ from accounts.models import CustomUser
 class Profile(models.Model):
 	user = models.OneToOneField(settings.AUTH_USER_MODEL,
 							on_delete=models.CASCADE)
+	profile_pic = models.FileField(blank=True, null=True)
 	desc = models.CharField(max_length=255)
 	field = models.CharField(max_length=255)
 	major_course = models.CharField(max_length=255)
