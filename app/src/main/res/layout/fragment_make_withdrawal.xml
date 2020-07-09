@@ -37,35 +37,37 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="10dp"
-                android:layout_marginLeft="10dp">
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/username"
                     android:layout_gravity="center"
                     android:textSize="20sp"
-                    android:text="Rahman Django "/>
+                    android:text="@string/rahman_django"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/balance"
                     android:layout_gravity="center"
                     android:textSize="20sp"
-                    android:text="Balance: 215000 N"/>
+                    android:text="@string/balance_215000_n"/>
             </LinearLayout>
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_gravity="center"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="80dp"
-                android:src="@drawable/calimage"/>
+                android:src="@drawable/tutor_field_icon"
+                android:layout_marginStart="80dp" />
         </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="Enter Amount"
+            android:text="@string/enter_amount"
             android:textSize="20sp" />
 
         <EditText
@@ -74,8 +76,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:inputType="number"
+            android:drawableStart="@drawable/make_withdraw_icon"
             android:background="@drawable/edit_text_background"
-            android:padding="12dp" />
+            android:padding="12dp"
+            android:drawableLeft="@drawable/make_withdraw_icon" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_confirm"
@@ -103,7 +107,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text=" Withdrawal History "
+            android:text="@string/withdrawal_history"
             android:textSize="20sp" />
 
         <androidx.recyclerview.widget.RecyclerView

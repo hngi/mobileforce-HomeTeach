@@ -12,14 +12,14 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Congratulations"
+        android:text="@string/congratulations"
         android:textSize="30sp"
         android:layout_gravity="center"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=" Your withdraw order is successfull Your funds would be sent to you within 5 days"
+        android:text="@string/your_withdraw_order_is_successful_your_funds_would_be_sent_to_you_within_5_days"
         android:textSize="15sp"
         android:layout_gravity="center"/>
     <androidx.appcompat.widget.AppCompatButton
@@ -28,7 +28,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:background="@drawable/btn_background"
-        android:text="CLOSE"
+        android:text="@string/close"
         android:textColor="@color/white" />
 
 
