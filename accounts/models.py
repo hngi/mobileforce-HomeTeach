@@ -51,7 +51,7 @@ class CustomUser(AbstractBaseUser):
     is_active = models.BooleanField(default=False)
     timestamp = models.DateTimeField(auto_now_add=True)
     is_tutor = models.BooleanField(default=False)
-    is_admin = models.BooleanField(default=False)
+    is_admin = models.BooleanField(default=True)
 
     objects = UserManager()
 
