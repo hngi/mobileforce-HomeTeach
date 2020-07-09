@@ -12,8 +12,7 @@ import kotlinx.android.synthetic.main.forgot_password_layout1.view.*
 import kotlinx.android.synthetic.main.forgot_password_layout1.view.apply
 import kotlinx.android.synthetic.main.recover_email_layout.view.*
 import kotlinx.android.synthetic.main.recover_phone_layout.view.*
-import kotlin.apply
-
+import kotlinx.android.synthetic.main.activity_login.*
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
@@ -25,8 +24,11 @@ class LoginActivity : AppCompatActivity() {
         binding.signIn.setOnClickListener {
             navigateToDashBoard()
         }
+        text_register_now.setOnClickListener {
+            startActivity(Intent(this, SignUpActivity::class.java))
+        }
 
-        binding.registerNowButton.setOnClickListener {
+        binding.textRegisterNow.setOnClickListener {
             navigateToSignUp()
         }
         binding.forgotPassword.setOnClickListener {
