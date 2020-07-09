@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from rest_framework.response import Response
 from rest_framework import status, parsers, renderers
 from rest_framework.decorators import api_view, permission_classes
@@ -21,8 +22,16 @@ from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from .tokens import account_activation_token
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import AllowAny
+from .serializers import RegistrationSerializer
+from rest_framework.authtoken.models import Token
 from django.contrib.auth import get_user_model
-from django.core.mail import EmailMessage
+from rest_framework.status import HTTP_200_OK, HTTP_400_BAD_REQUEST
+from rest_framework.views import APIView
+from .serializers import UserLoginSerializer
 
 
 class UserLoginView(APIView):
@@ -35,7 +44,6 @@ class UserLoginView(APIView):
             data = serializer.save()
             return Response(data, status=HTTP_200_OK)
         return  Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
-
 
 class UserLogoutView(APIView):
     permissions_classes = [IsAuthenticated]

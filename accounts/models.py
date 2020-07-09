@@ -8,7 +8,6 @@ from django.core.validators import RegexValidator
 from rest_framework.authtoken.models import Token
 from django.conf import settings
 
-
 from django.urls import reverse
 from django_rest_passwordreset.signals import reset_password_token_created
 from django.core.mail import send_mail  
@@ -54,7 +53,6 @@ class CustomUser(AbstractBaseUser):
                     )
     full_name = models.CharField(verbose_name='fullname', blank=True, max_length=150)
     phone_number = models.CharField(max_length=15, validators=[RegexValidator(r'^\d{1,15}$')])
-    is_active = models.BooleanField(default=False)
     timestamp = models.DateTimeField(auto_now_add=True)
     is_tutor = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
@@ -78,6 +76,11 @@ class CustomUser(AbstractBaseUser):
 
     @property
     def is_staff(self):
+        # Simplest possible answer: All admins are staff
+        return self.is_admin
+
+    @property
+    def is_active(self):
         # Simplest possible answer: All admins are staff
         return self.is_admin
 

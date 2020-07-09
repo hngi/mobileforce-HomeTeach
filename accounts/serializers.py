@@ -10,8 +10,6 @@ from rest_framework import exceptions
 from django.shortcuts import get_object_or_404
 from rest_framework.authtoken.models import Token
 
-
-
 User = get_user_model()
 
 class RegistrationSerializer(serializers.ModelSerializer):
@@ -20,7 +18,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['email','is_tutor', 'is_active', 'password','full_name', 'phone_number']
+        fields = ['id', 'email','is_tutor', 'is_active', 'password','full_name', 'phone_number']
         extra_kwargs = {
             'password': {'write_only': True}
         }
@@ -49,6 +47,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
 
 class UserLoginSerializer(ModelSerializer):
     email = EmailField(max_length=100)
+
     class Meta:
         model = CustomUser
         fields = [
@@ -56,6 +55,7 @@ class UserLoginSerializer(ModelSerializer):
             'password',
         ]
         extra_kwargs = {"password": {"write_only": True}}
+
     def save(self, **kwargs):
         data = self.validated_data
         email = data.get("email")
@@ -66,14 +66,15 @@ class UserLoginSerializer(ModelSerializer):
         if user.exists():
             user_obj = User.objects.get(email=email)
         else:
-            raise ValidationError("Invalid username or password")
+            raise ValidationError("Invalid username or Password")
+
         if user_obj:
             if not user_obj.check_password(password):
                 raise ValidationError("invalid password")
         token = Token.objects.get(user=user_obj).key
         new_data = []
         new_data.append(token)
-        user_data = {'id': user_obj.pk, 'full_name': user_obj.full_name, 'phone_number':user_obj.phone_number, 
+        user_data = {'id': user_obj.pk, 'full_name': user_obj.full_name, 'phone_number':user_obj.phone_number,
                     'is_active': user_obj.is_active, 'is_admin': user_obj.is_admin,
                     'timestamp': user_obj.timestamp, 'is_tutor':user_obj.is_tutor, 'email': user_obj.email}
         new_data.append(user_data)
