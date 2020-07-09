@@ -1,4 +1,4 @@
-package com.mobileforce.hometeach.local
+package com.mobileforce.hometeach.localsource
 
 import android.content.Context
 import android.content.SharedPreferences
