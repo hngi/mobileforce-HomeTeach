@@ -1,19 +1,35 @@
 # Create your views here.
 from rest_framework.response import Response
 from rest_framework import status, generics
-from rest_framework.permissions import IsAuthenticatedOrWriteOnly
-from api.serializers import CustomUserSerializer
+from api.permissions import IsOwnerOrReadOnly, IsAdminUserOrReadOnly, IsSameUserAllowEditionOrReadOnly
+from api.serializers import CustomUserSerializer, ProfileSerializer
+from api.models import Profile
+from accounts.models import CustomUser 
+ 
+from rest_framework import viewsets, mixins, permissions
 
 
 
-class CustomUserList(generics.ListCreateAPIView):
-    permission_classes = (IsAuthenticatedOrWriteOnly,)
+class CustomUserViewSet(viewsets.ModelViewSet):
+    """
+    This viewset automatically provides `list` and `detail` actions.
+    """
+    queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,
+                          IsSameUserAllowEditionOrReadOnly,)
 
-    def post(self, request, format=None):
-        serializer = CustomUserSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+class ProfileViewSet(mixins.ListModelMixin,
+                     mixins.RetrieveModelMixin,
+                     mixins.UpdateModelMixin,
+                     viewsets.GenericViewSet):
+    """
+    This viewset automatically provides `list`, `create`, `retrieve`,
+    `update` and `destroy` actions.
+    """
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,
+                          IsOwnerOrReadOnly,)
+
 

@@ -14,8 +14,7 @@ class Profile(models.Model):
 	other_courses = models.CharField(max_length=255)
 	state = models.CharField(max_length=255)
 	address = models.CharField(max_length=255)
-	rate = models.IntegerField()
-
+	
 
 	def __unicode__(self):
 		return f'Profile for user: {0}'.format(self.user.email)
