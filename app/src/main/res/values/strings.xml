@@ -22,7 +22,6 @@
     <string name="math_tutor">Math Tutor</string>
     <string name="alaye_chris">Alaye Chris</string>
     <string name="within_lga">Within LGA</string>
-    <string name="_2000n_hr"><![CDATA[<2000N/hr]]></string>
     <string name="grade_3">Grade 3</string>
     <string name="science">Science</string>
     <string name="maths">Maths</string>
@@ -151,6 +150,7 @@
     <string name="enter_amount">Enter Amount</string>
     <string name="your_withdraw_order_is_successful_your_funds_would_be_sent_to_you_within_5_days">Your withdraw order is successful your funds would be sent to you within 5 days</string>
     <string name="your_bank_has_been_added">Your bank has been added</string>
+    <string name="n2000_hr">N2000/hr</string>
 
     <string-array name="fields_array">
         <item>Science</item>
