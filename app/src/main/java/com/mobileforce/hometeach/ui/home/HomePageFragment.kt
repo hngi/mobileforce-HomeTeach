@@ -16,7 +16,7 @@ import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.adapters.RecyclerViewAdapter
 import com.mobileforce.hometeach.adapters.ViewHolder
 import com.mobileforce.hometeach.databinding.*
-import com.mobileforce.hometeach.local.PreferenceHelper
+import com.mobileforce.hometeach.localsource.PreferenceHelper
 import com.mobileforce.hometeach.models.*
 import com.mobileforce.hometeach.ui.ExploreActivity
 import com.mobileforce.hometeach.ui.classes.adapters.recylerviewadapters.TutorOngoingClassesAdapter
