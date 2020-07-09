@@ -8,6 +8,11 @@ from django.core.validators import RegexValidator
 from rest_framework.authtoken.models import Token
 from django.conf import settings
 
+from django.urls import reverse
+from django_rest_passwordreset.signals import reset_password_token_created
+from django.core.mail import send_mail  
+
+
 class UserManager(BaseUserManager):
     def create_user(self, email, full_name, phone_number, password=None):
         """
@@ -48,7 +53,6 @@ class CustomUser(AbstractBaseUser):
                     )
     full_name = models.CharField(verbose_name='fullname', blank=True, max_length=150)
     phone_number = models.CharField(max_length=15, validators=[RegexValidator(r'^\d{1,15}$')])
-    is_active = models.BooleanField(default=False)
     timestamp = models.DateTimeField(auto_now_add=True)
     is_tutor = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
@@ -75,8 +79,30 @@ class CustomUser(AbstractBaseUser):
         # Simplest possible answer: All admins are staff
         return self.is_admin
 
+    @property
+    def is_active(self):
+        # Simplest possible answer: All admins are staff
+        return self.is_admin
+
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:
         Token.objects.create(user=instance)
+
+
+@receiver(reset_password_token_created)
+def password_reset_token_created(sender, instance, reset_password_token, *args, **kwargs):
+
+    email_content_message = "{}?token={}".format(reverse('password_reset:reset-password-request'), reset_password_token.key)
+
+    send_mail(
+        # title:
+        "Password Reset for {title}".format(title="Home teach"),
+        # message:
+        email_content_message,
+        # from:
+        "noreply@somehost.local",
+        # to:
+        [reset_password_token.user.email]
+    )
