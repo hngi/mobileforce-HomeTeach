@@ -141,6 +141,16 @@
     <string name="or_sign_up_using_social_media">Or sign up using social media</string>
     <string name="already_have_an_account">Already have an account?</string>
     <string name="log_in">Log In</string>
+    <string name="your_card_has_been_added">Your card has been added</string>
+    <string name="rahman_django">Rahman Django</string>
+    <string name="balance_215000_n">Balance 215000 N</string>
+    <string name="your_saved_card">Your saved card</string>
+    <string name="add_new_card">Add new card</string>
+    <string name="clear_all">Clear all</string>
+    <string name="withdrawal_history">Withdrawal History</string>
+    <string name="enter_amount">Enter Amount</string>
+    <string name="your_withdraw_order_is_successful_your_funds_would_be_sent_to_you_within_5_days">Your withdraw order is successful your funds would be sent to you within 5 days</string>
+    <string name="your_bank_has_been_added">Your bank has been added</string>
 
     <string-array name="fields_array">
         <item>Science</item>
