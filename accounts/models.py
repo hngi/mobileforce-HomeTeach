@@ -8,6 +8,11 @@ from django.core.validators import RegexValidator
 from rest_framework.authtoken.models import Token
 from django.conf import settings
 
+from django.urls import reverse
+from django_rest_passwordreset.signals import reset_password_token_created
+from django.core.mail import send_mail  
+
+
 class UserManager(BaseUserManager):
     def create_user(self, email, full_name, phone_number, password=None):
         """
@@ -84,3 +89,20 @@ class CustomUser(AbstractBaseUser):
 def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:
         Token.objects.create(user=instance)
+
+
+@receiver(reset_password_token_created)
+def password_reset_token_created(sender, instance, reset_password_token, *args, **kwargs):
+
+    email_content_message = "{}?token={}".format(reverse('password_reset:reset-password-request'), reset_password_token.key)
+
+    send_mail(
+        # title:
+        "Password Reset for {title}".format(title="Home teach"),
+        # message:
+        email_content_message,
+        # from:
+        "noreply@somehost.local",
+        # to:
+        [reset_password_token.user.email]
+    )

@@ -12,6 +12,12 @@ from .serializers import CreateRequestSerializer, RequestTutorSerializer, Reques
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 from .models import Request
+from api.permissions import IsOwnerOrReadOnly, IsAdminUserOrReadOnly, IsSameUserAllowEditionOrReadOnly
+from api.serializers import CustomUserSerializer, ProfileSerializer
+from api.models import Profile
+from accounts.models import CustomUser
+
+from rest_framework import viewsets, mixins, permissions
 from rest_framework.authtoken.models import Token
 from django.contrib.auth import get_user_model
 
@@ -22,7 +28,7 @@ def submit_request(request):
 
     serializer = CreateRequestSerializer(data=request.data)
     if serializer.is_valid(raise_exception=True):
-        request = serializer.save()}
+        serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     else:
         return Response('request couldnt be created', status=status.HTTP_501_NOT_IMPLEMENTED)
@@ -46,4 +52,28 @@ def list_user_requests(request):
     requests = Request.objects.filter(requester__id=id)
     serializer = RequestSerializer(requests, many=True)
     return Response(serializer.data)
+
+
+
+class CustomUserViewSet(viewsets.ModelViewSet):
+    """
+    This viewset automatically provides `list` and `detail` actions.
+    """
+    queryset = CustomUser.objects.all()
+    serializer_class = CustomUserSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,
+                          IsSameUserAllowEditionOrReadOnly,)
+
+class ProfileViewSet(mixins.ListModelMixin,
+                     mixins.RetrieveModelMixin,
+                     mixins.UpdateModelMixin,
+                     viewsets.GenericViewSet):
+    """
+    This viewset automatically provides `list`, `create`, `retrieve`,
+    `update` and `destroy` actions.
+    """
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,
+                          IsOwnerOrReadOnly,)
 

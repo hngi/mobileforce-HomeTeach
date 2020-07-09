@@ -2,11 +2,10 @@ from django.conf import settings
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 from django.contrib.auth import get_user_model, authenticate
-from rest_framework.serializers import ModelSerializer, CharField, EmailField, ModelSerializer, SerializerMethodField, \
-    ValidationError
+from rest_framework.serializers import ModelSerializer,CharField,EmailField,ModelSerializer,SerializerMethodField,ValidationError
 from django.db import models
 from django.db.models import Q
-from .models import CustomUser
+from accounts.models import CustomUser
 from rest_framework import exceptions
 from django.shortcuts import get_object_or_404
 from rest_framework.authtoken.models import Token
@@ -51,16 +50,13 @@ class RegistrationSerializer(serializers.ModelSerializer):
 class UserLoginSerializer(ModelSerializer):
     email = EmailField(max_length=100)
 
-
     class Meta:
         model = CustomUser
         fields = [
             'email',
             'password',
         ]
-
         extra_kwargs = {"password": {"write_only": True}}
-
 
     def save(self, **kwargs):
         data = self.validated_data
@@ -83,5 +79,4 @@ class UserLoginSerializer(ModelSerializer):
         user_data = {'id': user_obj.pk, 'full_name': user_obj.full_name, 'phone_number':user_obj.phone_number, 'is_active': user_obj.is_active, 'is_admin': user_obj.is_admin,
                     'timestamp': user_obj.timestamp, 'is_tutor':user_obj.is_tutor, 'email': user_obj.email}
         new_data.append(user_data)
-
         return new_data
