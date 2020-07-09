@@ -1,11 +1,3 @@
-from django.http import HttpResponse
-from sendgrid import SendGridAPIClient
-from django.template.loader import get_template
-from sendgrid.helpers.mail import *
-from django.contrib.sites.shortcuts import get_current_site
-from django.utils.encoding import force_bytes, force_text
-from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.template.loader import render_to_string
 from rest_framework.response import Response
 from rest_framework import status
 from .serializers import CreateRequestSerializer, RequestTutorSerializer, RequestSerializer
@@ -15,8 +7,8 @@ from .models import Request
 from api.permissions import IsOwnerOrReadOnly, IsAdminUserOrReadOnly, IsSameUserAllowEditionOrReadOnly
 from api.serializers import CustomUserSerializer, ProfileSerializer
 from api.models import Profile
-from accounts.models import CustomUser
-
+from accounts.models import CustomUser 
+from rest_framework.parsers import FileUploadParser
 from rest_framework import viewsets, mixins, permissions
 from rest_framework.authtoken.models import Token
 from django.contrib.auth import get_user_model
@@ -61,8 +53,9 @@ class CustomUserViewSet(viewsets.ModelViewSet):
     """
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,
+    permission_classes = (permissions.AllowAny,
                           IsSameUserAllowEditionOrReadOnly,)
+    parser_class = (FileUploadParser,)
 
 class ProfileViewSet(mixins.ListModelMixin,
                      mixins.RetrieveModelMixin,
@@ -74,6 +67,6 @@ class ProfileViewSet(mixins.ListModelMixin,
     """
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,
+    permission_classes = (permissions.AllowAny,
                           IsOwnerOrReadOnly,)
 
