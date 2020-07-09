@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:fontFamily="@font/ubuntu"
-            android:text="LOG IN "
+            android:text="@string/log_in"
             android:textSize="36sp"
             android:textColor="@color/primaryTextColor"
             app:layout_constraintEnd_toEndOf="parent"
@@ -48,7 +48,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginLeft="32dp"
             android:layout_marginTop="32dp"
-            android:text="Email"
+            android:text="@string/email"
             android:textColor="@color/primaryTextColor"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView7" />
@@ -89,7 +89,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginLeft="32dp"
             android:layout_marginTop="16dp"
-            android:text="Password"
+            android:text="@string/password"
             android:textColor="@color/primaryTextColor"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInput_email_signin" />
@@ -134,7 +134,7 @@
             android:layout_height="52dp"
             android:layout_marginStart="32dp"
             android:layout_marginLeft="32dp"
-            android:text="Save Password"
+            android:text="@string/save_password"
             android:layout_weight="1"
             android:fontFamily="@font/ubuntu"
             android:textColor="@color/primaryTextColor"
@@ -149,7 +149,7 @@
             android:layout_marginEnd="32dp"
             android:layout_marginRight="32dp"
             android:gravity="center"
-            android:text="Forgot Password"
+            android:text="@string/forgot_password"
             android:textColor="@color/colorBoldText"
             app:layout_constraintBottom_toBottomOf="@+id/checkBox2"
             app:layout_constraintEnd_toEndOf="parent"
@@ -167,7 +167,7 @@
             android:layout_marginRight="32dp"
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
-            android:text="LOG IN"
+            android:text="@string/log_in"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
             app:boxCornerRadiusBottomEnd="8dp"
@@ -225,37 +225,36 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Don't have an accout?"
+            android:text="@string/don_t_have_an_account"
             android:textColor="@color/primaryTextColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view4" />
-
-
-        <TextView
-            android:id="@+id/text_register_now"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="43dp"
-            android:drawableEnd="@drawable/ic_fab_arrow"
-            android:drawableRight="@drawable/ic_fab_arrow"
-            android:text="Register now"
-            android:textColor="@color/colorBoldText"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
 
         <TextView
             android:id="@+id/textView15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Or Login using social media"
+            android:text="@string/or_login_using_social_media"
             android:textColor="@color/primaryTextColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/signIn" />
+
+        <TextView
+            android:id="@+id/text_register_now"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="43dp"
+            android:drawableEnd="@drawable/ic_fab_arrow"
+            android:drawableRight="@drawable/ic_fab_arrow"
+            android:text="@string/register_now"
+            android:textColor="@color/colorBoldText"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView12" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

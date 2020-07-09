@@ -151,6 +151,10 @@
     <string name="your_withdraw_order_is_successful_your_funds_would_be_sent_to_you_within_5_days">Your withdraw order is successful your funds would be sent to you within 5 days</string>
     <string name="your_bank_has_been_added">Your bank has been added</string>
     <string name="n2000_hr">N2000/hr</string>
+    <string name="or_login_using_social_media">Or Login using social media</string>
+    <string name="register_now">Register now</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="save_password">Save Password</string>
 
     <string-array name="fields_array">
         <item>Science</item>
