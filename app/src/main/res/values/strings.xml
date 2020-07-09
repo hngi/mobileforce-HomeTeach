@@ -46,7 +46,7 @@
     <string name="mark_essien_accepted_your_friend_request">Mark Essien Accepted Your Friend Request</string>
     <string name="new_">NEW</string>
 
-    <string name="sign_out">Sign Out</string>
+    <string name="sign_out">SIGN OUT</string>
     <string name="card_details">Card Details</string>
     <string name="payments">Payments</string>
     <string name="welcome">Welcome</string>
@@ -65,8 +65,8 @@
 
     <string name="classes">Classes</string>
     <string name="approve">APPROVE</string>
-    <string name="cancel">Cancel</string>
-    <string name="confirm">Confirm</string>
+    <string name="cancel">CANCEL</string>
+    <string name="confirm">CONFIRM</string>
     <string name="full_name">Full name</string>
     <string name="description">Description</string>
     <string name="upload_a_30_second_video_about_yourself">Upload a 30 second video about yourself</string>
@@ -96,7 +96,7 @@
     <string name="text_view_all">View all</string>
     <string name="text_ongoing_classes">Ongoing Classes</string>
     <string name="text_payments">Payments</string>
-    <string name="text_sign_out">Sign Out</string>
+    <string name="text_sign_out">SIGN OUT</string>
     <string name="hello_mr_rahman_how_are_doing_today">Hello Mr Rahman, how are doing today?</string>
     <string name="_12_00">12:00</string>
     <string name="hi_mr_sule_i_am_doing_great_how_are_you_too">Hi Mr Sule, I am doing great. How are you too?</string>
@@ -116,7 +116,7 @@
     <string name="recover_your_registered_phone_number">Recover your registered phonE number</string>
     <string name="phone_number">Phone number</string>
     <string name="your_request_for_a_teacher_has_been_successfully_booked_and_awaiting_approval">Your request for a Teacher has been successfully booked and awaiting approval</string>
-    <string name="thursday_june_5_2020_16_00_18_00">Thursday, June 5, 2020 16:00 – 18:00</string>
+    <string name="thursday_june_5_2020_16_00_18_00">Thursday, June 5, 2020 16:00 - 18:00</string>
     <string name="congratulations">Congratulations</string>
     <string name="john_doe">John Doe</string>
     <string name="about">About</string>
@@ -128,11 +128,11 @@
     <string name="_16">(16)</string>
     <string name="interests_science_math_physics">Interests: Science, Math, Physics</string>
     <string name="available">Available</string>
-    <string name="i_teach_with_calmness_and_encouragement_my_lessons_are_not_boring_and_i_can_accomodate_student_s_with_low_affinity_to_studying_i_employ_modern_schema_for_tutoring_with_interactive_guides_and_learning_systems_having_schooled_at_different_educational_organizations_coupled_with_my_nce_certifcate_i_can_assure_you_premium_success_with_me_as_your_home_teacher">I teach with calmness and encouragement. My lessons are not boring and i can accommodate student’s with low affinity to studying. I employ modern schema for tutoring with interactive guides and learning systems. Having schooled at different educational organizations coupled with my NCE certifcate, I can assure you premium success with me as your Home-Teacher.</string>
+    <string name="i_teach_with_calmness_and_encouragement_my_lessons_are_not_boring_and_i_can_accomodate_student_s_with_low_affinity_to_studying_i_employ_modern_schema_for_tutoring_with_interactive_guides_and_learning_systems_having_schooled_at_different_educational_organizations_coupled_with_my_nce_certifcate_i_can_assure_you_premium_success_with_me_as_your_home_teacher">I teach with calmness and encouragement. My lessons are not boring and i can accomodate student’s with low affinity to studying. I employ modern schema for tutoring with interactive guides and learning systems. Having schooled at different educational organizations coupled with my NCE certifcate, I can assure you premium success with me as your Home-Teacher.</string>
     <string name="edit_profile">Edit profile</string>
     <string name="sign_up">SIGN UP</string>
     <string name="get_matched_with_prospective_teachers">Get matched with prospective Teachers</string>
-    <string name="and_student_for_academics_skill_acquistion">and student for academics, skill acquisition</string>
+    <string name="and_student_for_academics_skill_acquistion">and student for academics, skill acquistion</string>
     <string name="and_many_more">and many more.</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
@@ -141,16 +141,6 @@
     <string name="or_sign_up_using_social_media">Or sign up using social media</string>
     <string name="already_have_an_account">Already have an account?</string>
     <string name="log_in">Log In</string>
-    <string name="clear_all">Clear All</string>
-    <string name="add_new_card">Add New Card</string>
-    <string name="your_saved_cards">Your saved cards</string>
-    <string name="balance_215000_n">Balance: 215000 N</string>
-    <string name="rahman_django">Rahman Django</string>
-    <string name="your_card_has_been_added">Your Card has been added</string>
-    <string name="your_withdraw_order_is_successful_your_funds_would_be_sent_to_you_within_5_days">Your withdraw order is successful Your funds would be sent to you within 5 days</string>
-    <string name="your_bank_has_been_added">Your bank has been added</string>
-    <string name="withdrawal_history">Withdrawal History</string>
-    <string name="enter_amount">Enter Amount</string>
 
     <string-array name="fields_array">
         <item>Science</item>
