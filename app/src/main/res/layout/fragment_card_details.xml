@@ -45,29 +45,31 @@
                     android:id="@+id/username"
                     android:layout_gravity="center"
                     android:textSize="20sp"
-                    android:text="Rahman Django "/>
+                    android:text="@string/rahman_django"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/balance"
                     android:layout_gravity="center"
                     android:textSize="20sp"
-                    android:text="Balance: 215000 N"/>
+                    android:text="@string/balance_215000_n"/>
             </LinearLayout>
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_gravity="center"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="80dp"
-                android:src="@drawable/calimage"/>
+                android:src="@drawable/tutor_field_icon"
+                android:layout_marginStart="80dp" />
         </LinearLayout>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="Your saved cards "
+        android:text="@string/your_saved_cards"
         android:textSize="20sp"/>
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_credit_cards"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
@@ -76,33 +78,38 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:id="@+id/add_card"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/cancel_btn_background"
         android:padding="10dp">
 
         <ImageView
             android:layout_width="50dp"
             android:layout_height="30dp"
-            android:src="@drawable/banks" />
+            android:src="@drawable/credit_card_icon" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="20dp"
-            android:text="Add New Card" />
+            android:text="@string/add_new_card"
+            android:layout_marginStart="20dp" />
 
         <ImageView
             android:layout_width="50dp"
             android:layout_height="30dp"
             android:layout_marginLeft="150dp"
-            android:src="@drawable/arrow" />
+            android:src="@drawable/arrow"
+            android:layout_marginStart="150dp" />
     </LinearLayout>
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/btn_background"
-        android:text="@string/cancel_all"
+        android:text="@string/clear_all"
         android:id="@+id/btn_cancel"
         android:layout_margin="10dp"
         android:textColor="@color/white" />

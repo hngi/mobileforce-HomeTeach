@@ -37,28 +37,30 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="10dp"
-                android:layout_marginLeft="10dp">
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/username"
                     android:layout_gravity="center"
                     android:textSize="20sp"
-                    android:text="Rahman Django "/>
+                    android:text="@string/rahman_django"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/balance"
                     android:layout_gravity="center"
                     android:textSize="20sp"
-                    android:text="Balance: 215000 N"/>
+                    android:text="@string/balance_215000_n"/>
             </LinearLayout>
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_gravity="center"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="80dp"
-                android:src="@drawable/calimage"/>
+                android:src="@drawable/tutor_field_icon"
+                android:layout_marginStart="80dp" />
         </LinearLayout>
     <TextView
         android:layout_width="match_parent"
@@ -72,10 +74,12 @@
         android:id="@+id/acc_name"
         android:inputType="text"
         android:padding="12dp"
+        android:drawableStart="@drawable/ic_bank"
+        android:drawableLeft="@drawable/ic_bank"
         android:layout_marginTop="15dp"
         android:hint="@string/account_name"
         android:layout_gravity="center"
-        android:background="@drawable/edit_text_background"/>
+        android:background="@drawable/edit_text_background" />
     <EditText
         android:layout_width="350dp"
         android:layout_height="wrap_content"
@@ -84,6 +88,8 @@
         android:layout_marginTop="15dp"
         android:hint="@string/routing_number"
         android:id="@+id/acc_route"
+        android:drawableStart="@drawable/ic_bank"
+        android:drawableLeft="@drawable/ic_bank"
         android:layout_gravity="center"
         android:background="@drawable/edit_text_background"/>
     <EditText
@@ -93,18 +99,22 @@
         android:layout_marginTop="15dp"
         android:hint="@string/account_number"
         android:id="@+id/acc_number"
+        android:drawableStart="@drawable/ic_bank"
+        android:drawableLeft="@drawable/ic_bank"
         android:inputType="number"
         android:layout_gravity="center"
         android:background="@drawable/edit_text_background"/>
     <EditText
+        android:id="@+id/acc_security_number"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:padding="12dp"
         android:layout_marginTop="15dp"
         android:hint="@string/social_security_number"
-        android:id="@+id/acc_security_number"
         android:layout_gravity="center"
-        android:inputType="text"
+        android:drawableStart="@drawable/ic_bank"
+        android:drawableLeft="@drawable/ic_bank"
+        android:inputType="number"
         android:background="@drawable/edit_text_background"/>
 
     <androidx.appcompat.widget.AppCompatButton

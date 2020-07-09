@@ -39,14 +39,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:orientation="vertical"
-                android:padding="10dp">
+                android:padding="10dp"
+                android:layout_marginStart="10dp">
 
                 <TextView
                     android:id="@+id/username"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Rahman Django "
+                    android:text="@string/rahman_django"
                     android:textSize="20sp" />
 
                 <TextView
@@ -54,7 +55,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Balance: 215000 N"
+                    android:text="@string/balance_215000_n"
                     android:textSize="20sp" />
             </LinearLayout>
 
@@ -63,7 +64,8 @@
                 android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="80dp"
-                android:src="@drawable/calimage" />
+                android:src="@drawable/tutor_field_icon"
+                android:layout_marginStart="80dp" />
         </LinearLayout>
 
         <TextView
@@ -82,8 +84,11 @@
             android:layout_marginTop="15dp"
             android:background="@drawable/edit_text_background"
             android:hint="@string/account_name"
+            android:gravity="center"
+            android:drawableStart="@drawable/credit_card_icon"
             android:inputType="text"
-            android:padding="12dp" />
+            android:padding="12dp"
+            android:drawableLeft="@drawable/credit_card_icon" />
 
         <EditText
             android:id="@+id/acc_number"
@@ -91,10 +96,15 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="15dp"
+            android:gravity="center"
             android:background="@drawable/edit_text_background"
             android:hint="@string/account_number"
+            android:drawableStart="@drawable/credit_card_icon"
+            android:drawableEnd="@drawable/camera_icon"
             android:inputType="number"
-            android:padding="12dp" />
+            android:padding="12dp"
+            android:drawableLeft="@drawable/credit_card_icon"
+            android:drawableRight="@drawable/camera_icon" />
 
         <LinearLayout
             android:layout_width="match_parent"
