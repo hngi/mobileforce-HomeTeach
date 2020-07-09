@@ -22,9 +22,8 @@ def submit_request(request):
 
     serializer = CreateRequestSerializer(data=request.data)
     if serializer.is_valid(raise_exception=True):
-        request = serializer.save()
-        resp = {'message': 'request successfully sent', 'request': request}
-        return Response(request, status=status.HTTP_201_CREATED)
+        request = serializer.save()}
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
     else:
         return Response('request couldnt be created', status=status.HTTP_501_NOT_IMPLEMENTED)
 
