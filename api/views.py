@@ -72,6 +72,8 @@ class ProfileViewSet(mixins.ListModelMixin,
     permission_classes = (permissions.AllowAny,
                           IsOwnerOrReadOnly,)
 
+  
+
 class TutorProfileViewSet(mixins.ListModelMixin,
                           mixins.RetrieveModelMixin,
                           viewsets.GenericViewSet):
@@ -83,6 +85,9 @@ class TutorProfileViewSet(mixins.ListModelMixin,
     serializer_class = TutorProfileSerializer
     permission_classes = (permissions.AllowAny,
                           IsOwnerOrReadOnly,)
+    filter_backends = (filters.DjangoFilterBackend,)
+    filter_fields = ('field','major_course','state',)
+    ordering = ('-full_name',)
     
 class StudentProfileViewSet(mixins.ListModelMixin,
                             mixins.RetrieveModelMixin,
@@ -96,6 +101,5 @@ class StudentProfileViewSet(mixins.ListModelMixin,
     permission_classes = (permissions.AllowAny,
                           IsOwnerOrReadOnly,)
 
-    filter_backends = (filters.DjangoFilterBackend,)
-    filterset_fields = ('field','major_course','state',)
-    ordering = ('-full_name',)
+    
+
