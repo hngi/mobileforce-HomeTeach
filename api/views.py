@@ -5,7 +5,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 from .models import Request
 from api.permissions import IsOwnerOrReadOnly, IsAdminUserOrReadOnly, IsSameUserAllowEditionOrReadOnly
-from api.serializers import CustomUserSerializer, ProfileSerializer,TutorProfileSerializer
+from api.serializers import CustomUserSerializer, ProfileSerializer, TutorProfileSerializer, StudentProfileSerializer
 from api.models import Profile
 from accounts.models import CustomUser 
 from rest_framework.parsers import FileUploadParser
@@ -75,8 +75,8 @@ class ProfileViewSet(mixins.ListModelMixin,
   
 
 class TutorProfileViewSet(mixins.ListModelMixin,
-                        mixins.RetrieveModelMixin,
-                        viewsets.GenericViewSet):
+                          mixins.RetrieveModelMixin,
+                          viewsets.GenericViewSet):
     """
     This viewset automatically provides `list`, `create`, `retrieve`,
     `update` and `destroy` actions.
@@ -85,8 +85,21 @@ class TutorProfileViewSet(mixins.ListModelMixin,
     serializer_class = TutorProfileSerializer
     permission_classes = (permissions.AllowAny,
                           IsOwnerOrReadOnly,)
-
     filter_backends = (filters.DjangoFilterBackend,)
     filter_fields = ('field','major_course','state',)
     ordering = ('-full_name',)
+    
+class StudentProfileViewSet(mixins.ListModelMixin,
+                            mixins.RetrieveModelMixin,
+                            viewsets.GenericViewSet):
+    """
+    This viewset automatically provides `list`, `create`, `retrieve`,
+    `update` and `destroy` actions.
+    """
+    queryset = Profile.objects.filter(user__is_tutor=False)
+    serializer_class = StudentProfileSerializer
+    permission_classes = (permissions.AllowAny,
+                          IsOwnerOrReadOnly,)
+
+    
 
