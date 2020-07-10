@@ -12,6 +12,8 @@ from rest_framework.parsers import FileUploadParser
 from rest_framework import viewsets, mixins, permissions
 from rest_framework.authtoken.models import Token
 from django.contrib.auth import get_user_model
+from django_filters import rest_framework as filters
+from rest_framework.filters import SearchFilter,OrderingFilter
 
 
 @api_view(['POST', ])
@@ -93,3 +95,7 @@ class StudentProfileViewSet(mixins.ListModelMixin,
     serializer_class = StudentProfileSerializer
     permission_classes = (permissions.AllowAny,
                           IsOwnerOrReadOnly,)
+
+    filter_backends = (filters.DjangoFilterBackend,)
+    filterset_fields = ('field','major_course','state',)
+    ordering = ('-full_name',)

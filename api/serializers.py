@@ -4,7 +4,7 @@ from accounts.models import CustomUser
 from .models import Request
 from django.contrib.auth import get_user_model
 
-
+# Students should be able to filter list of Tutors based on field, gender, proximity 
 User = get_user_model()
 
 class UserSerializer(serializers.ModelSerializer):
