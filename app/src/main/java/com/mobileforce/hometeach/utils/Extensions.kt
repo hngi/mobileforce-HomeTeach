@@ -1,10 +1,13 @@
 package com.mobileforce.hometeach.utils
 
+import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.annotation.LayoutRes
+import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.snackbar.Snackbar
@@ -55,5 +58,13 @@ fun View.snack(
                 }
             }
         }
-    }
+    }.show()
+}
+
+fun Activity.toast(message: String?, length: Int = Toast.LENGTH_SHORT) {
+    Toast.makeText(this, message, length).show()
+}
+
+fun Fragment.toast(message: String?, length: Int = Toast.LENGTH_SHORT) {
+    Toast.makeText(requireContext(), message, length).show()
 }
