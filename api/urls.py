@@ -1,5 +1,5 @@
 from django.urls import path
-from api.views import CustomUserViewSet, ProfileViewSet, TutorProfileViewSet
+from api.views import CustomUserViewSet, ProfileViewSet, TutorProfileViewSet, StudentProfileViewSet
 from rest_framework.routers import DefaultRouter
 from . import views
 
@@ -7,6 +7,7 @@ router = DefaultRouter()
 router.register(r'users', CustomUserViewSet)
 router.register(r'profiles', ProfileViewSet)
 router.register(r'tutor_profiles', TutorProfileViewSet)
+router.register(r'student_profiles', StudentProfileViewSet)
 
 urlpatterns = [
     path('submit_request/', views.submit_request),
