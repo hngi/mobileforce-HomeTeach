@@ -23,12 +23,12 @@ class Profile(models.Model):
 	user = models.OneToOneField(settings.AUTH_USER_MODEL,
 							on_delete=models.CASCADE)
 	profile_pic = models.FileField(blank=True, null=True)
-	desc = models.CharField(max_length=255)
-	field = models.CharField(max_length=255)
-	major_course = models.CharField(max_length=255)
-	other_courses = models.CharField(max_length=255)
-	state = models.CharField(max_length=255)
-	address = models.CharField(max_length=255)
+	desc = models.CharField(max_length=255, null=True, blank=True)
+	field = models.CharField(max_length=255, null=True, blank=True)
+	major_course = models.CharField(max_length=255, null=True, blank=True)
+	other_courses = models.CharField(max_length=255, null=True, blank=True)
+	state = models.CharField(max_length=255, null=True, blank=True)
+	address = models.CharField(max_length=255, null=True, blank=True)
 	
 
 	def __unicode__(self):

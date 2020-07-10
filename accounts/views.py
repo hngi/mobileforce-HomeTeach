@@ -1,15 +1,4 @@
-from django.http import HttpResponse
-from rest_framework.response import Response
-from rest_framework import status, parsers, renderers
-from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny, IsAuthenticated
-from .serializers import RegistrationSerializer, UserLoginSerializer
-from rest_framework.authtoken.models import Token
-from django.shortcuts import render
-from django.db.models import Q
-from django.contrib.auth import get_user_model
-from rest_framework.status import HTTP_200_OK, HTTP_400_BAD_REQUEST
-from rest_framework.views import APIView
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
