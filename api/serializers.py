@@ -115,6 +115,8 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
         instance.save()
         return instance
 
+      
+      
 class UserProfileSerializer(serializers.HyperlinkedModelSerializer):
     user_url = serializers.HyperlinkedIdentityField(view_name='customuser-detail')
     id = serializers.IntegerField(source='pk', read_only=True)

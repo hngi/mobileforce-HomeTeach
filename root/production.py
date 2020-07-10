@@ -13,9 +13,12 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 print("production")
 
+from dotenv import load_dotenv
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+load_dotenv(os.path.join(BASE_DIR, '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -45,7 +48,9 @@ INSTALLED_APPS = [
 
     # third-party
     'rest_framework',
-    'drf-yasg',
+    'rest_framework.authtoken',
+    'drf_yasg',
+    'django_rest_passwordreset',
 ]
 
 MIDDLEWARE = [
@@ -131,3 +136,29 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_URL =  '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+DEFAULT_AUTHENTICATION_CLASSES = [
+        'rest_framework.authentication.TokenAuthentication',
+     ]
+
+DEFAULT_PERMISSION_CLASSES = [
+         'rest_framework.permissions.IsAuthenticated',
+     ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': DEFAULT_AUTHENTICATION_CLASSES,
+    'DEFAULT_PERMISSION_CLASSES': DEFAULT_PERMISSION_CLASSES
+}
+
+SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
+
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'apikey'
+EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_API_KEY')
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+

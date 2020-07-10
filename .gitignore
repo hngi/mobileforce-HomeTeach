@@ -6,11 +6,13 @@ __pycache__/
 
 # Local settings file
 root/local.py
-
+.vscode
 .log
 .env
 .venv
 venv/
+fenv
+homenv/
 hometeach/
 ENV/
 .idea/
