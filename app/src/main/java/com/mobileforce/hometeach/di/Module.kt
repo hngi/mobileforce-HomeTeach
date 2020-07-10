@@ -71,7 +71,7 @@ val appModule = module {
 
     //---------------------view models --------------------------------------
 
-    factory<SignInViewModel> { get() }
-    factory<SignUpViewModel> { get() }
+    factory { SignInViewModel(get()) }
+    factory { SignUpViewModel(get()) }
 
 }
