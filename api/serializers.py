@@ -115,8 +115,6 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
         instance.save()
         return instance
 
-      
-      
 class UserProfileSerializer(serializers.HyperlinkedModelSerializer):
     user_url = serializers.HyperlinkedIdentityField(view_name='customuser-detail')
     id = serializers.IntegerField(source='pk', read_only=True)
@@ -133,10 +131,3 @@ class UserProfileSerializer(serializers.HyperlinkedModelSerializer):
     def get_full_name(self, obj):
         request = self.context['request']
         return request.user.get_full_name()
-
-        # retrieve Profile
-        for attr, value in validated_data.items():
-            setattr(instance, attr, value)
-        instance.user.save()
-        instance.save()
-        return instance
