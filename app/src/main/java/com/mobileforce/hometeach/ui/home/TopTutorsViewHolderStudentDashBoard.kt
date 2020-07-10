@@ -3,7 +3,7 @@ package com.mobileforce.hometeach.ui.home
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.adapters.ViewHolder
 import com.mobileforce.hometeach.databinding.ListItemTutorParentDashBoardBinding
-import com.mobileforce.hometeach.loadImage
+import com.mobileforce.hometeach.utils.loadImage
 import com.mobileforce.hometeach.models.TopTutorModel
 
 
