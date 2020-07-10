@@ -70,7 +70,7 @@ class ProfileViewSet(mixins.ListModelMixin,
     permission_classes = (permissions.AllowAny,
                           IsOwnerOrReadOnly,)
 
-class UserProfileViewSet(mixins.ListModelMixin,
+class TutorProfileViewSet(mixins.ListModelMixin,
                         mixins.RetrieveModelMixin,
                         viewsets.GenericViewSet):
     """
