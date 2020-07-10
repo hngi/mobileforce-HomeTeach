@@ -12,6 +12,7 @@ import com.mobileforce.hometeach.localsource.AppDataBase
 import com.mobileforce.hometeach.localsource.PreferenceHelper
 import com.mobileforce.hometeach.remotesource.Api
 import com.mobileforce.hometeach.ui.signin.SignInViewModel
+import com.mobileforce.hometeach.ui.signup.SignUpViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -71,4 +72,6 @@ val appModule = module {
     //---------------------view models --------------------------------------
 
     factory<SignInViewModel> { get() }
+    factory<SignUpViewModel> { get() }
+
 }

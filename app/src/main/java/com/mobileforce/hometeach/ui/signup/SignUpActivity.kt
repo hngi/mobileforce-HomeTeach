@@ -16,6 +16,7 @@ import com.mobileforce.hometeach.remotesource.Params
 import com.mobileforce.hometeach.ui.LoginActivity
 import com.mobileforce.hometeach.utils.Result
 import com.mobileforce.hometeach.utils.snack
+import com.mobileforce.hometeach.utils.toast
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -170,7 +171,7 @@ class SignUpActivity : AppCompatActivity() {
                     viewModel.signUp(userData)
 
                 } ?: kotlin.run {
-
+                    toast("Please select an account mode from previous screen to continue.")
                 }
 
             } else {
