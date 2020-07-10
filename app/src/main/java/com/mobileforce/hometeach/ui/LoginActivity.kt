@@ -41,7 +41,6 @@ class LoginActivity : AppCompatActivity() {
         when (selected) {
             mDialogView.recover_email_chBox.id -> {
                 mDialogView.apply_btn.setBackgroundResource(R.drawable.apply_background)
-                mDialogView.apply_btn.text = "TEST"
             }
             mDialogView.recover_phone_chBox.id -> {
                 mDialogView.apply_btn.setBackgroundResource(R.drawable.apply_background)
