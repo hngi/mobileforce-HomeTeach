@@ -5,17 +5,17 @@ import sys
 
 if __name__ == '__main__':
     debug = os.environ.get('DEBUG', None) # Grabs DEBUG off of settings
-    settings = 'root.local'
+    settings = 'root.settings'
     try:
 
         if debug is False and debug is not None:
-            settings = 'root.production'
+            settings = 'root.settings'
 
         else:
-            settings = 'root.local'
+            settings = 'root.settings'
 
     except ModuleNotFoundError:
-        settings = 'root.local'
+        settings = 'root.settings'
 
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", settings)
 
