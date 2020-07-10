@@ -22,7 +22,7 @@ jobs:
         run: sudo chmod -R a+w /usr/local/lib/android/sdk
 
       - name: Run Tests
-        run: ./gradlew test
+        run: ./gradlew request_layout
 
       - name: Build Project
         run: ./gradlew assemble

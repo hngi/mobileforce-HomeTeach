@@ -60,7 +60,12 @@
         android:name="com.mobileforce.hometeach.ui.classes.tutor.TutorClassFragment"
         android:label="fragment_tutor_class"
         tools:layout="@layout/fragment_tutor_class" />
-
+    <fragment
+        android:id="@+id/tutorDetailsFragment"
+        android:name="com.mobileforce.hometeach.fragments.TutorDetailsFragment"
+        android:label="TutorDetailsFragment"
+        tools:layout="@layout/fragment_tutor_details"
+        />
 
 
 </navigation>
