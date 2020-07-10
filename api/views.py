@@ -72,6 +72,8 @@ class ProfileViewSet(mixins.ListModelMixin,
     permission_classes = (permissions.AllowAny,
                           IsOwnerOrReadOnly,)
 
+  
+
 class TutorProfileViewSet(mixins.ListModelMixin,
                           mixins.RetrieveModelMixin,
                           viewsets.GenericViewSet):
@@ -83,6 +85,9 @@ class TutorProfileViewSet(mixins.ListModelMixin,
     serializer_class = TutorProfileSerializer
     permission_classes = (permissions.AllowAny,
                           IsOwnerOrReadOnly,)
+    filter_backends = (filters.DjangoFilterBackend,)
+    filter_fields = ('field','major_course','state',)
+    ordering = ('-full_name',)
     
 class StudentProfileViewSet(mixins.ListModelMixin,
                             mixins.RetrieveModelMixin,
@@ -91,11 +96,10 @@ class StudentProfileViewSet(mixins.ListModelMixin,
     This viewset automatically provides `list`, `create`, `retrieve`,
     `update` and `destroy` actions.
     """
-    queryset = Profile.objects.filter(is_tutor=False)
+    queryset = Profile.objects.filter(user__is_tutor=False)
     serializer_class = StudentProfileSerializer
     permission_classes = (permissions.AllowAny,
                           IsOwnerOrReadOnly,)
 
-    filter_backends = (filters.DjangoFilterBackend,)
-    filterset_fields = ('field','major_course','state',)
-    ordering = ('-full_name',)
+    
+
