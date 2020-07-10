@@ -41,6 +41,19 @@ fun ViewGroup.inflate(@LayoutRes layout: Int, attachToRoot: Boolean = false): Vi
     return LayoutInflater.from(context).inflate(layout, this, attachToRoot)
 }
 
-fun View.snack(message: String, lenth: Int = Snackbar.LENGTH_SHORT) {
-    Snackbar.make(this, message, lenth).show()
+fun View.snack(
+    message: String?,
+    length: Int = Snackbar.LENGTH_SHORT,
+    actionText: String? = null,
+    actionCallBack: (() -> Unit)? = null
+) {
+    Snackbar.make(this, message.toString(), length).apply {
+        actionCallBack?.let {
+            actionText?.let {
+                setAction(actionText) {
+                    actionCallBack()
+                }
+            }
+        }
+    }
 }

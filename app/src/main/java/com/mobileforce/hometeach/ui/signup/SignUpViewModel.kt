@@ -12,14 +12,18 @@ import kotlinx.coroutines.launch
 class SignUpViewModel(private val userRepository: UserRepository) : ViewModel() {
 
     private val _signUp = MutableLiveData<Result<Nothing>>()
-    val signUp: LiveData<Result<Nothing>>
-        get() = _signUp
+    val signUp: LiveData<Result<Nothing>> = _signUp
+
 
     fun signUp(params: Params.SignUp) {
         _signUp.postValue(Result.Loading)
         viewModelScope.launch {
-
-
+            try {
+                userRepository.register(params)
+                _signUp.postValue(Result.Success())
+            } catch (error: Throwable) {
+                _signUp.postValue(Result.Error(error))
+            }
         }
 
     }
