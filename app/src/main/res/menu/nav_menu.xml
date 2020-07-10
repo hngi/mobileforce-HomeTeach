@@ -8,8 +8,8 @@
 
     <item
         android:icon="@drawable/ic_withdraw"
-        android:title="Contact"
-        android:id="@+id/contacts"/>
+        android:title="Contacts"
+        android:id="@+id/contact"/>
     <item
         android:icon="@drawable/ic_home"
         android:title="Home"
