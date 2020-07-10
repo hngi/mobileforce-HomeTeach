@@ -9,7 +9,7 @@ if __name__ == '__main__':
     try:
 
         if debug is False and debug is not None:
-            settings = 'root.production'
+            settings = 'root.settings'
 
         else:
             settings = 'root.settings'

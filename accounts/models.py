@@ -41,6 +41,7 @@ class UserManager(BaseUserManager):
                              phone_number=phone_number
                         )
         u.is_admin = True
+        u.is_active = True
         u.save(using=self._db)
         return u
 
@@ -56,6 +57,7 @@ class CustomUser(AbstractBaseUser):
     timestamp = models.DateTimeField(auto_now_add=True)
     is_tutor = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=False)
 
     objects = UserManager()
 
@@ -79,12 +81,7 @@ class CustomUser(AbstractBaseUser):
         # Simplest possible answer: All admins are staff
         return self.is_admin
 
-    @property
-    def is_active(self):
-        # Simplest possible answer: All admins are staff
-        return self.is_admin
-
-
+       
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:
