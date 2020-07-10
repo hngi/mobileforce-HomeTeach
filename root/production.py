@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'drf_yasg',
+    'django_rest_passwordreset',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -136,6 +138,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+MEDIA_URL =  '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
 DEFAULT_AUTHENTICATION_CLASSES = [
         'rest_framework.authentication.TokenAuthentication',
      ]
@@ -146,7 +151,8 @@ DEFAULT_PERMISSION_CLASSES = [
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': DEFAULT_AUTHENTICATION_CLASSES,
-    'DEFAULT_PERMISSION_CLASSES': DEFAULT_PERMISSION_CLASSES
+    'DEFAULT_PERMISSION_CLASSES': DEFAULT_PERMISSION_CLASSES,
+    'DEFAULT_FILTER_BACKENDS':'django_filters.rest_framework.DjangoFilterBackend',
 }
 
 SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
@@ -156,3 +162,5 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'apikey'
 EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_API_KEY')
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
