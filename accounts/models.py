@@ -14,7 +14,7 @@ from django.core.mail import send_mail
 
 
 class UserManager(BaseUserManager):
-    def create_user(self, email, password=None):
+    def create_user(self, email, password=None, full_name='', phone_number=''):
         """
         Creates and saves a User with the given email, date of
         birth and password.
@@ -24,19 +24,23 @@ class UserManager(BaseUserManager):
 
         user = self.model(
             email=UserManager.normalize_email(email),
+            full_name=full_name,
+            phone_number=phone_number
         )
 
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, password):
+    def create_superuser(self, email, password, phone_number='', full_name=''):
         """
         Creates and saves a superuser with the given email, date of
         birth and password.
         """
         u = self.create_user(email,
                         password=password,
+                        phone_number=phone_number,
+                        full_name=full_name
 
                     )
         u.is_admin = True
