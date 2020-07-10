@@ -5,9 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.annotation.LayoutRes
-import androidx.constraintlayout.widget.Placeholder
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.google.android.material.snackbar.Snackbar
 
 /**
  * Authored by enyason
@@ -39,4 +39,8 @@ fun ImageView.loadImage(image: Any, placeholder: Int = 0, circular: Boolean = fa
  */
 fun ViewGroup.inflate(@LayoutRes layout: Int, attachToRoot: Boolean = false): View {
     return LayoutInflater.from(context).inflate(layout, this, attachToRoot)
+}
+
+fun View.snack(message: String, lenth: Int = Snackbar.LENGTH_SHORT) {
+    Snackbar.make(this, message, lenth).show()
 }
