@@ -5,7 +5,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 from .models import Request
 from api.permissions import IsOwnerOrReadOnly, IsAdminUserOrReadOnly, IsSameUserAllowEditionOrReadOnly
-from api.serializers import CustomUserSerializer, ProfileSerializer
+from api.serializers import CustomUserSerializer, ProfileSerializer, TutorProfileSerializer, StudentProfileSerializer
 from api.models import Profile
 from accounts.models import CustomUser 
 from rest_framework.parsers import FileUploadParser
@@ -78,7 +78,7 @@ class TutorProfileViewSet(mixins.ListModelMixin,
     `update` and `destroy` actions.
     """
     queryset = Profile.objects.filter(is_tutor=True)
-    serializer_class = ProfileSerializer
+    serializer_class = TutorProfileSerializer
     permission_classes = (permissions.AllowAny,
                           IsOwnerOrReadOnly,)
     
@@ -90,6 +90,6 @@ class StudentProfileViewSet(mixins.ListModelMixin,
     `update` and `destroy` actions.
     """
     queryset = Profile.objects.filter(is_tutor=False)
-    serializer_class = ProfileSerializer
+    serializer_class = StudentProfileSerializer
     permission_classes = (permissions.AllowAny,
                           IsOwnerOrReadOnly,)
