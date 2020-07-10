@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'drf_yasg',
     'django_rest_passwordreset',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -150,7 +151,8 @@ DEFAULT_PERMISSION_CLASSES = [
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': DEFAULT_AUTHENTICATION_CLASSES,
-    'DEFAULT_PERMISSION_CLASSES': DEFAULT_PERMISSION_CLASSES
+    'DEFAULT_PERMISSION_CLASSES': DEFAULT_PERMISSION_CLASSES,
+    'DEFAULT_FILTER_BACKENDS':'django_filters.rest_framework.DjangoFilterBackend',
 }
 
 SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
