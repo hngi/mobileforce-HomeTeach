@@ -1,15 +1,17 @@
-package com.mobileforce.hometeach
+package com.mobileforce.hometeach.utils
 
 import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
+import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.adapters.CircleTransform
 import com.squareup.picasso.Picasso
 
 @BindingAdapter("imagecircular")
 fun ImageView.bindTutorImage(tutorImage:String){
     tutorImage.let {
-        Picasso.get().load(tutorImage).transform(CircleTransform()).placeholder(R.drawable.profile_image).error(R.drawable.profile_image).into(this)
+        Picasso.get().load(tutorImage).transform(CircleTransform()).placeholder(R.drawable.profile_image).error(
+            R.drawable.profile_image).into(this)
     }
 }
 

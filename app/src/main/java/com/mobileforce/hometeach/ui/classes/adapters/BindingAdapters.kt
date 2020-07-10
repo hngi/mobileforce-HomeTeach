@@ -4,7 +4,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.mobileforce.hometeach.R
-import com.mobileforce.hometeach.showIf
+import com.mobileforce.hometeach.utils.showIf
 
 /**
  * Created by Mayokun Adeniyi on 28/06/2020.

@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import com.mobileforce.hometeach.inflate
+import com.mobileforce.hometeach.utils.inflate
 
 /**
  * Authored by enyason
