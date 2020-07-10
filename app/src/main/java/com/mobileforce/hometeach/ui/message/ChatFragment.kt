@@ -69,7 +69,7 @@ class ChatFragment : Fragment() {
         recyclerView.adapter = adapter
     }
 
-    // Loads dummy data to request_layout the chat recyclerview
+    // Loads dummy data to test the chat recyclerview
     private fun loadMessages(){
         val message1 = Message("Determine whether it is a sent message or a received message", User(1, "Sola"), 1001)
         val message2 = Message("Obtain a message from MessageList", User(2, "Bola"), 1002)
