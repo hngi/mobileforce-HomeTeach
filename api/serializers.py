@@ -114,3 +114,20 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
         instance.user.save()
         instance.save()
         return instance
+
+class TutorProfileSerializer(serializers.HyperlinkedModelSerializer):
+    user_url = serializers.HyperlinkedIdentityField(view_name='customuser-detail')
+    id = serializers.IntegerField(source='pk', read_only=True)
+    email = serializers.CharField(source='user.email')
+    full_name = serializers.CharField(source='user.full_name')
+
+    class Meta:
+        model = Profile
+        depth = 1
+        fields = ('id', 'email', 'full_name',
+                  'profile_pic', 'desc', 'field', 'major_course', 'other_courses', 'state', 'address', 
+                  'user_url')
+
+    def get_full_name(self, obj):
+        request = self.context['request']
+        return request.user.get_full_name()
