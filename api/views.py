@@ -72,9 +72,6 @@ class ProfileViewSet(mixins.ListModelMixin,
     permission_classes = (permissions.AllowAny,
                           IsOwnerOrReadOnly,)
 
-    filter_backends = (filters.DjangoFilterBackend,)
-    filter_fields = ('field','major_course','state',)
-    ordering = ('-full_name',)
   
 
 class TutorProfileViewSet(mixins.ListModelMixin,
