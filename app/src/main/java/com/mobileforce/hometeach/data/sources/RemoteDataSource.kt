@@ -3,7 +3,9 @@ package com.mobileforce.hometeach.data.sources
 import com.mobileforce.hometeach.data.model.User
 import com.mobileforce.hometeach.localsource.model.UserEntity
 import com.mobileforce.hometeach.remotesource.Api
+import com.mobileforce.hometeach.remotesource.Params
 import com.mobileforce.hometeach.remotesource.wrappers.LoginResponse
+import com.mobileforce.hometeach.remotesource.wrappers.RegisterUserResponse
 
 class RemoteDataSource(private val api: Api) : DataSource {
 
@@ -11,8 +13,8 @@ class RemoteDataSource(private val api: Api) : DataSource {
         return api.login()
     }
 
-    override fun signUp() {
-        TODO("Not yet implemented")
+    override suspend fun signUp(params: Params.SignUp): RegisterUserResponse {
+        return api.register(params)
     }
 
     override fun saveUser(user: User) {

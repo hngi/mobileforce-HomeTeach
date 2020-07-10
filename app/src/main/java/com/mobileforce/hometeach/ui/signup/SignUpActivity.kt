@@ -1,18 +1,27 @@
 package com.mobileforce.hometeach.ui.signup
 
+import android.app.ProgressDialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Patterns
-import android.view.View
-import android.widget.Button
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import com.mobileforce.hometeach.AppConstants.USER_TUTOR
 import com.mobileforce.hometeach.R
+import com.mobileforce.hometeach.localsource.PreferenceHelper
+import com.mobileforce.hometeach.remotesource.Params
 import com.mobileforce.hometeach.ui.LoginActivity
+import com.mobileforce.hometeach.utils.Result
+import com.mobileforce.hometeach.utils.snack
+import com.mobileforce.hometeach.utils.toast
 import kotlinx.android.synthetic.main.activity_sign_up.*
+import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.viewModel
 import java.util.regex.Pattern
+
 /**
  * Created by Peculiar C. Umeh on June 2020.
  */
@@ -29,6 +38,16 @@ class SignUpActivity : AppCompatActivity() {
     private var emailValid = false
     private var passwordValid = false
     private var phoneNumberValid = false
+
+    private val prefHelper: PreferenceHelper by inject()
+    private val viewModel: SignUpViewModel by viewModel()
+
+    private val pd by lazy {
+        ProgressDialog(this).apply {
+            setMessage("Registering user...")
+            setCancelable(false)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -138,11 +157,57 @@ class SignUpActivity : AppCompatActivity() {
 
         btn_sign_up.setOnClickListener {
             if (nameValid && emailValid && passwordValid && phoneNumberValid && checkBox.isChecked) {
-                startActivity(Intent(this, LoginActivity::class.java))
+
+                prefHelper.userType?.let { userType ->
+
+                    //build sign up params
+                    val userData = Params.SignUp(
+                        email = email.text.toString(),
+                        password = pass_word.text.toString(),
+                        full_name = full_name.text.toString(),
+                        phone_number = phone_number.text.toString(),
+                        is_tutor = userType == USER_TUTOR
+                    )
+                    viewModel.signUp(userData)
+
+                } ?: kotlin.run {
+                    toast("Please select an account mode from previous screen to continue.")
+                }
+
             } else {
                 Toast.makeText(this, "Some fields are empty", Toast.LENGTH_SHORT).show()
             }
         }
+
+        observeSignUp()
+    }
+
+    private fun observeSignUp() {
+
+        viewModel.signUp.observe(this, Observer { result ->
+
+            when (result) {
+                Result.Loading -> {
+                    pd.show()
+                }
+                is Result.Success -> {
+                    pd.hide()
+
+                    signUpLayout
+                        .snack(message = "Registration Successful, verify account to login",
+                            actionText = "LOGIN",
+                            actionCallBack = {
+                                startActivity(Intent(this, LoginActivity::class.java))
+                            })
+                }
+
+                is Result.Error -> {
+                    pd.hide()
+                    signUpLayout.snack(message = result.exception.localizedMessage)
+                }
+            }
+
+        })
     }
 
 }

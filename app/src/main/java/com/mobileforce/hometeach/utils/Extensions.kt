@@ -1,13 +1,16 @@
 package com.mobileforce.hometeach.utils
 
+import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.annotation.LayoutRes
-import androidx.constraintlayout.widget.Placeholder
+import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.google.android.material.snackbar.Snackbar
 
 /**
  * Authored by enyason
@@ -39,4 +42,29 @@ fun ImageView.loadImage(image: Any, placeholder: Int = 0, circular: Boolean = fa
  */
 fun ViewGroup.inflate(@LayoutRes layout: Int, attachToRoot: Boolean = false): View {
     return LayoutInflater.from(context).inflate(layout, this, attachToRoot)
+}
+
+fun View.snack(
+    message: String?,
+    length: Int = Snackbar.LENGTH_SHORT,
+    actionText: String? = null,
+    actionCallBack: (() -> Unit)? = null
+) {
+    Snackbar.make(this, message.toString(), length).apply {
+        actionCallBack?.let {
+            actionText?.let {
+                setAction(actionText) {
+                    actionCallBack()
+                }
+            }
+        }
+    }.show()
+}
+
+fun Activity.toast(message: String?, length: Int = Toast.LENGTH_SHORT) {
+    Toast.makeText(this, message, length).show()
+}
+
+fun Fragment.toast(message: String?, length: Int = Toast.LENGTH_SHORT) {
+    Toast.makeText(requireContext(), message, length).show()
 }
