@@ -1,7 +1,7 @@
 package com.mobileforce.hometeach.ui.message
 
 import android.view.View
-import com.mobileforce.hometeach.loadImage
+import com.mobileforce.hometeach.utils.loadImage
 import com.mobileforce.hometeach.models.Chat
 import com.mobileforce.hometeach.adapters.ViewHolder
 import kotlinx.android.synthetic.main.chat_list_message_item.view.*
