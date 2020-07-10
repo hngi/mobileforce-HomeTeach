@@ -71,13 +71,25 @@ class ProfileViewSet(mixins.ListModelMixin,
                           IsOwnerOrReadOnly,)
 
 class TutorProfileViewSet(mixins.ListModelMixin,
-                        mixins.RetrieveModelMixin,
-                        viewsets.GenericViewSet):
+                          mixins.RetrieveModelMixin,
+                          viewsets.GenericViewSet):
     """
     This viewset automatically provides `list`, `create`, `retrieve`,
     `update` and `destroy` actions.
     """
     queryset = Profile.objects.filter(is_tutor=True)
+    serializer_class = ProfileSerializer
+    permission_classes = (permissions.AllowAny,
+                          IsOwnerOrReadOnly,)
+    
+class StudentProfileViewSet(mixins.ListModelMixin,
+                            mixins.RetrieveModelMixin,
+                            viewsets.GenericViewSet):
+    """
+    This viewset automatically provides `list`, `create`, `retrieve`,
+    `update` and `destroy` actions.
+    """
+    queryset = Profile.objects.filter(is_tutor=False)
     serializer_class = ProfileSerializer
     permission_classes = (permissions.AllowAny,
                           IsOwnerOrReadOnly,)
