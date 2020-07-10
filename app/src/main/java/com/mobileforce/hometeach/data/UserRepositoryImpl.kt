@@ -5,6 +5,7 @@ import com.mobileforce.hometeach.data.repo.UserRepository
 import com.mobileforce.hometeach.data.sources.DataSourceFactory
 import com.mobileforce.hometeach.remotesource.Params
 import com.mobileforce.hometeach.remotesource.wrappers.LoginResponse
+import com.mobileforce.hometeach.remotesource.wrappers.RegisterUserResponse
 
 
 class UserRepositoryImpl(private val dataSource: DataSourceFactory) : UserRepository {
@@ -13,8 +14,8 @@ class UserRepositoryImpl(private val dataSource: DataSourceFactory) : UserReposi
         return dataSource.remote().logIn()
     }
 
-    override fun register() {
-        TODO("Not yet implemented")
+    override suspend fun register(params: Params.SignUp): RegisterUserResponse {
+        return dataSource.remote().signUp(params)
     }
 
     override fun saveUser(user: User) {

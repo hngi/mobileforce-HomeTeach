@@ -3,7 +3,9 @@ package com.mobileforce.hometeach.data.sources
 import com.mobileforce.hometeach.data.model.User
 import com.mobileforce.hometeach.localsource.AppDataBase
 import com.mobileforce.hometeach.localsource.model.UserEntity
+import com.mobileforce.hometeach.remotesource.Params
 import com.mobileforce.hometeach.remotesource.wrappers.LoginResponse
+import com.mobileforce.hometeach.remotesource.wrappers.RegisterUserResponse
 
 class LocalDataSource(private val db: AppDataBase) : DataSource {
 
@@ -12,7 +14,7 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
     }
 
 
-    override fun signUp() {
+    override suspend fun signUp(params: Params.SignUp): RegisterUserResponse {
         TODO("Not yet implemented")
     }
 

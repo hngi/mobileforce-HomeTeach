@@ -1,18 +1,22 @@
 package com.mobileforce.hometeach.ui.signup
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Patterns
-import android.view.View
-import android.widget.Button
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.mobileforce.hometeach.AppConstants.USER_TUTOR
 import com.mobileforce.hometeach.R
+import com.mobileforce.hometeach.localsource.PreferenceHelper
+import com.mobileforce.hometeach.remotesource.Params
 import com.mobileforce.hometeach.ui.LoginActivity
 import kotlinx.android.synthetic.main.activity_sign_up.*
+import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.viewModel
 import java.util.regex.Pattern
+
 /**
  * Created by Peculiar C. Umeh on June 2020.
  */
@@ -29,6 +33,9 @@ class SignUpActivity : AppCompatActivity() {
     private var emailValid = false
     private var passwordValid = false
     private var phoneNumberValid = false
+
+    private val prefHelper: PreferenceHelper by inject()
+    private val viewModel: SignUpViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -138,6 +145,23 @@ class SignUpActivity : AppCompatActivity() {
 
         btn_sign_up.setOnClickListener {
             if (nameValid && emailValid && passwordValid && phoneNumberValid && checkBox.isChecked) {
+
+                prefHelper.userType?.let { userType ->
+
+                    //build sign up params
+                    val userData = Params.SignUp(
+                        email = email.text.toString(),
+                        password = pass_word.text.toString(),
+                        full_name = full_name.text.toString(),
+                        phone_number = phone_number.text.toString(),
+                        is_tutor = userType == USER_TUTOR
+                    )
+
+                    viewModel.signUp(userData)
+
+
+                }
+
                 startActivity(Intent(this, LoginActivity::class.java))
             } else {
                 Toast.makeText(this, "Some fields are empty", Toast.LENGTH_SHORT).show()

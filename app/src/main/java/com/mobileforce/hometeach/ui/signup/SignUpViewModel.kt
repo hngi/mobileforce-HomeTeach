@@ -7,8 +7,8 @@ import com.mobileforce.hometeach.remotesource.Params
 class SignUpViewModel(private val userRepository: UserRepository) : ViewModel() {
 
 
-    fun signUp(params: Params.SignUp)()
-    {
+    fun signUp(params: Params.SignUp) {
+
 
     }
 }
