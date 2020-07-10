@@ -1,5 +1,6 @@
 package com.mobileforce.hometeach.ui.signup
 
+import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -7,11 +8,14 @@ import android.text.TextWatcher
 import android.util.Patterns
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import com.mobileforce.hometeach.AppConstants.USER_TUTOR
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.localsource.PreferenceHelper
 import com.mobileforce.hometeach.remotesource.Params
 import com.mobileforce.hometeach.ui.LoginActivity
+import com.mobileforce.hometeach.utils.Result
+import com.mobileforce.hometeach.utils.snack
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -36,6 +40,13 @@ class SignUpActivity : AppCompatActivity() {
 
     private val prefHelper: PreferenceHelper by inject()
     private val viewModel: SignUpViewModel by viewModel()
+
+    private val pd by lazy {
+        ProgressDialog(this).apply {
+            setMessage("Registering user...")
+            setCancelable(false)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -156,17 +167,44 @@ class SignUpActivity : AppCompatActivity() {
                         phone_number = phone_number.text.toString(),
                         is_tutor = userType == USER_TUTOR
                     )
-
                     viewModel.signUp(userData)
-
 
                 }
 
-                startActivity(Intent(this, LoginActivity::class.java))
             } else {
                 Toast.makeText(this, "Some fields are empty", Toast.LENGTH_SHORT).show()
             }
         }
+
+        observeSignUp()
+    }
+
+    private fun observeSignUp() {
+
+        viewModel.signUp.observe(this, Observer { result ->
+
+            when (result) {
+                Result.Loading -> {
+                    pd.show()
+                }
+                is Result.Success -> {
+                    pd.hide()
+
+                    signUpLayout
+                        .snack(message = "Registration Successful, verify account to login",
+                            actionText = "LOGIN",
+                            actionCallBack = {
+                                startActivity(Intent(this, LoginActivity::class.java))
+                            })
+                }
+
+                is Result.Error -> {
+                    pd.hide()
+                    signUpLayout.snack(message = result.exception.localizedMessage)
+                }
+            }
+
+        })
     }
 
 }
