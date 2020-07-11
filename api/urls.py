@@ -6,13 +6,13 @@ from . import views
 router = DefaultRouter()
 router.register(r'users', CustomUserViewSet)
 router.register(r'profiles', ProfileViewSet)
-router.register(r'tutor_profiles', TutorProfileViewSet)
-router.register(r'student_profiles', StudentProfileViewSet)
+router.register(r'tutor-profiles', TutorProfileViewSet)
+router.register(r'student-profiles', StudentProfileViewSet)
 
 urlpatterns = [
-    path('submit_request/', views.submit_request),
-    path('tutor_requests/', views.list_requests_tutor),
-    path('user_requests/', views.list_user_requests),
+    path('submit-request/', views.submit_request),
+    path('tutor-requests/', views.list_requests_tutor),
+    path('user-requests/', views.list_user_requests),
 ]
 
 urlpatterns += router.urls
