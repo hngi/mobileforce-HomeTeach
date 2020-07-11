@@ -25,9 +25,9 @@ class LoginActivity : AppCompatActivity() {
         binding.signIn.setOnClickListener {
             navigateToDashBoard()
         }
-        text_register_now.setOnClickListener {
-            startActivity(Intent(this, SignUpActivity::class.java))
-        }
+//        text_register_now.setOnClickListener {
+//            startActivity(Intent(this, SignUpActivity::class.java))
+//        }
 
         binding.textRegisterNow.setOnClickListener {
             navigateToSignUp()
