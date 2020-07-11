@@ -44,7 +44,7 @@ class EditTutorProfileFragment : Fragment() {
         }
     }
 
-    private val viewModel: EditTutorProfileViewModel by viewModel()
+    //private val viewModel: EditTutorProfileViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -81,27 +81,27 @@ class EditTutorProfileFragment : Fragment() {
             credentialDialog.show(trans, "dialog")
         }
 
-        val profileList = viewModel.getProfileList()
-        val profileResponse = profileList[0]
-        var currentUserId: Int = 0
-        var currentUserEmail: String = ""
-        if (profileResponse.address == et_address_input.text.toString()){
-            currentUserId = profileResponse.id
-            currentUserEmail = profileResponse.email
-        }
+//        val profileList = viewModel.getProfileList()
+//        val profileResponse = profileList[0]
+//        var currentUserId: Int = 0
+//        var currentUserEmail: String = ""
+//        if (profileResponse.address == et_address_input.text.toString()){
+//            currentUserId = profileResponse.id
+//            currentUserEmail = profileResponse.email
+//        }
 
-        edit_button.setOnClickListener {
-            val profileData = Params.EditTutorProfile(
-                email = currentUserEmail,
-                full_name = et_name_input.text.toString(),
-                desc = et_description.text.toString(),
-                field = sp_select_field.selectedItem.toString(),
-                major_course = et_course_input.text.toString(),
-                other_courses = et_other_course_input.text.toString(),
-                state = sp_select_origin.selectedItem.toString(),
-                address = et_address_input.text.toString()
-            )
-            viewModel.editTutorProfile(currentUserId, profileData)
+        bt_save_profile.setOnClickListener {
+//            val profileData = Params.EditTutorProfile(
+//                email = currentUserEmail,
+//                full_name = et_name_input.text.toString(),
+//                desc = et_description.text.toString(),
+//                field = sp_select_field.selectedItem.toString(),
+//                major_course = et_course_input.text.toString(),
+//                other_courses = et_other_course_input.text.toString(),
+//                state = sp_select_origin.selectedItem.toString(),
+//                address = et_address_input.text.toString()
+//            )
+//            viewModel.editTutorProfile(currentUserId, profileData)
         }
     }
 
