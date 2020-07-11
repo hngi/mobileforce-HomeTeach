@@ -11,8 +11,6 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-print("production")
-
 from dotenv import load_dotenv
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -54,6 +52,8 @@ INSTALLED_APPS = [
     'django_filters',
 ]
 
+AUTH_USER_MODEL = 'accounts.CustomUser'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -91,10 +91,10 @@ WSGI_APPLICATION = 'root.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': '',
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',
+        'NAME': 'hometeach',
+        'USER': 'hng',
+        'PASSWORD': 'hometeach',
+        'HOST': 'localhost',
         'PORT': '',
     }
 }
@@ -152,7 +152,10 @@ DEFAULT_PERMISSION_CLASSES = [
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': DEFAULT_AUTHENTICATION_CLASSES,
     'DEFAULT_PERMISSION_CLASSES': DEFAULT_PERMISSION_CLASSES,
-    'DEFAULT_FILTER_BACKENDS':'django_filters.rest_framework.DjangoFilterBackend',
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+        'rest_framework.filters.SearchFilter',
+    )
 }
 
 SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
