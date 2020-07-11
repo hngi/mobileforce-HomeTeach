@@ -32,14 +32,14 @@ class Profile(models.Model):
 	
 
 	def __unicode__(self):
-		return f'Profile for user: {0}'.format(self.user.email)
+		return f'Profile for user: {self.user.email}'
 
-	@receiver(post_save, sender=CustomUser)
+	@receiver(post_save, sender=user)
 	def create_user_profile(sender, instance, created, **kwargs):
 		if created:
 			Profile.objects.create(user=instance)
 
-	@receiver(post_save, sender=CustomUser)
+	@receiver(post_save, sender=user)
 	def save_user_profile(sender, instance, **kwargs):
 		instance.profile.save()
 
