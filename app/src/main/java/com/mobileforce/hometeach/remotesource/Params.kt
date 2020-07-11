@@ -20,4 +20,15 @@ class Params {
         val organization_email: String = "akinsolaademolatemitope@gmail.com"
 
     )
+
+    data class EditTutorProfile(
+        val email: String,
+        val full_name: String,
+        val desc: String,
+        val field: String,
+        val major_course: String,
+        val other_courses: String,
+        val state: String,
+        val address: String
+    )
 }

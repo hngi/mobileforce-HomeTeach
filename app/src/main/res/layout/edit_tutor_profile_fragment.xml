@@ -50,7 +50,7 @@
             android:layout_marginLeft="8dp" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/et_name_input"
+            android:id="@+id/et_name_input_layout"
             android:layout_width="0dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_height="wrap_content"
@@ -67,6 +67,7 @@
             android:layout_marginLeft="8dp">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_name_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
@@ -86,7 +87,7 @@
             app:layout_constraintStart_toStartOf="@id/guideline1"/>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/et_description"
+            android:id="@+id/et_description_layout"
             android:layout_width="0dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_height="wrap_content"
@@ -101,6 +102,7 @@
             app:layout_constraintEnd_toEndOf="@id/guideline2">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_description"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="top|start"
@@ -116,7 +118,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:background="@color/dividingViewColor"
             android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@id/et_description"/>
+            app:layout_constraintTop_toBottomOf="@id/et_description_layout"/>
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/select_video"
@@ -233,7 +235,7 @@
             app:layout_constraintTop_toBottomOf="@id/dividing_view3"/>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/et_course_input"
+            android:id="@+id/et_course_input_layout"
             android:layout_width="0dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_height="wrap_content"
@@ -248,6 +250,7 @@
             app:layout_constraintStart_toStartOf="@id/guideline1">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_course_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
@@ -263,7 +266,7 @@
             android:background="#B5B5B5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/et_course_input" />
+            app:layout_constraintTop_toBottomOf="@id/et_course_input_layout" />
 
         <TextView
             android:id="@+id/tv_other_course_header"
@@ -290,7 +293,7 @@
             android:layout_marginLeft="4dp" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/et_other_course_input"
+            android:id="@+id/et_other_course_input_layout"
             android:layout_width="0dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_height="wrap_content"
@@ -305,6 +308,7 @@
             app:layout_constraintStart_toStartOf="@id/guideline1">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_other_course_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
@@ -320,7 +324,7 @@
             android:background="@color/dividingViewColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/et_other_course_input" />
+            app:layout_constraintTop_toBottomOf="@id/et_other_course_input_layout" />
 
         <TextView
             android:id="@+id/tv_select_origin_header"
@@ -369,7 +373,7 @@
             app:layout_constraintTop_toBottomOf="@id/dividing_view6"/>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/et_address_input"
+            android:id="@+id/et_address_input_layout"
             android:layout_width="0dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_height="wrap_content"
@@ -384,6 +388,7 @@
             app:layout_constraintStart_toStartOf="@id/guideline1">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_address_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
@@ -399,7 +404,7 @@
             android:background="@color/dividingViewColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/et_address_input" />
+            app:layout_constraintTop_toBottomOf="@id/et_address_input_layout" />
 
         <TextView
             android:id="@+id/tv_rate_header"
@@ -413,7 +418,7 @@
             app:layout_constraintTop_toBottomOf="@id/dividing_view7"/>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/et_rate_input"
+            android:id="@+id/et_rate_input_layout"
             android:layout_width="0dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_height="wrap_content"
@@ -428,6 +433,7 @@
             app:layout_constraintStart_toStartOf="@id/guideline1">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_rate_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
@@ -443,7 +449,7 @@
             android:background="@color/dividingViewColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/et_rate_input" />
+            app:layout_constraintTop_toBottomOf="@id/et_rate_input_layout" />
 
         <TextView
             android:id="@+id/tv_credentials_header"
@@ -476,7 +482,7 @@
             android:layout_marginTop="16dp"
             app:layout_constraintTop_toBottomOf="@+id/tv_credentials_header"
             app:layout_constraintStart_toStartOf="@+id/guideline1"
-            android:contentDescription="Credential icon" />
+            android:contentDescription="@string/credential_icon" />
 
         <TextView
             android:id="@+id/tv_credentials_name"

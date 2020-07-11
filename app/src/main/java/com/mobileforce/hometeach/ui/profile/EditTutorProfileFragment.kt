@@ -7,9 +7,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
-import androidx.lifecycle.ViewModelProvider
 import com.mobileforce.hometeach.R
+import com.mobileforce.hometeach.databinding.EditTutorProfileFragmentBinding
+import com.mobileforce.hometeach.remotesource.Params
+import com.mobileforce.hometeach.remotesource.wrappers.ProfileResponse
+import com.mobileforce.hometeach.remotesource.wrappers.UserRemote
 import com.tiper.MaterialSpinner
+import kotlinx.android.synthetic.main.edit_tutor_profile_fragment.*
+import kotlinx.android.synthetic.main.fragment_profile.*
+import org.koin.android.viewmodel.ext.android.viewModel
+
+/**
+ * Authored by MayorJay
+ */
 
 class EditTutorProfileFragment : Fragment() {
 
@@ -34,9 +44,7 @@ class EditTutorProfileFragment : Fragment() {
         }
     }
 
-    private lateinit var fieldMaterialSpinner: MaterialSpinner
-    private lateinit var originMaterialSpinner: MaterialSpinner
-    private lateinit var viewModel: EditTutorProfileViewModel
+    private val viewModel: EditTutorProfileViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,40 +53,55 @@ class EditTutorProfileFragment : Fragment() {
         return inflater.inflate(R.layout.edit_tutor_profile_fragment, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(EditTutorProfileViewModel::class.java)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         // Inflates the Spinner displaying the tutor's field
-        fieldMaterialSpinner = view.findViewById(R.id.sp_select_field)
         ArrayAdapter.createFromResource(requireContext(), R.array.fields_array, android.R.layout.simple_spinner_item).let {
             it.setDropDownViewResource(android.R.layout.select_dialog_singlechoice)
-            fieldMaterialSpinner.apply {
+            sp_select_field.apply {
                 adapter = it
                 onItemSelectedListener = listener
             }
         }
 
         // Inflates the Spinner displaying the states of origin
-        originMaterialSpinner = view.findViewById(R.id.sp_select_origin)
         ArrayAdapter.createFromResource(requireContext(), R.array.origin_array, android.R.layout.simple_spinner_item).let {
             it.setDropDownViewResource(android.R.layout.select_dialog_singlechoice)
-            originMaterialSpinner.apply {
+            sp_select_origin.apply {
                 adapter = it
                 onItemSelectedListener = listener
             }
         }
 
         // Displays the Credentials DialogFragment
-        val viewAllCred = view.findViewById<TextView>(R.id.tv_view_all)
-        viewAllCred?.setOnClickListener {
+        tv_view_all.setOnClickListener {
             val credentialDialog = CredentialDialog()
             val trans = parentFragmentManager.beginTransaction()
             credentialDialog.show(trans, "dialog")
+        }
+
+        val profileList = viewModel.getProfileList()
+        val profileResponse = profileList[0]
+        var currentUserId: Int = 0
+        var currentUserEmail: String = ""
+        if (profileResponse.address == et_address_input.text.toString()){
+            currentUserId = profileResponse.id
+            currentUserEmail = profileResponse.email
+        }
+
+        edit_button.setOnClickListener {
+            val profileData = Params.EditTutorProfile(
+                email = currentUserEmail,
+                full_name = et_name_input.text.toString(),
+                desc = et_description.text.toString(),
+                field = sp_select_field.selectedItem.toString(),
+                major_course = et_course_input.text.toString(),
+                other_courses = et_other_course_input.text.toString(),
+                state = sp_select_origin.selectedItem.toString(),
+                address = et_address_input.text.toString()
+            )
+            viewModel.editTutorProfile(currentUserId, profileData)
         }
     }
 
