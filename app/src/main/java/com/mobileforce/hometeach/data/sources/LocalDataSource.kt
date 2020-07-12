@@ -1,16 +1,22 @@
 package com.mobileforce.hometeach.data.sources
 
+import androidx.lifecycle.LiveData
 import com.mobileforce.hometeach.data.model.User
 import com.mobileforce.hometeach.localsource.AppDataBase
 import com.mobileforce.hometeach.localsource.model.UserEntity
 import com.mobileforce.hometeach.remotesource.Params
+
 import com.mobileforce.hometeach.remotesource.wrappers.EmailResponse
+import com.mobileforce.hometeach.remotesource.wrappers.EditTutorProfileResponse
+
 import com.mobileforce.hometeach.remotesource.wrappers.LoginResponse
+import com.mobileforce.hometeach.remotesource.wrappers.ProfileResponse
 import com.mobileforce.hometeach.remotesource.wrappers.RegisterUserResponse
+import retrofit2.Response
 
 class LocalDataSource(private val db: AppDataBase) : DataSource {
 
-    override suspend fun logIn(): LoginResponse {
+    override suspend fun logIn(params: Params.SignIn): Response<List<Any>> {
         TODO("Not yet implemented")
     }
 
@@ -19,18 +25,33 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
         TODO("Not yet implemented")
     }
 
-    override fun saveUser(user: User) {
-
+    override suspend fun saveUser(user: User) {
         db.userDao().saveUser(mapUserToEntity(user))
     }
 
 
-    override suspend fun getUser(): UserEntity {
+    override fun getUser(): LiveData<UserEntity> {
         return db.userDao().getUser()
     }
 
     override suspend fun password_reset(params: Params.PasswordReset): EmailResponse {
         TODO("Not yet implemented")
+    }
+
+
+    override suspend fun editTutorProfile(
+        id: Int,
+        params: Params.EditTutorProfile
+    ): EditTutorProfileResponse {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getProfileList(): List<ProfileResponse> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun clearDb() {
+        db.userDao().clearDb()
     }
 
 
@@ -42,7 +63,6 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
             phone_number = user.phoneNumber,
             token = user.token,
             full_name = user.fullName
-
         )
     }
 }

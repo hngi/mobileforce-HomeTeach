@@ -13,6 +13,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.mobileforce.hometeach.adapters.OnBoardAdapter
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.models.OnBoardItem
+import com.mobileforce.hometeach.ui.signin.LoginActivity
 
 class OnBoardingActivity : AppCompatActivity() {
 
@@ -70,15 +71,15 @@ class OnBoardingActivity : AppCompatActivity() {
 
         skipText.setOnClickListener {
 
-            startActivity(Intent(this, ExploreActivity::class.java))
+            startActivity(Intent(this, LoginActivity::class.java))
             //finish this activity
-            finish()
+            //finish()
         }
 
         fab.setOnClickListener {
-            startActivity(Intent(this, ExploreActivity::class.java))
+            startActivity(Intent(this, LoginActivity::class.java))
             //finish this activity
-            finish()
+            //finish()
         }
         setPageViewController()
     }

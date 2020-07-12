@@ -9,11 +9,12 @@ import android.util.Patterns
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import com.google.android.material.snackbar.Snackbar
 import com.mobileforce.hometeach.AppConstants.USER_TUTOR
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.localsource.PreferenceHelper
 import com.mobileforce.hometeach.remotesource.Params
-import com.mobileforce.hometeach.ui.LoginActivity
+import com.mobileforce.hometeach.ui.signin.LoginActivity
 import com.mobileforce.hometeach.utils.Result
 import com.mobileforce.hometeach.utils.snack
 import com.mobileforce.hometeach.utils.toast
@@ -114,7 +115,7 @@ class SignUpActivity : AppCompatActivity() {
 
                     textInput_password.isHelperTextEnabled = true
                     textInput_password.error =
-                        "Hint: Password should not be less than 6 with at least 1 special character"
+                        "Hint: Password should not be less than 8 with at least 1 special character"
                     passwordValid = false
                 }
             }
@@ -198,7 +199,8 @@ class SignUpActivity : AppCompatActivity() {
                             actionText = "LOGIN",
                             actionCallBack = {
                                 startActivity(Intent(this, LoginActivity::class.java))
-                            })
+                            }, length = Snackbar.LENGTH_INDEFINITE
+                        )
                 }
 
                 is Result.Error -> {

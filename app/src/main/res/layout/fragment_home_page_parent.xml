@@ -235,6 +235,7 @@
 
         <com.google.android.material.appbar.MaterialToolbar
             android:layout_width="match_parent"
+            android:id="@+id/studentToolbar"
             android:layout_height="wrap_content"
             android:background="#D6F5D9"
             app:title="Welcome, Enya.">

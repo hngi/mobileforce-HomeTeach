@@ -4,37 +4,82 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.gson.Gson
+import com.mobileforce.hometeach.data.model.User
 import com.mobileforce.hometeach.data.repo.UserRepository
+import com.mobileforce.hometeach.localsource.PreferenceHelper
 import com.mobileforce.hometeach.remotesource.Params
 import com.mobileforce.hometeach.remotesource.Params.PasswordReset
 import kotlinx.coroutines.launch
 import org.koin.ext.scope
+import com.mobileforce.hometeach.remotesource.wrappers.UserRemote
+import com.mobileforce.hometeach.utils.Result
+import com.mobileforce.hometeach.utils.asLiveData
+import com.mobileforce.hometeach.utils.toDomain
+import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
+import java.lang.Exception
 
 
-class SignInViewModel(private val userRepository: UserRepository) : ViewModel() {
+class SignInViewModel(private val userRepository: UserRepository, private val preferenceHelper: PreferenceHelper) : ViewModel() {
 
     //Live data goes here
+
     private val _reset = MutableLiveData<Result<Nothing>>()
     val reset: LiveData<Result<Nothing>>
         get() = _reset
 
-
+    private val _signIn = MutableLiveData<Result<Nothing>>()
+    val signIn = _signIn.asLiveData()
 
     fun signIn(params: Params.SignIn) {
-
+        _signIn.postValue(Result.Loading)
         viewModelScope.launch {
+            try {
+                val response = userRepository.login(params)
 
-            //set live data to loading
+                if (response.isSuccessful) {
+                    preferenceHelper.isLoggedIn = true
 
-            val response = userRepository.login(params)
+                    try {
 
-            //TODO
-            // 1. create a user object from the response
-            // 2 save the onject to db
+                        response.body()?.let {
+                            val token = it[0].toString()
+                            val json = Gson().toJson(it[1])
+                            val userResponse = Gson().fromJson(json,UserRemote::class.java)
 
-//            val loggedInUser = User()
+                            print("user ${userResponse.fullName}")
+                            with(userResponse) {
+                                val user = User(
+                                    token = token,
+                                    email = email,
+                                    phoneNumber = phoneNumber,
+                                    fullName = fullName,
+                                    isTutor = isTutor,
+                                    isActive = isActive,
+                                    id = id.toString()
+                                )
+                                userRepository.saveUser(user)
+                            }
 
-//            userRepository.saveUser()
+                            _signIn.postValue(Result.Success())
+
+
+                        }
+
+                    } catch (error: Exception) {
+                        _signIn.postValue(Result.Error(error))
+
+                    }
+
+                } else {
+                    _signIn.postValue(Result.Error(Throwable(response.errorBody().toString())))
+
+                }
+
+            } catch (error: Throwable) {
+                _signIn.postValue(Result.Error(error))
+            }
 
         }
     }

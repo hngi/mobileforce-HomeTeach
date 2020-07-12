@@ -6,7 +6,7 @@
     <application
         android:name=".App"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/launcher_icon"
         android:label="@string/app_name"
         android:usesCleartextTraffic="true"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -14,10 +14,9 @@
         android:theme="@style/AppTheme">
 
         <activity android:name=".ui.signup.SignUpActivity" />
-        <activity android:name=".ui.EditTutorProfileActivity" />
 
         <activity
-            android:name=".ui.LoginActivity"
+            android:name=".ui.signin.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.OnBoardingActivity"

@@ -10,6 +10,11 @@ class PreferenceHelper constructor(context: Context) {
     private val pref: SharedPreferences =
         context.getSharedPreferences(APP_SHARED_PREFERENCE, Context.MODE_PRIVATE)
 
+    var isLoggedIn: Boolean
+        get() = pref.getBoolean("isLoggedIn", false)
+        set(value){
+            pref.edit().putBoolean("isLoggedIn", value).apply()
+        }
 
     var userType: String?
         get() = pref.getString(USER_TYPE, null)
