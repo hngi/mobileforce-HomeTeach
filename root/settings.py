@@ -20,10 +20,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 load_dotenv(os.path.join(BASE_DIR, '.env'))
 
-# dj_database_url
-db_from_env = dj_database_url.config(conn_max_age=600)
-DATABASES = { 'default': dj_database_url.config() }
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
@@ -73,9 +69,6 @@ MIDDLEWARE = [
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-db_from_env = dj_database_url.config(conn_max_age=600)
-DATABASES = { 'default': dj_database_url.config() }
-
 ROOT_URLCONF = 'root.urls'
 
 TEMPLATES = [
@@ -111,7 +104,11 @@ DATABASES = {
     }
 }
 
+#db_from_env = dj_database_url.config(conn_max_age=600)
+#DATABASES = { 'default': dj_database_url.config() }
 
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
