@@ -11,6 +11,7 @@ import com.mobileforce.hometeach.data.sources.RemoteDataSource
 import com.mobileforce.hometeach.localsource.AppDataBase
 import com.mobileforce.hometeach.localsource.PreferenceHelper
 import com.mobileforce.hometeach.remotesource.Api
+import com.mobileforce.hometeach.ui.home.HomePageViewModel
 import com.mobileforce.hometeach.ui.signin.SignInViewModel
 import com.mobileforce.hometeach.ui.signup.SignUpViewModel
 import okhttp3.OkHttpClient
@@ -71,7 +72,8 @@ val appModule = module {
 
     //---------------------view models --------------------------------------
 
-    factory { SignInViewModel(get()) }
+    factory { SignInViewModel(get(), get()) }
     factory { SignUpViewModel(get()) }
+    factory { HomePageViewModel(get(), get()) }
 
 }

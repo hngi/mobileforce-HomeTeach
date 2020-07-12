@@ -1,5 +1,6 @@
 package com.mobileforce.hometeach.data.sources
 
+import androidx.lifecycle.LiveData
 import com.mobileforce.hometeach.data.model.User
 import com.mobileforce.hometeach.localsource.model.UserEntity
 import com.mobileforce.hometeach.remotesource.Api
@@ -38,7 +39,7 @@ class RemoteDataSource(private val api: Api) : DataSource {
     }
 
 
-    override suspend fun getUser(): UserEntity {
+    override fun getUser(): LiveData<UserEntity> {
         TODO("Not yet implemented")
     }
 
@@ -51,5 +52,9 @@ class RemoteDataSource(private val api: Api) : DataSource {
 
     override suspend fun getProfileList(): List<ProfileResponse> {
         return api.getProfileList()
+    }
+
+    override suspend fun clearDb() {
+        TODO("Not yet implemented")
     }
 }

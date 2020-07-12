@@ -15,6 +15,7 @@ import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.databinding.ActivityLoginBinding
 import com.mobileforce.hometeach.remotesource.Params
 import com.mobileforce.hometeach.ui.BottonNavigationActivity
+import com.mobileforce.hometeach.ui.ExploreActivity
 import com.mobileforce.hometeach.ui.signup.SignUpActivity
 import com.mobileforce.hometeach.utils.Result
 import com.mobileforce.hometeach.utils.snack
@@ -176,10 +177,12 @@ class LoginActivity : AppCompatActivity() {
 
     private fun navigateToDashBoard() {
         startActivity(Intent(this, BottonNavigationActivity::class.java))
+        //finish()
     }
 
     private fun navigateToSignUp() {
-        startActivity(Intent(this, SignUpActivity::class.java))
+        //startActivity(Intent(this, SignUpActivity::class.java))
+        startActivity(Intent(this, ExploreActivity::class.java))
     }
 
     private fun forgotPassword() {
