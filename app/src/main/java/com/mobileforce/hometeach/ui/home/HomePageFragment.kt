@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.RelativeLayout
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
@@ -22,8 +23,10 @@ import com.mobileforce.hometeach.localsource.PreferenceHelper
 import com.mobileforce.hometeach.models.*
 import com.mobileforce.hometeach.ui.ExploreActivity
 import com.mobileforce.hometeach.ui.classes.adapters.recylerviewadapters.TutorOngoingClassesAdapter
+import com.mobileforce.hometeach.ui.signin.LoginActivity
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.viewModel
 import java.util.*
 
 /**
@@ -37,11 +40,14 @@ class HomePageFragment : Fragment() {
 
     private lateinit var bindingParent: FragmentHomePageParentBinding
     private lateinit var bindingTutor: FragmentHomePageTutorBinding
+    private val viewModel: HomePageViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        //viewModel = ViewModelProvider(this).get(HomePageViewModel::class.java)
 
         return if (pref.userType == USER_STUDENT) {
             bindingParent = FragmentHomePageParentBinding.inflate(layoutInflater)
@@ -80,7 +86,9 @@ class HomePageFragment : Fragment() {
         }
 
         bindingParent.root.findViewById<MaterialButton>(R.id.signOut).setOnClickListener {
-            startActivity(Intent(requireContext(), ExploreActivity::class.java))
+            //viewModel.logOut()
+            startActivity(Intent(requireContext(), LoginActivity::class.java))
+            requireActivity().finish()
         }
 
         val onGoingAdapter = object :
@@ -317,20 +325,21 @@ class HomePageFragment : Fragment() {
         }
 
         topTutorsAdapter.submitList(topTutors)
-
-
     }
 
     private fun setUpForTutor(){
         bindingTutor.signout.setOnClickListener {
-            startActivity(Intent(requireContext(), ExploreActivity::class.java))
+            //viewModel.logOut()
+            startActivity(Intent(requireContext(), LoginActivity::class.java))
+            requireActivity().finish()
+//            val preferenceHelper = PreferenceHelper(requireContext())
+//            if (preferenceHelper.isLoggedIn){
+//            }
         }
 
-        lifecycleScope.launch {
-
-         val user =  db.userDao().getUser()
+        viewModel.user.observe(viewLifecycleOwner, androidx.lifecycle.Observer { user ->
             bindingTutor.username.text = user.full_name
-        }
+        })
     }
 
 }
