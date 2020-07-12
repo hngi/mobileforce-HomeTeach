@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import django_heroku
+import dj_database_url
 from dotenv import load_dotenv
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -101,10 +103,8 @@ DATABASES = {
 #db_from_env = dj_database_url.config(conn_max_age=600)
 #DATABASES = { 'default': dj_database_url.config() }
 
-import dj_database_url 
 prod_db  =  dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(prod_db)
-
 
 #db_from_env = dj_database_url.config(conn_max_age=600)
 #DATABASES['default'].update(db_from_env)
@@ -172,6 +172,8 @@ REST_FRAMEWORK = {
         'rest_framework.filters.SearchFilter',
     )
 }
+
+django_heroku.settings(locals())
 
 SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
 
