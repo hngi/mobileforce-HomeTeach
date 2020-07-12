@@ -74,5 +74,5 @@ val appModule = module {
 
     factory { SignInViewModel(get()) }
     factory { SignUpViewModel(get()) }
-    factory { RecoverPasswordViewModel(get()) }
+
 }
