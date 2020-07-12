@@ -11,8 +11,8 @@ import com.mobileforce.hometeach.remotesource.wrappers.RegisterUserResponse
 
 class RemoteDataSource(private val api: Api) : DataSource {
 
-    override suspend fun logIn(): LoginResponse {
-        return api.login()
+    override suspend fun logIn(params: Params.SignIn): LoginResponse {
+        return api.login(params)
     }
 
     override suspend fun signUp(params: Params.SignUp): RegisterUserResponse {

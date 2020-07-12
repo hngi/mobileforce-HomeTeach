@@ -8,6 +8,7 @@ import com.mobileforce.hometeach.AppConstants.USER_STUDENT
 import com.mobileforce.hometeach.AppConstants.USER_TUTOR
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.localsource.PreferenceHelper
+import com.mobileforce.hometeach.ui.signin.LoginActivity
 import kotlinx.android.synthetic.main.activity_explore.*
 import org.koin.android.ext.android.inject
 

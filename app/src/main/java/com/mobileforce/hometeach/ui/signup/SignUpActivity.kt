@@ -14,7 +14,7 @@ import com.mobileforce.hometeach.AppConstants.USER_TUTOR
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.localsource.PreferenceHelper
 import com.mobileforce.hometeach.remotesource.Params
-import com.mobileforce.hometeach.ui.LoginActivity
+import com.mobileforce.hometeach.ui.signin.LoginActivity
 import com.mobileforce.hometeach.utils.Result
 import com.mobileforce.hometeach.utils.snack
 import com.mobileforce.hometeach.utils.toast

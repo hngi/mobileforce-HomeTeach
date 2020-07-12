@@ -16,7 +16,7 @@
         <activity android:name=".ui.signup.SignUpActivity" />
 
         <activity
-            android:name=".ui.LoginActivity"
+            android:name=".ui.signin.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.OnBoardingActivity"
