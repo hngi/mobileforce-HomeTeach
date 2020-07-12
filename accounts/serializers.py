@@ -5,7 +5,7 @@ from django.contrib.auth import get_user_model, authenticate
 from rest_framework.serializers import ModelSerializer,CharField,EmailField,SerializerMethodField,ValidationError
 from django.db import models
 from django.db.models import Q
-from accounts.models import CustomUser
+from .models import CustomUser
 from rest_framework import exceptions
 from django.shortcuts import get_object_or_404
 from rest_framework.authtoken.models import Token
