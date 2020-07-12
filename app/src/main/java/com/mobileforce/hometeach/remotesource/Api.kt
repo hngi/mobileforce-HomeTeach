@@ -12,8 +12,9 @@ interface Api {
     @GET("login/user")
     suspend fun login(): LoginResponse
 
+    @JvmSuppressWildcards
     @POST("api/v1/register/")
-    suspend fun register(@Body params: Params.SignUp): RegisterUserResponse
+    suspend fun register(@Body params: Map<String, Any>): RegisterUserResponse
 
     @PUT("api/v1/profiles/{id}/")
     suspend fun editTutorProfile(@Path("id") id: Int, @Body params: Params.EditTutorProfile): EditTutorProfileResponse

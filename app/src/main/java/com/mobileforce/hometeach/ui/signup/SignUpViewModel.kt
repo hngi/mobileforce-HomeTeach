@@ -19,8 +19,20 @@ class SignUpViewModel(private val userRepository: UserRepository) : ViewModel() 
         _signUp.postValue(Result.Loading)
         viewModelScope.launch {
             try {
-                userRepository.register(params)
-                _signUp.postValue(Result.Success())
+                val response = userRepository.register(params)
+
+                response.errors?.let {
+
+                    it.email?.let email@{
+                        _signUp.postValue(Result.Error(Throwable(it[0])))
+
+                        return@email
+                    }
+
+                } ?: kotlin.run {
+                    _signUp.postValue(Result.Success())
+                }
+
             } catch (error: Throwable) {
                 _signUp.postValue(Result.Error(error))
             }
