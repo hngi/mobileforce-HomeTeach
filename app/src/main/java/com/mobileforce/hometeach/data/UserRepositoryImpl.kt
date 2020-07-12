@@ -11,7 +11,7 @@ import com.mobileforce.hometeach.remotesource.wrappers.RegisterUserResponse
 class UserRepositoryImpl(private val dataSource: DataSourceFactory) : UserRepository {
 
     override suspend fun login(params: Params.SignIn): LoginResponse {
-        return dataSource.remote().logIn()
+        return dataSource.remote().logIn(params)
     }
 
     override suspend fun register(params: Params.SignUp): RegisterUserResponse {

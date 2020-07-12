@@ -9,8 +9,8 @@ import retrofit2.http.POST
 
 interface Api {
 
-    @GET("login/user")
-    suspend fun login(): LoginResponse
+    @POST("api/v1/login/")
+    suspend fun login(@Body params: Params.SignIn): LoginResponse
 
     @POST("api/v1/register/")
     suspend fun register(@Body params: Params.SignUp): RegisterUserResponse

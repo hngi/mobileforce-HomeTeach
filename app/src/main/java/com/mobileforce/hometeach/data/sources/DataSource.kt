@@ -9,7 +9,7 @@ import com.mobileforce.hometeach.remotesource.wrappers.RegisterUserResponse
 
 interface DataSource {
 
-    suspend fun logIn(): LoginResponse
+    suspend fun logIn(params: Params.SignIn): LoginResponse
     suspend fun signUp(params: Params.SignUp): RegisterUserResponse
     fun saveUser(user: User)
     suspend fun getUser(): UserEntity

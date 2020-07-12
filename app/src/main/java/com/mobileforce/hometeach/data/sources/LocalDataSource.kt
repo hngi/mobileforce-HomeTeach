@@ -9,7 +9,7 @@ import com.mobileforce.hometeach.remotesource.wrappers.RegisterUserResponse
 
 class LocalDataSource(private val db: AppDataBase) : DataSource {
 
-    override suspend fun logIn(): LoginResponse {
+    override suspend fun logIn(params: Params.SignIn): LoginResponse {
         TODO("Not yet implemented")
     }
 
@@ -37,7 +37,6 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
             phone_number = user.phoneNumber,
             token = user.token,
             full_name = user.fullName
-
         )
     }
 }

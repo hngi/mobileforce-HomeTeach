@@ -3,15 +3,21 @@ package com.mobileforce.hometeach.utils
 import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.adapters.CircleTransform
+import com.mobileforce.hometeach.data.model.User
+import com.mobileforce.hometeach.remotesource.wrappers.UserRemote
 import com.squareup.picasso.Picasso
 
 @BindingAdapter("imagecircular")
-fun ImageView.bindTutorImage(tutorImage:String){
+fun ImageView.bindTutorImage(tutorImage: String) {
     tutorImage.let {
-        Picasso.get().load(tutorImage).transform(CircleTransform()).placeholder(R.drawable.profile_image).error(
-            R.drawable.profile_image).into(this)
+        Picasso.get().load(tutorImage).transform(CircleTransform())
+            .placeholder(R.drawable.profile_image).error(
+            R.drawable.profile_image
+        ).into(this)
     }
 }
 
@@ -25,4 +31,24 @@ inline fun <T : View> T.showIf(condition: (T) -> Boolean) {
     } else {
         View.GONE
     }
+}
+
+/**
+ * This functions helps in transforming a [MutableLiveData] of type [T]
+ * to a [LiveData] of type [T]
+ */
+fun <T> MutableLiveData<T>.asLiveData() = this as LiveData<T>
+
+/**
+ * Converts a [UserRemote] to [User]
+ */
+fun UserRemote.toDomain(): User {
+    return User(
+        id = id,
+        isTutor = isTutor,
+        email = email,
+        phoneNumber = phoneNumber,
+        fullName = fullName,
+        token = token
+    )
 }

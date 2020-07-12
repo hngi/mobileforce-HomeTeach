@@ -17,7 +17,7 @@
         <activity android:name=".ui.EditTutorProfileActivity" />
 
         <activity
-            android:name=".ui.LoginActivity"
+            android:name=".ui.signin.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.OnBoardingActivity"
