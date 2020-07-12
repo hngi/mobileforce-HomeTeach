@@ -512,6 +512,20 @@
             app:layout_constraintStart_toStartOf="@id/guideline1"
             app:layout_constraintEnd_toEndOf="@id/guideline2"/>
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/no_button"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#E5E5E5"
+            android:textColor="#fff"
+            app:cornerRadius="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bt_save_profile"
+            tools:ignore="UnusedAttribute" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.core.widget.NestedScrollView>
