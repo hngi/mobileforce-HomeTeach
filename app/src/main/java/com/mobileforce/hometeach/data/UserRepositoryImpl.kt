@@ -4,6 +4,7 @@ import com.mobileforce.hometeach.data.model.User
 import com.mobileforce.hometeach.data.repo.UserRepository
 import com.mobileforce.hometeach.data.sources.DataSourceFactory
 import com.mobileforce.hometeach.remotesource.Params
+import com.mobileforce.hometeach.remotesource.wrappers.EmailResponse
 import com.mobileforce.hometeach.remotesource.wrappers.LoginResponse
 import com.mobileforce.hometeach.remotesource.wrappers.RegisterUserResponse
 
@@ -24,6 +25,10 @@ class UserRepositoryImpl(private val dataSource: DataSourceFactory) : UserReposi
 
     override fun logOut() {
         TODO("Not yet implemented")
+    }
+
+    override suspend fun password_reset(params: Params.PasswordReset): EmailResponse {
+        return dataSource.remote().password_reset(params)
     }
 
 

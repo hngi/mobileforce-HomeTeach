@@ -20,4 +20,8 @@ class Params {
         val organization_email: String = "akinsolaademolatemitope@gmail.com"
 
     )
+
+    data class PasswordReset(
+        val email: String
+    )
 }
