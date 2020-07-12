@@ -10,6 +10,7 @@ import com.mobileforce.hometeach.adapters.CircleTransform
 import com.mobileforce.hometeach.data.model.User
 import com.mobileforce.hometeach.remotesource.wrappers.UserRemote
 import com.squareup.picasso.Picasso
+import java.lang.reflect.Method
 
 @BindingAdapter("imagecircular")
 fun ImageView.bindTutorImage(tutorImage: String) {
@@ -51,4 +52,24 @@ fun UserRemote.toDomain(): User {
         fullName = fullName,
         token = token
     )
+}
+
+fun pojo2Map(obj: Any): Map<String, Any> {
+    val hashMap: MutableMap<String, Any> =
+        HashMap()
+    try {
+        val c: Class<out Any> = obj.javaClass
+        val m: Array<Method> = c.methods
+        for (i in m.indices) {
+            if (m[i].name.indexOf("get") === 0) {
+                val name: String =
+                    m[i].name.toLowerCase().substring(3, 4) + m[i].getName()
+                        .substring(4)
+                hashMap[name] = m[i].invoke(obj, arrayOfNulls<Any>(0))
+            }
+        }
+    } catch (e: Throwable) {
+        //log error
+    }
+    return hashMap
 }

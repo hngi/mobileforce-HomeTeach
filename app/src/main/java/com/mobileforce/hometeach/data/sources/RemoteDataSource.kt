@@ -16,7 +16,16 @@ class RemoteDataSource(private val api: Api) : DataSource {
     }
 
     override suspend fun signUp(params: Params.SignUp): RegisterUserResponse {
-        return api.register(params)
+
+        val map = hashMapOf(
+            "full_name" to params.full_name,
+            "email" to params.email,
+            "organization_email" to params.organization_email,
+            "phone_number" to params.phone_number,
+            "is_tutor" to params.is_tutor,
+            "password" to params.password
+        )
+        return api.register(map)
     }
 
     override fun saveUser(user: User) {

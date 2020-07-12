@@ -9,6 +9,7 @@ import android.util.Patterns
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import com.google.android.material.snackbar.Snackbar
 import com.mobileforce.hometeach.AppConstants.USER_TUTOR
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.localsource.PreferenceHelper
@@ -198,7 +199,8 @@ class SignUpActivity : AppCompatActivity() {
                             actionText = "LOGIN",
                             actionCallBack = {
                                 startActivity(Intent(this, LoginActivity::class.java))
-                            })
+                            }, length = Snackbar.LENGTH_INDEFINITE
+                        )
                 }
 
                 is Result.Error -> {
