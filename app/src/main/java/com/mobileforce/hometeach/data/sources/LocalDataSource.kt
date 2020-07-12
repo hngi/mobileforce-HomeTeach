@@ -4,7 +4,9 @@ import com.mobileforce.hometeach.data.model.User
 import com.mobileforce.hometeach.localsource.AppDataBase
 import com.mobileforce.hometeach.localsource.model.UserEntity
 import com.mobileforce.hometeach.remotesource.Params
+import com.mobileforce.hometeach.remotesource.wrappers.EditTutorProfileResponse
 import com.mobileforce.hometeach.remotesource.wrappers.LoginResponse
+import com.mobileforce.hometeach.remotesource.wrappers.ProfileResponse
 import com.mobileforce.hometeach.remotesource.wrappers.RegisterUserResponse
 
 class LocalDataSource(private val db: AppDataBase) : DataSource {
@@ -26,6 +28,17 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
 
     override suspend fun getUser(): UserEntity {
         return db.userDao().getUser()
+    }
+
+    override suspend fun editTutorProfile(
+        id: Int,
+        params: Params.EditTutorProfile
+    ): EditTutorProfileResponse {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getProfileList(): List<ProfileResponse> {
+        TODO("Not yet implemented")
     }
 
 
