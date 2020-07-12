@@ -10,7 +10,7 @@ import com.mobileforce.hometeach.localsource.model.UserEntity
 interface UserDao {
 
     @Insert
-    fun saveUser(user: UserEntity)
+    suspend fun saveUser(user: UserEntity)
 
     @Query("SELECT * FROM user")
     suspend fun getUser(): UserEntity

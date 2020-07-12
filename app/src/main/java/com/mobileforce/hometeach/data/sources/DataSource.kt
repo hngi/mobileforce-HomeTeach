@@ -7,13 +7,14 @@ import com.mobileforce.hometeach.remotesource.wrappers.EditTutorProfileResponse
 import com.mobileforce.hometeach.remotesource.wrappers.LoginResponse
 import com.mobileforce.hometeach.remotesource.wrappers.ProfileResponse
 import com.mobileforce.hometeach.remotesource.wrappers.RegisterUserResponse
+import retrofit2.Response
 
 
 interface DataSource {
 
-    suspend fun logIn(params: Params.SignIn): LoginResponse
+    suspend fun logIn(params: Params.SignIn): Response<List<Any>>
     suspend fun signUp(params: Params.SignUp): RegisterUserResponse
-    fun saveUser(user: User)
+    suspend fun saveUser(user: User)
     suspend fun getUser(): UserEntity
     suspend fun editTutorProfile(id: Int, params: Params.EditTutorProfile): EditTutorProfileResponse
     suspend fun getProfileList(): List<ProfileResponse>

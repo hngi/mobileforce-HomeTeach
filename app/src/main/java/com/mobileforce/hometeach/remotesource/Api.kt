@@ -4,13 +4,15 @@ import com.mobileforce.hometeach.remotesource.wrappers.EditTutorProfileResponse
 import com.mobileforce.hometeach.remotesource.wrappers.LoginResponse
 import com.mobileforce.hometeach.remotesource.wrappers.ProfileResponse
 import com.mobileforce.hometeach.remotesource.wrappers.RegisterUserResponse
+import retrofit2.Response
 import retrofit2.http.*
 
 
 interface Api {
 
+    @JvmSuppressWildcards
     @POST("api/v1/login/")
-    suspend fun login(@Body params: Params.SignIn): LoginResponse
+    suspend fun login(@Body params: Map<String, Any>): Response<List<Any>>
 
     @JvmSuppressWildcards
     @POST("api/v1/register/")

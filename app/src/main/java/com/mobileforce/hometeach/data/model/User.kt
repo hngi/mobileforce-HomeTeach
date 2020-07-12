@@ -6,5 +6,6 @@ data class User(
     val email: String,
     val phoneNumber: String,
     val fullName: String,
-    val token: String
+    val token: String,
+    val isActive:Boolean
 )

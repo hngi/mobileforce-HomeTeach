@@ -9,7 +9,7 @@ data class LoginResponse(
 )
 
 data class UserRemote(
-    val id: String,
+    val id: Double,
     @SerializedName("is_tutor")
     val isTutor: Boolean,
     val email: String,
@@ -17,5 +17,7 @@ data class UserRemote(
     val phoneNumber: String,
     @SerializedName("full_name")
     val fullName: String,
-    val token: String
+    val is_active: Boolean,
+    val is_admin: Boolean,
+    val timestamp:String
 )
