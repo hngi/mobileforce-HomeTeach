@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-print("production")
+import dj_database_url
 
 from dotenv import load_dotenv
 
@@ -19,6 +19,10 @@ from dotenv import load_dotenv
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 load_dotenv(os.path.join(BASE_DIR, '.env'))
+
+# dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES = { 'default': dj_database_url.config() }
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -29,8 +33,7 @@ SECRET_KEY = 'wi8ec5*+xx1z6h9&%h=iaauyl)7mbime7f7$l(hx1iwev0sb+='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
-
+ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0', 'localhost', 'api-hometeach.herokuapp.com']
 
 # Application definition
 
@@ -49,12 +52,17 @@ INSTALLED_APPS = [
     # third-party
     'rest_framework',
     'rest_framework.authtoken',
-    'django_rest_passwordreset',
     'drf_yasg',
+    'django_rest_passwordreset',
+    'django_filters',
+    'whitenoise.runserver_nostatic',
 ]
+
+AUTH_USER_MODEL = 'accounts.CustomUser'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -62,6 +70,11 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES = { 'default': dj_database_url.config() }
 
 ROOT_URLCONF = 'root.urls'
 
@@ -89,13 +102,15 @@ WSGI_APPLICATION = 'root.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'hometeach',
+        'USER': 'hng',
+        'PASSWORD': 'hometeach',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
-
-AUTH_USER_MODEL='accounts.CustomUser'
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -133,16 +148,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = 'root/static/'
+STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'root/static/')
-
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static/'),
-)
+#location where django collect all static files
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# location where you will store your static files
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR,'static')
+]
 
 MEDIA_URL =  '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTHENTICATION_CLASSES = [
         'rest_framework.authentication.TokenAuthentication',
@@ -154,7 +170,11 @@ DEFAULT_PERMISSION_CLASSES = [
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': DEFAULT_AUTHENTICATION_CLASSES,
-    'DEFAULT_PERMISSION_CLASSES': DEFAULT_PERMISSION_CLASSES
+    'DEFAULT_PERMISSION_CLASSES': DEFAULT_PERMISSION_CLASSES,
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+        'rest_framework.filters.SearchFilter',
+    )
 }
 
 SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
@@ -164,3 +184,5 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'apikey'
 EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_API_KEY')
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+

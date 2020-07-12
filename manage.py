@@ -3,6 +3,7 @@
 import os
 import sys
 
+<<<<<<< HEAD
 if __name__ == '__main__':
     debug = os.environ.get('DEBUG', None) # Grabs DEBUG off of settings
     settings = 'root.settings'
@@ -18,6 +19,11 @@ if __name__ == '__main__':
         settings = 'root.settings'
 
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", settings)
+=======
+
+def main():
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'root.settings')
+>>>>>>> 02fae4b96acbb2c68820cd157994c3d8aee61680
 
     try:
         from django.core.management import execute_from_command_line
@@ -29,3 +35,6 @@ if __name__ == '__main__':
         ) from exc
     execute_from_command_line(sys.argv)
 
+
+if __name__ == '__main__':
+    main()

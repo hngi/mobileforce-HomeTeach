@@ -88,7 +88,8 @@ class TutorProfileViewSet(mixins.ListModelMixin,
     filter_backends = (filters.DjangoFilterBackend,)
     filter_fields = ('field','major_course','state',)
     ordering = ('-full_name',)
-    
+  
+ 
 class StudentProfileViewSet(mixins.ListModelMixin,
                             mixins.RetrieveModelMixin,
                             viewsets.GenericViewSet):
@@ -101,5 +102,4 @@ class StudentProfileViewSet(mixins.ListModelMixin,
     permission_classes = (permissions.AllowAny,
                           IsOwnerOrReadOnly,)
 
-    
 
