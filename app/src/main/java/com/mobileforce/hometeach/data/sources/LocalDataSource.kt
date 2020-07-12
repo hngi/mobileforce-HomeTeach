@@ -8,10 +8,11 @@ import com.mobileforce.hometeach.remotesource.wrappers.EditTutorProfileResponse
 import com.mobileforce.hometeach.remotesource.wrappers.LoginResponse
 import com.mobileforce.hometeach.remotesource.wrappers.ProfileResponse
 import com.mobileforce.hometeach.remotesource.wrappers.RegisterUserResponse
+import retrofit2.Response
 
 class LocalDataSource(private val db: AppDataBase) : DataSource {
 
-    override suspend fun logIn(params: Params.SignIn): LoginResponse {
+    override suspend fun logIn(params: Params.SignIn): Response<List<Any>> {
         TODO("Not yet implemented")
     }
 
@@ -20,7 +21,7 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
         TODO("Not yet implemented")
     }
 
-    override fun saveUser(user: User) {
+    override suspend fun saveUser(user: User) {
 
         db.userDao().saveUser(mapUserToEntity(user))
     }

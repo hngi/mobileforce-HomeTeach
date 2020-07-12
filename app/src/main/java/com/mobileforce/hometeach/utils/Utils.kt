@@ -45,12 +45,13 @@ fun <T> MutableLiveData<T>.asLiveData() = this as LiveData<T>
  */
 fun UserRemote.toDomain(): User {
     return User(
-        id = id,
+        id = id.toString(),
         isTutor = isTutor,
         email = email,
         phoneNumber = phoneNumber,
         fullName = fullName,
-        token = token
+        token = "token",
+        isActive = false
     )
 }
 

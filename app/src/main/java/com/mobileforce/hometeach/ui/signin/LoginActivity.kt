@@ -160,6 +160,9 @@ class LoginActivity : AppCompatActivity() {
                         actionCallBack = {
                             navigateToDashBoard()
                         })
+
+                    navigateToDashBoard()
+
                 }
 
                 is Result.Error -> {

@@ -8,11 +8,16 @@ import com.mobileforce.hometeach.remotesource.wrappers.EditTutorProfileResponse
 import com.mobileforce.hometeach.remotesource.wrappers.LoginResponse
 import com.mobileforce.hometeach.remotesource.wrappers.ProfileResponse
 import com.mobileforce.hometeach.remotesource.wrappers.RegisterUserResponse
+import retrofit2.Response
 
 class RemoteDataSource(private val api: Api) : DataSource {
 
-    override suspend fun logIn(params: Params.SignIn): LoginResponse {
-        return api.login(params)
+    override suspend fun logIn(params: Params.SignIn): Response<List<Any>> {
+        val map = hashMapOf(
+            "email" to params.email,
+            "password" to params.password
+        )
+        return api.login(map)
     }
 
     override suspend fun signUp(params: Params.SignUp): RegisterUserResponse {
@@ -28,7 +33,7 @@ class RemoteDataSource(private val api: Api) : DataSource {
         return api.register(map)
     }
 
-    override fun saveUser(user: User) {
+    override suspend fun saveUser(user: User) {
         TODO("Not yet implemented")
     }
 

@@ -8,11 +8,12 @@ import com.mobileforce.hometeach.remotesource.wrappers.EditTutorProfileResponse
 import com.mobileforce.hometeach.remotesource.wrappers.LoginResponse
 import com.mobileforce.hometeach.remotesource.wrappers.ProfileResponse
 import com.mobileforce.hometeach.remotesource.wrappers.RegisterUserResponse
+import retrofit2.Response
 
 
 class UserRepositoryImpl(private val dataSource: DataSourceFactory) : UserRepository {
 
-    override suspend fun login(params: Params.SignIn): LoginResponse {
+    override suspend fun login(params: Params.SignIn): Response<List<Any>> {
         return dataSource.remote().logIn(params)
     }
 
@@ -20,7 +21,7 @@ class UserRepositoryImpl(private val dataSource: DataSourceFactory) : UserReposi
         return dataSource.remote().signUp(params)
     }
 
-    override fun saveUser(user: User) {
+    override suspend fun saveUser(user: User) {
         dataSource.local().saveUser(user)
     }
 
