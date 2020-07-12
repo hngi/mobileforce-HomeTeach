@@ -86,15 +86,13 @@ class CustomUserSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class ProfileSerializer(serializers.HyperlinkedModelSerializer):
+    user = UserSerializer(read_only=True)
     user_url = serializers.HyperlinkedIdentityField(view_name='customuser-detail')
-    id = serializers.IntegerField(source='pk', read_only=True)
-    email = serializers.CharField(source='user.email')
-    full_name = serializers.CharField(source='user.full_name')
 
     class Meta:
         model = Profile
         depth = 1
-        fields = ('id', 'email', 'full_name',
+        fields = ('user',
                   'profile_pic', 'desc', 'field', 'major_course', 'other_courses', 'state', 'address', 
                   'user_url')
 
@@ -104,7 +102,8 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
 
     def update(self, instance, validated_data):
         # retrieve CustomUser
-        user_data = validated_data.pop('user', None)
+        validated_data.pop('user', None)
+        user_data = {k:v for k,v in validated_data.items() if v}
         for attr, value in user_data.items():
             setattr(instance.user, attr, value)
 
