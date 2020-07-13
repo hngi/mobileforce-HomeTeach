@@ -1,8 +1,10 @@
 package com.mobileforce.hometeach.data
 
+import androidx.lifecycle.LiveData
 import com.mobileforce.hometeach.data.model.User
 import com.mobileforce.hometeach.data.repo.UserRepository
 import com.mobileforce.hometeach.data.sources.DataSourceFactory
+import com.mobileforce.hometeach.localsource.model.UserEntity
 import com.mobileforce.hometeach.remotesource.Params
 import com.mobileforce.hometeach.remotesource.wrappers.EditTutorProfileResponse
 import com.mobileforce.hometeach.remotesource.wrappers.LoginResponse
@@ -25,8 +27,8 @@ class UserRepositoryImpl(private val dataSource: DataSourceFactory) : UserReposi
         dataSource.local().saveUser(user)
     }
 
-    override fun logOut() {
-        TODO("Not yet implemented")
+    override suspend fun logOut() {
+        dataSource.local().clearDb()
     }
 
     override suspend fun editTutorProfile(
@@ -38,6 +40,10 @@ class UserRepositoryImpl(private val dataSource: DataSourceFactory) : UserReposi
 
     override suspend fun getProfileList(): List<ProfileResponse> {
         return dataSource.remote().getProfileList()
+    }
+
+    override fun getUser(): LiveData<UserEntity> {
+        return dataSource.local().getUser()
     }
 
 

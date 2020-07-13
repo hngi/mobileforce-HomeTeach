@@ -1,5 +1,6 @@
 package com.mobileforce.hometeach.data.sources
 
+import androidx.lifecycle.LiveData
 import com.mobileforce.hometeach.data.model.User
 import com.mobileforce.hometeach.localsource.AppDataBase
 import com.mobileforce.hometeach.localsource.model.UserEntity
@@ -22,12 +23,11 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
     }
 
     override suspend fun saveUser(user: User) {
-
         db.userDao().saveUser(mapUserToEntity(user))
     }
 
 
-    override suspend fun getUser(): UserEntity {
+    override fun getUser(): LiveData<UserEntity> {
         return db.userDao().getUser()
     }
 
@@ -40,6 +40,10 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
 
     override suspend fun getProfileList(): List<ProfileResponse> {
         TODO("Not yet implemented")
+    }
+
+    override suspend fun clearDb() {
+        db.userDao().clearDb()
     }
 
 

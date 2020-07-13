@@ -8,7 +8,6 @@ import com.mobileforce.hometeach.AppConstants.USER_STUDENT
 import com.mobileforce.hometeach.AppConstants.USER_TUTOR
 import com.mobileforce.hometeach.data.model.User
 import com.mobileforce.hometeach.data.repo.UserRepository
-import com.mobileforce.hometeach.localsource.PreferenceHelper
 import com.mobileforce.hometeach.remotesource.Params
 import com.mobileforce.hometeach.remotesource.wrappers.UserRemote
 import com.mobileforce.hometeach.utils.Result
@@ -19,7 +18,7 @@ import kotlinx.coroutines.launch
 import java.lang.Exception
 
 
-class SignInViewModel(private val userRepository: UserRepository,private val pref:PreferenceHelper) : ViewModel() {
+class SignInViewModel(private val userRepository: UserRepository, private val preferenceHelper: PreferenceHelper) : ViewModel() {
 
     //Live data goes here
     private val _signIn = MutableLiveData<Result<Nothing>>()
@@ -32,6 +31,7 @@ class SignInViewModel(private val userRepository: UserRepository,private val pre
                 val response = userRepository.login(params)
 
                 if (response.isSuccessful) {
+                    preferenceHelper.isLoggedIn = true
 
                     try {
 

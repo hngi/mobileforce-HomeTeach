@@ -9,6 +9,7 @@ import com.mobileforce.hometeach.AppConstants.USER_TUTOR
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.localsource.PreferenceHelper
 import com.mobileforce.hometeach.ui.signin.LoginActivity
+import com.mobileforce.hometeach.ui.signup.SignUpActivity
 import kotlinx.android.synthetic.main.activity_explore.*
 import org.koin.android.ext.android.inject
 
@@ -25,9 +26,16 @@ class ExploreActivity : AppCompatActivity() {
             getSharedPreferences("PREFERENCE", Context.MODE_PRIVATE)
                 .getBoolean("isFirstRun", true)
 
+//        val isLoggedIn = PreferenceHelper(this).isLoggedIn
+//        if (isLoggedIn){
+//            startActivity(Intent(this@ExploreActivity, BottonNavigationActivity::class.java))
+//            finish()
+//        }
+
         if (isFirstRun) {
             //show OnBoarding activity
             startActivity(Intent(this@ExploreActivity, OnBoardingActivity::class.java))
+            finish()
         }
         getSharedPreferences("PREFERENCE", Context.MODE_PRIVATE).edit()
             .putBoolean("isFirstRun", false).apply()
@@ -35,13 +43,14 @@ class ExploreActivity : AppCompatActivity() {
         tutorButton.setOnClickListener {
             //save user type to shared preference
             pref.userType = USER_TUTOR
-            startActivity(Intent(this, LoginActivity::class.java))
+            startActivity(Intent(this, SignUpActivity::class.java))
         }
 
         studentButton.setOnClickListener {
             //save user type to shared preference
             pref.userType = USER_STUDENT
-            startActivity(Intent(this, LoginActivity::class.java))
+            startActivity(Intent(this, SignUpActivity::class.java))
         }
+
     }
 }

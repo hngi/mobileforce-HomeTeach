@@ -1,6 +1,8 @@
 package com.mobileforce.hometeach.data.repo
 
+import androidx.lifecycle.LiveData
 import com.mobileforce.hometeach.data.model.User
+import com.mobileforce.hometeach.localsource.model.UserEntity
 import com.mobileforce.hometeach.remotesource.Params
 import com.mobileforce.hometeach.remotesource.wrappers.EditTutorProfileResponse
 import com.mobileforce.hometeach.remotesource.wrappers.ProfileResponse
@@ -13,7 +15,8 @@ interface UserRepository {
     suspend fun login(params: Params.SignIn): Response<List<Any>>
     suspend fun register(params: Params.SignUp): RegisterUserResponse
     suspend fun saveUser(user: User)
-    fun logOut()
+    suspend fun logOut()
     suspend fun editTutorProfile(id: Int, params: Params.EditTutorProfile): EditTutorProfileResponse
     suspend fun getProfileList(): List<ProfileResponse>
+    fun getUser(): LiveData<UserEntity>
 }
