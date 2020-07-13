@@ -8,14 +8,13 @@ import com.mobileforce.hometeach.AppConstants.USER_STUDENT
 import com.mobileforce.hometeach.AppConstants.USER_TUTOR
 import com.mobileforce.hometeach.data.model.User
 import com.mobileforce.hometeach.data.repo.UserRepository
+import com.mobileforce.hometeach.localsource.PreferenceHelper
 import com.mobileforce.hometeach.remotesource.Params
 import com.mobileforce.hometeach.remotesource.wrappers.UserRemote
 import com.mobileforce.hometeach.utils.Result
 import com.mobileforce.hometeach.utils.asLiveData
-import com.mobileforce.hometeach.utils.toDomain
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
-import java.lang.Exception
 
 
 class SignInViewModel(private val userRepository: UserRepository, private val preferenceHelper: PreferenceHelper) : ViewModel() {
@@ -54,9 +53,9 @@ class SignInViewModel(private val userRepository: UserRepository, private val pr
                                 userRepository.saveUser(user).also {
                                     //save user type to shared pref
                                     if (isTutor){
-                                        pref.userType = USER_TUTOR
+                                        preferenceHelper.userType = USER_TUTOR
                                     }else{
-                                        pref.userType = USER_STUDENT
+                                        preferenceHelper.userType = USER_STUDENT
                                     }
                                 }
                             }
