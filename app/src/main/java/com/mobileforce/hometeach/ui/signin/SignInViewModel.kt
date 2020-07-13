@@ -4,6 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
+import com.mobileforce.hometeach.AppConstants.USER_STUDENT
+import com.mobileforce.hometeach.AppConstants.USER_TUTOR
 import com.mobileforce.hometeach.data.model.User
 import com.mobileforce.hometeach.data.repo.UserRepository
 import com.mobileforce.hometeach.localsource.PreferenceHelper
@@ -11,10 +13,8 @@ import com.mobileforce.hometeach.remotesource.Params
 import com.mobileforce.hometeach.remotesource.wrappers.UserRemote
 import com.mobileforce.hometeach.utils.Result
 import com.mobileforce.hometeach.utils.asLiveData
-import com.mobileforce.hometeach.utils.toDomain
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
-import java.lang.Exception
 
 
 class SignInViewModel(private val userRepository: UserRepository, private val preferenceHelper: PreferenceHelper) : ViewModel() {
@@ -50,7 +50,14 @@ class SignInViewModel(private val userRepository: UserRepository, private val pr
                                     isActive = isActive,
                                     id = id.toString()
                                 )
-                                userRepository.saveUser(user)
+                                userRepository.saveUser(user).also {
+                                    //save user type to shared pref
+                                    if (isTutor){
+                                        preferenceHelper.userType = USER_TUTOR
+                                    }else{
+                                        preferenceHelper.userType = USER_STUDENT
+                                    }
+                                }
                             }
 
                             _signIn.postValue(Result.Success())
