@@ -7,7 +7,6 @@ import com.mobileforce.hometeach.remotesource.Api
 import com.mobileforce.hometeach.remotesource.Params
 import com.mobileforce.hometeach.remotesource.wrappers.EmailResponse
 import com.mobileforce.hometeach.remotesource.wrappers.EditTutorProfileResponse
-import com.mobileforce.hometeach.remotesource.wrappers.LoginResponse
 import com.mobileforce.hometeach.remotesource.wrappers.ProfileResponse
 import com.mobileforce.hometeach.remotesource.wrappers.RegisterUserResponse
 import retrofit2.Response
@@ -59,8 +58,12 @@ class RemoteDataSource(private val api: Api) : DataSource {
         TODO("Not yet implemented")
     }
 
-    override suspend fun password_reset(params: Params.PasswordReset): EmailResponse {
-        return api.password_reset(params)
+    override suspend fun resetPassword(params: Params.PasswordReset): EmailResponse {
+
+        val map = hashMapOf(
+            "email" to params.email
+        )
+        return api.resetPassword(map)
     }
 
 }

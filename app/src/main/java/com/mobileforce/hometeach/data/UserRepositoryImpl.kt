@@ -48,7 +48,7 @@ class UserRepositoryImpl(private val dataSource: DataSourceFactory) : UserReposi
     }
 
     override suspend fun password_reset(params: Params.PasswordReset): EmailResponse {
-        return dataSource.remote().password_reset(params)
+        return dataSource.remote().resetPassword(params)
     }
 
 

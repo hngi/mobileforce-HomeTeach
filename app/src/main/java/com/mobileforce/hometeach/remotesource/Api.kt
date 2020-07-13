@@ -17,9 +17,10 @@ interface Api {
     @POST("api/v1/login/")
     suspend fun login(@Body params: Map<String, Any>): Response<List<Any>>
 
-
+    @JvmSuppressWildcards
     @POST("api/v1/password_reset/")
-    suspend fun password_reset(@Body params: Params.PasswordReset): EmailResponse
+    suspend fun resetPassword(@Body params: Map<String, String>): EmailResponse         // params: Params.PasswordReset
+
     suspend fun register(@Body params: Map<String, Any>): RegisterUserResponse
 
     @PUT("api/v1/profiles/{id}/")

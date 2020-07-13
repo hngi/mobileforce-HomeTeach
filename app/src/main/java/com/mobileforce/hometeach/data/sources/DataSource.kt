@@ -17,7 +17,7 @@ interface DataSource {
     suspend fun logIn(params: Params.SignIn): Response<List<Any>>
     suspend fun signUp(params: Params.SignUp): RegisterUserResponse
 
-    suspend fun password_reset(params: Params.PasswordReset):EmailResponse
+    suspend fun resetPassword(params: Params.PasswordReset):EmailResponse
 
     suspend fun saveUser(user: User)
     fun getUser(): LiveData<UserEntity>
