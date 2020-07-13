@@ -5,7 +5,10 @@ import com.mobileforce.hometeach.data.model.User
 import com.mobileforce.hometeach.localsource.AppDataBase
 import com.mobileforce.hometeach.localsource.model.UserEntity
 import com.mobileforce.hometeach.remotesource.Params
+
+import com.mobileforce.hometeach.remotesource.wrappers.EmailResponse
 import com.mobileforce.hometeach.remotesource.wrappers.EditTutorProfileResponse
+
 import com.mobileforce.hometeach.remotesource.wrappers.LoginResponse
 import com.mobileforce.hometeach.remotesource.wrappers.ProfileResponse
 import com.mobileforce.hometeach.remotesource.wrappers.RegisterUserResponse
@@ -30,6 +33,11 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
     override fun getUser(): LiveData<UserEntity> {
         return db.userDao().getUser()
     }
+
+    override suspend fun resetPassword(params: Params.PasswordReset): EmailResponse {
+        TODO("Not yet implemented")
+    }
+
 
     override suspend fun editTutorProfile(
         id: Int,

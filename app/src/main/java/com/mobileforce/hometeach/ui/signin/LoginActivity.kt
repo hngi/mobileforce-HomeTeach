@@ -6,17 +6,18 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.util.Patterns
 import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.AppCompatButton
 import androidx.lifecycle.Observer
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.databinding.ActivityLoginBinding
 import com.mobileforce.hometeach.remotesource.Params
 import com.mobileforce.hometeach.ui.BottonNavigationActivity
 import com.mobileforce.hometeach.ui.ExploreActivity
-import com.mobileforce.hometeach.ui.signup.SignUpActivity
 import com.mobileforce.hometeach.utils.Result
 import com.mobileforce.hometeach.utils.snack
 import kotlinx.android.synthetic.main.forgot_password_layout1.view.*
@@ -102,7 +103,7 @@ class LoginActivity : AppCompatActivity() {
             }
 
         }
-
+        
         passwordWatcher = object : TextWatcher {
             override fun afterTextChanged(input: Editable?) {
                 val PASSWORD_PATTEN =
@@ -147,7 +148,10 @@ class LoginActivity : AppCompatActivity() {
         observeSignIn()
     }
 
+
+
     private fun observeSignIn() {
+
         viewModel.signIn.observe(this, Observer { result ->
 
             when (result) {
@@ -180,6 +184,7 @@ class LoginActivity : AppCompatActivity() {
         //finish()
     }
 
+
     private fun navigateToSignUp() {
         //startActivity(Intent(this, SignUpActivity::class.java))
         startActivity(Intent(this, ExploreActivity::class.java))
@@ -207,10 +212,7 @@ class LoginActivity : AppCompatActivity() {
             } else {
 
             }
-
-
         }
-
     }
 
     private fun showEmailDialog() {
@@ -221,6 +223,13 @@ class LoginActivity : AppCompatActivity() {
         //show dialog
         val mAlertDialog = mBuilder.show()
         val email = mDialogView.emailtext.text.toString()
+        val data = Params.PasswordReset(email)
+        val submit = mDialogView.findViewById<AppCompatButton>(R.id.submit)
+       submit.setOnClickListener {
+           viewModel.resetPassword(data)
+          // reset()
+           mAlertDialog.hide()
+       }
     }
 
     private fun showPhoneDialog() {
@@ -232,5 +241,14 @@ class LoginActivity : AppCompatActivity() {
         val mAlertDialog = mBuilder.show()
         val phone = mDialogView.phone.text.toString()
     }
+
+    fun reset(){
+        viewModel.reset.observe(this, Observer {
+          Log.d("api",it.toString())
+        }
+        )
+
+    }
+
 
 }

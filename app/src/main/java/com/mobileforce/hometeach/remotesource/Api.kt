@@ -1,6 +1,9 @@
 package com.mobileforce.hometeach.remotesource
 
+import com.mobileforce.hometeach.remotesource.wrappers.EmailResponse
+
 import com.mobileforce.hometeach.remotesource.wrappers.EditTutorProfileResponse
+
 import com.mobileforce.hometeach.remotesource.wrappers.LoginResponse
 import com.mobileforce.hometeach.remotesource.wrappers.ProfileResponse
 import com.mobileforce.hometeach.remotesource.wrappers.RegisterUserResponse
@@ -15,11 +18,18 @@ interface Api {
     suspend fun login(@Body params: Map<String, Any>): Response<List<Any>>
 
     @JvmSuppressWildcards
+    @POST("api/v1/password-reset/")
+    suspend fun resetPassword(@Body params: Map<String, String>): EmailResponse
+
+    @JvmSuppressWildcards
     @POST("api/v1/register/")
     suspend fun register(@Body params: Map<String, Any>): RegisterUserResponse
 
     @PUT("api/v1/profiles/{id}/")
-    suspend fun editTutorProfile(@Path("id") id: Int, @Body params: Params.EditTutorProfile): EditTutorProfileResponse
+    suspend fun editTutorProfile(
+        @Path("id") id: Int,
+        @Body params: Params.EditTutorProfile
+    ): EditTutorProfileResponse
 
     @GET("/api/v1/profiles/")
     suspend fun getProfileList(): List<ProfileResponse>

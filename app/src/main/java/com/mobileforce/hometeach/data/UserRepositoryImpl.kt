@@ -6,6 +6,7 @@ import com.mobileforce.hometeach.data.repo.UserRepository
 import com.mobileforce.hometeach.data.sources.DataSourceFactory
 import com.mobileforce.hometeach.localsource.model.UserEntity
 import com.mobileforce.hometeach.remotesource.Params
+import com.mobileforce.hometeach.remotesource.wrappers.EmailResponse
 import com.mobileforce.hometeach.remotesource.wrappers.EditTutorProfileResponse
 import com.mobileforce.hometeach.remotesource.wrappers.LoginResponse
 import com.mobileforce.hometeach.remotesource.wrappers.ProfileResponse
@@ -44,6 +45,10 @@ class UserRepositoryImpl(private val dataSource: DataSourceFactory) : UserReposi
 
     override fun getUser(): LiveData<UserEntity> {
         return dataSource.local().getUser()
+    }
+
+    override suspend fun password_reset(params: Params.PasswordReset): EmailResponse {
+        return dataSource.remote().resetPassword(params)
     }
 
 

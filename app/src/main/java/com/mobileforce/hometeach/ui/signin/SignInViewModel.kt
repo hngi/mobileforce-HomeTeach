@@ -1,5 +1,7 @@
 package com.mobileforce.hometeach.ui.signin
 
+import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,6 +12,10 @@ import com.mobileforce.hometeach.data.model.User
 import com.mobileforce.hometeach.data.repo.UserRepository
 import com.mobileforce.hometeach.localsource.PreferenceHelper
 import com.mobileforce.hometeach.remotesource.Params
+import com.mobileforce.hometeach.remotesource.Params.PasswordReset
+import com.mobileforce.hometeach.remotesource.wrappers.EmailResponse
+import kotlinx.coroutines.launch
+import org.koin.ext.scope
 import com.mobileforce.hometeach.remotesource.wrappers.UserRemote
 import com.mobileforce.hometeach.utils.Result
 import com.mobileforce.hometeach.utils.asLiveData
@@ -17,9 +23,17 @@ import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 
 
-class SignInViewModel(private val userRepository: UserRepository, private val preferenceHelper: PreferenceHelper) : ViewModel() {
+class SignInViewModel(
+    private val userRepository: UserRepository,
+    private val preferenceHelper: PreferenceHelper
+) : ViewModel() {
 
     //Live data goes here
+
+    private val _reset = MutableLiveData<Result<Nothing>>()
+    val reset: LiveData<Result<Nothing>>
+        get() = _reset
+
     private val _signIn = MutableLiveData<Result<Nothing>>()
     val signIn = _signIn.asLiveData()
 
@@ -37,7 +51,7 @@ class SignInViewModel(private val userRepository: UserRepository, private val pr
                         response.body()?.let {
                             val token = it[0].toString()
                             val json = Gson().toJson(it[1])
-                            val userResponse = Gson().fromJson(json,UserRemote::class.java)
+                            val userResponse = Gson().fromJson(json, UserRemote::class.java)
 
                             print("user ${userResponse.fullName}")
                             with(userResponse) {
@@ -79,6 +93,24 @@ class SignInViewModel(private val userRepository: UserRepository, private val pr
                 _signIn.postValue(Result.Error(error))
             }
 
+        }
+    }
+
+    fun resetPassword(params: Params.PasswordReset) {
+        viewModelScope.launch {
+            try {
+                val emailResponse = userRepository.password_reset(params)
+                if (emailResponse.status == "OK") {
+                    _reset.postValue(Result.Success())
+                    Log.d("api", emailResponse.status)
+                } else {
+                    Log.d("api", emailResponse.status)
+                }
+
+            } catch (error: Throwable) {
+                _reset.postValue(Result.Error(error))
+
+            }
         }
     }
 
