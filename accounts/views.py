@@ -56,7 +56,7 @@ def api_register_view(request):
         message = render_to_string('email_verification_template.html', {
             'user': account,
             'domain': current_site.domain,
-            'uid': urlsafe_base64_encode(force_bytes(account.pk)),
+            'uid': urlsafe_base64_encode(force_bytes(account.id)),
             'token': account_activation_token.make_token(account),
         })
         content = Content("text/html", message)
@@ -75,7 +75,7 @@ def activate(request, uidb64, token):
     User = get_user_model()
     try:
         uid = force_text(urlsafe_base64_decode(uidb64))
-        user = User.objects.get(pk=uid)
+        user = User.objects.get(id=uid)
     except(TypeError, ValueError, OverflowError, User.DoesNotExist):
         user = None
     if user is not None and account_activation_token.check_token(user, token):
