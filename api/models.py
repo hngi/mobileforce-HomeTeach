@@ -15,7 +15,6 @@ class Rating(models.Model):
 class Request(models.Model):
 	requester = models.ForeignKey(User, related_name='pending_requests', on_delete=models.CASCADE)
 	tutor = models.ForeignKey(User, related_name='requests', on_delete=models.CASCADE)
-	description = models.CharField(max_length=1000)
 	date_requested = models.DateTimeField(auto_now_add=True)
 	accepted = models.BooleanField(default=False)
 
@@ -31,6 +30,7 @@ class Profile(models.Model):
 	profile_pic = models.FileField(blank=True, null=True)
 	desc = models.CharField(max_length=255, null=True, blank=True)
 	field = models.CharField(max_length=255, null=True, blank=True)
+	hourly_rate = models.CharField(max_length=10000000, default=0)
 	major_course = models.CharField(max_length=255, null=True, blank=True)
 	other_courses = models.CharField(max_length=255, null=True, blank=True)
 	state = models.CharField(max_length=255, null=True, blank=True)

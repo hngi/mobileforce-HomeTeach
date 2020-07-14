@@ -1,6 +1,6 @@
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from rest_framework.request import Request
 from django.contrib.auth import login, logout, authenticate
 from sendgrid import SendGridAPIClient
 from django.template.loader import get_template
@@ -32,8 +32,8 @@ from rest_framework.generics import GenericAPIView
 from rest_framework.response import Response
 
 from django_rest_passwordreset.serializers import EmailSerializer, PasswordTokenSerializer, TokenSerializer
-from django_rest_passwordreset.models import ResetPasswordToken, clear_expired, get_password_reset_token_expiry_time, \
-    get_password_reset_lookup_field
+from django_rest_passwordreset.models import (ResetPasswordToken, clear_expired, 
+    get_password_reset_token_expiry_time, get_password_reset_lookup_field)
 from django_rest_passwordreset.signals import reset_password_token_created, pre_password_reset, post_password_reset
 
 User = get_user_model()
@@ -44,10 +44,10 @@ class UserLoginView(APIView):
     serializer_class = UserLoginSerializer
     def post(self, request, *args, **kwargs):
         data = request.data
-        serializer = UserLoginSerializer(data = data)
+        serializer = UserLoginSerializer(data = data, context={'request': request})
         if serializer.is_valid(raise_exception=True):
             data = serializer.save()
-            return Response(data, status=HTTP_200_OK)
+            return Response(serializer.data, status=HTTP_200_OK)
         return  Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
 
 class UserLogoutView(APIView):
@@ -72,7 +72,7 @@ def api_register_view(request):
         message = render_to_string('email_verification_template.html', {
             'user': account,
             'domain': current_site.domain,
-            'uid': urlsafe_base64_encode(force_bytes(account.id)),
+            'uid': urlsafe_base64_encode(force_bytes(account.pk)),
             'token': account_activation_token.make_token(account),
         })
         content = Content("text/html", message)
