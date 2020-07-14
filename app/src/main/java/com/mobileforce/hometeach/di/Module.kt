@@ -3,7 +3,9 @@ package com.mobileforce.hometeach.di
 import androidx.room.Room
 import com.mobileforce.hometeach.AppConstants.BASE_URL
 import com.mobileforce.hometeach.AppConstants.DATABASE_NAME
+import com.mobileforce.hometeach.data.TutorRepositoryImpl
 import com.mobileforce.hometeach.data.UserRepositoryImpl
+import com.mobileforce.hometeach.data.repo.TutorRepository
 import com.mobileforce.hometeach.data.repo.UserRepository
 import com.mobileforce.hometeach.data.sources.DataSourceFactory
 import com.mobileforce.hometeach.data.sources.LocalDataSource
@@ -71,6 +73,7 @@ val appModule = module {
     single { LocalDataSource(get()) }
     single { DataSourceFactory(get(), get()) }
     single<UserRepository> { UserRepositoryImpl(get()) }
+    single<TutorRepository> { TutorRepositoryImpl(get()) }
 
 
     //---------------------view models --------------------------------------
