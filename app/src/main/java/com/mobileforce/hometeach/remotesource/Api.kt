@@ -1,12 +1,7 @@
 package com.mobileforce.hometeach.remotesource
 
-import com.mobileforce.hometeach.remotesource.wrappers.EmailResponse
+import com.mobileforce.hometeach.remotesource.wrappers.*
 
-import com.mobileforce.hometeach.remotesource.wrappers.EditTutorProfileResponse
-
-import com.mobileforce.hometeach.remotesource.wrappers.LoginResponse
-import com.mobileforce.hometeach.remotesource.wrappers.ProfileResponse
-import com.mobileforce.hometeach.remotesource.wrappers.RegisterUserResponse
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -33,4 +28,7 @@ interface Api {
 
     @GET("/api/v1/profiles/")
     suspend fun getProfileList(): List<ProfileResponse>
+    @JvmSuppressWildcards
+    @GET("api/v1/tutor_profiles/{id}/")
+    suspend fun getTutorDetails(@Path("id") id: Int): TutorDetailsResponse
 }

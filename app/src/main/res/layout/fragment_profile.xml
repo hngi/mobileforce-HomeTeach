@@ -1,402 +1,403 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.profile.ProfileFragment">
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:id="@+id/profileLayout"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context=".ui.profile.ProfileFragment">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appBarLayout"
-            style="@style/Widget.MaterialComponents.AppBarLayout.Surface"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:elevation="0dp"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$Behavior"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="match_parent">
 
-
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/tool_bar"
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBarLayout"
+                style="@style/Widget.MaterialComponents.AppBarLayout.Surface"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#D6F5D9"
-                app:layout_scrollFlags="enterAlways|scroll"
-                app:navigationIcon="@drawable/ic_baseline_arrow_back_24">
+                app:elevation="0dp"
+                app:layout_behavior="com.google.android.material.appbar.AppBarLayout$Behavior"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/tool_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#D6F5D9"
+                    app:layout_scrollFlags="enterAlways|scroll"
+                    app:navigationIcon="@drawable/ic_baseline_arrow_back_24">
+
+                    <TextView
+                        android:id="@+id/tutorName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text=""
+                        android:textColor="#000000"
+                        android:textSize="24sp" />
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:src="@drawable/ic_notify" />
+
+                </com.google.android.material.appbar.MaterialToolbar>
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <RelativeLayout
+                android:id="@+id/relative_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+
+                <ImageView
+                    android:id="@+id/tutor_video"
+                    android:background="@drawable/video_place_holder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:layout_below="@id/tutor_video"
+                    android:background="@drawable/curved_tab_background" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/tutor_summary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tutor_video"
+                    android:layout_margin="16dp"
+                    app:contentPadding="16dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="6dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/tutor_image"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginTop="16dp"
+                            android:src="@drawable/profile_image"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:id="@+id/Number_of_lessonsTv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="@string/_34_lessons"
+                            android:textColor="#000000"
+                            android:textSize="12sp"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toLeftOf="@id/View_Id"
+                            app:layout_constraintTop_toBottomOf="@id/tutor_image" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginRight="8dp"
+                            android:fontFamily="@font/ubuntu"
+                            android:text="@string/_12_students"
+                            android:textSize="12sp"
+                            app:layout_constraintLeft_toLeftOf="@id/Number_of_lessonsTv"
+                            app:layout_constraintRight_toLeftOf="@id/View_Id"
+                            app:layout_constraintTop_toBottomOf="@id/Number_of_lessonsTv" />
+
+                        <View
+                            android:id="@+id/View_Id"
+                            android:layout_width="1dp"
+                            android:layout_height="0dp"
+                            android:layout_marginLeft="10dp"
+                            android:background="#B5B5B5"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintLeft_toRightOf="@id/tutor_image"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:layout_marginStart="10dp" />
+
+                        <TextView
+                            android:id="@+id/tutor_name_profile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_marginLeft="10sp"
+                            android:layout_marginTop="24dp"
+                            android:fontFamily="@font/ubuntu"
+                            android:textColor="#000000"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            app:layout_constraintLeft_toRightOf="@id/View_Id"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:layout_marginStart="10sp" />
+
+                        <TextView
+                            android:id="@+id/Price_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="24dp"
+                            android:layout_marginRight="8dp"
+                            android:text="@string/price"
+                            android:textSize="14sp"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/Amount_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginRight="8dp"
+                            android:text="@string/n2000_hr"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:textColor="#000000"
+                            app:layout_constraintEnd_toEndOf="@+id/Price_tv"
+                            app:layout_constraintStart_toStartOf="@+id/Price_tv"
+                            app:layout_constraintTop_toBottomOf="@+id/Price_tv"
+                            tools:text="N2000/hr" />
+
+                        <TextView
+                            android:id="@+id/Science_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/science"
+                            android:textColor="#000000"
+                            android:textSize="12sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/Price_tv"
+                            app:layout_constraintStart_toStartOf="@+id/Price_tv"
+                            app:layout_constraintTop_toBottomOf="@+id/Amount_tv" />
+
+                        <ImageView
+                            android:id="@+id/calculator"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginTop="4dp"
+                            android:src="@drawable/ic_calculator"
+                            app:layout_constraintEnd_toEndOf="@+id/Science_tv"
+                            app:layout_constraintStart_toStartOf="@+id/Science_tv"
+                            app:layout_constraintTop_toBottomOf="@id/Science_tv"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:id="@+id/Tutor_subject"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/math_tutor"
+                            android:textSize="13sp"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintLeft_toLeftOf="@id/tutor_name_profile"
+                            app:layout_constraintRight_toRightOf="@id/tutor_name_profile"
+                            app:layout_constraintTop_toBottomOf="@id/tutor_name_profile" />
+
+
+                        <RatingBar
+                            android:id="@+id/teachers_rating_bar"
+                            style="?android:attr/ratingBarStyleSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:numStars="5"
+                            android:progressTint="@android:color/holo_orange_light"
+                            android:rating="4"
+                            app:layout_constraintLeft_toLeftOf="@id/Tutor_subject"
+                            app:layout_constraintTop_toBottomOf="@id/Tutor_subject"
+                            tools:ignore="UnusedAttribute" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:text="@string/_16"
+                            android:textColor="#000000"
+                            app:layout_constraintBottom_toBottomOf="@id/teachers_rating_bar"
+                            app:layout_constraintLeft_toRightOf="@id/teachers_rating_bar"
+                            app:layout_constraintTop_toTopOf="@id/teachers_rating_bar" />
+
+                        <TextView
+                            android:id="@+id/tutor_interest"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/interests_science_math_physics"
+                            android:textSize="12sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintLeft_toLeftOf="@id/Tutor_subject"
+                            app:layout_constraintTop_toBottomOf="@id/teachers_rating_bar"
+                            app:layout_constraintVertical_bias="0.22000003" />
+
+                        <ImageView
+                            android:id="@+id/round_green"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:src="@drawable/ic_round_green"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/tutor_interest"
+                            app:layout_constraintTop_toBottomOf="@id/tutor_interest"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            style="@style/TextAppearance.AppCompat.Large"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginLeft="8dp"
+                            android:fontFamily="@font/ubuntu"
+                            android:text="@string/available"
+                            android:textSize="12sp"
+                            app:layout_constraintBottom_toBottomOf="@id/round_green"
+                            app:layout_constraintLeft_toRightOf="@id/round_green"
+                            app:layout_constraintTop_toTopOf="@id/round_green"
+                            app:layout_constraintVertical_bias="0.86" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+            </RelativeLayout>
+
+
+            <TextView
+                android:id="@+id/description_text"
+                style="@style/TextAppearance.AppCompat.Large"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/ubuntu"
+                android:text="@string/description"
+                android:textSize="21sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/relative_layout" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/Tutor_Description_Detail_card"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="6dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/description_text">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/rahman_djando"
-                    android:textColor="#000000"
-                    android:textSize="24sp" />
-
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginRight="16dp"
-                    android:src="@drawable/ic_notify" />
-
-            </com.google.android.material.appbar.MaterialToolbar>
-        </com.google.android.material.appbar.AppBarLayout>
-
-        <RelativeLayout
-            android:id="@+id/relative_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
-
-            <ImageView
-                android:id="@+id/tutor_video"
-                android:background="@drawable/video_place_holder"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:layout_below="@id/tutor_video"
-                android:background="@drawable/curved_tab_background" />
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/tutor_summary"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tutor_video"
-                android:layout_margin="16dp"
-                app:contentPadding="16dp"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="6dp">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <ImageView
-                        android:id="@+id/tutor_image"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginTop="16dp"
-                        android:src="@drawable/profile_image"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:ignore="ContentDescription" />
-
-                    <TextView
-                        android:id="@+id/Number_of_lessonsTv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:text="@string/_34_lessons"
-                        android:textColor="#000000"
-                        android:textSize="12sp"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toLeftOf="@id/View_Id"
-                        app:layout_constraintTop_toBottomOf="@id/tutor_image" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginRight="8dp"
-                        android:fontFamily="@font/ubuntu"
-                        android:text="@string/_12_students"
-                        android:textSize="12sp"
-                        app:layout_constraintLeft_toLeftOf="@id/Number_of_lessonsTv"
-                        app:layout_constraintRight_toLeftOf="@id/View_Id"
-                        app:layout_constraintTop_toBottomOf="@id/Number_of_lessonsTv" />
-
-                    <View
-                        android:id="@+id/View_Id"
-                        android:layout_width="1dp"
-                        android:layout_height="0dp"
-                        android:layout_marginLeft="10dp"
-                        android:background="#B5B5B5"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintLeft_toRightOf="@id/tutor_image"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:layout_marginStart="10dp" />
-
-                    <TextView
-                        android:id="@+id/tutor_name_profile"
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:layout_marginLeft="10sp"
-                        android:layout_marginTop="24dp"
-                        android:fontFamily="@font/ubuntu"
-                        android:text="@string/rahman_djando"
-                        android:textColor="#000000"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        app:layout_constraintLeft_toRightOf="@id/View_Id"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:layout_marginStart="10sp" />
-
-                    <TextView
-                        android:id="@+id/Price_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="24dp"
-                        android:layout_marginRight="8dp"
-                        android:text="@string/price"
-                        android:textSize="14sp"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/Amount_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginRight="8dp"
-                        android:text="@string/n2000_hr"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        android:textColor="#000000"
-                        app:layout_constraintEnd_toEndOf="@+id/Price_tv"
-                        app:layout_constraintStart_toStartOf="@+id/Price_tv"
-                        app:layout_constraintTop_toBottomOf="@+id/Price_tv"
-                        tools:text="N2000/hr" />
-
-                    <TextView
-                        android:id="@+id/Science_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/science"
-                        android:textColor="#000000"
-                        android:textSize="12sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="@+id/Price_tv"
-                        app:layout_constraintStart_toStartOf="@+id/Price_tv"
-                        app:layout_constraintTop_toBottomOf="@+id/Amount_tv" />
-
-                    <ImageView
-                        android:id="@+id/calculator"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginTop="4dp"
-                        android:src="@drawable/ic_calculator"
-                        app:layout_constraintEnd_toEndOf="@+id/Science_tv"
-                        app:layout_constraintStart_toStartOf="@+id/Science_tv"
-                        app:layout_constraintTop_toBottomOf="@id/Science_tv"
-                        tools:ignore="ContentDescription" />
-
-                    <TextView
-                        android:id="@+id/Tutor_subject"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="@string/math_tutor"
-                        android:textSize="13sp"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintLeft_toLeftOf="@id/tutor_name_profile"
-                        app:layout_constraintRight_toRightOf="@id/tutor_name_profile"
-                        app:layout_constraintTop_toBottomOf="@id/tutor_name_profile" />
-
-
-                    <RatingBar
-                        android:id="@+id/teachers_rating_bar"
-                        style="?android:attr/ratingBarStyleSmall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:numStars="5"
-                        android:progressTint="@android:color/holo_orange_light"
-                        android:rating="4"
-                        app:layout_constraintLeft_toLeftOf="@id/Tutor_subject"
-                        app:layout_constraintTop_toBottomOf="@id/Tutor_subject"
-                        tools:ignore="UnusedAttribute" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="4dp"
-                        android:text="@string/_16"
-                        android:textColor="#000000"
-                        app:layout_constraintBottom_toBottomOf="@id/teachers_rating_bar"
-                        app:layout_constraintLeft_toRightOf="@id/teachers_rating_bar"
-                        app:layout_constraintTop_toTopOf="@id/teachers_rating_bar" />
-
-                    <TextView
-                        android:id="@+id/tutor_interest"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/interests_science_math_physics"
-                        android:textSize="12sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintLeft_toLeftOf="@id/Tutor_subject"
-                        app:layout_constraintTop_toBottomOf="@id/teachers_rating_bar"
-                        app:layout_constraintVertical_bias="0.22000003" />
-
-                    <ImageView
-                        android:id="@+id/round_green"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:src="@drawable/ic_round_green"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="@+id/tutor_interest"
-                        app:layout_constraintTop_toBottomOf="@id/tutor_interest"
-                        tools:ignore="ContentDescription" />
-
-                    <TextView
-                        style="@style/TextAppearance.AppCompat.Large"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginLeft="8dp"
-                        android:fontFamily="@font/ubuntu"
-                        android:text="@string/available"
-                        android:textSize="12sp"
-                        app:layout_constraintBottom_toBottomOf="@id/round_green"
-                        app:layout_constraintLeft_toRightOf="@id/round_green"
-                        app:layout_constraintTop_toTopOf="@id/round_green"
-                        app:layout_constraintVertical_bias="0.86" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                    android:fontFamily="@font/ubuntu"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="16dp"
+                    android:lineSpacingExtra="3sp"
+                    android:padding="16dp"
+                    android:text="@string/i_teach_with_calmness_and_encouragement_my_lessons_are_not_boring_and_i_can_accomodate_student_s_with_low_affinity_to_studying_i_employ_modern_schema_for_tutoring_with_interactive_guides_and_learning_systems_having_schooled_at_different_educational_organizations_coupled_with_my_nce_certifcate_i_can_assure_you_premium_success_with_me_as_your_home_teacher"
+                    android:textSize="14sp" />
 
             </com.google.android.material.card.MaterialCardView>
-        </RelativeLayout>
-
-
-        <TextView
-            android:id="@+id/description_text"
-            style="@style/TextAppearance.AppCompat.Large"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/ubuntu"
-            android:text="@string/description"
-            android:textSize="21sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/relative_layout" />
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/Tutor_Description_Detail_card"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="6dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/description_text">
 
             <TextView
+                android:id="@+id/Credentials_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/ubuntu"
+                android:layout_marginTop="18dp"
+                android:text="@string/credentials"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:textSize="21sp"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintLeft_toLeftOf="@id/Tutor_Description_Detail_card"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/Tutor_Description_Detail_card" />
+
+            <TextView
+                android:id="@+id/view_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/view_all"
+                android:textColor="#0CB91E"
+                app:layout_constraintBottom_toBottomOf="@id/Credentials_tv"
+                app:layout_constraintHorizontal_bias="0.9"
+                app:layout_constraintLeft_toRightOf="@id/Credentials_tv"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/Credentials_tv" />
+
+            <ImageView
+                android:id="@+id/Pdf_image"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="10dp"
+                android:src="@drawable/pdfimg"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintLeft_toLeftOf="@id/Credentials_tv"
+                app:layout_constraintRight_toRightOf="@id/Credentials_tv"
+                app:layout_constraintTop_toBottomOf="@id/Credentials_tv"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Large"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:text="@string/rahman_djago_resume"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/Pdf_image"
+                app:layout_constraintLeft_toRightOf="@id/Pdf_image"
+                app:layout_constraintTop_toTopOf="@id/Pdf_image"
+                android:layout_marginStart="16dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/edit_button"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_margin="18dp"
                 android:layout_marginTop="10dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginBottom="16dp"
-                android:lineSpacingExtra="3sp"
-                android:padding="16dp"
-                android:text="@string/i_teach_with_calmness_and_encouragement_my_lessons_are_not_boring_and_i_can_accomodate_student_s_with_low_affinity_to_studying_i_employ_modern_schema_for_tutoring_with_interactive_guides_and_learning_systems_having_schooled_at_different_educational_organizations_coupled_with_my_nce_certifcate_i_can_assure_you_premium_success_with_me_as_your_home_teacher"
-                android:textSize="14sp" />
+                android:layout_marginBottom="70dp"
+                android:backgroundTint="@color/colorAccent"
+                android:text="@string/edit_profile"
+                android:textColor="#fff"
+                app:cornerRadius="15dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/Pdf_image"
+                tools:ignore="UnusedAttribute" />
 
-        </com.google.android.material.card.MaterialCardView>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/no_button"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="#E5E5E5"
+                android:textColor="#fff"
+                app:cornerRadius="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/edit_button"
+                tools:ignore="UnusedAttribute" />
 
-        <TextView
-            android:id="@+id/Credentials_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:text="@string/credentials"
-            android:textStyle="bold"
-            android:textColor="@android:color/black"
-            android:textSize="21sp"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toLeftOf="@id/Tutor_Description_Detail_card"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/Tutor_Description_Detail_card" />
-
-        <TextView
-            android:id="@+id/view_all"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/view_all"
-            android:textColor="#0CB91E"
-            app:layout_constraintBottom_toBottomOf="@id/Credentials_tv"
-            app:layout_constraintHorizontal_bias="0.9"
-            app:layout_constraintLeft_toRightOf="@id/Credentials_tv"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@id/Credentials_tv" />
-
-        <ImageView
-            android:id="@+id/Pdf_image"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_margin="10dp"
-            android:src="@drawable/pdfimg"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toLeftOf="@id/Credentials_tv"
-            app:layout_constraintRight_toRightOf="@id/Credentials_tv"
-            app:layout_constraintTop_toBottomOf="@id/Credentials_tv"
-            tools:ignore="ContentDescription" />
-
-        <TextView
-            style="@style/TextAppearance.AppCompat.Large"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:text="@string/rahman_djago_resume"
-            android:textStyle="bold"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@id/Pdf_image"
-            app:layout_constraintLeft_toRightOf="@id/Pdf_image"
-            app:layout_constraintTop_toTopOf="@id/Pdf_image"
-            android:layout_marginStart="16dp" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/edit_button"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_margin="18dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="70dp"
-            android:backgroundTint="@color/colorAccent"
-            android:text="@string/edit_profile"
-            android:textColor="#fff"
-            app:cornerRadius="15dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/Pdf_image"
-            tools:ignore="UnusedAttribute" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/no_button"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="#E5E5E5"
-            android:textColor="#fff"
-            app:cornerRadius="15dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/edit_button"
-            tools:ignore="UnusedAttribute" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.core.widget.NestedScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>

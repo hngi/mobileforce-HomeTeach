@@ -19,5 +19,7 @@ interface UserDao {
     @Query("DELETE FROM user")
     suspend fun clearDb()
 
+    @Query("SELECT * FROM user")
+    suspend fun getSingleUser(): UserEntity
 
 }

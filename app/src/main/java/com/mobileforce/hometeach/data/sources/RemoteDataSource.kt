@@ -5,10 +5,7 @@ import com.mobileforce.hometeach.data.model.User
 import com.mobileforce.hometeach.localsource.model.UserEntity
 import com.mobileforce.hometeach.remotesource.Api
 import com.mobileforce.hometeach.remotesource.Params
-import com.mobileforce.hometeach.remotesource.wrappers.EmailResponse
-import com.mobileforce.hometeach.remotesource.wrappers.EditTutorProfileResponse
-import com.mobileforce.hometeach.remotesource.wrappers.ProfileResponse
-import com.mobileforce.hometeach.remotesource.wrappers.RegisterUserResponse
+import com.mobileforce.hometeach.remotesource.wrappers.*
 import retrofit2.Response
 
 class RemoteDataSource(private val api: Api) : DataSource {
@@ -43,6 +40,10 @@ class RemoteDataSource(private val api: Api) : DataSource {
         TODO("Not yet implemented")
     }
 
+    override suspend fun getSingleUser(): UserEntity {
+        TODO("Not yet implemented")
+    }
+
     override suspend fun editTutorProfile(
         id: Int,
         params: Params.EditTutorProfile
@@ -52,6 +53,12 @@ class RemoteDataSource(private val api: Api) : DataSource {
 
     override suspend fun getProfileList(): List<ProfileResponse> {
         return api.getProfileList()
+    }
+
+    override suspend fun getTutorDetails(
+        id: Int
+    ): TutorDetailsResponse {
+        return api.getTutorDetails(id)
     }
 
     override suspend fun clearDb() {
