@@ -13,6 +13,6 @@ urlpatterns = [
     path('confirm', reset_password_confirm, name='reset-password-confirm'),
     path('password_reset', reset_password_request_token, name='reset-password-request'),
     
-    # password_reset/confirm/
+    # password_reset/confirm/#
     # password_reset/validate_token/
 ]
