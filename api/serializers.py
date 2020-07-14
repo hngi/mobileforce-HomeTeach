@@ -50,7 +50,6 @@ class CreateRequestSerializer(serializers.ModelSerializer):
         data = self.validated_data
         requester_id = data.get('requester_id')
         tutor_id = data.get('tutor_id')
-        description = data.get('description')
 
 
         requester = User.objects.get(id=requester_id)
@@ -62,7 +61,6 @@ class CreateRequestSerializer(serializers.ModelSerializer):
         request = Request.objects.create(
             requester=requester,
             tutor=tutor_qs.first(),
-            description = description
         )
         return request
 

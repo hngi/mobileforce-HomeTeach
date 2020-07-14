@@ -15,7 +15,6 @@ class Rating(models.Model):
 class Request(models.Model):
 	requester = models.ForeignKey(User, related_name='pending_requests', on_delete=models.CASCADE)
 	tutor = models.ForeignKey(User, related_name='requests', on_delete=models.CASCADE)
-	description = models.CharField(max_length=1000)
 	date_requested = models.DateTimeField(auto_now_add=True)
 	accepted = models.BooleanField(default=False)
 
