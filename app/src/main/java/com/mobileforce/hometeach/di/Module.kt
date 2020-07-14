@@ -14,6 +14,7 @@ import com.mobileforce.hometeach.remotesource.Api
 import com.mobileforce.hometeach.ui.RecoverPasswordViewModel
 
 import com.mobileforce.hometeach.ui.home.HomePageViewModel
+import com.mobileforce.hometeach.ui.profile.ProfileViewModel
 import com.mobileforce.hometeach.ui.signin.SignInViewModel
 import com.mobileforce.hometeach.ui.signup.SignUpViewModel
 import okhttp3.OkHttpClient
@@ -77,5 +78,6 @@ val appModule = module {
     factory { SignInViewModel(get(), get()) }
     factory { SignUpViewModel(get()) }
     factory { HomePageViewModel(get(), get()) }
+    factory { ProfileViewModel(get()) }
 
 }
