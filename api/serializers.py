@@ -140,7 +140,7 @@ class TutorProfileSerializer(serializers.HyperlinkedModelSerializer):
     def get_rating(self, obj):
         print(obj)
         user = obj.user
-        rating = obj.rating.all().aggregate(rating=Avg('rate'), count=Count('rate'))
+        rating = obj.rating.all().aggregate(rating=Avg('rate'), count=Count('user'))
         return rating
     
 class StudentProfileSerializer(serializers.HyperlinkedModelSerializer):
