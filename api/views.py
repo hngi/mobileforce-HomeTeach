@@ -55,7 +55,7 @@ class CustomUserViewSet(viewsets.ModelViewSet):
     """
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer
-    permission_classes = (permissions.AllowAny,
+    permission_classes = (AllowAny,
                           IsSameUserAllowEditionOrReadOnly,)
     parser_class = (FileUploadParser,)
 
@@ -69,7 +69,7 @@ class ProfileViewSet(mixins.ListModelMixin,
     """
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
-    permission_classes = (permissions.AllowAny,
+    permission_classes = (AllowAny,
                           IsOwnerOrReadOnly,)
 
   
@@ -85,7 +85,7 @@ class TutorProfileViewSet(mixins.ListModelMixin,
     queryset = Profile.objects.filter(user__is_tutor=True)
     print(queryset)
     serializer_class = TutorProfileSerializer
-    permission_classes = (permissions.AllowAny,
+    permission_classes = (AllowAny,
                           IsOwnerOrReadOnly,)
     filter_backends = (filters.DjangoFilterBackend,)
     filter_fields = ('field','major_course','state',)
@@ -102,7 +102,7 @@ class StudentProfileViewSet(mixins.ListModelMixin,
 
     queryset = Profile.objects.filter(user__is_tutor=False)
     serializer_class = StudentProfileSerializer
-    permission_classes = (permissions.AllowAny,
+    permission_classes = (AllowAny,
                           IsOwnerOrReadOnly,)
 
 

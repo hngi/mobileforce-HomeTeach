@@ -72,13 +72,15 @@ class UserLoginSerializer(ModelSerializer):
             if not user_obj.check_password(password):
                 raise ValidationError("invalid password")
         token = Token.objects.get(user=user_obj).key
-        user_data = {'token': token, 'user': {
-                        'id': user_obj.pk,
-                        'email': user_obj.email,
-                        'is_tutor':user_obj.is_tutor,
-                        'is_active': user_obj.is_active, 
-                        'full_name': user_obj.full_name, 
-                        'phone_number':user_obj.phone_number}
+        user_data = {'token': token,
+                        'user': {
+                            'id': user_obj.id,
+                            'email': user_obj.email,
+                            'is_tutor':user_obj.is_tutor,
+                            'is_active': user_obj.is_active, 
+                            'full_name': user_obj.full_name, 
+                            'phone_number':user_obj.phone_number
+                        }
                      }
 
         return user_data
