@@ -31,6 +31,7 @@ class Profile(models.Model):
 	profile_pic = models.FileField(blank=True, null=True)
 	desc = models.CharField(max_length=255, null=True, blank=True)
 	field = models.CharField(max_length=255, null=True, blank=True)
+	hourly_rate = models.CharField(max_length=10000000, default=0)
 	major_course = models.CharField(max_length=255, null=True, blank=True)
 	other_courses = models.CharField(max_length=255, null=True, blank=True)
 	state = models.CharField(max_length=255, null=True, blank=True)

@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from .models import Profile, Rating
 from accounts.models import CustomUser
-from django.db.models import Avg
+from django.db.models import Avg, Count
 from .models import Request
 from django.contrib.auth import get_user_model
 
@@ -38,7 +38,6 @@ class CreateRequestSerializer(serializers.ModelSerializer):
         tutor = tutor_qs.first()
         serializer = UserSerializer(tutor.__dict__)
         tutor_f = serializer.data
-        print(tutor_f, 'llll')
         return tutor_f
 
     def get_requester(self, data):
@@ -130,7 +129,7 @@ class TutorProfileSerializer(serializers.HyperlinkedModelSerializer):
         model = Profile
         depth = 1
         fields = ('user','rating',
-                  'profile_pic', 'desc', 'field', 'major_course', 'other_courses', 'state', 'address', 
+                  'profile_pic', 'desc','hourly_rate', 'field', 'major_course', 'other_courses', 'state', 'address',
                   'user_url')
 
     def get_full_name(self, obj):
@@ -141,19 +140,17 @@ class TutorProfileSerializer(serializers.HyperlinkedModelSerializer):
     def get_rating(self, obj):
         print(obj)
         user = obj.user
-        rating = obj.rating.all().aggregate(rating=Avg('rate'))
+        rating = obj.rating.all().aggregate(rating=Avg('rate'), count=Count('rate'))
         return rating
     
 class StudentProfileSerializer(serializers.HyperlinkedModelSerializer):
     user_url = serializers.HyperlinkedIdentityField(view_name='customuser-detail')
-    id = serializers.IntegerField(source='pk', read_only=True)
-    email = serializers.CharField(source='user.email')
-    full_name = serializers.CharField(source='user.full_name')
+    user = UserSerializer(read_only=True)
 
     class Meta:
         model = Profile
         depth = 1
-        fields = ('id', 'email', 'full_name',
+        fields = ('user'
                   'profile_pic', 'desc', 'field', 'major_course', 'other_courses', 'state', 'address', 
                   'user_url')
 

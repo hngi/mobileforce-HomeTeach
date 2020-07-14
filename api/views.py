@@ -81,9 +81,7 @@ class TutorProfileViewSet(mixins.ListModelMixin,
     This viewset automatically provides `list`, `create`, `retrieve`,
     `update` and `destroy` actions.
     """
-    print(Profile.objects.all())
     queryset = Profile.objects.filter(user__is_tutor=True)
-    print(queryset)
     serializer_class = TutorProfileSerializer
     permission_classes = (permissions.AllowAny,
                           IsOwnerOrReadOnly,)

@@ -3,6 +3,7 @@ from django.contrib.auth.models import (
 	BaseUserManager, AbstractBaseUser
 )
 from django.dispatch import receiver
+import uuid
 from django.db.models.signals import post_save
 from django.core.validators import RegexValidator
 from rest_framework.authtoken.models import Token
