@@ -11,8 +11,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-print("production")
-
+import django_heroku
+import dj_database_url
 from dotenv import load_dotenv
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -29,8 +29,7 @@ SECRET_KEY = 'wi8ec5*+xx1z6h9&%h=iaauyl)7mbime7f7$l(hx1iwev0sb+='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
-
+ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0', 'localhost', 'api-hometeach.herokuapp.com']
 
 # Application definition
 
@@ -51,10 +50,15 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'drf_yasg',
     'django_rest_passwordreset',
+    'django_filters',
+    'whitenoise.runserver_nostatic',
 ]
+
+AUTH_USER_MODEL = 'accounts.CustomUser'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -62,6 +66,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 ROOT_URLCONF = 'root.urls'
 
@@ -89,16 +95,19 @@ WSGI_APPLICATION = 'root.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': '',
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
+#db_from_env = dj_database_url.config(conn_max_age=600)
+#DATABASES = { 'default': dj_database_url.config() }
 
+prod_db  =  dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(prod_db)
+
+#db_from_env = dj_database_url.config(conn_max_age=600)
+#DATABASES['default'].update(db_from_env)
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
@@ -137,6 +146,16 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+#location where django collect all static files
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# location where you will store your static files
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR,'static')
+]
+
+MEDIA_URL =  '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 DEFAULT_AUTHENTICATION_CLASSES = [
         'rest_framework.authentication.TokenAuthentication',
      ]
@@ -147,8 +166,14 @@ DEFAULT_PERMISSION_CLASSES = [
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': DEFAULT_AUTHENTICATION_CLASSES,
-    'DEFAULT_PERMISSION_CLASSES': DEFAULT_PERMISSION_CLASSES
+    'DEFAULT_PERMISSION_CLASSES': DEFAULT_PERMISSION_CLASSES,
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+        'rest_framework.filters.SearchFilter',
+    )
 }
+
+django_heroku.settings(locals())
 
 SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
 
@@ -157,5 +182,5 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'apikey'
 EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_API_KEY')
-
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+

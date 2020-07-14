@@ -1,6 +1,85 @@
 from rest_framework import serializers
-from api.models import Profile
+from .models import Profile, Rating
 from accounts.models import CustomUser
+from django.db.models import Avg
+from .models import Request
+from django.contrib.auth import get_user_model
+
+# Students should be able to filter list of Tutors based on field, gender, proximity 
+User = get_user_model()
+
+class UserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model=User
+        exclude = ['password', 'last_login']
+
+class UpdateUserSerializer(serializers.ModelSerializer):
+    email = serializers.CharField(read_only=True)
+    class Meta:
+        model=User
+        exclude = ['password', 'last_login']
+
+class CreateRequestSerializer(serializers.ModelSerializer):
+    requester = serializers.SerializerMethodField(read_only=True)
+    tutor = serializers.SerializerMethodField(read_only=True)
+    requester_id = serializers.CharField(write_only=True)
+    tutor_id = serializers.CharField(write_only=True)
+
+    class Meta:
+        model = Request
+        fields = '__all__'
+
+    def get_tutor(self, data):
+        id = data.get('tutor_id')
+        tutor_qs = User.objects.filter(pk=id, is_tutor=True)
+        if not tutor_qs.exists():
+            raise serializers.ValidationError('a tutor with that id does not exist')
+        tutor = tutor_qs.first()
+        serializer = UserSerializer(tutor.__dict__)
+        tutor_f = serializer.data
+        print(tutor_f, 'llll')
+        return tutor_f
+
+    def get_requester(self, data):
+        id = data.get('requester_id')
+        requester = User.objects.filter(pk=id)
+        serializer = UserSerializer(requester.first().__dict__)
+        return serializer.data
+
+    def save(self):
+        data = self.validated_data
+        requester_id = data.get('requester_id')
+        tutor_id = data.get('tutor_id')
+        description = data.get('description')
+
+
+        requester = User.objects.get(id=requester_id)
+        tutor_qs = User.objects.filter(pk=tutor_id, is_tutor=True)
+
+        if not tutor_qs.exists():
+            raise serializers.ValidationError('a tutor with that id does not exist')
+
+        request = Request.objects.create(
+            requester=requester,
+            tutor=tutor_qs.first(),
+            description = description
+        )
+        return request
+
+class RequestTutorSerializer(serializers.ModelSerializer):
+    requester = UserSerializer(read_only=True)
+
+    class Meta:
+        model=Request
+        exclude = ['tutor']
+
+class RequestSerializer(serializers.ModelSerializer):
+    tutor = UserSerializer(read_only=True)
+
+    class Meta:
+        model=Request
+        exclude = ['requester']
 
 class CustomUserSerializer(serializers.HyperlinkedModelSerializer):
     profile_url = serializers.HyperlinkedIdentityField(
@@ -14,16 +93,14 @@ class CustomUserSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class ProfileSerializer(serializers.HyperlinkedModelSerializer):
+    user = UserSerializer(read_only=True)
     user_url = serializers.HyperlinkedIdentityField(view_name='customuser-detail')
-    id = serializers.IntegerField(source='pk', read_only=True)
-    email = serializers.CharField(source='user.email')
-    full_name = serializers.CharField(source='user.full_name')
 
     class Meta:
         model = Profile
         depth = 1
-        fields = ('id', 'email', 'full_name',
-                  'desc', 'field', 'major_course', 'other_courses', 'state', 'address', 
+        fields = ('user',
+                  'profile_pic', 'desc', 'field', 'major_course', 'other_courses', 'state', 'address', 
                   'user_url')
 
     def get_full_name(self, obj):
@@ -31,8 +108,9 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
         return request.user.get_full_name()
 
     def update(self, instance, validated_data):
-        # retrieve the User
+        # retrieve CustomUser
         user_data = validated_data.pop('user', None)
+        user_data = {k:v for k,v in user_data.items() if v}
         for attr, value in user_data.items():
             setattr(instance.user, attr, value)
 
@@ -42,3 +120,85 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
         instance.user.save()
         instance.save()
         return instance
+
+class TutorProfileSerializer(serializers.HyperlinkedModelSerializer):
+    user_url = serializers.HyperlinkedIdentityField(view_name='customuser-detail')
+    user = UserSerializer(read_only=True)
+    rating = serializers.SerializerMethodField(read_only=True)
+
+    class Meta:
+        model = Profile
+        depth = 1
+        fields = ('user','rating',
+                  'profile_pic', 'desc', 'field', 'major_course', 'other_courses', 'state', 'address', 
+                  'user_url')
+
+    def get_full_name(self, obj):
+        request = self.context['request']
+        return request.user.get_full_name()
+
+
+    def get_rating(self, obj):
+        print(obj)
+        user = obj.user
+        rating = obj.rating.all().aggregate(rating=Avg('rate'))
+        return rating
+    
+class StudentProfileSerializer(serializers.HyperlinkedModelSerializer):
+    user_url = serializers.HyperlinkedIdentityField(view_name='customuser-detail')
+    id = serializers.IntegerField(source='pk', read_only=True)
+    email = serializers.CharField(source='user.email')
+    full_name = serializers.CharField(source='user.full_name')
+
+    class Meta:
+        model = Profile
+        depth = 1
+        fields = ('id', 'email', 'full_name',
+                  'profile_pic', 'desc', 'field', 'major_course', 'other_courses', 'state', 'address', 
+                  'user_url')
+
+    def get_full_name(self, obj):
+        request = self.context['request']
+        return request.user.get_full_name()
+
+
+class RatingsSerializer(serializers.ModelSerializer):
+    user = UserSerializer(required=False)
+    rate = serializers.IntegerField()
+    student_id = serializers.IntegerField(write_only=True)
+    tutor_id = serializers.IntegerField(write_only=True)
+
+    class Meta:
+        model = Rating
+        fields = '__all__'
+        extra_kwargs = {
+            'rating': {'decimal_places': 1}
+        }
+
+    def save(self):
+        data = self.validated_data
+        rate = data.get('rate')
+        student_id = data.get('student_id')
+        tutor_id = data.get('tutor_id')
+
+        tutor = User.objects.get(id=tutor_id)
+        student = User.objects.get(id=student_id)
+
+        if tutor.profile.rating.filter(user__email=student.email).exists():
+            rating = tutor.profile.rating.get(user__email=student.email)
+            tutor.profile.rating.remove(rating)
+            rate = Rating.objects.create(user=student, rate=rate)
+            tutor.profile.rating.add(rate)
+            return tutor
+        rate = Rating.objects.create(user=student, rate=rate)
+        tutor.profile.rating.add(rate)
+        # tutor.profile.rating.save()
+        return tutor
+
+
+class ProfileUpdateSerializer(serializers.ModelSerializer):
+    user = UpdateUserSerializer()
+
+    class Meta:
+        model=Profile
+        fields = '__all__'
