@@ -1,6 +1,7 @@
 from rest_framework import serializers
-from api.models import Profile
+from .models import Profile, Rating
 from accounts.models import CustomUser
+from django.db.models import Avg
 from .models import Request
 from django.contrib.auth import get_user_model
 
@@ -9,6 +10,12 @@ User = get_user_model()
 
 class UserSerializer(serializers.ModelSerializer):
 
+    class Meta:
+        model=User
+        exclude = ['password', 'last_login']
+
+class UpdateUserSerializer(serializers.ModelSerializer):
+    email = serializers.CharField(read_only=True)
     class Meta:
         model=User
         exclude = ['password', 'last_login']
@@ -102,8 +109,8 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
 
     def update(self, instance, validated_data):
         # retrieve CustomUser
-        validated_data.pop('user', None)
-        user_data = {k:v for k,v in validated_data.items() if v}
+        user_data = validated_data.pop('user', None)
+        user_data = {k:v for k,v in user_data.items() if v}
         for attr, value in user_data.items():
             setattr(instance.user, attr, value)
 
@@ -116,20 +123,26 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
 
 class TutorProfileSerializer(serializers.HyperlinkedModelSerializer):
     user_url = serializers.HyperlinkedIdentityField(view_name='customuser-detail')
-    id = serializers.IntegerField(source='pk', read_only=True)
-    email = serializers.CharField(source='user.email')
-    full_name = serializers.CharField(source='user.full_name')
+    user = UserSerializer(read_only=True)
+    rating = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model = Profile
         depth = 1
-        fields = ('id', 'email', 'full_name',
+        fields = ('user','rating',
                   'profile_pic', 'desc', 'field', 'major_course', 'other_courses', 'state', 'address', 
                   'user_url')
 
     def get_full_name(self, obj):
         request = self.context['request']
         return request.user.get_full_name()
+
+
+    def get_rating(self, obj):
+        print(obj)
+        user = obj.user
+        rating = obj.rating.all().aggregate(rating=Avg('rate'))
+        return rating
     
 class StudentProfileSerializer(serializers.HyperlinkedModelSerializer):
     user_url = serializers.HyperlinkedIdentityField(view_name='customuser-detail')
@@ -147,3 +160,45 @@ class StudentProfileSerializer(serializers.HyperlinkedModelSerializer):
     def get_full_name(self, obj):
         request = self.context['request']
         return request.user.get_full_name()
+
+
+class RatingsSerializer(serializers.ModelSerializer):
+    user = UserSerializer(required=False)
+    rate = serializers.IntegerField()
+    student_id = serializers.IntegerField(write_only=True)
+    tutor_id = serializers.IntegerField(write_only=True)
+
+    class Meta:
+        model = Rating
+        fields = '__all__'
+        extra_kwargs = {
+            'rating': {'decimal_places': 1}
+        }
+
+    def save(self):
+        data = self.validated_data
+        rate = data.get('rate')
+        student_id = data.get('student_id')
+        tutor_id = data.get('tutor_id')
+
+        tutor = User.objects.get(id=tutor_id)
+        student = User.objects.get(id=student_id)
+
+        if tutor.profile.rating.filter(user__email=student.email).exists():
+            rating = tutor.profile.rating.get(user__email=student.email)
+            tutor.profile.rating.remove(rating)
+            rate = Rating.objects.create(user=student, rate=rate)
+            tutor.profile.rating.add(rate)
+            return tutor
+        rate = Rating.objects.create(user=student, rate=rate)
+        tutor.profile.rating.add(rate)
+        # tutor.profile.rating.save()
+        return tutor
+
+
+class ProfileUpdateSerializer(serializers.ModelSerializer):
+    user = UpdateUserSerializer()
+
+    class Meta:
+        model=Profile
+        fields = '__all__'
