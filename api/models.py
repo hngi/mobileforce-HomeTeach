@@ -76,6 +76,7 @@ class Request(models.Model):
 class Profile(models.Model):
 	user = models.OneToOneField(settings.AUTH_USER_MODEL,
 							on_delete=models.CASCADE)
+	profile_pic = models.FileField(blank=True)
 	rating = models.ManyToManyField(Rating, blank=True)
 	desc = models.TextField(max_length=255, null=True, blank=True)
 	field = models.CharField(max_length=255, choices = FIELD_CHOICES, blank=True)
