@@ -4,9 +4,9 @@ from .serializers import CreateRequestSerializer, RequestTutorSerializer, Reques
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 from .models import Request
-from api.permissions import IsOwnerOrReadOnly, IsAdminUserOrReadOnly, IsSameUserAllowEditionOrReadOnly
-from api.serializers import CustomUserSerializer, ProfileSerializer, TutorProfileSerializer, StudentProfileSerializer
-from api.models import Profile
+from .permissions import IsOwnerOrReadOnly, IsAdminUserOrReadOnly, IsSameUserAllowEditionOrReadOnly
+from .serializers import CustomUserSerializer, ProfileSerializer, TutorProfileSerializer, StudentProfileSerializer, RatingsSerializer
+from .models import Profile
 from accounts.models import CustomUser 
 from rest_framework.parsers import FileUploadParser
 from rest_framework import viewsets, mixins, permissions
@@ -81,7 +81,9 @@ class TutorProfileViewSet(mixins.ListModelMixin,
     This viewset automatically provides `list`, `create`, `retrieve`,
     `update` and `destroy` actions.
     """
+    print(Profile.objects.all())
     queryset = Profile.objects.filter(user__is_tutor=True)
+    print(queryset)
     serializer_class = TutorProfileSerializer
     permission_classes = (permissions.AllowAny,
                           IsOwnerOrReadOnly,)
@@ -97,9 +99,21 @@ class StudentProfileViewSet(mixins.ListModelMixin,
     This viewset automatically provides `list`, `create`, `retrieve`,
     `update` and `destroy` actions.
     """
+
     queryset = Profile.objects.filter(user__is_tutor=False)
     serializer_class = StudentProfileSerializer
     permission_classes = (permissions.AllowAny,
                           IsOwnerOrReadOnly,)
 
+
+@api_view(['POST', ])
+@permission_classes([AllowAny, ])
+def rate_tutor(request):
+    data = request.data
+
+    serializer = RatingsSerializer(data=data)
+    if serializer.is_valid(raise_exception=True):
+        serializer.save()
+        return Response({f'you have rated this tutor {serializer.data.get("rate")} stars'}, status=status.HTTP_201_CREATED)
+    return Response(status=status.HTTP_501_NOT_IMPLEMENTED)
 
