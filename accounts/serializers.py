@@ -91,7 +91,7 @@ class UserLoginSerializer(ModelSerializer):
         token = Token.objects.get(user=user_obj).key
         user_data = {'token': token,
                         'user': {
-                            'id': user_obj.id,
+                            'id': user_obj.pk,
                             'email': user_obj.email,
                             'is_tutor':user_obj.is_tutor,
                             'is_active': user_obj.is_active, 
