@@ -12,7 +12,7 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from .tokens import account_activation_token
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import status, serializers, exceptions
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 from .serializers import RegistrationSerializer
@@ -25,7 +25,7 @@ from .serializers import UserLoginSerializer
 from datetime import timedelta
 from django.core.exceptions import ValidationError
 from django.contrib.auth.password_validation import validate_password, get_password_validators
-from django.utils.translation import ugettext_lazy serializers, exceptionsas _
+from django.utils.translation import ugettext_lazy as _ 
 from django.utils import timezone
 from django.conf import settings
 from rest_framework.generics import GenericAPIView
