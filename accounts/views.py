@@ -272,3 +272,6 @@ class ResetPasswordRequestToken(GenericAPIView):
         # done
         return Response({'status': 'OK'})
 
+reset_password_validate_token = ResetPasswordValidateToken.as_view()
+reset_password_confirm = ResetPasswordConfirm.as_view()
+reset_password_request_token = ResetPasswordRequestToken.as_view

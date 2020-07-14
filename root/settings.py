@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-import django_heroku
+#import django_heroku
 import dj_database_url
 from dotenv import load_dotenv
 
@@ -173,7 +173,7 @@ REST_FRAMEWORK = {
     )
 }
 
-django_heroku.settings(locals())
+#django_heroku.settings(locals())
 
 SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
 

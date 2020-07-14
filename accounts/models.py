@@ -126,10 +126,11 @@ __all__ = [
 ]
 
 
-class ResetPasswordToken(models.Model):
+class ResetPasswordToken(BaseUserManager):
     class Meta:
-        verbose_name = _("Password Reset Token")
-        verbose_name_plural = _("Password Reset Tokens")
+
+        verbose_name =  "Password Reset Token"
+        verbose_name_plural =  "Password Reset Tokens"
 
     @staticmethod
     def generate_key():
@@ -144,31 +145,31 @@ class ResetPasswordToken(models.Model):
         AUTH_USER_MODEL,
         related_name='password_reset_tokens',
         on_delete=models.CASCADE,
-        verbose_name=_("The User which is associated to this password reset token")
+        verbose_name="The User which is associated to this password reset token"
     )
 
     created_at = models.DateTimeField(
         auto_now_add=True,
-        verbose_name=_("When was this token generated")
+        verbose_name="When was this token generated"
     )
 
     # Key field, though it is not the primary key of the model
     key = models.CharField(
-        _("Key"),
+        "Key",
         max_length=64,
         db_index=True,
         unique=True
     )
 
     ip_address = models.GenericIPAddressField(
-        _("The IP address of this session"),
+        "The IP address of this session",
         default="",
         blank=True,
         null=True,
     )
     user_agent = models.CharField(
         max_length=256,
-        verbose_name=_("HTTP User Agent"),
+        verbose_name="HTTP User Agent",
         default="",
         blank=True,
     )
