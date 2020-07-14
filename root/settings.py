@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'drf_yasg',
-    'django_rest_passwordreset',
+    #'django_rest_passwordreset',
     'django_filters',
     'whitenoise.runserver_nostatic',
 ]
