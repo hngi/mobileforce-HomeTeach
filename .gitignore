@@ -36,7 +36,6 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
-Pipfile
 
 # Installer logs
 pip-log.txt
@@ -44,4 +43,5 @@ pip-delete-this-directory.txt
 
 # Django stuff:
 *.log
+db.sqlite3
 media
