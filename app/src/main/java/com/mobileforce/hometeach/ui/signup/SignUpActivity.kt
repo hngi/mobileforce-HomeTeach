@@ -10,10 +10,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
-import com.mobileforce.hometeach.AppConstants.USER_TUTOR
+import com.mobileforce.hometeach.utils.AppConstants.USER_TUTOR
 import com.mobileforce.hometeach.R
-import com.mobileforce.hometeach.localsource.PreferenceHelper
-import com.mobileforce.hometeach.remotesource.Params
+import com.mobileforce.hometeach.utils.PreferenceHelper
+import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.ui.signin.LoginActivity
 import com.mobileforce.hometeach.utils.Result
 import com.mobileforce.hometeach.utils.snack

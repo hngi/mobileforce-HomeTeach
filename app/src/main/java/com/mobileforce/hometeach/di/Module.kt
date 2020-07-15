@@ -1,24 +1,24 @@
 package com.mobileforce.hometeach.di
 
 import androidx.room.Room
-import com.mobileforce.hometeach.AppConstants.BASE_URL
-import com.mobileforce.hometeach.AppConstants.DATABASE_NAME
-import com.mobileforce.hometeach.data.TutorRepositoryImpl
+import com.mobileforce.hometeach.utils.AppConstants.BASE_URL
+import com.mobileforce.hometeach.utils.AppConstants.DATABASE_NAME
 import com.mobileforce.hometeach.data.UserRepositoryImpl
+import com.mobileforce.hometeach.data.repository.UserRepository
+import com.mobileforce.hometeach.data.TutorRepositoryImpl
 import com.mobileforce.hometeach.data.repo.TutorRepository
-import com.mobileforce.hometeach.data.repo.UserRepository
 import com.mobileforce.hometeach.data.sources.DataSourceFactory
 import com.mobileforce.hometeach.data.sources.LocalDataSource
 import com.mobileforce.hometeach.data.sources.RemoteDataSource
-import com.mobileforce.hometeach.localsource.AppDataBase
-import com.mobileforce.hometeach.localsource.PreferenceHelper
-import com.mobileforce.hometeach.remotesource.Api
-import com.mobileforce.hometeach.ui.RecoverPasswordViewModel
+import com.mobileforce.hometeach.data.sources.local.AppDataBase
+import com.mobileforce.hometeach.utils.PreferenceHelper
+import com.mobileforce.hometeach.data.sources.remote.Api
 
 import com.mobileforce.hometeach.ui.home.HomePageViewModel
 import com.mobileforce.hometeach.ui.profile.ProfileViewModel
 import com.mobileforce.hometeach.ui.signin.SignInViewModel
 import com.mobileforce.hometeach.ui.signup.SignUpViewModel
+import com.mobileforce.hometeach.ui.tutorlist.TutorListViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -76,11 +76,12 @@ val appModule = module {
     single<TutorRepository> { TutorRepositoryImpl(get()) }
 
 
-    //---------------------view models --------------------------------------
+    //<---------------------view models -------------------------------------->//
 
     factory { SignInViewModel(get(), get()) }
     factory { SignUpViewModel(get()) }
     factory { HomePageViewModel(get(), get()) }
+    factory { TutorListViewModel(get(),get()) }
     factory { ProfileViewModel(get()) }
 
 }

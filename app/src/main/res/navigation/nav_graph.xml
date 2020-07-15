@@ -18,6 +18,9 @@
         <action
             android:id="@+id/action_tutorHomePageFragment_to_books"
             app:destination="@id/books" />
+        <action
+            android:id="@+id/action_tutorHomePageFragment_to_tutorsAllFragment"
+            app:destination="@id/tutorsAllFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -27,27 +30,27 @@
     <fragment
 
         android:id="@+id/makeWithdrawalFragment"
-        android:name="com.mobileforce.hometeach.tutordashboardfragments.MakeWithdrawalFragment"
+        android:name="com.mobileforce.hometeach.ui.tutordashboardfragments.MakeWithdrawalFragment"
         android:label="MakeWithdrawalFragment"
         tools:layout="@layout/fragment_make_withdrawal"/>
     <fragment
         android:id="@+id/cardDetails"
-        android:name="com.mobileforce.hometeach.tutordashboardfragments.CardDetailsFragment"
+        android:name="com.mobileforce.hometeach.ui.tutordashboardfragments.CardDetailsFragment"
         android:label="CardDetails"
         tools:layout="@layout/fragment_card_details"/>
     <fragment
         android:id="@+id/myBanks"
-        android:name="com.mobileforce.hometeach.tutordashboardfragments.MyBanks"
+        android:name="com.mobileforce.hometeach.ui.tutordashboardfragments.MyBanks"
         android:label="MyBanks"
         tools:layout="@layout/fragment_my_banks"/>
     <fragment
         android:id="@+id/addBankFragment"
-        android:name="com.mobileforce.hometeach.tutordashboardfragments.AddBankFragment"
+        android:name="com.mobileforce.hometeach.ui.tutordashboardfragments.AddBankFragment"
         android:label="AddBankFragment"
         tools:layout="@layout/fragment_add_bank"/>
     <fragment
         android:id="@+id/addCardDetails"
-        android:name="com.mobileforce.hometeach.tutordashboardfragments.AddCardDetails"
+        android:name="com.mobileforce.hometeach.ui.tutordashboardfragments.AddCardDetails"
         android:label="AddCardDetails"
         tools:layout="@layout/fragment_add_card_details"/>
 <fragment
@@ -62,10 +65,15 @@
         tools:layout="@layout/fragment_tutor_class" />
     <fragment
         android:id="@+id/tutorDetailsFragment"
-        android:name="com.mobileforce.hometeach.fragments.TutorDetailsFragment"
+        android:name="com.mobileforce.hometeach.ui.fragments.TutorDetailsFragment"
         android:label="TutorDetailsFragment"
         tools:layout="@layout/fragment_tutor_details"
         />
+    <fragment
+        android:id="@+id/tutorsAllFragment"
+        android:name="com.mobileforce.hometeach.ui.tutorlist.TutorListFragment"
+        android:label="fragment_all_tutors"
+        tools:layout="@layout/fragment_all_tutors" />
 
 
 </navigation>

@@ -1,7 +1,7 @@
 package com.mobileforce.hometeach.models
 
 data class Tutors(
-    var Id : Long,
+    var Id : String,
     var name: String,
     var email: String,
     var password: String,

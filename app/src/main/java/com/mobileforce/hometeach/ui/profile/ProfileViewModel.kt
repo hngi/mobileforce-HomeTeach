@@ -5,9 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mobileforce.hometeach.data.repo.TutorRepository
-import com.mobileforce.hometeach.data.repo.UserRepository
-import com.mobileforce.hometeach.remotesource.Params
-import com.mobileforce.hometeach.remotesource.wrappers.ProfileResponse
 import com.mobileforce.hometeach.remotesource.wrappers.TutorDetailsResponse
 import com.mobileforce.hometeach.utils.Result
 import kotlinx.coroutines.launch

@@ -8,20 +8,19 @@ import android.view.ViewGroup
 import android.widget.RelativeLayout
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import com.google.android.material.button.MaterialButton
-import com.mobileforce.hometeach.AppConstants.USER_STUDENT
+import com.mobileforce.hometeach.utils.AppConstants.USER_STUDENT
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.adapters.RecyclerViewAdapter
 import com.mobileforce.hometeach.adapters.ViewHolder
 import com.mobileforce.hometeach.databinding.*
-import com.mobileforce.hometeach.localsource.AppDataBase
-import com.mobileforce.hometeach.localsource.PreferenceHelper
+import com.mobileforce.hometeach.data.sources.local.AppDataBase
+import com.mobileforce.hometeach.utils.PreferenceHelper
 import com.mobileforce.hometeach.models.*
-import com.mobileforce.hometeach.ui.ExploreActivity
 import com.mobileforce.hometeach.ui.classes.adapters.recylerviewadapters.TutorOngoingClassesAdapter
 import com.mobileforce.hometeach.ui.signin.LoginActivity
 import kotlinx.coroutines.launch
@@ -36,7 +35,7 @@ class HomePageFragment : Fragment() {
 
     private val pref: PreferenceHelper by inject()
 
-    private val db:AppDataBase by inject()
+    private val db: AppDataBase by inject()
 
     private lateinit var bindingParent: FragmentHomePageParentBinding
     private lateinit var bindingTutor: FragmentHomePageTutorBinding
@@ -325,6 +324,10 @@ class HomePageFragment : Fragment() {
         }
 
         topTutorsAdapter.submitList(topTutors)
+
+        bindingParent.viewAllTutorText.setOnClickListener {
+            findNavController().navigate(R.id.action_tutorHomePageFragment_to_tutorsAllFragment)
+        }
     }
 
     private fun setUpForTutor(){
