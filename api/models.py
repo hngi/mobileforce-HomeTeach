@@ -27,8 +27,12 @@ class Profile(models.Model):
 	user = models.OneToOneField(settings.AUTH_USER_MODEL,
 							on_delete=models.CASCADE)
 	rating = models.ManyToManyField(Rating, blank=True)
-	profile_pic = models.FileField(blank=True, null=True)
-	desc = models.CharField(max_length=255, null=True, blank=True)
+	profile_pic = models.FileField(upload_to='images/%Y/%m/%d/',
+								   blank=True, null=True)
+    credentials = models.FileField(upload_to='docs/%Y/%m/%d/', 
+    							   blank=True, null=True)
+	description = models.FileField(upload_to='videos/%Y/%m/%d/', 
+								   null=True, blank=True)
 	field = models.CharField(max_length=255, null=True, blank=True)
 	hourly_rate = models.CharField(max_length=10000000, default=0)
 	major_course = models.CharField(max_length=255, null=True, blank=True)
