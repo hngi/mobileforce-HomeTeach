@@ -16,6 +16,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
 
     compileOptions {
@@ -106,4 +107,9 @@ dependencies {
 
     //firebase
     implementation 'com.google.firebase:firebase-firestore-ktx:21.5.0'
+
+    //multidex
+    def multidex_version = "2.0.1"
+    implementation "androidx.multidex:multidex:$multidex_version"
+
 }

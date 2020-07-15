@@ -11,6 +11,7 @@ object AppConstants {
     const val USER_TUTOR = "tutor"
     const val USER_STUDENT = "student"
     const val USER_ID = "user_id"
+    const val COLLECTION_USER = "user"
 
 
 }
