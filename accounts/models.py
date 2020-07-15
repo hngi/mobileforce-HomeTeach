@@ -16,8 +16,6 @@ from django_rest_passwordreset.tokens import get_token_generator
 from django.contrib.auth import get_user_model
 
 
-
-
 class UserManager(BaseUserManager):
     def create_user(self, email, password=None, full_name='', phone_number=''):
         """
@@ -53,9 +51,9 @@ class UserManager(BaseUserManager):
         u.save(using=self._db)
         return u
 
-
+# uuid.uuid4().hex[:33].lower().strip('-')
 class CustomUser(AbstractBaseUser):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4().hex[:33].lower().strip('-'), unique=True, editable=False)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, unique=True, editable=False)
     email = models.EmailField(
                         verbose_name='email address',
                         max_length=255,
