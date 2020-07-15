@@ -36,7 +36,7 @@ urlpatterns = [
     path('v1/', include('accounts.urls')),
     path('v1/', include('api.urls')),
     path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-     path("accounts/", include("accounts.urls")),
+    path("accounts/", include("accounts.urls")),
 ]
 
 if settings.DEBUG:

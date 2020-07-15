@@ -12,6 +12,7 @@ from rest_framework import exceptions
 from django.shortcuts import get_object_or_404
 from rest_framework.authtoken.models import Token
 
+
 User = get_user_model()
 
 class RegistrationSerializer(serializers.ModelSerializer):
@@ -91,7 +92,7 @@ class UserLoginSerializer(ModelSerializer):
         token = Token.objects.get(user=user_obj).key
         user_data = {'token': token,
                         'user': {
-                            'id': user_obj.id,
+                            'id': user_obj.pk,
                             'email': user_obj.email,
                             'is_tutor':user_obj.is_tutor,
                             'is_active': user_obj.is_active, 
@@ -101,3 +102,5 @@ class UserLoginSerializer(ModelSerializer):
                      }
 
         return user_data
+
+

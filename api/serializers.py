@@ -98,7 +98,7 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
         model = Profile
         depth = 1
         fields = ('user',
-                  'profile_pic','hourly_rate', 'rating', 'desc', 'field', 'major_course', 'other_courses', 'state', 'address',
+                  'profile_pic', 'hourly_rate', 'rating', 'desc', 'field', 'major_course', 'other_courses', 'state', 'address',
                   'user_url')
 
     def get_full_name(self, obj):
@@ -153,7 +153,7 @@ class StudentProfileSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Profile
         depth = 1
-        fields = ('user'
+        fields = ('user',
                   'profile_pic', 'desc', 'field', 'major_course', 'other_courses', 'state', 'address', 
                   'user_url')
 
