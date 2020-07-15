@@ -153,7 +153,7 @@ class StudentProfileSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Profile
         depth = 1
-        fields = ('user'
+        fields = ('user',
                   'profile_pic', 'desc', 'field', 'major_course', 'other_courses', 'state', 'address', 
                   'user_url')
 
