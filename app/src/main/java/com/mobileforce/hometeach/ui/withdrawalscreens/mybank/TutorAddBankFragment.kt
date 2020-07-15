@@ -1,4 +1,4 @@
-package com.mobileforce.hometeach.tutordashboardfragments
+package com.mobileforce.hometeach.ui.withdrawalscreens.mybank
 
 import android.os.Build
 import android.os.Bundle
@@ -10,18 +10,17 @@ import androidx.appcompat.app.AlertDialog
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.mobileforce.hometeach.R
-import com.mobileforce.hometeach.databinding.FragmentAddCardDetailsBinding
+import com.mobileforce.hometeach.databinding.FragmentTutorAddBankBinding
 
 
-class AddCardDetails : Fragment() {
+class TutorAddBankFragment : Fragment() {
     lateinit var navController: NavController
-
-    lateinit var binding:FragmentAddCardDetailsBinding
+       private lateinit var binding: FragmentTutorAddBankBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding =  FragmentAddCardDetailsBinding.inflate(inflater, container, false)
+        binding =  FragmentTutorAddBankBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -33,60 +32,53 @@ class AddCardDetails : Fragment() {
             toolbar.setNavigationIcon(R.drawable.back_arrow)
         }
         val accName = binding.accName
-        val txtAccname = accName.text
-        val accNumber = binding.accNumber
-        val txtAccnumber = accNumber.text
-        val cardExpiryDate = binding.mY
-        val txtCardExpiryDate = cardExpiryDate.text
-        val cwNumber = binding.cw
-        val txtCwNumber = cwNumber.text
+        val txtAccName = accName.text
+        val accNumber =    binding.accNumber
+        val txtAccNumber = accNumber.text
+        val accRoute = binding.accRoute
+        val txtAccRoute = accRoute.text
+        val ssNumber = binding.accSecurityNumber
+        val txtSsNumber = ssNumber.text
         val btnSave =binding.save
+
+        toolbar.setNavigationOnClickListener {
+
+            navController.navigate(R.id.myBanks)
+        }
 
         btnSave.setOnClickListener {
 
-            if (txtAccname.isNullOrEmpty())
+            if (txtAccName.isNullOrEmpty())
+            {
+
+            }
+            if (txtAccNumber.isNullOrEmpty())
+            {
+
+            }
+            if (txtAccRoute.isNullOrEmpty())
+            {
+
+            }
+            if (txtSsNumber.isNullOrEmpty())
             {
 
             }
 
-            if (txtAccnumber.isNullOrEmpty())
-            {
-
-            }
-
-            if (txtCardExpiryDate.isNullOrEmpty())
-            {
-
-            }
-
-            if (txtCwNumber.isNullOrEmpty())
-            {
-
-            }
-
-           showDialog()
-
-
-        }
-
-        toolbar.setNavigationOnClickListener {
-            navController.navigate(R.id.cardDetails)
+            showDialog()
         }
 
     }
 
-   private fun showDialog()
-    {
-        val mDialogView = LayoutInflater.from(activity).inflate(R.layout.add_card_dialog, null)
+    private fun showDialog() {
+        val mDialogView = LayoutInflater.from(activity).inflate(R.layout.save_bank_dialog, null)
         val mBuilder = activity?.let { it1 ->
             AlertDialog.Builder(it1)
                 .setView(mDialogView)
-
         }
         //show dialog
-        val  mAlertDialog = mBuilder?.show()
+        val mAlertDialog = mBuilder?.show()
 
 
     }
-
 }

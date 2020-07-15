@@ -54,7 +54,7 @@
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:elevation="50dp">
+            android:layout_marginTop="28dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -176,6 +176,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_amount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Enter Amount"
@@ -195,7 +196,7 @@
                 app:spanCount="1"
                 android:id="@+id/studentcards_recycler_view" />
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/normalButton"
+                android:id="@+id/confirm_Button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Confirm"
@@ -206,7 +207,7 @@
                 app:cornerRadius="10dp"
                 style="@style/Widget.MaterialComponents.Button" />
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/outlinedButton"
+                android:id="@+id/cancel_Button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Cancel"

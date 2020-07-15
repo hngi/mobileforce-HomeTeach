@@ -1,34 +1,49 @@
 package com.mobileforce.hometeach.ui.studentpayments.makepayments
 
+import android.app.AlertDialog
+import android.app.ProgressDialog
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
+import co.paystack.android.Paystack
+import co.paystack.android.PaystackSdk
+import co.paystack.android.Transaction
+import co.paystack.android.exceptions.ExpiredAccessCodeException
+import co.paystack.android.model.Card
+import co.paystack.android.model.Charge
 import com.mobileforce.hometeach.R
-import com.mobileforce.hometeach.adapters.CircleTransform
 import com.mobileforce.hometeach.databinding.FragmentStudentMakePaymentBinding
-import com.mobileforce.hometeach.ui.studentpayments.StudentCard
-import com.mobileforce.hometeach.ui.studentpayments.Payment
-import com.mobileforce.hometeach.ui.studentpayments.StudentPaymentModel
-import com.mobileforce.hometeach.ui.studentpayments.carddetails.StudentPaymentsRecycler
-import com.squareup.picasso.Picasso
+import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
+import com.mobileforce.hometeach.ui.studentpayments.carddetails.StudentCardsRecycler
+import kotlinx.android.synthetic.main.fragment_student_make_payment.*
+import kotlinx.android.synthetic.main.payment_reference_dialog.view.*
+import kotlinx.android.synthetic.main.students_card_list.view.*
+import org.json.JSONException
+import org.koin.android.viewmodel.ext.android.viewModel
+import java.lang.Exception
+import java.util.*
 
-//Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [StudentMakePaymentFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class StudentMakePaymentFragment : Fragment() {
-    //Rename and change types of parameters
-    private lateinit var card_list:MutableList<StudentCard>
-    private lateinit var payment_list:MutableList<Payment>
+
+//    private lateinit var card_DetailResponse_list:MutableList<UserCardDetailResponse>
+//    private lateinit var payment_list:MutableList<Payment>
     private lateinit var binding: FragmentStudentMakePaymentBinding
+    private lateinit var cardList: List<UserCardDetailResponse>
+    private val viewModel: StudentMakePaymentViewModel by viewModel()
+    private lateinit var onClickListener: View.OnClickListener
+    private var transaction: Transaction? = null
+    private lateinit var progressDialog: ProgressDialog
+    private lateinit var charge: Charge
+    private var cardNumber: String = ""
+    private var cardCvc: String = ""
+    private var cardExpMonth: Int = 0
+    private var cardExpYear: Int = 0
+    private var amount: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,79 +57,219 @@ class StudentMakePaymentFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        card_list = mutableListOf()
-        payment_list = mutableListOf()
-        card_list.add(
-            StudentCard(
-                1,
-                R.drawable.ic_visa,
-                "....2019",
-                true
-            )
-        )
-        card_list.add(
-            StudentCard(
-                2,
-                R.drawable.ic_master,
-                "....3200",
-                false
-            )
-        )
 
-        payment_list.add(
-            Payment(
-                1,
-                "20 June 2020",
-                "50000 N",
-                "Success"
-            )
-        )
-        payment_list.add(
-            Payment(
-                1,
-                "20 June 2020",
-                "50000 N",
-                "Success"
-            )
-        )
-        payment_list.add(
-            Payment(
-                1,
-                "20 June 2020",
-                "50000 N",
-                "Failed"
-            )
-        )
-        payment_list.add(
-            Payment(
-                1,
-                "20 June 2020",
-                "50000 N",
-                "Success"
-            )
-        )
-        var Student =
-            StudentPaymentModel(payment_list, card_list,
-                "Rahman Django",
-                "profile_image",
-                "215000 N"
-            )
-        binding.tutorName.text = Student.tutorName
-        binding.tutorBalance.text = "Balance: "+ Student.balance
-        Picasso.get().load("profile_image").transform(CircleTransform()).placeholder(R.drawable.profile_image).error(R.drawable.profile_image).into(binding.tutorImage)
+        //TODO: Get User ID and pass to getUserCardDetails()
+        cardList = viewModel.getUserCardDetails(1)
+
+        onClickListener = View.OnClickListener {
+            val holder = it.tag as RecyclerView.ViewHolder
+            val pos = holder.adapterPosition
+            val card = cardList[pos]
+            cardNumber = card.cardNumber
+            cardCvc = card.cardCvc
+            cardExpMonth = card.expiryMonth
+            cardExpYear = card.expiryYear
+            if (TextUtils.isEmpty(amount.toString())){
+                et_amount.error = "Input an amount"
+            } else {
+                amount = et_amount.toString().trim().toInt()
+            }
+            holder.itemView.rb_select_card.isChecked = true
+        }
+
+        confirm_Button.setOnClickListener {
+            try {
+                startAFreshCharge(true)
+            } catch (e: Exception){
+                val message = String.format("An error occurred while charging card: %s %s", e::class.java.simpleName, e.message)
+                displayErrorDialog(message)
+            }
+        }
+//        card_DetailResponse_list = mutableListOf()
+//        payment_list = mutableListOf()
+//        card_DetailResponse_list.add(
+//            UserCardDetailResponse(
+//                1,
+//                R.drawable.ic_visa,
+//                "....2019",
+//                true
+//            )
+//        )
+//        card_DetailResponse_list.add(
+//            UserCardDetailResponse(
+//                2,
+//                R.drawable.ic_master,
+//                "....3200",
+//                false
+//            )
+//        )
+//
+//        payment_list.add(
+//            Payment(
+//                1,
+//                "20 June 2020",
+//                "50000 N",
+//                "Success"
+//            )
+//        )
+//        payment_list.add(
+//            Payment(
+//                1,
+//                "20 June 2020",
+//                "50000 N",
+//                "Success"
+//            )
+//        )
+//        payment_list.add(
+//            Payment(
+//                1,
+//                "20 June 2020",
+//                "50000 N",
+//                "Failed"
+//            )
+//        )
+//        payment_list.add(
+//            Payment(
+//                1,
+//                "20 June 2020",
+//                "50000 N",
+//                "Success"
+//            )
+//        )
+//        val student =
+//            StudentPaymentModel(payment_list, card_DetailResponse_list,
+//                "Rahman Django",
+//                "profile_image",
+//                "215000 N"
+//            )
+//        binding.tutorName.text = student.tutorName
+//        binding.tutorBalance.text = "Balance: "+ student.balance
+//        Picasso.get().load("profile_image").transform(CircleTransform()).placeholder(R.drawable.profile_image).error(R.drawable.profile_image).into(binding.tutorImage)
 
 
-        val adapter =
-            StudentCardsRecycler()
-        adapter.submitList(Student.cards)
+        val adapter = StudentCardsRecycler()
+        adapter.submitList(cardList)
         binding.studentcardsRecyclerView .adapter = adapter
         binding.studentcardsRecyclerView.hasFixedSize()
+        adapter.setOnclickListener(onClickListener)
 
-        val adapter2 =
-            StudentPaymentsRecycler()
-        adapter2.submitList(Student.payment)
-        binding.paymentsRecyclerView .adapter = adapter2
-        binding.paymentsRecyclerView.hasFixedSize()
+//        val adapter2 = StudentPaymentsRecycler()
+//        adapter2.submitList(student.payment)
+//        binding.paymentsRecyclerView .adapter = adapter2
+//        binding.paymentsRecyclerView.hasFixedSize()
     }
 
+    private fun loadCardFromForm(): Card {
+        val card = Card.Builder(cardNumber, 0, 0, "").build()
+        card.cvc = cardCvc
+        card.expiryMonth = cardExpMonth
+        card.expiryYear = cardExpYear
+        return card
+    }
+
+    private fun startAFreshCharge(local: Boolean){
+        charge = Charge()
+        charge.card = loadCardFromForm()
+
+        progressDialog = ProgressDialog(requireContext())
+        progressDialog.setMessage("Performing transaction... please wait")
+        progressDialog.show()
+
+        if (local) {
+            charge.amount = amount
+            //TODO: Get User email and use here
+            charge.email = "user email"
+            charge.reference = "ChargedFromAndroid_" + Calendar.getInstance().timeInMillis
+            try {
+                charge.putCustomField("Charged From", "Android SDK")
+            } catch (e: JSONException){
+                e.printStackTrace()
+            }
+            chargeCard()
+        }
+    }
+
+    private fun chargeCard(){
+        PaystackSdk.chargeCard(requireActivity(), charge, object: Paystack.TransactionCallback {
+            override fun onSuccess(transaction: Transaction?) {
+                dismissProgressDialog()
+                this@StudentMakePaymentFragment.transaction = transaction
+                Toast.makeText(activity, transaction?.reference, Toast.LENGTH_LONG).show()
+                displayReferenceDialog()
+                //verifyOnServer()
+            }
+
+            override fun beforeValidate(transaction: Transaction?) {
+                this@StudentMakePaymentFragment.transaction = transaction
+                Toast.makeText(activity, transaction?.reference, Toast.LENGTH_LONG).show()
+                displayReferenceDialog()
+                //verifyOnServer()
+            }
+
+            override fun onError(error: Throwable?, transaction: Transaction?) {
+                this@StudentMakePaymentFragment.transaction = transaction
+                if (error is ExpiredAccessCodeException){
+                    startAFreshCharge(false)
+                    chargeCard()
+                    return
+                }
+                dismissProgressDialog()
+
+                if (transaction?.reference != null){
+                    Toast.makeText(activity, transaction.reference + " concluded with error: " + error?.message, Toast.LENGTH_LONG).show()
+                    val message = String.format("%s  concluded with error: %s %s",
+                        transaction.reference, error!!::class.java.simpleName, error.message)
+                    displayErrorDialog(message)
+                } else{
+                    Toast.makeText(activity, error?.message, Toast.LENGTH_LONG).show()
+                    val message = String.format("Error: %s %s", error!!::class.java.simpleName, error.message)
+                    displayErrorDialog(message)
+                }
+                displayReferenceDialog()
+            }
+        })
+    }
+
+    private fun dismissProgressDialog() {
+        if (progressDialog.isShowing) {
+            progressDialog.dismiss()
+        }
+    }
+
+    private fun displayReferenceDialog(){
+        val dialogView = LayoutInflater.from(activity).inflate(R.layout.payment_reference_dialog, null)
+        if (transaction?.reference != null){
+            dialogView.tv_reference_text.text = String.format("Reference: %s", transaction?.reference)
+            val builder = activity.let {
+                AlertDialog.Builder(it)
+                    .setView(dialogView)
+            }
+            builder.show()
+        } else {
+            dialogView.tv_reference_text.text = getString(R.string.no_transaction)
+            val builder = activity.let {
+                AlertDialog.Builder(it)
+                    .setView(dialogView)
+            }
+            builder.show()
+        }
+    }
+
+    private fun displayErrorDialog(message: String){
+        val dialogView = LayoutInflater.from(activity).inflate(R.layout.payment_reference_dialog, null)
+        if (!TextUtils.isEmpty(message)){
+            dialogView.tv_reference_text.text = message
+        }
+        val builder = activity.let {
+            AlertDialog.Builder(it)
+                .setView(dialogView)
+        }
+        builder.show()
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        dismissProgressDialog()
+    }
 }

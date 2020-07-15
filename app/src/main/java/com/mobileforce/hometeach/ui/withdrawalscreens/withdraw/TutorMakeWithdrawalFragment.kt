@@ -1,4 +1,4 @@
-package com.mobileforce.hometeach.tutordashboardfragments
+package com.mobileforce.hometeach.ui.withdrawalscreens.withdraw
 
 import android.os.Build
 import android.os.Bundle
@@ -10,19 +10,19 @@ import androidx.appcompat.app.AlertDialog
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.mobileforce.hometeach.R
-import com.mobileforce.hometeach.databinding.FragmentMakeWithdrawalBinding
+import com.mobileforce.hometeach.databinding.FragmentTutorMakeWithdrawalBinding
 
 
-class MakeWithdrawalFragment : Fragment() {
+class TutorMakeWithdrawalFragment : Fragment() {
 
     lateinit var navController: NavController
-    lateinit var binding:FragmentMakeWithdrawalBinding
+    lateinit var binding: FragmentTutorMakeWithdrawalBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding =  FragmentMakeWithdrawalBinding.inflate(inflater, container, false)
+        binding =  FragmentTutorMakeWithdrawalBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
 

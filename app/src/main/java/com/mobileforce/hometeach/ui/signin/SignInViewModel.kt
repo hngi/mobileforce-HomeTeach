@@ -12,15 +12,11 @@ import com.mobileforce.hometeach.data.model.User
 import com.mobileforce.hometeach.data.repo.UserRepository
 import com.mobileforce.hometeach.localsource.PreferenceHelper
 import com.mobileforce.hometeach.remotesource.Params
-import com.mobileforce.hometeach.remotesource.Params.PasswordReset
-import com.mobileforce.hometeach.remotesource.wrappers.EmailResponse
 import kotlinx.coroutines.launch
-import org.koin.ext.scope
 import com.mobileforce.hometeach.remotesource.wrappers.UserRemote
 import com.mobileforce.hometeach.utils.Result
 import com.mobileforce.hometeach.utils.asLiveData
 import kotlinx.coroutines.isActive
-import kotlinx.coroutines.launch
 
 
 class SignInViewModel(
@@ -99,7 +95,7 @@ class SignInViewModel(
     fun resetPassword(params: Params.PasswordReset) {
         viewModelScope.launch {
             try {
-                val emailResponse = userRepository.password_reset(params)
+                val emailResponse = userRepository.passwordReset(params)
                 if (emailResponse.status == "OK") {
                     _reset.postValue(Result.Success())
                     Log.d("api", emailResponse.status)

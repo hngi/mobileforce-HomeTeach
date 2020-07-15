@@ -57,6 +57,14 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
         db.userDao().clearDb()
     }
 
+    override suspend fun saveUserCardDetails(params: Params.CardDetails) {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getUserCardDetails(id: Int): List<UserCardDetailResponse> {
+        TODO("Not yet implemented")
+    }
+
 
     private fun mapUserToEntity(user: User): UserEntity {
         return UserEntity(

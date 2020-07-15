@@ -22,5 +22,7 @@ interface DataSource {
     suspend fun getProfileList(): List<ProfileResponse>
     suspend fun getTutorDetails(id: Int): TutorDetailsResponse
     suspend fun clearDb()
+    suspend fun saveUserCardDetails(params: Params.CardDetails)
+    suspend fun getUserCardDetails(id: Int): List<UserCardDetailResponse>
 
 }

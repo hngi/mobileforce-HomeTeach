@@ -1,0 +1,72 @@
+package com.mobileforce.hometeach.ui.studentpayments.carddetails
+
+import android.annotation.SuppressLint
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
+import com.mobileforce.hometeach.R
+import com.mobileforce.hometeach.databinding.StudentsCardListBinding
+import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
+
+class StudentCardsRecycler : ListAdapter<UserCardDetailResponse, StudentCardsHolder>(
+    DiffClass
+) {
+
+    private lateinit var onClickListener: View.OnClickListener
+
+    fun setOnclickListener(onClickListener: View.OnClickListener){
+        this.onClickListener = onClickListener
+    }
+
+    companion object DiffClass : DiffUtil.ItemCallback<UserCardDetailResponse>() {
+        override fun areItemsTheSame(
+            oldItem: UserCardDetailResponse,
+            newItem: UserCardDetailResponse
+        ): Boolean {
+            return oldItem.cardNumber == newItem.cardNumber
+        }
+
+        @SuppressLint("DiffUtilEquals")
+        override fun areContentsTheSame(
+            oldItem: UserCardDetailResponse,
+            newItem: UserCardDetailResponse
+        ): Boolean {
+            return oldItem == newItem
+        }
+
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StudentCardsHolder {
+        return StudentCardsHolder(
+            StudentsCardListBinding.inflate(LayoutInflater.from(parent.context))
+        )
+    }
+
+    override fun onBindViewHolder(holder: StudentCardsHolder, position: Int) {
+        val cardDetailResponse = getItem(position)
+        holder.bind(cardDetailResponse)
+        holder.itemView.setOnClickListener(onClickListener)
+    }
+}
+
+class StudentCardsHolder(private val binding: StudentsCardListBinding) :
+    RecyclerView.ViewHolder(binding.root) {
+
+    init {
+        binding.root.tag = this
+    }
+    @SuppressLint("SetTextI18n")
+    fun bind(cardDetailResponse: UserCardDetailResponse) {
+        if (cardDetailResponse.cardNumber.startsWith("4")){
+            binding.ivCardIcon.setImageResource(R.drawable.ic_visa)
+        } else {
+            binding.ivCardIcon.setImageResource(R.drawable.ic_master)
+        }
+        binding.tvCardNumber.text = binding.root.context.getString(R.string.elipsis) + cardDetailResponse.cardNumber.substring(12, 15)
+        binding.rbSelectCard.visibility = View.INVISIBLE
+    }
+
+}

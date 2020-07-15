@@ -1,4 +1,4 @@
-package com.mobileforce.hometeach.tutordashboardfragments
+package com.mobileforce.hometeach.ui.withdrawalscreens.mybank
 
 import android.os.Build
 import android.os.Bundle

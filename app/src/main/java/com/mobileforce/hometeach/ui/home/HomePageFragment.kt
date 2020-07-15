@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import android.widget.RelativeLayout
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import com.google.android.material.button.MaterialButton
@@ -21,8 +21,10 @@ import com.mobileforce.hometeach.databinding.*
 import com.mobileforce.hometeach.localsource.AppDataBase
 import com.mobileforce.hometeach.localsource.PreferenceHelper
 import com.mobileforce.hometeach.models.*
-import com.mobileforce.hometeach.ui.ExploreActivity
 import com.mobileforce.hometeach.ui.classes.adapters.recylerviewadapters.TutorOngoingClassesAdapter
+import com.mobileforce.hometeach.ui.home.student.OngoingClassViewHolderStudentDashBoard
+import com.mobileforce.hometeach.ui.home.student.TopTutorsViewHolderStudentDashBoard
+import com.mobileforce.hometeach.ui.home.student.UpcomingClassViewHolderStudentDashBoard
 import com.mobileforce.hometeach.ui.signin.LoginActivity
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
@@ -77,12 +79,11 @@ class HomePageFragment : Fragment() {
         }
 
         bindingParent.root.findViewById<RelativeLayout>(R.id.actionMakepayment).setOnClickListener {
-            // go to make payment
+            findNavController().navigate(R.id.studentMakePaymentFragment)
         }
 
         bindingParent.root.findViewById<RelativeLayout>(R.id.actionCardDetails).setOnClickListener {
-
-            // go to card details
+            findNavController().navigate(R.id.studentCardDetails)
         }
 
         bindingParent.root.findViewById<MaterialButton>(R.id.signOut).setOnClickListener {

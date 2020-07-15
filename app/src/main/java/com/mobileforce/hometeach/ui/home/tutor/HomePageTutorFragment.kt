@@ -1,4 +1,4 @@
-package com.mobileforce.hometeach.tutordashboardfragments
+package com.mobileforce.hometeach.ui.home.tutor
 
 import android.app.DatePickerDialog
 import android.os.Bundle
@@ -74,7 +74,7 @@ class HomePageTutorFragment : Fragment(), OnItemtouch {
         }
 
         cardDetail.setOnClickListener {
-            navController.navigate(R.id.cardDetails)
+            navController.navigate(R.id.tutorCardDetails)
         }
         mybanks.setOnClickListener {
 
