@@ -15,5 +15,4 @@ urlpatterns = [
     # password_reset/validate_token/
 
     path('api/password_reset', include("django_rest_passwordreset.urls", namespace='password-reset')),
-    
-    ]
+]
