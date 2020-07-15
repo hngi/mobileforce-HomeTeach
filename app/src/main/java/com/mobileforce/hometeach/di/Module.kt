@@ -5,6 +5,8 @@ import com.mobileforce.hometeach.utils.AppConstants.BASE_URL
 import com.mobileforce.hometeach.utils.AppConstants.DATABASE_NAME
 import com.mobileforce.hometeach.data.UserRepositoryImpl
 import com.mobileforce.hometeach.data.repository.UserRepository
+import com.mobileforce.hometeach.data.TutorRepositoryImpl
+import com.mobileforce.hometeach.data.repo.TutorRepository
 import com.mobileforce.hometeach.data.sources.DataSourceFactory
 import com.mobileforce.hometeach.data.sources.LocalDataSource
 import com.mobileforce.hometeach.data.sources.RemoteDataSource
@@ -13,6 +15,7 @@ import com.mobileforce.hometeach.utils.PreferenceHelper
 import com.mobileforce.hometeach.data.sources.remote.Api
 
 import com.mobileforce.hometeach.ui.home.HomePageViewModel
+import com.mobileforce.hometeach.ui.profile.ProfileViewModel
 import com.mobileforce.hometeach.ui.signin.SignInViewModel
 import com.mobileforce.hometeach.ui.signup.SignUpViewModel
 import com.mobileforce.hometeach.ui.tutorlist.TutorListViewModel
@@ -70,6 +73,7 @@ val appModule = module {
     single { LocalDataSource(get()) }
     single { DataSourceFactory(get(), get()) }
     single<UserRepository> { UserRepositoryImpl(get()) }
+    single<TutorRepository> { TutorRepositoryImpl(get()) }
 
 
     //<---------------------view models -------------------------------------->//
@@ -78,5 +82,6 @@ val appModule = module {
     factory { SignUpViewModel(get()) }
     factory { HomePageViewModel(get(), get()) }
     factory { TutorListViewModel(get(),get()) }
+    factory { ProfileViewModel(get()) }
 
 }

@@ -7,6 +7,7 @@ import com.mobileforce.hometeach.data.sources.DataSourceFactory
 import com.mobileforce.hometeach.data.model.UserEntity
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
+import com.mobileforce.hometeach.remotesource.wrappers.*
 import retrofit2.Response
 
 
@@ -39,6 +40,10 @@ class UserRepositoryImpl(private val dataSource: DataSourceFactory) : UserReposi
         return dataSource.remote().getProfileList()
     }
 
+    override suspend fun getTutorDetails(): TutorDetailsResponse {
+        val user = dataSource.local().getSingleUser()
+        return dataSource.remote().getTutorDetails(user.id.toDouble().toInt())
+    }
     override fun getUser(): LiveData<UserEntity> {
         return dataSource.local().getUser()
     }
@@ -50,6 +55,7 @@ class UserRepositoryImpl(private val dataSource: DataSourceFactory) : UserReposi
     override suspend fun password_reset(params: Params.PasswordReset): EmailResponse {
         return dataSource.remote().resetPassword(params)
     }
+
 
 
 }

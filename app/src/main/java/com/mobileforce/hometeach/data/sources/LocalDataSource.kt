@@ -6,6 +6,7 @@ import com.mobileforce.hometeach.data.sources.local.AppDataBase
 import com.mobileforce.hometeach.data.model.UserEntity
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
+import com.mobileforce.hometeach.remotesource.wrappers.*
 
 import retrofit2.Response
 
@@ -29,6 +30,10 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
         return db.userDao().getUser()
     }
 
+    override suspend fun getSingleUser(): UserEntity {
+        return db.userDao().getSingleUser()
+    }
+
     override suspend fun resetPassword(params: Params.PasswordReset): EmailResponse {
         TODO("Not yet implemented")
     }
@@ -44,7 +49,11 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
     override suspend fun getProfileList(): List<ProfileResponse> {
         TODO("Not yet implemented")
     }
-
+    override suspend fun getTutorDetails(
+        id: Int
+    ): TutorDetailsResponse {
+        TODO("Not yet implemented")
+    }
     override suspend fun clearDb() {
         db.userDao().clearDb()
     }

@@ -6,6 +6,7 @@ import com.mobileforce.hometeach.data.model.UserEntity
 import com.mobileforce.hometeach.data.sources.remote.Api
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
+import com.mobileforce.hometeach.remotesource.wrappers.*
 import retrofit2.Response
 
 class RemoteDataSource(private val api: Api) : DataSource {
@@ -40,6 +41,10 @@ class RemoteDataSource(private val api: Api) : DataSource {
         TODO("Not yet implemented")
     }
 
+    override suspend fun getSingleUser(): UserEntity {
+        TODO("Not yet implemented")
+    }
+
     override suspend fun editTutorProfile(
         id: Int,
         params: Params.EditTutorProfile
@@ -49,6 +54,12 @@ class RemoteDataSource(private val api: Api) : DataSource {
 
     override suspend fun getProfileList(): List<ProfileResponse> {
         return api.getProfileList()
+    }
+
+    override suspend fun getTutorDetails(
+        id: Int
+    ): TutorDetailsResponse {
+        return api.getTutorDetails(id)
     }
 
     override suspend fun clearDb() {

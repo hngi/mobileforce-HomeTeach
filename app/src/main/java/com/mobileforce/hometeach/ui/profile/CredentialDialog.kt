@@ -79,4 +79,9 @@ class CredentialDialog : DialogFragment() {
         doc3.docName = getString(R.string.rahman_djago_resume)
         docs.add(doc3)
     }
+    companion object{
+        fun newInstance(): CredentialDialog{
+            return CredentialDialog()
+        }
+    }
 }

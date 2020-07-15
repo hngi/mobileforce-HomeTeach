@@ -1,6 +1,8 @@
 package com.mobileforce.hometeach.data.sources.remote
 
+
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
+import com.mobileforce.hometeach.remotesource.wrappers.*
 
 import retrofit2.Response
 import retrofit2.http.*
@@ -31,4 +33,9 @@ interface Api {
 
     @GET("api/v1/tutor-profiles/")
     suspend fun getTutorList(): Response<TutorListResponse>
+
+    @JvmSuppressWildcards
+    @GET("api/v1/tutor_profiles/{id}/")
+    suspend fun getTutorDetails(@Path("id") id: Int): TutorDetailsResponse
+
 }
