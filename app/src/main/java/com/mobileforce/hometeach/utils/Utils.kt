@@ -8,7 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.adapters.CircleTransform
 import com.mobileforce.hometeach.data.model.User
-import com.mobileforce.hometeach.remotesource.wrappers.UserRemote
+import com.mobileforce.hometeach.data.sources.remote.wrappers.UserRemote
 import com.squareup.picasso.Picasso
 import java.lang.reflect.Method
 

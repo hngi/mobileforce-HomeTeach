@@ -2,10 +2,11 @@ package com.mobileforce.hometeach.data
 
 import androidx.lifecycle.LiveData
 import com.mobileforce.hometeach.data.model.User
-import com.mobileforce.hometeach.data.repo.UserRepository
+import com.mobileforce.hometeach.data.repository.UserRepository
 import com.mobileforce.hometeach.data.sources.DataSourceFactory
-import com.mobileforce.hometeach.localsource.model.UserEntity
-import com.mobileforce.hometeach.remotesource.Params
+import com.mobileforce.hometeach.data.model.UserEntity
+import com.mobileforce.hometeach.data.sources.remote.Params
+import com.mobileforce.hometeach.data.sources.remote.wrappers.*
 import com.mobileforce.hometeach.remotesource.wrappers.*
 import retrofit2.Response
 
@@ -45,6 +46,10 @@ class UserRepositoryImpl(private val dataSource: DataSourceFactory) : UserReposi
     }
     override fun getUser(): LiveData<UserEntity> {
         return dataSource.local().getUser()
+    }
+
+    override suspend fun getTutorList(): Response<TutorListResponse> {
+        return dataSource.remote().getTutorList()
     }
 
     override suspend fun password_reset(params: Params.PasswordReset): EmailResponse {

@@ -158,6 +158,7 @@
     <string name="tutors_description">I teach with calmness and encouragement. My lessons are not boring and i can accomodate student’s with low affinity to studying. I employ modern schema for tutoring with interactive guides and learning systems. Having schooled at different educational organizations coupled with my NCE certifcate, I can assure you premium success with me as your Home-Teacher</string>
     <string name="review">Mr Rahman Django is a great teacher. I was having tough times trying to get my son to understand maths for his upcoming exams but no progress. Mr Rahman put him through and he came out in flying colours</string>
     <string name="success">Your request for a Teacher has been successfully booked and awaiting approval</string>
+    <string name="tutor_list">Tutor List</string>
 
     <string-array name="fields_array">
         <item>Science</item>

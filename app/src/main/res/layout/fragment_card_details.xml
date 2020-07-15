@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:tool="http://schemas.android.com/tools"
     android:orientation="vertical"
-    tool:context="com.mobileforce.hometeach.tutordashboardfragments.CardDetailsFragment">
+    tool:context=".ui.tutordashboardfragments.CardDetailsFragment">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"

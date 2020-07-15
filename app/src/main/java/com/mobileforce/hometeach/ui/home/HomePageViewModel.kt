@@ -2,8 +2,8 @@ package com.mobileforce.hometeach.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mobileforce.hometeach.data.repo.UserRepository
-import com.mobileforce.hometeach.localsource.PreferenceHelper
+import com.mobileforce.hometeach.data.repository.UserRepository
+import com.mobileforce.hometeach.utils.PreferenceHelper
 import kotlinx.coroutines.launch
 
 class HomePageViewModel(private val userRepository: UserRepository, private val preferenceHelper: PreferenceHelper) : ViewModel() {

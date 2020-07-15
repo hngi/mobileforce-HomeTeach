@@ -38,7 +38,7 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".ui.BottonNavigationActivity" />
+        <activity android:name=".ui.BottomNavigationActivity" />
     </application>
 
 </manifest>

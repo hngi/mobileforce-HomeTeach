@@ -15,8 +15,8 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.lifecycle.Observer
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.databinding.ActivityLoginBinding
-import com.mobileforce.hometeach.remotesource.Params
-import com.mobileforce.hometeach.ui.BottonNavigationActivity
+import com.mobileforce.hometeach.data.sources.remote.Params
+import com.mobileforce.hometeach.ui.BottomNavigationActivity
 import com.mobileforce.hometeach.ui.ExploreActivity
 import com.mobileforce.hometeach.utils.Result
 import com.mobileforce.hometeach.utils.snack
@@ -180,7 +180,7 @@ class LoginActivity : AppCompatActivity() {
 
 
     private fun navigateToDashBoard() {
-        startActivity(Intent(this, BottonNavigationActivity::class.java))
+        startActivity(Intent(this, BottomNavigationActivity::class.java))
         //finish()
     }
 

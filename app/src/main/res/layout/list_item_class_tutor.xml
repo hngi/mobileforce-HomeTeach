@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:background="@color/bg_main"
         android:layout_height="wrap_content"
-        tools:context=".fragments.OngoingFragmentTutor">
+        tools:context=".ui.fragments.OngoingFragmentTutor">
 
         <LinearLayout
             android:id="@+id/classes"
@@ -23,7 +23,7 @@
             android:layout_gravity="center_horizontal"
             android:background="@color/bg_main"
             android:padding="10dp"
-            tools:context=".tutordashboardfragments.ClassesFragment">
+            tools:context=".ui.tutordashboardfragments.ClassesFragment">
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card"

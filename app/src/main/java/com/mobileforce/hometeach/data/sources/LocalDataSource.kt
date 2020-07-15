@@ -2,9 +2,10 @@ package com.mobileforce.hometeach.data.sources
 
 import androidx.lifecycle.LiveData
 import com.mobileforce.hometeach.data.model.User
-import com.mobileforce.hometeach.localsource.AppDataBase
-import com.mobileforce.hometeach.localsource.model.UserEntity
-import com.mobileforce.hometeach.remotesource.Params
+import com.mobileforce.hometeach.data.sources.local.AppDataBase
+import com.mobileforce.hometeach.data.model.UserEntity
+import com.mobileforce.hometeach.data.sources.remote.Params
+import com.mobileforce.hometeach.data.sources.remote.wrappers.*
 import com.mobileforce.hometeach.remotesource.wrappers.*
 
 import retrofit2.Response
@@ -55,6 +56,10 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
     }
     override suspend fun clearDb() {
         db.userDao().clearDb()
+    }
+
+    override suspend fun getTutorList(): Response<TutorListResponse> {
+        TODO("Not yet implemented")
     }
 
 

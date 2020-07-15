@@ -2,8 +2,9 @@ package com.mobileforce.hometeach.data.sources
 
 import androidx.lifecycle.LiveData
 import com.mobileforce.hometeach.data.model.User
-import com.mobileforce.hometeach.localsource.model.UserEntity
-import com.mobileforce.hometeach.remotesource.Params
+import com.mobileforce.hometeach.data.model.UserEntity
+import com.mobileforce.hometeach.data.sources.remote.Params
+import com.mobileforce.hometeach.data.sources.remote.wrappers.*
 import com.mobileforce.hometeach.remotesource.wrappers.*
 import retrofit2.Response
 
@@ -22,5 +23,6 @@ interface DataSource {
     suspend fun getProfileList(): List<ProfileResponse>
     suspend fun getTutorDetails(id: Int): TutorDetailsResponse
     suspend fun clearDb()
+    suspend fun getTutorList() : Response<TutorListResponse>
 
 }

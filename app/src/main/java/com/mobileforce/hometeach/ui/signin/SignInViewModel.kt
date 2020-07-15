@@ -6,21 +6,17 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
-import com.mobileforce.hometeach.AppConstants.USER_STUDENT
-import com.mobileforce.hometeach.AppConstants.USER_TUTOR
+import com.mobileforce.hometeach.utils.AppConstants.USER_STUDENT
+import com.mobileforce.hometeach.utils.AppConstants.USER_TUTOR
 import com.mobileforce.hometeach.data.model.User
-import com.mobileforce.hometeach.data.repo.UserRepository
-import com.mobileforce.hometeach.localsource.PreferenceHelper
-import com.mobileforce.hometeach.remotesource.Params
-import com.mobileforce.hometeach.remotesource.Params.PasswordReset
-import com.mobileforce.hometeach.remotesource.wrappers.EmailResponse
+import com.mobileforce.hometeach.data.repository.UserRepository
+import com.mobileforce.hometeach.utils.PreferenceHelper
+import com.mobileforce.hometeach.data.sources.remote.Params
 import kotlinx.coroutines.launch
-import org.koin.ext.scope
-import com.mobileforce.hometeach.remotesource.wrappers.UserRemote
+import com.mobileforce.hometeach.data.sources.remote.wrappers.UserRemote
 import com.mobileforce.hometeach.utils.Result
 import com.mobileforce.hometeach.utils.asLiveData
 import kotlinx.coroutines.isActive
-import kotlinx.coroutines.launch
 
 
 class SignInViewModel(
@@ -65,11 +61,17 @@ class SignInViewModel(
                                     id = id.toString()
                                 )
                                 userRepository.saveUser(user).also {
-                                    //save user type to shared pref
-                                    if (isTutor){
-                                        preferenceHelper.userType = USER_TUTOR
-                                    }else{
-                                        preferenceHelper.userType = USER_STUDENT
+                                    //save user type and ID to shared pref
+                                    if (isTutor) {
+                                        preferenceHelper.apply {
+                                            userType = USER_TUTOR
+                                            userId = user.id
+                                        }
+                                    } else {
+                                        preferenceHelper.apply {
+                                            userType = USER_STUDENT
+                                            userId = user.id
+                                        }
                                     }
                                 }
                             }

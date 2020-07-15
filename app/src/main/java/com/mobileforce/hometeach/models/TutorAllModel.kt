@@ -7,7 +7,7 @@ import com.mobileforce.hometeach.R
 import com.squareup.picasso.Picasso
 
 data class TutorAllModel(
-
+    val id: String,
     val tutorName: String,
     val tutorImage:String,
     val description: String,

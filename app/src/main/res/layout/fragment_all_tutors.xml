@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.TutorsAllFragment">
+    tools:context=".ui.tutorlist.TutorListFragment">
 
 
     <com.google.android.material.appbar.AppBarLayout
@@ -23,7 +23,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:text="Tutor List"
+                android:text="@string/tutor_list"
                 android:textSize="24sp"
                 android:layout_width="wrap_content"
                 android:layout_gravity="center"
