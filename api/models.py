@@ -7,6 +7,56 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
+FIELD_CHOICES = (
+        ('SCIENCE', 'Science'),
+        ('COMMERCIAL', 'Commercial'),
+        ('ARTS', 'Arts'),
+        ('ENGLISH', 'English'),
+        ('NON_ACADEMIC', 'Non-Academic'),
+        ('TEST_PREPARATION', 'Test Preparation'),
+        ('OTHER', 'Other'),
+    )
+
+STATE_CHOICES = (
+        ('ABUJA FCT', 'Abuja'),
+        ('ABIA', 'Abia'),
+        ('ADAMAWA', 'Adamawa'),
+        ('AKWA_IBOM', 'Akwa Ibom'),
+        ('ANAMBRA', 'Anambra'),
+        ('BAUCHI', 'Bauchi'),
+        ('BAYELSA', 'Bayelsa'),
+        ('BENUE', 'Benue'),
+        ('BORNO', 'Borno'),
+        ('CROSS_RIVER', 'Cross River'),
+        ('DELTA', 'Delta'),
+        ('EBONYI', 'Ebonyi'),
+        ('EDO', 'Edo'),
+        ('EKITI', 'Ekiti'),
+        ('ENUGU', 'Enugu'),
+        ('GOMBE', 'Gombe'),
+        ('IMO', 'Imo'),
+        ('JIGAWA', 'Jigawa'),
+        ('KADUNA', 'Kaduna'),
+        ('KANO', 'Kano'),
+        ('KATSINA', 'Kastina'),
+        ('KEBBI', 'Kebbi'),
+        ('KOGI', 'Kogi'),
+        ('KWARA', 'Kwara'),
+        ('LAGOS', 'Lagos'),
+        ('NASSARAWA', 'Nassarawa'),
+        ('NIGER', 'Niger'),
+        ('OGUN', 'Ogun'),
+        ('ONDO', 'Ondo'),
+        ('OSUN', 'Osun'),
+        ('OYO', 'Oyo'),
+        ('PLATEAU', 'Plateau'),
+        ('RIVERS', 'Rivers'),
+        ('SOKOTO', 'Sokoto'),
+        ('TARABA', 'Taraba'),
+        ('YOBE', 'Yobe'),
+        ('ZAMFARA', 'Zamfara'),
+    )
+
 class Rating(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
 	rate = models.DecimalField(default=0.0, decimal_places=2, max_digits=5)
@@ -26,7 +76,9 @@ class Request(models.Model):
 class Profile(models.Model):
 	user = models.OneToOneField(settings.AUTH_USER_MODEL,
 							on_delete=models.CASCADE)
+	profile_pic = models.FileField(blank=True)
 	rating = models.ManyToManyField(Rating, blank=True)
+<<<<<<< HEAD
 	profile_pic = models.FileField(upload_to='images/%Y/%m/%d/',
 								   blank=True, null=True)
     credentials = models.FileField(upload_to='docs/%Y/%m/%d/', 
@@ -34,22 +86,26 @@ class Profile(models.Model):
 	description = models.FileField(upload_to='videos/%Y/%m/%d/', 
 								   null=True, blank=True)
 	field = models.CharField(max_length=255, null=True, blank=True)
+=======
+	desc = models.TextField(max_length=255, null=True, blank=True)
+	field = models.CharField(max_length=255, choices = FIELD_CHOICES, blank=True)
+>>>>>>> e30935d71f72e4ab22fa1612c08516993eeeb7db
 	hourly_rate = models.CharField(max_length=10000000, default=0)
 	major_course = models.CharField(max_length=255, null=True, blank=True)
 	other_courses = models.CharField(max_length=255, null=True, blank=True)
-	state = models.CharField(max_length=255, null=True, blank=True)
+	state = models.CharField(max_length=255, choices = STATE_CHOICES, blank=True)
 	address = models.CharField(max_length=255, null=True, blank=True)
 	
 
 	def __unicode__(self):
 		return f'Profile for user: {self.user.email}'
 
-@receiver(post_save, sender=settings.AUTH_USER_MODEL)
-def create_user_profile(sender, instance, created, **kwargs):
-	if created:
-		Profile.objects.create(user=instance)
+	@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+	def create_user_profile(sender, instance, created, **kwargs):
+		if created:
+			Profile.objects.create(user=instance)
 
-@receiver(post_save, sender=settings.AUTH_USER_MODEL)
-def save_user_profile(sender, instance, **kwargs):
-	instance.profile.save()
+	@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+	def save_user_profile(sender, instance, **kwargs):
+		instance.profile.save()
 

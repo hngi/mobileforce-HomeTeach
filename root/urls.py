@@ -33,10 +33,16 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+<<<<<<< HEAD
+    path('api/v1/', include('accounts.urls')),
+    path('api/v1/', include('confirmation.urls')),
+    path('api/v1/', include('api.urls')),
+=======
     path('v1/', include('accounts.urls')),
     path('v1/', include('api.urls')),
+>>>>>>> 60c82b7878fe02705e47de34a11b21e1b6f0926b
     path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-     path("accounts/", include("accounts.urls")),
+    path("accounts/", include("accounts.urls")),
 ]
 
 if settings.DEBUG:
