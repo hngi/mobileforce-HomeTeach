@@ -47,8 +47,6 @@ class UserRepositoryImpl(private val dataSource: DataSourceFactory) : UserReposi
     override fun getUser(): LiveData<UserEntity> {
         return dataSource.local().getUser()
     }
-
-
     override suspend fun getTutorList(): Response<TutorListResponse> {
         return dataSource.remote().getTutorList()
     }
@@ -64,5 +62,4 @@ class UserRepositoryImpl(private val dataSource: DataSourceFactory) : UserReposi
     override suspend fun passwordReset(params: Params.PasswordReset): EmailResponse {
         return dataSource.remote().resetPassword(params)
     }
-
 }

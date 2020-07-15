@@ -43,5 +43,4 @@ interface Api {
 
     @GET("")
     suspend fun getUserCardDetails(@Path("id") id: Int): List<UserCardDetailResponse>
-    
 }

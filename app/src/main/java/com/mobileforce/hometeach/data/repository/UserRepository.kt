@@ -22,10 +22,7 @@ interface UserRepository {
     suspend fun getProfileList(): List<ProfileResponse>
     suspend fun getTutorDetails(): TutorDetailsResponse
     fun getUser(): LiveData<UserEntity>
-<<<<<<< HEAD:app/src/main/java/com/mobileforce/hometeach/data/repository/UserRepository.kt
     suspend fun getTutorList(): Response<TutorListResponse>
-=======
     suspend fun saveUserCardDetails(params: Params.CardDetails)
     suspend fun getUserCardDetails(id: Int): List<UserCardDetailResponse>
->>>>>>> Feat: Implement Student Payment feature:app/src/main/java/com/mobileforce/hometeach/data/repo/UserRepository.kt
 }
