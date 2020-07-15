@@ -37,5 +37,10 @@ interface Api {
     @JvmSuppressWildcards
     @GET("api/v1/tutor_profiles/{id}/")
     suspend fun getTutorDetails(@Path("id") id: Int): TutorDetailsResponse
+    
+    @POST("")
+    suspend fun saveUserCardDetails(@Body params: Map<String, Any>)
 
+    @GET("")
+    suspend fun getUserCardDetails(@Path("id") id: Int): List<UserCardDetailResponse>
 }

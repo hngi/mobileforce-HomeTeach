@@ -101,7 +101,7 @@ class SignInViewModel(
     fun resetPassword(params: Params.PasswordReset) {
         viewModelScope.launch {
             try {
-                val emailResponse = userRepository.password_reset(params)
+                val emailResponse = userRepository.passwordReset(params)
                 if (emailResponse.status == "OK") {
                     _reset.postValue(Result.Success())
                     Log.d("api", emailResponse.status)

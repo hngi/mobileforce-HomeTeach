@@ -1,4 +1,4 @@
-package com.mobileforce.hometeach.ui.home
+package com.mobileforce.hometeach.ui.home.student
 
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.adapters.ViewHolder

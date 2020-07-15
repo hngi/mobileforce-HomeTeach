@@ -1,5 +1,4 @@
-package com.mobileforce.hometeach.ui.tutordashboardfragments
-
+package com.mobileforce.hometeach.ui.withdrawalscreens.carddetails
 import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,18 +9,18 @@ import androidx.appcompat.app.AlertDialog
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.mobileforce.hometeach.R
-import com.mobileforce.hometeach.databinding.FragmentAddCardDetailsBinding
+import com.mobileforce.hometeach.databinding.FragmentTutorAddCardDetailsBinding
 
 
-class AddCardDetails : Fragment() {
+class TutorAddCardDetailsFragment : Fragment() {
+
     lateinit var navController: NavController
-
-    lateinit var binding:FragmentAddCardDetailsBinding
+    lateinit var binding:FragmentTutorAddCardDetailsBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding =  FragmentAddCardDetailsBinding.inflate(inflater, container, false)
+        binding =  FragmentTutorAddCardDetailsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -32,34 +31,30 @@ class AddCardDetails : Fragment() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             toolbar.setNavigationIcon(R.drawable.back_arrow)
         }
-        val accName = binding.accName
-        val txtAccname = accName.text
-        val accNumber = binding.accNumber
-        val txtAccnumber = accNumber.text
-        val cardExpiryDate = binding.mY
-        val txtCardExpiryDate = cardExpiryDate.text
-        val cwNumber = binding.cw
-        val txtCwNumber = cwNumber.text
-        val btnSave =binding.save
+        val cardNumber = binding.etCardNumber.text
+        val cvvNumber = binding.etCvcNumber.text
+        val expiryMonth = binding.etMonth.text
+        val expiryYear = binding.etYear.text
+        val btnSave = binding.save
 
         btnSave.setOnClickListener {
 
-            if (txtAccname.isNullOrEmpty())
+            if (cardNumber.isNullOrEmpty())
             {
 
             }
 
-            if (txtAccnumber.isNullOrEmpty())
+            if (cvvNumber.isNullOrEmpty())
             {
 
             }
 
-            if (txtCardExpiryDate.isNullOrEmpty())
+            if (expiryMonth.isNullOrEmpty())
             {
 
             }
 
-            if (txtCwNumber.isNullOrEmpty())
+            if (expiryYear.isNullOrEmpty())
             {
 
             }
@@ -70,7 +65,7 @@ class AddCardDetails : Fragment() {
         }
 
         toolbar.setNavigationOnClickListener {
-            navController.navigate(R.id.cardDetails)
+            navController.navigate(R.id.tutorCardDetails)
         }
 
     }

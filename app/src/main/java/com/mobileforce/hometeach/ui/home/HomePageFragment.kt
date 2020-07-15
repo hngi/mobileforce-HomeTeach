@@ -22,6 +22,9 @@ import com.mobileforce.hometeach.data.sources.local.AppDataBase
 import com.mobileforce.hometeach.utils.PreferenceHelper
 import com.mobileforce.hometeach.models.*
 import com.mobileforce.hometeach.ui.classes.adapters.recylerviewadapters.TutorOngoingClassesAdapter
+import com.mobileforce.hometeach.ui.home.student.OngoingClassViewHolderStudentDashBoard
+import com.mobileforce.hometeach.ui.home.student.TopTutorsViewHolderStudentDashBoard
+import com.mobileforce.hometeach.ui.home.student.UpcomingClassViewHolderStudentDashBoard
 import com.mobileforce.hometeach.ui.signin.LoginActivity
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
@@ -76,12 +79,11 @@ class HomePageFragment : Fragment() {
         }
 
         bindingParent.root.findViewById<RelativeLayout>(R.id.actionMakepayment).setOnClickListener {
-            // go to make payment
+            findNavController().navigate(R.id.studentMakePaymentFragment)
         }
 
         bindingParent.root.findViewById<RelativeLayout>(R.id.actionCardDetails).setOnClickListener {
-
-            // go to card details
+            findNavController().navigate(R.id.studentCardDetails)
         }
 
         bindingParent.root.findViewById<MaterialButton>(R.id.signOut).setOnClickListener {

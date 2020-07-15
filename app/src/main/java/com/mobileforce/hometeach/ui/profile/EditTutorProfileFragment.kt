@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import com.mobileforce.hometeach.R
 import com.tiper.MaterialSpinner
-import kotlinx.android.synthetic.main.edit_tutor_profile_fragment.*
+import kotlinx.android.synthetic.main.fragment_edit_tutor_profile.*
 
 /**
  * Authored by MayorJay
@@ -43,7 +43,7 @@ class EditTutorProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.edit_tutor_profile_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_edit_tutor_profile, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

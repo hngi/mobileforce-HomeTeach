@@ -1,5 +1,4 @@
-package com.mobileforce.hometeach.ui.tutordashboardfragments
-
+package com.mobileforce.hometeach.ui.withdrawalscreens.carddetails
 import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,17 +8,17 @@ import android.view.ViewGroup
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.mobileforce.hometeach.R
-import com.mobileforce.hometeach.databinding.FragmentCardDetailsBinding
+import com.mobileforce.hometeach.databinding.FragmentTutorCardDetailsBinding
 
-class CardDetailsFragment : Fragment() {
+class TutorCardDetailsFragment : Fragment() {
 
     lateinit var navController: NavController
-    lateinit var binding: FragmentCardDetailsBinding
+    lateinit var binding: FragmentTutorCardDetailsBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding =  FragmentCardDetailsBinding.inflate(inflater, container, false)
+        binding =  FragmentTutorCardDetailsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -42,7 +41,7 @@ class CardDetailsFragment : Fragment() {
         }
 
         addCard.setOnClickListener {
-            navController.navigate(R.id.addCardDetails)
+            navController.navigate(R.id.tutorAddCardDetails)
         }
     }
 }

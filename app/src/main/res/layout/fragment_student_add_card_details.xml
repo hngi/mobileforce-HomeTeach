@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -77,34 +78,36 @@
             android:textSize="15sp" />
 
         <EditText
-            android:id="@+id/acc_name"
+            android:id="@+id/et_card_number"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="15dp"
             android:background="@drawable/edit_text_background"
-            android:hint="@string/account_name"
+            android:hint="@string/card_number"
             android:gravity="center"
             android:drawableStart="@drawable/credit_card_icon"
             android:inputType="text"
             android:padding="12dp"
-            android:drawableLeft="@drawable/credit_card_icon" />
+            android:drawableLeft="@drawable/credit_card_icon"
+            tools:ignore="TextFields" />
 
         <EditText
-            android:id="@+id/acc_number"
+            android:id="@+id/et_cvc_number"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="15dp"
             android:gravity="center"
             android:background="@drawable/edit_text_background"
-            android:hint="@string/account_number"
+            android:hint="@string/cvc"
             android:drawableStart="@drawable/credit_card_icon"
             android:drawableEnd="@drawable/camera_icon"
-            android:inputType="number"
+            android:inputType="text"
             android:padding="12dp"
             android:drawableLeft="@drawable/credit_card_icon"
-            android:drawableRight="@drawable/camera_icon" />
+            android:drawableRight="@drawable/camera_icon"
+            tools:ignore="TextFields" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -112,24 +115,24 @@
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/m_y"
-                android:layout_width="200dp"
+                android:id="@+id/et_month"
+                android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
                 android:background="@drawable/edit_text_background"
-                android:hint="@string/mm_yy"
+                android:hint="@string/mm"
                 android:textAlignment="center" />
 
             <EditText
-                android:id="@+id/cw"
-                android:layout_width="100dp"
+                android:id="@+id/et_year"
+                android:layout_width="200dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:layout_marginStart="30dp"
                 android:layout_marginLeft="20dp"
                 android:background="@drawable/edit_text_background"
-                android:hint="@string/cvv"
+                android:hint="@string/yy"
                 android:inputType="number"
                 android:textAlignment="center" />
 

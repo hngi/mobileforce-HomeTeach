@@ -65,9 +65,23 @@ class RemoteDataSource(private val api: Api) : DataSource {
     override suspend fun clearDb() {
         TODO("Not yet implemented")
     }
-
+    
     override suspend fun getTutorList(): Response<TutorListResponse> {
         return api.getTutorList()
+    }
+    
+    override suspend fun saveUserCardDetails(params: Params.CardDetails) {
+        val map = hashMapOf(
+            "card_number" to params.card_number,
+            "card_cvv" to params.card_cvc,
+            "expiry_month" to params.expiry_month,
+            "expiry_year" to params.expiry_year
+        )
+        api.saveUserCardDetails(map)
+    }
+
+    override suspend fun getUserCardDetails(id: Int): List<UserCardDetailResponse> {
+        return api.getUserCardDetails(id)
     }
 
     override suspend fun resetPassword(params: Params.PasswordReset): EmailResponse {

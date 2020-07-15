@@ -1,4 +1,4 @@
-package com.mobileforce.hometeach.ui.studentpayments.carddetails
+package com.mobileforce.hometeach.ui.studentpayments.makepayments
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -38,17 +38,15 @@ class StudentPaymentsRecycler : ListAdapter<Payment, StudentPaymentsHolder>(
 
     override fun onBindViewHolder(holder: StudentPaymentsHolder, position: Int) {
         val payment = getItem(position)
-        holder.bind(payment)
+        //holder.bind(payment)
     }
-
-
 }
 
 class StudentPaymentsHolder(private val binding: StudentsPaymentListBinding) :
     RecyclerView.ViewHolder(binding.root) {
-    fun bind(pay: Payment) {
-        binding.pay = pay
-        binding.executePendingBindings()
-    }
+//    fun bind(pay: Payment) {
+//        binding.pay = pay
+//        binding.executePendingBindings()
+//    }
 
 }
