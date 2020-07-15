@@ -1,27 +1,38 @@
 package com.mobileforce.hometeach.ui.profile
 
+import android.Manifest
+import android.R.attr
+import android.app.Activity
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.BitmapFactory
+import android.net.Uri
+import android.opengl.ETC1.encodeImage
+import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.TextView
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.databinding.EditTutorProfileFragmentBinding
-import com.mobileforce.hometeach.remotesource.Params
-import com.mobileforce.hometeach.remotesource.wrappers.ProfileResponse
-import com.mobileforce.hometeach.remotesource.wrappers.UserRemote
 import com.tiper.MaterialSpinner
 import kotlinx.android.synthetic.main.edit_tutor_profile_fragment.*
-import kotlinx.android.synthetic.main.fragment_profile.*
-import org.koin.android.viewmodel.ext.android.viewModel
+import java.io.InputStream
+
 
 /**
  * Authored by MayorJay
  */
 
 class EditTutorProfileFragment : Fragment() {
+    lateinit var navController: NavController
+    lateinit var binding: EditTutorProfileFragmentBinding
+    val  REQUEST_CODE = 1001
 
     companion object {
         fun newInstance() = EditTutorProfileFragment()
@@ -50,7 +61,8 @@ class EditTutorProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.edit_tutor_profile_fragment, container, false)
+        binding =  EditTutorProfileFragmentBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -103,6 +115,68 @@ class EditTutorProfileFragment : Fragment() {
 //            )
 //            viewModel.editTutorProfile(currentUserId, profileData)
         }
+
+        binding.selectImage.setOnClickListener {
+
+            Log.d("api","IMAGE CLICKED")
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+
+                if (activity?.let { it1 ->
+                        ContextCompat.checkSelfPermission(
+                            it1,
+                            Manifest.permission.READ_EXTERNAL_STORAGE
+                        )
+                    } ==
+                    PackageManager.PERMISSION_DENIED){
+                    //permission denied
+                    val permissions = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE);
+                    //show popup to request runtime permission
+                    requestPermissions(permissions, REQUEST_CODE);
+                }
+                else{
+                    //permission already granted
+                    pickImageFromGallery();
+                }
+            }
+            else{
+                //system OS is < Marshmallow
+                pickImageFromGallery();
+            }
+
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+
+            
+
+
+//            val imageUri: Uri = attr.data.getData()
+//            val imageStream: InputStream = getContentResolver().openInputStream(imageUri)
+//            val selectedImage = BitmapFactory.decodeStream(imageStream)
+//            val encodedImage: String = encodeImage(selectedImage)
+//            )
+//            cursor.moveToFirst()
+//            val columnIndex: Int = cursor.getColumnIndex(filePathColumn[0])
+//            val picturePath: String = cursor.getString(columnIndex)
+
+//            binding.selectImage.setImageURI(data!!.data)
+//            var file = File(data!!.data!!.path)
+//            var requestBody = RequestBody.create(MediaType.parse("image/jpeg"), file)
+//            var filePart = MultipartBody.Part.createFormData("upload_file", file.name, requestBody)
+//            viewModel.uploadImage(filePart).observe(this, Observer {
+//                Toast.makeText(context, it.message, Toast.LENGTH_LONG).show()
+//            })
+
+        }
+    }
+    private fun pickImageFromGallery() {
+        //Intent to pick image
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent, REQUEST_CODE)
     }
 
 }
