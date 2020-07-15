@@ -13,6 +13,7 @@ urlpatterns = [
     path('submit-request/', views.submit_request),
     path('tutor-requests/', views.list_requests_tutor),
     path('user-requests/', views.list_user_requests),
+    path('rate-tutor/', views.rate_tutor),
 ]
 
 urlpatterns += router.urls

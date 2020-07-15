@@ -1,6 +1,6 @@
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from rest_framework.request import Request
 from django.contrib.auth import login, logout, authenticate
 from sendgrid import SendGridAPIClient
 from django.template.loader import get_template
@@ -12,7 +12,7 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from .tokens import account_activation_token
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import status, serializers, exceptions
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 from .serializers import RegistrationSerializer
@@ -21,6 +21,7 @@ from django.contrib.auth import get_user_model
 from rest_framework.status import HTTP_200_OK, HTTP_400_BAD_REQUEST
 from rest_framework.views import APIView
 from .serializers import UserLoginSerializer
+User = get_user_model()
 
 
 class UserLoginView(APIView):
@@ -28,10 +29,10 @@ class UserLoginView(APIView):
     serializer_class = UserLoginSerializer
     def post(self, request, *args, **kwargs):
         data = request.data
-        serializer = UserLoginSerializer(data = data)
+        serializer = UserLoginSerializer(data = data, context={'request': request})
         if serializer.is_valid(raise_exception=True):
             data = serializer.save()
-            return Response(data, status=HTTP_200_OK)
+            return Response(serializer.data, status=HTTP_200_OK)
         return  Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
 
 class UserLogoutView(APIView):
@@ -75,7 +76,11 @@ def activate(request, uidb64, token):
     User = get_user_model()
     try:
         uid = force_text(urlsafe_base64_decode(uidb64))
+
         user = User.objects.get(pk=uid)
+
+
+
     except(TypeError, ValueError, OverflowError, User.DoesNotExist):
         user = None
     if user is not None and account_activation_token.check_token(user, token):

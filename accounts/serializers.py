@@ -6,9 +6,12 @@ from rest_framework.serializers import ModelSerializer,CharField,EmailField,Seri
 from django.db import models
 from django.db.models import Q
 from .models import CustomUser
+from api.serializers import ProfileSerializer
+from api.models import Profile
 from rest_framework import exceptions
 from django.shortcuts import get_object_or_404
 from rest_framework.authtoken.models import Token
+
 
 User = get_user_model()
 
@@ -46,15 +49,30 @@ class RegistrationSerializer(serializers.ModelSerializer):
 
 
 class UserLoginSerializer(ModelSerializer):
-    email = EmailField(max_length=100)
+    email = EmailField(max_length=100, write_only=True)
+    token = serializers.SerializerMethodField(read_only=True)
+    profile = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model = CustomUser
         fields = [
             'email',
+            'token',
+            'profile',
             'password',
         ]
         extra_kwargs = {"password": {"write_only": True}}
+
+    def get_profile(self, obj):
+        email = obj.get('email')
+        profile = Profile.objects.get(user__email=email)
+        serializer = ProfileSerializer(profile, context=self.context)
+        return serializer.data
+
+    def get_token(self, obj):
+        email = obj.get('email')
+        token = Token.objects.get(user__email=email).key
+        return token
 
     def save(self, **kwargs):
         data = self.validated_data
@@ -72,13 +90,17 @@ class UserLoginSerializer(ModelSerializer):
             if not user_obj.check_password(password):
                 raise ValidationError("invalid password")
         token = Token.objects.get(user=user_obj).key
-        user_data = {'token': token, 'user': {
-                        'id': user_obj.pk,
-                        'email': user_obj.email,
-                        'is_tutor':user_obj.is_tutor,
-                        'is_active': user_obj.is_active, 
-                        'full_name': user_obj.full_name, 
-                        'phone_number':user_obj.phone_number}
+        user_data = {'token': token,
+                        'user': {
+                            'id': user_obj.pk,
+                            'email': user_obj.email,
+                            'is_tutor':user_obj.is_tutor,
+                            'is_active': user_obj.is_active, 
+                            'full_name': user_obj.full_name, 
+                            'phone_number':user_obj.phone_number
+                        }
                      }
 
         return user_data
+
+
