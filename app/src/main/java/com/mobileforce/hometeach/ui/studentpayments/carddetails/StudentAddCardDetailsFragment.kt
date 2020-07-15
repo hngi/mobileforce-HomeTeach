@@ -10,8 +10,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.mobileforce.hometeach.R
+import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.databinding.FragmentStudentAddCardDetailsBinding
-import com.mobileforce.hometeach.remotesource.Params
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
@@ -62,7 +62,8 @@ class StudentAddCardDetailsFragment : Fragment() {
             }
             showDialog()
             // send card details to endpoint
-            viewModel.saveUserCardDetails(Params.CardDetails(
+            viewModel.saveUserCardDetails(
+                Params.CardDetails(
                 cardNumber.toString().trim(),
                 cardCvc.toString().trim(),
                 expiryMonth.toString().trim().toInt(),

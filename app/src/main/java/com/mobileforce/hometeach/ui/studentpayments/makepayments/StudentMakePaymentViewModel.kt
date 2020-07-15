@@ -2,7 +2,7 @@ package com.mobileforce.hometeach.ui.studentpayments.makepayments
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mobileforce.hometeach.data.repo.UserRepository
+import com.mobileforce.hometeach.data.repository.UserRepository
 import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
 import kotlinx.coroutines.launch
 
