@@ -62,15 +62,23 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
         TODO("Not yet implemented")
     }
 
+        override suspend fun saveUserCardDetails(params: Params.CardDetails) {
+            TODO("Not yet implemented")
+        }
 
-    private fun mapUserToEntity(user: User): UserEntity {
-        return UserEntity(
-            id = user.id,
-            is_tutor = user.isTutor,
-            email = user.email,
-            phone_number = user.phoneNumber,
-            token = user.token,
-            full_name = user.fullName
-        )
+        override suspend fun getUserCardDetails(id: Int): List<UserCardDetailResponse> {
+            TODO("Not yet implemented")
+        }
+
+
+        private fun mapUserToEntity(user: User): UserEntity {
+            return UserEntity(
+                id = user.id,
+                is_tutor = user.isTutor,
+                email = user.email,
+                phone_number = user.phoneNumber,
+                token = user.token,
+                full_name = user.fullName
+            )
+        }
     }
-}

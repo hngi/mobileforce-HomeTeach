@@ -2,7 +2,7 @@ package com.mobileforce.hometeach.ui.studentpayments
 
 class StudentPaymentModel (
     var payment: List<Payment>,
-    var cards: List<StudentCard>,
+    var cards: List<UserCardDetailResponse>,
     val tutorName: String,
     val tutorImage:String,
     val balance: String
@@ -17,16 +17,15 @@ data class Payment(
 
 data class StudentCardModel(
     val _id: Int,
-    var cards: List<StudentCard>,
+    var cards: List<UserCardDetailResponse>,
     val tutorName: String,
     val tutorImage:String,
     val balance: String
 )
 
-data class StudentCard(
+data class UserCardDetailResponse(
     val id:Int,
     val cardImage:Int,
     val cardNo:String,
     val status:Boolean
-
 )
