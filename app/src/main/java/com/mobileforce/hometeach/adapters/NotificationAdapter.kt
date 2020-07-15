@@ -6,14 +6,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
 import com.mobileforce.hometeach.R
+import com.mobileforce.hometeach.models.Notifications
 import kotlinx.android.synthetic.main.parent_notification_layout.view.*
 
 import kotlin.collections.ArrayList
 
 class NotificationAdapter (var  items: ArrayList<Notifications>, var clickListener: OnNotificationItemClickListener) : RecyclerView.Adapter<NotificationsViewHolder>() {
-
-
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotificationsViewHolder {
         lateinit var  notificationViewHolder: NotificationsViewHolder

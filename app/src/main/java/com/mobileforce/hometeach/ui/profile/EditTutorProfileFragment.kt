@@ -6,16 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.TextView
 import com.mobileforce.hometeach.R
-import com.mobileforce.hometeach.databinding.EditTutorProfileFragmentBinding
-import com.mobileforce.hometeach.remotesource.Params
-import com.mobileforce.hometeach.remotesource.wrappers.ProfileResponse
-import com.mobileforce.hometeach.remotesource.wrappers.UserRemote
 import com.tiper.MaterialSpinner
 import kotlinx.android.synthetic.main.edit_tutor_profile_fragment.*
-import kotlinx.android.synthetic.main.fragment_profile.*
-import org.koin.android.viewmodel.ext.android.viewModel
 
 /**
  * Authored by MayorJay

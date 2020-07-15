@@ -2,13 +2,10 @@ package com.mobileforce.hometeach.data.sources
 
 import androidx.lifecycle.LiveData
 import com.mobileforce.hometeach.data.model.User
-import com.mobileforce.hometeach.localsource.model.UserEntity
-import com.mobileforce.hometeach.remotesource.Api
-import com.mobileforce.hometeach.remotesource.Params
-import com.mobileforce.hometeach.remotesource.wrappers.EmailResponse
-import com.mobileforce.hometeach.remotesource.wrappers.EditTutorProfileResponse
-import com.mobileforce.hometeach.remotesource.wrappers.ProfileResponse
-import com.mobileforce.hometeach.remotesource.wrappers.RegisterUserResponse
+import com.mobileforce.hometeach.data.model.UserEntity
+import com.mobileforce.hometeach.data.sources.remote.Api
+import com.mobileforce.hometeach.data.sources.remote.Params
+import com.mobileforce.hometeach.data.sources.remote.wrappers.*
 import retrofit2.Response
 
 class RemoteDataSource(private val api: Api) : DataSource {
@@ -56,6 +53,10 @@ class RemoteDataSource(private val api: Api) : DataSource {
 
     override suspend fun clearDb() {
         TODO("Not yet implemented")
+    }
+
+    override suspend fun getTutorList(): Response<TutorListResponse> {
+        return api.getTutorList()
     }
 
     override suspend fun resetPassword(params: Params.PasswordReset): EmailResponse {
