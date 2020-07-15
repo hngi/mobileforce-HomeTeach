@@ -202,3 +202,10 @@ class ProfileUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model=Profile
         fields = '__all__'
+
+class TopTutorSerializer(serializers.ModelSerializer):
+    ratings = RatingsSerializer()
+    class Meta:
+        model = Rating
+        fields = ('user.email','rate')
+

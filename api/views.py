@@ -1,9 +1,9 @@
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import CreateRequestSerializer, RequestTutorSerializer, RequestSerializer
+from .serializers import CreateRequestSerializer, RequestTutorSerializer, RequestSerializer,TopTutorSerializer
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
-from .models import Request
+from .models import Request,Rating
 from .permissions import IsOwnerOrReadOnly, IsAdminUserOrReadOnly, IsSameUserAllowEditionOrReadOnly
 from .serializers import CustomUserSerializer, ProfileSerializer, TutorProfileSerializer, StudentProfileSerializer, RatingsSerializer
 from .models import Profile
@@ -14,7 +14,8 @@ from rest_framework.authtoken.models import Token
 from django.contrib.auth import get_user_model
 from django_filters import rest_framework as filters
 from rest_framework.filters import SearchFilter,OrderingFilter
-
+from django.contrib.auth import get_user_model
+from django.shortcuts import get_object_or_404
 
 @api_view(['POST', ])
 @permission_classes([AllowAny, ])
@@ -81,9 +82,7 @@ class TutorProfileViewSet(mixins.ListModelMixin,
     This viewset automatically provides `list`, `create`, `retrieve`,
     `update` and `destroy` actions.
     """
-    print(Profile.objects.all())
     queryset = Profile.objects.filter(user__is_tutor=True)
-    print(queryset)
     serializer_class = TutorProfileSerializer
     permission_classes = (AllowAny,
                           IsOwnerOrReadOnly,)
@@ -116,4 +115,28 @@ def rate_tutor(request):
         serializer.save()
         return Response({f'you have rated this tutor {serializer.data.get("rate")} stars'}, status=status.HTTP_201_CREATED)
     return Response(status=status.HTTP_501_NOT_IMPLEMENTED)
+
+User = get_user_model()
+@api_view(['GET', ])
+@permission_classes([AllowAny, ])
+def top_tutors(request):
+    # rate = request.GET.get('rate')
+    # tutor_id = request.GET.get('tutor_id')
+    user = get_object_or_404(User, email='alabiemmanuelferanmi@gmail.com')
+    print(user)
+    # req = Rating.objects.all()
+    # print(req)
+    try:
+        rating = User.objects.get(email ='alabiemmanuelferanmi@gmail.com' )
+        # rating.rate = rate
+        # rating.save()
+        serializer = CustomUserSerializer(user)
+        print(serializer)
+        response = {'result':serializer.data}
+        return Response(response, status =status.HTTP_200_OK)
+
+    except:
+        return Response({"result":"failed"}, status = status.HTTP_400_BAD_REQUEST)
+
+#     return None
 

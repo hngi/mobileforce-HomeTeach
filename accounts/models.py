@@ -162,7 +162,7 @@ class ResetPasswordToken(BaseUserManager):
         "Key",
         max_length=64,
         db_index=True,
-        unique=True
+        unique=True,
     )
 
     ip_address = models.GenericIPAddressField(

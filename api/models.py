@@ -39,6 +39,10 @@ class Profile(models.Model):
 
 	def __unicode__(self):
 		return f'Profile for user: {self.user.email}'
+		
+	def no_of_ratings(self):
+		ratings = Rating.objects.filter(user =self)
+		return len(ratings)
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_user_profile(sender, instance, created, **kwargs):
