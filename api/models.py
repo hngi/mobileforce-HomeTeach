@@ -76,14 +76,6 @@ class Request(models.Model):
 class Profile(models.Model):
 	user = models.OneToOneField(settings.AUTH_USER_MODEL,
 								on_delete=models.CASCADE)
-	rating = models.ManyToManyField(Rating, blank=True)
-	desc = models.TextField(max_length=255, null=True, blank=True)
-	field = models.CharField(max_length=255, choices = FIELD_CHOICES, blank=True)
-	hourly_rate = models.CharField(max_length=10000000, default=0)
-	major_course = models.CharField(max_length=255, null=True, blank=True)
-	other_courses = models.CharField(max_length=255, null=True, blank=True)
-	state = models.CharField(max_length=255, choices = STATE_CHOICES, blank=True)
-	address = models.CharField(max_length=255, null=True, blank=True)
 	# if user.is_tutor:
 	profile_pic = models.ImageField(upload_to='images/%Y/%m/%d/',
 									null=True, blank=True)
@@ -91,7 +83,14 @@ class Profile(models.Model):
 								   null=True, blank=True)
 	video = models.FileField(upload_to='videos/%Y/%m/%d/',
 							 null=True, blank=True)
-	
+	rating = models.ManyToManyField(Rating, blank=True)
+	desc = models.TextField(max_length=255, null=True, blank=True)
+	field = models.CharField(max_length=255, choices = FIELD_CHOICES, blank=True)
+	hourly_rate = models.CharField(max_length=10000000, default=0)
+	major_course = models.CharField(max_length=255, null=True, blank=True)
+	other_courses = models.CharField(max_length=255, null=True, blank=True)
+	state = models.CharField(max_length=255, choices = STATE_CHOICES, blank=True)
+	address = models.CharField(max_length=255, null=True, blank=True)	
 
 	def __unicode__(self):
 		return f'Profile for user: {self.user.email}'
