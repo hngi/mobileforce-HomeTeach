@@ -12,7 +12,7 @@ import retrofit2.Response
 
 interface UserRepository {
 
-    suspend fun login(params: Params.SignIn): Response<List<Any>>
+    suspend fun login(params: Params.SignIn): LoginResponse
     suspend fun register(params: Params.SignUp): RegisterUserResponse
     suspend fun passwordReset(params: Params.PasswordReset):EmailResponse
 

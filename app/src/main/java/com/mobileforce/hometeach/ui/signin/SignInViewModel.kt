@@ -39,57 +39,37 @@ class SignInViewModel(
             try {
                 val response = userRepository.login(params)
 
-                if (response.isSuccessful) {
-                    preferenceHelper.isLoggedIn = true
-
-                    try {
-
-                        response.body()?.let {
-                            val token = it[0].toString()
-                            val json = Gson().toJson(it[1])
-                            val userResponse = Gson().fromJson(json, UserRemote::class.java)
-
-                            print("user ${userResponse.fullName}")
-                            with(userResponse) {
-                                val user = User(
-                                    token = token,
-                                    email = email,
-                                    phoneNumber = phoneNumber,
-                                    fullName = fullName,
-                                    isTutor = isTutor,
-                                    isActive = isActive,
-                                    id = id.toString()
-                                )
-                                userRepository.saveUser(user).also {
-                                    //save user type and ID to shared pref
-                                    if (isTutor) {
-                                        preferenceHelper.apply {
-                                            userType = USER_TUTOR
-                                            userId = user.id
-                                        }
-                                    } else {
-                                        preferenceHelper.apply {
-                                            userType = USER_STUDENT
-                                            userId = user.id
-                                        }
-                                    }
-                                }
+                with(response.profile.user) {
+                    val user = User(
+                        token = response.token,
+                        email = email,
+                        phoneNumber = phoneNumber,
+                        fullName = fullName,
+                        isTutor = isTutor,
+                        isActive = isActive,
+                        id = id
+                    )
+                    userRepository.saveUser(user).also {
+                        //save user type and ID to shared pref
+                        if (isTutor) {
+                            preferenceHelper.apply {
+                                userType = USER_TUTOR
+                                userId = user.id
                             }
-
-                            _signIn.postValue(Result.Success())
-
-
+                        } else {
+                            preferenceHelper.apply {
+                                userType = USER_STUDENT
+                                userId = user.id
+                            }
                         }
-
-                    } catch (error: Exception) {
-                        _signIn.postValue(Result.Error(error))
+                        preferenceHelper.isLoggedIn = true
 
                     }
-
-                } else {
-                    _signIn.postValue(Result.Error(Throwable(response.errorBody().toString())))
-
                 }
+
+                _signIn.postValue(Result.Success())
+
+
 
             } catch (error: Throwable) {
                 _signIn.postValue(Result.Error(error))

@@ -40,7 +40,7 @@ class SignUpViewModel(private val userRepository: UserRepository) : ViewModel() 
 
                     //register user to firebase
 
-                    with(response.userRemote){
+                    with(response.user){
                         val user = User(
                             token = response.token,
                             email = email,
@@ -51,7 +51,7 @@ class SignUpViewModel(private val userRepository: UserRepository) : ViewModel() 
                             id = id.toString()
                         )
                         db.collection(COLLECTION_USER)
-                            .document(user.id)
+                            .document(response.token)
                             .set(user)
 
                     }
