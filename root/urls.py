@@ -33,20 +33,15 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1/', include('accounts.urls')),
+    #path('api/v1/', include('accounts.urls')),
     path('api/v1/', include('confirmation.urls')),
     path('api/v1/', include('api.urls')),
     path('v1/', include('accounts.urls')),
     path('v1/', include('api.urls')),
     path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-<<<<<<< HEAD
-    path("accounts/", include("accounts.urls")),
-    path('accounts/', include('allauth.urls')),
+
     
     ]
-=======
-]
->>>>>>> 40a6b340fa6f8c7e75057f8691a32d7e051d6cad
 
 if settings.DEBUG:
   urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

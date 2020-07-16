@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-import django_heroku
+#import django_heroku
 import dj_database_url
 from dotenv import load_dotenv
 
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    
 
     # local apps
     'accounts',
@@ -55,10 +56,11 @@ INSTALLED_APPS = [
     'django_filters',
     'whitenoise.runserver_nostatic',
 
-    'rest_auth', 
+    'rest_auth',
+    
     'allauth',
     'allauth.account',
-    'rest_auth.registration',
+    #'rest_auth.registration',
     ]
 SITE_ID = 1
 
@@ -181,7 +183,7 @@ REST_FRAMEWORK = {
     )
 }
 
-django_heroku.settings(locals())
+#django_heroku.settings(locals())
 
 SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
 
@@ -189,10 +191,15 @@ EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'apikey'
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_API_KEY')
 
-<<<<<<< HEAD
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-=======
->>>>>>> 40a6b340fa6f8c7e75057f8691a32d7e051d6cad
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'bitruschoji4real@gmail.com'
+EMAIL_HOST_PASSWORD = "08032546397"
+
+
