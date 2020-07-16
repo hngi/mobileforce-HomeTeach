@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     # local apps
     'accounts',
     'api',
+    'confirmation',
 
     # third-party
     'rest_framework',
@@ -188,6 +189,10 @@ EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'apikey'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_API_KEY')
 
+<<<<<<< HEAD
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+=======
+>>>>>>> 40a6b340fa6f8c7e75057f8691a32d7e051d6cad

@@ -16,8 +16,14 @@ urlpatterns = [
     # password_reset/confirm/
     # password_reset/validate_token/
 
+<<<<<<< HEAD
     #path('api/password_reset', include("django_rest_passwordreset.urls", namespace='password-reset')),
     url('^', include('django.contrib.auth.urls')),
     path('rest-auth/', include('rest_auth.urls')),
 
     ]
+=======
+    path('password-reset/', include("django_rest_passwordreset.urls", namespace='password_reset')),
+    
+]
+>>>>>>> 40a6b340fa6f8c7e75057f8691a32d7e051d6cad
