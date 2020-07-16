@@ -104,3 +104,32 @@ class Profile(models.Model):
 	def save_user_profile(sender, instance, **kwargs):
 		instance.profile.save()
 
+
+
+class BankInfo(models.Model):
+    # user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.CharField(max_length=255, null=True)
+    bank_name = models.CharField(max_length=255, null=True, blank=True)
+    account_name = models.CharField(max_length=255, null=True, blank=True)
+    account_number = models.IntegerField(null=True, blank=True)
+    routing_number = models.IntegerField(null=True, blank=True)
+    social_security_number = models.IntegerField(null=True, blank=True)
+	
+    def __unicode__(self):
+        return f'Bank Information for user: {self.user}'
+
+
+
+class CreditCardInfo(models.Model):
+    # user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.CharField(max_length=255, null=True)
+    card_holder_name = models.CharField(max_length=255, null=True)
+    card_number = models.CharField(max_length=255, null=True)
+    cvv = models.CharField(max_length=255, null=True)
+    expiry_month = models.IntegerField(null=True)
+    expiry_year = models.IntegerField(null=True)
+    authorization_code = models.CharField(max_length=255, null=True,  blank=True)
+	
+    def __unicode__(self):
+        return f'Bank Information for user: {self.user}'
+
