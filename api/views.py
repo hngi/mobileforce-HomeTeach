@@ -5,7 +5,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 from .models import Request,Rating
 from .permissions import IsOwnerOrReadOnly, IsAdminUserOrReadOnly, IsSameUserAllowEditionOrReadOnly
-from .serializers import CustomUserSerializer, ProfileSerializer, TutorProfileSerializer, StudentProfileSerializer, RatingsSerializer
+from .serializers import CustomUserSerializer, ProfileSerializer, TutorProfileSerializer, StudentProfileSerializer, RatingsSerializer,TopTutorSerializer
 from .models import Profile
 from accounts.models import CustomUser 
 from rest_framework.parsers import FileUploadParser
@@ -120,23 +120,6 @@ User = get_user_model()
 @api_view(['GET', ])
 @permission_classes([AllowAny, ])
 def top_tutors(request):
-    # rate = request.GET.get('rate')
-    # tutor_id = request.GET.get('tutor_id')
-    user = get_object_or_404(User, email='alabiemmanuelferanmi@gmail.com')
-    print(user)
-    # req = Rating.objects.all()
-    # print(req)
-    try:
-        rating = User.objects.get(email ='alabiemmanuelferanmi@gmail.com' )
-        # rating.rate = rate
-        # rating.save()
-        serializer = CustomUserSerializer(user)
-        print(serializer)
-        response = {'result':serializer.data}
-        return Response(response, status =status.HTTP_200_OK)
-
-    except:
-        return Response({"result":"failed"}, status = status.HTTP_400_BAD_REQUEST)
-
-#     return None
-
+    query = Profile.objects.filter(user__is_tutor=True)
+    serializer = TopTutorSerializer(query)
+    return Response(serializer.data)

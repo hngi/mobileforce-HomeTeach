@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     # local apps
     'accounts',
     'api',
+    'confirmation',
 
     # third-party
     'rest_framework',
