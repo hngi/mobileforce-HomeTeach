@@ -51,16 +51,11 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'drf_yasg',
-    'django_rest_passwordreset',
     'django_filters',
     'whitenoise.runserver_nostatic',
-
-    'rest_auth', 
-    'allauth',
-    'allauth.account',
-    'rest_auth.registration',
-    ]
-SITE_ID = 1
+    'paystack',
+    'pypaystack',
+]
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
@@ -193,3 +188,6 @@ EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_API_KEY')
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_API_KEY')
+
+# Paystack
+PAYSTACK_AUTHORIZATION_KEY = os.getenv('PAYSTACK_SECRET_KEY')
