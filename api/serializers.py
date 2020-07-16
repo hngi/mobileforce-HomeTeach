@@ -161,38 +161,35 @@ class StudentProfileSerializer(serializers.HyperlinkedModelSerializer):
         request = self.context['request']
         return request.user.get_full_name()
 
-
 class RatingsSerializer(serializers.ModelSerializer):
     user = UserSerializer(required=False)
+    tutor = UserSerializer(required=False)
     rate = serializers.IntegerField()
     student_id = serializers.CharField(write_only=True)
     tutor_id = serializers.CharField(write_only=True)
-
     class Meta:
         model = Rating
         fields = '__all__'
         extra_kwargs = {
             'rating': {'decimal_places': 1}
         }
-
     def save(self):
         data = self.validated_data
         rate = data.get('rate')
         student_id = data.get('student_id')
         tutor_id = data.get('tutor_id')
-
-        tutor = User.objects.get(id=tutor_id)
-        student = User.objects.get(id=student_id)
-
+        try:
+            tutor = User.objects.get(id=tutor_id)
+            student = User.objects.get(id=student_id)
+        except CustomUser.DoesNotExist:
+            raise serializers.ValidationError("a user with that id does not exist")
         if tutor.profile.rating.filter(user__email=student.email).exists():
-            rating = tutor.profile.rating.get(user__email=student.email)
-            tutor.profile.rating.remove(rating)
-            rate = Rating.objects.create(user=student, rate=rate)
+            Rating.objects.get(user=student, tutor=tutor).delete()
+            rate = Rating.objects.create(user=student,tutor=tutor, rate=rate)
             tutor.profile.rating.add(rate)
             return tutor
-        rate = Rating.objects.create(user=student, rate=rate)
+        rate = Rating.objects.create(user=student,tutor=tutor, rate=rate)
         tutor.profile.rating.add(rate)
-        # tutor.profile.rating.save()
         return tutor
 
 
@@ -202,3 +199,33 @@ class ProfileUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model=Profile
         fields = '__all__'
+
+class TopTutorSerializer(serializers.ModelSerializer):
+    #rating = RatingsSerializer()
+    # rating = TutorProfileSerializer()
+    rating = serializers.SerializerMethodField(read_only=True)
+    class Meta:
+        model = CustomUser
+        fields = ['rating','full_name']
+
+    def get_rating(self, obj):
+        data = []
+        for rating in Rating.objects.values_list('tutor').annotate(ordering=Avg('rate'), count=Count('user')).order_by('-ordering'):
+            rating = list(rating)
+            avg_rate = rating[1]
+            count = rating[2]
+            user_rating = {}
+            rating = rating[0]
+            user = User.objects.get(id=rating)
+            user_rating['full_name'] = user.full_name
+            user_rating['id'] = user.id
+            user_rating['hourly_rate'] = user.profile.hourly_rate
+            user_rating['description'] = user.profile.desc
+            user_rating['profile_pic'] = user.profile.profile_pic if user.profile.profile_pic else None
+            user_rating['field'] = user.profile.field
+            user_rating['avg_rate'] = str(avg_rate)
+            user_rating['count'] = str(count)
+            data.append(user_rating)
+            # user_rating['obj'] = obj
+        return data
+
