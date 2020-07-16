@@ -188,9 +188,6 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'apikey'
 EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_API_KEY')
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_API_KEY')
 
 # Paystack
 PAYSTACK_AUTHORIZATION_KEY = 'sk_test_72d039a582a3504fdeeffd3930914247ba070db3'
