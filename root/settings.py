@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'accounts',
     'api',
     'confirmation',
+    'schedule',
 
     # third-party
     'rest_framework',
