@@ -128,7 +128,6 @@ class CreditCardInfo(models.Model):
     cvv = models.CharField(max_length=255, null=True)
     expiry_month = models.IntegerField(null=True)
     expiry_year = models.IntegerField(null=True)
-    authorization_code = models.CharField(max_length=255, null=True,  blank=True)
 	
     def __unicode__(self):
         return f'Bank Information for user: {self.user}'
