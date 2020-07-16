@@ -52,6 +52,7 @@ def api_register_view(request):
         account = serializer.save()
         data['token'] = Token.objects.get(user=account).key
         data['user'] = serializer.data
+        data['user']['id'] = account.pk
         current_site = get_current_site(request)
         sg = SendGridAPIClient(SENDGRID_API_KEY)
         message = render_to_string('email_verification_template.html', {
@@ -78,8 +79,6 @@ def activate(request, uidb64, token):
         uid = force_text(urlsafe_base64_decode(uidb64))
 
         user = User.objects.get(pk=uid)
-
-
 
     except(TypeError, ValueError, OverflowError, User.DoesNotExist):
         user = None

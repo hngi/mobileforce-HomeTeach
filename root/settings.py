@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 
     # local apps
     'accounts',
@@ -50,11 +51,15 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'drf_yasg',
-    'django_rest_passwordreset',
     'django_filters',
     'whitenoise.runserver_nostatic',
     'storages',
+    'paystack',
+    'pypaystack',
+    'rest_auth',
 ]
+
+SITE_ID = 1
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
@@ -168,11 +173,10 @@ EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'apikey'
-
-EMAIL_HOST_PASSWORD = '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'
+EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_API_KEY')
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_API_KEY')
-
 
 # AWS settings for static and media files storage
 AWS_ACCESS_KEY_ID = 'AKIA2JNMNTHW7M7ISZHN'
@@ -195,3 +199,6 @@ STATICFILES_DIRS = [
 PUBLIC_MEDIA_LOCATION = 'media'
 MEDIA_URL =  'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, PUBLIC_MEDIA_LOCATION)
 DEFAULT_FILE_STORAGE = 'root.storage_backends.PublicMediaStorage'
+
+# Paystack
+PAYSTACK_AUTHORIZATION_KEY = 'sk_test_72d039a582a3504fdeeffd3930914247ba070db3'
