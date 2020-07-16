@@ -1,5 +1,4 @@
 from rest_framework import serializers
-import uuid
 
 class InitializeTransacSerializer(serializers.Serializer):
 	email = serializers.EmailField(allow_blank=False)
