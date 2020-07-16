@@ -29,6 +29,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('rate', models.DecimalField(decimal_places=2, default=0.0, max_digits=5)),
+                ('tutor', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='ratings_tutor', to=settings.AUTH_USER_MODEL)),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
