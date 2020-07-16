@@ -57,6 +57,9 @@ class CustomUser(AbstractBaseUser):
                         unique=True,
                     )
     full_name = models.CharField(verbose_name='fullname', blank=True, max_length=150)
+    username = models.CharField(verbose_name='username', blank=True, max_length=150)
+    first_name = models.CharField(verbose_name='firstname', blank=True, max_length=150)
+    last_name = models.CharField(verbose_name='lastname', blank=True, max_length=150)
     phone_number = models.CharField(max_length=15, validators=[RegexValidator(r'^\d{1,15}$')])
     timestamp = models.DateTimeField(auto_now_add=True)
     is_tutor = models.BooleanField(default=False)
