@@ -5,18 +5,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.gson.Gson
-import com.mobileforce.hometeach.utils.AppConstants.USER_STUDENT
-import com.mobileforce.hometeach.utils.AppConstants.USER_TUTOR
 import com.mobileforce.hometeach.data.model.User
 import com.mobileforce.hometeach.data.repository.UserRepository
-import com.mobileforce.hometeach.utils.PreferenceHelper
 import com.mobileforce.hometeach.data.sources.remote.Params
-import kotlinx.coroutines.launch
-import com.mobileforce.hometeach.data.sources.remote.wrappers.UserRemote
+import com.mobileforce.hometeach.utils.AppConstants.USER_STUDENT
+import com.mobileforce.hometeach.utils.AppConstants.USER_TUTOR
+import com.mobileforce.hometeach.utils.PreferenceHelper
 import com.mobileforce.hometeach.utils.Result
 import com.mobileforce.hometeach.utils.asLiveData
 import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
 
 
 class SignInViewModel(

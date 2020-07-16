@@ -19,7 +19,7 @@ class SignUpViewModel(private val userRepository: UserRepository) : ViewModel() 
     private val _signUp = MutableLiveData<Result<Nothing>>()
     val signUp: LiveData<Result<Nothing>> = _signUp
 
-    val db = Firebase.firestore
+    private val db = Firebase.firestore
 
     fun signUp(params: Params.SignUp) {
         _signUp.postValue(Result.Loading)
@@ -48,7 +48,7 @@ class SignUpViewModel(private val userRepository: UserRepository) : ViewModel() 
                             fullName = fullName,
                             isTutor = isTutor,
                             isActive = isActive,
-                            id = id.toString()
+                            id = id
                         )
                         db.collection(COLLECTION_USER)
                             .document(response.token)
