@@ -11,7 +11,7 @@ import retrofit2.Response
 
 interface DataSource {
 
-    suspend fun logIn(params: Params.SignIn): Response<List<Any>>
+    suspend fun logIn(params: Params.SignIn): LoginResponse
     suspend fun signUp(params: Params.SignUp): RegisterUserResponse
     suspend fun resetPassword(params: Params.PasswordReset):EmailResponse
     suspend fun saveUser(user: User)

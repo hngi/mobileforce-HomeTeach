@@ -13,7 +13,7 @@ import retrofit2.Response
 
 class UserRepositoryImpl(private val dataSource: DataSourceFactory) : UserRepository {
 
-    override suspend fun login(params: Params.SignIn): Response<List<Any>> {
+    override suspend fun login(params: Params.SignIn):LoginResponse {
         return dataSource.remote().logIn(params)
     }
 

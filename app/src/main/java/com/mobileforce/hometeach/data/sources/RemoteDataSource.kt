@@ -11,7 +11,7 @@ import retrofit2.Response
 
 class RemoteDataSource(private val api: Api) : DataSource {
 
-    override suspend fun logIn(params: Params.SignIn): Response<List<Any>> {
+    override suspend fun logIn(params: Params.SignIn): LoginResponse {
         val map = hashMapOf(
             "email" to params.email,
             "password" to params.password

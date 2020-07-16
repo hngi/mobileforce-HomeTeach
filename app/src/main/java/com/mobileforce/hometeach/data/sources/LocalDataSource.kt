@@ -12,7 +12,7 @@ import retrofit2.Response
 
 class LocalDataSource(private val db: AppDataBase) : DataSource {
 
-    override suspend fun logIn(params: Params.SignIn): Response<List<Any>> {
+    override suspend fun logIn(params: Params.SignIn): LoginResponse {
         TODO("Not yet implemented")
     }
 
