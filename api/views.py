@@ -146,9 +146,9 @@ def card_info_by_user(request):
     for card_detail in serializer.data:
         d_id = card_detail['id']
         user, card_holder_name, card_number, cvv = card_detail['user'], card_detail['card_holder_name'], card_detail['card_number'], card_detail['cvv']
-        expiry_month, expiry_year, authorization_code = card_detail['expiry_month'], card_detail['expiry_year'], card_detail['authorization_code']
+        expiry_month, expiry_year = card_detail['expiry_month'], card_detail['expiry_year']
         parsed_data = {"id": d_id, "user" : user, "card_holder_name": card_holder_name, "card_number": decrypt(card_number), "cvv": decrypt(cvv),
-        "expiry_month": expiry_month, "expiry_year": expiry_year, "authorization_code": decrypt(authorization_code)}
+        "expiry_month": expiry_month, "expiry_year": expiry_year}
         user_card_details.append(parsed_data)
 
     
@@ -169,11 +169,11 @@ def card_info(request):
     elif request.method == 'POST':
         data = request.data
         user, card_holder_name, card_number, cvv = data['user'], data['card_holder_name'], data['card_number'], data['cvv']
-        expiry_month, expiry_year, authorization_code = data['expiry_month'], data['expiry_year'], data['authorization_code']
+        expiry_month, expiry_year = data['expiry_month'], data['expiry_year']
         if luhn.is_valid(card_number):
             # card_number = encrypt(card_number)
             parsed_data = {"user" : user, "card_holder_name": card_holder_name, "card_number": encrypt(card_number), "cvv": encrypt(cvv),
-            "expiry_month": expiry_month, "expiry_year": expiry_year, "authorization_code": encrypt(authorization_code)}
+            "expiry_month": expiry_month, "expiry_year": expiry_year}
             serializer = CreditCardInfoSerializer(data = parsed_data)
 
             if serializer.is_valid():
@@ -199,19 +199,19 @@ def card_info_by_id(request, pk):
         card_detail = serializer.data
         d_id = card_detail['id']
         user, card_holder_name, card_number, cvv = card_detail['user'], card_detail['card_holder_name'], card_detail['card_number'], card_detail['cvv']
-        expiry_month, expiry_year, authorization_code = card_detail['expiry_month'], card_detail['expiry_year'], card_detail['authorization_code']
+        expiry_month, expiry_year = card_detail['expiry_month'], card_detail['expiry_year']
         parsed_data = {"id": d_id, "user" : user, "card_holder_name": card_holder_name, "card_number": decrypt(card_number), "cvv": decrypt(cvv),
-        "expiry_month": expiry_month, "expiry_year": expiry_year, "authorization_code": decrypt(authorization_code)}
+        "expiry_month": expiry_month, "expiry_year": expiry_year}
         return Response(parsed_data)
 
     elif request.method == 'PUT':
         data = request.data
         user, card_holder_name, card_number, cvv = data['user'], data['card_holder_name'], data['card_number'], data['cvv']
-        expiry_month, expiry_year, authorization_code = data['expiry_month'], data['expiry_year'], data['authorization_code']
+        expiry_month, expiry_year = data['expiry_month'], data['expiry_year']
         if luhn.is_valid(card_number):
             # card_number = encrypt(card_number)
             parsed_data = {"user" : user, "card_holder_name": card_holder_name, "card_number": encrypt(card_number), "cvv": encrypt(cvv),
-            "expiry_month": expiry_month, "expiry_year": expiry_year, "authorization_code": encrypt(authorization_code)}
+            "expiry_month": expiry_month, "expiry_year": expiry_year}
             serializer = CreditCardInfoSerializer(card_detail, data=parsed_data)
 
             if serializer.is_valid():
