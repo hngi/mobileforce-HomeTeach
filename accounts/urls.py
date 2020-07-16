@@ -1,9 +1,5 @@
 from django.urls import path, include
 from . import views
-#from accounts.views import reset_password_confirm, reset_password_request_token, reset_password_validate_token
-#import django_rest_passwordreset
-from django.conf.urls import url
-
 
 urlpatterns = [
     path('register/', views.api_register_view),
