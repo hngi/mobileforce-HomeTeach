@@ -8,56 +8,59 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 FIELD_CHOICES = (
-        ('SCIENCE', 'Science'),
-        ('COMMERCIAL', 'Commercial'),
-        ('ARTS', 'Arts'),
-        ('ENGLISH', 'English'),
-        ('NON_ACADEMIC', 'Non-Academic'),
-        ('TEST_PREPARATION', 'Test Preparation'),
-        ('OTHER', 'Other'),
-    )
+		('SCIENCE', 'Science'),
+		('COMMERCIAL', 'Commercial'),
+		('ARTS', 'Arts'),
+		('ENGLISH', 'English'),
+		('NON_ACADEMIC', 'Non-Academic'),
+		('TEST_PREPARATION', 'Test Preparation'),
+		('OTHER', 'Other'),
+	)
 
 STATE_CHOICES = (
-        ('ABUJA FCT', 'Abuja'),
-        ('ABIA', 'Abia'),
-        ('ADAMAWA', 'Adamawa'),
-        ('AKWA_IBOM', 'Akwa Ibom'),
-        ('ANAMBRA', 'Anambra'),
-        ('BAUCHI', 'Bauchi'),
-        ('BAYELSA', 'Bayelsa'),
-        ('BENUE', 'Benue'),
-        ('BORNO', 'Borno'),
-        ('CROSS_RIVER', 'Cross River'),
-        ('DELTA', 'Delta'),
-        ('EBONYI', 'Ebonyi'),
-        ('EDO', 'Edo'),
-        ('EKITI', 'Ekiti'),
-        ('ENUGU', 'Enugu'),
-        ('GOMBE', 'Gombe'),
-        ('IMO', 'Imo'),
-        ('JIGAWA', 'Jigawa'),
-        ('KADUNA', 'Kaduna'),
-        ('KANO', 'Kano'),
-        ('KATSINA', 'Kastina'),
-        ('KEBBI', 'Kebbi'),
-        ('KOGI', 'Kogi'),
-        ('KWARA', 'Kwara'),
-        ('LAGOS', 'Lagos'),
-        ('NASSARAWA', 'Nassarawa'),
-        ('NIGER', 'Niger'),
-        ('OGUN', 'Ogun'),
-        ('ONDO', 'Ondo'),
-        ('OSUN', 'Osun'),
-        ('OYO', 'Oyo'),
-        ('PLATEAU', 'Plateau'),
-        ('RIVERS', 'Rivers'),
-        ('SOKOTO', 'Sokoto'),
-        ('TARABA', 'Taraba'),
-        ('YOBE', 'Yobe'),
-        ('ZAMFARA', 'Zamfara'),
-    )
+		('ABUJA FCT', 'Abuja'),
+		('ABIA', 'Abia'),
+		('ADAMAWA', 'Adamawa'),
+		('AKWA_IBOM', 'Akwa Ibom'),
+		('ANAMBRA', 'Anambra'),
+		('BAUCHI', 'Bauchi'),
+		('BAYELSA', 'Bayelsa'),
+		('BENUE', 'Benue'),
+		('BORNO', 'Borno'),
+		('CROSS_RIVER', 'Cross River'),
+		('DELTA', 'Delta'),
+		('EBONYI', 'Ebonyi'),
+		('EDO', 'Edo'),
+		('EKITI', 'Ekiti'),
+		('ENUGU', 'Enugu'),
+		('GOMBE', 'Gombe'),
+		('IMO', 'Imo'),
+		('JIGAWA', 'Jigawa'),
+		('KADUNA', 'Kaduna'),
+		('KANO', 'Kano'),
+		('KATSINA', 'Kastina'),
+		('KEBBI', 'Kebbi'),
+		('KOGI', 'Kogi'),
+		('KWARA', 'Kwara'),
+		('LAGOS', 'Lagos'),
+		('NASSARAWA', 'Nassarawa'),
+		('NIGER', 'Niger'),
+		('OGUN', 'Ogun'),
+		('ONDO', 'Ondo'),
+		('OSUN', 'Osun'),
+		('OYO', 'Oyo'),
+		('PLATEAU', 'Plateau'),
+		('RIVERS', 'Rivers'),
+		('SOKOTO', 'Sokoto'),
+		('TARABA', 'Taraba'),
+		('YOBE', 'Yobe'),
+		('ZAMFARA', 'Zamfara'),
+	)
+
+
 
 class Rating(models.Model):
+	tutor = models.ForeignKey(User, related_name='ratings_tutor', on_delete=models.CASCADE)
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
 	rate = models.DecimalField(default=0.0, decimal_places=2, max_digits=5)
 
@@ -71,11 +74,21 @@ class Request(models.Model):
 	def __str__(self):
 		return f'{self.requester.full_name} requests {self.tutor.full_name}'
 
+class Days(models.Model):
+	day = models.CharField(max_length=10)
+	start = models.DateTimeField()
+	end = models.DateTimeField()
+
+class StudentSchedule(models.Model):
+	user = models.ForeignKey(User,  on_delete=models.CASCADE)
+	tutor = models.ForeignKey(User, related_name='tutor', on_delete=models.CASCADE)
+	duration_start = models.DateField()
+	duration_end = models.DateField()
+	days = models.ManyToManyField(Days, blank=True, null=True)
 
 # Create your models here.
 class Profile(models.Model):
-	user = models.OneToOneField(settings.AUTH_USER_MODEL,
-							on_delete=models.CASCADE)
+	user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 	profile_pic = models.FileField(blank=True)
 	rating = models.ManyToManyField(Rating, blank=True)
 	desc = models.TextField(max_length=255, null=True, blank=True)

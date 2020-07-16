@@ -5,7 +5,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 from .models import Request
 from .permissions import IsOwnerOrReadOnly, IsAdminUserOrReadOnly, IsSameUserAllowEditionOrReadOnly
-from .serializers import CustomUserSerializer, ProfileSerializer, TutorProfileSerializer, StudentProfileSerializer, RatingsSerializer
+from .serializers import CustomUserSerializer, ProfileSerializer, TutorProfileSerializer, StudentScheduleSerializer, StudentProfileSerializer, RatingsSerializer
 from .models import Profile
 from accounts.models import CustomUser 
 from rest_framework.parsers import FileUploadParser
@@ -23,6 +23,17 @@ def submit_request(request):
     if serializer.is_valid(raise_exception=True):
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+    else:
+        return Response('request couldnt be created', status=status.HTTP_501_NOT_IMPLEMENTED)
+
+@api_view(['POST', ])
+@permission_classes([AllowAny, ])
+def set_schedule_student(request):
+
+    serializer = StudentScheduleSerializer(data=request.data)
+    if serializer.is_valid(raise_exception=True):
+        schedule = serializer.save()
+        return Response(schedule, status=status.HTTP_201_CREATED)
     else:
         return Response('request couldnt be created', status=status.HTTP_501_NOT_IMPLEMENTED)
 
