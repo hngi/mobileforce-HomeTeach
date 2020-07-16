@@ -20,6 +20,9 @@ import com.mobileforce.hometeach.ui.profile.ProfileViewModel
 import com.mobileforce.hometeach.ui.signin.SignInViewModel
 import com.mobileforce.hometeach.ui.signup.SignUpViewModel
 import com.mobileforce.hometeach.ui.tutorlist.TutorListViewModel
+import com.mobileforce.hometeach.ui.studentpayments.carddetails.StudentAddCardDetailsViewModel
+import com.mobileforce.hometeach.ui.studentpayments.carddetails.StudentCardDetailsViewModel
+import com.mobileforce.hometeach.ui.studentpayments.makepayments.StudentMakePaymentViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -84,6 +87,10 @@ val appModule = module {
     factory { HomePageViewModel(get(), get()) }
     factory { TutorListViewModel(get(),get()) }
     factory { ProfileViewModel(get()) }
+
     factory { EditTutorViewModel(get()) }
+    factory { StudentAddCardDetailsViewModel(get()) }
+    factory { StudentCardDetailsViewModel(get()) }
+    factory { StudentMakePaymentViewModel(get()) }
 
 }

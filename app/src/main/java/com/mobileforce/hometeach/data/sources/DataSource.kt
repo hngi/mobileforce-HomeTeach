@@ -15,11 +15,9 @@ import java.io.InputStream
 
 interface DataSource {
 
-    suspend fun logIn(params: Params.SignIn): Response<List<Any>>
+    suspend fun logIn(params: Params.SignIn): LoginResponse
     suspend fun signUp(params: Params.SignUp): RegisterUserResponse
-
     suspend fun resetPassword(params: Params.PasswordReset):EmailResponse
-
     suspend fun saveUser(user: User)
     fun getUser(): LiveData<UserEntity>
     suspend fun getSingleUser(): UserEntity
@@ -28,6 +26,8 @@ interface DataSource {
     suspend fun getTutorDetails(id: Int): TutorDetailsResponse
     suspend fun clearDb()
     suspend fun getTutorList() : Response<TutorListResponse>
+    suspend fun saveUserCardDetails(params: Params.CardDetails)
+    suspend fun getUserCardDetails(id: Int): List<UserCardDetailResponse>
 
     suspend fun uploadTutorMedia( id: RequestBody,
                                  profile_pic: MultipartBody.Part,

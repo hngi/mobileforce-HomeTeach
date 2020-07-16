@@ -21,9 +21,13 @@ import androidx.navigation.NavController
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.databinding.EditTutorProfileFragmentBinding
 import com.tiper.MaterialSpinner
+<<<<<<< HEAD
 import kotlinx.android.synthetic.main.edit_tutor_profile_fragment.*
 import java.io.InputStream
 
+=======
+import kotlinx.android.synthetic.main.fragment_edit_tutor_profile.*
+>>>>>>> upstream/develop
 
 /**
  * Authored by MayorJay
@@ -61,8 +65,12 @@ class EditTutorProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+<<<<<<< HEAD
         binding =  EditTutorProfileFragmentBinding.inflate(inflater, container, false)
         return binding.root
+=======
+        return inflater.inflate(R.layout.fragment_edit_tutor_profile, container, false)
+>>>>>>> upstream/develop
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

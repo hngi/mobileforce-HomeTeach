@@ -23,7 +23,8 @@ class Params {
 
 
     data class PasswordReset(
-        val email: String)
+        val email: String
+    )
 
     data class EditTutorProfile(
         val email: String,
@@ -34,6 +35,12 @@ class Params {
         val other_courses: String,
         val state: String,
         val address: String
+    )
 
+    data class CardDetails(
+        val card_number: String,
+        val card_cvc: String,
+        val expiry_month: Int,
+        val expiry_year: Int
     )
 }

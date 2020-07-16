@@ -10,11 +10,13 @@ import retrofit2.Response
 import retrofit2.http.*
 
 
-interface Api {
+interface  Api{
 
     @JvmSuppressWildcards
     @POST("v1/login/")
-    suspend fun login(@Body params: Map<String, Any>): Response<List<Any>>
+
+    suspend fun login(@Body params: Map<String, Any>): LoginResponse
+
 
     @JvmSuppressWildcards
     @POST("v1/password-reset/")
@@ -33,12 +35,16 @@ interface Api {
     @GET("v1/profiles/")
     suspend fun getProfileList(): List<ProfileResponse>
 
-    @GET("api/v1/tutor-profiles/")
+    @GET("v1/tutor-profiles/")
     suspend fun getTutorList(): Response<TutorListResponse>
 
     @JvmSuppressWildcards
     @GET("v1/tutor_profiles/{id}/")
     suspend fun getTutorDetails(@Path("id") id: Int): TutorDetailsResponse
+    
+    @POST("")
+    suspend fun saveUserCardDetails(@Body params: Map<String, Any>)
+
 
     @Multipart
     @PUT("v1/tutor-profiles/{id}/")
@@ -48,5 +54,9 @@ interface Api {
         @Part credentials: MultipartBody.Part,
         @Part video: MultipartBody.Part
     ): Response<UploadResponse>
+
+
+    @GET("")
+    suspend fun getUserCardDetails(@Path("id") id: Int): List<UserCardDetailResponse>
 
 }

@@ -29,7 +29,6 @@
     <string name="search_view_text">Search for Teachers, Subjects, Topics etc.</string>
     <string name="log_in_textview">LOG IN</string>
     <string name="naira_symbol">\u20A6%.2f/hr</string>
-
     <string name="save_password_checkbox_text">Save password</string>
     <string name="forgot_password">Forgot password?</string>
     <string name="alternative_login_hint">Or login using social media</string>
@@ -44,7 +43,6 @@
     <string name="_9hrs_ago">9hrs ago</string>
     <string name="mark_essien_accepted_your_friend_request">Mark Essien Accepted Your Friend Request</string>
     <string name="new_">NEW</string>
-
     <string name="sign_out">SIGN OUT</string>
     <string name="card_details">Card Details</string>
     <string name="payments">Payments</string>
@@ -61,10 +59,9 @@
     <string name="please_enter_your_credit_card_information_below">Please enter your credit card information below</string>
     <string name="account_number">Account Number</string>
     <string name="account_name">Account Name</string>
-
     <string name="classes">Classes</string>
     <string name="approve">APPROVE</string>
-    <string name="cancel">CANCEL</string>
+    <string name="cancel">Cancel</string>
     <string name="confirm">CONFIRM</string>
     <string name="full_name">Full name</string>
     <string name="description">Description</string>
@@ -112,10 +109,10 @@
     <string name="recover_using_phone_number">Recover using phone number</string>
     <string name="apply">Apply</string>
     <string name="how_do_you_want_to_recover_your_password">How do you want to recover your password?</string>
-    <string name="recover_your_registered_phone_number">Recover your registered phonE number</string>
+    <string name="recover_your_registered_phone_number">Recover your registered phone number</string>
     <string name="phone_number">Phone number</string>
     <string name="your_request_for_a_teacher_has_been_successfully_booked_and_awaiting_approval">Your request for a Teacher has been successfully booked and awaiting approval</string>
-    <string name="thursday_june_5_2020_16_00_18_00">Thursday, June 5, 2020 16:00 - 18:00</string>
+    <string name="thursday_june_5_2020_16_00_18_00">Thursday, June 5, 2020 16:00 – 18:00</string>
     <string name="congratulations">Congratulations</string>
     <string name="john_doe">John Doe</string>
     <string name="about">About</string>
@@ -127,11 +124,11 @@
     <string name="_16">(16)</string>
     <string name="interests_science_math_physics">Interests: Science, Math, Physics</string>
     <string name="available">Available</string>
-    <string name="i_teach_with_calmness_and_encouragement_my_lessons_are_not_boring_and_i_can_accomodate_student_s_with_low_affinity_to_studying_i_employ_modern_schema_for_tutoring_with_interactive_guides_and_learning_systems_having_schooled_at_different_educational_organizations_coupled_with_my_nce_certifcate_i_can_assure_you_premium_success_with_me_as_your_home_teacher">I teach with calmness and encouragement. My lessons are not boring and i can accomodate student’s with low affinity to studying. I employ modern schema for tutoring with interactive guides and learning systems. Having schooled at different educational organizations coupled with my NCE certifcate, I can assure you premium success with me as your Home-Teacher.</string>
+    <string name="i_teach_with_calmness_and_encouragement_my_lessons_are_not_boring_and_i_can_accomodate_student_s_with_low_affinity_to_studying_i_employ_modern_schema_for_tutoring_with_interactive_guides_and_learning_systems_having_schooled_at_different_educational_organizations_coupled_with_my_nce_certifcate_i_can_assure_you_premium_success_with_me_as_your_home_teacher">I teach with calmness and encouragement. My lessons are not boring and i can accommodate student’s with low affinity to studying. I employ modern schema for tutoring with interactive guides and learning systems. Having schooled at different educational organizations coupled with my NCE certifcate, I can assure you premium success with me as your Home-Teacher.</string>
     <string name="edit_profile">Edit profile</string>
-    <string name="sign_up">SIGN UP</string>
+    <string name="sign_up">Sign Up</string>
     <string name="get_matched_with_prospective_teachers">Get matched with prospective Teachers</string>
-    <string name="and_student_for_academics_skill_acquistion">and student for academics, skill acquistion</string>
+    <string name="and_student_for_academics_skill_acquisition">and student for academics, skill acquisition</string>
     <string name="and_many_more">and many more.</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
@@ -155,10 +152,16 @@
     <string name="register_now">Register now</string>
     <string name="don_t_have_an_account">Don\'t have an account?</string>
     <string name="save_password">Save Password</string>
-    <string name="tutors_description">I teach with calmness and encouragement. My lessons are not boring and i can accomodate student’s with low affinity to studying. I employ modern schema for tutoring with interactive guides and learning systems. Having schooled at different educational organizations coupled with my NCE certifcate, I can assure you premium success with me as your Home-Teacher</string>
+    <string name="tutors_description">I teach with calmness and encouragement. My lessons are not boring and i can accommodate student’s with low affinity to studying. I employ modern schema for tutoring with interactive guides and learning systems. Having schooled at different educational organizations coupled with my NCE certifcate, I can assure you premium success with me as your Home-Teacher</string>
     <string name="review">Mr Rahman Django is a great teacher. I was having tough times trying to get my son to understand maths for his upcoming exams but no progress. Mr Rahman put him through and he came out in flying colours</string>
     <string name="success">Your request for a Teacher has been successfully booked and awaiting approval</string>
     <string name="tutor_list">Tutor List</string>
+    <string name="card_number">Card Number</string>
+    <string name="mm">MM</string>
+    <string name="yy">YY</string>
+    <string name="ellipsis">…</string>
+    <string name="cvc">CVC</string>
+    <string name="no_transaction">No Transaction</string>
 
     <string-array name="fields_array">
         <item>Science</item>

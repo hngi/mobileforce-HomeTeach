@@ -13,7 +13,7 @@ import retrofit2.Response
 
 class UserRepositoryImpl(private val dataSource: DataSourceFactory) : UserRepository {
 
-    override suspend fun login(params: Params.SignIn): Response<List<Any>> {
+    override suspend fun login(params: Params.SignIn):LoginResponse {
         return dataSource.remote().logIn(params)
     }
 
@@ -47,15 +47,19 @@ class UserRepositoryImpl(private val dataSource: DataSourceFactory) : UserReposi
     override fun getUser(): LiveData<UserEntity> {
         return dataSource.local().getUser()
     }
-
     override suspend fun getTutorList(): Response<TutorListResponse> {
         return dataSource.remote().getTutorList()
     }
 
-    override suspend fun password_reset(params: Params.PasswordReset): EmailResponse {
-        return dataSource.remote().resetPassword(params)
+    override suspend fun saveUserCardDetails(params: Params.CardDetails) {
+        dataSource.remote().saveUserCardDetails(params)
     }
 
+    override suspend fun getUserCardDetails(id: Int): List<UserCardDetailResponse> {
+        return dataSource.remote().getUserCardDetails(id)
+    }
 
-
+    override suspend fun passwordReset(params: Params.PasswordReset): EmailResponse {
+        return dataSource.remote().resetPassword(params)
+    }
 }

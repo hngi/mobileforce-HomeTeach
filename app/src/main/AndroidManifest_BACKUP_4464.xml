@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.mobileforce.hometeach">
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <uses-permission android:name="android.permission.INTERNET" />
     <application
@@ -9,10 +8,10 @@
         android:allowBackup="true"
         android:icon="@mipmap/launcher_icon"
         android:label="@string/app_name"
+        android:usesCleartextTraffic="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true">
+        android:theme="@style/AppTheme">
 
         <activity android:name=".ui.signup.SignUpActivity" />
 
@@ -25,13 +24,11 @@
         <activity
             android:name=".ui.SplashActivity"
             android:theme="@style/SplashScreenTheme">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".ui.ExploreActivity"
@@ -41,11 +38,16 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
+<<<<<<< HEAD
         <activity android:name=".ui.BottomNavigationActivity" />
+=======
+        <activity android:name=".ui.BottonNavigationActivity" />
+
         <!-- metadata for PayStack -->
         <meta-data
             android:name="co.paystack.android.PublicKey"
             android:value="pk_test_f4f8ba74f53540331c0d2f32fa4c8ac561e2311c"/>
+>>>>>>> Feat: Implement Student Payment feature
     </application>
 
 </manifest>

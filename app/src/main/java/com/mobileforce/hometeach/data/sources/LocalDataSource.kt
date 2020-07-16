@@ -14,7 +14,7 @@ import retrofit2.Response
 
 class LocalDataSource(private val db: AppDataBase) : DataSource {
 
-    override suspend fun logIn(params: Params.SignIn): Response<List<Any>> {
+    override suspend fun logIn(params: Params.SignIn): LoginResponse {
         TODO("Not yet implemented")
     }
 
@@ -60,16 +60,25 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
         db.userDao().clearDb()
     }
 
+
     override suspend fun getTutorList(): Response<TutorListResponse> {
         TODO("Not yet implemented")
     }
 
+<<<<<<< HEAD
     override suspend fun uploadTutorMedia(
         id: RequestBody,
         profile_pic: MultipartBody.Part,
         credentials: MultipartBody.Part,
         video: MultipartBody.Part
     ): Response<UploadResponse> {
+=======
+    override suspend fun saveUserCardDetails(params: Params.CardDetails) {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getUserCardDetails(id: Int): List<UserCardDetailResponse> {
+>>>>>>> upstream/develop
         TODO("Not yet implemented")
     }
 

@@ -46,7 +46,7 @@ class MyCardRecycler : ListAdapter<MyCard, MyCardsViewHolder>(
 class MyCardsViewHolder(private val binding: MyCardslistItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
     fun bind(card: MyCard) {
-        binding.card = card
+        //binding.card = card
         binding.executePendingBindings()
     }
 
