@@ -112,4 +112,7 @@ dependencies {
     def multidex_version = "2.0.1"
     implementation "androidx.multidex:multidex:$multidex_version"
 
+    //okhttp3
+    implementation 'com.squareup.okhttp3:okhttp:4.8.0'
+
 }

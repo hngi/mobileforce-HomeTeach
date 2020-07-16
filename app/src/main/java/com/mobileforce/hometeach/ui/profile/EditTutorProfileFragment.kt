@@ -1,13 +1,10 @@
 package com.mobileforce.hometeach.ui.profile
 
 import android.Manifest
-import android.R.attr
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.BitmapFactory
 import android.net.Uri
-import android.opengl.ETC1.encodeImage
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -19,31 +16,34 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import com.mobileforce.hometeach.R
-import com.mobileforce.hometeach.databinding.EditTutorProfileFragmentBinding
+import com.mobileforce.hometeach.databinding.FragmentEditTutorProfileBinding
 import com.tiper.MaterialSpinner
-<<<<<<< HEAD
-import kotlinx.android.synthetic.main.edit_tutor_profile_fragment.*
-import java.io.InputStream
-
-=======
 import kotlinx.android.synthetic.main.fragment_edit_tutor_profile.*
->>>>>>> upstream/develop
+import org.koin.android.ext.android.get
+
 
 /**
  * Authored by MayorJay
  */
 
-class EditTutorProfileFragment : Fragment() {
+abstract class EditTutorProfileFragment : Fragment() {
     lateinit var navController: NavController
-    lateinit var binding: EditTutorProfileFragmentBinding
-    val  REQUEST_CODE = 1001
+    lateinit var binding: FragmentEditTutorProfileBinding
+    val REQUEST_CODE = 1001
+    val REQUEST_CODE2 = 1005
+    val REQUEST_CODE3 = 1009
+    lateinit var image: Uri
+    lateinit var video: Uri
+    lateinit var pdf: Uri
 
-    companion object {
-        fun newInstance() = EditTutorProfileFragment()
-    }
+    private val viewModel: EditTutorViewModel = get<EditTutorViewModel>()
+
+//    companion object {
+//        fun newInstance() = EditTutorProfileFragment()
+//    }
 
     private val listener by lazy {
-        object: MaterialSpinner.OnItemSelectedListener {
+        object : MaterialSpinner.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: MaterialSpinner,
                 view: View?,
@@ -65,19 +65,21 @@ class EditTutorProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-<<<<<<< HEAD
-        binding =  EditTutorProfileFragmentBinding.inflate(inflater, container, false)
+
+        binding = FragmentEditTutorProfileBinding.inflate(inflater, container, false)
         return binding.root
-=======
-        return inflater.inflate(R.layout.fragment_edit_tutor_profile, container, false)
->>>>>>> upstream/develop
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         // Inflates the Spinner displaying the tutor's field
-        ArrayAdapter.createFromResource(requireContext(), R.array.fields_array, android.R.layout.simple_spinner_item).let {
+        ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.fields_array,
+            android.R.layout.simple_spinner_item
+        ).let {
             it.setDropDownViewResource(android.R.layout.select_dialog_singlechoice)
             sp_select_field.apply {
                 adapter = it
@@ -86,7 +88,11 @@ class EditTutorProfileFragment : Fragment() {
         }
 
         // Inflates the Spinner displaying the states of origin
-        ArrayAdapter.createFromResource(requireContext(), R.array.origin_array, android.R.layout.simple_spinner_item).let {
+        ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.origin_array,
+            android.R.layout.simple_spinner_item
+        ).let {
             it.setDropDownViewResource(android.R.layout.select_dialog_singlechoice)
             sp_select_origin.apply {
                 adapter = it
@@ -109,6 +115,13 @@ class EditTutorProfileFragment : Fragment() {
 //            currentUserId = profileResponse.id
 //            currentUserEmail = profileResponse.email
 //        }
+        binding.tvCredentialsHeader.setOnClickListener {
+            selectPdf()
+        }
+
+        binding.selectVideo.setOnClickListener {
+            selectVideo()
+        }
 
         bt_save_profile.setOnClickListener {
 //            val profileData = Params.EditTutorProfile(
@@ -126,8 +139,8 @@ class EditTutorProfileFragment : Fragment() {
 
         binding.selectImage.setOnClickListener {
 
-            Log.d("api","IMAGE CLICKED")
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            Log.d("api", "IMAGE CLICKED")
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 
                 if (activity?.let { it1 ->
                         ContextCompat.checkSelfPermission(
@@ -135,20 +148,18 @@ class EditTutorProfileFragment : Fragment() {
                             Manifest.permission.READ_EXTERNAL_STORAGE
                         )
                     } ==
-                    PackageManager.PERMISSION_DENIED){
+                    PackageManager.PERMISSION_DENIED) {
                     //permission denied
                     val permissions = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE);
                     //show popup to request runtime permission
                     requestPermissions(permissions, REQUEST_CODE);
-                }
-                else{
+                } else {
                     //permission already granted
-                    pickImageFromGallery();
+                    selectImage();
                 }
-            }
-            else{
+            } else {
                 //system OS is < Marshmallow
-                pickImageFromGallery();
+                selectImage();
             }
 
         }
@@ -156,9 +167,20 @@ class EditTutorProfileFragment : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+
+
         if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK) {
 
-            
+            image = data?.data!!
+            //  viewModel.uploadTutorMedia("swd", image,)
+        }
+        if (requestCode == REQUEST_CODE2 && resultCode == Activity.RESULT_OK) {
+            video = data?.data!!
+        }
+
+        if (requestCode == REQUEST_CODE2 && resultCode == Activity.RESULT_OK) {
+            pdf = data?.data!!
+        }
 
 
 //            val imageUri: Uri = attr.data.getData()
@@ -178,13 +200,38 @@ class EditTutorProfileFragment : Fragment() {
 //                Toast.makeText(context, it.message, Toast.LENGTH_LONG).show()
 //            })
 
-        }
     }
-    private fun pickImageFromGallery() {
-        //Intent to pick image
-        val intent = Intent(Intent.ACTION_PICK)
-        intent.type = "image/*"
-        startActivityForResult(intent, REQUEST_CODE)
+
+    fun upload(id:String,image:Uri,credential:Uri,video:Uri){
+
+        activity?.let { viewModel.uploadTutorMedia(id,image,credential,video, it) }
+
     }
+
+
+private fun selectImage() {
+    //Intent to pick image
+    val intent = Intent(Intent.ACTION_PICK)
+    intent.type = "image/*"
+    startActivityForResult(intent, REQUEST_CODE)
+}
+
+private fun selectVideo() {
+    val intent = Intent()
+    intent.type = "video/*"
+    intent.action = Intent.ACTION_PICK
+    startActivityForResult(Intent.createChooser(intent, "Select Video"), REQUEST_CODE2)
+}
+
+fun selectPdf() {
+    val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
+        addCategory(Intent.CATEGORY_OPENABLE)
+        type = "application/pdf"
+
+    }
+
+    startActivityForResult(intent, REQUEST_CODE3)
+}
+
 
 }
