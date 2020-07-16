@@ -38,7 +38,6 @@ class SignInViewModel(
         viewModelScope.launch {
             try {
                 val response = userRepository.login(params)
-
                 if (response.isSuccessful) {
                     preferenceHelper.isLoggedIn = true
 

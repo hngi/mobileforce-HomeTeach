@@ -7,6 +7,8 @@ import com.mobileforce.hometeach.data.sources.remote.Api
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
 import com.mobileforce.hometeach.remotesource.wrappers.*
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Response
 
 class RemoteDataSource(private val api: Api) : DataSource {
@@ -68,6 +70,15 @@ class RemoteDataSource(private val api: Api) : DataSource {
 
     override suspend fun getTutorList(): Response<TutorListResponse> {
         return api.getTutorList()
+    }
+
+    override suspend fun uploadTutorMedia(
+        id: RequestBody,
+        profile_pic: MultipartBody.Part,
+        credentials: MultipartBody.Part,
+        video: MultipartBody.Part
+    ): Response<UploadResponse> {
+        return api.uploadTutorMedia(id,profile_pic, credentials, video)
     }
 
     override suspend fun resetPassword(params: Params.PasswordReset): EmailResponse {

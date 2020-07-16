@@ -7,6 +7,8 @@ import com.mobileforce.hometeach.data.model.UserEntity
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
 import com.mobileforce.hometeach.remotesource.wrappers.*
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 
 import retrofit2.Response
 
@@ -59,6 +61,15 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
     }
 
     override suspend fun getTutorList(): Response<TutorListResponse> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun uploadTutorMedia(
+        id: RequestBody,
+        profile_pic: MultipartBody.Part,
+        credentials: MultipartBody.Part,
+        video: MultipartBody.Part
+    ): Response<UploadResponse> {
         TODO("Not yet implemented")
     }
 

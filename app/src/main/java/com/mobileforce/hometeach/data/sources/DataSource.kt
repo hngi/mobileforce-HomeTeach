@@ -6,7 +6,11 @@ import com.mobileforce.hometeach.data.model.UserEntity
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
 import com.mobileforce.hometeach.remotesource.wrappers.*
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Response
+import retrofit2.http.Part
+import java.io.InputStream
 
 
 interface DataSource {
@@ -24,5 +28,10 @@ interface DataSource {
     suspend fun getTutorDetails(id: Int): TutorDetailsResponse
     suspend fun clearDb()
     suspend fun getTutorList() : Response<TutorListResponse>
+
+    suspend fun uploadTutorMedia( id: RequestBody,
+                                 profile_pic: MultipartBody.Part,
+                                 credentials: MultipartBody.Part,
+                                 video: MultipartBody.Part):Response<UploadResponse>
 
 }

@@ -15,6 +15,7 @@ import com.mobileforce.hometeach.utils.PreferenceHelper
 import com.mobileforce.hometeach.data.sources.remote.Api
 
 import com.mobileforce.hometeach.ui.home.HomePageViewModel
+import com.mobileforce.hometeach.ui.profile.EditTutorViewModel
 import com.mobileforce.hometeach.ui.profile.ProfileViewModel
 import com.mobileforce.hometeach.ui.signin.SignInViewModel
 import com.mobileforce.hometeach.ui.signup.SignUpViewModel
@@ -83,5 +84,6 @@ val appModule = module {
     factory { HomePageViewModel(get(), get()) }
     factory { TutorListViewModel(get(),get()) }
     factory { ProfileViewModel(get()) }
+    factory { EditTutorViewModel(get()) }
 
 }
