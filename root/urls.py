@@ -37,7 +37,9 @@ urlpatterns = [
     path('v1/', include('api.urls')),
     path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path("accounts/", include("accounts.urls")),
-]
+    path('accounts/', include('allauth.urls')),
+    
+    ]
 
 if settings.DEBUG:
   urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

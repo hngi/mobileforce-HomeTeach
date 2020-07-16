@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 
     # local apps
     'accounts',
@@ -52,7 +53,13 @@ INSTALLED_APPS = [
     'django_rest_passwordreset',
     'django_filters',
     'whitenoise.runserver_nostatic',
-]
+
+    'rest_auth', 
+    'allauth',
+    'allauth.account',
+    'rest_auth.registration',
+    ]
+SITE_ID = 1
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
@@ -184,4 +191,3 @@ EMAIL_HOST_USER = 'apikey'
 EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_API_KEY')
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
