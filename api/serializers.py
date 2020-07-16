@@ -21,11 +21,19 @@ class UpdateUserSerializer(serializers.ModelSerializer):
         model=User
         exclude = ['password', 'last_login']
 
+
 class CreateRequestSerializer(serializers.ModelSerializer):
+    id = serializers.CharField(read_only=True)
     requester = serializers.SerializerMethodField(read_only=True)
     tutor = serializers.SerializerMethodField(read_only=True)
-    requester_id = serializers.CharField(write_only=True)
+    student_id = serializers.CharField(write_only=True)
     tutor_id = serializers.CharField(write_only=True)
+    from_hour = serializers.CharField()
+    from_minute = serializers.CharField()
+    to_hour = serializers.CharField()
+    to_minute = serializers.CharField()
+    dates = serializers.ListField()
+    schedule = serializers.CharField(required=False)
 
     class Meta:
         model = Request
@@ -42,49 +50,70 @@ class CreateRequestSerializer(serializers.ModelSerializer):
         return tutor_f
 
     def get_requester(self, data):
-        id = data.get('requester_id')
+        id = data.get('student_id')
         requester = User.objects.filter(pk=id)
         serializer = UserSerializer(requester.first().__dict__)
         return serializer.data
 
     def save(self):
         data = self.validated_data
-        requester_id = data.get('requester_id')
+        student_id = data.get('student_id')
         tutor_id = data.get('tutor_id')
+        from_hour = data.get('from_hour')
+        from_minute = data.get('from_minute')
+        to_hour = data.get('to_hour')
+        to_minute = data.get('to_minute')
+        dates = data.get('dates')
 
 
-        requester = User.objects.get(id=requester_id)
+        requester = User.objects.get(id=student_id)
         tutor_qs = User.objects.filter(pk=tutor_id, is_tutor=True)
 
         if not tutor_qs.exists():
             raise serializers.ValidationError('a tutor with that id does not exist')
 
+        # days_list = []
+        # for date in dates:
+        #     day = DaysSerializer(date)
+        #     days_list.append(day.data)
+        student_schedule = StudentSchedule.objects.create(tutor=tutor_qs.first(),
+                                       user=requester,
+                                       from_hour=from_hour,
+                                       to_hour=to_hour,
+                                       from_minute=from_minute,
+                                       to_minute=to_minute,
+                                       )
+        for date in dates:
+            d = Days.objects.create(day=date)
+            student_schedule.days.add(d)
         request = Request.objects.create(
             requester=requester,
             tutor=tutor_qs.first(),
+            schedule = student_schedule
         )
+
         return request
+
+class StudentScheduleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = StudentSchedule
+        fields = '__all__'
+
 
 class RequestTutorSerializer(serializers.ModelSerializer):
     requester = UserSerializer(read_only=True)
-    hourly_rate = serializers.SerializerMethodField(read_only=True)
+
 
     class Meta:
         model=Request
-        exclude = ['tutor']
+        exclude = ['tutor', 'schedule']
 
-    def get_hourly_rate(self, obj):
-        tutor_id = self.validated_data.get('id')
-        profile = Profile.objects.get(user__id=tutor_id)
-        hourly_rate = profile.hourly_rate
-        return hourly_rate
 
 class RequestSerializer(serializers.ModelSerializer):
     tutor = UserSerializer(read_only=True)
-    hourly_rate = serializers.SerializerMethodField(read_only=True)
     class Meta:
         model=Request
-        exclude = ['requester']
+        exclude = ['requester', 'schedule']
 
     def get_hourly_rate(self, obj):
         tutor_id = self.validated_data.get('id')
@@ -175,21 +204,18 @@ class StudentProfileSerializer(serializers.HyperlinkedModelSerializer):
         request = self.context['request']
         return request.user.get_full_name()
 
-
 class RatingsSerializer(serializers.ModelSerializer):
     user = UserSerializer(required=False)
     tutor = UserSerializer(required=False)
     rate = serializers.IntegerField()
     student_id = serializers.CharField(write_only=True)
     tutor_id = serializers.CharField(write_only=True)
-
     class Meta:
         model = Rating
         fields = '__all__'
         extra_kwargs = {
             'rating': {'decimal_places': 1}
         }
-
     def save(self):
         data = self.validated_data
         rate = data.get('rate')
@@ -201,7 +227,6 @@ class RatingsSerializer(serializers.ModelSerializer):
             student = User.objects.get(id=student_id)
         except CustomUser.DoesNotExist:
             raise serializers.ValidationError("a user with that id does not exist")
-
         if tutor.profile.rating.filter(user__email=student.email).exists():
             Rating.objects.get(user=student, tutor=tutor).delete()
             rate = Rating.objects.create(user=student,tutor=tutor, rate=rate)
@@ -212,83 +237,39 @@ class RatingsSerializer(serializers.ModelSerializer):
         return tutor
 
 
-class DaysSerializer(serializers.ModelSerializer):
-    day = serializers.CharField()
-    start = serializers.DateTimeField(format="%H:%M", input_formats=['%H:%M', 'iso-8601'])
-    end = serializers.DateTimeField(format="%H:%M", input_formats=['%H:%M', 'iso-8601'])
-
-    class Meta:
-        model = Days
-        exclude = ['id', ]
-
-class StudentScheduleSerializer(serializers.ModelSerializer):
-    user = UserSerializer(required=False)
-    tutor = UserSerializer(required=False)
-    tutor_id = serializers.CharField()
-    student_id = serializers.CharField()
-    duration_start = serializers.DateField(format="%d-%m-%Y", input_formats=['%d-%m-%Y', 'iso-8601'])
-    duration_end = serializers.DateField(format="%d-%m-%Y", input_formats=['%d-%m-%Y', 'iso-8601'])
-    days = serializers.CharField()
-    # active_days = serializers.SerializerMethodField(read_only=True)
-
-    class Meta:
-        model=StudentSchedule
-        fields = '__all__'
-
-
-    def save(self):
-        data = self.validated_data
-        # print(data.__dict__, data)
-        duration_start = data.get('duration_start')
-        duration_end = data.get('duration_end')
-
-        tutor_id = data.get('tutor_id')
-        student_id = data.get('student_id')
-
-        days = data.get('days')
-        days = days.split(',')
-
-        def chunker(seq, size):
-            return (seq[pos:pos + size] for pos in range(0, len(seq), size))
-
-        try:
-            print(tutor_id, student_id)
-            tutor = User.objects.get(id=tutor_id)
-            student = User.objects.get(id=student_id)
-        except CustomUser.DoesNotExist:
-            raise serializers.ValidationError("a user with that id does not exist")
-
-        # formatted_duration_start = datetime.strptime(duration_start, '%d-%m-%Y')
-        # formatted_duration_end = datetime.strptime(duration_end, '%d-%m-%Y')
-
-        schedule = StudentSchedule.objects.create(user=student, tutor=tutor,
-                                duration_start=duration_start, duration_end=duration_end)
-        list_of_days = []
-        for day in chunker(days, 3):
-            print(day, day[0].strip(), 'yooo')
-            formatted_day = day[0].strip()
-            print(formatted_day, 'yololo')
-            formatted_start_date = datetime.strptime(day[1].strip(), "%H:%M")
-            fomatted_end_date = datetime.strptime(day[2].strip(), "%H:%M")
-            new_day = Days.objects.create(start=formatted_start_date, day=formatted_day, end=fomatted_end_date)
-            schedule.days.add(new_day)
-            new_day = DaysSerializer(new_day)
-            list_of_days.append(new_day.data)
-        data = {}
-        # for attr, value in schedule.items():
-        #     data[attr] = value
-        data['tutor_full_name'] = schedule.tutor.full_name
-        data['days'] = list_of_days
-        data['student_full_name'] = schedule.user.full_name
-        data['duration_start'] = schedule.duration_start
-        data['duration_end'] = schedule.duration_end
-        print(data)
-        return data
-
-
 class ProfileUpdateSerializer(serializers.ModelSerializer):
     user = UpdateUserSerializer()
 
     class Meta:
         model=Profile
         fields = '__all__'
+
+class TopTutorSerializer(serializers.ModelSerializer):
+    #rating = RatingsSerializer()
+    # rating = TutorProfileSerializer()
+    rating = serializers.SerializerMethodField(read_only=True)
+    class Meta:
+        model = CustomUser
+        fields = ['rating','full_name']
+
+    def get_rating(self, obj):
+        data = []
+        for rating in Rating.objects.values_list('tutor').annotate(ordering=Avg('rate'), count=Count('user')).order_by('-ordering'):
+            rating = list(rating)
+            avg_rate = rating[1]
+            count = rating[2]
+            user_rating = {}
+            rating = rating[0]
+            user = User.objects.get(id=rating)
+            user_rating['full_name'] = user.full_name
+            user_rating['id'] = user.id
+            user_rating['hourly_rate'] = user.profile.hourly_rate
+            user_rating['description'] = user.profile.desc
+            user_rating['profile_pic'] = user.profile.profile_pic if user.profile.profile_pic else None
+            user_rating['field'] = user.profile.field
+            user_rating['avg_rate'] = str(avg_rate)
+            user_rating['count'] = str(count)
+            data.append(user_rating)
+            # user_rating['obj'] = obj
+        return data
+

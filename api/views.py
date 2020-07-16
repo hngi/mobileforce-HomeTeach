@@ -1,11 +1,11 @@
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import CreateRequestSerializer, RequestTutorSerializer, RequestSerializer
+from .serializers import CreateRequestSerializer, RequestTutorSerializer, RequestSerializer,TopTutorSerializer
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
-from .models import Request
+from .models import Request,Rating
 from .permissions import IsOwnerOrReadOnly, IsAdminUserOrReadOnly, IsSameUserAllowEditionOrReadOnly
-from .serializers import CustomUserSerializer, ProfileSerializer, TutorProfileSerializer, StudentScheduleSerializer, StudentProfileSerializer, RatingsSerializer
+from .serializers import CustomUserSerializer, ProfileSerializer, TutorProfileSerializer, StudentProfileSerializer, RatingsSerializer,TopTutorSerializer
 from .models import Profile
 from accounts.models import CustomUser 
 from rest_framework.parsers import FileUploadParser
@@ -14,6 +14,9 @@ from rest_framework.authtoken.models import Token
 from django.contrib.auth import get_user_model
 from django_filters import rest_framework as filters
 from rest_framework.filters import SearchFilter,OrderingFilter
+from django.contrib.auth import get_user_model
+from django.shortcuts import get_object_or_404
+
 
 @api_view(['POST', ])
 @permission_classes([AllowAny, ])
@@ -21,21 +24,14 @@ def submit_request(request):
 
     serializer = CreateRequestSerializer(data=request.data)
     if serializer.is_valid(raise_exception=True):
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+        data = serializer.save()
+        serialized_data = serializer.data
+        serialized_data['id'] = data.id
+        user = data.tutor.full_name
+        message = f'Your request to {user} was succesfully sent!'
+        return Response({'status':'successful','sent':True, 'message':message}, status=status.HTTP_201_CREATED)
     else:
-        return Response('request couldnt be created', status=status.HTTP_501_NOT_IMPLEMENTED)
-
-@api_view(['POST', ])
-@permission_classes([AllowAny, ])
-def set_schedule_student(request):
-
-    serializer = StudentScheduleSerializer(data=request.data)
-    if serializer.is_valid(raise_exception=True):
-        schedule = serializer.save()
-        return Response(schedule, status=status.HTTP_201_CREATED)
-    else:
-        return Response('request couldnt be created', status=status.HTTP_501_NOT_IMPLEMENTED)
+        return Response({'message':'sorry, your request couldnt be sent...', 'sent':False}, status=status.HTTP_501_NOT_IMPLEMENTED)
 
 
 '''view to list all requests that a tutor has received'''
@@ -125,3 +121,10 @@ def rate_tutor(request):
         return Response({f'you have rated this tutor {serializer.data.get("rate")} stars'}, status=status.HTTP_201_CREATED)
     return Response(status=status.HTTP_501_NOT_IMPLEMENTED)
 
+User = get_user_model()
+@api_view(['GET', ])
+@permission_classes([AllowAny, ])
+def top_tutors(request):
+    query = Profile.objects.filter(user__is_tutor=True)
+    serializer = TopTutorSerializer(query)
+    return Response(serializer.data)
