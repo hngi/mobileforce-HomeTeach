@@ -38,3 +38,5 @@ starkbank-ecdsa==1.0.0
 uritemplate==3.0.1
 urllib3==1.25.9
 whitenoise==5.1.0
+django-allauth==0.42.0
+django-rest-auth==0.9.5
