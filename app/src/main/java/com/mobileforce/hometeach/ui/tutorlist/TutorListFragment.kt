@@ -42,14 +42,14 @@ class TutorListFragment : Fragment(), SelectDateDialog.SelectDateListener {
         }
 
         //Get the list of tutors
-        //viewModel.getTutorList()
+        viewModel.getTutorList()
 
         popupDialog = SelectDateDialog()
         observeViewModels()
         val allTutorsList: MutableList<TutorAllModel> = mutableListOf()
         allTutorsList.add(
             TutorAllModel(
-                "1L",
+                "3e083af1-2b36-442a-9d33-75a317bc95d1",
                 "Alaye-Chris",
                 "profile_image",
                 "I teach with calmness and encouragement. My lessons are not boring and i can accommodate student’s with low affinity to studying. I employ modern schema for tutoring with interactive guides and learning systems. Having schooled at different educational organizations coupled with my NCE certificate, I can assure you premium success with me as your Home-Teacher.",
@@ -60,7 +60,7 @@ class TutorListFragment : Fragment(), SelectDateDialog.SelectDateListener {
         )
         allTutorsList.add(
             TutorAllModel(
-                "2L",
+                "3e083af1-2b36-442a-9d33-75a317bc95d1",
                 "Alaye-Chris",
                 "profile_image",
                 "I teach with calmness and encouragement. My lessons are not boring and i can accommodate student’s with low affinity to studying. I employ modern schema for tutoring with interactive guides and learning systems. Having schooled at different educational organizations coupled with my NCE certificate, I can assure you premium success with me as your Home-Teacher.",
@@ -71,7 +71,7 @@ class TutorListFragment : Fragment(), SelectDateDialog.SelectDateListener {
         )
         allTutorsList.add(
             TutorAllModel(
-                "3L",
+                "3e083af1-2b36-442a-9d33-75a317bc95d1",
                 "Alaye-Chris",
                 "profile_image",
                 "I teach with calmness and encouragement. My lessons are not boring and i can accommodate student’s with low affinity to studying. I employ modern schema for tutoring with interactive guides and learning systems. Having schooled at different educational organizations coupled with my NCE certificate, I can assure you premium success with me as your Home-Teacher.",
@@ -82,7 +82,7 @@ class TutorListFragment : Fragment(), SelectDateDialog.SelectDateListener {
         )
         allTutorsList.add(
             TutorAllModel(
-                "4L",
+                "3e083af1-2b36-442a-9d33-75a317bc95d1",
                 "Alaye-Chris",
                 "profile_image",
                 "I teach with calmness and encouragement. My lessons are not boring and i can accommodate student’s with low affinity to studying. I employ modern schema for tutoring with interactive guides and learning systems. Having schooled at different educational organizations coupled with my NCE certificate, I can assure you premium success with me as your Home-Teacher.",
@@ -93,7 +93,7 @@ class TutorListFragment : Fragment(), SelectDateDialog.SelectDateListener {
         )
         allTutorsList.add(
             TutorAllModel(
-                "5L",
+                "3e083af1-2b36-442a-9d33-75a317bc95d1",
                 "Alaye-Chris",
                 "profile_image",
                 "I teach with calmness and encouragement. My lessons are not boring and i can accommodate student’s with low affinity to studying. I employ modern schema for tutoring with interactive guides and learning systems. Having schooled at different educational organizations coupled with my NCE certificate, I can assure you premium success with me as your Home-Teacher.",
@@ -176,11 +176,14 @@ class TutorListFragment : Fragment(), SelectDateDialog.SelectDateListener {
             }
         })
 
+        viewModel.getUser().observe(viewLifecycleOwner, Observer { result ->
+            viewModel.setUser(result)
+        })
         viewModel.serviceApproved.observe(viewLifecycleOwner, Observer { result ->
             when (result) {
                 is Result.Success -> {
                     binding.progressBar.visibility = View.GONE
-                    popupDialog.showSuccessDialog(requireView())
+                    popupDialog.showSuccessDialog(requireView(),result.data)
                 }
 
                 is Result.Loading -> {
