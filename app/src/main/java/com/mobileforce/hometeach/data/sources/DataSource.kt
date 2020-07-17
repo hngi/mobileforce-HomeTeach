@@ -7,7 +7,11 @@ import com.mobileforce.hometeach.data.model.UserEntity
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
 import com.mobileforce.hometeach.remotesource.wrappers.*
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Response
+import retrofit2.http.Part
+import java.io.InputStream
 
 
 interface DataSource {
@@ -16,7 +20,7 @@ interface DataSource {
     suspend fun logIn(params: Params.SignIn): LoginResponse
 
     suspend fun signUp(params: Params.SignUp): RegisterUserResponse
-    suspend fun resetPassword(params: Params.PasswordReset):EmailResponse
+    suspend fun resetPassword(params: Params.PasswordReset):Response<EmailResponse>
     suspend fun saveUser(user: User)
 
     fun getUser(): LiveData<UserEntity>
@@ -45,5 +49,12 @@ interface DataSource {
 
     suspend fun saveUserCardDetails(params: Params.CardDetails)
     suspend fun getUserCardDetails(id: Int): List<UserCardDetailResponse>
+
+    suspend fun uploadTutorMedia( id: RequestBody,
+                                 profile_pic: MultipartBody.Part,
+                                 credentials: MultipartBody.Part,
+                                 video: MultipartBody.Part):Response<UploadResponse>
+
+    suspend fun getId():String
 
 }
