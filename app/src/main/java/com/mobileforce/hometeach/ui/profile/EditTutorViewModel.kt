@@ -22,6 +22,8 @@ import java.io.InputStream
 
 class EditTutorViewModel(private val tutorRepository: TutorRepository) : ViewModel() {
 
+    var success:Boolean = false
+
 
     fun uploadTutorMedia(Iprofile_pic: InputStream, credentials: InputStream, video: InputStream) {
         viewModelScope.launch {
@@ -55,11 +57,7 @@ class EditTutorViewModel(private val tutorRepository: TutorRepository) : ViewMod
 
             try {
                 val response = tutorRepository.uploadTutorMedia(Id, image, pdf, Video)
-                if (response.isSuccessful) {
-                    Log.d("api", "CREDENTIAL UPLOADED SUCCESSFULLY")
-                } else {
-                    Log.d("api", response.body().toString())
-                }
+                success = response.isSuccessful
             } catch (error: Exception) {
                 // TODO
 
