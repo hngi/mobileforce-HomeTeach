@@ -23,7 +23,10 @@ dotenv_file = os.path.join(BASE_DIR, ".env")
 if os.path.isfile(dotenv_file):
     dotenv.load_dotenv(dotenv_file)
 
+ENV = False
 
+if os.path.isfile(dotenv_file):
+    ENV = True
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
@@ -104,8 +107,18 @@ WSGI_APPLICATION = 'root.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {}
-DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+
+
+if ENV:
+    DATABASES = {
+        'default': {
+		'ENGINE': 'django.db.backends.sqlite3',
+		'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+	}
+    }
+else:
+    DATABASES = dict()
+    DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 
 #db_from_env = dj_database_url.config(conn_max_age=600)
 #DATABASES = { 'default': dj_database_url.config() }
@@ -181,9 +194,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_API_KEY')
 
 # AWS settings for static and media files storage
-AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
-AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
-AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME")
+AWS_ACCESS_KEY_ID = 'AKIA2JNMNTHW7M7ISZHN'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'hometeach-media'
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
@@ -208,5 +221,6 @@ PAYSTACK_AUTHORIZATION_KEY = 'sk_test_72d039a582a3504fdeeffd3930914247ba070db3'
 
 
 # ENCRYPT_KEY = b'5R_y8WWIMF7MOhShxQiZFZwXcRGGKKbdGrkPN9iVVpc='
-del DATABASES['default']['OPTIONS']['sslmode']
+if not ENV:
+    del DATABASES['default']['OPTIONS']['sslmode']
 
