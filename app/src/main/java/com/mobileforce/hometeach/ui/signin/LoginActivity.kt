@@ -138,6 +138,11 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        progressDialog.dismiss()
+    }
+
     private fun triggerSignInProcess() {
         if (emailValid && passwordValid) {
             val user = Params.SignIn(

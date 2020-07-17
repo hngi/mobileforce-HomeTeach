@@ -50,15 +50,19 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
+    private fun navigateTOSignIn() {
+        val intent = Intent(this, LoginActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+        startActivity(intent)
+        finish()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
 
         text_log_in.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
-            startActivity(intent)
-            finish()
+            navigateTOSignIn()
         }
         // replace with the ids in your XML
         nameWatcher = object : TextWatcher {
@@ -202,7 +206,7 @@ class SignUpActivity : AppCompatActivity() {
                             message = "Registration Successful, verify account to login",
                             actionText = "LOGIN",
                             actionCallBack = {
-                                startActivity(Intent(this, LoginActivity::class.java))
+                                navigateTOSignIn()
                             }, length = Snackbar.LENGTH_INDEFINITE
                         )
                 }
