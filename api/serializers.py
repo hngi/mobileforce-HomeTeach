@@ -191,8 +191,7 @@ class TutorProfileSerializer(serializers.HyperlinkedModelSerializer):
         rating = obj.rating.all().aggregate(rating=Avg('rate'), count=Count('user'))
         return rating
 
-<<<<<<< HEAD
-=======
+
     def update(self, instance, validated_data):
         # retrieve CustomUser
         user_data = validated_data.pop('user', None)
@@ -206,7 +205,6 @@ class TutorProfileSerializer(serializers.HyperlinkedModelSerializer):
         instance.user.save()
         instance.save()
         return instance
->>>>>>> 6b0de4a4f4ef2ab4820e2ad8ae34c6ce0f74e9a5
     
 class StudentProfileSerializer(serializers.HyperlinkedModelSerializer):
     user_url = serializers.HyperlinkedIdentityField(view_name='customuser-detail')

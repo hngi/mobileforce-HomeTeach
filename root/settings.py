@@ -187,12 +187,9 @@ EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'apikey'
-<<<<<<< HEAD
 # EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_API_KEY')
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-=======
->>>>>>> 6b0de4a4f4ef2ab4820e2ad8ae34c6ce0f74e9a5
 EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_API_KEY')
 
 # AWS settings for static and media files storage
