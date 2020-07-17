@@ -20,7 +20,6 @@ from cardvalidator import formatter, luhn
 from .utility.encryption_util import *
 from .serializers import BankInfoSerializer, CreditCardInfoSerializer, VerificationSerializer
 from .models import BankInfo,CreditCardInfo
-from pypaystack import Transaction
 from rest_framework.views import APIView
 
 
