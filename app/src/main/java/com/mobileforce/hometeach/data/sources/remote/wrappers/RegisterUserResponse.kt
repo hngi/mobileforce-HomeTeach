@@ -5,7 +5,7 @@ package com.mobileforce.hometeach.data.sources.remote.wrappers
  */
 class RegisterUserResponse(
     val token: String,
-    val userRemote: UserRemote,
+    val user: UserRemote,
     val errors: Errors?
 )
 

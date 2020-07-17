@@ -38,13 +38,16 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".ui.BottomNavigationActivity" >
-        </activity>
+<<<<<<< HEAD
+        <activity android:name=".ui.BottomNavigationActivity" />
+=======
+        <activity android:name=".ui.BottonNavigationActivity" />
 
         <!-- metadata for PayStack -->
         <meta-data
             android:name="co.paystack.android.PublicKey"
             android:value="pk_test_f4f8ba74f53540331c0d2f32fa4c8ac561e2311c"/>
+>>>>>>> Feat: Implement Student Payment feature
     </application>
 
 </manifest>

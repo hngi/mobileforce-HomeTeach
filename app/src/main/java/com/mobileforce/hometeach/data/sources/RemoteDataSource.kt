@@ -12,7 +12,7 @@ import retrofit2.Response
 
 class RemoteDataSource(private val api: Api) : DataSource {
 
-    override suspend fun logIn(params: Params.SignIn): Response<List<Any>> {
+    override suspend fun logIn(params: Params.SignIn): LoginResponse {
         val map = hashMapOf(
             "email" to params.email,
             "password" to params.password
@@ -69,6 +69,20 @@ class RemoteDataSource(private val api: Api) : DataSource {
 
     override suspend fun getTutorList(): Response<List<TutorListResponse>> {
         return api.getTutorList()
+    }
+    
+    override suspend fun saveUserCardDetails(params: Params.CardDetails) {
+        val map = hashMapOf(
+            "card_number" to params.card_number,
+            "card_cvv" to params.card_cvc,
+            "expiry_month" to params.expiry_month,
+            "expiry_year" to params.expiry_year
+        )
+        api.saveUserCardDetails(map)
+    }
+
+    override suspend fun getUserCardDetails(id: Int): List<UserCardDetailResponse> {
+        return api.getUserCardDetails(id)
     }
 
     override suspend fun requestTutorService(params: Params.RequestTutorService): Response<TutorServiceRequestResponse> {

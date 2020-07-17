@@ -14,7 +14,7 @@ import retrofit2.Response
 
 class UserRepositoryImpl(private val dataSource: DataSourceFactory) : UserRepository {
 
-    override suspend fun login(params: Params.SignIn): Response<List<Any>> {
+    override suspend fun login(params: Params.SignIn): LoginResponse {
         return dataSource.remote().logIn(params)
     }
 
@@ -45,6 +45,7 @@ class UserRepositoryImpl(private val dataSource: DataSourceFactory) : UserReposi
         val user = dataSource.local().getSingleUser()
         return dataSource.remote().getTutorDetails(user.id.toDouble().toInt())
     }
+
     override fun getUser(): LiveData<UserEntity> {
         return dataSource.local().getUser()
     }
@@ -62,7 +63,7 @@ class UserRepositoryImpl(private val dataSource: DataSourceFactory) : UserReposi
     }
 
     override fun searchTutor(query: String): LiveData<List<TutorEntity>> {
-       return dataSource.local().searchTutors(query)
+        return dataSource.local().searchTutors(query)
     }
 
     override suspend fun clearTutorListDb() {
@@ -73,10 +74,16 @@ class UserRepositoryImpl(private val dataSource: DataSourceFactory) : UserReposi
         return dataSource.local().getTutorListDb()
     }
 
-    override suspend fun password_reset(params: Params.PasswordReset): EmailResponse {
-        return dataSource.remote().resetPassword(params)
+    override suspend fun saveUserCardDetails(params: Params.CardDetails) {
+        dataSource.remote().saveUserCardDetails(params)
+
     }
 
+    override suspend fun getUserCardDetails(id: Int): List<UserCardDetailResponse> {
+        return dataSource.remote().getUserCardDetails(id)
+    }
 
-
+    override suspend fun passwordReset(params: Params.PasswordReset): EmailResponse {
+        return dataSource.remote().resetPassword(params)
+    }
 }

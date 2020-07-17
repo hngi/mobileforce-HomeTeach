@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "163150701577",
+    "firebase_url": "https://home-teach-hng.firebaseio.com",
+    "project_id": "home-teach-hng",
+    "storage_bucket": "home-teach-hng.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:163150701577:android:bcece028651449937304d8",
+        "android_client_info": {
+          "package_name": "com.mobileforce.hometeach"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "163150701577-geh65vc1i0p3lb82fd3b9jcsmimu463d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB86AfeBHKywTvYiczRVdMwIJGK3QZ9z0E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "163150701577-geh65vc1i0p3lb82fd3b9jcsmimu463d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

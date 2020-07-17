@@ -121,14 +121,14 @@ class TutorListFragment : Fragment(), SelectDateDialog.SelectDateListener {
         binding.search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (query != null) {
-                    getItemsFromDb(query)
+                    //getItemsFromDb(query)
                 }
                 return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 if (newText != null) {
-                    getItemsFromDb(newText)
+                    //getItemsFromDb(newText)
                 }
                 return true
             }
