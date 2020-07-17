@@ -124,11 +124,8 @@ class Profile(models.Model):
 	def save_user_profile(sender, instance, **kwargs):
 		instance.profile.save()
 
-
-
 class BankInfo(models.Model):
-    # user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    user = models.CharField(max_length=255, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     bank_name = models.CharField(max_length=255, null=True, blank=True)
     account_name = models.CharField(max_length=255, null=True, blank=True)
     account_number = models.IntegerField(null=True, blank=True)
@@ -136,13 +133,10 @@ class BankInfo(models.Model):
     social_security_number = models.IntegerField(null=True, blank=True)
 	
     def __unicode__(self):
-        return f'Bank Information for user: {self.user}'
-
-
+        return f'Bank Information for user: {self.user.full_name}'
 
 class CreditCardInfo(models.Model):
-    # user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    user = models.CharField(max_length=255, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     card_holder_name = models.CharField(max_length=255, null=True)
     card_number = models.CharField(max_length=255, null=True)
     cvv = models.CharField(max_length=255, null=True)
@@ -150,5 +144,13 @@ class CreditCardInfo(models.Model):
     expiry_year = models.IntegerField(null=True)
 	
     def __unicode__(self):
-        return f'Bank Information for user: {self.user}'
+        return f'Bank Information for user: {self.user.full_name}'
 
+class Verify(models.Model):
+	user = models.ForeignKey(User, on_delete=models.CASCADE)
+	reference = models.UUIDField()
+	authorization_code = models.IntegerField()
+
+class Wallet(models.Model):
+	user = models.ForeignKey(User, on_delete=models.CASCADE)
+	balance = models.IntegerField()

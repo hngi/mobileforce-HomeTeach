@@ -18,8 +18,11 @@ from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404
 from cardvalidator import formatter, luhn
 from .utility.encryption_util import *
-from .serializers import BankInfoSerializer, CreditCardInfoSerializer
+from .serializers import BankInfoSerializer, CreditCardInfoSerializer, VerificationSerializer
 from .models import BankInfo,CreditCardInfo
+from pypaystack import Transaction
+from rest_framework.views import APIView
+from root.settings import PAYSTACK_AUTHORIZATION_KEY
 
 
 @api_view(['POST', ])
@@ -141,6 +144,7 @@ def top_tutors(request):
 # Card-Validator
 # cryptography
 @api_view(['POST' ])
+@permission_classes([AllowAny, ])
 def card_info_by_user(request):
     """
     This view returns details of all the credit card register to a particular user
@@ -163,6 +167,7 @@ def card_info_by_user(request):
     return Response(user_card_details)
 
 @api_view(['POST', 'GET'])
+@permission_classes([AllowAny, ])
 def card_info(request):
     """
     This view gets all credit card details with the sensitive data encrypted 
@@ -191,6 +196,7 @@ def card_info(request):
             return Response('Card number is not valid')
         
 @api_view(['GET', 'PUT', 'DELETE'])
+@permission_classes([AllowAny, ])
 def card_info_by_id(request, pk):
     """
     This view gets credit card detail by id, updates and deletes it
@@ -244,6 +250,7 @@ def card_info_by_id(request, pk):
 #//////////////////////////////////////Bank Details/////////////////////////////////////////
 
 @api_view(['GET', 'PUT', 'DELETE'])
+@permission_classes([AllowAny, ])
 def bank_info_by_id(request, pk):
     """
     This view gets all bank details by id, updates and deletes it
@@ -272,6 +279,7 @@ def bank_info_by_id(request, pk):
 
 
 @api_view(['POST' ])
+@permission_classes([AllowAny, ])
 def  BankInfoByUser(request):
     """
     This view gets all Bank details saved to a particular user
@@ -282,6 +290,7 @@ def  BankInfoByUser(request):
     return Response(serializer.data)
 
 @api_view(['POST', 'GET'])
+@permission_classes([AllowAny, ])
 def BankInfoView(request):
     """
     This view gets all bank details in the db
@@ -301,5 +310,17 @@ def BankInfoView(request):
             return Response(serializer.data)
         return Response(serializer.errors)
 
+class VerifyTransactionView(APIView):
+    permission_classes = (AllowAny, )
 
-#///////////////////////////////////////Bank Details End////////////////////////////////////////
+    def post(self, request, *args, **kwargs):
+        transaction = Transaction(authorization_key=PAYSTACK_AUTHORIZATION_KEY)
+        serializer = VerificationSerializer(data=request.data)
+        if serializer.is_valid():
+            reference = serializer.validated_data['reference']
+
+            response = transaction.verify(reference)
+
+            return Response(response, status=status.HTTP_200_OK)
+        return Response(status=status.HTTP_401_UNAUTHORIZED)
+

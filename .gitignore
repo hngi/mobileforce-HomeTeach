@@ -17,6 +17,7 @@ hometeach/
 ENV/
 .idea/
 .python-version
+Pipfile
 
 # Distribution / packaging
 .Python
@@ -43,6 +44,9 @@ pip-delete-this-directory.txt
 
 # Django stuff:
 *.log
+<<<<<<< HEAD
 db.sqlite3
 media
 
+=======
+>>>>>>> 6b0de4a4f4ef2ab4820e2ad8ae34c6ce0f74e9a5
