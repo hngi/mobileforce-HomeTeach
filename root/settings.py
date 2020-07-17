@@ -179,9 +179,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_API_KEY')
 
 # AWS settings for static and media files storage
-AWS_ACCESS_KEY_ID = 'AKIA2JNMNTHW7M7ISZHN'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'hometeach-media'
+AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
+AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME")
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
