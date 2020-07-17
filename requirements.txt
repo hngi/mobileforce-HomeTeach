@@ -21,7 +21,6 @@ oauthlib==3.1.0
 packaging==20.4
 psycopg2==2.8.5
 pyparsing==2.4.7
-pypaystack==1.21
 python-dotenv==0.14.0
 python-http-client==3.2.7
 python3-openid==3.2.0
@@ -37,3 +36,4 @@ starkbank-ecdsa==1.0.0
 uritemplate==3.0.1
 urllib3==1.25.9
 whitenoise==5.1.0
+pypaystack==1.21
