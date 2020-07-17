@@ -1,12 +1,16 @@
 package com.mobileforce.hometeach.data.sources
 
 import androidx.lifecycle.LiveData
+import com.mobileforce.hometeach.data.model.UploadResponse
 import com.mobileforce.hometeach.data.model.User
 import com.mobileforce.hometeach.data.sources.local.AppDataBase
 import com.mobileforce.hometeach.data.model.UserEntity
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
 import com.mobileforce.hometeach.remotesource.wrappers.*
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import retrofit2.Call
 
 import retrofit2.Response
 
@@ -82,4 +86,8 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
             full_name = user.fullName
         )
     }
+    override suspend fun loadDocument(document: MultipartBody.Part,desc: RequestBody): Call<UploadResponse>{
+        return loadDocument(document,desc)
+    }
 }
+

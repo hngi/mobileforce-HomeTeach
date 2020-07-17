@@ -1,10 +1,14 @@
 package com.mobileforce.hometeach.utils
 
+import android.content.ContentResolver
+import android.net.Uri
+import android.provider.OpenableColumns
 import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.google.android.material.snackbar.Snackbar
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.adapters.CircleTransform
 import com.mobileforce.hometeach.data.model.User
@@ -17,8 +21,8 @@ fun ImageView.bindTutorImage(tutorImage: String) {
     tutorImage.let {
         Picasso.get().load(tutorImage).transform(CircleTransform())
             .placeholder(R.drawable.profile_image).error(
-            R.drawable.profile_image
-        ).into(this)
+                R.drawable.profile_image
+            ).into(this)
     }
 }
 
@@ -73,4 +77,27 @@ fun pojo2Map(obj: Any): Map<String, Any> {
         //log error
     }
     return hashMap
+}
+fun  View.snackbar(message: String) {
+    Snackbar.make(
+        this,
+        message,
+        Snackbar.LENGTH_LONG
+    ).also { snackbar ->
+        snackbar.setAction("Ok") {
+            snackbar.dismiss()
+        }
+    }.show()
+}
+
+fun ContentResolver.getFileName(fileUri: Uri): String {
+    var name = ""
+    val returnCursor = this.query(fileUri, null, null, null, null)
+    if (returnCursor != null) {
+        val nameIndex = returnCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)
+        returnCursor.moveToFirst()
+        name = returnCursor.getString(nameIndex)
+        returnCursor.close()
+    }
+    return name
 }
