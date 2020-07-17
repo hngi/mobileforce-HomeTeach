@@ -196,8 +196,9 @@ class TutorProfileSerializer(serializers.HyperlinkedModelSerializer):
         # retrieve CustomUser
         user_data = validated_data.pop('user', None)
         user_data = {k:v for k,v in user_data.items() if v}
-        for attr, value in user_data.items():
-            setattr(instance.user, attr, value)
+        if user_data:
+            for attr, value in user_data.items():
+                setattr(instance.user, attr, value)
 
         # retrieve Profile
         for attr, value in validated_data.items():
