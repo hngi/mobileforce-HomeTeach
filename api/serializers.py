@@ -195,7 +195,7 @@ class TutorProfileSerializer(serializers.HyperlinkedModelSerializer):
     def update(self, instance, validated_data):
         # retrieve CustomUser
         user_data = validated_data.pop('user', None)
-        ser_data = {k:v for k,v in user_data.items() if v}
+        user_data = {k:v for k,v in user_data.items() if v}
         for attr, value in user_data.items():
             setattr(instance.user, attr, value)
 
