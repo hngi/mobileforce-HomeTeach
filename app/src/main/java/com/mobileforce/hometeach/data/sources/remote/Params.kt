@@ -43,4 +43,14 @@ class Params {
         val expiry_month: Int,
         val expiry_year: Int
     )
+
+    data class RequestTutorService(
+        val requester_id: String,
+        val tutor_id: String,
+        val from_hour: String,
+        val from_minute: String,
+        val to_hour: String,
+        val to_minute: String,
+        val dates: List<String>
+    )
 }

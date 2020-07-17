@@ -6,7 +6,7 @@ import org.junit.runner.RunWith
 
 /**
  * Instrumented test, which will execute on an Android device.
- * Instrumented request_layout, which will execute on an Android device.
+ * Instrumented success_request_layout, which will execute on an Android device.
  *
  * See [testing documentation](http://d.android.com/tools/testing).
  */
@@ -15,7 +15,7 @@ class ExampleInstrumentedTest {
     @Test
     fun useAppContext() {
         // Context of the app under test.
-        // Context of the app under request_layout.
+        // Context of the app under success_request_layout.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         assertEquals("com.example.hometeach", appContext.packageName)
     }

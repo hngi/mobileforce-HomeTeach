@@ -17,8 +17,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.databinding.FragmentTutorDetailsBinding
-import kotlinx.android.synthetic.main.request_layout.view.*
-import kotlinx.android.synthetic.main.request_layout.view.btn
+import kotlinx.android.synthetic.main.success_request_layout.view.*
 
 
 class TutorDetailsFragment : Fragment(), DatePickerDialog.OnDateSetListener,
@@ -108,7 +107,7 @@ class TutorDetailsFragment : Fragment(), DatePickerDialog.OnDateSetListener,
         myHour = hourOfDay
         myMinute = minute
        val date = "" +myDay +" / "+ myMonth +" / "+ myYear + "\n"+"\t\t\t"+ myHour + ":" + "" + myMinute
-        val mDialogView = LayoutInflater.from(activity).inflate(R.layout.request_layout, null)
+        val mDialogView = LayoutInflater.from(activity).inflate(R.layout.success_request_layout, null)
         val mBuilder = activity?.let { it1 ->
             AlertDialog.Builder(it1)
                 .setView(mDialogView)

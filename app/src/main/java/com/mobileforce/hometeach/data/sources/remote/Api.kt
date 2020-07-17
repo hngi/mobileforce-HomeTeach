@@ -31,8 +31,8 @@ interface  Api{
     @GET("v1/profiles/")
     suspend fun getProfileList(): List<ProfileResponse>
 
-    @GET("v1/tutor-profiles/")
-    suspend fun getTutorList(): Response<TutorListResponse>
+    @GET("api/v1/tutor-profiles/")
+    suspend fun getTutorList(): Response<List<TutorListResponse>>
 
     @JvmSuppressWildcards
     @GET("v1/tutor_profiles/{id}/")
@@ -40,6 +40,9 @@ interface  Api{
     
     @POST("")
     suspend fun saveUserCardDetails(@Body params: Map<String, Any>)
+
+    @POST("api/v1/submit-request/")
+    suspend fun requestTutorService(@Body params: Params.RequestTutorService): Response<TutorServiceRequestResponse>
 
     @GET("")
     suspend fun getUserCardDetails(@Path("id") id: Int): List<UserCardDetailResponse>
