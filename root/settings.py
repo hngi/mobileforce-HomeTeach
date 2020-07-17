@@ -53,8 +53,8 @@ INSTALLED_APPS = [
     'drf_yasg',
     'django_filters',
     'whitenoise.runserver_nostatic',
-    'paystack',
-    'pypaystack',
+    #'paystack',
+    #'pypaystack',
     'rest_auth',
 ]
 
