@@ -1,6 +1,7 @@
 package com.mobileforce.hometeach.data.sources.local.dao
 
 import androidx.lifecycle.LiveData
+import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -10,6 +11,7 @@ import com.mobileforce.hometeach.data.model.TutorEntity
  * Created by Mayokun Adeniyi on 17/07/2020.
  */
 
+@Dao
 interface TutorListDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
