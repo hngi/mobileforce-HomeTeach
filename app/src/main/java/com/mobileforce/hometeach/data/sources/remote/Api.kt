@@ -32,10 +32,13 @@ interface Api {
     suspend fun getProfileList(): List<ProfileResponse>
 
     @GET("api/v1/tutor-profiles/")
-    suspend fun getTutorList(): Response<TutorListResponse>
+    suspend fun getTutorList(): Response<List<TutorListResponse>>
 
     @JvmSuppressWildcards
     @GET("api/v1/tutor_profiles/{id}/")
     suspend fun getTutorDetails(@Path("id") id: Int): TutorDetailsResponse
+
+    @POST("api/v1/submit-request/")
+    suspend fun requestTutorService(@Body params: Params.RequestTutorService): Response<TutorServiceRequestResponse>
 
 }

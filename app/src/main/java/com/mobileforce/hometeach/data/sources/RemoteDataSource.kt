@@ -1,6 +1,7 @@
 package com.mobileforce.hometeach.data.sources
 
 import androidx.lifecycle.LiveData
+import com.mobileforce.hometeach.data.model.TutorEntity
 import com.mobileforce.hometeach.data.model.User
 import com.mobileforce.hometeach.data.model.UserEntity
 import com.mobileforce.hometeach.data.sources.remote.Api
@@ -66,8 +67,28 @@ class RemoteDataSource(private val api: Api) : DataSource {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getTutorList(): Response<TutorListResponse> {
+    override suspend fun getTutorList(): Response<List<TutorListResponse>> {
         return api.getTutorList()
+    }
+
+    override suspend fun requestTutorService(params: Params.RequestTutorService): Response<TutorServiceRequestResponse> {
+        return api.requestTutorService(params)
+    }
+
+    override suspend fun saveTutorList(tutorList: List<TutorEntity>) {
+        TODO("Not yet implemented")
+    }
+
+    override fun searchTutors(query: String): LiveData<List<TutorEntity>> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun clearTutorListDb() {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getTutorListDb(): List<TutorEntity> {
+        TODO("Not yet implemented")
     }
 
     override suspend fun resetPassword(params: Params.PasswordReset): EmailResponse {
