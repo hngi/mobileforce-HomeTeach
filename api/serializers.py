@@ -4,7 +4,7 @@ from accounts.models import CustomUser
 from django.db.models import Avg, Count
 from .models import Request
 from django.contrib.auth import get_user_model
-from .models import CreditCardInfo, BankInfo
+from .models import CreditCardInfo, BankInfo, Verify, Wallet
 
 # Students should be able to filter list of Tutors based on field, gender, proximity 
 User = get_user_model()
@@ -256,3 +256,15 @@ class CreditCardInfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = CreditCardInfo
         fields = '__all__'
+
+
+class VerificationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Verify
+        fields = ['reference']
+
+class WalletSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Wallet
+        field = '__all__'
+            
