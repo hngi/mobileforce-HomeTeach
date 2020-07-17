@@ -17,6 +17,7 @@ hometeach/
 ENV/
 .idea/
 .python-version
+paystack/
 
 # Distribution / packaging
 .Python
