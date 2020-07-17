@@ -141,7 +141,7 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Profile
         depth = 1
-        fields = ('user',
+        fields = ('user','id',
                   'hourly_rate', 'rating', 'desc', 
                   'field', 'major_course', 'other_courses', 
                   'state', 'address', 'user_url')
@@ -177,7 +177,7 @@ class TutorProfileSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Profile
         depth = 1
-        fields = ('user','rating', 'profile_pic', 
+        fields = ('user','id','rating', 'profile_pic', 
                   'desc', 'credentials', 'video', 
                   'hourly_rate', 'field', 'major_course', 
                   'other_courses', 'state', 'address','user_url')
@@ -194,12 +194,12 @@ class TutorProfileSerializer(serializers.HyperlinkedModelSerializer):
 
     def update(self, instance, validated_data):
         # retrieve CustomUser
-        user_data = validated_data.pop('user', None)
-        user_data = {k:v for k,v in user_data.items() if v}
+        # user_data = validated_data.pop('user', None)
+        user_data = {k:v for k,v in validated_data.items() if v}
         if user_data:
             for attr, value in user_data.items():
                 setattr(instance.user, attr, value)
-
+        validated_data.pop('user', None)
         # retrieve Profile
         for attr, value in validated_data.items():
             setattr(instance, attr, value)
@@ -214,7 +214,7 @@ class StudentProfileSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Profile
         depth = 1
-        fields = ('user',
+        fields = ('user','id',
                   'desc', 'field', 'major_course', 'other_courses', 'state', 'address', 
                   'user_url')
 
