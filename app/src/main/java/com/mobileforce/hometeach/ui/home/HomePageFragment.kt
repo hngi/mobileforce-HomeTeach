@@ -29,7 +29,9 @@ import com.mobileforce.hometeach.ui.classes.adapters.recylerviewadapters.TutorOn
 import com.mobileforce.hometeach.ui.home.student.OngoingClassViewHolderStudentDashBoard
 import com.mobileforce.hometeach.ui.home.student.TopTutorsViewHolderStudentDashBoard
 import com.mobileforce.hometeach.ui.home.student.UpcomingClassViewHolderStudentDashBoard
+import com.mobileforce.hometeach.ui.home.tutor.HomePageTutorViewModel
 import com.mobileforce.hometeach.ui.signin.LoginActivity
+import com.mobileforce.hometeach.utils.AppConstants.USER_TUTOR
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -69,7 +71,7 @@ class HomePageFragment : Fragment() {
 
         if (pref.userType == USER_STUDENT) {
             setUpForStudent()
-        } else {
+        } else if (pref.userType == USER_TUTOR) {
             setUpForTutor()
         }
     }
@@ -346,16 +348,16 @@ class HomePageFragment : Fragment() {
         bindingTutor.root.findViewById<LinearLayout>(R.id.mybanks).setOnClickListener {
             findNavController().navigate(R.id.myBanks)
         }
-        bindingTutor.root.findViewById<LinearLayout>(R.id.actionCardDetails).setOnClickListener {
+        bindingTutor.root.findViewById<LinearLayout>(R.id.card_details).setOnClickListener {
             findNavController().navigate(R.id.tutorCardDetails)
         }
-        bindingTutor.root.findViewById<LinearLayout>(R.id.withdrawals).setOnClickListener {
+        bindingTutor.root.findViewById<LinearLayout>(R.id.withdrawal).setOnClickListener {
             findNavController().navigate(R.id.makeWithdrawalFragment)
         }
 
-        bindingTutor.root.findViewById<AppCompatRadioButton>(R.id.modify_btn).setOnClickListener {
-            DatePickerDialog.OnDateSetListener { datePicker, i, i2, i3 -> view }
-        }
+//        bindingTutor.root.findViewById<AppCompatRadioButton>(R.id.).setOnClickListener {
+//            DatePickerDialog.OnDateSetListener { datePicker, i, i2, i3 -> view }
+//        }
 
 
         bindingTutor.signout.setOnClickListener {
@@ -368,7 +370,7 @@ class HomePageFragment : Fragment() {
         }
 
         viewModel.user.observe(viewLifecycleOwner, androidx.lifecycle.Observer { user ->
-            bindingTutor.username.text = user.full_name
+//            bindingTutor.username.text = user.full_name
         })
     }
 
