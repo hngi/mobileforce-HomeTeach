@@ -95,7 +95,7 @@ class RemoteDataSource(private val api: Api) : DataSource {
         return api.uploadTutorMedia(id,profile_pic, credentials, video)
     }
 
-    override suspend fun resetPassword(params: Params.PasswordReset): EmailResponse {
+    override suspend fun resetPassword(params: Params.PasswordReset): Response<EmailResponse>{
 
         val map = hashMapOf(
             "email" to params.email

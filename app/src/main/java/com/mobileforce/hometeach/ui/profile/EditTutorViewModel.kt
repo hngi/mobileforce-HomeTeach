@@ -23,8 +23,7 @@ import java.io.InputStream
 class EditTutorViewModel(private val tutorRepository: TutorRepository) : ViewModel() {
 
 
-    fun uploadTutorMedia(
-        id: String, Iprofile_pic: InputStream, credentials: InputStream, video: InputStream) {
+    fun uploadTutorMedia(Iprofile_pic: InputStream, credentials: InputStream, video: InputStream) {
         viewModelScope.launch {
 
             //IMAGE
@@ -50,6 +49,8 @@ class EditTutorViewModel(private val tutorRepository: TutorRepository) : ViewMod
                     MediaType.parse("video/*"),
                     video.readBytes()))
 
+
+           val id = tutorRepository.getId()
             val Id: RequestBody = RequestBody.create(MediaType.parse("multipart/form-data"), id)
 
             try {

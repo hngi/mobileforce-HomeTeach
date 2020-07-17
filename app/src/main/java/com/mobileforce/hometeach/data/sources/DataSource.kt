@@ -17,7 +17,7 @@ interface DataSource {
 
     suspend fun logIn(params: Params.SignIn): LoginResponse
     suspend fun signUp(params: Params.SignUp): RegisterUserResponse
-    suspend fun resetPassword(params: Params.PasswordReset):EmailResponse
+    suspend fun resetPassword(params: Params.PasswordReset):Response<EmailResponse>
     suspend fun saveUser(user: User)
     fun getUser(): LiveData<UserEntity>
     suspend fun getSingleUser(): UserEntity
@@ -33,5 +33,7 @@ interface DataSource {
                                  profile_pic: MultipartBody.Part,
                                  credentials: MultipartBody.Part,
                                  video: MultipartBody.Part):Response<UploadResponse>
+
+    suspend fun getId():String
 
 }

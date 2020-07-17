@@ -14,7 +14,7 @@ interface UserRepository {
 
     suspend fun login(params: Params.SignIn): LoginResponse
     suspend fun register(params: Params.SignUp): RegisterUserResponse
-    suspend fun passwordReset(params: Params.PasswordReset):EmailResponse
+    suspend fun passwordReset(params: Params.PasswordReset):Response<EmailResponse>
 
     suspend fun saveUser(user: User)
     suspend fun logOut()

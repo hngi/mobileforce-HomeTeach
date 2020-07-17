@@ -13,4 +13,6 @@ interface TutorRepository {
                                  profile_pic: MultipartBody.Part,
                                  credentials: MultipartBody.Part,
                                  video: MultipartBody.Part): Response<UploadResponse>
+
+    suspend fun getId():String
 }

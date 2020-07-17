@@ -4,10 +4,8 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,9 +35,9 @@ class EditTutorProfileFragment : Fragment() {
     val REQUEST_CODE = 1001
     val REQUEST_CODE2 = 1005
     val REQUEST_CODE3 = 1009
-    lateinit var image: InputStream
-    lateinit var video: InputStream
-    lateinit var pdf: InputStream
+    lateinit var userImage: InputStream
+    lateinit var userVideo: InputStream
+    lateinit var userPdf: InputStream
     private lateinit var mDialogView:View
 
     private val viewModel: EditTutorViewModel = get<EditTutorViewModel>()
@@ -122,18 +120,11 @@ class EditTutorProfileFragment : Fragment() {
 //            currentUserEmail = profileResponse.email
 //        }
 
-        binding.tvViewAll.setOnClickListener {
-            showDialog()
+//        binding.tvViewAll.setOnClickListener {
+//
+//
+//        }
 
-        }
-
-        binding.tvCredentialsHeader.setOnClickListener {
-            selectPdf()
-        }
-
-        binding.selectVideo.setOnClickListener {
-            selectVideo()
-        }
 
         bt_save_profile.setOnClickListener {
 //            val profileData = Params.EditTutorProfile(
@@ -151,7 +142,111 @@ class EditTutorProfileFragment : Fragment() {
 
         binding.selectImage.setOnClickListener {
 
-            Log.d("api", "IMAGE CLICKED")
+        }
+        binding.tvUpload.setOnClickListener {
+            showDialog()
+
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+
+        if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+
+            try {
+                data?.let {
+                    val inputStream: InputStream? =
+                        context?.contentResolver?.openInputStream(it.data!!)
+                    inputStream?.let { stream ->
+                        userImage = stream
+                        mDialogView.imgCheck.visibility = View.VISIBLE
+                    }
+                }
+            } catch (e: FileNotFoundException) {
+                e.printStackTrace()
+            }
+
+        }
+        if (requestCode == REQUEST_CODE2 && resultCode == Activity.RESULT_OK) {
+
+            try {
+                data?.let {
+                    val inputStream: InputStream? =
+                        context?.contentResolver?.openInputStream(it.data!!)
+                    inputStream?.let { stream ->
+                        userVideo = stream
+                        mDialogView.videoCheck.visibility = View.VISIBLE
+                    }
+                }
+            } catch (e: FileNotFoundException) {
+                e.printStackTrace()
+            }
+        }
+
+        if (requestCode == REQUEST_CODE3 && resultCode == Activity.RESULT_OK) {
+
+            try {
+                data?.let {
+                    val inputStream: InputStream? =
+                        context?.contentResolver?.openInputStream(it.data!!)
+                    inputStream?.let { stream ->
+                        userPdf = stream
+                        mDialogView.pdfCheck.visibility = View.VISIBLE
+                    }
+                }
+            } catch (e: FileNotFoundException) {
+                e.printStackTrace()
+            }
+
+        }
+
+//        upload(userId,userImage,userPdf,userImage)
+
+    }
+
+    fun upload(image: InputStream, credential: InputStream, video: InputStream) {
+
+        viewModel.uploadTutorMedia(image, credential, video)
+
+    }
+
+
+    private fun selectImage() {
+        //Intent to pick image
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent, REQUEST_CODE)
+    }
+
+    private fun selectVideo() {
+        val intent = Intent()
+        intent.type = "video/*"
+        intent.action = Intent.ACTION_PICK
+        startActivityForResult(Intent.createChooser(intent, "Select Video"), REQUEST_CODE2)
+    }
+
+    private fun selectPdf() {
+        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
+            addCategory(Intent.CATEGORY_OPENABLE)
+            type = "application/pdf"
+
+        }
+
+        startActivityForResult(intent, REQUEST_CODE3)
+    }
+
+    private fun showDialog() {
+         mDialogView = LayoutInflater.from(activity).inflate(R.layout.uploads, null)
+        val mBuilder = activity?.let { it1 ->
+            AlertDialog.Builder(it1)
+                .setView(mDialogView)
+        }
+
+
+        val mAlertDialog = mBuilder?.show()
+        mDialogView.image.setOnClickListener {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 
                 if (activity?.let { it1 ->
@@ -174,129 +269,6 @@ class EditTutorProfileFragment : Fragment() {
                 selectImage();
             }
 
-        }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-
-        if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-
-            Toast.makeText(activity, "IMAGE", Toast.LENGTH_SHORT).show()
-            try {
-                data?.let {
-                    val inputStream: InputStream? =
-                        context?.contentResolver?.openInputStream(it.data!!)
-                    inputStream?.let { stream ->
-                        image = stream
-                        mDialogView.imgCheck.visibility = View.VISIBLE
-                    }
-                }
-            } catch (e: FileNotFoundException) {
-                e.printStackTrace()
-            }
-
-            // image = data?.data!!
-            //  viewModel.uploadTutorMedia("swd", image,)
-        }
-        if (requestCode == REQUEST_CODE2 && resultCode == Activity.RESULT_OK) {
-
-            Toast.makeText(activity, "VIDEO", Toast.LENGTH_SHORT).show()
-            try {
-                data?.let {
-                    val inputStream: InputStream? =
-                        context?.contentResolver?.openInputStream(it.data!!)
-                    inputStream?.let { stream ->
-                        video = stream
-                        mDialogView.videoCheck.visibility = View.VISIBLE
-                    }
-                }
-            } catch (e: FileNotFoundException) {
-                e.printStackTrace()
-            }
-        }
-
-        if (requestCode == REQUEST_CODE3 && resultCode == Activity.RESULT_OK) {
-
-            Toast.makeText(activity, "PDF", Toast.LENGTH_SHORT).show()
-            try {
-                data?.let {
-                    val inputStream: InputStream? =
-                        context?.contentResolver?.openInputStream(it.data!!)
-                    inputStream?.let { stream ->
-                        pdf = stream
-                        mDialogView.pdfCheck.visibility = View.VISIBLE
-                    }
-                }
-            } catch (e: FileNotFoundException) {
-                e.printStackTrace()
-            }
-        }
-
-
-//            val imageUri: Uri = attr.data.getData()
-//            val imageStream: InputStream = getContentResolver().openInputStream(imageUri)
-//            val selectedImage = BitmapFactory.decodeStream(imageStream)
-//            val encodedImage: String = encodeImage(selectedImage)
-//            )
-//            cursor.moveToFirst()
-//            val columnIndex: Int = cursor.getColumnIndex(filePathColumn[0])
-//            val picturePath: String = cursor.getString(columnIndex)
-
-//            binding.selectImage.setImageURI(data!!.data)
-//            var file = File(data!!.data!!.path)
-//            var requestBody = RequestBody.create(MediaType.parse("image/jpeg"), file)
-//            var filePart = MultipartBody.Part.createFormData("upload_file", file.name, requestBody)
-//            viewModel.uploadImage(filePart).observe(this, Observer {
-//                Toast.makeText(context, it.message, Toast.LENGTH_LONG).show()
-//            })
-
-    }
-
-    fun upload(id: String, image: InputStream, credential: InputStream, video: InputStream) {
-
-        viewModel.uploadTutorMedia(id, image, credential, video)
-
-    }
-
-
-    private fun selectImage() {
-        //Intent to pick image
-        val intent = Intent(Intent.ACTION_PICK)
-        intent.type = "image/*"
-        startActivityForResult(intent, REQUEST_CODE)
-    }
-
-    private fun selectVideo() {
-        val intent = Intent()
-        intent.type = "video/*"
-        intent.action = Intent.ACTION_PICK
-        startActivityForResult(Intent.createChooser(intent, "Select Video"), REQUEST_CODE2)
-    }
-
-    fun selectPdf() {
-        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
-            addCategory(Intent.CATEGORY_OPENABLE)
-            type = "application/pdf"
-
-        }
-
-        startActivityForResult(intent, REQUEST_CODE3)
-    }
-
-    private fun showDialog() {
-         mDialogView = LayoutInflater.from(activity).inflate(R.layout.uploads, null)
-        val mBuilder = activity?.let { it1 ->
-            AlertDialog.Builder(it1)
-                .setView(mDialogView)
-        }
-
-
-        //show dialog
-        val mAlertDialog = mBuilder?.show()
-        mDialogView.image.setOnClickListener {
-            selectImage()
 
         }
         mDialogView.video.setOnClickListener {
@@ -306,7 +278,12 @@ class EditTutorProfileFragment : Fragment() {
         mDialogView.pdf.setOnClickListener {
             selectPdf()
         }
-        mDialogView.button.setOnClickListener { mDialogView.progressBar.visibility = View.VISIBLE }
+        mDialogView.upload.setOnClickListener { mDialogView.progressBar.visibility = View.VISIBLE
+
+            upload(userImage,userPdf,userImage)
+            mDialogView.progressBar.visibility = View.INVISIBLE
+
+        }
 
 
     }

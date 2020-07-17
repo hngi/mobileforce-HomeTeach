@@ -36,7 +36,7 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
         return db.userDao().getSingleUser()
     }
 
-    override suspend fun resetPassword(params: Params.PasswordReset): EmailResponse {
+    override suspend fun resetPassword(params: Params.PasswordReset):Response<EmailResponse> {
         TODO("Not yet implemented")
     }
 
