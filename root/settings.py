@@ -206,6 +206,7 @@ DEFAULT_FILE_STORAGE = 'root.storage_backends.PublicMediaStorage'
 PAYSTACK_AUTHORIZATION_KEY = 'sk_test_72d039a582a3504fdeeffd3930914247ba070db3'
 
 
+
 # ENCRYPT_KEY = b'5R_y8WWIMF7MOhShxQiZFZwXcRGGKKbdGrkPN9iVVpc='
 del DATABASES['default']['OPTIONS']['sslmode']
 
