@@ -4,7 +4,7 @@ from root.settings import PAYSTACK_AUTHORIZATION_KEY
 from pypaystack import Transaction, Customer
 from .serializers import TransactionsSerializer
 from rest_framework.views import APIView
-from rest_framework import permissions
+from rest_framework import permissions, status
 
 
 class InitializeTransactionView(APIView):
@@ -16,11 +16,15 @@ class InitializeTransactionView(APIView):
 		if serializer.is_valid():
 			email = serializer.validated_data['email']
 			amount = serializer.validated_data['amount']
-			reference = serializer.validated_data['ref']
 
-			payload = transaction.initialize(email, amount, reference)
+			payload = transaction.initialize(email, amount)
 
-			return Response(payload)
+			return Response(payload, status=status.HTTP_200_OK)
+
+		else:
+			return Response(serializer.errors, status=status.HTTP_401_UNAUTHORIZED)
+
+		
 
 class CreateCustomerView(APIView):
 	permission_classes = (permissions.AllowAny, )
@@ -33,5 +37,8 @@ class CreateCustomerView(APIView):
 
 			payload = customer.create(email)
 
-			return Response(payload)
+			return Response(payload, status=status.HTTP_200_OK)
+
+		else:
+			return Response(serializer.errors, status=status.HTTP_401_UNAUTHORIZED)
 
