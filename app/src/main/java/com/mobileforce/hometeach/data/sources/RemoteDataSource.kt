@@ -72,7 +72,7 @@ class RemoteDataSource(private val api: Api) : DataSource {
     override suspend fun getTutorList(): Response<List<TutorListResponse>> {
         return api.getTutorList()
     }
-    
+
     override suspend fun saveUserCardDetails(params: Params.CardDetails) {
         val map = hashMapOf(
             "card_number" to params.card_number,
@@ -87,46 +87,50 @@ class RemoteDataSource(private val api: Api) : DataSource {
         return api.getUserCardDetails(id)
     }
 
-<<<<<<< HEAD
     override suspend fun uploadTutorMedia(
         id: RequestBody,
         profile_pic: MultipartBody.Part,
         credentials: MultipartBody.Part,
         video: MultipartBody.Part
     ): Response<UploadResponse> {
-        return api.uploadTutorMedia(id,profile_pic, credentials, video)
+        return api.uploadTutorMedia(id, profile_pic, credentials, video)
     }
 
-    override suspend fun resetPassword(params: Params.PasswordReset): Response<EmailResponse>{
-=======
-    override suspend fun requestTutorService(params: Params.RequestTutorService): Response<TutorServiceRequestResponse> {
-        return api.requestTutorService(params)
-    }
-
-    override suspend fun saveTutorList(tutorList: List<TutorEntity>) {
+    override suspend fun getId(): String {
         TODO("Not yet implemented")
     }
 
-    override fun searchTutors(query: String): LiveData<List<TutorEntity>> {
-        TODO("Not yet implemented")
-    }
-
-    override suspend fun clearTutorListDb() {
-        TODO("Not yet implemented")
-    }
-
-    override suspend fun getTutorListDb(): List<TutorEntity> {
-        TODO("Not yet implemented")
-    }
-
-    override suspend fun resetPassword(params: Params.PasswordReset): EmailResponse {
->>>>>>> upstream/develop
-
+    override suspend fun resetPassword(params: Params.PasswordReset): Response<EmailResponse> {
         val map = hashMapOf(
             "email" to params.email
         )
         return api.resetPassword(map)
     }
+
+
+
+        override suspend fun requestTutorService(params: Params.RequestTutorService): Response<TutorServiceRequestResponse> {
+            return api.requestTutorService(params)
+        }
+
+        override suspend fun saveTutorList(tutorList: List<TutorEntity>) {
+            TODO("Not yet implemented")
+        }
+
+        override fun searchTutors(query: String): LiveData<List<TutorEntity>> {
+            TODO("Not yet implemented")
+        }
+
+        override suspend fun clearTutorListDb() {
+            TODO("Not yet implemented")
+        }
+
+        override suspend fun getTutorListDb(): List<TutorEntity> {
+            TODO("Not yet implemented")
+        }
+
+
+
 
 }
 
