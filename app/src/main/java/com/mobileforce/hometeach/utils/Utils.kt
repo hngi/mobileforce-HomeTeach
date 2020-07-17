@@ -8,9 +8,8 @@ import androidx.lifecycle.MutableLiveData
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.adapters.CircleTransform
 import com.mobileforce.hometeach.data.model.TutorEntity
-import com.mobileforce.hometeach.data.model.User
-import com.mobileforce.hometeach.data.sources.remote.wrappers.UserRemote
-import com.mobileforce.hometeach.models.TutorAllModel
+import com.mobileforce.hometeach.data.sources.remote.wrappers.TutorNetworkResponse
+import com.mobileforce.hometeach.models.TutorModel
 import com.squareup.picasso.Picasso
 import java.lang.reflect.Method
 
@@ -44,18 +43,32 @@ fun <T> MutableLiveData<T>.asLiveData() = this as LiveData<T>
 
 
 /**
- * Converts [TutorAllModel] to a [TutorEntity]
+ * Converts [TutorModel] to a [TutorEntity]
  */
-fun TutorAllModel.toDbEntity() = TutorEntity(
+fun TutorModel.toDbEntity() = TutorEntity(
     id, full_name, profile_pic, description, tutorSubject, hourly_rate, rating
 )
 
 /**
- * Converts [TutorEntity] to a [TutorAllModel]
+ * Converts [TutorEntity] to a [TutorModel]
  */
-fun TutorEntity.toDomainModel() = TutorAllModel(
+fun TutorEntity.toDomainModel() = TutorModel(
     id, full_name, profile_pic, description, tutorSubject, hourly_rate, rating
 )
+
+fun TutorNetworkResponse.toDomainModel(): TutorModel {
+    val ratingModel = this.rating
+    val userModel = this.user
+    return TutorModel(
+        id = userModel.id,
+        full_name = userModel.full_name,
+        profile_pic = this.profile_pic,
+        description = this.description,
+        tutorSubject = this.subjects,
+        hourly_rate = this.hourly_rate,
+        rating = ratingModel.rating
+    )
+}
 
 
 fun pojo2Map(obj: Any): Map<String, Any> {

@@ -32,7 +32,7 @@ interface  Api{
     suspend fun getProfileList(): List<ProfileResponse>
 
     @GET("v1/tutor-profiles/")
-    suspend fun getTutorList(): Response<List<TutorListResponse>>
+    suspend fun getTutorList(): Response<List<TutorNetworkResponse>>
 
     @JvmSuppressWildcards
     @GET("v1/tutor_profiles/{id}/")

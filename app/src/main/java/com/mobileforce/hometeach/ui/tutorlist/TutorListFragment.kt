@@ -8,7 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.mobileforce.hometeach.databinding.FragmentAllTutorsBinding
-import com.mobileforce.hometeach.models.TutorAllModel
+import com.mobileforce.hometeach.models.TutorModel
 import com.mobileforce.hometeach.utils.Result
 import com.mobileforce.hometeach.utils.toDomainModel
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -46,63 +46,6 @@ class TutorListFragment : Fragment(), SelectDateDialog.SelectDateListener {
 
         popupDialog = SelectDateDialog()
         observeViewModels()
-        val allTutorsList: MutableList<TutorAllModel> = mutableListOf()
-        allTutorsList.add(
-            TutorAllModel(
-                "3e083af1-2b36-442a-9d33-75a317bc95d1",
-                "Alaye-Chris",
-                "profile_image",
-                "I teach with calmness and encouragement. My lessons are not boring and i can accommodate student’s with low affinity to studying. I employ modern schema for tutoring with interactive guides and learning systems. Having schooled at different educational organizations coupled with my NCE certificate, I can assure you premium success with me as your Home-Teacher.",
-                "Chemistry Tutor",
-                2000,
-                "4.6/5"
-            )
-        )
-        allTutorsList.add(
-            TutorAllModel(
-                "3e083af1-2b36-442a-9d33-75a317bc95d1",
-                "Alaye-Chris",
-                "profile_image",
-                "I teach with calmness and encouragement. My lessons are not boring and i can accommodate student’s with low affinity to studying. I employ modern schema for tutoring with interactive guides and learning systems. Having schooled at different educational organizations coupled with my NCE certificate, I can assure you premium success with me as your Home-Teacher.",
-                "Chemistry Tutor",
-                2000,
-                "4.6/5"
-            )
-        )
-        allTutorsList.add(
-            TutorAllModel(
-                "3e083af1-2b36-442a-9d33-75a317bc95d1",
-                "Alaye-Chris",
-                "profile_image",
-                "I teach with calmness and encouragement. My lessons are not boring and i can accommodate student’s with low affinity to studying. I employ modern schema for tutoring with interactive guides and learning systems. Having schooled at different educational organizations coupled with my NCE certificate, I can assure you premium success with me as your Home-Teacher.",
-                "Chemistry Tutor",
-                2000,
-                "4.6/5"
-            )
-        )
-        allTutorsList.add(
-            TutorAllModel(
-                "3e083af1-2b36-442a-9d33-75a317bc95d1",
-                "Alaye-Chris",
-                "profile_image",
-                "I teach with calmness and encouragement. My lessons are not boring and i can accommodate student’s with low affinity to studying. I employ modern schema for tutoring with interactive guides and learning systems. Having schooled at different educational organizations coupled with my NCE certificate, I can assure you premium success with me as your Home-Teacher.",
-                "Chemistry Tutor",
-                2000,
-                "4.6/5"
-            )
-        )
-        allTutorsList.add(
-            TutorAllModel(
-                "3e083af1-2b36-442a-9d33-75a317bc95d1",
-                "Alaye-Chris",
-                "profile_image",
-                "I teach with calmness and encouragement. My lessons are not boring and i can accommodate student’s with low affinity to studying. I employ modern schema for tutoring with interactive guides and learning systems. Having schooled at different educational organizations coupled with my NCE certificate, I can assure you premium success with me as your Home-Teacher.",
-                "Chemistry Tutor",
-                2000,
-                "4.6/5"
-            )
-        )
-
         adapter = TutorListRecyclerAdapter(TutorListItemListener { tutorId ->
             if (tutorId != null) {
                 val dialog = SelectDateDialog()
@@ -111,24 +54,20 @@ class TutorListFragment : Fragment(), SelectDateDialog.SelectDateListener {
             }
         })
 
-
-        //TODO Remove this dummy data
-        adapter.submitList(allTutorsList)
         binding.tutorAllList.adapter = adapter
-        binding.tutorAllList.hasFixedSize()
 
         binding.search.isSubmitButtonEnabled = true
         binding.search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (query != null) {
-                    //getItemsFromDb(query)
+                    // getItemsFromDb(query)
                 }
                 return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 if (newText != null) {
-                    //getItemsFromDb(newText)
+                    //  getItemsFromDb(newText)
                 }
                 return true
             }
@@ -151,7 +90,7 @@ class TutorListFragment : Fragment(), SelectDateDialog.SelectDateListener {
                 is Result.Success -> {
                     binding.progressBar2.visibility = View.GONE
                     if (result.data != null) {
-                        //adapter.submitList(result.data)
+                        adapter.submitList(result.data)
                     } else {
                         Snackbar.make(
                             requireView(),
@@ -183,7 +122,7 @@ class TutorListFragment : Fragment(), SelectDateDialog.SelectDateListener {
             when (result) {
                 is Result.Success -> {
                     binding.progressBar.visibility = View.GONE
-                    popupDialog.showSuccessDialog(requireView(),result.data)
+                    popupDialog.showSuccessDialog(requireView(), result.data)
                 }
 
                 is Result.Loading -> {

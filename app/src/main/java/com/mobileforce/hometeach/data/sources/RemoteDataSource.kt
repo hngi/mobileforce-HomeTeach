@@ -67,7 +67,7 @@ class RemoteDataSource(private val api: Api) : DataSource {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getTutorList(): Response<List<TutorListResponse>> {
+    override suspend fun getTutorList(): Response<List<TutorNetworkResponse>> {
         return api.getTutorList()
     }
     

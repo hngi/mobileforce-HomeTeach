@@ -62,7 +62,7 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
     }
 
 
-    override suspend fun getTutorList(): Response<List<TutorListResponse>> {
+    override suspend fun getTutorList(): Response<List<TutorNetworkResponse>> {
         TODO("Not yet implemented")
     }
 
