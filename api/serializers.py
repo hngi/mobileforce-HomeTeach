@@ -99,7 +99,6 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
         model = Profile
         depth = 1
         fields = ('user',
-                  'profile_pic',
                   'hourly_rate', 'rating', 'desc', 
                   'field', 'major_course', 'other_courses', 
                   'state', 'address', 'user_url')
@@ -144,11 +143,24 @@ class TutorProfileSerializer(serializers.HyperlinkedModelSerializer):
         request = self.context['request']
         return request.user.get_full_name()
 
-
     def get_rating(self, obj):
         user = obj.user
         rating = obj.rating.all().aggregate(rating=Avg('rate'), count=Count('user'))
         return rating
+
+    def update(self, instance, validated_data):
+        # retrieve CustomUser
+        user_data = validated_data.pop('user', None)
+        ser_data = {k:v for k,v in user_data.items() if v}
+        for attr, value in user_data.items():
+            setattr(instance.user, attr, value)
+
+        # retrieve Profile
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
+        instance.user.save()
+        instance.save()
+        return instance
     
 class StudentProfileSerializer(serializers.HyperlinkedModelSerializer):
     user_url = serializers.HyperlinkedIdentityField(view_name='customuser-detail')
@@ -158,7 +170,7 @@ class StudentProfileSerializer(serializers.HyperlinkedModelSerializer):
         model = Profile
         depth = 1
         fields = ('user',
-                  'profile_pic', 'desc', 'field', 'major_course', 'other_courses', 'state', 'address', 
+                  'desc', 'field', 'major_course', 'other_courses', 'state', 'address', 
                   'user_url')
 
     def get_full_name(self, obj):
