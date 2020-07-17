@@ -26,7 +26,11 @@
             android:name=".ui.SplashActivity"
             android:theme="@style/SplashScreenTheme">
 
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
         </activity>
         <activity
@@ -37,14 +41,8 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".ui.BottomNavigationActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".ui.BottomNavigationActivity"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
         <!-- metadata for PayStack -->
         <meta-data
             android:name="co.paystack.android.PublicKey"
