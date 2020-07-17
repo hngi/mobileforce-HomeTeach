@@ -22,7 +22,6 @@ from .serializers import BankInfoSerializer, CreditCardInfoSerializer, Verificat
 from .models import BankInfo,CreditCardInfo
 from pypaystack import Transaction
 from rest_framework.views import APIView
-from root.settings import PAYSTACK_AUTHORIZATION_KEY
 
 
 @api_view(['POST', ])
@@ -314,13 +313,13 @@ class VerifyTransactionView(APIView):
     permission_classes = (AllowAny, )
 
     def post(self, request, *args, **kwargs):
-        transaction = Transaction(authorization_key=PAYSTACK_AUTHORIZATION_KEY)
-        serializer = VerificationSerializer(data=request.data)
-        if serializer.is_valid():
-            reference = serializer.validated_data['reference']
+        # transaction = Transaction(authorization_key=PAYSTACK_AUTHORIZATION_KEY)
+        # serializer = VerificationSerializer(data=request.data)
+        # if serializer.is_valid():
+        #     reference = serializer.validated_data['reference']
 
-            response = transaction.verify(reference)
+        #     response = transaction.verify(reference)
 
-            return Response(response, status=status.HTTP_200_OK)
+        #     return Response(response, status=status.HTTP_200_OK)
         return Response(status=status.HTTP_401_UNAUTHORIZED)
 
