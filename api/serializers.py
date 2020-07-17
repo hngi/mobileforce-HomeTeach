@@ -4,6 +4,7 @@ from accounts.models import CustomUser
 from django.db.models import Avg, Count
 from .models import Request
 from django.contrib.auth import get_user_model
+from .models import CreditCardInfo, BankInfo
 
 # Students should be able to filter list of Tutors based on field, gender, proximity 
 User = get_user_model()
@@ -98,8 +99,9 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
         model = Profile
         depth = 1
         fields = ('user',
-                  'profile_pic', 'hourly_rate', 'rating', 'desc', 'field', 'major_course', 'other_courses', 'state', 'address',
-                  'user_url')
+                  'hourly_rate', 'rating', 'desc', 
+                  'field', 'major_course', 'other_courses', 
+                  'state', 'address', 'user_url')
 
     def get_full_name(self, obj):
         request = self.context['request']
@@ -113,7 +115,7 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
     def update(self, instance, validated_data):
         # retrieve CustomUser
         user_data = validated_data.pop('user', None)
-        user_data = {k:v for k,v in user_data.items() if v}
+        ser_data = {k:v for k,v in user_data.items() if v}
         for attr, value in user_data.items():
             setattr(instance.user, attr, value)
 
@@ -132,19 +134,33 @@ class TutorProfileSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Profile
         depth = 1
-        fields = ('user','rating',
-                  'profile_pic', 'desc','hourly_rate', 'field', 'major_course', 'other_courses', 'state', 'address',
-                  'user_url')
+        fields = ('user','rating', 'profile_pic', 
+                  'desc', 'credentials', 'video', 
+                  'hourly_rate', 'field', 'major_course', 
+                  'other_courses', 'state', 'address','user_url')
 
     def get_full_name(self, obj):
         request = self.context['request']
         return request.user.get_full_name()
 
-
     def get_rating(self, obj):
         user = obj.user
         rating = obj.rating.all().aggregate(rating=Avg('rate'), count=Count('user'))
         return rating
+
+    def update(self, instance, validated_data):
+        # retrieve CustomUser
+        user_data = validated_data.pop('user', None)
+        ser_data = {k:v for k,v in user_data.items() if v}
+        for attr, value in user_data.items():
+            setattr(instance.user, attr, value)
+
+        # retrieve Profile
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
+        instance.user.save()
+        instance.save()
+        return instance
     
 class StudentProfileSerializer(serializers.HyperlinkedModelSerializer):
     user_url = serializers.HyperlinkedIdentityField(view_name='customuser-detail')
@@ -154,7 +170,7 @@ class StudentProfileSerializer(serializers.HyperlinkedModelSerializer):
         model = Profile
         depth = 1
         fields = ('user',
-                  'profile_pic', 'desc', 'field', 'major_course', 'other_courses', 'state', 'address', 
+                  'desc', 'field', 'major_course', 'other_courses', 'state', 'address', 
                   'user_url')
 
     def get_full_name(self, obj):
@@ -229,3 +245,14 @@ class TopTutorSerializer(serializers.ModelSerializer):
             # user_rating['obj'] = obj
         return data
 
+
+class BankInfoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BankInfo
+        fields = ('id', 'user', 'bank_name', 'account_name', 'account_number')
+
+
+class CreditCardInfoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CreditCardInfo
+        fields = '__all__'

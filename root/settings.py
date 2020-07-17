@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'accounts',
     'api',
     'confirmation',
+    'schedule',
 
     # third-party
     'rest_framework',
@@ -53,6 +54,7 @@ INSTALLED_APPS = [
     'drf_yasg',
     'django_filters',
     'whitenoise.runserver_nostatic',
+    'storages',
     'paystack',
     'pypaystack',
     'rest_auth',
@@ -73,7 +75,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 ROOT_URLCONF = 'root.urls'
 
@@ -88,6 +89,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -147,21 +149,6 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.0/howto/static-files/
-
-STATIC_URL = '/static/'
-
-#location where django collect all static files
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-# location where you will store your static files
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR,'static')
-]
-
-MEDIA_URL =  '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
 DEFAULT_AUTHENTICATION_CLASSES = [
         'rest_framework.authentication.TokenAuthentication',
      ]
@@ -192,5 +179,29 @@ EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_API_KEY')
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_API_KEY')
 
+# AWS settings for static and media files storage
+AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
+AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME")
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+AWS_DEFAULT_ACL = None
+
+# Static files (CSS, JavaScript, Images) settings
+STATIC_LOCATION = 'static'
+STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, STATIC_LOCATION)
+STATICFILES_STORAGE = 'root.storage_backends.StaticStorage'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR,'static'),
+]
+# Media files settings
+PUBLIC_MEDIA_LOCATION = 'media'
+MEDIA_URL =  'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, PUBLIC_MEDIA_LOCATION)
+DEFAULT_FILE_STORAGE = 'root.storage_backends.PublicMediaStorage'
+
 # Paystack
 PAYSTACK_AUTHORIZATION_KEY = 'sk_test_72d039a582a3504fdeeffd3930914247ba070db3'
+
+ENCRYPT_KEY = b'5R_y8WWIMF7MOhShxQiZFZwXcRGGKKbdGrkPN9iVVpc='
