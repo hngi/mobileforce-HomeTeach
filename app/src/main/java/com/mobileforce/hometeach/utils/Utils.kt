@@ -7,8 +7,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.adapters.CircleTransform
+import com.mobileforce.hometeach.data.model.TutorEntity
 import com.mobileforce.hometeach.data.model.User
 import com.mobileforce.hometeach.data.sources.remote.wrappers.UserRemote
+import com.mobileforce.hometeach.models.TutorAllModel
 import com.squareup.picasso.Picasso
 import java.lang.reflect.Method
 
@@ -17,8 +19,8 @@ fun ImageView.bindTutorImage(tutorImage: String) {
     tutorImage.let {
         Picasso.get().load(tutorImage).transform(CircleTransform())
             .placeholder(R.drawable.profile_image).error(
-            R.drawable.profile_image
-        ).into(this)
+                R.drawable.profile_image
+            ).into(this)
     }
 }
 
@@ -40,20 +42,21 @@ inline fun <T : View> T.showIf(condition: (T) -> Boolean) {
  */
 fun <T> MutableLiveData<T>.asLiveData() = this as LiveData<T>
 
+
 /**
- * Converts a [UserRemote] to [User]
+ * Converts [TutorAllModel] to a [TutorEntity]
  */
-fun UserRemote.toDomain(): User {
-    return User(
-        id = id.toString(),
-        isTutor = isTutor,
-        email = email,
-        phoneNumber = phoneNumber,
-        fullName = fullName,
-        token = "token",
-        isActive = false
-    )
-}
+fun TutorAllModel.toDbEntity() = TutorEntity(
+    id, full_name, profile_pic, description, tutorSubject, hourly_rate, rating
+)
+
+/**
+ * Converts [TutorEntity] to a [TutorAllModel]
+ */
+fun TutorEntity.toDomainModel() = TutorAllModel(
+    id, full_name, profile_pic, description, tutorSubject, hourly_rate, rating
+)
+
 
 fun pojo2Map(obj: Any): Map<String, Any> {
     val hashMap: MutableMap<String, Any> =

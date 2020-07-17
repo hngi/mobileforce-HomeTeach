@@ -36,7 +36,7 @@ interface  Api{
     suspend fun getProfileList(): List<ProfileResponse>
 
     @GET("v1/tutor-profiles/")
-    suspend fun getTutorList(): Response<TutorListResponse>
+    suspend fun getTutorList(): Response<List<TutorListResponse>>
 
     @JvmSuppressWildcards
     @GET("v1/tutor_profiles/{id}/")
@@ -45,9 +45,8 @@ interface  Api{
     @POST("")
     suspend fun saveUserCardDetails(@Body params: Map<String, Any>)
 
-
     @Multipart
-    @PUT("v1/tutor-profiles/{id}/")
+    @PUT("v1/Upload/")
     suspend fun uploadTutorMedia(
         @Part("id") id: RequestBody,
         @Part profile_pic: MultipartBody.Part,
@@ -55,6 +54,9 @@ interface  Api{
         @Part video: MultipartBody.Part
     ): Response<UploadResponse>
 
+
+    @POST("v1/submit-request/")
+    suspend fun requestTutorService(@Body params: Params.RequestTutorService): Response<TutorServiceRequestResponse>
 
     @GET("")
     suspend fun getUserCardDetails(@Path("id") id: Int): List<UserCardDetailResponse>

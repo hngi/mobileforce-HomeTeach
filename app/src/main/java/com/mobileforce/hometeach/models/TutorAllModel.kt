@@ -8,15 +8,15 @@ import com.squareup.picasso.Picasso
 
 data class TutorAllModel(
     val id: String,
-    val tutorName: String,
-    val tutorImage:String,
+    val full_name: String,
+    val profile_pic: String,
     val description: String,
     val tutorSubject: String,
-    val perhouramount:Int,
-    var rating: String) {
+    val hourly_rate: Int,
+    var rating: String
+)
 
 
-}
 @BindingAdapter("tutor_image")
 fun setEventImage(imageView: ImageView, url: String?) {
     Picasso.get().load(url).transform(CircleTransform()).placeholder(R.drawable.profile_image)

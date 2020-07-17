@@ -1,6 +1,7 @@
 package com.mobileforce.hometeach.data.repository
 
 import androidx.lifecycle.LiveData
+import com.mobileforce.hometeach.data.model.TutorEntity
 import com.mobileforce.hometeach.data.model.User
 import com.mobileforce.hometeach.data.model.UserEntity
 import com.mobileforce.hometeach.data.sources.remote.Params
@@ -22,7 +23,15 @@ interface UserRepository {
     suspend fun getProfileList(): List<ProfileResponse>
     suspend fun getTutorDetails(): TutorDetailsResponse
     fun getUser(): LiveData<UserEntity>
-    suspend fun getTutorList(): Response<TutorListResponse>
+
+    suspend fun getTutorList(): Response<List<TutorListResponse>>
+    suspend fun requestTutorService(params: Params.RequestTutorService): Response<TutorServiceRequestResponse>
+    suspend fun saveTutorList(tutorList: List<TutorEntity>)
+    fun searchTutor(query: String): LiveData<List<TutorEntity>>
+    suspend fun clearTutorListDb()
+    suspend fun getTutorListDb(): List<TutorEntity>
+
     suspend fun saveUserCardDetails(params: Params.CardDetails)
     suspend fun getUserCardDetails(id: Int): List<UserCardDetailResponse>
+
 }

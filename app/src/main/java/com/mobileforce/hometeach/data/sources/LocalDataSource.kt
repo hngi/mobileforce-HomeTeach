@@ -1,6 +1,7 @@
 package com.mobileforce.hometeach.data.sources
 
 import androidx.lifecycle.LiveData
+import com.mobileforce.hometeach.data.model.TutorEntity
 import com.mobileforce.hometeach.data.model.User
 import com.mobileforce.hometeach.data.sources.local.AppDataBase
 import com.mobileforce.hometeach.data.model.UserEntity
@@ -36,7 +37,11 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
         return db.userDao().getSingleUser()
     }
 
+    override suspend fun clearDb() {
+        db.userDao().clearDb()
+    }
     override suspend fun resetPassword(params: Params.PasswordReset):Response<EmailResponse> {
+
         TODO("Not yet implemented")
     }
 
@@ -51,17 +56,15 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
     override suspend fun getProfileList(): List<ProfileResponse> {
         TODO("Not yet implemented")
     }
+
     override suspend fun getTutorDetails(
         id: Int
     ): TutorDetailsResponse {
         TODO("Not yet implemented")
     }
-    override suspend fun clearDb() {
-        db.userDao().clearDb()
-    }
 
 
-    override suspend fun getTutorList(): Response<TutorListResponse> {
+    override suspend fun getTutorList(): Response<List<TutorListResponse>> {
         TODO("Not yet implemented")
     }
 
@@ -73,6 +76,30 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
         video: MultipartBody.Part
     ): Response<UploadResponse> {
         TODO("Not yet implemented")
+    }
+
+    override suspend fun getId(): String {
+        return db.userDao().getSingleUser().id
+    }
+
+    override suspend fun requestTutorService(params: Params.RequestTutorService): Response<TutorServiceRequestResponse> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun saveTutorList(tutorList: List<TutorEntity>) {
+        db.tutorListDao().saveTutors(tutorList)
+    }
+
+    override fun searchTutors(query: String): LiveData<List<TutorEntity>> {
+        return db.tutorListDao().getSearchTutor(query)
+    }
+
+    override suspend fun clearTutorListDb() {
+        db.tutorListDao().clearDatabase()
+    }
+
+    override suspend fun getTutorListDb(): List<TutorEntity> {
+        return db.tutorListDao().getTutors()
     }
 
     override suspend fun saveUserCardDetails(params: Params.CardDetails) {

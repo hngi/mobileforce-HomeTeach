@@ -25,7 +25,7 @@ class TutorRepositoryImpl (private val dataSource: DataSourceFactory): TutorRepo
     }
 
     override suspend fun getId(): String {
-       return dataSource.local().getSingleUser().toString()
+       return dataSource.local().getSingleUser().id
     }
 
 
