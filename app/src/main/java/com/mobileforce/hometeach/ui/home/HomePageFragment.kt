@@ -1,11 +1,15 @@
 package com.mobileforce.hometeach.ui.home
 
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.DatePicker
+import android.widget.LinearLayout
 import android.widget.RelativeLayout
+import androidx.appcompat.widget.AppCompatRadioButton
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -332,7 +336,28 @@ class HomePageFragment : Fragment() {
         }
     }
 
-    private fun setUpForTutor(){
+    private fun setUpForTutor() {
+
+        lifecycleScope.launch {
+            val user = db.userDao().getUser()
+            bindingTutor.username.text = "Welcome $user.full_name"
+        }
+
+        bindingTutor.root.findViewById<LinearLayout>(R.id.mybanks).setOnClickListener {
+            findNavController().navigate(R.id.myBanks)
+        }
+        bindingTutor.root.findViewById<LinearLayout>(R.id.actionCardDetails).setOnClickListener {
+            findNavController().navigate(R.id.tutorCardDetails)
+        }
+        bindingTutor.root.findViewById<LinearLayout>(R.id.withdrawals).setOnClickListener {
+            findNavController().navigate(R.id.makeWithdrawalFragment)
+        }
+
+        bindingTutor.root.findViewById<AppCompatRadioButton>(R.id.modify_btn).setOnClickListener {
+            DatePickerDialog.OnDateSetListener { datePicker, i, i2, i3 -> view }
+        }
+
+
         bindingTutor.signout.setOnClickListener {
             //viewModel.logOut()
             startActivity(Intent(requireContext(), LoginActivity::class.java))
