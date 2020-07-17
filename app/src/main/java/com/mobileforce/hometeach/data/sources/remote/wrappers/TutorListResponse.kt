@@ -12,7 +12,7 @@ data class TutorListResponse(
     @SerializedName("desc")
     val description: String,
     val hourly_rate: String,
-    @SerializedName("field")
+    @SerializedName("major_course")
     val subjects: String,
     val rating: RatingModel
 )

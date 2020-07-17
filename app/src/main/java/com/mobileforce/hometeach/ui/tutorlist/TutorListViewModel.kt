@@ -1,10 +1,12 @@
 package com.mobileforce.hometeach.ui.tutorlist
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mobileforce.hometeach.data.model.TutorEntity
+import com.mobileforce.hometeach.data.model.UserEntity
 import com.mobileforce.hometeach.data.repository.UserRepository
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.TutorServiceRequestResponse
@@ -28,11 +30,13 @@ class TutorListViewModel(
     private val _tutorList = MutableLiveData<Result<List<TutorAllModel>>>()
     val tutorList = _tutorList.asLiveData()
 
-    private val _serviceApproved = MutableLiveData<Result<TutorServiceRequestResponse>>()
+    private val _serviceApproved = MutableLiveData<Result<String>>()
     val serviceApproved = _serviceApproved.asLiveData()
+
 
     //Selected Tutor Id
     private var selectedId: String? = null
+    private var userEntity: UserEntity? = null
 
     fun setTutorId(tutorId: String) {
         selectedId = tutorId
@@ -47,10 +51,11 @@ class TutorListViewModel(
         viewModelScope.launch {
             try {
                 val response = userRepository.getTutorList()
+                Log.i("TUTOR RESPONSE",response.body().toString())
                 if (response.isSuccessful) {
                     val tutorListResponse = response.body()
-                    if (tutorListResponse != null) {
-                        val listOfTutors = response.body()?.map {
+                    Log.i("TUTOR SUCCESS RESPONSE",tutorListResponse.toString())
+                        val listOfTutors = tutorListResponse?.map {
                             TutorAllModel(
                                 id = it.user.id,
                                 full_name = it.user.full_name,
@@ -61,12 +66,12 @@ class TutorListViewModel(
                                 rating = it.rating.rating.toString()
                             )
                         }
+                        Log.i("TUTOR LIST",listOfTutors.toString())
                         if (listOfTutors != null) {
                             _tutorList.postValue(Result.Success(listOfTutors))
                             userRepository.clearTutorListDb()
                             userRepository.saveTutorList(listOfTutors.map { it.toDbEntity() })
                         }
-                    }
                 } else {
                     _tutorList.postValue(Result.Success(null))
                 }
@@ -75,6 +80,8 @@ class TutorListViewModel(
             }
         }
     }
+
+    fun getUser() = userRepository.getUser()
 
     /**
      * This initially attempts to get data from the cache. If this is empty, it would
@@ -102,10 +109,9 @@ class TutorListViewModel(
         _serviceApproved.postValue(Result.Loading)
         viewModelScope.launch {
             try {
-                val user = userRepository.getUser().value
-                if (user != null && selectedId != null) {
+                if (userEntity != null && selectedId != null) {
                     val requestServiceParams = Params.RequestTutorService(
-                        requester_id = user.id,
+                        student_id = userEntity?.id!!,
                         tutor_id = selectedId!!,
                         from_hour = dialogData.fromHour,
                         from_minute = dialogData.fromMinute,
@@ -115,7 +121,8 @@ class TutorListViewModel(
                     )
                     val response = userRepository.requestTutorService(requestServiceParams)
                     if (response.isSuccessful) {
-                        _serviceApproved.postValue(Result.Success(response.body()))
+                        val result = response.body()?.message
+                        _serviceApproved.postValue(Result.Success(result))
                     }
                 }
             } catch (exception: Exception) {
@@ -126,6 +133,10 @@ class TutorListViewModel(
 
     fun searchForTutor(query: String): LiveData<List<TutorEntity>>{
         return userRepository.searchTutor(query)
+    }
+
+    fun setUser(result: UserEntity) {
+        userEntity = result
     }
 }
 

@@ -10,7 +10,7 @@ import android.widget.*
 import androidx.fragment.app.DialogFragment
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.databinding.FancyDateDialogBinding
-import com.mobileforce.hometeach.databinding.SuccessRequestLayoutBinding
+import com.mobileforce.hometeach.databinding.SuccessStudentRequestBinding
 
 
 /**
@@ -76,25 +76,26 @@ class SelectDateDialog : DialogFragment() {
         }
     }
 
-    fun showSuccessDialog(view: View){
+    fun showSuccessDialog(view: View, data: String?){
 
         val inflater = view.context
             .getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val popupView: View = inflater.inflate(R.layout.success_request_layout, null)
+        val popupView: View = inflater.inflate(R.layout.success_student_request, null)
 
-        val binding = SuccessRequestLayoutBinding.bind(popupView)
+        val binding = SuccessStudentRequestBinding.bind(popupView)
+        binding.responseText.text = data
         val width = LinearLayout.LayoutParams.MATCH_PARENT
-        val height = LinearLayout.LayoutParams.MATCH_PARENT
+        val height = LinearLayout.LayoutParams.WRAP_CONTENT
 
         val focusable = true
 
         val popupWindow = PopupWindow(popupView, width, height, focusable)
 
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0)
-
         binding.btn.setOnClickListener {
             popupWindow.dismiss()
         }
+
     }
 
     interface SelectDateListener {

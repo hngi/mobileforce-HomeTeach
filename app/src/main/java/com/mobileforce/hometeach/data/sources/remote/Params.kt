@@ -45,7 +45,7 @@ class Params {
     )
 
     data class RequestTutorService(
-        val requester_id: String,
+        val student_id: String,
         val tutor_id: String,
         val from_hour: String,
         val from_minute: String,
