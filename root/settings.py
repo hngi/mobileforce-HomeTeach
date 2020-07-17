@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     'storages',
     'rest_auth',
+    'pypaystack',
 ]
 
 SITE_ID = 1

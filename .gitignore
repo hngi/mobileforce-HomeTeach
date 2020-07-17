@@ -18,7 +18,6 @@ ENV/
 .idea/
 .python-version
 Pipfile
-paystack/
 
 # Distribution / packaging
 .Python
