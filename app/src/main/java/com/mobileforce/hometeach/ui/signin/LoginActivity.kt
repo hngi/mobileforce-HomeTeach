@@ -13,11 +13,13 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.lifecycle.Observer
+import com.google.android.material.snackbar.Snackbar
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.databinding.ActivityLoginBinding
 import com.mobileforce.hometeach.ui.BottomNavigationActivity
 import com.mobileforce.hometeach.ui.ExploreActivity
+import com.mobileforce.hometeach.utils.ApiError
 import com.mobileforce.hometeach.utils.Result
 import com.mobileforce.hometeach.utils.snack
 import kotlinx.android.synthetic.main.forgot_password_layout1.view.*
@@ -131,6 +133,9 @@ class LoginActivity : AppCompatActivity() {
         binding.textEditEmail.addTextChangedListener(emailWatcher)
         binding.textEditPassword.addTextChangedListener(passwordWatcher)
 
+        observeSignIn()
+
+
     }
 
     private fun triggerSignInProcess() {
@@ -144,7 +149,6 @@ class LoginActivity : AppCompatActivity() {
             Toast.makeText(this, "Some fields are empty", Toast.LENGTH_SHORT).show()
         }
 
-        observeSignIn()
     }
 
 
@@ -171,7 +175,8 @@ class LoginActivity : AppCompatActivity() {
 
                 is Result.Error -> {
                     progressDialog.hide()
-                    binding.signInLayout.snack(message = result.exception.localizedMessage)
+                    val message = ApiError(result.exception).message
+                    binding.signInLayout.snack(message = message, length = Snackbar.LENGTH_LONG)
                 }
             }
         })
