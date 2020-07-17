@@ -99,8 +99,10 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
         model = Profile
         depth = 1
         fields = ('user',
-                  'profile_pic', 'hourly_rate', 'rating', 'desc', 'field', 'major_course', 'other_courses', 'state', 'address',
-                  'user_url')
+                  'profile_pic',
+                  'hourly_rate', 'rating', 'desc', 
+                  'field', 'major_course', 'other_courses', 
+                  'state', 'address', 'user_url')
 
     def get_full_name(self, obj):
         request = self.context['request']
@@ -114,7 +116,7 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
     def update(self, instance, validated_data):
         # retrieve CustomUser
         user_data = validated_data.pop('user', None)
-        user_data = {k:v for k,v in user_data.items() if v}
+        ser_data = {k:v for k,v in user_data.items() if v}
         for attr, value in user_data.items():
             setattr(instance.user, attr, value)
 
@@ -133,9 +135,10 @@ class TutorProfileSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Profile
         depth = 1
-        fields = ('user','rating',
-                  'profile_pic', 'desc','hourly_rate', 'field', 'major_course', 'other_courses', 'state', 'address',
-                  'user_url')
+        fields = ('user','rating', 'profile_pic', 
+                  'desc', 'credentials', 'video', 
+                  'hourly_rate', 'field', 'major_course', 
+                  'other_courses', 'state', 'address','user_url')
 
     def get_full_name(self, obj):
         request = self.context['request']
