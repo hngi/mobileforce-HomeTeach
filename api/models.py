@@ -58,7 +58,6 @@ STATE_CHOICES = (
 	)
 
 
-
 class Rating(models.Model):
 	tutor = models.ForeignKey(User, related_name='ratings_tutor', on_delete=models.CASCADE)
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -91,8 +90,15 @@ class StudentSchedule(models.Model):
 
 # Create your models here.
 class Profile(models.Model):
-	user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-	profile_pic = models.FileField(blank=True)
+	user = models.OneToOneField(settings.AUTH_USER_MODEL,
+								on_delete=models.CASCADE)
+	# if user.is_tutor:
+	profile_pic = models.ImageField(upload_to='images/%Y/%m/%d/',
+									null=True, blank=True)
+	credentials = models.FileField(upload_to='docs/%Y/%m/%d/',
+								   null=True, blank=True)
+	video = models.FileField(upload_to='videos/%Y/%m/%d/',
+							 null=True, blank=True)
 	rating = models.ManyToManyField(Rating, blank=True)
 	desc = models.TextField(max_length=255, null=True, blank=True)
 	field = models.CharField(max_length=255, choices = FIELD_CHOICES, blank=True)
@@ -100,8 +106,7 @@ class Profile(models.Model):
 	major_course = models.CharField(max_length=255, null=True, blank=True)
 	other_courses = models.CharField(max_length=255, null=True, blank=True)
 	state = models.CharField(max_length=255, choices = STATE_CHOICES, blank=True)
-	address = models.CharField(max_length=255, null=True, blank=True)
-	
+	address = models.CharField(max_length=255, null=True, blank=True)	
 
 	def __unicode__(self):
 		return f'Profile for user: {self.user.email}'
@@ -118,4 +123,32 @@ class Profile(models.Model):
 	@receiver(post_save, sender=settings.AUTH_USER_MODEL)
 	def save_user_profile(sender, instance, **kwargs):
 		instance.profile.save()
+
+
+
+class BankInfo(models.Model):
+    # user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.CharField(max_length=255, null=True)
+    bank_name = models.CharField(max_length=255, null=True, blank=True)
+    account_name = models.CharField(max_length=255, null=True, blank=True)
+    account_number = models.IntegerField(null=True, blank=True)
+    routing_number = models.IntegerField(null=True, blank=True)
+    social_security_number = models.IntegerField(null=True, blank=True)
+	
+    def __unicode__(self):
+        return f'Bank Information for user: {self.user}'
+
+
+
+class CreditCardInfo(models.Model):
+    # user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.CharField(max_length=255, null=True)
+    card_holder_name = models.CharField(max_length=255, null=True)
+    card_number = models.CharField(max_length=255, null=True)
+    cvv = models.CharField(max_length=255, null=True)
+    expiry_month = models.IntegerField(null=True)
+    expiry_year = models.IntegerField(null=True)
+	
+    def __unicode__(self):
+        return f'Bank Information for user: {self.user}'
 
