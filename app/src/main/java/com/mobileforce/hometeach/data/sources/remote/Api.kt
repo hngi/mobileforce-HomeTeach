@@ -19,8 +19,9 @@ interface  Api{
 
 
     @JvmSuppressWildcards
-    @POST("v1/password-reset/")
-    suspend fun resetPassword(@Body params: Map<String, String>): EmailResponse
+    @Multipart
+    @POST("v1/rest-auth/")
+    suspend fun resetPassword(@Part("email") params: Map<String, String>): EmailResponse
 
     @JvmSuppressWildcards
     @POST("v1/register/")

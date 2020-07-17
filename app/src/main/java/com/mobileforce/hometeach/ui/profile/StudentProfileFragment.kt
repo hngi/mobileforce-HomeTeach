@@ -46,50 +46,12 @@ class StudentProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
 
-//        binding.ProfileImage.setOnClickListener {
-//            Log.d("api","IMAGE CLICKED")
-//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-//
-//                if (activity?.let { it1 -> checkSelfPermission(it1,Manifest.permission.READ_EXTERNAL_STORAGE) } ==
-//                    PackageManager.PERMISSION_DENIED){
-//                    //permission denied
-//                    val permissions = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE);
-//                    //show popup to request runtime permission
-//                    requestPermissions(permissions, REQUEST_CODE);
-//                }
-//                else{
-//                    //permission already granted
-//                    pickImageFromGallery();
-//                }
-//            }
-//            else{
-//                //system OS is < Marshmallow
-//                pickImageFromGallery();
-//            }
-//        }
+
         }
 
 
 
 
-//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        super.onActivityResult(requestCode, resultCode, data)
-//        if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-//            binding.ProfileImage.setImageURI(data!!.data)
-//            var file = File(data!!.data!!.path)
-//            var requestBody = RequestBody.create(MediaType.parse("image/jpeg"), file)
-//            var filePart = MultipartBody.Part.createFormData("upload_file", file.name, requestBody)
-////            viewModel.uploadImage(filePart).observe(this, Observer {
-////                Toast.makeText(context, it.message, Toast.LENGTH_LONG).show()
-////            })
-//
-//        }
-//    }
-//    private fun pickImageFromGallery() {
-//        //Intent to pick image
-//        val intent = Intent(Intent.ACTION_PICK)
-//        intent.type = "image/*"
-//        startActivityForResult(intent, REQUEST_CODE)
-//    }
+
 
 }

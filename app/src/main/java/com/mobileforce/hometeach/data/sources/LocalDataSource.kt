@@ -65,11 +65,22 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
         TODO("Not yet implemented")
     }
 
+
+    override suspend fun uploadTutorMedia(
+        id: RequestBody,
+        profile_pic: MultipartBody.Part,
+        credentials: MultipartBody.Part,
+        video: MultipartBody.Part
+    ): Response<UploadResponse> {
+        TODO("Not yet implemented")
+    }
+
     override suspend fun saveUserCardDetails(params: Params.CardDetails) {
         TODO("Not yet implemented")
     }
 
     override suspend fun getUserCardDetails(id: Int): List<UserCardDetailResponse> {
+
         TODO("Not yet implemented")
     }
 
@@ -84,14 +95,4 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
             full_name = user.fullName
         )
     }
-
-    override suspend fun uploadTutorMedia(
-        id: RequestBody,
-        profile_pic: MultipartBody.Part,
-        credentials: MultipartBody.Part,
-        video: MultipartBody.Part
-    ): Response<UploadResponse> {
-        TODO("Not yet implemented")
-    }
 }
-

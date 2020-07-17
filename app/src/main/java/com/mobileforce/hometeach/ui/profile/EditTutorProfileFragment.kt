@@ -12,6 +12,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
@@ -19,22 +21,26 @@ import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.databinding.FragmentEditTutorProfileBinding
 import com.tiper.MaterialSpinner
 import kotlinx.android.synthetic.main.fragment_edit_tutor_profile.*
+import kotlinx.android.synthetic.main.uploads.view.*
 import org.koin.android.ext.android.get
+import java.io.FileNotFoundException
+import java.io.InputStream
 
 
 /**
  * Authored by MayorJay
  */
 
-abstract class EditTutorProfileFragment : Fragment() {
+class EditTutorProfileFragment : Fragment() {
     lateinit var navController: NavController
     lateinit var binding: FragmentEditTutorProfileBinding
     val REQUEST_CODE = 1001
     val REQUEST_CODE2 = 1005
     val REQUEST_CODE3 = 1009
-    lateinit var image: Uri
-    lateinit var video: Uri
-    lateinit var pdf: Uri
+    lateinit var image: InputStream
+    lateinit var video: InputStream
+    lateinit var pdf: InputStream
+    private lateinit var mDialogView:View
 
     private val viewModel: EditTutorViewModel = get<EditTutorViewModel>()
 
@@ -115,6 +121,12 @@ abstract class EditTutorProfileFragment : Fragment() {
 //            currentUserId = profileResponse.id
 //            currentUserEmail = profileResponse.email
 //        }
+
+        binding.tvViewAll.setOnClickListener {
+            showDialog()
+
+        }
+
         binding.tvCredentialsHeader.setOnClickListener {
             selectPdf()
         }
@@ -171,15 +183,55 @@ abstract class EditTutorProfileFragment : Fragment() {
 
         if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK) {
 
-            image = data?.data!!
+            Toast.makeText(activity, "IMAGE", Toast.LENGTH_SHORT).show()
+            try {
+                data?.let {
+                    val inputStream: InputStream? =
+                        context?.contentResolver?.openInputStream(it.data!!)
+                    inputStream?.let { stream ->
+                        image = stream
+                        mDialogView.imgCheck.visibility = View.VISIBLE
+                    }
+                }
+            } catch (e: FileNotFoundException) {
+                e.printStackTrace()
+            }
+
+            // image = data?.data!!
             //  viewModel.uploadTutorMedia("swd", image,)
         }
         if (requestCode == REQUEST_CODE2 && resultCode == Activity.RESULT_OK) {
-            video = data?.data!!
+
+            Toast.makeText(activity, "VIDEO", Toast.LENGTH_SHORT).show()
+            try {
+                data?.let {
+                    val inputStream: InputStream? =
+                        context?.contentResolver?.openInputStream(it.data!!)
+                    inputStream?.let { stream ->
+                        video = stream
+                        mDialogView.videoCheck.visibility = View.VISIBLE
+                    }
+                }
+            } catch (e: FileNotFoundException) {
+                e.printStackTrace()
+            }
         }
 
-        if (requestCode == REQUEST_CODE2 && resultCode == Activity.RESULT_OK) {
-            pdf = data?.data!!
+        if (requestCode == REQUEST_CODE3 && resultCode == Activity.RESULT_OK) {
+
+            Toast.makeText(activity, "PDF", Toast.LENGTH_SHORT).show()
+            try {
+                data?.let {
+                    val inputStream: InputStream? =
+                        context?.contentResolver?.openInputStream(it.data!!)
+                    inputStream?.let { stream ->
+                        pdf = stream
+                        mDialogView.pdfCheck.visibility = View.VISIBLE
+                    }
+                }
+            } catch (e: FileNotFoundException) {
+                e.printStackTrace()
+            }
         }
 
 
@@ -202,36 +254,62 @@ abstract class EditTutorProfileFragment : Fragment() {
 
     }
 
-    fun upload(id:String,image:Uri,credential:Uri,video:Uri){
+    fun upload(id: String, image: InputStream, credential: InputStream, video: InputStream) {
 
-        activity?.let { viewModel.uploadTutorMedia(id,image,credential,video, it) }
-
-    }
-
-
-private fun selectImage() {
-    //Intent to pick image
-    val intent = Intent(Intent.ACTION_PICK)
-    intent.type = "image/*"
-    startActivityForResult(intent, REQUEST_CODE)
-}
-
-private fun selectVideo() {
-    val intent = Intent()
-    intent.type = "video/*"
-    intent.action = Intent.ACTION_PICK
-    startActivityForResult(Intent.createChooser(intent, "Select Video"), REQUEST_CODE2)
-}
-
-fun selectPdf() {
-    val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
-        addCategory(Intent.CATEGORY_OPENABLE)
-        type = "application/pdf"
+        viewModel.uploadTutorMedia(id, image, credential, video)
 
     }
 
-    startActivityForResult(intent, REQUEST_CODE3)
-}
+
+    private fun selectImage() {
+        //Intent to pick image
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent, REQUEST_CODE)
+    }
+
+    private fun selectVideo() {
+        val intent = Intent()
+        intent.type = "video/*"
+        intent.action = Intent.ACTION_PICK
+        startActivityForResult(Intent.createChooser(intent, "Select Video"), REQUEST_CODE2)
+    }
+
+    fun selectPdf() {
+        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
+            addCategory(Intent.CATEGORY_OPENABLE)
+            type = "application/pdf"
+
+        }
+
+        startActivityForResult(intent, REQUEST_CODE3)
+    }
+
+    private fun showDialog() {
+         mDialogView = LayoutInflater.from(activity).inflate(R.layout.uploads, null)
+        val mBuilder = activity?.let { it1 ->
+            AlertDialog.Builder(it1)
+                .setView(mDialogView)
+        }
+
+
+        //show dialog
+        val mAlertDialog = mBuilder?.show()
+        mDialogView.image.setOnClickListener {
+            selectImage()
+
+        }
+        mDialogView.video.setOnClickListener {
+            selectVideo()
+
+        }
+        mDialogView.pdf.setOnClickListener {
+            selectPdf()
+        }
+        mDialogView.button.setOnClickListener { mDialogView.progressBar.visibility = View.VISIBLE }
+
+
+    }
 
 
 }
