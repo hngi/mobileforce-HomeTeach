@@ -390,7 +390,7 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="400dp"
-            android:layout_height="310dp"
+            android:layout_height="350dp"
             android:layout_gravity="center"
             android:elevation="10dp"
             app:cardCornerRadius="20dp">
@@ -405,6 +405,16 @@
                     android:layout_height="250dp"
                     android:id="@+id/calendar"
                     android:layout_gravity="center" />
+
+                <TextView
+                    android:id="@+id/text_data_pick"
+                    android:layout_width="280dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginEnd="16dp"
+                    android:textSize="24sp" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:layout_width="280dp"

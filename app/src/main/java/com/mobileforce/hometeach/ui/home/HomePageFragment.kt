@@ -6,9 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.DatePicker
-import android.widget.LinearLayout
-import android.widget.RelativeLayout
+import android.widget.*
 import androidx.appcompat.widget.AppCompatRadioButton
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
@@ -32,9 +30,12 @@ import com.mobileforce.hometeach.ui.home.student.UpcomingClassViewHolderStudentD
 import com.mobileforce.hometeach.ui.home.tutor.HomePageTutorViewModel
 import com.mobileforce.hometeach.ui.signin.LoginActivity
 import com.mobileforce.hometeach.utils.AppConstants.USER_TUTOR
+import kotlinx.android.synthetic.main.fragment_home_page_tutor.*
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
+import java.text.SimpleDateFormat
+import java.time.Year
 import java.util.*
 
 /**
@@ -49,6 +50,10 @@ class HomePageFragment : Fragment() {
     private lateinit var bindingParent: FragmentHomePageParentBinding
     private lateinit var bindingTutor: FragmentHomePageTutorBinding
     private val viewModel: HomePageViewModel by viewModel()
+
+    var button_modify: Button? = null
+    var textView_date: TextView? = null
+    var cal = Calendar.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -76,11 +81,24 @@ class HomePageFragment : Fragment() {
         }
     }
 
+//    private fun DatePickerDialog(
+//        homePageFragment: HomePageFragment,
+//        dateSetListener: DatePickerDialog.OnDateSetListener,
+//        get: Int,
+//        get1: Int,
+//        get2: Int
+//    ): DatePickerDialog {
+//        Calendar.getInstance().get(Calendar.YEAR)
+//        Calendar.getInstance().get(Calendar.MONTH)
+//        Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
+//
+//    }
+
     private fun setUpForStudent() {
 
         lifecycleScope.launch {
 
-            val user =  db.userDao().getUser()
+            val user = db.userDao().getUser()
             bindingParent.studentToolbar.title = "Welcome $user.full_name"
         }
 
@@ -355,10 +373,15 @@ class HomePageFragment : Fragment() {
             findNavController().navigate(R.id.makeWithdrawalFragment)
         }
 
-//        bindingTutor.root.findViewById<AppCompatRadioButton>(R.id.).setOnClickListener {
-//            DatePickerDialog.OnDateSetListener { datePicker, i, i2, i3 -> view }
-//        }
-
+        val TutorDashboardModel = mutableListOf<TutorDashboardModel>(
+            TutorDashboardModel(
+                UUID.randomUUID().toString(),
+                0,
+                0,
+                0,
+                0
+            )
+        )
 
         bindingTutor.signout.setOnClickListener {
             //viewModel.logOut()
@@ -370,8 +393,9 @@ class HomePageFragment : Fragment() {
         }
 
         viewModel.user.observe(viewLifecycleOwner, androidx.lifecycle.Observer { user ->
-//            bindingTutor.username.text = user.full_name
+//           bindingTutor.username.text = user.full_name
         })
     }
+
 
 }
