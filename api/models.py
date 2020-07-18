@@ -57,21 +57,36 @@ STATE_CHOICES = (
 		('ZAMFARA', 'Zamfara'),
 	)
 
+
 class Rating(models.Model):
-   tutor = models.ForeignKey(User, related_name='ratings_tutor', on_delete=models.CASCADE)
-   user = models.ForeignKey(User, on_delete=models.CASCADE)
-   rate = models.DecimalField(default=0.0, decimal_places=2, max_digits=5)
+	tutor = models.ForeignKey(User, related_name='ratings_tutor', on_delete=models.CASCADE)
+	user = models.ForeignKey(User, on_delete=models.CASCADE)
+	rate = models.DecimalField(default=0.0, decimal_places=2, max_digits=5)
+
 
 
 class Request(models.Model):
 	requester = models.ForeignKey(User, related_name='pending_requests', on_delete=models.CASCADE)
 	tutor = models.ForeignKey(User, related_name='requests', on_delete=models.CASCADE)
+	schedule = models.ForeignKey('StudentSchedule', on_delete=models.CASCADE)
 	date_requested = models.DateTimeField(auto_now_add=True)
+	declined = models.BooleanField(default=False)
 	accepted = models.BooleanField(default=False)
 
 	def __str__(self):
 		return f'{self.requester.full_name} requests {self.tutor.full_name}'
 
+class Days(models.Model):
+	day = models.CharField(max_length=10)
+
+class StudentSchedule(models.Model):
+	user = models.ForeignKey(User,  on_delete=models.CASCADE)
+	tutor = models.ForeignKey(User, related_name='tutor', on_delete=models.CASCADE)
+	from_hour = models.CharField(max_length=10)
+	from_minute = models.CharField(max_length=10)
+	to_hour = models.CharField(max_length=10)
+	to_minute = models.CharField(max_length=10)
+	days = models.ManyToManyField(Days, blank=True, null=True)
 
 # Create your models here.
 class Profile(models.Model):
