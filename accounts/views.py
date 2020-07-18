@@ -12,6 +12,7 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from .tokens import account_activation_token
 from rest_framework.response import Response
+from django.shortcuts import render
 from rest_framework import status, serializers, exceptions
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
@@ -85,7 +86,7 @@ def activate(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
-        # return render(request, 'activated.html')
-        return Response('You have succesfully activated your account')
+        return render(request, 'activated.html')
+        # return Response('You have succesfully activated your account')
     else:
         return HttpResponse('Confirmation link is invalid!')
