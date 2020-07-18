@@ -9,6 +9,7 @@ import kotlinx.coroutines.launch
 class HomePageViewModel(private val userRepository: UserRepository, private val preferenceHelper: PreferenceHelper) : ViewModel() {
 
     val user = userRepository.getUser()
+    val profile = userRepository.profileLiveData()
 
     fun logOut(){
         viewModelScope.launch {

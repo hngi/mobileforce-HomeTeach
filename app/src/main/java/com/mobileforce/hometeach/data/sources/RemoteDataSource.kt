@@ -1,13 +1,15 @@
 package com.mobileforce.hometeach.data.sources
 
 import androidx.lifecycle.LiveData
+import com.mobileforce.hometeach.data.model.ProfileEntity
 import com.mobileforce.hometeach.data.model.TutorEntity
 import com.mobileforce.hometeach.data.model.User
 import com.mobileforce.hometeach.data.model.UserEntity
 import com.mobileforce.hometeach.data.sources.remote.Api
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
-import com.mobileforce.hometeach.remotesource.wrappers.*
+import com.mobileforce.hometeach.remotesource.wrappers.TutorDetailsResponse
+import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
 import retrofit2.Response
 
 class RemoteDataSource(private val api: Api) : DataSource {
@@ -83,6 +85,14 @@ class RemoteDataSource(private val api: Api) : DataSource {
 
     override suspend fun getUserCardDetails(id: Int): List<UserCardDetailResponse> {
         return api.getUserCardDetails(id)
+    }
+
+    override suspend fun saveUserProfile(profile: Profile) {
+        TODO("Not yet implemented")
+    }
+
+    override fun profileLiveData(): LiveData<ProfileEntity> {
+        TODO("Not yet implemented")
     }
 
     override suspend fun requestTutorService(params: Params.RequestTutorService): Response<TutorServiceRequestResponse> {

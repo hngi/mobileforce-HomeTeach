@@ -1,14 +1,15 @@
 package com.mobileforce.hometeach.data.sources
 
 import androidx.lifecycle.LiveData
+import com.mobileforce.hometeach.data.model.ProfileEntity
 import com.mobileforce.hometeach.data.model.TutorEntity
 import com.mobileforce.hometeach.data.model.User
-import com.mobileforce.hometeach.data.sources.local.AppDataBase
 import com.mobileforce.hometeach.data.model.UserEntity
+import com.mobileforce.hometeach.data.sources.local.AppDataBase
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
-import com.mobileforce.hometeach.remotesource.wrappers.*
-
+import com.mobileforce.hometeach.remotesource.wrappers.TutorDetailsResponse
+import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
 import retrofit2.Response
 
 class LocalDataSource(private val db: AppDataBase) : DataSource {
@@ -94,6 +95,14 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
         TODO("Not yet implemented")
     }
 
+    override suspend fun saveUserProfile(profile: Profile) {
+        db.userDao().saveUserProfile(mapProfileToEntity(profile))
+    }
+
+    override fun profileLiveData(): LiveData<ProfileEntity> {
+        return db.userDao().observeableProfileData()
+    }
+
 
     private fun mapUserToEntity(user: User): UserEntity {
         return UserEntity(
@@ -103,6 +112,23 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
             phone_number = user.phoneNumber,
             token = user.token,
             full_name = user.fullName
+        )
+    }
+
+    private fun mapProfileToEntity(profile: Profile): ProfileEntity {
+        return ProfileEntity(
+            profile.id,
+            profile.profile_pic,
+            profile.hourly_rate,
+            profile.desc,
+            profile.field,
+            profile.major_course,
+            profile.other_courses,
+            profile.state,
+            profile.address,
+            profile.user_url,
+            rating = profile.rating?.rating, rating_count = profile.rating?.count
+
         )
     }
 }
