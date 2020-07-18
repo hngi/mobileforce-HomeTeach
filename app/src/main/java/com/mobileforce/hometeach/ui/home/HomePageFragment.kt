@@ -416,6 +416,7 @@ class HomePageFragment : Fragment() {
         viewModel.profile.observe(viewLifecycleOwner, Observer { profile ->
 
             bindingTutor.reviewCount.text = (profile.rating_count ?: 0).toString()
+            bindingTutor.
 
         })
     }

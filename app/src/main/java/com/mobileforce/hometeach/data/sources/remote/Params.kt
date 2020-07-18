@@ -47,12 +47,12 @@ class Params {
 
     data class User(
         var id: String,
-        var totalStudent: Int,
-        var totalBalance: Int,
-        var totalProfileVisits: Int,
-        var totalReviews: Int
+        var totalStudent: String,
+        var totalBalance: String,
+        var totalProfileVisits: String,
+        var totalReviews: String
 
-
+    )
     data class RequestTutorService(
         val student_id: String,
         val tutor_id: String,
