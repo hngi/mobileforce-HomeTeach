@@ -1,7 +1,7 @@
-package com.mobileforce.hometeach.data.repo
+package com.mobileforce.hometeach.data.repository
 
+import com.mobileforce.hometeach.data.sources.remote.wrappers.TutorDetailsResponse
 import com.mobileforce.hometeach.data.sources.remote.wrappers.UploadResponse
-import com.mobileforce.hometeach.remotesource.wrappers.TutorDetailsResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response

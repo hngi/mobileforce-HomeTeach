@@ -2,6 +2,7 @@ package com.mobileforce.hometeach.di
 
 import androidx.room.Room
 import com.mobileforce.hometeach.data.TutorRepositoryImpl
+import com.mobileforce.hometeach.data.repository.TutorRepository
 import com.mobileforce.hometeach.data.UserRepositoryImpl
 import com.mobileforce.hometeach.data.repo.TutorRepository
 import com.mobileforce.hometeach.data.repository.UserRepository

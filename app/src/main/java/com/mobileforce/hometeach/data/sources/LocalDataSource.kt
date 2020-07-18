@@ -8,7 +8,6 @@ import com.mobileforce.hometeach.data.model.UserEntity
 import com.mobileforce.hometeach.data.sources.local.AppDataBase
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
-import com.mobileforce.hometeach.remotesource.wrappers.TutorDetailsResponse
 import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -107,8 +106,7 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getUserCardDetails(id: Int): List<UserCardDetailResponse> {
-
+    override suspend fun getUserCardDetails(id: String): List<UserCardDetailResponse> {
         TODO("Not yet implemented")
     }
 
