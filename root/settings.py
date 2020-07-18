@@ -62,7 +62,7 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     'storages',
     'rest_auth',
-    'django_extensions'
+    'django_extensions',
 ]
 
 SITE_ID = 1

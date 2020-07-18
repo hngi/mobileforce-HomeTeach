@@ -21,6 +21,8 @@ from .utility.encryption_util import *
 from .serializers import BankInfoSerializer, CreditCardInfoSerializer, VerificationSerializer
 from .models import BankInfo,CreditCardInfo
 from rest_framework.views import APIView
+import requests 
+from root.settings import PAYSTACK_AUTHORIZATION_KEY
 
 
 
