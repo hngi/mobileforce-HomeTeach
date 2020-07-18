@@ -30,10 +30,10 @@ class UserRepositoryImpl(private val dataSource: DataSourceFactory) : UserReposi
     override suspend fun logOut() {
         dataSource.local().clearDb()
     }
-
-    override suspend fun modify() {
-        dataSource.local().clearDb()
-    }
+//
+//    override suspend fun modify() {
+//        dataSource.local().clearDb()
+//    }
 
     override suspend fun editTutorProfile(
         id: Int,
@@ -102,6 +102,10 @@ class UserRepositoryImpl(private val dataSource: DataSourceFactory) : UserReposi
 
     override fun profileLiveData(): LiveData<ProfileEntity> {
         return dataSource.local().profileLiveData()
+    }
+
+    override suspend fun modify() {
+        return dataSource.local().clearDb()
     }
 
 }
