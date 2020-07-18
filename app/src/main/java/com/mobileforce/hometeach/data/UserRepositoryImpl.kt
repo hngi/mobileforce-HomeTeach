@@ -50,7 +50,7 @@ class UserRepositoryImpl(private val dataSource: DataSourceFactory) : UserReposi
         return dataSource.local().getUser()
     }
 
-    override suspend fun getTutorList(): Response<List<TutorListResponse>> {
+    override suspend fun getTutorList(): Response<List<TutorNetworkResponse>> {
         return dataSource.remote().getTutorList()
     }
 

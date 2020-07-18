@@ -24,7 +24,7 @@ interface UserRepository {
     suspend fun getTutorDetails(): TutorDetailsResponse
     fun getUser(): LiveData<UserEntity>
 
-    suspend fun getTutorList(): Response<List<TutorListResponse>>
+    suspend fun getTutorList(): Response<List<TutorNetworkResponse>>
     suspend fun requestTutorService(params: Params.RequestTutorService): Response<TutorServiceRequestResponse>
     suspend fun saveTutorList(tutorList: List<TutorEntity>)
     fun searchTutor(query: String): LiveData<List<TutorEntity>>

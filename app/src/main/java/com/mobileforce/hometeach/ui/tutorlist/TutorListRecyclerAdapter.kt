@@ -6,23 +6,23 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mobileforce.hometeach.databinding.ListItemAllTutorsBinding
-import com.mobileforce.hometeach.models.TutorAllModel
+import com.mobileforce.hometeach.models.TutorModel
 
-class TutorListRecyclerAdapter(val clickListener: TutorListItemListener) : ListAdapter<TutorAllModel, TutorListViewHolder>(
+class TutorListRecyclerAdapter(val clickListener: TutorListItemListener) : ListAdapter<TutorModel, TutorListViewHolder>(
     DiffClass
 ) {
 
-    companion object DiffClass : DiffUtil.ItemCallback<TutorAllModel>() {
+    companion object DiffClass : DiffUtil.ItemCallback<TutorModel>() {
         override fun areItemsTheSame(
-            oldItem: TutorAllModel,
-            newItem: TutorAllModel
+            oldItem: TutorModel,
+            newItem: TutorModel
         ): Boolean {
             return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(
-            oldItem: TutorAllModel,
-            newItem: TutorAllModel
+            oldItem: TutorModel,
+            newItem: TutorModel
         ): Boolean {
             return oldItem == newItem
         }
@@ -45,7 +45,7 @@ class TutorListRecyclerAdapter(val clickListener: TutorListItemListener) : ListA
 
 class TutorListViewHolder(private val binding: ListItemAllTutorsBinding) :
     RecyclerView.ViewHolder(binding.root) {
-    fun bind(tutorAll: TutorAllModel, clickListener: TutorListItemListener) {
+    fun bind(tutorAll: TutorModel, clickListener: TutorListItemListener) {
         binding.tutor = tutorAll
         binding.executePendingBindings()
         binding.clickListener = clickListener
@@ -54,7 +54,7 @@ class TutorListViewHolder(private val binding: ListItemAllTutorsBinding) :
 }
 
 class TutorListItemListener(val clickListener: (tutorId: String?) -> Unit){
-     fun onClick(tutorAll: TutorAllModel) {
-         clickListener(tutorAll.id)
+     fun onClick(tutor: TutorModel) {
+         clickListener(tutor.id)
      }
 }
