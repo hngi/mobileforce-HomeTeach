@@ -59,6 +59,7 @@ import java.io.InputStream
 
 >>>>>>> 148cde10885453de2edcdd8d8ff27db782351896
 
+
 /**
  * Authored by MayorJay
  */
@@ -73,7 +74,7 @@ class EditTutorProfileFragment : Fragment() {
     lateinit var userImage: InputStream
     lateinit var userVideo: InputStream
     lateinit var userPdf: InputStream
-    private lateinit var mDialogView:View
+    private lateinit var mDialogView: View
 
     private var selectedDocumentUri: Uri? = null
 
@@ -428,7 +429,7 @@ class EditTutorProfileFragment : Fragment() {
     }
 
     private fun showDialog() {
-         mDialogView = LayoutInflater.from(activity).inflate(R.layout.uploads, null)
+        mDialogView = LayoutInflater.from(activity).inflate(R.layout.uploads, null)
         val mBuilder = activity?.let { it1 ->
             AlertDialog.Builder(it1)
                 .setView(mDialogView)
@@ -468,10 +469,13 @@ class EditTutorProfileFragment : Fragment() {
         mDialogView.pdf.setOnClickListener {
             selectPdf()
         }
-        mDialogView.upload.setOnClickListener { mDialogView.progressBar.visibility = View.VISIBLE
+        mDialogView.upload.setOnClickListener {
+            mDialogView.progressBar.visibility = View.VISIBLE
 
-            upload(userImage,userPdf,userImage)
-            mDialogView.progressBar.visibility = View.INVISIBLE
+//                mAlertDialog?.hide()
+
+            //upload(userImage,userPdf,userImage)
+
 
         }
 

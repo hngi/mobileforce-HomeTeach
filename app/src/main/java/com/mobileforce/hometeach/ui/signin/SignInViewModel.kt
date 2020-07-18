@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.mobileforce.hometeach.data.model.User
 import com.mobileforce.hometeach.data.repository.UserRepository
 import com.mobileforce.hometeach.data.sources.remote.Params
+import com.mobileforce.hometeach.data.sources.remote.wrappers.Profile
 import com.mobileforce.hometeach.utils.AppConstants.USER_STUDENT
 import com.mobileforce.hometeach.utils.AppConstants.USER_TUTOR
 import com.mobileforce.hometeach.utils.PreferenceHelper
@@ -62,6 +63,27 @@ class SignInViewModel(
                             }
                         }
                         preferenceHelper.isLoggedIn = true
+
+                        with(response.profile) {
+
+                            val profile = Profile(
+                                this.user,
+                                id,
+                                profile_pic,
+                                hourly_rate,
+                                rating,
+                                desc,
+                                field,
+                                major_course,
+                                other_courses,
+                                state,
+                                address,
+                                user_url
+                            )
+                            userRepository.saveUserProfile(profile)
+
+                        }
+
 
                     }
                 }

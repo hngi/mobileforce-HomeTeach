@@ -2,13 +2,15 @@ package com.mobileforce.hometeach.data.sources
 
 import androidx.lifecycle.LiveData
 import com.mobileforce.hometeach.data.model.UploadResponse
+import com.mobileforce.hometeach.data.model.ProfileEntity
 import com.mobileforce.hometeach.data.model.TutorEntity
 import com.mobileforce.hometeach.data.model.User
-import com.mobileforce.hometeach.data.sources.local.AppDataBase
 import com.mobileforce.hometeach.data.model.UserEntity
+import com.mobileforce.hometeach.data.sources.local.AppDataBase
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
-import com.mobileforce.hometeach.remotesource.wrappers.*
+import com.mobileforce.hometeach.remotesource.wrappers.TutorDetailsResponse
+import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -112,6 +114,14 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
         TODO("Not yet implemented")
     }
 
+    override suspend fun saveUserProfile(profile: Profile) {
+        db.userDao().saveUserProfile(mapProfileToEntity(profile))
+    }
+
+    override fun profileLiveData(): LiveData<ProfileEntity> {
+        return db.userDao().observeableProfileData()
+    }
+
 
     private fun mapUserToEntity(user: User): UserEntity {
         return UserEntity(
@@ -128,3 +138,20 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
     }
 }
 
+    private fun mapProfileToEntity(profile: Profile): ProfileEntity {
+        return ProfileEntity(
+            profile.id,
+            profile.profile_pic,
+            profile.hourly_rate,
+            profile.desc,
+            profile.field,
+            profile.major_course.toString(), //TODO for testing purpose. this should be changed and a type converter written to save to room
+            profile.other_courses.toString(), //TODO for testing purpose. this should be changed and a type converter written to save to room
+            profile.state,
+            profile.address,
+            profile.user_url,
+            rating = profile.rating?.rating, rating_count = profile.rating?.count
+
+        )
+    }
+}
