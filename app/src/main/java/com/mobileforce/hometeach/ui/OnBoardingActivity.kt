@@ -1,17 +1,17 @@
 package com.mobileforce.hometeach.ui
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.mobileforce.hometeach.adapters.OnBoardAdapter
 import com.mobileforce.hometeach.R
+import com.mobileforce.hometeach.adapters.OnBoardAdapter
 import com.mobileforce.hometeach.models.OnBoardItem
 import com.mobileforce.hometeach.ui.signin.LoginActivity
 
@@ -73,13 +73,13 @@ class OnBoardingActivity : AppCompatActivity() {
 
             startActivity(Intent(this, LoginActivity::class.java))
             //finish this activity
-            //finish()
+            finish()
         }
 
         fab.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
             //finish this activity
-            //finish()
+            finish()
         }
         setPageViewController()
     }

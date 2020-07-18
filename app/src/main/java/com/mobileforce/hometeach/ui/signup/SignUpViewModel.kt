@@ -51,7 +51,7 @@ class SignUpViewModel(private val userRepository: UserRepository) : ViewModel() 
                             id = id
                         )
                         db.collection(COLLECTION_USER)
-                            .document(response.token)
+                            .document(id)
                             .set(user)
 
                     }

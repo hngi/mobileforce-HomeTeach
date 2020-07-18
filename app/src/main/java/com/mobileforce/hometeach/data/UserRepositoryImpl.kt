@@ -1,19 +1,21 @@
 package com.mobileforce.hometeach.data
 
 import androidx.lifecycle.LiveData
+import com.mobileforce.hometeach.data.model.ProfileEntity
+import com.mobileforce.hometeach.data.model.TutorEntity
 import com.mobileforce.hometeach.data.model.User
+import com.mobileforce.hometeach.data.model.UserEntity
 import com.mobileforce.hometeach.data.repository.UserRepository
 import com.mobileforce.hometeach.data.sources.DataSourceFactory
-import com.mobileforce.hometeach.data.model.UserEntity
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
-import com.mobileforce.hometeach.remotesource.wrappers.*
+import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
 import retrofit2.Response
 
 
 class UserRepositoryImpl(private val dataSource: DataSourceFactory) : UserRepository {
 
-    override suspend fun login(params: Params.SignIn):LoginResponse {
+    override suspend fun login(params: Params.SignIn): LoginResponse {
         return dataSource.remote().logIn(params)
     }
 
@@ -44,22 +46,58 @@ class UserRepositoryImpl(private val dataSource: DataSourceFactory) : UserReposi
         val user = dataSource.local().getSingleUser()
         return dataSource.remote().getTutorDetails(user.id.toDouble().toInt())
     }
+
     override fun getUser(): LiveData<UserEntity> {
         return dataSource.local().getUser()
     }
-    override suspend fun getTutorList(): Response<TutorListResponse> {
+
+    override suspend fun getTutorList(): Response<List<TutorNetworkResponse>> {
         return dataSource.remote().getTutorList()
+    }
+
+    override suspend fun requestTutorService(params: Params.RequestTutorService): Response<TutorServiceRequestResponse> {
+        return dataSource.remote().requestTutorService(params)
+    }
+
+    override suspend fun saveTutorList(tutorList: List<TutorEntity>) {
+        dataSource.local().saveTutorList(tutorList)
+    }
+
+    override fun searchTutor(query: String): LiveData<List<TutorEntity>> {
+        return dataSource.local().searchTutors(query)
+    }
+
+    override suspend fun clearTutorListDb() {
+        dataSource.local().clearTutorListDb()
+    }
+
+    override suspend fun getTutorListDb(): List<TutorEntity> {
+        return dataSource.local().getTutorListDb()
     }
 
     override suspend fun saveUserCardDetails(params: Params.CardDetails) {
         dataSource.remote().saveUserCardDetails(params)
+
     }
 
-    override suspend fun getUserCardDetails(id: Int): List<UserCardDetailResponse> {
+    override suspend fun getUserCardDetails(id: String): List<UserCardDetailResponse> {
         return dataSource.remote().getUserCardDetails(id)
     }
 
-    override suspend fun passwordReset(params: Params.PasswordReset): EmailResponse {
+    override suspend fun getSingleUser(): UserEntity {
+        return dataSource.local().getSingleUser()
+    }
+
+    override suspend fun passwordReset(params: Params.PasswordReset): Response<EmailResponse> {
         return dataSource.remote().resetPassword(params)
     }
+
+    override suspend fun saveUserProfile(profile: Profile) {
+        dataSource.local().saveUserProfile(profile)
+    }
+
+    override fun profileLiveData(): LiveData<ProfileEntity> {
+        return dataSource.local().profileLiveData()
+    }
+
 }

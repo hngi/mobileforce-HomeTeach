@@ -5,28 +5,29 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import com.google.android.material.button.MaterialButton
-import com.mobileforce.hometeach.utils.AppConstants.USER_STUDENT
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.adapters.RecyclerViewAdapter
 import com.mobileforce.hometeach.adapters.ViewHolder
-import com.mobileforce.hometeach.databinding.*
 import com.mobileforce.hometeach.data.sources.local.AppDataBase
-import com.mobileforce.hometeach.utils.PreferenceHelper
+import com.mobileforce.hometeach.databinding.*
 import com.mobileforce.hometeach.models.*
 import com.mobileforce.hometeach.ui.classes.adapters.recylerviewadapters.TutorOngoingClassesAdapter
 import com.mobileforce.hometeach.ui.home.student.OngoingClassViewHolderStudentDashBoard
 import com.mobileforce.hometeach.ui.home.student.TopTutorsViewHolderStudentDashBoard
 import com.mobileforce.hometeach.ui.home.student.UpcomingClassViewHolderStudentDashBoard
 import com.mobileforce.hometeach.ui.signin.LoginActivity
-import kotlinx.coroutines.launch
+import com.mobileforce.hometeach.utils.AppConstants.USER_STUDENT
+import com.mobileforce.hometeach.utils.AppConstants.USER_TUTOR
+import com.mobileforce.hometeach.utils.PreferenceHelper
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.util.*
@@ -65,18 +66,19 @@ class HomePageFragment : Fragment() {
 
         if (pref.userType == USER_STUDENT) {
             setUpForStudent()
-        } else {
+        } else if (pref.userType == USER_TUTOR) {
             setUpForTutor()
         }
     }
 
     private fun setUpForStudent() {
 
-        lifecycleScope.launch {
+        viewModel.user.observe(viewLifecycleOwner, androidx.lifecycle.Observer { user ->
 
-            val user =  db.userDao().getUser()
-            bindingParent.studentToolbar.title = "Welcome $user.full_name"
-        }
+            user?.let {
+                bindingParent.studentToolbar.title = "Welcome ${user.full_name}"
+            }
+        })
 
         bindingParent.root.findViewById<RelativeLayout>(R.id.actionMakepayment).setOnClickListener {
             findNavController().navigate(R.id.studentMakePaymentFragment)
@@ -332,18 +334,40 @@ class HomePageFragment : Fragment() {
         }
     }
 
-    private fun setUpForTutor(){
+    private fun setUpForTutor() {
+
+        bindingTutor.root.findViewById<LinearLayout>(R.id.mybanks).setOnClickListener {
+            findNavController().navigate(R.id.myBanks)
+        }
+        bindingTutor.root.findViewById<LinearLayout>(R.id.card_details).setOnClickListener {
+            findNavController().navigate(R.id.tutorCardDetails)
+        }
+        bindingTutor.root.findViewById<LinearLayout>(R.id.withdrawal).setOnClickListener {
+            findNavController().navigate(R.id.makeWithdrawalFragment)
+        }
+
+//        bindingTutor.root.findViewById<AppCompatRadioButton>(R.id.).setOnClickListener {
+//            DatePickerDialog.OnDateSetListener { datePicker, i, i2, i3 -> view }
+//        }
+
+
         bindingTutor.signout.setOnClickListener {
-            //viewModel.logOut()
+            viewModel.logOut()
             startActivity(Intent(requireContext(), LoginActivity::class.java))
             requireActivity().finish()
-//            val preferenceHelper = PreferenceHelper(requireContext())
-//            if (preferenceHelper.isLoggedIn){
-//            }
+
         }
 
         viewModel.user.observe(viewLifecycleOwner, androidx.lifecycle.Observer { user ->
-            bindingTutor.username.text = user.full_name
+
+            user?.let {
+                bindingTutor.username.text = "Welcome ${user.full_name}"
+            }
+        })
+
+        viewModel.profile.observe(viewLifecycleOwner, Observer { profile ->
+
+            bindingTutor.reviewCount.text = (profile.rating_count ?: 0).toString()
         })
     }
 

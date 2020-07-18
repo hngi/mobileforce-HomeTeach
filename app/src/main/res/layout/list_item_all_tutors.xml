@@ -6,13 +6,17 @@
     <data>
         <variable
             name="tutor"
-            type="com.mobileforce.hometeach.models.TutorAllModel" />
+            type="com.mobileforce.hometeach.models.TutorModel" />
+
+        <variable
+            name="clickListener"
+            type="com.mobileforce.hometeach.ui.tutorlist.TutorListItemListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:background="@color/bg_main"
         android:layout_height="wrap_content"
+        android:background="@color/bg_main"
         tools:context=".ui.tutordashboardfragments.OngoingFragment">
 
         <com.google.android.material.card.MaterialCardView
@@ -37,7 +41,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/profile_image"
-                    app:tutor_image="@{tutor.tutorImage}" />
+                    app:tutor_image="@{tutor.profile_pic}" />
 
                 <TextView
                     android:id="@+id/tutor_name"
@@ -47,7 +51,7 @@
                     android:layout_marginLeft="24dp"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/ubuntu"
-                    android:text="@{tutor.tutorName}"
+                    android:text="@{tutor.full_name}"
                     android:textColor="@color/blackColor"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -63,68 +67,84 @@
                     android:layout_marginLeft="24dp"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/ubuntu"
-                    android:text="@{tutor.tutorSubject +'-'+ tutor.rating"
+                    android:text="@{tutor.tutorSubject}"
                     android:textColor="@color/blackColor"
                     app:layout_constraintStart_toEndOf="@+id/tutor_image"
                     app:layout_constraintTop_toBottomOf="@+id/tutor_name"
-                    tools:text="Chemistry Tutor -4.6/5" />
-
-                <ImageView
-                    android:id="@+id/imageView12"
-                    android:layout_width="36dp"
-                    android:layout_height="22dp"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginRight="16dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_fav"
-                    tools:ignore="VectorDrawableCompat" />
+                    tools:text="Chemistry Tutor" />
 
                 <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="12dp"
+                    android:layout_height="11dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginRight="4dp"
+                    android:text="-"
+                    app:layout_constraintBottom_toBottomOf="@+id/tutor_subject"
+                    app:layout_constraintEnd_toStartOf="@+id/rating"
+                    app:layout_constraintStart_toEndOf="@+id/tutor_subject"
+                    app:layout_constraintTop_toTopOf="@+id/tutor_subject" />
+
+                <TextView
+                    android:id="@+id/rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/over_five(tutor.rating)}"
+                    app:layout_constraintBottom_toBottomOf="@+id/tutor_subject"
+                    app:layout_constraintStart_toEndOf="@+id/textView10"
+                    app:layout_constraintTop_toTopOf="@+id/tutor_subject"
+                    tools:text="4.6/5" />
+
+                <ToggleButton
+                    android:id="@+id/imageView12"
+                    android:layout_width="30dp"
+                    android:layout_height="26dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="16dp"
+                    android:text=""
+                    android:textOff=""
+                    android:textOn=""
+                    android:layout_marginRight="16dp"
+                    android:checked="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:background="@drawable/button_favorite"
+                    tools:ignore="VectorDrawableCompat" />
+
+                <com.borjabravo.readmoretextview.ReadMoreTextView
                     android:id="@+id/tutor_description"
-                    android:layout_width="393dp"
-                    android:layout_height="114dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
                     android:gravity="center_vertical"
+                    app:trimMode="trimModeLength"
+                    app:trimLength="100"
                     android:lineSpacingExtra="3dp"
                     android:text="@{tutor.description}"
                     android:textColor="@color/blackColor"
+                    app:colorClickableText="@color/colorBoldText"
                     app:fontFamily="@font/ubuntu"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tutor_image"
                     app:layout_constraintTop_toBottomOf="@+id/tutor_subject"
                     tools:text="@string/i_teach_with_calmness_and_encouragement_my_lessons_are_not_boring_and_i_can_accomodate_student_s_with_low_affinity_to_studying_i_employ_modern_schema_for_tutoring_with_interactive_guides_and_learning_systems_having_schooled_at_different_educational_organizations_coupled_with_my_nce_certifcate_i_can_assure_you_premium_success_with_me_as_your_home_teacher" />
-
-                <TextView
-                    android:id="@+id/tutor_readmore"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="220dp"
-                    android:layout_marginRight="220dp"
-                    android:text="Read more"
-                    android:textColor="@color/colorBoldText"
-                    app:layout_constraintBottom_toBottomOf="@+id/tutor_description"
-                    app:layout_constraintEnd_toEndOf="parent" />
 
                 <TextView
                     android:id="@+id/subject_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="24dp"
-                    android:text="@{Integer.toString(tutor.perhouramount)+` NGN/Hr`}"
-                    android:textColor="@color/blackColor"
-                    app:fontFamily="@font/ubuntu"
+                    android:text="@{tutor.hourly_rate+` NGN/Hr`}"
                     android:textSize="18sp"
+                    app:fontFamily="@font/ubuntu"
                     app:layout_constraintBottom_toBottomOf="@+id/outlineButton"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tutor_description"
+                    app:layout_constraintStart_toStartOf="@+id/tutor_description"
+                    app:layout_constraintTop_toTopOf="@+id/outlineButton"
                     tools:text="2000 NGN/Hr" />
 
                 <com.google.android.material.button.MaterialButton
@@ -132,12 +152,14 @@
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
+                    android:textSize="14sp"
                     android:layout_marginRight="16dp"
+                    android:onClick="@{() -> clickListener.onClick(tutor)}"
                     android:paddingStart="40dp"
                     android:paddingEnd="40dp"
-                    android:text="REQUEST\nSERVICE"
+                    android:text="@string/request_service"
                     android:textColor="@color/blackColor"
                     app:cornerRadius="10dp"
                     app:fontFamily="@font/ubuntu"
@@ -153,9 +175,9 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="8dp"
+                    android:background="#B5B5B5"
                     android:layout_marginRight="8dp"
                     android:layout_marginBottom="8dp"
-                    android:background="@color/black"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

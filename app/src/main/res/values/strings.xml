@@ -47,7 +47,7 @@
     <string name="card_details">Card Details</string>
     <string name="payments">Payments</string>
     <string name="welcome">Welcome</string>
-    <string name="rahman">Rahman,</string>
+    <string name="rahman">Welcome  Rahman,</string>
     <string name="modify">MODIFY</string>
     <string name="since_last_month">Since last month</string>
     <string name="cancel_all">CANCEL ALL</string>
@@ -65,7 +65,7 @@
     <string name="confirm">CONFIRM</string>
     <string name="full_name">Full name</string>
     <string name="description">Description</string>
-    <string name="upload_a_30_second_video_about_yourself">Upload a 30 second video about yourself</string>
+    <string name="upload_a_30_second_video_about_yourself">Upload Your video,Image and Credential</string>
     <string name="upload">Upload</string>
     <string name="clear">Clear</string>
     <string name="file_must_not_be_more_than_30seconds_15mb">File must not be more than 30seconds/15mb</string>
@@ -152,10 +152,18 @@
     <string name="register_now">Register now</string>
     <string name="don_t_have_an_account">Don\'t have an account?</string>
     <string name="save_password">Save Password</string>
-    <string name="tutors_description">I teach with calmness and encouragement. My lessons are not boring and i can accommodate student’s with low affinity to studying. I employ modern schema for tutoring with interactive guides and learning systems. Having schooled at different educational organizations coupled with my NCE certifcate, I can assure you premium success with me as your Home-Teacher</string>
+    <string name="tutors_description">I teach with calmness and encouragement. My lessons are not boring and i can accommodate student’s with low affinity to studying. I employ modern schema for tutoring with interactive guides and learning systems. Having schooled at different educational organizations coupled with my NCE certificate, I can assure you premium success with me as your Home-Teacher</string>
     <string name="review">Mr Rahman Django is a great teacher. I was having tough times trying to get my son to understand maths for his upcoming exams but no progress. Mr Rahman put him through and he came out in flying colours</string>
     <string name="success">Your request for a Teacher has been successfully booked and awaiting approval</string>
     <string name="tutor_list">Tutor List</string>
+    <string name="pick_a_date_and_time">Pick a date and time</string>
+    <string name="from">From</string>
+    <string name="over_five">%.1f/5</string>
+    <string name="to">To</string>
+    <string name="colon_sign">:</string>
+    <string name="cancel_small">Cancel</string>
+    <string name="approve_small">Approve</string>
+    <string name="request_service">REQUEST\nSERVICE</string>
     <string name="card_number">Card Number</string>
     <string name="mm">MM</string>
     <string name="yy">YY</string>
