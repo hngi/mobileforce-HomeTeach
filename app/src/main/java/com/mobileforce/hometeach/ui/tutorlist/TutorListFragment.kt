@@ -105,8 +105,7 @@ class TutorListFragment : Fragment(), SelectDateDialog.SelectDateListener {
             )
         )
 
-        //Get the list of tutors
-        viewModel.getTutorList()
+
 
 
         popupDialog = SelectDateDialog()
