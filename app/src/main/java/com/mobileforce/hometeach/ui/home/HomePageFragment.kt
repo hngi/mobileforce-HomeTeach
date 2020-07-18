@@ -10,7 +10,6 @@ import android.widget.RelativeLayout
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
@@ -29,7 +28,6 @@ import com.mobileforce.hometeach.ui.signin.LoginActivity
 import com.mobileforce.hometeach.utils.AppConstants.USER_STUDENT
 import com.mobileforce.hometeach.utils.AppConstants.USER_TUTOR
 import com.mobileforce.hometeach.utils.PreferenceHelper
-import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.util.*
@@ -75,11 +73,12 @@ class HomePageFragment : Fragment() {
 
     private fun setUpForStudent() {
 
-        lifecycleScope.launch {
+        viewModel.user.observe(viewLifecycleOwner, androidx.lifecycle.Observer { user ->
 
-            val user = db.userDao().getUser()
-            bindingParent.studentToolbar.title = "Welcome $user.full_name"
-        }
+            user?.let {
+                bindingParent.studentToolbar.title = "Welcome ${user.full_name}"
+            }
+        })
 
         bindingParent.root.findViewById<RelativeLayout>(R.id.actionMakepayment).setOnClickListener {
             findNavController().navigate(R.id.studentMakePaymentFragment)
