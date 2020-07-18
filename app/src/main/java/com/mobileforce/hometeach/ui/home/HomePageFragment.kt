@@ -2,7 +2,6 @@ package com.mobileforce.hometeach.ui.home
 
 
 import android.app.DatePickerDialog
-import android.app.Dialog
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,13 +10,11 @@ import android.view.View
 import android.view.ViewGroup
 
 import android.widget.*
-import androidx.appcompat.widget.AppCompatRadioButton
 
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 
 import androidx.core.view.ViewCompat
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
@@ -38,14 +35,12 @@ import com.mobileforce.hometeach.ui.home.student.UpcomingClassViewHolderStudentD
 import com.mobileforce.hometeach.ui.signin.LoginActivity
 import com.mobileforce.hometeach.utils.AppConstants.USER_STUDENT
 import com.mobileforce.hometeach.utils.AppConstants.USER_TUTOR
-import kotlinx.android.synthetic.main.fragment_home_page_tutor.*
 
 import com.mobileforce.hometeach.utils.PreferenceHelper
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.text.SimpleDateFormat
-import java.time.Year
 import java.util.*
 
 /**
