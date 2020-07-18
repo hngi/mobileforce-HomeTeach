@@ -43,4 +43,13 @@ class Params {
         val expiry_month: Int,
         val expiry_year: Int
     )
+
+    data class User(
+        var id: String,
+        var totalStudent: Int,
+        var totalBalance: Int,
+        var totalProfileVisits: Int,
+        var totalReviews: Int
+
+    )
 }

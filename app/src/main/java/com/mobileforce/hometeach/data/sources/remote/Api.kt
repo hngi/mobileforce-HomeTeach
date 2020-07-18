@@ -1,6 +1,8 @@
 package com.mobileforce.hometeach.data.sources.remote
 
 
+import androidx.lifecycle.LiveData
+import com.mobileforce.hometeach.data.model.UserEntity
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
 import com.mobileforce.hometeach.remotesource.wrappers.*
 
@@ -37,10 +39,13 @@ interface  Api{
     @JvmSuppressWildcards
     @GET("v1/tutor_profiles/{id}/")
     suspend fun getTutorDetails(@Path("id") id: Int): TutorDetailsResponse
-    
+
     @POST("")
     suspend fun saveUserCardDetails(@Body params: Map<String, Any>)
 
     @GET("")
     suspend fun getUserCardDetails(@Path("id") id: Int): List<UserCardDetailResponse>
+
+    @GET("v1/users/")
+    suspend fun getUser(): LiveData<UserEntity>
 }

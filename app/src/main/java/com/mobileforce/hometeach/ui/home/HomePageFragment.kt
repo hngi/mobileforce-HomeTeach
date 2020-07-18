@@ -362,7 +362,11 @@ class HomePageFragment : Fragment() {
 
         lifecycleScope.launch {
             val user = db.userDao().getUser()
-            bindingTutor.username.text = "Welcome $user.full_name"
+            bindingTutor.username.text = " $user.full_name"
+            bindingTutor.totalbalance.text = "BALANCE"
+            bindingTutor.totalstudent.text = "TOTAL STUDENT"
+            bindingTutor.totalreviews.text = "TOTAL REVIWS"
+            bindingTutor.totalprofilevisits.text = "TOTAL PROFILE VISITS"
         }
 
         bindingTutor.root.findViewById<LinearLayout>(R.id.mybanks).setOnClickListener {
@@ -378,10 +382,10 @@ class HomePageFragment : Fragment() {
         val TutorDashboardModel = mutableListOf<TutorDashboardModel>(
             TutorDashboardModel(
                 UUID.randomUUID().toString(),
-                0,
-                0,
-                0,
-                0
+                "TOATL STUDENT",
+                "BALANCE",
+                "PROFILE VISITS",
+                "TOTAL REVIEWS"
             )
         )
         bindingTutor.modifyBtn.setOnClickListener {
@@ -398,7 +402,7 @@ class HomePageFragment : Fragment() {
         }
 
         viewModel.user.observe(viewLifecycleOwner, androidx.lifecycle.Observer { user ->
-            bindingTutor.username.text = "Welcome $user.full_name"
+            bindingTutor.username.text = user.full_name
         })
     }
 

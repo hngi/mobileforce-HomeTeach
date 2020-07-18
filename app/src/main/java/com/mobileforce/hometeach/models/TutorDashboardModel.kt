@@ -4,10 +4,10 @@ import androidx.recyclerview.widget.DiffUtil
 
 data class TutorDashboardModel(
     var id: String,
-    var totalStudent: Int,
-    var totalBalance: Int,
-    var totalProfileVisits: Int,
-    var totalReviews: Int
+    var totalStudent: String,
+    var totalBalance: String,
+    var totalProfileVisits: String,
+    var totalReviews: String
 
 )
 

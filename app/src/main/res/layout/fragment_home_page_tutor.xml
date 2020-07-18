@@ -162,7 +162,7 @@
                             android:padding="15dp">
 
                             <TextView
-                                android:id="@+id/profilevisits"
+                                android:id="@+id/totalprofilevisits"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="left"
@@ -318,7 +318,7 @@
                             android:padding="15dp">
 
                             <TextView
-                                android:id="@+id/totalrevies"
+                                android:id="@+id/totalreviews"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="left"
