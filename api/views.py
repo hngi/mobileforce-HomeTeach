@@ -20,9 +20,11 @@ from cardvalidator import formatter, luhn
 from .utility.encryption_util import *
 from .serializers import BankInfoSerializer, CreditCardInfoSerializer, VerificationSerializer
 from .models import BankInfo,CreditCardInfo
-import requests
 from rest_framework.views import APIView
+import requests 
 from root.settings import PAYSTACK_AUTHORIZATION_KEY
+
+
 
 @api_view(['POST', ])
 @permission_classes([AllowAny, ])
@@ -30,10 +32,14 @@ def submit_request(request):
 
     serializer = CreateRequestSerializer(data=request.data)
     if serializer.is_valid(raise_exception=True):
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+        data = serializer.save()
+        serialized_data = serializer.data
+        serialized_data['id'] = data.id
+        user = data.tutor.full_name
+        message = f'Your request to {user} was succesfully sent!'
+        return Response({'status':'successful','sent':True, 'message':message}, status=status.HTTP_201_CREATED)
     else:
-        return Response('request couldnt be created', status=status.HTTP_501_NOT_IMPLEMENTED)
+        return Response({'message':'sorry, your request couldnt be sent...', 'sent':False}, status=status.HTTP_501_NOT_IMPLEMENTED)
 
 
 '''view to list all requests that a tutor has received'''
@@ -102,12 +108,13 @@ class TutorProfileViewSet(mixins.ListModelMixin,
  
 class StudentProfileViewSet(mixins.ListModelMixin,
                             mixins.RetrieveModelMixin,
+                            mixins.UpdateModelMixin,
                             viewsets.GenericViewSet):
     """
     This viewset automatically provides `list`, `create`, `retrieve`,
     `update` and `destroy` actions.
     """
-
+    parser_classes = (MultiPartParser, FormParser,)
     queryset = Profile.objects.filter(user__is_tutor=False)
     serializer_class = StudentProfileSerializer
     permission_classes = (AllowAny,
@@ -132,6 +139,7 @@ def top_tutors(request):
     query = Profile.objects.filter(user__is_tutor=True)
     serializer = TopTutorSerializer(query)
     return Response(serializer.data)
+
 
 
 
@@ -323,4 +331,5 @@ class VerifyTransactionView(APIView):
             except:
                 return Response(json, status=status.HTTP_200_OK)
         return Response(status=status.HTTP_401_UNAUTHORIZED)
+
 

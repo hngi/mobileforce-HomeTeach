@@ -1,8 +1,9 @@
 from rest_framework import serializers
-from .models import Profile, Rating
+from .models import Profile, Rating, StudentSchedule, Days
 from accounts.models import CustomUser
 from django.db.models import Avg, Count
 from .models import Request
+from datetime import datetime
 from django.contrib.auth import get_user_model
 from .models import CreditCardInfo, BankInfo, Verify, Wallet
 
@@ -21,11 +22,19 @@ class UpdateUserSerializer(serializers.ModelSerializer):
         model=User
         exclude = ['password', 'last_login']
 
+
 class CreateRequestSerializer(serializers.ModelSerializer):
+    id = serializers.CharField(read_only=True)
     requester = serializers.SerializerMethodField(read_only=True)
     tutor = serializers.SerializerMethodField(read_only=True)
-    requester_id = serializers.CharField(write_only=True)
+    student_id = serializers.CharField(write_only=True)
     tutor_id = serializers.CharField(write_only=True)
+    from_hour = serializers.CharField()
+    from_minute = serializers.CharField()
+    to_hour = serializers.CharField()
+    to_minute = serializers.CharField()
+    dates = serializers.ListField()
+    schedule = serializers.CharField(required=False)
 
     class Meta:
         model = Request
@@ -42,42 +51,76 @@ class CreateRequestSerializer(serializers.ModelSerializer):
         return tutor_f
 
     def get_requester(self, data):
-        id = data.get('requester_id')
+        id = data.get('student_id')
         requester = User.objects.filter(pk=id)
         serializer = UserSerializer(requester.first().__dict__)
         return serializer.data
 
     def save(self):
         data = self.validated_data
-        requester_id = data.get('requester_id')
+        student_id = data.get('student_id')
         tutor_id = data.get('tutor_id')
+        from_hour = data.get('from_hour')
+        from_minute = data.get('from_minute')
+        to_hour = data.get('to_hour')
+        to_minute = data.get('to_minute')
+        dates = data.get('dates')
 
 
-        requester = User.objects.get(id=requester_id)
+        requester = User.objects.get(id=student_id)
         tutor_qs = User.objects.filter(pk=tutor_id, is_tutor=True)
 
         if not tutor_qs.exists():
             raise serializers.ValidationError('a tutor with that id does not exist')
 
+        # days_list = []
+        # for date in dates:
+        #     day = DaysSerializer(date)
+        #     days_list.append(day.data)
+        student_schedule = StudentSchedule.objects.create(tutor=tutor_qs.first(),
+                                       user=requester,
+                                       from_hour=from_hour,
+                                       to_hour=to_hour,
+                                       from_minute=from_minute,
+                                       to_minute=to_minute,
+                                       )
+        for date in dates:
+            d = Days.objects.create(day=date)
+            student_schedule.days.add(d)
         request = Request.objects.create(
             requester=requester,
             tutor=tutor_qs.first(),
+            schedule = student_schedule
         )
+
         return request
+
+class StudentScheduleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = StudentSchedule
+        fields = '__all__'
+
 
 class RequestTutorSerializer(serializers.ModelSerializer):
     requester = UserSerializer(read_only=True)
 
+
     class Meta:
         model=Request
-        exclude = ['tutor']
+        exclude = ['tutor', 'schedule']
+
 
 class RequestSerializer(serializers.ModelSerializer):
     tutor = UserSerializer(read_only=True)
-
     class Meta:
         model=Request
-        exclude = ['requester']
+        exclude = ['requester', 'schedule']
+
+    def get_hourly_rate(self, obj):
+        tutor_id = self.validated_data.get('id')
+        profile = Profile.objects.get(user__id=tutor_id)
+        hourly_rate = profile.hourly_rate
+        return hourly_rate
 
 class CustomUserSerializer(serializers.HyperlinkedModelSerializer):
     profile_url = serializers.HyperlinkedIdentityField(
@@ -98,7 +141,7 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Profile
         depth = 1
-        fields = ('user',
+        fields = ('user','id',
                   'hourly_rate', 'rating', 'desc', 
                   'field', 'major_course', 'other_courses', 
                   'state', 'address', 'user_url')
@@ -114,11 +157,11 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
 
     def update(self, instance, validated_data):
         # retrieve CustomUser
-        user_data = validated_data.pop('user', None)
-        ser_data = {k:v for k,v in user_data.items() if v}
-        for attr, value in user_data.items():
-            setattr(instance.user, attr, value)
-
+        user_data = {k:v for k,v in validated_data.items() if v}
+        if user_data:
+            for attr, value in user_data.items():
+                setattr(instance.user, attr, value)
+        validated_data.pop('user', None)
         # retrieve Profile
         for attr, value in validated_data.items():
             setattr(instance, attr, value)
@@ -134,7 +177,7 @@ class TutorProfileSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Profile
         depth = 1
-        fields = ('user','rating', 'profile_pic', 
+        fields = ('user','id','rating', 'profile_pic', 
                   'desc', 'credentials', 'video', 
                   'hourly_rate', 'field', 'major_course', 
                   'other_courses', 'state', 'address','user_url')
@@ -148,13 +191,15 @@ class TutorProfileSerializer(serializers.HyperlinkedModelSerializer):
         rating = obj.rating.all().aggregate(rating=Avg('rate'), count=Count('user'))
         return rating
 
+
     def update(self, instance, validated_data):
         # retrieve CustomUser
-        user_data = validated_data.pop('user', None)
-        ser_data = {k:v for k,v in user_data.items() if v}
-        for attr, value in user_data.items():
-            setattr(instance.user, attr, value)
-
+        # user_data = validated_data.pop('user', None)
+        user_data = {k:v for k,v in validated_data.items() if v}
+        if user_data:
+            for attr, value in user_data.items():
+                setattr(instance.user, attr, value)
+        validated_data.pop('user', None)
         # retrieve Profile
         for attr, value in validated_data.items():
             setattr(instance, attr, value)
@@ -169,8 +214,8 @@ class StudentProfileSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Profile
         depth = 1
-        fields = ('user',
-                  'desc', 'field', 'major_course', 'other_courses', 'state', 'address', 
+        fields = ('user','id',
+                  'desc', 'profile_pic', 'field', 'major_course', 'other_courses', 'state', 'address', 
                   'user_url')
 
     def get_full_name(self, obj):
@@ -194,6 +239,7 @@ class RatingsSerializer(serializers.ModelSerializer):
         rate = data.get('rate')
         student_id = data.get('student_id')
         tutor_id = data.get('tutor_id')
+
         try:
             tutor = User.objects.get(id=tutor_id)
             student = User.objects.get(id=student_id)
