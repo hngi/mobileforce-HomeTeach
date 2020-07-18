@@ -97,16 +97,20 @@
                     app:layout_constraintTop_toTopOf="@+id/tutor_subject"
                     tools:text="4.6/5" />
 
-                <ImageView
+                <ToggleButton
                     android:id="@+id/imageView12"
-                    android:layout_width="36dp"
-                    android:layout_height="22dp"
+                    android:layout_width="30dp"
+                    android:layout_height="26dp"
                     android:layout_marginTop="24dp"
                     android:layout_marginEnd="16dp"
+                    android:text=""
+                    android:textOff=""
+                    android:textOn=""
                     android:layout_marginRight="16dp"
+                    android:checked="false"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_fav"
+                    android:background="@drawable/button_favorite"
                     tools:ignore="VectorDrawableCompat" />
 
                 <com.borjabravo.readmoretextview.ReadMoreTextView

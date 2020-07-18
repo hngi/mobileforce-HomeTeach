@@ -89,7 +89,7 @@ class SelectDateDialog : DialogFragment() {
 
             binding.calendarView.selectedDates.forEach {
                 if (it.isBefore(CalendarDay.today())) {
-                    Toast.makeText(view.context,"Some selected days are in the past!",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(view.context,"Some selected day(s) are in the past!",Toast.LENGTH_SHORT).show()
                     listIsClean = false
                 }
             }
@@ -131,7 +131,6 @@ class SelectDateDialog : DialogFragment() {
 
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0)
         val viewGroup = view.parent as ViewGroup
-        applyDim(viewGroup, 0.5f)
 
         binding.btn.setOnClickListener {
             popupWindow.dismiss()
