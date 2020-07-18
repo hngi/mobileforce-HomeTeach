@@ -1,38 +1,46 @@
 package com.mobileforce.hometeach.ui.home
 
+
 import android.app.DatePickerDialog
 import android.app.Dialog
+
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+
 import android.widget.*
 import androidx.appcompat.widget.AppCompatRadioButton
+
+import android.widget.LinearLayout
+import android.widget.RelativeLayout
+
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import com.google.android.material.button.MaterialButton
-import com.mobileforce.hometeach.utils.AppConstants.USER_STUDENT
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.adapters.RecyclerViewAdapter
 import com.mobileforce.hometeach.adapters.ViewHolder
-import com.mobileforce.hometeach.databinding.*
 import com.mobileforce.hometeach.data.sources.local.AppDataBase
-import com.mobileforce.hometeach.utils.PreferenceHelper
+import com.mobileforce.hometeach.databinding.*
 import com.mobileforce.hometeach.models.*
 import com.mobileforce.hometeach.ui.classes.adapters.recylerviewadapters.TutorOngoingClassesAdapter
 import com.mobileforce.hometeach.ui.home.student.OngoingClassViewHolderStudentDashBoard
 import com.mobileforce.hometeach.ui.home.student.TopTutorsViewHolderStudentDashBoard
 import com.mobileforce.hometeach.ui.home.student.UpcomingClassViewHolderStudentDashBoard
-import com.mobileforce.hometeach.ui.home.tutor.HomePageTutorViewModel
 import com.mobileforce.hometeach.ui.signin.LoginActivity
+import com.mobileforce.hometeach.utils.AppConstants.USER_STUDENT
 import com.mobileforce.hometeach.utils.AppConstants.USER_TUTOR
 import kotlinx.android.synthetic.main.fragment_home_page_tutor.*
+
+import com.mobileforce.hometeach.utils.PreferenceHelper
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -360,6 +368,7 @@ class HomePageFragment : Fragment() {
 
     private fun setUpForTutor() {
 
+
         lifecycleScope.launch {
             val user = db.userDao().getUser()
             bindingTutor.username.text = " $user.full_name"
@@ -368,6 +377,7 @@ class HomePageFragment : Fragment() {
             bindingTutor.totalreviews.text = "TOTAL REVIWS"
             bindingTutor.totalprofilevisits.text = "TOTAL PROFILE VISITS"
         }
+
 
         bindingTutor.root.findViewById<LinearLayout>(R.id.mybanks).setOnClickListener {
             findNavController().navigate(R.id.myBanks)
@@ -393,16 +403,22 @@ class HomePageFragment : Fragment() {
         }
 
         bindingTutor.signout.setOnClickListener {
-            //viewModel.logOut()
+            viewModel.logOut()
             startActivity(Intent(requireContext(), LoginActivity::class.java))
             requireActivity().finish()
-//            val preferenceHelper = PreferenceHelper(requireContext())
-//            if (preferenceHelper.isLoggedIn){
-//            }
+
         }
 
         viewModel.user.observe(viewLifecycleOwner, androidx.lifecycle.Observer { user ->
+
             bindingTutor.username.text = user.full_name
+           
+        })
+
+        viewModel.profile.observe(viewLifecycleOwner, Observer { profile ->
+
+            bindingTutor.reviewCount.text = (profile.rating_count ?: 0).toString()
+
         })
     }
 

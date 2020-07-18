@@ -10,11 +10,11 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
-import com.mobileforce.hometeach.utils.AppConstants.USER_TUTOR
 import com.mobileforce.hometeach.R
-import com.mobileforce.hometeach.utils.PreferenceHelper
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.ui.signin.LoginActivity
+import com.mobileforce.hometeach.utils.AppConstants.USER_TUTOR
+import com.mobileforce.hometeach.utils.PreferenceHelper
 import com.mobileforce.hometeach.utils.Result
 import com.mobileforce.hometeach.utils.snack
 import com.mobileforce.hometeach.utils.toast
@@ -50,12 +50,19 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
+    private fun navigateTOSignIn() {
+        val intent = Intent(this, LoginActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+        startActivity(intent)
+        finish()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
 
         text_log_in.setOnClickListener {
-            startActivity(Intent(this, LoginActivity::class.java))
+            navigateTOSignIn()
         }
         // replace with the ids in your XML
         nameWatcher = object : TextWatcher {
@@ -195,10 +202,11 @@ class SignUpActivity : AppCompatActivity() {
                     pd.hide()
 
                     signUpLayout
-                        .snack(message = "Registration Successful, verify account to login",
+                        .snack(
+                            message = "Registration Successful, verify account to login",
                             actionText = "LOGIN",
                             actionCallBack = {
-                                startActivity(Intent(this, LoginActivity::class.java))
+                                navigateTOSignIn()
                             }, length = Snackbar.LENGTH_INDEFINITE
                         )
                 }

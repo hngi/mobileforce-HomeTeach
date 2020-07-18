@@ -44,6 +44,7 @@ class Params {
         val expiry_year: Int
     )
 
+
     data class User(
         var id: String,
         var totalStudent: Int,
@@ -51,5 +52,14 @@ class Params {
         var totalProfileVisits: Int,
         var totalReviews: Int
 
+
+    data class RequestTutorService(
+        val student_id: String,
+        val tutor_id: String,
+        val from_hour: String,
+        val from_minute: String,
+        val to_hour: String,
+        val to_minute: String,
+        val dates: List<String>
     )
 }
