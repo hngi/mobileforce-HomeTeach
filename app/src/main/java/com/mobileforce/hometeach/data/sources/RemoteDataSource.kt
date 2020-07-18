@@ -73,6 +73,8 @@ class RemoteDataSource(private val api: Api) : DataSource {
     
     override suspend fun saveUserCardDetails(params: Params.CardDetails) {
         val map = hashMapOf(
+            "user_id" to params.user_id,
+            "card_holder_name" to params.card_holder_name,
             "card_number" to params.card_number,
             "card_cvv" to params.card_cvc,
             "expiry_month" to params.expiry_month,
@@ -81,7 +83,7 @@ class RemoteDataSource(private val api: Api) : DataSource {
         api.saveUserCardDetails(map)
     }
 
-    override suspend fun getUserCardDetails(id: Int): List<UserCardDetailResponse> {
+    override suspend fun getUserCardDetails(id: String): List<UserCardDetailResponse> {
         return api.getUserCardDetails(id)
     }
 

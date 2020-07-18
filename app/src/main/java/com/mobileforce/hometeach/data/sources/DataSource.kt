@@ -16,7 +16,9 @@ interface DataSource {
     suspend fun logIn(params: Params.SignIn): LoginResponse
 
     suspend fun signUp(params: Params.SignUp): RegisterUserResponse
+
     suspend fun resetPassword(params: Params.PasswordReset):EmailResponse
+
     suspend fun saveUser(user: User)
 
     fun getUser(): LiveData<UserEntity>
@@ -44,6 +46,7 @@ interface DataSource {
     suspend fun getTutorListDb(): List<TutorEntity>
 
     suspend fun saveUserCardDetails(params: Params.CardDetails)
-    suspend fun getUserCardDetails(id: Int): List<UserCardDetailResponse>
+
+    suspend fun getUserCardDetails(id: String): List<UserCardDetailResponse>
 
 }

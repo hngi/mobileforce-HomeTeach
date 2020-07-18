@@ -37,6 +37,7 @@ class StudentAddCardDetailsFragment : Fragment() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             toolbar.setNavigationIcon(R.drawable.back_arrow)
         }
+        val userEntity = viewModel.getUserDetailsFromDb()
         val cardNumber = binding.etCardNumber.text
         val cardCvc = binding.etCvcNumber.text
         val expiryMonth = binding.etMonth.text
@@ -64,6 +65,8 @@ class StudentAddCardDetailsFragment : Fragment() {
             // send card details to endpoint
             viewModel.saveUserCardDetails(
                 Params.CardDetails(
+                userEntity!!.id,
+                userEntity.full_name,
                 cardNumber.toString().trim(),
                 cardCvc.toString().trim(),
                 expiryMonth.toString().trim().toInt(),
