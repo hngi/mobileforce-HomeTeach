@@ -53,8 +53,8 @@ class TutorListViewHolder(private val binding: ListItemAllTutorsBinding) :
 
 }
 
-class TutorListItemListener(val clickListener: (tutorId: String?) -> Unit){
-     fun onClick(tutor: TutorModel) {
-         clickListener(tutor.id)
-     }
+class TutorListItemListener(val clickListener: (tutor: TutorModel?) -> Unit) {
+    fun onClick(tutor: TutorModel) {
+        clickListener(tutor)
+    }
 }

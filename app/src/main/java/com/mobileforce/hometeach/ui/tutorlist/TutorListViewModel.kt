@@ -2,12 +2,21 @@ package com.mobileforce.hometeach.ui.tutorlist
 
 import android.util.Log
 import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.mobileforce.hometeach.data.model.TutorEntity
 import com.mobileforce.hometeach.data.model.UserEntity
 import com.mobileforce.hometeach.data.repository.UserRepository
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.models.TutorModel
-import com.mobileforce.hometeach.utils.*
+import com.mobileforce.hometeach.utils.Result
+import com.mobileforce.hometeach.utils.asLiveData
+import com.mobileforce.hometeach.utils.toDbEntity
+import com.mobileforce.hometeach.utils.toDomainModel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.lang.Exception
@@ -28,8 +37,10 @@ class TutorListViewModel(
     val serviceApproved = _serviceApproved.asLiveData()
 
     //Selected Tutor Id
-    private var selectedId: String? = null
+    private var selectedTutor: TutorModel? = null
     private var userEntity: UserEntity? = null
+
+    private val db = Firebase.firestore
 
 
     /**
@@ -92,10 +103,10 @@ class TutorListViewModel(
         _serviceApproved.postValue(Result.Loading)
         viewModelScope.launch {
             try {
-                if (userEntity != null && selectedId != null) {
+                if (userEntity != null && selectedTutor != null) {
                     val requestServiceParams = Params.RequestTutorService(
                         student_id = userEntity?.id!!,
-                        tutor_id = selectedId!!,
+                        tutor_id = selectedTutor?.id!!,
                         from_hour = dialogData.fromHour,
                         from_minute = dialogData.fromMinute,
                         to_hour = dialogData.toHour,
@@ -106,6 +117,49 @@ class TutorListViewModel(
                     if (response.isSuccessful) {
                         val result = response.body()?.message
                         _serviceApproved.postValue(Result.Success(result))
+
+                        //init chat connect
+
+                        val connectID: String = selectedTutor!!.id + userEntity!!.id
+
+                        val studentRef = db
+                            .collection("user")
+                            .document(userEntity?.id!!)
+                            .collection("connect")
+                            .document()
+                        val studentConnect = hashMapOf(
+                            "id" to selectedTutor?.id,
+                            "full_name" to selectedTutor?.full_name!!,
+                            "connect_id" to connectID
+                        )
+
+
+                        val tutorRef = db
+                            .collection("user")
+                            .document(selectedTutor?.id!!)
+                            .collection("connect")
+                            .document()
+                        val tutorConnect = hashMapOf(
+                            "id" to userEntity?.id,
+                            "full_name" to userEntity?.full_name,
+                            "connect_id" to connectID
+                        )
+
+
+
+                        db.runBatch { batch ->
+                            batch.set(studentRef, studentConnect)
+
+
+                            batch.set(tutorRef, tutorConnect)
+
+                        }.addOnCompleteListener {
+
+                            if (it.isSuccessful) {
+                                println("batch write successful")
+                            }
+                        }
+
                     }
                 }
             } catch (exception: Exception) {
@@ -122,8 +176,8 @@ class TutorListViewModel(
         userEntity = result
     }
 
-    fun setTutorId(tutorId: String) {
-        selectedId = tutorId
+    fun setTutor(tutor: TutorModel) {
+        selectedTutor = tutor
     }
 }
 

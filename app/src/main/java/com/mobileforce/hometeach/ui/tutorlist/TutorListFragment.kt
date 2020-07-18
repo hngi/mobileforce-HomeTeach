@@ -1,15 +1,11 @@
 package com.mobileforce.hometeach.ui.tutorlist
 
 import android.annotation.SuppressLint
-import android.app.SearchManager
 import android.os.Bundle
-import android.text.TextUtils
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -110,11 +106,11 @@ class TutorListFragment : Fragment(), SelectDateDialog.SelectDateListener {
 
         popupDialog = SelectDateDialog()
         observeViewModels()
-        adapter = TutorListRecyclerAdapter(TutorListItemListener { tutorId ->
-            if (tutorId != null) {
+        adapter = TutorListRecyclerAdapter(TutorListItemListener { tutor ->
+            if (tutor != null) {
                 val dialog = SelectDateDialog()
                 dialog.showPopupWindow(requireView(), this)
-                viewModel.setTutorId(tutorId)
+                viewModel.setTutor(tutor)
             }
         })
         adapter.submitList(allTutorsList)
@@ -155,11 +151,11 @@ class TutorListFragment : Fragment(), SelectDateDialog.SelectDateListener {
             if (result == null || result.isEmpty()) {
                 return@Observer
             }
-            val newAdapter = TutorListRecyclerAdapter(TutorListItemListener { tutorId ->
-                if (tutorId != null) {
+            val newAdapter = TutorListRecyclerAdapter(TutorListItemListener { tutor ->
+                if (tutor != null) {
                     val dialog = SelectDateDialog()
                     dialog.showPopupWindow(requireView(), this)
-                    viewModel.setTutorId(tutorId)
+                    viewModel.setTutor(tutor)
                 }
             })
             newAdapter.submitList(result.map { it.toDomainModel() })

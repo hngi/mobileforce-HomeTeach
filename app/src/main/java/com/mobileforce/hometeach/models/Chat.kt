@@ -9,9 +9,10 @@ import androidx.recyclerview.widget.DiffUtil
 data class Chat(
     val chatId: String,
     val senderName: String,
-    val  senderPhoto:String,
+    val senderPhoto: String,
     val lastMessage: String,
-    val lastMessageTime: String
+    val lastMessageTime: String,
+    val senderId: String
 )
 
 val chatDiffUtil = object : DiffUtil.ItemCallback<Chat>() {
