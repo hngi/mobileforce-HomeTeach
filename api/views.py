@@ -315,14 +315,19 @@ class VerifyTransactionView(APIView):
     permission_classes = (AllowAny, )
 
     def post(self, request, *args, **kwargs):
-        # transaction = Transaction(authorization_key=PAYSTACK_AUTHORIZATION_KEY)
-        # serializer = VerificationSerializer(data=request.data)
-        # if serializer.is_valid():
-        #     reference = serializer.validated_data['reference']
-
-        #     response = transaction.verify(reference)
-
-        #     return Response(response, status=status.HTTP_200_OK)
+        url = "https://api.paystack.co/transaction/verify/"
+        serializer = VerificationSerializer(data=request.data)
+        if serializer.is_valid():
+            reference = serializer.validated_data['reference']
+            r = requests.get(url+reference,
+                            headers={'Authorization': 'Bearer {}'.format(PAYSTACK_AUTHORIZATION_KEY)})
+            json = r.json()
+            try:
+                auth = json['data']['authorization']
+                authorization_code = auth['authorization_code']
+                serializer.save(authorization_code)
+            except:
+                return Response(json, status=status.HTTP_200_OK)
         return Response(status=status.HTTP_401_UNAUTHORIZED)
 
 
