@@ -360,7 +360,10 @@ class HomePageFragment : Fragment() {
         }
 
         viewModel.user.observe(viewLifecycleOwner, androidx.lifecycle.Observer { user ->
-            bindingTutor.username.text = "Welcome ${user.full_name}"
+
+            user?.let {
+                bindingTutor.username.text = "Welcome ${user.full_name}"
+            }
         })
 
         viewModel.profile.observe(viewLifecycleOwner, Observer { profile ->
