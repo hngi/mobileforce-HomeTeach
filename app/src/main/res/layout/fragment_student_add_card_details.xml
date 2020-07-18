@@ -1,152 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/primaryLightColor"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:title="Add Credit Card Details"
-        app:titleTextColor="@color/black" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="8dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="8dp" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="20dp">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintEnd_toEndOf="@id/guideline2">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/primaryLightColor"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:title="Add Credit Card Details"
+            app:titleTextColor="@color/black" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/cancel_btn_background"
-            android:orientation="horizontal"
-            android:padding="5dp">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/user_image"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
-                android:src="@drawable/profile_image" />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="20dp">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:orientation="vertical"
-                android:padding="10dp"
-                android:layout_marginStart="10dp">
+                android:background="@drawable/cancel_btn_background"
+                android:orientation="horizontal"
+                android:padding="5dp">
 
-                <TextView
-                    android:id="@+id/username"
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/user_image"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/profile_image" />
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/rahman_django"
-                    android:textSize="20sp" />
+                    android:layout_marginLeft="10dp"
+                    android:orientation="vertical"
+                    android:padding="10dp"
+                    android:layout_marginStart="10dp">
 
-                <TextView
-                    android:id="@+id/balance"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    <TextView
+                        android:id="@+id/username"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/rahman_django"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/balance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/balance_215000_n"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:layout_gravity="center"
-                    android:text="@string/balance_215000_n"
-                    android:textSize="20sp" />
+                    android:src="@drawable/tutor_field_icon"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginLeft="50dp" />
             </LinearLayout>
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="80dp"
-                android:src="@drawable/tutor_field_icon"
-                android:layout_marginStart="80dp" />
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:text="@string/please_enter_your_credit_card_information_below"
-            android:textSize="15sp" />
-
-        <EditText
-            android:id="@+id/et_card_number"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/edit_text_background"
-            android:hint="@string/card_number"
-            android:gravity="center"
-            android:drawableStart="@drawable/credit_card_icon"
-            android:inputType="text"
-            android:padding="12dp"
-            android:drawableLeft="@drawable/credit_card_icon"
-            tools:ignore="TextFields" />
-
-        <EditText
-            android:id="@+id/et_cvc_number"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="15dp"
-            android:gravity="center"
-            android:background="@drawable/edit_text_background"
-            android:hint="@string/cvc"
-            android:drawableStart="@drawable/credit_card_icon"
-            android:drawableEnd="@drawable/camera_icon"
-            android:inputType="text"
-            android:padding="12dp"
-            android:drawableLeft="@drawable/credit_card_icon"
-            android:drawableRight="@drawable/camera_icon"
-            tools:ignore="TextFields" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:orientation="horizontal">
+                android:layout_marginTop="10dp"
+                android:text="@string/please_enter_your_credit_card_information_below"
+                android:textSize="15sp" />
 
             <EditText
-                android:id="@+id/et_month"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
+                android:id="@+id/et_card_number"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_margin="10dp"
+                android:layout_marginTop="15dp"
                 android:background="@drawable/edit_text_background"
-                android:hint="@string/mm"
-                android:textAlignment="center" />
+                android:hint="@string/card_number"
+                android:gravity="center"
+                android:drawableStart="@drawable/credit_card_icon"
+                android:inputType="text"
+                android:padding="12dp"
+                android:drawableLeft="@drawable/credit_card_icon"
+                tools:ignore="TextFields" />
 
             <EditText
-                android:id="@+id/et_year"
-                android:layout_width="200dp"
-                android:layout_height="50dp"
+                android:id="@+id/et_cvc_number"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginStart="30dp"
-                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
                 android:background="@drawable/edit_text_background"
-                android:hint="@string/yy"
-                android:inputType="number"
-                android:textAlignment="center" />
+                android:hint="@string/cvc"
+                android:drawableStart="@drawable/credit_card_icon"
+                android:drawableEnd="@drawable/camera_icon"
+                android:inputType="text"
+                android:padding="12dp"
+                android:drawableLeft="@drawable/credit_card_icon"
+                android:drawableRight="@drawable/camera_icon"
+                tools:ignore="TextFields" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/et_month"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/edit_text_background"
+                    android:hint="@string/mm"
+                    android:textAlignment="center" />
+
+                <EditText
+                    android:id="@+id/et_year"
+                    android:layout_width="200dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/edit_text_background"
+                    android:hint="@string/yy"
+                    android:inputType="number"
+                    android:textAlignment="center" />
+
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/save"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/btn_background"
+                android:text="@string/save"
+                android:textColor="@color/white" />
         </LinearLayout>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/save"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/btn_background"
-            android:text="@string/save"
-            android:textColor="@color/white" />
     </LinearLayout>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
