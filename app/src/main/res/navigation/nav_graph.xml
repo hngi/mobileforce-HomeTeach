@@ -9,7 +9,11 @@
         android:id="@+id/chatListFragment"
         android:name="com.mobileforce.hometeach.ui.message.ChatListFragment"
         android:label="fragment_chat_list"
-        tools:layout="@layout/fragment_chat_list" />
+        tools:layout="@layout/fragment_chat_list">
+        <action
+            android:id="@+id/action_chatListFragment_to_chatFragment"
+            app:destination="@id/chatFragment" />
+    </fragment>
     <fragment
         android:id="@+id/tutorHomePageFragment"
         android:name="com.mobileforce.hometeach.ui.home.HomePageFragment"
@@ -86,11 +90,17 @@
         android:id="@+id/studentAddCardDetails"
         android:name="com.mobileforce.hometeach.ui.studentpayments.carddetails.StudentAddCardDetailsFragment"
         android:label="AddCardDetails"
-        tools:layout="@layout/fragment_student_add_card_details"/>
+        tools:layout="@layout/fragment_student_add_card_details" />
     <fragment
         android:id="@+id/editTutorProfileFragment"
         android:name="com.mobileforce.hometeach.ui.profile.EditTutorProfileFragment"
         android:label="EditTutorProfileFragment"
-        tools:layout="@layout/fragment_edit_tutor_profile"/>
+        tools:layout="@layout/fragment_edit_tutor_profile" />
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.mobileforce.hometeach.ui.message.ChatFragment"
+        android:label="chat_fragment"
+        tools:layout="@layout/chat_fragment" />
+
 
 </navigation>

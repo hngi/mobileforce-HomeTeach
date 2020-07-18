@@ -68,3 +68,11 @@ fun Activity.toast(message: String?, length: Int = Toast.LENGTH_SHORT) {
 fun Fragment.toast(message: String?, length: Int = Toast.LENGTH_SHORT) {
     Toast.makeText(requireContext(), message, length).show()
 }
+
+fun View.makeGone() {
+    visibility = View.GONE
+}
+
+fun View.makeVisible() {
+    visibility = View.VISIBLE
+}
