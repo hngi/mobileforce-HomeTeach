@@ -19,7 +19,7 @@ interface  Api{
 
 
     @JvmSuppressWildcards
-    @POST("v1/rest-auth/password/reset/")
+    @POST("v1/rest-auth/")
     suspend fun resetPassword(@Body params: Map<String, Any>): Response<EmailResponse>
 
     @JvmSuppressWildcards
