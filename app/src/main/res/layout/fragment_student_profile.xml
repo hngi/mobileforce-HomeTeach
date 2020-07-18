@@ -4,8 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/student_profile_layout"
     android:background="#68E5E5E5"
     tools:context=".ui.profile.StudentProfileFragment">
+
+
 
     <com.google.android.material.card.MaterialCardView
         style="@style/ProfileCardStyle"
@@ -16,17 +19,46 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            style="@style/Widget.MaterialComponents.AppBarLayout.Surface"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:drawableStart="@drawable/ic_arrow_back"
-            android:drawableLeft="@drawable/ic_arrow_back"
-            android:drawableEnd="@drawable/alarm"
-            android:drawableRight="@drawable/alarm"
-            android:gravity="center_horizontal"
-            android:text="@string/john_doe"
-            android:textSize="28sp" />
+            app:elevation="0dp"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$Behavior"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/tool_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#D6F5D9"
+                app:layout_scrollFlags="enterAlways|scroll"
+                app:navigationIcon="@drawable/ic_baseline_arrow_back_24">
+
+                <TextView
+                    android:id="@+id/student_Name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="John Doe"
+                    android:textColor="#000000"
+                    android:textSize="24sp" />
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    android:src="@drawable/ic_notify" />
+
+            </com.google.android.material.appbar.MaterialToolbar>
+        </com.google.android.material.appbar.AppBarLayout>
     </com.google.android.material.card.MaterialCardView>
 
     <androidx.cardview.widget.CardView
@@ -66,7 +98,7 @@
                 android:layout_marginLeft="15dp"
                 android:drawableEnd="@drawable/ic_round_green"
                 android:drawableRight="@drawable/ic_round_green"
-                android:text="@string/john_doe"
+                android:text=""
                 android:textSize="25sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@id/Profile_Image"
@@ -75,9 +107,10 @@
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
+                android:id="@+id/profile_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/email_input_field_hint"
+                android:text=""
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="@id/Profile_name"
@@ -116,9 +149,10 @@
             android:layout_margin="12dp">
 
             <TextView
+                android:id="@+id/profile_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/_09030000000"
+                android:text=""
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -155,6 +189,7 @@
             android:background="@color/white">
 
             <TextView
+                android:id="@+id/description_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/i_love_mathematics_and_data_science_looking_to_build_my_kids_and_myself_also"

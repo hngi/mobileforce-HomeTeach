@@ -129,6 +129,15 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
             full_name = user.fullName
         )
     }
+    override suspend fun getUserProfile(
+        id: Int
+    ): StudentProfileResponse {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getSingleUserProfile(): ProfileEntity {
+        return  db.userDao().getUserProfile()
+    }
 
     private fun mapProfileToEntity(profile: Profile): ProfileEntity {
         return ProfileEntity(
