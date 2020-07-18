@@ -11,10 +11,18 @@ class HomePageViewModel(private val userRepository: UserRepository, private val 
     val user = userRepository.getUser()
     val profile = userRepository.profileLiveData()
 
-    fun logOut(){
+    fun logOut() {
         viewModelScope.launch {
             userRepository.logOut()
             preferenceHelper.isLoggedIn = false
         }
     }
+
+    fun modify() {
+        viewModelScope.launch {
+            userRepository.modify()
+            preferenceHelper.isLoggedIn = false
+        }
+    }
+
 }

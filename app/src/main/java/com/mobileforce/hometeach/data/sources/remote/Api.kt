@@ -1,6 +1,8 @@
 package com.mobileforce.hometeach.data.sources.remote
 
 
+import androidx.lifecycle.LiveData
+import com.mobileforce.hometeach.data.model.UserEntity
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
 import com.mobileforce.hometeach.remotesource.wrappers.*
 import okhttp3.MultipartBody
@@ -63,6 +65,9 @@ interface  Api{
 
     @GET("")
     suspend fun getUserCardDetails(@Path("id") id: Int): List<UserCardDetailResponse>
+   
+  @GET("v1/users/")
+    suspend fun getUser(): LiveData<UserEntity>
 
     @GET("v1/student-profiles/{id}/")
     suspend fun getUserProfile(@Path("id") id: Int): StudentProfileResponse
