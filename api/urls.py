@@ -23,7 +23,6 @@ urlpatterns = [
     path('user-card-details/', views.card_info_by_user),
     path('card-by-id/<int:pk>/', views.card_info_by_id),
     path('verify-transaction/', views.VerifyTransactionView.as_view()),
-    #path('initialize-transaction/', views.InitializeTransactionView.as_view()),
 ]
 
 urlpatterns += router.urls

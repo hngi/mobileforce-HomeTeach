@@ -257,14 +257,12 @@ class CreditCardInfoSerializer(serializers.ModelSerializer):
         model = CreditCardInfo
         fields = '__all__'
 
+class WalletSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Wallet
+        fields = '__all__'
 
 class VerificationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Verify
         fields = ['reference']
-
-class WalletSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Wallet
-        field = '__all__'
-            

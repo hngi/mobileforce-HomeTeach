@@ -29,7 +29,6 @@ packaging==20.4
 Pillow==7.2.0
 psycopg2==2.8.5
 pyparsing==2.4.7
-pypaystack==1.21
 python-dateutil==2.8.1
 python-dotenv==0.14.0
 python-http-client==3.2.7
