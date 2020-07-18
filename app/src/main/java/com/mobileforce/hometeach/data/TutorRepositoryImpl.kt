@@ -2,8 +2,14 @@ package com.mobileforce.hometeach.data
 
 import com.mobileforce.hometeach.data.repository.TutorRepository
 import com.mobileforce.hometeach.data.sources.DataSourceFactory
+<<<<<<< HEAD
 import com.mobileforce.hometeach.data.sources.remote.wrappers.TutorDetailsResponse
 import com.mobileforce.hometeach.data.sources.remote.wrappers.UploadResponse
+=======
+import com.mobileforce.hometeach.data.sources.remote.wrappers.UploadResponse
+import com.mobileforce.hometeach.remotesource.wrappers.TutorDetailsResponse
+import okhttp3.MediaType
+>>>>>>> d4cb0fae9367a2886e0ddf61d2cb6374c803d499
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response

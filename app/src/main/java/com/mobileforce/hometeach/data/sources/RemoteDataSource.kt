@@ -1,6 +1,10 @@
 package com.mobileforce.hometeach.data.sources
 
 import androidx.lifecycle.LiveData
+<<<<<<< HEAD
+=======
+import com.mobileforce.hometeach.data.model.UploadResponse
+>>>>>>> d4cb0fae9367a2886e0ddf61d2cb6374c803d499
 import com.mobileforce.hometeach.data.model.ProfileEntity
 import com.mobileforce.hometeach.data.model.TutorEntity
 import com.mobileforce.hometeach.data.model.User
@@ -8,10 +12,19 @@ import com.mobileforce.hometeach.data.model.UserEntity
 import com.mobileforce.hometeach.data.sources.remote.Api
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
+<<<<<<< HEAD
 import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+=======
+import com.mobileforce.hometeach.remotesource.wrappers.TutorDetailsResponse
+import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import retrofit2.Call
+>>>>>>> d4cb0fae9367a2886e0ddf61d2cb6374c803d499
 import retrofit2.Response
+import retrofit2.http.Part
 
 class RemoteDataSource(private val api: Api) : DataSource {
 
@@ -110,6 +123,11 @@ class RemoteDataSource(private val api: Api) : DataSource {
         return api.resetPassword(map)
     }
 
+<<<<<<< HEAD
+=======
+    override suspend fun loadDocument(@Part document: MultipartBody.Part, @Part("desc") desc: RequestBody): Call<UploadResponse> {
+        TODO()
+>>>>>>> d4cb0fae9367a2886e0ddf61d2cb6374c803d499
 
     override suspend fun requestTutorService(params: Params.RequestTutorService): Response<TutorServiceRequestResponse> {
         return api.requestTutorService(params)
@@ -139,6 +157,9 @@ class RemoteDataSource(private val api: Api) : DataSource {
         TODO("Not yet implemented")
     }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> d4cb0fae9367a2886e0ddf61d2cb6374c803d499
 }
 

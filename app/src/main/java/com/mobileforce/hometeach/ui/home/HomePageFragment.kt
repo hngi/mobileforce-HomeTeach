@@ -10,6 +10,10 @@ import android.widget.RelativeLayout
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+<<<<<<< HEAD
+=======
+import androidx.lifecycle.lifecycleScope
+>>>>>>> d4cb0fae9367a2886e0ddf61d2cb6374c803d499
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
@@ -28,6 +32,10 @@ import com.mobileforce.hometeach.ui.signin.LoginActivity
 import com.mobileforce.hometeach.utils.AppConstants.USER_STUDENT
 import com.mobileforce.hometeach.utils.AppConstants.USER_TUTOR
 import com.mobileforce.hometeach.utils.PreferenceHelper
+<<<<<<< HEAD
+=======
+import kotlinx.coroutines.launch
+>>>>>>> d4cb0fae9367a2886e0ddf61d2cb6374c803d499
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.util.*
@@ -75,10 +83,16 @@ class HomePageFragment : Fragment() {
 
         viewModel.user.observe(viewLifecycleOwner, androidx.lifecycle.Observer { user ->
 
+<<<<<<< HEAD
             user?.let {
                 bindingParent.studentToolbar.title = "Welcome ${user.full_name}"
             }
         })
+=======
+            val user = db.userDao().getUser()
+            bindingParent.studentToolbar.title = "Welcome $user.full_name"
+        }
+>>>>>>> d4cb0fae9367a2886e0ddf61d2cb6374c803d499
 
         bindingParent.root.findViewById<RelativeLayout>(R.id.actionMakepayment).setOnClickListener {
             findNavController().navigate(R.id.studentMakePaymentFragment)
@@ -359,10 +373,14 @@ class HomePageFragment : Fragment() {
         }
 
         viewModel.user.observe(viewLifecycleOwner, androidx.lifecycle.Observer { user ->
+<<<<<<< HEAD
 
             user?.let {
                 bindingTutor.username.text = "Welcome ${user.full_name}"
             }
+=======
+            bindingTutor.username.text = "Welcome ${user.full_name}"
+>>>>>>> d4cb0fae9367a2886e0ddf61d2cb6374c803d499
         })
 
         viewModel.profile.observe(viewLifecycleOwner, Observer { profile ->

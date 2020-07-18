@@ -1,6 +1,7 @@
 package com.mobileforce.hometeach.data.sources
 
 import androidx.lifecycle.LiveData
+import com.mobileforce.hometeach.data.model.UploadResponse
 import com.mobileforce.hometeach.data.model.ProfileEntity
 import com.mobileforce.hometeach.data.model.TutorEntity
 import com.mobileforce.hometeach.data.model.User
@@ -10,6 +11,8 @@ import com.mobileforce.hometeach.data.sources.remote.wrappers.*
 import com.mobileforce.hometeach.remotesource.wrappers.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import retrofit2.Call
+import com.mobileforce.hometeach.remotesource.wrappers.TutorDetailsResponse
 import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
 import retrofit2.Response
 import retrofit2.http.Part
@@ -20,8 +23,6 @@ interface DataSource {
 
 
     suspend fun logIn(params: Params.SignIn): LoginResponse
-
-    suspend fun signUp(params: Params.SignUp): RegisterUserResponse
 
     suspend fun resetPassword(params: Params.PasswordReset):Response<EmailResponse>
     suspend fun saveUser(user: User)
@@ -53,6 +54,9 @@ interface DataSource {
     suspend fun saveUserCardDetails(params: Params.CardDetails)
 
     suspend fun getUserCardDetails(id: String): List<UserCardDetailResponse>
+
+    suspend fun getUserCardDetails(id: Int): List<UserCardDetailResponse>
+    suspend fun loadDocument(document: MultipartBody.Part, desc: RequestBody): Call<UploadResponse>
 
     suspend fun uploadTutorMedia( id: RequestBody,
                                  profile_pic: MultipartBody.Part,

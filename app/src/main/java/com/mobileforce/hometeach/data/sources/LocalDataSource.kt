@@ -1,6 +1,10 @@
 package com.mobileforce.hometeach.data.sources
 
 import androidx.lifecycle.LiveData
+<<<<<<< HEAD
+=======
+import com.mobileforce.hometeach.data.model.UploadResponse
+>>>>>>> d4cb0fae9367a2886e0ddf61d2cb6374c803d499
 import com.mobileforce.hometeach.data.model.ProfileEntity
 import com.mobileforce.hometeach.data.model.TutorEntity
 import com.mobileforce.hometeach.data.model.User
@@ -8,9 +12,17 @@ import com.mobileforce.hometeach.data.model.UserEntity
 import com.mobileforce.hometeach.data.sources.local.AppDataBase
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
+<<<<<<< HEAD
 import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+=======
+import com.mobileforce.hometeach.remotesource.wrappers.TutorDetailsResponse
+import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import retrofit2.Call
+>>>>>>> d4cb0fae9367a2886e0ddf61d2cb6374c803d499
 import retrofit2.Response
 
 class LocalDataSource(private val db: AppDataBase) : DataSource {
@@ -66,9 +78,27 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
 
     override suspend fun getTutorList(): Response<List<TutorNetworkResponse>> {
         TODO("Not yet implemented")
+<<<<<<< HEAD
     }
 
 
+    override suspend fun uploadTutorMedia(
+        id: RequestBody,
+        profile_pic: MultipartBody.Part,
+        credentials: MultipartBody.Part,
+        video: MultipartBody.Part
+    ): Response<UploadResponse> {
+        TODO("Not yet implemented")
+=======
+>>>>>>> d4cb0fae9367a2886e0ddf61d2cb6374c803d499
+    }
+
+    override suspend fun getId(): String {
+        return db.userDao().getSingleUser().id
+    }
+
+<<<<<<< HEAD
+=======
     override suspend fun uploadTutorMedia(
         id: RequestBody,
         profile_pic: MultipartBody.Part,
@@ -82,6 +112,7 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
         return db.userDao().getSingleUser().id
     }
 
+>>>>>>> d4cb0fae9367a2886e0ddf61d2cb6374c803d499
     override suspend fun requestTutorService(params: Params.RequestTutorService): Response<TutorServiceRequestResponse> {
         TODO("Not yet implemented")
     }
@@ -106,7 +137,12 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
         TODO("Not yet implemented")
     }
 
+<<<<<<< HEAD
     override suspend fun getUserCardDetails(id: String): List<UserCardDetailResponse> {
+=======
+    override suspend fun getUserCardDetails(id: Int): List<UserCardDetailResponse> {
+
+>>>>>>> d4cb0fae9367a2886e0ddf61d2cb6374c803d499
         TODO("Not yet implemented")
     }
 
@@ -129,6 +165,13 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
             full_name = user.fullName
         )
     }
+<<<<<<< HEAD
+=======
+    override suspend fun loadDocument(document: MultipartBody.Part,desc: RequestBody): Call<UploadResponse>{
+        return loadDocument(document,desc)
+    }
+}
+>>>>>>> d4cb0fae9367a2886e0ddf61d2cb6374c803d499
 
     private fun mapProfileToEntity(profile: Profile): ProfileEntity {
         return ProfileEntity(
@@ -146,4 +189,8 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
 
         )
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> d4cb0fae9367a2886e0ddf61d2cb6374c803d499

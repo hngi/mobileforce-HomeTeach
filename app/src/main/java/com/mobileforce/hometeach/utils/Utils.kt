@@ -1,10 +1,14 @@
 package com.mobileforce.hometeach.utils
 
+import android.content.ContentResolver
+import android.net.Uri
+import android.provider.OpenableColumns
 import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.google.android.material.snackbar.Snackbar
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.adapters.CircleTransform
 import com.mobileforce.hometeach.data.model.TutorEntity
@@ -42,6 +46,7 @@ inline fun <T : View> T.showIf(condition: (T) -> Boolean) {
 fun <T> MutableLiveData<T>.asLiveData() = this as LiveData<T>
 
 
+<<<<<<< HEAD
 /**
  * Converts [TutorModel] to a [TutorEntity]
  */
@@ -52,6 +57,18 @@ fun TutorModel.toDbEntity() = TutorEntity(
 /**
  * Converts [TutorEntity] to a [TutorModel]
  */
+=======
+/**
+ * Converts [TutorModel] to a [TutorEntity]
+ */
+fun TutorModel.toDbEntity() = TutorEntity(
+    id, full_name, profile_pic, description, tutorSubject, hourly_rate, rating
+)
+
+/**
+ * Converts [TutorEntity] to a [TutorModel]
+ */
+>>>>>>> d4cb0fae9367a2886e0ddf61d2cb6374c803d499
 fun TutorEntity.toDomainModel() = TutorModel(
     id, full_name, profile_pic, description, tutorSubject, hourly_rate, rating
 )
@@ -89,4 +106,30 @@ fun pojo2Map(obj: Any): Map<String, Any> {
         //log error
     }
     return hashMap
+}
+<<<<<<< HEAD
+=======
+fun  View.snackbar(message: String) {
+    Snackbar.make(
+        this,
+        message,
+        Snackbar.LENGTH_LONG
+    ).also { snackbar ->
+        snackbar.setAction("Ok") {
+            snackbar.dismiss()
+        }
+    }.show()
+}
+
+>>>>>>> 148cde10885453de2edcdd8d8ff27db782351896
+fun ContentResolver.getFileName(fileUri: Uri): String {
+    var name = ""
+    val returnCursor = this.query(fileUri, null, null, null, null)
+    if (returnCursor != null) {
+        val nameIndex = returnCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)
+        returnCursor.moveToFirst()
+        name = returnCursor.getString(nameIndex)
+        returnCursor.close()
+    }
+    return name
 }
