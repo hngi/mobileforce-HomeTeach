@@ -12,7 +12,7 @@ import com.mobileforce.hometeach.remotesource.wrappers.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
-import com.mobileforce.hometeach.remotesource.wrappers.TutorDetailsResponse
+//import com.mobileforce.hometeach.remotesource.wrappers.TutorDetailsResponse
 import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
 import retrofit2.Response
 import retrofit2.http.Part
