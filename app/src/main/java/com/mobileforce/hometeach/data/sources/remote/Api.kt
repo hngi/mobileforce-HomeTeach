@@ -46,7 +46,7 @@ interface  Api{
     suspend fun saveUserCardDetails(@Body params: Map<String, Any>)
 
     @Multipart
-    @PUT("v1/Upload/")
+    @PUT("v1/tutor-profiles/{id}/")
     suspend fun uploadTutorMedia(
         @Part("id") id: RequestBody,
         @Part profile_pic: MultipartBody.Part,
