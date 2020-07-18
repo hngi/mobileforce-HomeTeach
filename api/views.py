@@ -20,10 +20,6 @@ from cardvalidator import formatter, luhn
 from .utility.encryption_util import *
 from .serializers import BankInfoSerializer, CreditCardInfoSerializer, VerificationSerializer
 from .models import BankInfo,CreditCardInfo
-<<<<<<< HEAD
-=======
-import requests
->>>>>>> 7b62369744795515162c79903deb187cfcec9bdb
 from rest_framework.views import APIView
 
 
