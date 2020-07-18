@@ -20,7 +20,6 @@ import androidx.core.view.ViewCompat
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
@@ -41,7 +40,6 @@ import com.mobileforce.hometeach.utils.AppConstants.USER_TUTOR
 import kotlinx.android.synthetic.main.fragment_home_page_tutor.*
 
 import com.mobileforce.hometeach.utils.PreferenceHelper
-import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.text.SimpleDateFormat
@@ -106,11 +104,12 @@ class HomePageFragment : Fragment() {
 
     private fun setUpForStudent() {
 
-        lifecycleScope.launch {
+        viewModel.user.observe(viewLifecycleOwner, androidx.lifecycle.Observer { user ->
 
-            val user = db.userDao().getUser()
-            bindingParent.studentToolbar.title = "Welcome $user.full_name"
-        }
+            user?.let {
+                bindingParent.studentToolbar.title = "Welcome ${user.full_name}"
+            }
+        })
 
         bindingParent.root.findViewById<RelativeLayout>(R.id.actionMakepayment).setOnClickListener {
             findNavController().navigate(R.id.studentMakePaymentFragment)
@@ -411,8 +410,11 @@ class HomePageFragment : Fragment() {
 
         viewModel.user.observe(viewLifecycleOwner, androidx.lifecycle.Observer { user ->
 
-            bindingTutor.username.text = user.full_name
+
            
+            user?.let {
+                bindingTutor.username.text = "Welcome ${user.full_name}"
+            }
         })
 
         viewModel.profile.observe(viewLifecycleOwner, Observer { profile ->
