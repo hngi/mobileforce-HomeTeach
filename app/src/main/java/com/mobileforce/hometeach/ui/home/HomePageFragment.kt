@@ -121,7 +121,6 @@ class HomePageFragment : Fragment() {
             startActivity(Intent(requireContext(), LoginActivity::class.java))
             requireActivity().finish()
         }
-
         val onGoingAdapter = object :
             RecyclerViewAdapter<OngoingClassModelTutor>(TutorOngoingClassesAdapter.OngoingClassesDiffCallBack()) {
             override fun getLayoutRes() = R.layout.list_item_class_ongoing_parent_dash_board
