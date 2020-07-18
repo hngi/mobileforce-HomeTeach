@@ -16,8 +16,12 @@ interface UserRepository {
     suspend fun login(params: Params.SignIn): LoginResponse
 
     suspend fun register(params: Params.SignUp): RegisterUserResponse
+<<<<<<< HEAD
 
     suspend fun passwordReset(params: Params.PasswordReset):EmailResponse
+=======
+    suspend fun passwordReset(params: Params.PasswordReset):Response<EmailResponse>
+>>>>>>> 7a986b49b8a6aade3d51352a8a9ff91aea790e84
 
     suspend fun saveUser(user: User)
 
@@ -31,8 +35,12 @@ interface UserRepository {
 
     fun getUser(): LiveData<UserEntity>
 
+<<<<<<< HEAD
     suspend fun getTutorList(): Response<List<TutorListResponse>>
 
+=======
+    suspend fun getTutorList(): Response<List<TutorNetworkResponse>>
+>>>>>>> 7a986b49b8a6aade3d51352a8a9ff91aea790e84
     suspend fun requestTutorService(params: Params.RequestTutorService): Response<TutorServiceRequestResponse>
 
     suspend fun saveTutorList(tutorList: List<TutorEntity>)

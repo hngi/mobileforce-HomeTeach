@@ -9,12 +9,8 @@ import com.mobileforce.hometeach.data.model.TutorEntity
 import com.mobileforce.hometeach.data.model.UserEntity
 import com.mobileforce.hometeach.data.repository.UserRepository
 import com.mobileforce.hometeach.data.sources.remote.Params
-import com.mobileforce.hometeach.data.sources.remote.wrappers.TutorServiceRequestResponse
-import com.mobileforce.hometeach.models.TutorAllModel
-import com.mobileforce.hometeach.utils.Result
-import com.mobileforce.hometeach.utils.asLiveData
-import com.mobileforce.hometeach.utils.toDbEntity
-import com.mobileforce.hometeach.utils.toDomainModel
+import com.mobileforce.hometeach.models.TutorModel
+import com.mobileforce.hometeach.utils.*
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
@@ -27,23 +23,19 @@ class TutorListViewModel(
 ) : ViewModel() {
 
     //List of all tutors
-    private val _tutorList = MutableLiveData<Result<List<TutorAllModel>>>()
+    private val _tutorList = MutableLiveData<Result<List<TutorModel>>>()
     val tutorList = _tutorList.asLiveData()
 
     private val _serviceApproved = MutableLiveData<Result<String>>()
     val serviceApproved = _serviceApproved.asLiveData()
 
-
     //Selected Tutor Id
     private var selectedId: String? = null
     private var userEntity: UserEntity? = null
 
-    fun setTutorId(tutorId: String) {
-        selectedId = tutorId
-    }
 
     /**
-     * This function fetches a fresh list of [TutorAllModel] from the remote source.
+     * This function fetches a fresh list of [TutorModel] from the remote source.
      * This is called also when the user swipes down on the screen.
      */
     fun refreshTutorList() {
@@ -51,27 +43,18 @@ class TutorListViewModel(
         viewModelScope.launch {
             try {
                 val response = userRepository.getTutorList()
-                Log.i("TUTOR RESPONSE",response.body().toString())
+                Log.i("TUTOR RESPONSE", response.body().toString())
                 if (response.isSuccessful) {
                     val tutorListResponse = response.body()
-                    Log.i("TUTOR SUCCESS RESPONSE",tutorListResponse.toString())
-                        val listOfTutors = tutorListResponse?.map {
-                            TutorAllModel(
-                                id = it.user.id,
-                                full_name = it.user.full_name,
-                                profile_pic = it.profile_pic,
-                                description = it.description,
-                                tutorSubject = it.subjects,
-                                hourly_rate = it.hourly_rate.toInt(),
-                                rating = it.rating.rating.toString()
-                            )
-                        }
-                        Log.i("TUTOR LIST",listOfTutors.toString())
-                        if (listOfTutors != null) {
-                            _tutorList.postValue(Result.Success(listOfTutors))
-                            userRepository.clearTutorListDb()
-                            userRepository.saveTutorList(listOfTutors.map { it.toDbEntity() })
-                        }
+                    Log.i("TUTOR SUCCESS RESPONSE", tutorListResponse.toString())
+                    val listOfTutors = tutorListResponse?.map {
+                        it.toDomainModel()
+                    }
+                    Log.i("TUTOR LIST", listOfTutors.toString())
+                    _tutorList.postValue(Result.Success(listOfTutors))
+                    userRepository.clearTutorListDb()
+                    userRepository.saveTutorList(listOfTutors!!.map { it.toDbEntity() })
+
                 } else {
                     _tutorList.postValue(Result.Success(null))
                 }
@@ -81,6 +64,9 @@ class TutorListViewModel(
         }
     }
 
+    /**
+     * Get the current user from the db
+     */
     fun getUser() = userRepository.getUser()
 
     /**
@@ -131,12 +117,16 @@ class TutorListViewModel(
         }
     }
 
-    fun searchForTutor(query: String): LiveData<List<TutorEntity>>{
+    fun searchForTutor(query: String): LiveData<List<TutorEntity>> {
         return userRepository.searchTutor(query)
     }
 
     fun setUser(result: UserEntity) {
         userEntity = result
+    }
+
+    fun setTutorId(tutorId: String) {
+        selectedId = tutorId
     }
 }
 

@@ -8,6 +8,8 @@ import com.mobileforce.hometeach.data.sources.remote.Api
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
 import com.mobileforce.hometeach.remotesource.wrappers.*
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Response
 
 class RemoteDataSource(private val api: Api) : DataSource {
@@ -67,10 +69,10 @@ class RemoteDataSource(private val api: Api) : DataSource {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getTutorList(): Response<List<TutorListResponse>> {
+    override suspend fun getTutorList(): Response<List<TutorNetworkResponse>> {
         return api.getTutorList()
     }
-    
+
     override suspend fun saveUserCardDetails(params: Params.CardDetails) {
         val map = hashMapOf(
             "user_id" to params.user_id,
@@ -87,33 +89,50 @@ class RemoteDataSource(private val api: Api) : DataSource {
         return api.getUserCardDetails(id)
     }
 
-    override suspend fun requestTutorService(params: Params.RequestTutorService): Response<TutorServiceRequestResponse> {
-        return api.requestTutorService(params)
+    override suspend fun uploadTutorMedia(
+        id: RequestBody,
+        profile_pic: MultipartBody.Part,
+        credentials: MultipartBody.Part,
+        video: MultipartBody.Part
+    ): Response<UploadResponse> {
+        return api.uploadTutorMedia(id, profile_pic, credentials, video)
     }
 
-    override suspend fun saveTutorList(tutorList: List<TutorEntity>) {
+    override suspend fun getId(): String {
         TODO("Not yet implemented")
     }
 
-    override fun searchTutors(query: String): LiveData<List<TutorEntity>> {
-        TODO("Not yet implemented")
-    }
-
-    override suspend fun clearTutorListDb() {
-        TODO("Not yet implemented")
-    }
-
-    override suspend fun getTutorListDb(): List<TutorEntity> {
-        TODO("Not yet implemented")
-    }
-
-    override suspend fun resetPassword(params: Params.PasswordReset): EmailResponse {
-
+    override suspend fun resetPassword(params: Params.PasswordReset): Response<EmailResponse> {
         val map = hashMapOf(
             "email" to params.email
         )
         return api.resetPassword(map)
     }
+
+
+
+        override suspend fun requestTutorService(params: Params.RequestTutorService): Response<TutorServiceRequestResponse> {
+            return api.requestTutorService(params)
+        }
+
+        override suspend fun saveTutorList(tutorList: List<TutorEntity>) {
+            TODO("Not yet implemented")
+        }
+
+        override fun searchTutors(query: String): LiveData<List<TutorEntity>> {
+            TODO("Not yet implemented")
+        }
+
+        override suspend fun clearTutorListDb() {
+            TODO("Not yet implemented")
+        }
+
+        override suspend fun getTutorListDb(): List<TutorEntity> {
+            TODO("Not yet implemented")
+        }
+
+
+
 
 }
 

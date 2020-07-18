@@ -50,7 +50,7 @@ class UserRepositoryImpl(private val dataSource: DataSourceFactory) : UserReposi
         return dataSource.local().getUser()
     }
 
-    override suspend fun getTutorList(): Response<List<TutorListResponse>> {
+    override suspend fun getTutorList(): Response<List<TutorNetworkResponse>> {
         return dataSource.remote().getTutorList()
     }
 
@@ -87,7 +87,7 @@ class UserRepositoryImpl(private val dataSource: DataSourceFactory) : UserReposi
         return dataSource.local().getSingleUser()
     }
 
-    override suspend fun passwordReset(params: Params.PasswordReset): EmailResponse {
+    override suspend fun passwordReset(params: Params.PasswordReset):Response<EmailResponse>{
         return dataSource.remote().resetPassword(params)
     }
 }

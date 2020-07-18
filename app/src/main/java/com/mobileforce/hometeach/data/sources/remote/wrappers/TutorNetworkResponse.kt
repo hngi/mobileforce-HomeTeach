@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
  * Created by Mayokun Adeniyi on 15/07/2020.
  */
 
-data class TutorListResponse(
+data class TutorNetworkResponse(
     val user: TutorUserModel,
     val profile_pic: String,
     @SerializedName("desc")
@@ -24,6 +24,6 @@ data class TutorUserModel(
 )
 
 data class RatingModel(
-    val rating: Int,
+    val rating: Double,
     val count: Int
 )
