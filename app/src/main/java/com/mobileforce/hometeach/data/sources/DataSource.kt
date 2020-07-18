@@ -35,7 +35,7 @@ interface DataSource {
 
     suspend fun clearDb()
 
-    suspend fun getTutorList() : Response<List<TutorListResponse>>
+    suspend fun getTutorList() : Response<List<TutorNetworkResponse>>
 
     suspend fun requestTutorService(params: Params.RequestTutorService): Response<TutorServiceRequestResponse>
 
