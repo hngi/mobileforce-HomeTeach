@@ -90,7 +90,7 @@ class StudentSchedule(models.Model):
 
 # Create your models here.
 class Profile(models.Model):
-	user = models.OneToOneField(settings.AUTH_USER_MODEL,
+	user = models.OneToOneField(User,
 								on_delete=models.CASCADE)
 	# if user.is_tutor:
 	profile_pic = models.ImageField(upload_to='images/%Y/%m/%d/',
@@ -148,7 +148,9 @@ class CreditCardInfo(models.Model):
 
 class Verify(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
-	reference = models.UUIDField()
+	amount = models.IntegerField()
+	email = models.EmailField()
+	reference = models.CharField(max_length=150)
 	authorization_code = models.IntegerField()
 
 class Wallet(models.Model):

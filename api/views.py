@@ -3,7 +3,7 @@ from rest_framework import status
 from .serializers import CreateRequestSerializer, RequestTutorSerializer, RequestSerializer,TopTutorSerializer
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
-from .models import Request,Rating
+from .models import Request,Rating, Verify
 from .permissions import IsOwnerOrReadOnly, IsAdminUserOrReadOnly, IsSameUserAllowEditionOrReadOnly
 from .serializers import CustomUserSerializer, ProfileSerializer, TutorProfileSerializer, StudentProfileSerializer, RatingsSerializer,TopTutorSerializer
 from .models import Profile
@@ -20,6 +20,10 @@ from cardvalidator import formatter, luhn
 from .utility.encryption_util import *
 from .serializers import BankInfoSerializer, CreditCardInfoSerializer, VerificationSerializer
 from .models import BankInfo,CreditCardInfo
+<<<<<<< HEAD
+=======
+import requests
+>>>>>>> 7b62369744795515162c79903deb187cfcec9bdb
 from rest_framework.views import APIView
 
 
@@ -315,6 +319,7 @@ class VerifyTransactionView(APIView):
     permission_classes = (AllowAny, )
 
     def post(self, request, *args, **kwargs):
+<<<<<<< HEAD
         # transaction = Transaction(authorization_key=PAYSTACK_AUTHORIZATION_KEY)
         # serializer = VerificationSerializer(data=request.data)
         # if serializer.is_valid():
@@ -323,5 +328,20 @@ class VerifyTransactionView(APIView):
         #     response = transaction.verify(reference)
 
         #     return Response(response, status=status.HTTP_200_OK)
+=======
+        url = "https://api.paystack.co/transaction/verify/"
+        serializer = VerificationSerializer(data=request.data)
+        if serializer.is_valid():
+            reference = serializer.validated_data['reference']
+            r = requests.get(url+reference,
+                            headers={'Authorization': 'Bearer {}'.format(PAYSTACK_AUTHORIZATION_KEY)})
+            json = r.json()
+            try:
+                auth = json['data']['authorization']
+                authorization_code = auth['authorization_code']
+                serializer.save(authorization_code)
+            except:
+                return Response(json, status=status.HTTP_200_OK)
+>>>>>>> 7b62369744795515162c79903deb187cfcec9bdb
         return Response(status=status.HTTP_401_UNAUTHORIZED)
 
