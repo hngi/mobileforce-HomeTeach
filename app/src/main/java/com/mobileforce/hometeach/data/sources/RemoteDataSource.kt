@@ -8,11 +8,10 @@ import com.mobileforce.hometeach.data.model.UserEntity
 import com.mobileforce.hometeach.data.sources.remote.Api
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
-import com.mobileforce.hometeach.remotesource.wrappers.*
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import com.mobileforce.hometeach.remotesource.wrappers.TutorDetailsResponse
 import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Response
 
 class RemoteDataSource(private val api: Api) : DataSource {
@@ -111,10 +110,10 @@ class RemoteDataSource(private val api: Api) : DataSource {
     }
 
 
+    override suspend fun requestTutorService(params: Params.RequestTutorService): Response<TutorServiceRequestResponse> {
+        return api.requestTutorService(params)
+    }
 
-        override suspend fun requestTutorService(params: Params.RequestTutorService): Response<TutorServiceRequestResponse> {
-            return api.requestTutorService(params)
-        }
     override suspend fun saveUserProfile(profile: Profile) {
         TODO("Not yet implemented")
     }
@@ -123,27 +122,21 @@ class RemoteDataSource(private val api: Api) : DataSource {
         TODO("Not yet implemented")
     }
 
-    override suspend fun requestTutorService(params: Params.RequestTutorService): Response<TutorServiceRequestResponse> {
-        return api.requestTutorService(params)
+    override suspend fun saveTutorList(tutorList: List<TutorEntity>) {
+        TODO("Not yet implemented")
     }
 
-        override suspend fun saveTutorList(tutorList: List<TutorEntity>) {
-            TODO("Not yet implemented")
-        }
+    override fun searchTutors(query: String): LiveData<List<TutorEntity>> {
+        TODO("Not yet implemented")
+    }
 
-        override fun searchTutors(query: String): LiveData<List<TutorEntity>> {
-            TODO("Not yet implemented")
-        }
+    override suspend fun clearTutorListDb() {
+        TODO("Not yet implemented")
+    }
 
-        override suspend fun clearTutorListDb() {
-            TODO("Not yet implemented")
-        }
-
-        override suspend fun getTutorListDb(): List<TutorEntity> {
-            TODO("Not yet implemented")
-        }
-
-
+    override suspend fun getTutorListDb(): List<TutorEntity> {
+        TODO("Not yet implemented")
+    }
 
 
 }

@@ -86,9 +86,16 @@ class UserRepositoryImpl(private val dataSource: DataSourceFactory) : UserReposi
     }
 
 
-
-    override suspend fun passwordReset(params: Params.PasswordReset):Response<EmailResponse>{
+    override suspend fun passwordReset(params: Params.PasswordReset): Response<EmailResponse> {
         return dataSource.remote().resetPassword(params)
+    }
+
+    override suspend fun saveUserProfile(profile: Profile) {
+        dataSource.local().saveUserProfile(profile)
+    }
+
+    override fun profileLiveData(): LiveData<ProfileEntity> {
+        return dataSource.local().profileLiveData()
     }
 
 }

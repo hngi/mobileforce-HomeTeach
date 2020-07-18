@@ -8,12 +8,10 @@ import com.mobileforce.hometeach.data.model.UserEntity
 import com.mobileforce.hometeach.data.sources.local.AppDataBase
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
-import com.mobileforce.hometeach.remotesource.wrappers.*
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
-
 import com.mobileforce.hometeach.remotesource.wrappers.TutorDetailsResponse
 import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Response
 
 class LocalDataSource(private val db: AppDataBase) : DataSource {
@@ -141,8 +139,8 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
             profile.hourly_rate,
             profile.desc,
             profile.field,
-            profile.major_course,
-            profile.other_courses,
+            profile.major_course.toString(), //TODO for testing purpose. this should be changed and a type converter written to save to room
+            profile.other_courses.toString(), //TODO for testing purpose. this should be changed and a type converter written to save to room
             profile.state,
             profile.address,
             profile.user_url,
