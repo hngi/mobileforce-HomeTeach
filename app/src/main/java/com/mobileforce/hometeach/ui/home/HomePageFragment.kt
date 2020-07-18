@@ -363,9 +363,9 @@ class HomePageFragment : Fragment() {
             bindingTutor.username.text = "Welcome ${user.full_name}"
         })
 
-        viewModel.profile.observe(viewLifecycleOwner, Observer {
+        viewModel.profile.observe(viewLifecycleOwner, Observer { profile ->
 
-
+            bindingTutor.reviewCount.text = (profile.rating_count ?: 0).toString()
         })
     }
 
