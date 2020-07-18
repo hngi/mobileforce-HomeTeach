@@ -23,7 +23,6 @@ import org.koin.android.viewmodel.ext.android.viewModel
  * Authored by enyason
  */
 class ProfileFragment : Fragment() {
-    lateinit var navController: NavController
     private lateinit var bindingTutor: FragmentProfileBinding
     private val viewModel: ProfileViewModel by viewModel()
     private lateinit var bindingStudent: FragmentStudentProfileBinding
@@ -45,13 +44,12 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        navController = Navigation.findNavController(view)
 
         if (pref.userType == USER_TUTOR) {
             setUpProfileForTutor()
 
         }else{
-
+            setUpProfileForUser()
         }
 
 
@@ -81,10 +79,32 @@ class ProfileFragment : Fragment() {
             mDialog.show(requireActivity().supportFragmentManager, "credentials")
 
         }
-        bindingTutor.editButton.setOnClickListener {
-            navController.navigate(R.id.editTutorProfileFragment)
+    }
 
-        }
+    private fun setUpProfileForUser(){
+        viewModel.getUserProfile()
+        viewModel.getStudentProfile.observe(viewLifecycleOwner, Observer { result ->
+            Log.d("Result", result.toString())
+            when (result) {
+                Result.Loading -> {
+
+                }
+                is Result.Success -> {
+                    bindingStudent.ProfileName.text = result.data?.user?.fullName
+                    bindingStudent.studentName.text = result.data?.user?.fullName
+                    bindingStudent.descriptionText.text = result.data?.desc
+                    bindingStudent.profileEmail.text = result.data?.user?.email
+                    bindingStudent.profileNumber.text = result.data?.user?.phoneNumber
+                }
+
+                is Result.Error -> {
+
+                    bindingStudent.studentProfileLayout.snack(message = result.exception.localizedMessage)
+                }
+            }
+
+        })
+
     }
 
 }

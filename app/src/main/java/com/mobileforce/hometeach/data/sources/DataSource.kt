@@ -64,6 +64,7 @@ interface DataSource {
     suspend fun saveUserProfile(profile: Profile)
 
     fun profileLiveData(): LiveData<ProfileEntity>
-
+    suspend fun getUserProfile(id: Int): StudentProfileResponse
+    suspend fun getSingleUserProfile(): ProfileEntity
 
 }
