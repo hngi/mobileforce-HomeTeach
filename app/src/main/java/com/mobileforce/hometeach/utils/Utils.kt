@@ -8,10 +8,12 @@ import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.google.android.material.snackbar.Snackbar
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.adapters.CircleTransform
-import com.mobileforce.hometeach.data.model.User
-import com.mobileforce.hometeach.data.sources.remote.wrappers.UserRemote
+import com.mobileforce.hometeach.data.model.TutorEntity
+import com.mobileforce.hometeach.data.sources.remote.wrappers.TutorNetworkResponse
+import com.mobileforce.hometeach.models.TutorModel
 import com.squareup.picasso.Picasso
 import java.lang.reflect.Method
 
@@ -20,8 +22,8 @@ fun ImageView.bindTutorImage(tutorImage: String) {
     tutorImage.let {
         Picasso.get().load(tutorImage).transform(CircleTransform())
             .placeholder(R.drawable.profile_image).error(
-            R.drawable.profile_image
-        ).into(this)
+                R.drawable.profile_image
+            ).into(this)
     }
 }
 
@@ -43,20 +45,35 @@ inline fun <T : View> T.showIf(condition: (T) -> Boolean) {
  */
 fun <T> MutableLiveData<T>.asLiveData() = this as LiveData<T>
 
+
 /**
- * Converts a [UserRemote] to [User]
+ * Converts [TutorModel] to a [TutorEntity]
  */
-fun UserRemote.toDomain(): User {
-    return User(
-        id = id.toString(),
-        isTutor = isTutor,
-        email = email,
-        phoneNumber = phoneNumber,
-        fullName = fullName,
-        token = "token",
-        isActive = false
+fun TutorModel.toDbEntity() = TutorEntity(
+    id, full_name, profile_pic, description, tutorSubject, hourly_rate, rating
+)
+
+/**
+ * Converts [TutorEntity] to a [TutorModel]
+ */
+fun TutorEntity.toDomainModel() = TutorModel(
+    id, full_name, profile_pic, description, tutorSubject, hourly_rate, rating
+)
+
+fun TutorNetworkResponse.toDomainModel(): TutorModel {
+    val ratingModel = this.rating
+    val userModel = this.user
+    return TutorModel(
+        id = userModel.id,
+        full_name = userModel.full_name,
+        profile_pic = this.profile_pic,
+        description = this.description,
+        tutorSubject = this.subjects,
+        hourly_rate = this.hourly_rate,
+        rating = ratingModel.rating
     )
 }
+
 
 fun pojo2Map(obj: Any): Map<String, Any> {
     val hashMap: MutableMap<String, Any> =
@@ -77,6 +94,21 @@ fun pojo2Map(obj: Any): Map<String, Any> {
     }
     return hashMap
 }
+<<<<<<< HEAD
+=======
+fun  View.snackbar(message: String) {
+    Snackbar.make(
+        this,
+        message,
+        Snackbar.LENGTH_LONG
+    ).also { snackbar ->
+        snackbar.setAction("Ok") {
+            snackbar.dismiss()
+        }
+    }.show()
+}
+
+>>>>>>> 148cde10885453de2edcdd8d8ff27db782351896
 fun ContentResolver.getFileName(fileUri: Uri): String {
     var name = ""
     val returnCursor = this.query(fileUri, null, null, null, null)

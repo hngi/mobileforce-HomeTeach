@@ -18,7 +18,6 @@ import androidx.navigation.fragment.findNavController
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.databinding.FragmentTutorDetailsBinding
 import kotlinx.android.synthetic.main.request_layout.view.*
-import kotlinx.android.synthetic.main.request_layout.view.btn
 
 
 class TutorDetailsFragment : Fragment(), DatePickerDialog.OnDateSetListener,

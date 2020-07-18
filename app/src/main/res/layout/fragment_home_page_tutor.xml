@@ -25,15 +25,6 @@
                 android:layout_marginLeft="20dp">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:text="@string/welcome" />
-
-
-                <TextView
                     android:id="@+id/username"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -90,6 +81,7 @@
                             android:padding="15dp">
 
                             <TextView
+                                android:id="@+id/totalstudent"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="left"
@@ -169,6 +161,7 @@
                             android:padding="15dp">
 
                             <TextView
+                                android:id="@+id/profilevisits"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="left"
@@ -242,6 +235,7 @@
                             android:padding="15dp">
 
                             <TextView
+                                android:id="@+id/totalbalance"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="left"
@@ -322,10 +316,11 @@
                             android:padding="15dp">
 
                             <TextView
+                                android:id="@+id/totalrevies"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="left"
-                                android:text="TOTAL STUDENTS"
+                                android:text="TOTAL REVIEWS"
                                 android:textColor="@color/white" />
 
                             <LinearLayout
@@ -483,6 +478,7 @@
                             android:src="@drawable/input" />
 
                         <TextView
+                            android:id="@+id/withdrawals"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"

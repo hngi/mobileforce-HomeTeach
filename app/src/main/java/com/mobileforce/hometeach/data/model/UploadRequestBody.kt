@@ -51,6 +51,7 @@ class UploadRequestBody(
     companion object {
         private const val DEFAULT_BUFFER_SIZE = 2048
     }
+<<<<<<< HEAD
 
 }
 
@@ -58,3 +59,6 @@ private fun EditTutorProfileFragment.onProgressUpdate(toInt: Int) {
 
 }
 
+=======
+}
+>>>>>>> 148cde10885453de2edcdd8d8ff27db782351896
