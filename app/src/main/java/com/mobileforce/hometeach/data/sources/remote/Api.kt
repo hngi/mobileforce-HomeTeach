@@ -69,4 +69,6 @@ interface  Api{
   @GET("v1/users/")
     suspend fun getUser(): LiveData<UserEntity>
 
+    @GET("v1/student-profiles/{id}/")
+    suspend fun getUserProfile(@Path("id") id: Int): StudentProfileResponse
 }

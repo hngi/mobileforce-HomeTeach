@@ -54,5 +54,7 @@ interface UserRepository {
     fun profileLiveData(): LiveData<ProfileEntity>
     suspend fun modify()
 
-
+    suspend fun getSingleUserProfile(): ProfileEntity
+    suspend fun getUserProfile() : StudentProfileResponse
 }
+

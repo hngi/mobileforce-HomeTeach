@@ -33,7 +33,7 @@ class ChatAdapter(messages: ArrayList<Message>) :
 
     override fun getItemViewType(position: Int): Int {
         val message = messages[position]
-        return if (message.sender.id % 2 == 0){
+        return if (message.sender) {
             viewTypeSent
         } else {
             viewTypeReceived
@@ -42,46 +42,49 @@ class ChatAdapter(messages: ArrayList<Message>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view: View
-        return if (viewType == viewTypeSent){
-            view = LayoutInflater.from(parent.context).inflate(R.layout.item_message_outgoing, parent, false)
+        return if (viewType == viewTypeSent) {
+            view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.item_message_outgoing, parent, false)
             SentMessageHolder(view)
         } else {
-            view = LayoutInflater.from(parent.context).inflate(R.layout.item_message_incoming, parent, false)
+            view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.item_message_incoming, parent, false)
             ReceivedMessageHolder(view)
         }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val message = messages[position]
-        when (holder.itemViewType){
+        when (holder.itemViewType) {
             viewTypeSent -> (holder as SentMessageHolder).bind(message)
             else -> (holder as ReceivedMessageHolder).bind(message)
         }
     }
 
-    class SentMessageHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+    class SentMessageHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         private var sentMsg: TextView = itemView.findViewById(R.id.tv_message_outgoing)
         private var sentTime: TextView = itemView.findViewById(R.id.tv_message_outgoing_time)
 
-        fun bind(message: Message){
+        fun bind(message: Message) {
             sentMsg.text = message.message
             sentTime.text = convertTime(message.createdAt)
         }
     }
 
-    class ReceivedMessageHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+    class ReceivedMessageHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         private var rcvdMsg: TextView = itemView.findViewById(R.id.tv_message_incoming)
         private var rcvdTime: TextView = itemView.findViewById(R.id.tv_message_incoming_time)
 
-        fun bind(message: Message){
+        fun bind(message: Message) {
             rcvdMsg.text = message.message
-            rcvdTime.text =  convertTime(message.createdAt)
+            rcvdTime.text = convertTime(message.createdAt)
         }
     }
 }
-fun convertTime(milliseconds: Long): String{
+
+fun convertTime(milliseconds: Long): String {
     val formatter = SimpleDateFormat("hh:mm a", Locale.US)
     formatter.timeZone = TimeZone.getTimeZone("UTC")
     return formatter.format(Date(milliseconds))
