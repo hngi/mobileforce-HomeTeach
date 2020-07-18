@@ -100,4 +100,12 @@ class UserRepositoryImpl(private val dataSource: DataSourceFactory) : UserReposi
         return dataSource.local().profileLiveData()
     }
 
+    override suspend fun getSingleUserProfile(): ProfileEntity {
+        return dataSource.local().getSingleUserProfile()
+    }
+
+    override suspend fun getUserProfile(): StudentProfileResponse {
+        val user = dataSource.local().getSingleUserProfile()
+        return dataSource.remote().getUserProfile(user.id.toInt())
+    }
 }
