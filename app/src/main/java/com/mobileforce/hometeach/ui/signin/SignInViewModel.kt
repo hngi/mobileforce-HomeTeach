@@ -25,6 +25,7 @@ class SignInViewModel(
 
     //Live data goes here
 
+    var success: Boolean = false
     private val _reset = MutableLiveData<Result<Nothing>>()
     val reset: LiveData<Result<Nothing>>
         get() = _reset
@@ -101,16 +102,11 @@ class SignInViewModel(
         viewModelScope.launch {
             try {
                 val emailResponse = userRepository.passwordReset(params)
-                if (emailResponse.status == "OK") {
-                    _reset.postValue(Result.Success())
-                    Log.d("api", emailResponse.status)
-                } else {
-                    Log.d("api", emailResponse.status)
-                }
+
+                success = emailResponse.isSuccessful
 
             } catch (error: Throwable) {
-                _reset.postValue(Result.Error(error))
-
+                success = false
             }
         }
     }

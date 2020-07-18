@@ -12,9 +12,9 @@ data class TutorEntity(
     @PrimaryKey
     val id: String,
     val full_name: String,
-    val profile_pic: String,
-    val description: String,
-    val tutorSubject: String,
-    val hourly_rate: Int,
-    var rating: String
+    val profile_pic: String?,
+    val description: String?,
+    val tutorSubject: String?,
+    val hourly_rate: String?,
+    var rating: Double?
 )

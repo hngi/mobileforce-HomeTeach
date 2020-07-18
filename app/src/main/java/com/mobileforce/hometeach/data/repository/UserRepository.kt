@@ -16,7 +16,7 @@ interface UserRepository {
 
     suspend fun login(params: Params.SignIn): LoginResponse
     suspend fun register(params: Params.SignUp): RegisterUserResponse
-    suspend fun passwordReset(params: Params.PasswordReset):EmailResponse
+    suspend fun passwordReset(params: Params.PasswordReset):Response<EmailResponse>
 
     suspend fun saveUser(user: User)
     suspend fun logOut()
@@ -25,7 +25,7 @@ interface UserRepository {
     suspend fun getTutorDetails(): TutorDetailsResponse
     fun getUser(): LiveData<UserEntity>
 
-    suspend fun getTutorList(): Response<List<TutorListResponse>>
+    suspend fun getTutorList(): Response<List<TutorNetworkResponse>>
     suspend fun requestTutorService(params: Params.RequestTutorService): Response<TutorServiceRequestResponse>
     suspend fun saveTutorList(tutorList: List<TutorEntity>)
     fun searchTutor(query: String): LiveData<List<TutorEntity>>

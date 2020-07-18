@@ -59,27 +59,8 @@ class LoginActivity : AppCompatActivity() {
             navigateToSignUp()
         }
         binding.forgotPassword.setOnClickListener {
-            forgotPassword()
+            showEmailDialog()
         }
-
-        val mDialogView = LayoutInflater.from(this).inflate(R.layout.forgot_password_layout1, null)
-        val selected = mDialogView.radio_group.checkedRadioButtonId
-        when (selected) {
-            mDialogView.recover_email_chBox.id -> {
-                mDialogView.apply_btn.setBackgroundResource(R.drawable.apply_background)
-            }
-            mDialogView.recover_phone_chBox.id -> {
-                mDialogView.apply_btn.setBackgroundResource(R.drawable.apply_background)
-            }
-        }
-
-//        if (mDialogView.recover_email_chBox.isChecked) {
-//            mDialogView.apply.setBackgroundResource(R.drawable.apply_background)
-//        } else if (mDialogView.recover_phone_chBox.isChecked) {
-//            mDialogView.apply.setBackgroundResource(R.drawable.apply_background)
-//        } else {
-//
-//        }
 
         emailWatcher = object : TextWatcher {
             override fun afterTextChanged(input: Editable?) {
@@ -104,7 +85,7 @@ class LoginActivity : AppCompatActivity() {
             }
 
         }
-        
+
         passwordWatcher = object : TextWatcher {
             override fun afterTextChanged(input: Editable?) {
                 val PASSWORD_PATTEN =
@@ -157,7 +138,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
 
-
     private fun observeSignIn() {
 
         viewModel.signIn.observe(this, Observer { result ->
@@ -198,65 +178,32 @@ class LoginActivity : AppCompatActivity() {
         startActivity(Intent(this, ExploreActivity::class.java))
     }
 
-    private fun forgotPassword() {
 
-
-        val mDialogView = LayoutInflater.from(this).inflate(R.layout.forgot_password_layout1, null)
-        //AlertDialogBuilder
+    private fun showEmailDialog() {
+        val mDialogView = LayoutInflater.from(this).inflate(R.layout.recover_email_layout, null)
 
         val mBuilder = AlertDialog.Builder(this)
             .setView(mDialogView)
-        //show dialog
+
         val mAlertDialog = mBuilder.show()
+        val submit = mDialogView.findViewById<AppCompatButton>(R.id.submit)
 
+        submit.setOnClickListener {
 
-        mDialogView.apply_btn.setOnClickListener {
-            mAlertDialog.dismiss()
+            val email = mDialogView.email.text.toString()
+            val data = Params.PasswordReset(email)
+            viewModel.resetPassword(data)
 
-            if (mDialogView.recover_email_chBox.isChecked) {
-                showEmailDialog()
-            } else if (mDialogView.recover_phone_chBox.isChecked) {
-                showPhoneDialog()
+            if (viewModel.success) {
+                mAlertDialog.hide()
+                binding.signInLayout.snack(message = "A PASSSWORD RESET LINK HAS BEEN SENT TO YOUR MAIL")
+
             } else {
+                mAlertDialog.hide()
+                binding.signInLayout.snack(message = "SORRY, THIS EMAIL IS NOT REGISTERED OR YOU HAVE A POOR INTERNET CONNECTION")
 
             }
         }
     }
-
-    private fun showEmailDialog() {
-        val mDialogView = LayoutInflater.from(this).inflate(R.layout.recover_email_layout, null)
-        //AlertDialogBuilder
-        val mBuilder = AlertDialog.Builder(this)
-            .setView(mDialogView)
-        //show dialog
-        val mAlertDialog = mBuilder.show()
-        val email = mDialogView.emailtext.text.toString()
-        val data = Params.PasswordReset(email)
-        val submit = mDialogView.findViewById<AppCompatButton>(R.id.submit)
-       submit.setOnClickListener {
-           viewModel.resetPassword(data)
-          // reset()
-           mAlertDialog.hide()
-       }
-    }
-
-    private fun showPhoneDialog() {
-        val mDialogView = LayoutInflater.from(this).inflate(R.layout.recover_phone_layout, null)
-        //AlertDialogBuilder
-        val mBuilder = AlertDialog.Builder(this)
-            .setView(mDialogView)
-        //show dialog
-        val mAlertDialog = mBuilder.show()
-        val phone = mDialogView.phone.text.toString()
-    }
-
-    fun reset(){
-        viewModel.reset.observe(this, Observer {
-          Log.d("api",it.toString())
-        }
-        )
-
-    }
-
 
 }

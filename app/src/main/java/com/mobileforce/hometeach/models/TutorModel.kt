@@ -6,14 +6,14 @@ import com.mobileforce.hometeach.adapters.CircleTransform
 import com.mobileforce.hometeach.R
 import com.squareup.picasso.Picasso
 
-data class TutorAllModel(
+data class TutorModel(
     val id: String,
     val full_name: String,
-    val profile_pic: String,
-    val description: String,
-    val tutorSubject: String,
-    val hourly_rate: Int,
-    var rating: String
+    val profile_pic: String?,
+    val description: String?,
+    val tutorSubject: String?,
+    val hourly_rate: String?,
+    var rating: Double?
 )
 
 
