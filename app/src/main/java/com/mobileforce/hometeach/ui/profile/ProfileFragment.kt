@@ -7,6 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.databinding.FragmentProfileBinding
 import com.mobileforce.hometeach.databinding.FragmentStudentProfileBinding
 import com.mobileforce.hometeach.utils.AppConstants.USER_TUTOR
@@ -20,6 +23,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
  * Authored by enyason
  */
 class ProfileFragment : Fragment() {
+    lateinit var navController: NavController
     private lateinit var bindingTutor: FragmentProfileBinding
     private val viewModel: ProfileViewModel by viewModel()
     private lateinit var bindingStudent: FragmentStudentProfileBinding
@@ -41,6 +45,7 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        navController = Navigation.findNavController(view)
 
         if (pref.userType == USER_TUTOR) {
             setUpProfileForTutor()
@@ -74,6 +79,10 @@ class ProfileFragment : Fragment() {
         bindingTutor.viewAll.setOnClickListener {
             val mDialog = CredentialDialog.newInstance()
             mDialog.show(requireActivity().supportFragmentManager, "credentials")
+
+        }
+        bindingTutor.editButton.setOnClickListener {
+            navController.navigate(R.id.editTutorProfileFragment)
 
         }
     }

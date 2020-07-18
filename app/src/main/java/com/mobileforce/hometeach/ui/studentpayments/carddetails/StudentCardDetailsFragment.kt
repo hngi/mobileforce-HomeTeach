@@ -37,8 +37,9 @@ class StudentCardDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //TODO: Get User ID and pass to getUserCardDetails()
-        cardList = viewModel.getUserCardDetails(1)
+
+        // Get a list of User's saved cards to display in the RV
+        cardList = viewModel.getUserCardDetails()
 //        list = mutableListOf()
 //        list.add(
 //            com.mobileforce.hometeach.ui.studentpayments.UserCardDetailResponse(

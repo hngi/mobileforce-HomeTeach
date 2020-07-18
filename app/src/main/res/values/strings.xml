@@ -47,7 +47,7 @@
     <string name="card_details">Card Details</string>
     <string name="payments">Payments</string>
     <string name="welcome">Welcome</string>
-    <string name="rahman">Rahman,</string>
+    <string name="rahman">Welcome  Rahman,</string>
     <string name="modify">MODIFY</string>
     <string name="since_last_month">Since last month</string>
     <string name="cancel_all">CANCEL ALL</string>
@@ -65,7 +65,7 @@
     <string name="confirm">CONFIRM</string>
     <string name="full_name">Full name</string>
     <string name="description">Description</string>
-    <string name="upload_a_30_second_video_about_yourself">Upload a 30 second video about yourself</string>
+    <string name="upload_a_30_second_video_about_yourself">Upload Your video,Image and Credential</string>
     <string name="upload">Upload</string>
     <string name="clear">Clear</string>
     <string name="file_must_not_be_more_than_30seconds_15mb">File must not be more than 30seconds/15mb</string>
