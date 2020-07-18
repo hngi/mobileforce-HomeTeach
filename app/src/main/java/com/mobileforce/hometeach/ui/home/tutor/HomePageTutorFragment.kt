@@ -17,6 +17,7 @@ import com.mobileforce.hometeach.databinding.FragmentHomePageTutorBinding
 import com.mobileforce.hometeach.models.TutorClassesDataModel
 import kotlinx.android.synthetic.main.fragment_home_page_tutor.*
 import java.util.*
+import java.util.Calendar.MONTH
 
 class HomePageTutorFragment : Fragment(), OnItemtouch {
     private lateinit var tutor_classes_list: List<TutorClassesDataModel>
@@ -95,8 +96,8 @@ class HomePageTutorFragment : Fragment(), OnItemtouch {
                 it,
                 DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
 
-//                    MONTHS[monthOfYear]
-//                   dayOfMonth
+//                  MONTH[monthOfYear]
+//                  dayOfMonth
                     //MONTHS[monthOfYear]
 
                 },

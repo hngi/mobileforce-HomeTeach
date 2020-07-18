@@ -374,6 +374,7 @@ class HomePageFragment : Fragment() {
         bindingTutor.root.findViewById<LinearLayout>(R.id.withdrawal).setOnClickListener {
             findNavController().navigate(R.id.makeWithdrawalFragment)
         }
+
         val TutorDashboardModel = mutableListOf<TutorDashboardModel>(
             TutorDashboardModel(
                 UUID.randomUUID().toString(),
@@ -436,4 +437,7 @@ class HomePageFragment : Fragment() {
 
     }
 
+    fun OnUserclicked(datamodel: TutorClassesDataModel, position: Int) {
+        //OPEN INTENT  OR FRAGMENT TO EDIT THE TUTORS CLASSES
+    }
 }
