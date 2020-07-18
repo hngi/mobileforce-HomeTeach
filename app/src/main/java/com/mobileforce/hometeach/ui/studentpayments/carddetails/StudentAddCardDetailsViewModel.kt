@@ -9,6 +9,8 @@ import kotlinx.coroutines.launch
 
 class StudentAddCardDetailsViewModel(private val userRepository: UserRepository) : ViewModel() {
 
+    val user = userRepository.getUser()
+
     fun saveUserCardDetails(params: Params.CardDetails){
         viewModelScope.launch {
             try {
