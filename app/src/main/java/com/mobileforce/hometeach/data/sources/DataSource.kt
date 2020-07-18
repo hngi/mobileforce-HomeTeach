@@ -56,5 +56,7 @@ interface DataSource {
                                  video: MultipartBody.Part):Response<UploadResponse>
 
     suspend fun getId():String
+    suspend fun getUserProfile(id: Int): StudentProfileResponse
+
 
 }

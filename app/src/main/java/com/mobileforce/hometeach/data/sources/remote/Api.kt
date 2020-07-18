@@ -60,5 +60,7 @@ interface  Api{
 
     @GET("")
     suspend fun getUserCardDetails(@Path("id") id: Int): List<UserCardDetailResponse>
+    @GET("v1/student-profiles/{id}/")
+    suspend fun getUserProfile(@Path("id") id: Int): StudentProfileResponse
 
 }

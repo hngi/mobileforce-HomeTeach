@@ -85,5 +85,10 @@ class UserRepositoryImpl(private val dataSource: DataSourceFactory) : UserReposi
 
     override suspend fun passwordReset(params: Params.PasswordReset):Response<EmailResponse>{
         return dataSource.remote().resetPassword(params)
+
+    }
+    override suspend fun getUserProfile(): StudentProfileResponse {
+        val user = dataSource.local().getSingleUser()
+        return dataSource.remote().getUserProfile(user.id.toInt())
     }
 }

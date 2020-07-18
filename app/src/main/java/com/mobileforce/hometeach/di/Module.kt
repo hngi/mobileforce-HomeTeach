@@ -86,7 +86,7 @@ val appModule = module {
     factory { SignUpViewModel(get()) }
     factory { HomePageViewModel(get(), get()) }
     factory { TutorListViewModel(get())}
-    factory { ProfileViewModel(get()) }
+    factory { ProfileViewModel(get(),get()) }
 
     factory { EditTutorViewModel(get()) }
     factory { StudentAddCardDetailsViewModel(get()) }

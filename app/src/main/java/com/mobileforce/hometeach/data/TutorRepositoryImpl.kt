@@ -12,7 +12,7 @@ import retrofit2.Response
 class TutorRepositoryImpl (private val dataSource: DataSourceFactory): TutorRepository {
     override suspend fun getTutorDetails(): TutorDetailsResponse {
         val user = dataSource.local().getSingleUser()
-        return dataSource.remote().getTutorDetails(user.id.toDouble().toInt())
+        return dataSource.remote().getTutorDetails(user.id.toInt())
     }
 
     override suspend fun uploadTutorMedia(

@@ -129,7 +129,11 @@ class RemoteDataSource(private val api: Api) : DataSource {
             TODO("Not yet implemented")
         }
 
-
+        override suspend fun getUserProfile(
+            id: Int
+        ): StudentProfileResponse {
+            return api.getUserProfile(id)
+        }
 
 
 }

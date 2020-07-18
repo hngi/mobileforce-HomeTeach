@@ -111,7 +111,11 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
         TODO("Not yet implemented")
     }
 
-
+    override suspend fun getUserProfile(
+        id: Int
+    ): StudentProfileResponse {
+        TODO("Not yet implemented")
+    }
     private fun mapUserToEntity(user: User): UserEntity {
         return UserEntity(
             id = user.id,
@@ -122,4 +126,5 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
             full_name = user.fullName
         )
     }
+
 }
