@@ -13,5 +13,6 @@ object AppConstants {
     const val USER_ID = "user_id"
     const val COLLECTION_USER = "user"
 
+    const val IS_FIRST_RUN = "first_run"
 
 }

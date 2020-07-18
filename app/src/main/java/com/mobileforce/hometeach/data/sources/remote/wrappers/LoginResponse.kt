@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName
 data class LoginResponse(val token: String, val profile: Profile)
 data class Profile(
     val user: UserRemote,
+    val id: Int,
     val profile_pic: String?,
     val hourly_rate: String?,
     val rating: Rating?,

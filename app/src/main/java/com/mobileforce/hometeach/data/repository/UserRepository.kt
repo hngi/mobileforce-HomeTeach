@@ -1,13 +1,13 @@
 package com.mobileforce.hometeach.data.repository
 
 import androidx.lifecycle.LiveData
+import com.mobileforce.hometeach.data.model.ProfileEntity
 import com.mobileforce.hometeach.data.model.TutorEntity
 import com.mobileforce.hometeach.data.model.User
 import com.mobileforce.hometeach.data.model.UserEntity
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
-import com.mobileforce.hometeach.remotesource.wrappers.*
-
+import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
 import retrofit2.Response
 
 
@@ -48,5 +48,9 @@ interface UserRepository {
     suspend fun getUserCardDetails(id: String): List<UserCardDetailResponse>
 
     suspend fun getSingleUser(): UserEntity
+
+    suspend fun saveUserProfile(profile: Profile)
+    fun profileLiveData(): LiveData<ProfileEntity>
+
 
 }

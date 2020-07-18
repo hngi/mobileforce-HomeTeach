@@ -2,7 +2,6 @@ package com.mobileforce.hometeach.ui.signin
 
 import android.app.ProgressDialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -11,18 +10,19 @@ import android.util.Patterns
 import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
 import com.mobileforce.hometeach.R
-import com.mobileforce.hometeach.databinding.ActivityLoginBinding
 import com.mobileforce.hometeach.data.sources.remote.Params
+import com.mobileforce.hometeach.databinding.ActivityLoginBinding
 import com.mobileforce.hometeach.ui.BottomNavigationActivity
 import com.mobileforce.hometeach.ui.ExploreActivity
+import com.mobileforce.hometeach.utils.ApiError
 import com.mobileforce.hometeach.utils.Result
 import com.mobileforce.hometeach.utils.snack
 import kotlinx.android.synthetic.main.forgot_password_layout1.view.*
-import kotlinx.android.synthetic.main.forgot_password_layout1.view.apply_btn
 import kotlinx.android.synthetic.main.recover_email_layout.view.*
 import kotlinx.android.synthetic.main.recover_phone_layout.view.*
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -114,6 +114,14 @@ class LoginActivity : AppCompatActivity() {
         binding.textEditEmail.addTextChangedListener(emailWatcher)
         binding.textEditPassword.addTextChangedListener(passwordWatcher)
 
+        observeSignIn()
+
+
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        progressDialog.dismiss()
     }
 
     private fun triggerSignInProcess() {
@@ -127,7 +135,6 @@ class LoginActivity : AppCompatActivity() {
             Toast.makeText(this, "Some fields are empty", Toast.LENGTH_SHORT).show()
         }
 
-        observeSignIn()
     }
 
 
@@ -153,7 +160,8 @@ class LoginActivity : AppCompatActivity() {
 
                 is Result.Error -> {
                     progressDialog.hide()
-                    binding.signInLayout.snack(message = result.exception.localizedMessage)
+                    val message = ApiError(result.exception).message
+                    binding.signInLayout.snack(message = message, length = Snackbar.LENGTH_LONG)
                 }
             }
         })
@@ -162,12 +170,11 @@ class LoginActivity : AppCompatActivity() {
 
     private fun navigateToDashBoard() {
         startActivity(Intent(this, BottomNavigationActivity::class.java))
-        //finish()
+        finish()
     }
 
 
     private fun navigateToSignUp() {
-        //startActivity(Intent(this, SignUpActivity::class.java))
         startActivity(Intent(this, ExploreActivity::class.java))
     }
 
