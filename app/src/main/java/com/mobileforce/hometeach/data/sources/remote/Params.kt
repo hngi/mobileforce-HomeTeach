@@ -38,6 +38,8 @@ class Params {
     )
 
     data class CardDetails(
+        val user_id: String,
+        val card_holder_name: String,
         val card_number: String,
         val card_cvc: String,
         val expiry_month: Int,

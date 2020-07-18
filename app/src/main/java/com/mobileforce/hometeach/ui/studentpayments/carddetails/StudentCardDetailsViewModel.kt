@@ -6,13 +6,14 @@ import com.mobileforce.hometeach.data.repository.UserRepository
 import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
 import kotlinx.coroutines.launch
 
-class StudentCardDetailsViewModel(private val repository: UserRepository) : ViewModel() {
+class StudentCardDetailsViewModel(private val userRepository: UserRepository) : ViewModel() {
 
-    fun getUserCardDetails(id: Int): List<UserCardDetailResponse>{
+    fun getUserCardDetails(): List<UserCardDetailResponse>{
         var cardList: List<UserCardDetailResponse> = ArrayList()
         viewModelScope.launch {
             try {
-                cardList = repository.getUserCardDetails(id)
+                val userId = userRepository.getSingleUser().id
+                cardList = userRepository.getUserCardDetails(userId)
             } catch (e: Throwable){
                 e.printStackTrace()
             }

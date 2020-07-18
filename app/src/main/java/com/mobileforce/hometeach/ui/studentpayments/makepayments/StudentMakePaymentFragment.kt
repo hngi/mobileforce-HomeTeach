@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import co.paystack.android.Paystack
 import co.paystack.android.PaystackSdk
@@ -23,9 +24,13 @@ import com.mobileforce.hometeach.ui.studentpayments.carddetails.StudentCardsRecy
 import kotlinx.android.synthetic.main.fragment_student_make_payment.*
 import kotlinx.android.synthetic.main.payment_reference_dialog.view.*
 import kotlinx.android.synthetic.main.students_card_list.view.*
+import kotlinx.coroutines.launch
 import org.json.JSONException
 import org.koin.android.viewmodel.ext.android.viewModel
+import java.io.BufferedReader
+import java.io.InputStreamReader
 import java.lang.Exception
+import java.net.URL
 import java.util.*
 
 class StudentMakePaymentFragment : Fragment() {
@@ -44,6 +49,8 @@ class StudentMakePaymentFragment : Fragment() {
     private var cardExpMonth: Int = 0
     private var cardExpYear: Int = 0
     private var amount: Int = 0
+    private var userEmail: String = ""
+    private val backEndUrl: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,8 +65,10 @@ class StudentMakePaymentFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //TODO: Get User ID and pass to getUserCardDetails()
-        cardList = viewModel.getUserCardDetails(1)
+        // Get a list of User's saved cards to display in the RV
+        cardList = viewModel.getUserCardDetails()
+        val userEntity = viewModel.getUserDetailsFromDb()
+        userEmail = userEntity!!.email
 
         onClickListener = View.OnClickListener {
             val holder = it.tag as RecyclerView.ViewHolder
@@ -159,12 +168,16 @@ class StudentMakePaymentFragment : Fragment() {
 //        binding.paymentsRecyclerView.hasFixedSize()
     }
 
-    private fun loadCardFromForm(): Card {
+    private fun loadCardFromForm(): Card? {
         val card = Card.Builder(cardNumber, 0, 0, "").build()
         card.cvc = cardCvc
         card.expiryMonth = cardExpMonth
         card.expiryYear = cardExpYear
-        return card
+        return if (card.isValid) {
+            card
+        } else{
+            null
+        }
     }
 
     private fun startAFreshCharge(local: Boolean){
@@ -177,8 +190,7 @@ class StudentMakePaymentFragment : Fragment() {
 
         if (local) {
             charge.amount = amount
-            //TODO: Get User email and use here
-            charge.email = "user email"
+            charge.email = userEmail
             charge.reference = "ChargedFromAndroid_" + Calendar.getInstance().timeInMillis
             try {
                 charge.putCustomField("Charged From", "Android SDK")
@@ -196,14 +208,13 @@ class StudentMakePaymentFragment : Fragment() {
                 this@StudentMakePaymentFragment.transaction = transaction
                 Toast.makeText(activity, transaction?.reference, Toast.LENGTH_LONG).show()
                 displayReferenceDialog()
-                //verifyOnServer()
+                //verifyOnServer(transaction!!.reference)
             }
 
             override fun beforeValidate(transaction: Transaction?) {
                 this@StudentMakePaymentFragment.transaction = transaction
                 Toast.makeText(activity, transaction?.reference, Toast.LENGTH_LONG).show()
                 displayReferenceDialog()
-                //verifyOnServer()
             }
 
             override fun onError(error: Throwable?, transaction: Transaction?) {
@@ -220,6 +231,7 @@ class StudentMakePaymentFragment : Fragment() {
                     val message = String.format("%s  concluded with error: %s %s",
                         transaction.reference, error!!::class.java.simpleName, error.message)
                     displayErrorDialog(message)
+                    //verifyOnServer(transaction.reference)
                 } else{
                     Toast.makeText(activity, error?.message, Toast.LENGTH_LONG).show()
                     val message = String.format("Error: %s %s", error!!::class.java.simpleName, error.message)
@@ -271,5 +283,22 @@ class StudentMakePaymentFragment : Fragment() {
         super.onPause()
 
         dismissProgressDialog()
+    }
+
+    private fun verifyOnServer(reference: String) {
+        var ref: String
+        var error: String
+        lifecycleScope.launch {
+            try {
+                ref = reference
+                val url = URL("$backEndUrl/verify/$ref")
+                val input = BufferedReader(InputStreamReader(url.openStream()))
+                val inputLine: String
+                inputLine = input.readLine()
+                input.close()
+            } catch (e: Exception) {
+                error = e::class.java.simpleName + ": " + e.message
+            }
+        }
     }
 }

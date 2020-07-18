@@ -43,8 +43,8 @@ interface  Api{
     @JvmSuppressWildcards
     @GET("v1/tutor_profiles/{id}/")
     suspend fun getTutorDetails(@Path("id") id: Int): TutorDetailsResponse
-
-    @POST("")
+    
+    @POST("v1/credit-cards/")
     suspend fun saveUserCardDetails(@Body params: Map<String, Any>)
 
     @Multipart
@@ -59,6 +59,9 @@ interface  Api{
 
     @POST("v1/submit-request/")
     suspend fun requestTutorService(@Body params: Params.RequestTutorService): Response<TutorServiceRequestResponse>
+
+    @GET("v1/card-by-id/{id}/")
+    suspend fun getUserCardDetails(@Path("id") id: String): List<UserCardDetailResponse>
 
     @GET("")
     suspend fun getUserCardDetails(@Path("id") id: Int): List<UserCardDetailResponse>
