@@ -48,16 +48,14 @@ class SignInViewModel(
                         id = id
                     )
                     userRepository.saveUser(user).also {
-                        //save user type and ID to shared pref
+                        //save user type to shared pref
                         if (isTutor) {
                             preferenceHelper.apply {
                                 userType = USER_TUTOR
-                                userId = user.id
                             }
                         } else {
                             preferenceHelper.apply {
                                 userType = USER_STUDENT
-                                userId = user.id
                             }
                         }
                         preferenceHelper.isLoggedIn = true

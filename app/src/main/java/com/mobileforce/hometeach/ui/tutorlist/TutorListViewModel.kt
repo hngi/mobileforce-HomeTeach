@@ -1,10 +1,7 @@
 package com.mobileforce.hometeach.ui.tutorlist
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.mobileforce.hometeach.data.model.TutorEntity
 import com.mobileforce.hometeach.data.model.UserEntity
 import com.mobileforce.hometeach.data.repository.UserRepository
@@ -12,6 +9,7 @@ import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.models.TutorModel
 import com.mobileforce.hometeach.utils.*
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.lang.Exception
 
 /**
@@ -43,14 +41,11 @@ class TutorListViewModel(
         viewModelScope.launch {
             try {
                 val response = userRepository.getTutorList()
-                Log.i("TUTOR RESPONSE", response.body().toString())
                 if (response.isSuccessful) {
                     val tutorListResponse = response.body()
-                    Log.i("TUTOR SUCCESS RESPONSE", tutorListResponse.toString())
                     val listOfTutors = tutorListResponse?.map {
                         it.toDomainModel()
                     }
-                    Log.i("TUTOR LIST", listOfTutors.toString())
                     _tutorList.postValue(Result.Success(listOfTutors))
                     userRepository.clearTutorListDb()
                     userRepository.saveTutorList(listOfTutors!!.map { it.toDbEntity() })
@@ -67,7 +62,9 @@ class TutorListViewModel(
     /**
      * Get the current user from the db
      */
-    fun getUser() = userRepository.getUser()
+    fun getUser() = liveData {
+        emit(userRepository.getUser().value)
+    }
 
     /**
      * This initially attempts to get data from the cache. If this is empty, it would
