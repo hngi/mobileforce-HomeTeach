@@ -1,6 +1,7 @@
 package com.mobileforce.hometeach.ui.home
 
 import android.app.DatePickerDialog
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.widget.AppCompatRadioButton
 import androidx.core.view.ViewCompat
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -53,7 +55,7 @@ class HomePageFragment : Fragment() {
 
     var button_modify: Button? = null
     var textView_date: TextView? = null
-    var cal = Calendar.getInstance()
+    var c = Calendar.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -372,7 +374,6 @@ class HomePageFragment : Fragment() {
         bindingTutor.root.findViewById<LinearLayout>(R.id.withdrawal).setOnClickListener {
             findNavController().navigate(R.id.makeWithdrawalFragment)
         }
-
         val TutorDashboardModel = mutableListOf<TutorDashboardModel>(
             TutorDashboardModel(
                 UUID.randomUUID().toString(),
@@ -382,6 +383,9 @@ class HomePageFragment : Fragment() {
                 0
             )
         )
+        bindingTutor.modifyBtn.setOnClickListener {
+            data_picker()
+        }
 
         bindingTutor.signout.setOnClickListener {
             //viewModel.logOut()
@@ -393,9 +397,43 @@ class HomePageFragment : Fragment() {
         }
 
         viewModel.user.observe(viewLifecycleOwner, androidx.lifecycle.Observer { user ->
-//           bindingTutor.username.text = user.full_name
+            bindingTutor.username.text = "Welcome $user.full_name"
         })
     }
 
+    fun data_picker() {
+        val c = Calendar.getInstance()
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+
+        val dpd = activity?.let {
+            DatePickerDialog(
+                it,
+                DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+
+//                    MONTHS[monthOfYear]
+//                   dayOfMonth
+                    //MONTHS[monthOfYear]
+
+                    updateDateInView()
+                },
+                year,
+                month,
+                day
+            )
+        }
+
+        if (dpd != null) {
+            dpd.show()
+        }
+    }
+
+    private fun updateDateInView() {
+        val myFormat = "MM/dd/yyyy" // mention the format you need
+        val sdf = SimpleDateFormat(myFormat, Locale.US)
+        textView_date!!.text = sdf.format(c.getTime())
+
+    }
 
 }

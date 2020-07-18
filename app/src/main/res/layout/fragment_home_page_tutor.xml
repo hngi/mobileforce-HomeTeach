@@ -97,7 +97,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
-                                    android:text="20"
+                                    android:padding="8dp"
+                                    android:text="0"
                                     android:textColor="@color/white" />
 
 
@@ -124,7 +125,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
-                                    android:text="+20% "
+                                    android:text="+0% "
                                     android:textColor="@color/white"
                                     android:textSize="10sp" />
 
@@ -176,7 +177,8 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="36"
+                                    android:padding="8dp"
+                                    android:text="0"
                                     android:layout_gravity="center"
                                     android:textColor="@color/white" />
                                 <ImageView
@@ -197,7 +199,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
-                                    android:text="-3%  "
+                                    android:text="-0%  "
                                     android:textColor="@color/white"
                                     android:textSize="10sp" />
 
@@ -251,7 +253,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
-                                    android:text="215000"
+                                    android:text="0000"
                                     android:textColor="@color/white" />
 
                                 <TextView
@@ -279,7 +281,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
-                                    android:text="+10% "
+                                    android:text="+0% "
                                     android:textColor="@color/white"
                                     android:textSize="10sp" />
 
@@ -332,7 +334,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
-                                    android:text="20"
+                                    android:padding="8dp"
+                                    android:text="0"
                                     android:textColor="@color/white" />
 
                                 <ImageView
@@ -353,7 +356,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
-                                    android:text="+20% "
+                                    android:text="+0% "
                                     android:textColor="@color/white"
                                     android:textSize="10sp" />
 
@@ -407,7 +410,7 @@
                     android:layout_gravity="center" />
 
                 <TextView
-                    android:id="@+id/text_data_pick"
+                    android:id="@+id/text_data"
                     android:layout_width="280dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -425,6 +428,7 @@
                     android:text="@string/modify"
                     android:id="@+id/modify_btn"
                     android:layout_margin="10dp"
+                    android:onClick="showDatePickerDialog"
                     android:textColor="@color/white" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>

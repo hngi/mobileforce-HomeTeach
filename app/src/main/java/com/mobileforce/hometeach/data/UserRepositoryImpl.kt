@@ -29,6 +29,10 @@ class UserRepositoryImpl(private val dataSource: DataSourceFactory) : UserReposi
         dataSource.local().clearDb()
     }
 
+    override suspend fun modify() {
+        dataSource.local().clearDb()
+    }
+
     override suspend fun editTutorProfile(
         id: Int,
         params: Params.EditTutorProfile

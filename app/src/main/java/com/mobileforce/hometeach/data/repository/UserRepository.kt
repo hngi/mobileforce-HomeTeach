@@ -25,5 +25,5 @@ interface UserRepository {
     suspend fun getTutorList(): Response<TutorListResponse>
     suspend fun saveUserCardDetails(params: Params.CardDetails)
     suspend fun getUserCardDetails(id: Int): List<UserCardDetailResponse>
-
+    suspend fun modify()
 }
