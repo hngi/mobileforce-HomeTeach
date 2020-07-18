@@ -24,11 +24,6 @@ class PreferenceHelper constructor(context: Context) {
             pref.edit().putString(USER_TYPE, value).apply()
         }
 
-    var userId: String?
-        get() = pref.getString(USER_ID, null)
-        set(value) {
-            pref.edit().putString(USER_ID, value).apply()
-        }
 
     var isFristRun: Boolean
         get() = pref.getBoolean(IS_FIRST_RUN, true)

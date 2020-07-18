@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.mobileforce.hometeach.databinding.FragmentAllTutorsBinding
+import com.mobileforce.hometeach.models.TutorModel
 import com.mobileforce.hometeach.utils.Result
 import com.mobileforce.hometeach.utils.toDomainModel
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -43,8 +44,65 @@ class TutorListFragment : Fragment(), SelectDateDialog.SelectDateListener {
             binding.swipeLayout.isRefreshing = false
         }
 
-        //Get the list of tutors
-        viewModel.getTutorList()
+        val allTutorsList: MutableList<TutorModel> = mutableListOf()
+        allTutorsList.add(
+            TutorModel(
+                "3e083af1-2b36-442a-9d33-75a317bc95d1",
+                "James Harden",
+                "profile_image",
+                "I teach with calmness and encouragement. My lessons are not boring and i can accommodate student’s with low affinity to studying. I employ modern schema for tutoring with interactive guides and learning systems. Having schooled at different educational organizations coupled with my NCE certificate, I can assure you premium success with me as your Home-Teacher.",
+                "Chemistry Tutor",
+                "2000",
+                2.3
+            )
+        )
+        allTutorsList.add(
+            TutorModel(
+                "3e083af1-2b36-442a-9d33-75a317bc95d1",
+                "John Wick",
+                "profile_image",
+                "I teach with calmness and encouragement. My lessons are not boring and i can accommodate student’s with low affinity to studying. I employ modern schema for tutoring with interactive guides and learning systems. Having schooled at different educational organizations coupled with my NCE certificate, I can assure you premium success with me as your Home-Teacher.",
+                "English Tutor",
+                "2000",
+                2.3
+            )
+        )
+        allTutorsList.add(
+            TutorModel(
+                "3e083af1-2b36-442a-9d33-75a317bc95d1",
+                "Micheal Kean",
+                "profile_image",
+                "I teach with calmness and encouragement. My lessons are not boring and i can accommodate student’s with low affinity to studying. I employ modern schema for tutoring with interactive guides and learning systems. Having schooled at different educational organizations coupled with my NCE certificate, I can assure you premium success with me as your Home-Teacher.",
+                "Physics Tutor",
+                "2000",
+                2.3
+            )
+        )
+        allTutorsList.add(
+            TutorModel(
+                "3e083af1-2b36-442a-9d33-75a317bc95d1",
+                "Tim Johnson",
+                "profile_image",
+                "I teach with calmness and encouragement. My lessons are not boring and i can accommodate student’s with low affinity to studying. I employ modern schema for tutoring with interactive guides and learning systems. Having schooled at different educational organizations coupled with my NCE certificate, I can assure you premium success with me as your Home-Teacher.",
+                "Chemistry Tutor",
+                "2000",
+                2.3
+            )
+        )
+        allTutorsList.add(
+            TutorModel(
+                "3e083af1-2b36-442a-9d33-75a317bc95d1",
+                "Daniel Kim",
+                "profile_image",
+                "I teach with calmness and encouragement. My lessons are not boring and i can accommodate student’s with low affinity to studying. I employ modern schema for tutoring with interactive guides and learning systems. Having schooled at different educational organizations coupled with my NCE certificate, I can assure you premium success with me as your Home-Teacher.",
+                "Mathematics Tutor",
+                "2000",
+                2.3
+            )
+        )
+
+
+
 
         popupDialog = SelectDateDialog()
         observeViewModels()
@@ -55,6 +113,7 @@ class TutorListFragment : Fragment(), SelectDateDialog.SelectDateListener {
                 viewModel.setTutor(tutor)
             }
         })
+        adapter.submitList(allTutorsList)
 
         binding.tutorAllList.adapter = adapter
 
@@ -138,7 +197,9 @@ class TutorListFragment : Fragment(), SelectDateDialog.SelectDateListener {
         })
 
         viewModel.getUser().observe(viewLifecycleOwner, Observer { result ->
-            viewModel.setUser(result)
+            if (result != null){
+                viewModel.setUser(result)
+            }
         })
         viewModel.serviceApproved.observe(viewLifecycleOwner, Observer { result ->
             when (result) {
