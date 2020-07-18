@@ -28,7 +28,7 @@
         android:textSize="15sp" />
 
     <EditText
-        android:id="@+id/emailtext"
+        android:id="@+id/email"
         android:layout_width="270dp"
         android:layout_height="40dp"
         android:layout_gravity="center"

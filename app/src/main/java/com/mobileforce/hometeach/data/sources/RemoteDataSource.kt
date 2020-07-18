@@ -2,6 +2,7 @@ package com.mobileforce.hometeach.data.sources
 
 import androidx.lifecycle.LiveData
 import com.mobileforce.hometeach.data.model.UploadResponse
+import com.mobileforce.hometeach.data.model.TutorEntity
 import com.mobileforce.hometeach.data.model.User
 import com.mobileforce.hometeach.data.model.UserEntity
 import com.mobileforce.hometeach.data.sources.remote.Api
@@ -70,11 +71,11 @@ class RemoteDataSource(private val api: Api) : DataSource {
     override suspend fun clearDb() {
         TODO("Not yet implemented")
     }
-    
-    override suspend fun getTutorList(): Response<TutorListResponse> {
+
+    override suspend fun getTutorList(): Response<List<TutorNetworkResponse>> {
         return api.getTutorList()
     }
-    
+
     override suspend fun saveUserCardDetails(params: Params.CardDetails) {
         val map = hashMapOf(
             "card_number" to params.card_number,
@@ -89,8 +90,20 @@ class RemoteDataSource(private val api: Api) : DataSource {
         return api.getUserCardDetails(id)
     }
 
-    override suspend fun resetPassword(params: Params.PasswordReset): EmailResponse {
+    override suspend fun uploadTutorMedia(
+        id: RequestBody,
+        profile_pic: MultipartBody.Part,
+        credentials: MultipartBody.Part,
+        video: MultipartBody.Part
+    ): Response<UploadResponse> {
+        return api.uploadTutorMedia(id, profile_pic, credentials, video)
+    }
 
+    override suspend fun getId(): String {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun resetPassword(params: Params.PasswordReset): Response<EmailResponse> {
         val map = hashMapOf(
             "email" to params.email
         )
@@ -100,6 +113,27 @@ class RemoteDataSource(private val api: Api) : DataSource {
     override suspend fun loadDocument(@Part document: MultipartBody.Part, @Part("desc") desc: RequestBody): Call<UploadResponse> {
         TODO()
     }
+
+        override suspend fun requestTutorService(params: Params.RequestTutorService): Response<TutorServiceRequestResponse> {
+            return api.requestTutorService(params)
+        }
+
+        override suspend fun saveTutorList(tutorList: List<TutorEntity>) {
+            TODO("Not yet implemented")
+        }
+
+        override fun searchTutors(query: String): LiveData<List<TutorEntity>> {
+            TODO("Not yet implemented")
+        }
+
+        override suspend fun clearTutorListDb() {
+            TODO("Not yet implemented")
+        }
+
+        override suspend fun getTutorListDb(): List<TutorEntity> {
+            TODO("Not yet implemented")
+        }
+
 
 }
 

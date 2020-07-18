@@ -87,5 +87,10 @@
         android:name="com.mobileforce.hometeach.ui.studentpayments.carddetails.StudentAddCardDetailsFragment"
         android:label="AddCardDetails"
         tools:layout="@layout/fragment_student_add_card_details"/>
+    <fragment
+        android:id="@+id/editTutorProfileFragment"
+        android:name="com.mobileforce.hometeach.ui.profile.EditTutorProfileFragment"
+        android:label="EditTutorProfileFragment"
+        tools:layout="@layout/fragment_edit_tutor_profile"/>
 
 </navigation>

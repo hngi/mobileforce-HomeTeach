@@ -1,11 +1,15 @@
 package com.mobileforce.hometeach.ui.home
 
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.DatePicker
+import android.widget.LinearLayout
 import android.widget.RelativeLayout
+import androidx.appcompat.widget.AppCompatRadioButton
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -25,7 +29,9 @@ import com.mobileforce.hometeach.ui.classes.adapters.recylerviewadapters.TutorOn
 import com.mobileforce.hometeach.ui.home.student.OngoingClassViewHolderStudentDashBoard
 import com.mobileforce.hometeach.ui.home.student.TopTutorsViewHolderStudentDashBoard
 import com.mobileforce.hometeach.ui.home.student.UpcomingClassViewHolderStudentDashBoard
+import com.mobileforce.hometeach.ui.home.tutor.HomePageTutorViewModel
 import com.mobileforce.hometeach.ui.signin.LoginActivity
+import com.mobileforce.hometeach.utils.AppConstants.USER_TUTOR
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -65,7 +71,7 @@ class HomePageFragment : Fragment() {
 
         if (pref.userType == USER_STUDENT) {
             setUpForStudent()
-        } else {
+        } else if (pref.userType == USER_TUTOR) {
             setUpForTutor()
         }
     }
@@ -332,7 +338,28 @@ class HomePageFragment : Fragment() {
         }
     }
 
-    private fun setUpForTutor(){
+    private fun setUpForTutor() {
+
+        lifecycleScope.launch {
+            val user = db.userDao().getUser()
+            bindingTutor.username.text = "Welcome $user.full_name"
+        }
+
+        bindingTutor.root.findViewById<LinearLayout>(R.id.mybanks).setOnClickListener {
+            findNavController().navigate(R.id.myBanks)
+        }
+        bindingTutor.root.findViewById<LinearLayout>(R.id.card_details).setOnClickListener {
+            findNavController().navigate(R.id.tutorCardDetails)
+        }
+        bindingTutor.root.findViewById<LinearLayout>(R.id.withdrawal).setOnClickListener {
+            findNavController().navigate(R.id.makeWithdrawalFragment)
+        }
+
+//        bindingTutor.root.findViewById<AppCompatRadioButton>(R.id.).setOnClickListener {
+//            DatePickerDialog.OnDateSetListener { datePicker, i, i2, i3 -> view }
+//        }
+
+
         bindingTutor.signout.setOnClickListener {
             //viewModel.logOut()
             startActivity(Intent(requireContext(), LoginActivity::class.java))
@@ -343,7 +370,7 @@ class HomePageFragment : Fragment() {
         }
 
         viewModel.user.observe(viewLifecycleOwner, androidx.lifecycle.Observer { user ->
-            bindingTutor.username.text = user.full_name
+//            bindingTutor.username.text = user.full_name
         })
     }
 
