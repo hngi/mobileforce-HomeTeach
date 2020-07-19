@@ -202,7 +202,6 @@ class EditTutorProfileFragment : Fragment() {
             } catch (e: FileNotFoundException) {
                 e.printStackTrace()
             }
-
         }
 
 //        upload(userId,userImage,userPdf,userImage)
