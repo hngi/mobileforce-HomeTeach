@@ -38,16 +38,29 @@ class StudentSchedule(models.Model):
 	to_minute = models.CharField(max_length=10)
 	days = models.ManyToManyField(Days, blank=True, null=True)
 
+# images/%Y/%m/%d/
+def get_upload_file_name(userpic,filename):
+    return 'images/%s/%s/' %  (str(userpic.user.email),
+                                 filename)
+
+def get_upload_file_name_videos(userpic,filename):
+    return 'videos/%s/%s/' %  (str(userpic.user.email),
+                                 filename)
+
+def get_upload_file_name_credentials(userpic,filename):
+    return 'docs/%s/%s/' %  (str(userpic.user.email),
+                                 filename)
+
 # Create your models here.
 class Profile(models.Model):
 	user = models.OneToOneField(User,
 								on_delete=models.CASCADE)
 	# if user.is_tutor:
-	profile_pic = models.ImageField(default='default/default.jpg', upload_to='images/%Y/%m/%d/',
+	profile_pic = models.ImageField(default='default/default.jpg', upload_to=get_upload_file_name,
 									null=True, blank=True)
-	credentials = models.FileField(upload_to='docs/%Y/%m/%d/',
+	credentials = models.FileField(upload_to=get_upload_file_name_credentials,
 								   null=True, blank=True)
-	video = models.FileField(upload_to='videos/%Y/%m/%d/',
+	video = models.FileField(upload_to=get_upload_file_name_videos,
 							 null=True, blank=True)
 	rating = models.ManyToManyField(Rating, blank=True)
 	desc = models.TextField(max_length=255, null=True, blank=True)
