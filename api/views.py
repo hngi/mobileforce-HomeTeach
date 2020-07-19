@@ -83,8 +83,7 @@ class ProfileViewSet(mixins.ListModelMixin,
     """
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
-    permission_classes = (AllowAny,
-                          IsOwnerOrReadOnly,)
+    permission_classes = (AllowAny,)
 
   
 
@@ -99,8 +98,7 @@ class TutorProfileViewSet(mixins.ListModelMixin,
     parser_classes = (MultiPartParser, FormParser,)
     queryset = Profile.objects.filter(user__is_tutor=True)
     serializer_class = TutorProfileSerializer
-    permission_classes = (AllowAny,
-                          IsOwnerOrReadOnly,)
+    permission_classes = (AllowAny, )
     filter_backends = (filters.DjangoFilterBackend,)
     filter_fields = ('field','major_course','state',)
     ordering = ('-full_name',)
@@ -117,8 +115,7 @@ class StudentProfileViewSet(mixins.ListModelMixin,
     parser_classes = (MultiPartParser, FormParser,)
     queryset = Profile.objects.filter(user__is_tutor=False)
     serializer_class = StudentProfileSerializer
-    permission_classes = (AllowAny,
-                          IsOwnerOrReadOnly,)
+    permission_classes = (AllowAny,)
 
 
 @api_view(['POST', ])

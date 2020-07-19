@@ -218,6 +218,21 @@ class StudentProfileSerializer(serializers.HyperlinkedModelSerializer):
                   'desc', 'profile_pic', 'field', 'major_course', 'other_courses', 'state', 'address', 
                   'user_url')
 
+        def update(self, instance, validated_data):
+            # retrieve CustomUser
+            # user_data = validated_data.pop('user', None)
+            user_data = {k:v for k,v in validated_data.items() if v}
+            if user_data:
+                for attr, value in user_data.items():
+                    setattr(instance.user, attr, value)
+            validated_data.pop('user', None)
+            # retrieve Profile
+            for attr, value in validated_data.items():
+                setattr(instance, attr, value)
+            instance.user.save()
+            instance.save()
+            return instance
+
     def get_full_name(self, obj):
         request = self.context['request']
         return request.user.get_full_name()
