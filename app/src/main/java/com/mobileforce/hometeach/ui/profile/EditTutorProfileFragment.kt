@@ -275,8 +275,6 @@ class EditTutorProfileFragment : Fragment() {
             binding.root.findViewById<MaterialButton>(R.id.bt_save_profile).setOnClickListener {
                 findNavController().navigate(R.id.profileFragment)
             }
-
-
         }
         mDialogView.video.setOnClickListener {
             selectVideo()
