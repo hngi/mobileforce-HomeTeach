@@ -213,7 +213,7 @@ PAYSTACK_AUTHORIZATION_KEY = os.environ.get('PAYSTACK_SECRET_KEY')
 
 
 
-# ENCRYPT_KEY = b'5R_y8WWIMF7MOhShxQiZFZwXcRGGKKbdGrkPN9iVVpc='
+ENCRYPT_KEY = b'5R_y8WWIMF7MOhShxQiZFZwXcRGGKKbdGrkPN9iVVpc='
 if not ENV:
     del DATABASES['default']['OPTIONS']['sslmode']
 
