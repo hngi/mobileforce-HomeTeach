@@ -154,6 +154,7 @@ def card_info_by_user(request):
     serializer = CreditCardInfoSerializer(card_details, many=True)
 
     user_card_details = []
+    
     for card_detail in serializer.data:
         d_id = card_detail['id']
         user, card_holder_name, card_number, cvv = card_detail['user'], card_detail['card_holder_name'], card_detail['card_number'], card_detail['cvv']
@@ -161,7 +162,7 @@ def card_info_by_user(request):
         parsed_data = {"id": d_id, "user" : user, "card_holder_name": card_holder_name, "card_number": decrypt(card_number), "cvv": decrypt(cvv),
         "expiry_month": expiry_month, "expiry_year": expiry_year}
         user_card_details.append(parsed_data)
-
+    
     
     # return Response(serializer.data)
     return Response(user_card_details)
@@ -237,7 +238,7 @@ def card_info_by_id(request, pk):
 
     elif request.method == 'DELETE':
         card_detail.delete()
-        return Response('Card details deleted')        
+        return Response('Card details deleted')      
 
 
 
