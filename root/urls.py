@@ -34,9 +34,13 @@ schema_view = get_schema_view(
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('v1/', include('accounts.urls')),
+    path('v1/', include('confirmation.urls')),
     path('v1/', include('api.urls')),
+<<<<<<< HEAD
     path('v1/', include('schedule.urls')),
     path('v1/', include('paystack.urls')),
+=======
+>>>>>>> 0e09abe865aeceda5456105c0582b3faa35a4378
     path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
 ]
 

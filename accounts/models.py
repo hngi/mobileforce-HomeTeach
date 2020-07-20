@@ -13,6 +13,7 @@ from django.contrib.auth import get_user_model
 import uuid
 
 
+
 class UserManager(BaseUserManager):
     def create_user(self, email, password=None, full_name='', phone_number=''):
         """
