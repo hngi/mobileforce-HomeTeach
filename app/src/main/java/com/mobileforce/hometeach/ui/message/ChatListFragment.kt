@@ -64,6 +64,7 @@ class ChatListFragment :
 
         viewModel.user.observe(viewLifecycleOwner, Observer { user ->
 
+            db.clearPersistence()
             user?.let {
                 db
                     .collection("user")
@@ -83,6 +84,7 @@ class ChatListFragment :
                                 val name = doc.getString("full_name")
                                 val senderId = doc.getString("id")
                                 val connectId = doc.getString("connect_id")
+
 
                                 val chat = Chat(
                                     chatId = connectId!!,

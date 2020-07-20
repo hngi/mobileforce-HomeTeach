@@ -88,6 +88,7 @@ class ChatFragment : Fragment() {
             db.collection("chat")
                 .document(viewModel.chatListItem!!.chatId)
                 .collection("message")
+                .orderBy("created_at")
                 .addSnapshotListener { snapShot, error ->
 
                     error?.let {
