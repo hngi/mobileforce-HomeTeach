@@ -15,6 +15,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
+import com.google.android.material.button.MaterialButton
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.databinding.FragmentEditTutorProfileBinding
 import com.tiper.MaterialSpinner
@@ -200,7 +202,6 @@ class EditTutorProfileFragment : Fragment() {
             } catch (e: FileNotFoundException) {
                 e.printStackTrace()
             }
-
         }
 
 //        upload(userId,userImage,userPdf,userImage)
@@ -270,7 +271,9 @@ class EditTutorProfileFragment : Fragment() {
                 selectImage();
             }
 
-
+            binding.root.findViewById<MaterialButton>(R.id.bt_save_profile).setOnClickListener {
+                findNavController().navigate(R.id.profileFragment)
+            }
         }
         mDialogView.video.setOnClickListener {
             selectVideo()

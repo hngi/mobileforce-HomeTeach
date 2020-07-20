@@ -430,28 +430,20 @@ class HomePageFragment : Fragment() {
             DatePickerDialog(
                 it,
                 DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
-
-//                    MONTHS[monthOfYear]
-//                   dayOfMonth
-                    //MONTHS[monthOfYear]
-
                     updateDateInView()
-                },
-                year,
-                month,
-                day
+                }, year, month, day
             )
         }
-
+        dpd?.show()
         if (dpd != null) {
             dpd.show()
         }
     }
 
     private fun updateDateInView() {
-        val myFormat = "MM/dd/yyyy" // mention the format you need
-        val sdf = SimpleDateFormat(myFormat, Locale.US)
-        textView_date!!.text = sdf.format(c.getTime())
+        val myFormat = "MM/DD/YYYY" // mention the format you need
+        val sdf = SimpleDateFormat(myFormat, Locale.ENGLISH)
+        textView_date?.text = sdf.format(c.time)
 
     }
 
