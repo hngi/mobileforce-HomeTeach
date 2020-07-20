@@ -23,6 +23,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
  * Authored by enyason
  */
 class ProfileFragment : Fragment() {
+    lateinit var navController: NavController
     private lateinit var bindingTutor: FragmentProfileBinding
     private val viewModel: ProfileViewModel by viewModel()
     private lateinit var bindingStudent: FragmentStudentProfileBinding
@@ -44,7 +45,7 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        navController = Navigation.findNavController(view)
         if (pref.userType == USER_TUTOR) {
             setUpProfileForTutor()
 
@@ -52,6 +53,10 @@ class ProfileFragment : Fragment() {
             setUpProfileForUser()
         }
 
+
+        bindingTutor.editButton.setOnClickListener {
+            navController.navigate(R.id.editTutorProfileFragment)
+        }
 
     }
     private fun setUpProfileForTutor(){
