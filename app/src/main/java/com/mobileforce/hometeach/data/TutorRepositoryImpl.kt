@@ -1,9 +1,14 @@
 package com.mobileforce.hometeach.data
 
+import com.mobileforce.hometeach.data.model.ProfileEntity
 import com.mobileforce.hometeach.data.repository.TutorRepository
 import com.mobileforce.hometeach.data.sources.DataSourceFactory
+import com.mobileforce.hometeach.data.sources.remote.Params
+import com.mobileforce.hometeach.data.sources.remote.wrappers.LoginResponse
 import com.mobileforce.hometeach.data.sources.remote.wrappers.TutorDetailsResponse
+import com.mobileforce.hometeach.data.sources.remote.wrappers.UpdateTutorResponse
 import com.mobileforce.hometeach.data.sources.remote.wrappers.UploadResponse
+import com.mobileforce.hometeach.utils.UploadaResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -23,8 +28,35 @@ class TutorRepositoryImpl (private val dataSource: DataSourceFactory): TutorRepo
        return dataSource.remote().uploadTutorMedia(id,profile_pic, credentials, video)
     }
 
-    override suspend fun getId(): String {
-       return dataSource.local().getSingleUser().id
+
+
+    override suspend fun updateTutorProfile(
+        id: Int,
+        params: Params.UpdateTutorProfile
+    ): Response<LoginResponse> {
+        return dataSource.remote().updateTutorProfile(id,params)
+    }
+
+    override suspend fun getProfileId(): ProfileEntity {
+        return dataSource.local().getSingleUserProfile()
+    }
+
+    override suspend fun uploadProfilePic(
+        id: Int,
+        profile_pic: MultipartBody.Part
+    ): Response<UploadResponse> {
+        return dataSource.remote().uploadProfilePic(id,profile_pic)
+    }
+
+    override suspend fun uploadVideo(id: Int, video: MultipartBody.Part): Response<UploadResponse> {
+       return dataSource.remote().uploadVideo(id,video)
+    }
+
+    override suspend fun uploadCredential(
+        id: Int,
+        credentials: MultipartBody.Part
+    ): Response<UploadResponse> {
+        return dataSource.remote().uploadCredential(id,credentials)
     }
 
 

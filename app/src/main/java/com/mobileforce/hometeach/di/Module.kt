@@ -29,6 +29,7 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.net.Proxy
 import java.util.concurrent.TimeUnit
 
 
@@ -56,9 +57,9 @@ val appModule = module {
         }
         val httpClient = OkHttpClient.Builder()
             .addInterceptor(logger)
-            .connectTimeout(30, TimeUnit.SECONDS) //Backend is really slow
-            .writeTimeout(30, TimeUnit.SECONDS)
-            .readTimeout(30, TimeUnit.SECONDS)
+            .connectTimeout(120, TimeUnit.SECONDS) //Backend is really slow
+            .writeTimeout(120, TimeUnit.SECONDS)
+            .readTimeout(120, TimeUnit.SECONDS)
             .build()
 
         httpClient
