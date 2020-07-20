@@ -40,7 +40,7 @@ interface  Api{
     suspend fun getTutorList(): Response<List<TutorNetworkResponse>>
 
     @JvmSuppressWildcards
-    @GET("v1/tutor_profiles/{id}/")
+    @GET("v1/tutor-profiles/{id}/")
     suspend fun getTutorDetails(@Path("id") id: Int): TutorDetailsResponse
 
     @JvmSuppressWildcards
@@ -67,6 +67,6 @@ interface  Api{
   @GET("v1/users/")
     suspend fun getUser(): LiveData<UserEntity>
 
-    @GET("v1/student-profiles/{id}/")
+    @GET("v1/profiles/{id}/")
     suspend fun getUserProfile(@Path("id") id: Int): StudentProfileResponse
 }
