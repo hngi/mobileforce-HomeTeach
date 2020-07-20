@@ -84,8 +84,9 @@ class UserRepositoryImpl(private val dataSource: DataSourceFactory) : UserReposi
 
     }
 
-    override suspend fun getUserCardDetails(id: String): List<UserCardDetailResponse> {
-        return dataSource.remote().getUserCardDetails(id)
+    override suspend fun getUserCardDetails(): List<UserCardDetailResponse> {
+        val user = dataSource.local().getSingleUser()
+        return dataSource.remote().getUserCardDetails(user.id)
     }
 
     override suspend fun getSingleUser(): UserEntity {

@@ -46,16 +46,19 @@ interface UserRepository {
     suspend fun saveUserCardDetails(params: Params.CardDetails)
 
 
-    suspend fun getUserCardDetails(id: String): List<UserCardDetailResponse>
+    suspend fun getUserCardDetails(): List<UserCardDetailResponse>
 
     suspend fun getSingleUser(): UserEntity
 
     suspend fun saveUserProfile(profile: Profile)
     fun profileLiveData(): LiveData<ProfileEntity>
+
     suspend fun modify()
+
     suspend fun save()
 
     suspend fun getSingleUserProfile(): ProfileEntity
+
     suspend fun getUserProfile() : StudentProfileResponse
 }
 

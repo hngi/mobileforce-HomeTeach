@@ -15,17 +15,9 @@ class StudentAddCardDetailsViewModel(private val userRepository: UserRepository)
         viewModelScope.launch {
             try {
                 userRepository.saveUserCardDetails(params)
-            } catch (e: Throwable){
+            } catch (e: Throwable) {
                 e.printStackTrace()
             }
         }
-    }
-
-    fun getUserDetailsFromDb(): UserEntity? {
-        var userEntity: UserEntity? = null
-        viewModelScope.launch {
-            userEntity = userRepository.getSingleUser()
-        }
-        return userEntity
     }
 }

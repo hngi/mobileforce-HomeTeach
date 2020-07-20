@@ -1,6 +1,5 @@
 package com.mobileforce.hometeach.ui.studentpayments.makepayments
 
-import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.os.Bundle
 import android.text.TextUtils
@@ -8,8 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import co.paystack.android.Paystack
 import co.paystack.android.PaystackSdk
@@ -22,7 +23,7 @@ import com.mobileforce.hometeach.databinding.FragmentStudentMakePaymentBinding
 import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
 import com.mobileforce.hometeach.ui.studentpayments.carddetails.StudentCardsRecycler
 import kotlinx.android.synthetic.main.fragment_student_make_payment.*
-import kotlinx.android.synthetic.main.payment_reference_dialog.view.*
+import kotlinx.android.synthetic.main.payment_reference_dialog.*
 import kotlinx.android.synthetic.main.students_card_list.view.*
 import kotlinx.coroutines.launch
 import org.json.JSONException
@@ -32,13 +33,14 @@ import java.io.InputStreamReader
 import java.lang.Exception
 import java.net.URL
 import java.util.*
+import kotlin.collections.ArrayList
 
 class StudentMakePaymentFragment : Fragment() {
 
 //    private lateinit var card_DetailResponse_list:MutableList<UserCardDetailResponse>
 //    private lateinit var payment_list:MutableList<Payment>
     private lateinit var binding: FragmentStudentMakePaymentBinding
-    private lateinit var cardList: List<UserCardDetailResponse>
+    private var cardList: List<UserCardDetailResponse> = ArrayList()
     private val viewModel: StudentMakePaymentViewModel by viewModel()
     private lateinit var onClickListener: View.OnClickListener
     private var transaction: Transaction? = null
@@ -67,8 +69,11 @@ class StudentMakePaymentFragment : Fragment() {
 
         // Get a list of User's saved cards to display in the RV
         cardList = viewModel.getUserCardDetails()
-        val userEntity = viewModel.getUserDetailsFromDb()
-        userEmail = userEntity!!.email
+        viewModel.user.observe(viewLifecycleOwner, androidx.lifecycle.Observer {user ->
+            user?.let {
+                userEmail = user.email
+            }
+        })
 
         onClickListener = View.OnClickListener {
             val holder = it.tag as RecyclerView.ViewHolder
@@ -79,7 +84,7 @@ class StudentMakePaymentFragment : Fragment() {
             cardExpMonth = card.expiryMonth
             cardExpYear = card.expiryYear
             if (TextUtils.isEmpty(amount.toString())){
-                et_amount.error = "Input an amount"
+                layout_amount.error = "Input an amount"
             } else {
                 amount = et_amount.toString().trim().toInt()
             }
@@ -89,7 +94,7 @@ class StudentMakePaymentFragment : Fragment() {
         confirm_Button.setOnClickListener {
             try {
                 startAFreshCharge(true)
-            } catch (e: Exception){
+            } catch (e: Exception) {
                 val message = String.format("An error occurred while charging card: %s %s", e::class.java.simpleName, e.message)
                 displayErrorDialog(message)
             }
@@ -156,10 +161,11 @@ class StudentMakePaymentFragment : Fragment() {
 //        Picasso.get().load("profile_image").transform(CircleTransform()).placeholder(R.drawable.profile_image).error(R.drawable.profile_image).into(binding.tutorImage)
 
 
+        binding.studentcardsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.studentcardsRecyclerView.hasFixedSize()
         val adapter = StudentCardsRecycler()
         adapter.submitList(cardList)
         binding.studentcardsRecyclerView .adapter = adapter
-        binding.studentcardsRecyclerView.hasFixedSize()
         adapter.setOnclickListener(onClickListener)
 
 //        val adapter2 = StudentPaymentsRecycler()
@@ -248,35 +254,23 @@ class StudentMakePaymentFragment : Fragment() {
         }
     }
 
-    private fun displayReferenceDialog(){
-        val dialogView = LayoutInflater.from(activity).inflate(R.layout.payment_reference_dialog, null)
+    private fun displayReferenceDialog() {
+        val dialogView = PaymentReferenceDialog.newInstance()
         if (transaction?.reference != null){
             dialogView.tv_reference_text.text = String.format("Reference: %s", transaction?.reference)
-            val builder = activity.let {
-                AlertDialog.Builder(it)
-                    .setView(dialogView)
-            }
-            builder.show()
+            dialogView.show(requireActivity().supportFragmentManager, "reference_dialog")
         } else {
             dialogView.tv_reference_text.text = getString(R.string.no_transaction)
-            val builder = activity.let {
-                AlertDialog.Builder(it)
-                    .setView(dialogView)
-            }
-            builder.show()
+            dialogView.show(requireActivity().supportFragmentManager, "reference_dialog")
         }
     }
 
-    private fun displayErrorDialog(message: String){
-        val dialogView = LayoutInflater.from(activity).inflate(R.layout.payment_reference_dialog, null)
+    private fun displayErrorDialog(message: String) {
+        val dialogView = PaymentReferenceDialog.newInstance()
         if (!TextUtils.isEmpty(message)){
             dialogView.tv_reference_text.text = message
         }
-        val builder = activity.let {
-            AlertDialog.Builder(it)
-                .setView(dialogView)
-        }
-        builder.show()
+        dialogView.show(requireActivity().supportFragmentManager, "error_dialog")
     }
 
     override fun onPause() {
@@ -299,6 +293,30 @@ class StudentMakePaymentFragment : Fragment() {
             } catch (e: Exception) {
                 error = e::class.java.simpleName + ": " + e.message
             }
+        }
+    }
+}
+
+class PaymentReferenceDialog : DialogFragment() {
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.payment_reference_dialog, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        bt_close.setOnClickListener {
+            dismiss()
+        }
+    }
+
+    companion object{
+        fun newInstance(): PaymentReferenceDialog {
+            return PaymentReferenceDialog()
         }
     }
 }

@@ -9,13 +9,13 @@ import kotlinx.coroutines.launch
 
 class StudentMakePaymentViewModel(private val userRepository: UserRepository) : ViewModel() {
 
-    fun getUserCardDetails(): List<UserCardDetailResponse>{
+    val user = userRepository.getUser()
+    fun getUserCardDetails(): List<UserCardDetailResponse> {
         var cardList: List<UserCardDetailResponse> = ArrayList()
         viewModelScope.launch {
             try {
-                val userId = userRepository.getSingleUser().id
-                cardList = userRepository.getUserCardDetails(userId)
-            } catch (e: Throwable){
+                cardList = userRepository.getUserCardDetails()
+            } catch (e: Throwable) {
                 e.printStackTrace()
             }
         }

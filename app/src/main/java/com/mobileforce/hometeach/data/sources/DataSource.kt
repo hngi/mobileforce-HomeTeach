@@ -24,6 +24,7 @@ interface DataSource {
     suspend fun signUp(params: Params.SignUp): RegisterUserResponse
 
     suspend fun resetPassword(params: Params.PasswordReset):Response<EmailResponse>
+
     suspend fun saveUser(user: User)
 
     fun getUser(): LiveData<UserEntity>
@@ -64,7 +65,9 @@ interface DataSource {
     suspend fun saveUserProfile(profile: Profile)
 
     fun profileLiveData(): LiveData<ProfileEntity>
+
     suspend fun getUserProfile(id: Int): StudentProfileResponse
+
     suspend fun getSingleUserProfile(): ProfileEntity
 
 }

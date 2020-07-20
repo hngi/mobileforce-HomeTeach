@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.adapters.CircleTransform
 import com.mobileforce.hometeach.databinding.FragmentStudentCardDetailsBinding
@@ -22,7 +23,7 @@ class StudentCardDetailsFragment : Fragment() {
     lateinit var navController: NavController
     lateinit var binding: FragmentStudentCardDetailsBinding
     //private lateinit var list: MutableList<com.mobileforce.hometeach.ui.studentpayments.UserCardDetailResponse>
-    private lateinit var cardList: List<UserCardDetailResponse>
+    private var cardList: List<UserCardDetailResponse> = ArrayList()
     private val viewModel: StudentCardDetailsViewModel by viewModel()
 
 
@@ -70,21 +71,28 @@ class StudentCardDetailsFragment : Fragment() {
 //        Picasso.get().load("profile_image").transform(CircleTransform()).placeholder(R.drawable.profile_image).error(R.drawable.profile_image).into(binding.userImage)
 
 
+        binding.rvCreditCards.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvCreditCards.hasFixedSize()
         val adapter = StudentCardsRecycler()
         adapter.submitList(cardList)
         binding.rvCreditCards.adapter = adapter
-        binding.rvCreditCards.hasFixedSize()
 
         navController = Navigation.findNavController(view)
         val toolbar = binding.toolbar
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             toolbar.setNavigationIcon(R.drawable.back_arrow)
         }
-        val username = binding.username
+        val userName = binding.username
         val userImage = binding.userImage
         val btnCancel = binding.btnCancel
         val addCard = binding.addCard
         val balance = binding.balance
+
+        viewModel.user.observe(viewLifecycleOwner, androidx.lifecycle.Observer {user ->
+            user?.let {
+                userName.text = user.full_name
+            }
+        })
 
         toolbar.setNavigationOnClickListener {
             navController.navigate(R.id.tutorHomePageFragment)
