@@ -30,6 +30,10 @@ MarkupSafe==1.1.1
 oauthlib==3.1.0
 packaging==20.4
 Pillow==7.2.0
+<<<<<<< HEAD
+# pkg-resources==0.0.0
+=======
+>>>>>>> 0e09abe865aeceda5456105c0582b3faa35a4378
 psycopg2==2.8.5
 pycparser==2.20
 pyparsing==2.4.7
