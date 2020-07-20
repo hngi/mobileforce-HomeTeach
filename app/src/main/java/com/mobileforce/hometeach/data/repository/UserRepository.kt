@@ -53,6 +53,7 @@ interface UserRepository {
     suspend fun saveUserProfile(profile: Profile)
     fun profileLiveData(): LiveData<ProfileEntity>
     suspend fun modify()
+    suspend fun save()
 
     suspend fun getSingleUserProfile(): ProfileEntity
     suspend fun getUserProfile() : StudentProfileResponse

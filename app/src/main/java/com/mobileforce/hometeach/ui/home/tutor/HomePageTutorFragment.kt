@@ -67,7 +67,7 @@ class HomePageTutorFragment : Fragment(), OnItemtouch {
         tutorClassesRecycler.setHasFixedSize(true)
 
         modifyBtn.setOnClickListener {
-            date_picker()
+     //       date_picker()
         }
         withdrawal.setOnClickListener {
 
@@ -83,34 +83,34 @@ class HomePageTutorFragment : Fragment(), OnItemtouch {
         }
 
     }
-
-    fun date_picker() {
-        val c = Calendar.getInstance()
-        val year = c.get(Calendar.YEAR)
-        val month = c.get(Calendar.MONTH)
-        val day = c.get(Calendar.DAY_OF_MONTH)
-
-
-        val dpd = activity?.let {
-            DatePickerDialog(
-                it,
-                DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+//
+//    fun date_picker() {
+//        val c = Calendar.getInstance()
+//        val year = c.get(Calendar.YEAR)
+//        val month = c.get(Calendar.MONTH)
+//        val day = c.get(Calendar.DAY_OF_MONTH)
+//
+//
+//        val dpd = activity?.let {
+//            DatePickerDialog(
+//                it,
+//                DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
 
 //                  MONTH[monthOfYear]
 //                  dayOfMonth
-                    //MONTHS[monthOfYear]
+    //MONTHS[monthOfYear]
 
-                },
-                year,
-                month,
-                day
-            )
-        }
-
-        if (dpd != null) {
-            dpd.show()
-        }
-    }
+//                },
+//                year,
+//                month,
+//                day
+//            )
+//        }
+//
+//        if (dpd != null) {
+//            dpd.show()
+//        }
+//    }
 
     override fun OnUserclicked(datamodel: TutorClassesDataModel, position: Int) {
         //OPEN INTENT  OR FRAGMENT TO EDIT THE TUTORS CLASSES

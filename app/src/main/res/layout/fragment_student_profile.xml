@@ -85,7 +85,6 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_margin="10dp"
-                android:src="@drawable/profile_image"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -192,7 +191,6 @@
                 android:id="@+id/description_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/i_love_mathematics_and_data_science_looking_to_build_my_kids_and_myself_also"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

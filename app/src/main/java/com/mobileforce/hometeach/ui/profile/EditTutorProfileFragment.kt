@@ -16,6 +16,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
+import com.google.android.material.button.MaterialButton
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.data.model.ProfileEntity
 import com.mobileforce.hometeach.data.sources.remote.Params
@@ -193,7 +195,6 @@ class EditTutorProfileFragment : Fragment() {
             } catch (e: FileNotFoundException) {
                 e.printStackTrace()
             }
-
         }
 
     }
