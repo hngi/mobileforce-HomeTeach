@@ -16,7 +16,7 @@ import kotlin.collections.ArrayList
  * Dummy messages were loaded just to show that it works
  * Proper Chat framework or service needs to be implemented
  **/
-class ChatAdapter(messages: ArrayList<Message>) :
+class ChatAdapter(messages: ArrayList<Message>, private var currentUserId: String) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var messages: ArrayList<Message> = ArrayList()
@@ -33,7 +33,7 @@ class ChatAdapter(messages: ArrayList<Message>) :
 
     override fun getItemViewType(position: Int): Int {
         val message = messages[position]
-        return if (message.sender) {
+        return if (message.sender_id == currentUserId) {
             viewTypeSent
         } else {
             viewTypeReceived
@@ -68,7 +68,7 @@ class ChatAdapter(messages: ArrayList<Message>) :
 
         fun bind(message: Message) {
             sentMsg.text = message.message
-            sentTime.text = convertTime(message.createdAt)
+            sentTime.text = convertTime(message.created_at)
         }
     }
 
@@ -79,13 +79,16 @@ class ChatAdapter(messages: ArrayList<Message>) :
 
         fun bind(message: Message) {
             rcvdMsg.text = message.message
-            rcvdTime.text = convertTime(message.createdAt)
+            rcvdTime.text = convertTime(message.created_at)
         }
     }
 }
 
-fun convertTime(milliseconds: Long): String {
+fun convertTime(date: Date?): String {
+
+    if (date == null) return ""
     val formatter = SimpleDateFormat("hh:mm a", Locale.US)
-    formatter.timeZone = TimeZone.getTimeZone("UTC")
-    return formatter.format(Date(milliseconds))
+    formatter.timeZone = TimeZone.getDefault()
+    return formatter.format(date)
+
 }
