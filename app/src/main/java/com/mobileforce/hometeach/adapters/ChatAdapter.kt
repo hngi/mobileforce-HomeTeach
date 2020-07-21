@@ -14,16 +14,14 @@ import com.mobileforce.hometeach.utils.convertTime
  * Dummy messages were loaded just to show that it works
  * Proper Chat framework or service needs to be implemented
  **/
-class ChatAdapter(messages: ArrayList<Message>, private var currentUserId: String) :
+class ChatAdapter(private var currentUserId: String) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private var messages: ArrayList<Message> = ArrayList()
+    var messages = mutableListOf<Message>()
+
     private val viewTypeSent: Int = 1
     private val viewTypeReceived: Int = 2
 
-    init {
-        this.messages = messages
-    }
 
     override fun getItemCount(): Int {
         return messages.size

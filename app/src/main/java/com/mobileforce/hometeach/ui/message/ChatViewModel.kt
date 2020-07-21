@@ -24,7 +24,12 @@ class ChatViewModel(private val userRepository: UserRepository) : ViewModel() {
     private val _chatList = MutableLiveData<List<Chat>>()
     val chatList: LiveData<List<Chat>>
         get() = _chatList
-    private lateinit var currentUser: UserEntity
+
+    private val _messages = MutableLiveData<List<Message>>()
+    val messages: LiveData<List<Message>>
+        get() = _messages
+
+    lateinit var currentUser: UserEntity
     private lateinit var profile: ProfileEntity
 
     init {
@@ -37,6 +42,35 @@ class ChatViewModel(private val userRepository: UserRepository) : ViewModel() {
         }
 
     }
+
+
+    fun fetchMessages() {
+
+
+        db.collection("chat")
+            .document(chatListItem!!.chatId)
+            .collection("message")
+            .orderBy("created_at")
+            .addSnapshotListener { snapShot, error ->
+
+                error?.let {
+                    return@addSnapshotListener
+                }
+                snapShot?.let {
+
+                    val messages = mutableListOf<Message>()
+                    for (doc in snapShot.documents) {
+                        doc.toObject(Message::class.java)?.let { message ->
+                            messages.add(message)
+                        }
+                    }
+
+                    _messages.postValue(messages)
+                }
+
+            }
+    }
+
 
     fun sendMessage(message: String) {
 
