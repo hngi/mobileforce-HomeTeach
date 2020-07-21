@@ -1,5 +1,6 @@
 from django.urls import path
-from api.views import CustomUserViewSet, ProfileViewSet, TutorProfileViewSet, StudentProfileViewSet
+from api.views import (CustomUserViewSet, ProfileViewSet,
+                TutorProfileViewSet, StudentProfileViewSet)
 from rest_framework.routers import DefaultRouter
 from . import views
 
@@ -23,6 +24,8 @@ urlpatterns = [
     path('user-card-details/', views.card_info_by_user),
     path('card-by-id/<int:pk>/', views.card_info_by_id),
     path('verify-transaction/', views.VerifyTransactionView.as_view()),
+    path('initialize-transaction/', views.InitializeTransactionView.as_view()),
+    path('user-wallet/', views.UserWalletView.as_view()),
 ]
 
 urlpatterns += router.urls
