@@ -18,7 +18,11 @@ class ChatListViewHolder(view: View, private val chatListItemClickListener: (Cha
 
         with(itemView) {
 
-            roundedUserImage.loadImage(element.senderPhoto, placeholder = R.drawable.profile_image)
+            roundedUserImage.loadImage(
+                element.senderPhoto,
+                placeholder = R.drawable.profile_image,
+                circular = true
+            )
             lastMessage.text = element.lastMessage
             lastMessageTime.text = element.lastMessageTime.convertTime()
             userName.text = element.senderName

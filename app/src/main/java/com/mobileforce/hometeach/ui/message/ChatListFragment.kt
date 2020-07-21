@@ -71,8 +71,6 @@ class ChatListFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireContext())
         }
 
-        viewModel.fetchUserChatList()
-
         viewModel.user.observe(viewLifecycleOwner, Observer { user ->
             user?.let {
 
@@ -101,7 +99,7 @@ class ChatListFragment : Fragment() {
                 if (!s.isNullOrEmpty()) {
 
                     val filter = viewModel.chatList.value?.filter {
-                        s.toString() == it.senderName
+                        s.toString().equals(it.senderName, true)
                     }
 
                     filter?.let {

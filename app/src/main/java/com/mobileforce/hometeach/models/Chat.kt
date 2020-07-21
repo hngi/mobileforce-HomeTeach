@@ -10,7 +10,7 @@ import java.util.*
 data class Chat(
     val chatId: String,
     val senderName: String,
-    val senderPhoto: String,
+    val senderPhoto: String?,
     val lastMessage: String,
     val lastMessageTime: Date?,
     val senderId: String

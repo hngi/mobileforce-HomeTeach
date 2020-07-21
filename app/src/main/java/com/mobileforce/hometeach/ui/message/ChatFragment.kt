@@ -18,6 +18,7 @@ import com.mobileforce.hometeach.data.model.UserEntity
 import com.mobileforce.hometeach.databinding.ChatFragmentBinding
 import com.mobileforce.hometeach.models.Message
 import com.mobileforce.hometeach.ui.BottomNavigationActivity
+import com.mobileforce.hometeach.utils.loadImage
 import com.mobileforce.hometeach.utils.toast
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.view_message_input.*
@@ -82,6 +83,9 @@ class ChatFragment : Fragment() {
 
         binding.vwMessageInput.sendMsg.setOnClickListener {
             sendMessage()
+        }
+        viewModel.chatListItem?.let {
+            binding.ivSenderImage.loadImage(it)
         }
 
         recyclerView = view.findViewById(R.id.rv_chat)

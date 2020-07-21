@@ -24,7 +24,7 @@ import java.util.*
  * @param placeholder is the default image that shows when actual image is being loaded or in case of an error
  * @param circular determines if a circular transformation is used to achieve a circular image view
  */
-fun ImageView.loadImage(image: Any, placeholder: Int = 0, circular: Boolean = false) {
+fun ImageView.loadImage(image: Any?, placeholder: Int = 0, circular: Boolean = false) {
     Glide
         .with(context)
         .load(image)
@@ -83,5 +83,5 @@ fun Date?.convertTime(): String {
     if (this == null) return ""
     val formatter = SimpleDateFormat("hh:mm a", Locale.US)
     formatter.timeZone = TimeZone.getDefault()
-    return formatter.format(date)
+    return formatter.format(this)
 }
