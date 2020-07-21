@@ -52,7 +52,7 @@ class ChatListFragment : Fragment() {
          * build chat list adapter
          */
         val chatListAdpter = object : RecyclerViewAdapter<Chat>(chatDiffUtil) {
-            override fun getLayoutRes(): Int {
+            override fun getLayoutRes(model: Chat): Int {
                 return R.layout.chat_list_message_item
             }
 

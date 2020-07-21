@@ -4,12 +4,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.mobileforce.hometeach.data.model.ProfileEntity
 import com.mobileforce.hometeach.data.model.UserEntity
 import com.mobileforce.hometeach.data.repository.UserRepository
 import com.mobileforce.hometeach.models.Chat
+import com.mobileforce.hometeach.models.Message
 import kotlinx.coroutines.launch
 
 class ChatViewModel(private val userRepository: UserRepository) : ViewModel() {
@@ -22,13 +24,13 @@ class ChatViewModel(private val userRepository: UserRepository) : ViewModel() {
     private val _chatList = MutableLiveData<List<Chat>>()
     val chatList: LiveData<List<Chat>>
         get() = _chatList
-    private lateinit var userEntity: UserEntity
+    private lateinit var currentUser: UserEntity
     private lateinit var profile: ProfileEntity
 
     init {
 
         viewModelScope.launch {
-            userEntity = userRepository.getSingleUser()
+            currentUser = userRepository.getSingleUser()
             profile = userRepository.getSingleUserProfile()
 
             fetchUserChatList()
@@ -36,12 +38,59 @@ class ChatViewModel(private val userRepository: UserRepository) : ViewModel() {
 
     }
 
+    fun sendMessage(message: String) {
+
+
+        val messageObject = Message(message, currentUser.id)
+
+        val chatListMap = hashMapOf<String, Any?>(
+            "last_message" to message,
+
+            "last_message_time" to FieldValue.serverTimestamp()
+        )
+
+
+        val lastMessageRefCurrentUser = db
+            .collection("user")
+            .document(currentUser.id)
+            .collection("connect")
+            .document(chatListItem!!.senderId)
+
+
+        val lastMessageRefOtherUser = db
+            .collection("user")
+            .document(chatListItem!!.senderId)
+            .collection("connect")
+            .document(currentUser.id)
+
+
+        db.collection("chat")
+            .document(chatListItem!!.chatId)
+            .collection("message")
+            .add(messageObject)
+            .addOnCompleteListener { task ->
+
+                if (task.isSuccessful) {
+
+
+                    db.runBatch { batch ->
+
+                        batch.update(lastMessageRefCurrentUser, chatListMap)
+
+                        batch.update(lastMessageRefOtherUser, chatListMap)
+
+                    }
+
+                }
+            }
+
+    }
 
     private fun fetchUserChatList() {
 
         db
             .collection("user")
-            .document(userEntity.id)
+            .document(currentUser.id)
             .collection("connect")
             .addSnapshotListener { snapshot, error ->
 
@@ -80,7 +129,7 @@ class ChatViewModel(private val userRepository: UserRepository) : ViewModel() {
                                 db.collection("user")
                                     .document(senderId.toString())
                                     .collection("connect")
-                                    .document(userEntity.id)
+                                    .document(currentUser.id)
                                     .update(mapOf("image" to image))
                             }
 
