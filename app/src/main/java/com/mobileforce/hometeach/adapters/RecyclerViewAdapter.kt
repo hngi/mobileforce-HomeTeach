@@ -24,11 +24,11 @@ abstract class RecyclerViewAdapter<T>(diffUtil: DiffUtil.ItemCallback<T>) :
         holder.bind(getItem(position))
     }
 
-    override fun getItemViewType(position: Int): Int = getLayoutRes()
+    override fun getItemViewType(position: Int): Int = getLayoutRes(getItem(position))
 
 
     @LayoutRes
-    abstract fun getLayoutRes(): Int
+    abstract fun getLayoutRes(model: T): Int
 
     abstract fun getViewHolder(
         view: View,

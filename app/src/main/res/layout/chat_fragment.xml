@@ -49,6 +49,7 @@
 
     <ImageButton
         android:id="@+id/ib_profile_icon"
+        android:visibility="invisible"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:src="@drawable/profile_icon"
@@ -74,6 +75,7 @@
     <include
         android:id="@+id/vw_message_input"
         android:layout_width="0dp"
+        android:layout_marginBottom="8dp"
         android:layout_height="wrap_content"
         layout="@layout/view_message_input"
         app:layout_constraintStart_toStartOf="@id/guideline1"
