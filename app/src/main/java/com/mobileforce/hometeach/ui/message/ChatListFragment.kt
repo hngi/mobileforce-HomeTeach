@@ -84,13 +84,14 @@ class ChatListFragment :
                                 val name = doc.getString("full_name")
                                 val senderId = doc.getString("id")
                                 val connectId = doc.getString("connect_id")
+                                val lastMessage = doc.getString("last_message")
 
 
                                 val chat = Chat(
-                                    chatId = connectId!!,
-                                    senderName = name!!,
+                                    chatId = connectId.toString(),
+                                    senderName = name.toString(),
                                     senderPhoto = "",
-                                    lastMessage = "Last Message here...",
+                                    lastMessage = lastMessage.toString(),
                                     lastMessageTime = "Today",
                                     senderId = senderId!!
 

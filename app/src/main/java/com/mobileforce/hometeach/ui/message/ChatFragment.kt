@@ -11,10 +11,12 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.firestore.ServerTimestamp
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.adapters.ChatAdapter
+import com.mobileforce.hometeach.data.model.UserEntity
 import com.mobileforce.hometeach.models.Message
 import com.mobileforce.hometeach.ui.BottomNavigationActivity
 import com.mobileforce.hometeach.utils.toast
@@ -37,6 +39,11 @@ class ChatFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
 
     private val db = Firebase.firestore
+
+    private lateinit var currentUser: UserEntity
+
+    @ServerTimestamp
+    private val lastTimestamp: Date? = null
 
 
     override fun onCreateView(
@@ -98,24 +105,27 @@ class ChatFragment : Fragment() {
 
                         val messages = ArrayList<Message>()
                         for (doc in snapShot.documents) {
-                            val message = doc.getString("message")
-                            val createdAt = doc.getLong("created_at")
-                            val senderId = doc.getString("sender_id")
 
-                            val isSender = senderId == viewModel.user.value?.id
-
-                            val messageObject = Message(message!!, isSender, createdAt!!)
-
-                            messages.add(messageObject)
+                            val message = doc.toObject(Message::class.java)
+                            messages.add(message!!)
 
                         }
 
-                        val adapter = ChatAdapter(messages)
+                        val adapter = ChatAdapter(messages, currentUser.id)
                         recyclerView.adapter = adapter
                     }
 
                 }
         }
+
+
+        viewModel.user.observe(viewLifecycleOwner, androidx.lifecycle.Observer { user ->
+
+            user?.let {
+                currentUser = it
+
+            }
+        })
 
     }
 
@@ -128,21 +138,46 @@ class ChatFragment : Fragment() {
             toast("Message body is empty")
             return
         }
-        val date = Date().time
 
-        val messageMap = hashMapOf(
-            "message" to message, "created_at" to date, "sender_id" to viewModel.user.value!!.id
-        )
+        val messageObject = Message(message, currentUser.id)
+
+        val chatListMap =
+            hashMapOf<String, Any?>("last_message" to message, "last_message_time" to lastTimestamp)
+
+
+        val lastMessageRefCurrentUser = db
+            .collection("user")
+            .document(currentUser.id)
+            .collection("connect")
+            .document(viewModel.chatListItem!!.senderId)
+
+
+        val lastMessageRefOtherUser = db
+            .collection("user")
+            .document(viewModel.chatListItem!!.senderId)
+            .collection("connect")
+            .document(currentUser.id)
+
 
         db.collection("chat")
             .document(viewModel.chatListItem!!.chatId)
             .collection("message")
-            .add(messageMap)
+            .add(messageObject)
             .addOnCompleteListener { task ->
 
                 if (task.isSuccessful) {
                     toast("message sent")
                     message_input.setText("")
+
+                    db.runBatch { batch ->
+
+                        batch.update(lastMessageRefCurrentUser, chatListMap)
+
+                        batch.update(lastMessageRefOtherUser, chatListMap)
+
+                        batch.commit()
+
+                    }
                 }
             }
 

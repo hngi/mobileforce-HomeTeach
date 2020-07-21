@@ -151,6 +151,8 @@ class TutorListViewModel(
 
                             batch.set(tutorRef, tutorConnect)
 
+                            batch.commit()
+
                         }.addOnCompleteListener {
 
                             if (it.isSuccessful) {
