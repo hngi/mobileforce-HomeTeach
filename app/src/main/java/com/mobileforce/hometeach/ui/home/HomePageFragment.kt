@@ -117,13 +117,14 @@ class HomePageFragment : Fragment() {
         }
 
         bindingParent.root.findViewById<MaterialButton>(R.id.signOut).setOnClickListener {
-            //viewModel.logOut()
+            viewModel.logOut()
             startActivity(Intent(requireContext(), LoginActivity::class.java))
             requireActivity().finish()
         }
         val onGoingAdapter = object :
             RecyclerViewAdapter<OngoingClassModelTutor>(TutorOngoingClassesAdapter.OngoingClassesDiffCallBack()) {
-            override fun getLayoutRes() = R.layout.list_item_class_ongoing_parent_dash_board
+            override fun getLayoutRes(model: OngoingClassModelTutor): Int =
+                R.layout.list_item_class_ongoing_parent_dash_board
 
             override fun getViewHolder(
                 view: View,
@@ -138,7 +139,8 @@ class HomePageFragment : Fragment() {
         }
 
         val upComingAdapter = object : RecyclerViewAdapter<UpComingClassModel>(upComingDiffUtil) {
-            override fun getLayoutRes() = R.layout.list_item_class_upcoming_parent_dash_board
+            override fun getLayoutRes(model: UpComingClassModel): Int =
+                R.layout.list_item_class_upcoming_parent_dash_board
 
             override fun getViewHolder(
                 view: View,
@@ -153,7 +155,8 @@ class HomePageFragment : Fragment() {
         }
 
         val topTutorsAdapter = object : RecyclerViewAdapter<TopTutorModel>(topTutorDiffUtil) {
-            override fun getLayoutRes() = R.layout.list_item_tutor_parent_dash_board
+            override fun getLayoutRes(model: TopTutorModel): Int =
+                R.layout.list_item_tutor_parent_dash_board
 
             override fun getViewHolder(
                 view: View,

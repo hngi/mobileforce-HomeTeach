@@ -1,6 +1,7 @@
 package com.mobileforce.hometeach.models
 
 import androidx.recyclerview.widget.DiffUtil
+import java.util.*
 
 /**
  * Authored by enyason
@@ -9,9 +10,9 @@ import androidx.recyclerview.widget.DiffUtil
 data class Chat(
     val chatId: String,
     val senderName: String,
-    val senderPhoto: String,
+    val senderPhoto: String?,
     val lastMessage: String,
-    val lastMessageTime: String,
+    val lastMessageTime: Date?,
     val senderId: String
 )
 

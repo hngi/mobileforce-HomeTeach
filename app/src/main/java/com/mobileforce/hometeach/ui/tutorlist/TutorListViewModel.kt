@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.mobileforce.hometeach.data.model.TutorEntity
@@ -126,11 +127,13 @@ class TutorListViewModel(
                             .collection("user")
                             .document(userEntity?.id!!)
                             .collection("connect")
-                            .document()
+                            .document(selectedTutor!!.id)
                         val studentConnect = hashMapOf(
                             "id" to selectedTutor?.id,
                             "full_name" to selectedTutor?.full_name!!,
-                            "connect_id" to connectID
+                            "connect_id" to connectID,
+                            "last_message" to "You have a new connection",
+                            "last_message_time" to FieldValue.serverTimestamp()
                         )
 
 
@@ -138,18 +141,20 @@ class TutorListViewModel(
                             .collection("user")
                             .document(selectedTutor?.id!!)
                             .collection("connect")
-                            .document()
+                            .document(userEntity!!.id)
                         val tutorConnect = hashMapOf(
                             "id" to userEntity?.id,
                             "full_name" to userEntity?.full_name,
-                            "connect_id" to connectID
+                            "connect_id" to connectID,
+                            "last_message" to "You have a new connection",
+                            "last_message_time" to FieldValue.serverTimestamp()
+
                         )
 
 
 
                         db.runBatch { batch ->
                             batch.set(studentRef, studentConnect)
-
 
                             batch.set(tutorRef, tutorConnect)
 
