@@ -14,12 +14,19 @@ import os
 import django_heroku
 import dj_database_url
 from dotenv import load_dotenv
+import dotenv
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-load_dotenv(os.path.join(BASE_DIR, '.env'))
+dotenv_file = os.path.join(BASE_DIR, ".env")
+if os.path.isfile(dotenv_file):
+    dotenv.load_dotenv(dotenv_file)
 
+ENV = False
+
+if os.path.isfile(dotenv_file):
+    ENV = True
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
@@ -29,7 +36,7 @@ SECRET_KEY = 'wi8ec5*+xx1z6h9&%h=iaauyl)7mbime7f7$l(hx1iwev0sb+='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0', 'localhost', 'api-hometeach.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0', 'localhost', 'apihometeach.herokuapp.com']
 
 # Application definition
 
@@ -47,6 +54,7 @@ INSTALLED_APPS = [
     'accounts',
     'api',
     'confirmation',
+    'schedule',
 
     # third-party
     'rest_framework',
@@ -60,7 +68,12 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     #'rest_auth.registration',
-    ]
+    
+    'storages',
+    'rest_auth',
+    'django_extensions',
+]
+
 SITE_ID = 1
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
@@ -76,7 +89,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 ROOT_URLCONF = 'root.urls'
 
@@ -91,6 +103,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -102,21 +115,20 @@ WSGI_APPLICATION = 'root.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+
+
+if ENV:
+    DATABASES = {
+        'default': {
+		'ENGINE': 'django.db.backends.sqlite3',
+		'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+	}
     }
-}
+else:
+    DATABASES = dict()
+    DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 
-#db_from_env = dj_database_url.config(conn_max_age=600)
-#DATABASES = { 'default': dj_database_url.config() }
 
-prod_db  =  dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(prod_db)
-
-#db_from_env = dj_database_url.config(conn_max_age=600)
-#DATABASES['default'].update(db_from_env)
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
@@ -150,21 +162,6 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.0/howto/static-files/
-
-STATIC_URL = '/static/'
-
-#location where django collect all static files
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-# location where you will store your static files
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR,'static')
-]
-
-MEDIA_URL =  '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
 DEFAULT_AUTHENTICATION_CLASSES = [
         'rest_framework.authentication.TokenAuthentication',
      ]
@@ -187,8 +184,7 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-ACCOUNT_AUTHENTICATION_METHOD = "email"
-ACCOUNT_EMAIL_REQUIRED = True
+
 django_heroku.settings(locals())
 
 SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
@@ -202,6 +198,35 @@ EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_API_KEY')
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
+# AWS settings for static and media files storage
+AWS_ACCESS_KEY_ID = 'AKIA2JNMNTHW7M7ISZHN'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'hometeach-media'
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.us-east-2.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+# AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+AWS_DEFAULT_ACL = None
+
+# Static files (CSS, JavaScript, Images) settings
+STATIC_LOCATION = 'static'
+STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, STATIC_LOCATION)
+STATICFILES_STORAGE = 'root.storage_backends.StaticStorage'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR,'static'),
+]
+# Media files settings
+PUBLIC_MEDIA_LOCATION = 'media'
+MEDIA_URL =  'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, PUBLIC_MEDIA_LOCATION)
+DEFAULT_FILE_STORAGE = 'root.storage_backends.PublicMediaStorage'
 
 # Paystack
-PAYSTACK_AUTHORIZATION_KEY = os.getenv('PAYSTACK_SECRET_KEY')
+PAYSTACK_AUTHORIZATION_KEY = os.environ.get('PAYSTACK_SECRET_KEY')
+
+
+
+# ENCRYPT_KEY = b'5R_y8WWIMF7MOhShxQiZFZwXcRGGKKbdGrkPN9iVVpc='
+if not ENV:
+    del DATABASES['default']['OPTIONS']['sslmode']
+

@@ -1,6 +1,7 @@
 from django.urls import path, include, re_path
 from . import views
-from django.conf.urls import url
+from django.conf.urls import url 
+from rest_auth.views import PasswordResetView, PasswordChangeView, PasswordResetConfirmView
 
 urlpatterns = [
     path('register/', views.api_register_view),
@@ -17,5 +18,10 @@ urlpatterns = [
     path('', include('allauth.urls')),
    
     
-    ]
+    
 
+    url(r'^', include('django.contrib.auth.urls')),
+    path('rest-auth/', PasswordResetView.as_view()),
+    path('rest-auth/', PasswordResetConfirmView.as_view()),
+    path('rest-auth/', PasswordChangeView.as_view()),
+]

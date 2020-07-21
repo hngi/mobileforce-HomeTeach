@@ -13,6 +13,7 @@ from django.contrib.auth import get_user_model
 import uuid
 
 
+
 class UserManager(BaseUserManager):
     def create_user(self, email, password=None, full_name='', phone_number=''):
         """
@@ -58,8 +59,8 @@ class CustomUser(AbstractBaseUser):
                     )
     full_name = models.CharField(verbose_name='fullname', blank=True, max_length=150)
     username = models.CharField(verbose_name='username', blank=True, max_length=150)
-    first_name = models.CharField(verbose_name='first name', blank=True, max_length=150)
-    last_name = models.CharField(verbose_name='last name', blank=True, max_length=150)
+    first_name = models.CharField(verbose_name='firstname', blank=True, max_length=150)
+    last_name = models.CharField(verbose_name='lastname', blank=True, max_length=150)
     phone_number = models.CharField(max_length=15, validators=[RegexValidator(r'^\d{1,15}$')])
     timestamp = models.DateTimeField(auto_now_add=True)
     is_tutor = models.BooleanField(default=False)
