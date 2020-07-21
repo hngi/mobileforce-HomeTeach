@@ -44,19 +44,19 @@
                 android:scaleType="fitCenter"
                 android:layout_marginEnd="8dp"
                 android:layout_height="match_parent"
-                android:src="@drawable/attach_icon"
+                android:src="@drawable/ic_attachment"
                 app:layout_constraintRight_toLeftOf="@+id/send_msg"
                 android:layout_marginRight="8dp"
                 android:contentDescription="@string/attach_file_icon" />
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/send_msg"
                 android:layout_width="30dp"
                 android:layout_height="match_parent"
                 android:layout_marginEnd="8dp"
                 android:background="@null"
                 android:scaleType="fitCenter"
-                android:src="@drawable/send_msg_icon"
+                android:src="@drawable/ic_send_message"
                 app:layout_constraintRight_toRightOf="parent"
                 android:layout_marginRight="8dp"
                 android:contentDescription="@string/send_message_icon" />

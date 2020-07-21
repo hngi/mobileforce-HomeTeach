@@ -49,6 +49,7 @@
 
     <ImageButton
         android:id="@+id/ib_profile_icon"
+        android:visibility="invisible"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:src="@drawable/profile_icon"
