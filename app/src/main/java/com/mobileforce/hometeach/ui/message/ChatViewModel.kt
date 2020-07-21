@@ -126,6 +126,7 @@ class ChatViewModel(private val userRepository: UserRepository) : ViewModel() {
             .collection("user")
             .document(currentUser.id)
             .collection("connect")
+            .orderBy("last_message_time")
             .addSnapshotListener { snapshot, error ->
 
                 error?.let {
