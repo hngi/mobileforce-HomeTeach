@@ -53,7 +53,7 @@ interface DataSource {
 
     suspend fun saveUserCardDetails(params: Params.CardDetails)
 
-    suspend fun getUserCardDetails(id: String): List<UserCardDetailResponse>
+    suspend fun getUserCardDetails(params: Params.UserID): List<UserCardDetailResponse>
 
     suspend fun uploadTutorMedia( id: RequestBody,
                                  profile_pic: MultipartBody.Part,

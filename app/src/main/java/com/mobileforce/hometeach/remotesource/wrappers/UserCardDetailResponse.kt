@@ -1,8 +1,11 @@
 package com.mobileforce.hometeach.remotesource.wrappers
 
 class UserCardDetailResponse (
-    val cardNumber: String,
-    val cardCvc: String,
-    val expiryMonth: Int,
-    val expiryYear: Int
+    val id: Int,
+    val user: String,
+    val card_holder_name: String,
+    val card_number: String,
+    val cvv: String,
+    val expiry_month: Int,
+    val expiry_year: Int
 )

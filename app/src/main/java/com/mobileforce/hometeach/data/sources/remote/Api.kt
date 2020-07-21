@@ -61,10 +61,10 @@ interface  Api{
     suspend fun requestTutorService(@Body params: Params.RequestTutorService): Response<TutorServiceRequestResponse>
 
     @JvmSuppressWildcards
-    @GET("v1/card-by-id/{id}/")
-    suspend fun getUserCardDetails(@Path("id") id: String): List<UserCardDetailResponse>
+    @POST("v1/user-card-details/")
+    suspend fun getUserCardDetails(@Body params: Map<String, String>): List<UserCardDetailResponse>
    
-  @GET("v1/users/")
+    @GET("v1/users/")
     suspend fun getUser(): LiveData<UserEntity>
 
     @GET("v1/profiles/{id}/")

@@ -2,7 +2,6 @@ package com.mobileforce.hometeach.ui.studentpayments.carddetails
 
 import android.os.Build
 import android.os.Bundle
-import android.text.TextUtils
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -72,10 +71,10 @@ class StudentAddCardDetailsFragment : Fragment() {
             showDialog()
             // send card details to endpoint
             val cardDetails = Params.CardDetails(
-                user_id = userId,
+                user = userId,
                 card_holder_name = userName,
                 card_number = cardNumber,
-                card_cvc = cardCvc,
+                cvv = cardCvc,
                 expiry_month = Integer.parseInt(expiryMonth.toString()),
                 expiry_year = Integer.parseInt(expiryYear.toString())
             )

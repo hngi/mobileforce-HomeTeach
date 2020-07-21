@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,6 +15,7 @@ import com.mobileforce.hometeach.adapters.CircleTransform
 import com.mobileforce.hometeach.databinding.FragmentStudentCardDetailsBinding
 import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
 import com.mobileforce.hometeach.ui.studentpayments.StudentCardModel
+import com.mobileforce.hometeach.utils.Result
 import com.squareup.picasso.Picasso
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -23,7 +25,8 @@ class StudentCardDetailsFragment : Fragment() {
     lateinit var navController: NavController
     lateinit var binding: FragmentStudentCardDetailsBinding
     //private lateinit var list: MutableList<com.mobileforce.hometeach.ui.studentpayments.UserCardDetailResponse>
-    private var cardList: List<UserCardDetailResponse> = ArrayList()
+    private lateinit var cardList: List<UserCardDetailResponse>
+    private lateinit var onClickListener: View.OnClickListener
     private val viewModel: StudentCardDetailsViewModel by viewModel()
 
 
@@ -40,7 +43,9 @@ class StudentCardDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Get a list of User's saved cards to display in the RV
-        cardList = viewModel.getUserCardDetails()
+        viewModel.getUserCardDetails()
+        onClickListener = View.OnClickListener {}
+        //cardList = viewModel.getUserCardDetails()
 //        list = mutableListOf()
 //        list.add(
 //            com.mobileforce.hometeach.ui.studentpayments.UserCardDetailResponse(
@@ -70,12 +75,19 @@ class StudentCardDetailsFragment : Fragment() {
 //        binding.balance.text = "Balance: "+cards.balance
 //        Picasso.get().load("profile_image").transform(CircleTransform()).placeholder(R.drawable.profile_image).error(R.drawable.profile_image).into(binding.userImage)
 
-
-        binding.rvCreditCards.layoutManager = LinearLayoutManager(requireContext())
-        binding.rvCreditCards.hasFixedSize()
-        val adapter = StudentCardsRecycler()
-        adapter.submitList(cardList)
-        binding.rvCreditCards.adapter = adapter
+        viewModel.getUserCardDetails.observe(viewLifecycleOwner, Observer { result ->
+            when (result) {
+                Result.Loading -> {}
+                is Result.Success -> {
+                    binding.rvCreditCards.layoutManager = LinearLayoutManager(requireContext())
+                    binding.rvCreditCards.hasFixedSize()
+                    val adapter = StudentCardsRecycler()
+                    adapter.submitList(result.data)
+                    binding.rvCreditCards.adapter = adapter
+                    adapter.setOnclickListener(onClickListener)
+                }
+            }
+        })
 
         navController = Navigation.findNavController(view)
         val toolbar = binding.toolbar

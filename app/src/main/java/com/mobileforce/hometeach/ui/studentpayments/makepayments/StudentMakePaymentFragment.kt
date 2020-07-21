@@ -22,6 +22,7 @@ import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.databinding.FragmentStudentMakePaymentBinding
 import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
 import com.mobileforce.hometeach.ui.studentpayments.carddetails.StudentCardsRecycler
+import com.mobileforce.hometeach.utils.Result
 import kotlinx.android.synthetic.main.fragment_student_make_payment.*
 import kotlinx.android.synthetic.main.payment_reference_dialog.*
 import kotlinx.android.synthetic.main.students_card_list.view.*
@@ -40,7 +41,7 @@ class StudentMakePaymentFragment : Fragment() {
 //    private lateinit var card_DetailResponse_list:MutableList<UserCardDetailResponse>
 //    private lateinit var payment_list:MutableList<Payment>
     private lateinit var binding: FragmentStudentMakePaymentBinding
-    private var cardList: List<UserCardDetailResponse> = ArrayList()
+    private var cardList: ArrayList<UserCardDetailResponse> = ArrayList()
     private val viewModel: StudentMakePaymentViewModel by viewModel()
     private lateinit var onClickListener: View.OnClickListener
     private var transaction: Transaction? = null
@@ -68,26 +69,28 @@ class StudentMakePaymentFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Get a list of User's saved cards to display in the RV
-        cardList = viewModel.getUserCardDetails()
+        viewModel.getUserCardDetails()
         viewModel.user.observe(viewLifecycleOwner, androidx.lifecycle.Observer {user ->
             user?.let {
                 userEmail = user.email
             }
         })
 
+        //cardList = ArrayList()
         onClickListener = View.OnClickListener {
             val holder = it.tag as RecyclerView.ViewHolder
             val pos = holder.adapterPosition
             val card = cardList[pos]
-            cardNumber = card.cardNumber
-            cardCvc = card.cardCvc
-            cardExpMonth = card.expiryMonth
-            cardExpYear = card.expiryYear
-            if (TextUtils.isEmpty(amount.toString())){
-                layout_amount.error = "Input an amount"
-            } else {
-                amount = et_amount.toString().trim().toInt()
-            }
+            cardNumber = card.card_number
+            cardCvc = card.cvv
+            cardExpMonth = card.expiry_month
+            cardExpYear = card.expiry_year
+            amount = et_amount.text.toString().trim().toInt()
+//            if (TextUtils.isEmpty(amount.toString())) {
+//                layout_amount.error = "Input an amount"
+//            } else {
+//
+//            }
             holder.itemView.rb_select_card.isChecked = true
         }
 
@@ -161,12 +164,22 @@ class StudentMakePaymentFragment : Fragment() {
 //        Picasso.get().load("profile_image").transform(CircleTransform()).placeholder(R.drawable.profile_image).error(R.drawable.profile_image).into(binding.tutorImage)
 
 
-        binding.studentcardsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        binding.studentcardsRecyclerView.hasFixedSize()
-        val adapter = StudentCardsRecycler()
-        adapter.submitList(cardList)
-        binding.studentcardsRecyclerView .adapter = adapter
-        adapter.setOnclickListener(onClickListener)
+        viewModel.getUserCardDetails.observe(viewLifecycleOwner, androidx.lifecycle.Observer { result ->
+            when (result) {
+                Result.Loading -> {}
+                is Result.Success -> {
+                    for (card in result.data!!){
+                        cardList.add(card)
+                    }
+                    binding.studentcardsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+                    binding.studentcardsRecyclerView.hasFixedSize()
+                    val adapter = StudentCardsRecycler()
+                    adapter.submitList(result.data)
+                    binding.studentcardsRecyclerView.adapter = adapter
+                    adapter.setOnclickListener(onClickListener)
+                }
+            }
+        })
 
 //        val adapter2 = StudentPaymentsRecycler()
 //        adapter2.submitList(student.payment)
@@ -257,27 +270,29 @@ class StudentMakePaymentFragment : Fragment() {
     private fun displayReferenceDialog() {
         val dialogView = PaymentReferenceDialog.newInstance()
         if (transaction?.reference != null){
-            dialogView.tv_reference_text.text = String.format("Reference: %s", transaction?.reference)
+            //dialogView.tv_reference_text.text = String.format("Reference: %s", transaction?.reference)
             dialogView.show(requireActivity().supportFragmentManager, "reference_dialog")
         } else {
-            dialogView.tv_reference_text.text = getString(R.string.no_transaction)
+            //dialogView.tv_reference_text.text = getString(R.string.no_transaction)
             dialogView.show(requireActivity().supportFragmentManager, "reference_dialog")
         }
     }
 
     private fun displayErrorDialog(message: String) {
         val dialogView = PaymentReferenceDialog.newInstance()
-        if (!TextUtils.isEmpty(message)){
-            dialogView.tv_reference_text.text = message
-        }
+//        if (!TextUtils.isEmpty(message)){
+//            dialogView.tv_reference_text.text = message
+//        }
         dialogView.show(requireActivity().supportFragmentManager, "error_dialog")
     }
 
-    override fun onPause() {
-        super.onPause()
-
-        dismissProgressDialog()
-    }
+//    override fun onPause() {
+//        super.onPause()
+//
+//        if (progressDialog.isShowing) {
+//            dismissProgressDialog()
+//        }
+//    }
 
     private fun verifyOnServer(reference: String) {
         var ref: String
