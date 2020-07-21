@@ -6,25 +6,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageButton
-import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.firestore.ServerTimestamp
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.adapters.ChatAdapter
 import com.mobileforce.hometeach.data.model.UserEntity
+import com.mobileforce.hometeach.databinding.ChatFragmentBinding
 import com.mobileforce.hometeach.models.Message
 import com.mobileforce.hometeach.ui.BottomNavigationActivity
 import com.mobileforce.hometeach.utils.toast
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.view_message_input.*
 import org.koin.android.viewmodel.ext.android.sharedViewModel
-import java.util.*
-import kotlin.collections.ArrayList
 
 /**
  * Fragment that implements the Chat UI
@@ -42,15 +39,16 @@ class ChatFragment : Fragment() {
 
     private lateinit var currentUser: UserEntity
 
-    @ServerTimestamp
-    private val lastTimestamp: Date? = null
+
+    private lateinit var binding: ChatFragmentBinding
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.chat_fragment, container, false)
+        binding = ChatFragmentBinding.inflate(layoutInflater)
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -72,16 +70,17 @@ class ChatFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val senderImage = view.findViewById<CircleImageView>(R.id.iv_sender_image)
-        val senderName = view.findViewById<TextView>(R.id.tv_sender_name)
+
         val messageInput = view.findViewById<EditText>(R.id.message_input)
-        val addAttachment = view.findViewById<ImageButton>(R.id.add_attachment)
+
         val sendMsg = view.findViewById<ImageButton>(R.id.send_msg)
 
-        addAttachment.setOnClickListener {
-            Toast.makeText(requireContext(), "Add Attachment", Toast.LENGTH_SHORT).show()
+        binding.vwMessageInput.addAttachment.setOnClickListener {
+//            Toast.makeText(requireContext(), "Add Attachment", Toast.LENGTH_SHORT).show()
         }
 
-        sendMsg.setOnClickListener {
+
+        binding.vwMessageInput.sendMsg.setOnClickListener {
             sendMessage()
         }
 
@@ -90,7 +89,7 @@ class ChatFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         viewModel.chatListItem?.let {
-            senderName.text = it.senderName
+            binding.tvSenderName.text = it.senderName
 
             db.collection("chat")
                 .document(viewModel.chatListItem!!.chatId)
@@ -131,7 +130,7 @@ class ChatFragment : Fragment() {
 
     private fun sendMessage() {
 
-        val message = message_input.text.toString()
+        val message = binding.vwMessageInput.messageInput.text.toString()
 
         if (message.isEmpty()) {
 
@@ -142,7 +141,11 @@ class ChatFragment : Fragment() {
         val messageObject = Message(message, currentUser.id)
 
         val chatListMap =
-            hashMapOf<String, Any?>("last_message" to message, "last_message_time" to lastTimestamp)
+            hashMapOf<String, Any?>(
+                "last_message" to message,
+
+                "last_message_time" to FieldValue.serverTimestamp()
+            )
 
 
         val lastMessageRefCurrentUser = db
@@ -175,9 +178,8 @@ class ChatFragment : Fragment() {
 
                         batch.update(lastMessageRefOtherUser, chatListMap)
 
-                        batch.commit()
-
                     }
+
                 }
             }
 

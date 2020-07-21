@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.snackbar.Snackbar
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * Authored by enyason
@@ -75,4 +77,11 @@ fun View.makeGone() {
 
 fun View.makeVisible() {
     visibility = View.VISIBLE
+}
+
+fun Date?.convertTime(): String {
+    if (this == null) return ""
+    val formatter = SimpleDateFormat("hh:mm a", Locale.US)
+    formatter.timeZone = TimeZone.getDefault()
+    return formatter.format(date)
 }

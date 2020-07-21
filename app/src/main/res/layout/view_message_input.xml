@@ -49,7 +49,7 @@
                 android:layout_marginRight="8dp"
                 android:contentDescription="@string/attach_file_icon" />
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/send_msg"
                 android:layout_width="30dp"
                 android:layout_height="match_parent"

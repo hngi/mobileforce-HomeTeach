@@ -89,7 +89,7 @@ class HomePageFragment : Fragment() {
         }
 
         bindingParent.root.findViewById<MaterialButton>(R.id.signOut).setOnClickListener {
-            //viewModel.logOut()
+            viewModel.logOut()
             startActivity(Intent(requireContext(), LoginActivity::class.java))
             requireActivity().finish()
         }

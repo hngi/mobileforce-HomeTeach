@@ -3,10 +3,12 @@ package com.mobileforce.hometeach.ui.message
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.mobileforce.hometeach.data.repository.UserRepository
 import com.mobileforce.hometeach.models.Chat
+import kotlinx.coroutines.launch
 
 class ChatViewModel(private val userRepository: UserRepository) : ViewModel() {
 
@@ -22,48 +24,55 @@ class ChatViewModel(private val userRepository: UserRepository) : ViewModel() {
 
     fun fetchUserChatList() {
 
-        db
-            .collection("user")
-            .document(user.value!!.id)
-            .collection("connect")
-            .addSnapshotListener { snapshot, error ->
+        viewModelScope.launch {
 
-                error?.let {
-                    return@addSnapshotListener
-                }
+            val user = userRepository.getSingleUser()
 
-                if (snapshot != null) {
+            db
+                .collection("user")
+                .document(user.id)
+                .collection("connect")
+                .addSnapshotListener { snapshot, error ->
 
-                    val chatList = mutableListOf<Chat>()
-                    for (doc in snapshot.documents) {
-
-                        val name = doc.getString("full_name")
-                        val senderId = doc.getString("id")
-                        val connectId = doc.getString("connect_id")
-                        val lastMessage = doc.getString("last_message")
-
-
-                        val chat = Chat(
-                            chatId = connectId.toString(),
-                            senderName = name.toString(),
-                            senderPhoto = "",
-                            lastMessage = lastMessage.toString(),
-                            lastMessageTime = "Today",
-                            senderId = senderId!!
-                        )
-
-                        chatList.add(chat)
-
+                    error?.let {
+                        return@addSnapshotListener
                     }
 
-                    _chatList.postValue(chatList)
+                    if (snapshot != null) {
 
-                } else {
-                    println("Current data: null")
+                        val chatList = mutableListOf<Chat>()
+                        for (doc in snapshot.documents) {
+
+                            val name = doc.getString("full_name")
+                            val senderId = doc.getString("id")
+                            val connectId = doc.getString("connect_id")
+                            val lastMessage = doc.getString("last_message")
+                            val lastTime = doc.getDate("last_message_time")
+
+
+                            val chat = Chat(
+                                chatId = connectId.toString(),
+                                senderName = name.toString(),
+                                senderPhoto = "",
+                                lastMessage = lastMessage ?: "",
+                                lastMessageTime = lastTime,
+                                senderId = senderId!!
+                            )
+
+                            chatList.add(chat)
+
+                        }
+
+                        _chatList.postValue(chatList)
+
+                    } else {
+                        println("Current data: null")
+                    }
+
+
                 }
+        }
 
-
-            }
 
     }
 

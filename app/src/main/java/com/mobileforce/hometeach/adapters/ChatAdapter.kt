@@ -7,9 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.models.Message
-import java.text.SimpleDateFormat
-import java.util.*
-import kotlin.collections.ArrayList
+import com.mobileforce.hometeach.utils.convertTime
 
 /**
  * Adapter that inflates and populates the Chat UI
@@ -68,7 +66,7 @@ class ChatAdapter(messages: ArrayList<Message>, private var currentUserId: Strin
 
         fun bind(message: Message) {
             sentMsg.text = message.message
-            sentTime.text = convertTime(message.created_at)
+            sentTime.text = message.created_at.convertTime()
         }
     }
 
@@ -79,16 +77,7 @@ class ChatAdapter(messages: ArrayList<Message>, private var currentUserId: Strin
 
         fun bind(message: Message) {
             rcvdMsg.text = message.message
-            rcvdTime.text = convertTime(message.created_at)
+            rcvdTime.text = message.created_at.convertTime()
         }
     }
-}
-
-fun convertTime(date: Date?): String {
-
-    if (date == null) return ""
-    val formatter = SimpleDateFormat("hh:mm a", Locale.US)
-    formatter.timeZone = TimeZone.getDefault()
-    return formatter.format(date)
-
 }

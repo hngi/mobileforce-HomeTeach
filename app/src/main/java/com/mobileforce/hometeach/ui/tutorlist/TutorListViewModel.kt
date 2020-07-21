@@ -124,7 +124,7 @@ class TutorListViewModel(
                             .collection("user")
                             .document(userEntity?.id!!)
                             .collection("connect")
-                            .document()
+                            .document(selectedTutor!!.id)
                         val studentConnect = hashMapOf(
                             "id" to selectedTutor?.id,
                             "full_name" to selectedTutor?.full_name!!,
@@ -136,7 +136,7 @@ class TutorListViewModel(
                             .collection("user")
                             .document(selectedTutor?.id!!)
                             .collection("connect")
-                            .document()
+                            .document(userEntity!!.id)
                         val tutorConnect = hashMapOf(
                             "id" to userEntity?.id,
                             "full_name" to userEntity?.full_name,
@@ -148,10 +148,7 @@ class TutorListViewModel(
                         db.runBatch { batch ->
                             batch.set(studentRef, studentConnect)
 
-
                             batch.set(tutorRef, tutorConnect)
-
-                            batch.commit()
 
                         }.addOnCompleteListener {
 
