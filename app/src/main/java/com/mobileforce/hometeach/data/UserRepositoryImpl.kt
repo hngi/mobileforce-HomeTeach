@@ -108,6 +108,11 @@ class UserRepositoryImpl(private val dataSource: DataSourceFactory) : UserReposi
     override suspend fun modify() {
         return dataSource.local().clearDb()
     }
+
+    override suspend fun save() {
+        return dataSource.local().clearDb()
+    }
+
     override suspend fun getSingleUserProfile(): ProfileEntity {
         return dataSource.local().getSingleUserProfile()
     }
@@ -116,4 +121,6 @@ class UserRepositoryImpl(private val dataSource: DataSourceFactory) : UserReposi
         val user = dataSource.local().getSingleUserProfile()
         return dataSource.remote().getUserProfile(user.id.toInt())
     }
+
+
 }

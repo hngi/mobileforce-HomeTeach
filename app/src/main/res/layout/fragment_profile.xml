@@ -61,11 +61,13 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
 
-                <ImageView
+                <VideoView
                     android:id="@+id/tutor_video"
-                    android:background="@drawable/video_place_holder"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="200dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentRight="true"
+                  />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -93,9 +95,9 @@
                             android:layout_height="50dp"
                             android:layout_marginLeft="16dp"
                             android:layout_marginTop="16dp"
-                            android:src="@drawable/profile_image"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
+
                             tools:ignore="ContentDescription" />
 
                         <TextView
@@ -164,7 +166,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="8dp"
                             android:layout_marginRight="8dp"
-                            android:text="@string/n2000_hr"
+                            android:text=""
                             android:textSize="12sp"
                             android:textStyle="bold"
                             android:textColor="#000000"
@@ -201,7 +203,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="@string/math_tutor"
+
                             android:textSize="13sp"
                             app:layout_constraintHorizontal_bias="0.0"
                             app:layout_constraintLeft_toLeftOf="@id/tutor_name_profile"
@@ -217,7 +219,7 @@
                             android:layout_marginTop="8dp"
                             android:numStars="5"
                             android:progressTint="@android:color/holo_orange_light"
-                            android:rating="4"
+
                             app:layout_constraintLeft_toLeftOf="@id/Tutor_subject"
                             app:layout_constraintTop_toBottomOf="@id/Tutor_subject"
                             tools:ignore="UnusedAttribute" />
@@ -236,7 +238,7 @@
                             android:id="@+id/tutor_interest"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/interests_science_math_physics"
+                            android:text=""
                             android:textSize="12sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintLeft_toLeftOf="@id/Tutor_subject"
@@ -305,6 +307,7 @@
                 app:layout_constraintTop_toBottomOf="@id/description_text">
 
                 <TextView
+                    android:id="@+id/tutor_desc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/ubuntu"
@@ -313,7 +316,7 @@
                     android:layout_marginBottom="16dp"
                     android:lineSpacingExtra="3sp"
                     android:padding="16dp"
-                    android:text="@string/i_teach_with_calmness_and_encouragement_my_lessons_are_not_boring_and_i_can_accomodate_student_s_with_low_affinity_to_studying_i_employ_modern_schema_for_tutoring_with_interactive_guides_and_learning_systems_having_schooled_at_different_educational_organizations_coupled_with_my_nce_certifcate_i_can_assure_you_premium_success_with_me_as_your_home_teacher"
+                    android:text=""
                     android:textSize="14sp" />
 
             </com.google.android.material.card.MaterialCardView>
