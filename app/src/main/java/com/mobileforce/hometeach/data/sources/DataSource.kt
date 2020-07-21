@@ -22,6 +22,7 @@ interface DataSource {
     suspend fun signUp(params: Params.SignUp): RegisterUserResponse
 
     suspend fun resetPassword(params: Params.PasswordReset): Response<EmailResponse>
+
     suspend fun saveUser(user: User)
 
     fun getUser(): LiveData<UserEntity>
@@ -50,7 +51,7 @@ interface DataSource {
 
     suspend fun saveUserCardDetails(params: Params.CardDetails)
 
-    suspend fun getUserCardDetails(id: String): List<UserCardDetailResponse>
+    suspend fun getUserCardDetails(params: Params.UserID): List<UserCardDetailResponse>
 
     suspend fun uploadTutorMedia(
         id: RequestBody,
@@ -78,10 +79,13 @@ interface DataSource {
     suspend fun saveUserProfile(profile: Profile)
 
     fun profileLiveData(): LiveData<ProfileEntity>
+
     suspend fun getUserProfile(id: Int): StudentProfileResponse
+
     suspend fun getSingleUserProfile(): ProfileEntity
 
     suspend fun getProfileId(): Int
+
     suspend fun updateTutorProfile(
         id: Int,
         params: Params.UpdateTutorProfile
