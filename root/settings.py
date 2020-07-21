@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-#import django_heroku
+import django_heroku
 import dj_database_url
 from dotenv import load_dotenv
 
@@ -189,7 +189,7 @@ AUTHENTICATION_BACKENDS = [
 
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_REQUIRED = True
-#django_heroku.settings(locals())
+django_heroku.settings(locals())
 
 SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
 
@@ -202,12 +202,6 @@ EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_API_KEY')
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'bitruschoji4real@gmail.com'
-EMAIL_HOST_PASSWORD = "08032546397"
 
 # Paystack
-#PAYSTACK_AUTHORIZATION_KEY = os.getenv('PAYSTACK_SECRET_KEY')
+PAYSTACK_AUTHORIZATION_KEY = os.getenv('PAYSTACK_SECRET_KEY')
