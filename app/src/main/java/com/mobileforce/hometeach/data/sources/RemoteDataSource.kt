@@ -9,6 +9,7 @@ import com.mobileforce.hometeach.data.sources.remote.Api
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
 import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
+import com.mobileforce.hometeach.utils.UploadaResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -93,6 +94,7 @@ class RemoteDataSource(private val api: Api) : DataSource {
         return api.getUserCardDetails(map)
     }
 
+
     override suspend fun uploadTutorMedia(
         id: RequestBody,
         profile_pic: MultipartBody.Part,
@@ -102,9 +104,27 @@ class RemoteDataSource(private val api: Api) : DataSource {
         return api.uploadTutorMedia(id, profile_pic, credentials, video)
     }
 
-    override suspend fun getId(): String {
-        TODO("Not yet implemented")
+    override suspend fun uploadProfilePic(
+        id: Int,
+        profile_pic: MultipartBody.Part
+    ): Response<UploadResponse> {
+        return api.uploadProfilePic(id,profile_pic)
     }
+
+    override suspend fun uploadVideo(
+        id: Int,
+        video: MultipartBody.Part
+    ): Response<UploadResponse> {
+       return api.uploadVideo(id,video)
+    }
+
+    override suspend fun uploadCredential(
+        id: Int,
+        credentials: MultipartBody.Part
+    ): Response<UploadResponse> {
+      return api.uploadCredential(id,credentials)
+    }
+
 
     override suspend fun resetPassword(params: Params.PasswordReset): Response<EmailResponse> {
         val map = hashMapOf(
@@ -152,5 +172,25 @@ class RemoteDataSource(private val api: Api) : DataSource {
         TODO("Not yet implemented")
     }
 
-}
+    override suspend fun getProfileId(): Int {
+        TODO("Not yet implemeaddressaddressnted")
+    }
 
+    override suspend fun updateTutorProfile(
+        id: Int,
+        params: Params.UpdateTutorProfile
+    ): Response<LoginResponse> {
+
+        val map = mapOf(
+            "field" to params.field,
+            "major_course" to params.major_course,
+            "other_courses" to params.other_courses,
+            "state" to params.state,
+            "address" to params.address,
+            "hourly_rate" to params.hourly_rate,
+            "desc" to params.desc
+            )
+        return api.updateTutorProfile(id,map)
+    }
+
+}

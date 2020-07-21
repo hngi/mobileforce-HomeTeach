@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.MediaController
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.adapters.CircleTransform
@@ -25,6 +27,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
  * Authored by enyason
  */
 class ProfileFragment : Fragment() {
+    lateinit var navController: NavController
     private var mediaController: MediaController? = null
     private lateinit var bindingTutor: FragmentProfileBinding
     private val viewModel: ProfileViewModel by viewModel()
@@ -41,13 +44,11 @@ class ProfileFragment : Fragment() {
             bindingStudent = FragmentStudentProfileBinding.inflate(layoutInflater)
             bindingStudent.root
         }
-
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        navController = Navigation.findNavController(view)
         if (pref.userType == USER_TUTOR) {
             setUpProfileForTutor()
             bindingTutor.toolBar.setNavigationOnClickListener {
@@ -65,6 +66,9 @@ class ProfileFragment : Fragment() {
 
     }
     private fun setUpProfileForTutor(){
+        bindingTutor.editButton.setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_to_editTutorProfileFragment)
+        }
         viewModel.getTutorDetails()
         viewModel.getTutorDetails.observe(viewLifecycleOwner, Observer { result ->
             Log.d("Result", result.toString())

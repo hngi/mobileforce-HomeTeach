@@ -55,6 +55,7 @@ class Params {
         var totalReviews: String
 
     )
+
     data class RequestTutorService(
         val student_id: String,
         val tutor_id: String,
@@ -67,5 +68,14 @@ class Params {
 
     data class UserID(
         val user: String
+    )
+    data class UpdateTutorProfile(
+        val field: String,
+        val major_course: String,
+        val other_courses: String,
+        val state: String,
+        val address: String,
+        val hourly_rate: String,
+        val desc: String
     )
 }

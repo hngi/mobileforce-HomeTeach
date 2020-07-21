@@ -9,6 +9,7 @@ import com.mobileforce.hometeach.data.sources.local.AppDataBase
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
 import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
+import com.mobileforce.hometeach.utils.UploadaResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -78,8 +79,22 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getId(): String {
-        return db.userDao().getSingleUser().id
+    override suspend fun uploadProfilePic(
+        id: Int,
+        profile_pic: MultipartBody.Part
+    ): Response<UploadResponse> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun uploadVideo(id: Int, video: MultipartBody.Part): Response<UploadResponse> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun uploadCredential(
+        id: Int,
+        credentials: MultipartBody.Part
+    ): Response<UploadResponse> {
+        TODO("Not yet implemented")
     }
 
     override suspend fun requestTutorService(params: Params.RequestTutorService): Response<TutorServiceRequestResponse> {
@@ -137,6 +152,17 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
 
     override suspend fun getSingleUserProfile(): ProfileEntity {
         return  db.userDao().getUserProfile()
+    }
+
+    override suspend fun getProfileId(): Int {
+        return db.userDao().getUserProfile().id
+    }
+
+    override suspend fun updateTutorProfile(
+        id: Int,
+        params: Params.UpdateTutorProfile
+    ): Response<LoginResponse> {
+        TODO("Not yet implemented")
     }
 
     private fun mapProfileToEntity(profile: Profile): ProfileEntity {

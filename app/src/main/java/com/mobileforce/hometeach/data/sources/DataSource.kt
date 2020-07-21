@@ -7,13 +7,11 @@ import com.mobileforce.hometeach.data.model.User
 import com.mobileforce.hometeach.data.model.UserEntity
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
-import com.mobileforce.hometeach.remotesource.wrappers.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
+import com.mobileforce.hometeach.utils.UploadaResponse
 import retrofit2.Response
-import retrofit2.http.Part
-import java.io.InputStream
 
 
 interface DataSource {
@@ -23,7 +21,7 @@ interface DataSource {
 
     suspend fun signUp(params: Params.SignUp): RegisterUserResponse
 
-    suspend fun resetPassword(params: Params.PasswordReset):Response<EmailResponse>
+    suspend fun resetPassword(params: Params.PasswordReset): Response<EmailResponse>
 
     suspend fun saveUser(user: User)
 
@@ -39,13 +37,13 @@ interface DataSource {
 
     suspend fun clearDb()
 
-    suspend fun getTutorList() : Response<List<TutorNetworkResponse>>
+    suspend fun getTutorList(): Response<List<TutorNetworkResponse>>
 
     suspend fun requestTutorService(params: Params.RequestTutorService): Response<TutorServiceRequestResponse>
 
     suspend fun saveTutorList(tutorList: List<TutorEntity>)
 
-    fun searchTutors(query: String) : LiveData<List<TutorEntity>>
+    fun searchTutors(query: String): LiveData<List<TutorEntity>>
 
     suspend fun clearTutorListDb()
 
@@ -55,12 +53,28 @@ interface DataSource {
 
     suspend fun getUserCardDetails(params: Params.UserID): List<UserCardDetailResponse>
 
-    suspend fun uploadTutorMedia( id: RequestBody,
-                                 profile_pic: MultipartBody.Part,
-                                 credentials: MultipartBody.Part,
-                                 video: MultipartBody.Part):Response<UploadResponse>
+    suspend fun uploadTutorMedia(
+        id: RequestBody,
+        profile_pic: MultipartBody.Part,
+        credentials: MultipartBody.Part,
+        video: MultipartBody.Part
+    ): Response<UploadResponse>
 
-    suspend fun getId():String
+    suspend fun uploadProfilePic(
+        id: Int,
+        profile_pic: MultipartBody.Part
+    ): Response<UploadResponse>
+
+    suspend fun uploadVideo(
+        id: Int,
+        video: MultipartBody.Part
+    ): Response<UploadResponse>
+
+    suspend fun uploadCredential(
+        id: Int,
+        credentials: MultipartBody.Part
+    ): Response<UploadResponse>
+
 
     suspend fun saveUserProfile(profile: Profile)
 
@@ -69,5 +83,12 @@ interface DataSource {
     suspend fun getUserProfile(id: Int): StudentProfileResponse
 
     suspend fun getSingleUserProfile(): ProfileEntity
+
+    suspend fun getProfileId(): Int
+
+    suspend fun updateTutorProfile(
+        id: Int,
+        params: Params.UpdateTutorProfile
+    ): Response<LoginResponse>
 
 }

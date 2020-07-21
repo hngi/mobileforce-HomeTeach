@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +19,8 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.button.MaterialButton
 import com.mobileforce.hometeach.R
+import com.mobileforce.hometeach.data.model.ProfileEntity
+import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.databinding.FragmentEditTutorProfileBinding
 import com.tiper.MaterialSpinner
 import kotlinx.android.synthetic.main.fragment_edit_tutor_profile.*
@@ -39,16 +42,9 @@ class EditTutorProfileFragment : Fragment() {
     val REQUEST_CODE2 = 1005
     val REQUEST_CODE3 = 1009
     lateinit var userImage: InputStream
-    lateinit var userVideo: InputStream
-    lateinit var userPdf: InputStream
     private lateinit var mDialogView: View
 
     private val viewModel: EditTutorViewModel = get<EditTutorViewModel>()
-
-//    companion object {
-//        fun newInstance() = EditTutorProfileFragment()
-//    }
-
     private val listener by lazy {
         object : MaterialSpinner.OnItemSelectedListener {
             override fun onItemSelected(
@@ -107,47 +103,34 @@ class EditTutorProfileFragment : Fragment() {
             }
         }
 
-        // Displays the Credentials DialogFragment
-        tv_view_all.setOnClickListener {
-            val credentialDialog = CredentialDialog()
-            val trans = parentFragmentManager.beginTransaction()
-            credentialDialog.show(trans, "dialog")
-        }
 
-//        val profileList = viewModel.getProfileList()
-//        val profileResponse = profileList[0]
-//        var currentUserId: Int = 0
-//        var currentUserEmail: String = ""
-//        if (profileResponse.address == et_address_input.text.toString()){
-//            currentUserId = profileResponse.id
-//            currentUserEmail = profileResponse.email
-//        }
-
-//        binding.tvViewAll.setOnClickListener {
-//
-//
-//        }
+        binding.profilePic.setOnClickListener {
+            selectImage()
 
 
-        bt_save_profile.setOnClickListener {
-//            val profileData = Params.EditTutorProfile(
-//                email = currentUserEmail,
-//                full_name = et_name_input.text.toString(),
-//                desc = et_description.text.toString(),
-//                field = sp_select_field.selectedItem.toString(),
-//                major_course = et_course_input.text.toString(),
-//                other_courses = et_other_course_input.text.toString(),
-//                state = sp_select_origin.selectedItem.toString(),
-//                address = et_address_input.text.toString()
-//            )
-//            viewModel.editTutorProfile(currentUserId, profileData)
-        }
-
-        binding.selectImage.setOnClickListener {
 
         }
         binding.tvUpload.setOnClickListener {
+            selectVideo()
+
+        }
+        binding.upload.setOnClickListener {
+            selectPdf()
+        }
+        binding.btSaveProfile.setOnClickListener {
+            val selectedField = binding.spSelectField.selectedItem.toString()
+            val majorCourses = binding.etCourseInput.text.toString()
+            val otherCourses = binding.etOtherCourseInput.text.toString()
+            val stateOfOrigin = binding.spSelectOrigin.selectedItem.toString()
+            val address = binding.etAddressInput.text.toString()
+            val rate = binding.etRateInput.text.toString()
+            val description = binding.etDescription.text.toString()
             showDialog()
+            mDialogView.progressBar.visibility = View.VISIBLE
+            val data = Params.UpdateTutorProfile(selectedField,majorCourses,otherCourses,stateOfOrigin,address,rate,description)
+            viewModel.updateTutorProfile(data)
+            mDialogView.progressBar.visibility = View.INVISIBLE
+            mDialogView.successImage.visibility = View.VISIBLE
 
         }
     }
@@ -163,8 +146,12 @@ class EditTutorProfileFragment : Fragment() {
                     val inputStream: InputStream? =
                         context?.contentResolver?.openInputStream(it.data!!)
                     inputStream?.let { stream ->
-                        userImage = stream
-                        mDialogView.imgCheck.visibility = View.VISIBLE
+                        showDialog()
+                        mDialogView.progressBar.visibility = View.VISIBLE
+                        viewModel.uploadPhoto(stream)
+                        mDialogView.progressBar.visibility = View.INVISIBLE
+                        mDialogView.successImage.visibility = View.VISIBLE
+
                     }
                 }
             } catch (e: FileNotFoundException) {
@@ -179,8 +166,11 @@ class EditTutorProfileFragment : Fragment() {
                     val inputStream: InputStream? =
                         context?.contentResolver?.openInputStream(it.data!!)
                     inputStream?.let { stream ->
-                        userVideo = stream
-                        mDialogView.videoCheck.visibility = View.VISIBLE
+                        showDialog()
+                        mDialogView.progressBar.visibility = View.VISIBLE
+                      viewModel.uploadVideo(stream)
+                        mDialogView.progressBar.visibility = View.INVISIBLE
+                        mDialogView.successImage.visibility = View.VISIBLE
                     }
                 }
             } catch (e: FileNotFoundException) {
@@ -195,8 +185,11 @@ class EditTutorProfileFragment : Fragment() {
                     val inputStream: InputStream? =
                         context?.contentResolver?.openInputStream(it.data!!)
                     inputStream?.let { stream ->
-                        userPdf = stream
-                        mDialogView.pdfCheck.visibility = View.VISIBLE
+                        showDialog()
+                        mDialogView.progressBar.visibility = View.VISIBLE
+                        viewModel.uploadPdf(stream)
+                          mDialogView.progressBar.visibility = View.INVISIBLE
+                        mDialogView.successImage.visibility = View.VISIBLE
                     }
                 }
             } catch (e: FileNotFoundException) {
@@ -204,15 +197,9 @@ class EditTutorProfileFragment : Fragment() {
             }
         }
 
-//        upload(userId,userImage,userPdf,userImage)
-
     }
 
-    fun upload(image: InputStream, credential: InputStream, video: InputStream) {
 
-        viewModel.uploadTutorMedia(image, credential, video)
-
-    }
 
 
     private fun selectImage() {
@@ -245,55 +232,7 @@ class EditTutorProfileFragment : Fragment() {
             AlertDialog.Builder(it1)
                 .setView(mDialogView)
         }
-
-
         val mAlertDialog = mBuilder?.show()
-        mDialogView.image.setOnClickListener {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-
-                if (activity?.let { it1 ->
-                        ContextCompat.checkSelfPermission(
-                            it1,
-                            Manifest.permission.READ_EXTERNAL_STORAGE
-                        )
-                    } ==
-                    PackageManager.PERMISSION_DENIED) {
-                    //permission denied
-                    val permissions = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE);
-                    //show popup to request runtime permission
-                    requestPermissions(permissions, REQUEST_CODE);
-                } else {
-                    //permission already granted
-                    selectImage();
-                }
-            } else {
-                //system OS is < Marshmallow
-                selectImage();
-            }
-
-            binding.root.findViewById<MaterialButton>(R.id.bt_save_profile).setOnClickListener {
-                findNavController().navigate(R.id.profileFragment)
-            }
-        }
-        mDialogView.video.setOnClickListener {
-            selectVideo()
-
-        }
-        mDialogView.pdf.setOnClickListener {
-            selectPdf()
-        }
-        mDialogView.upload.setOnClickListener {
-            mDialogView.progressBar.visibility = View.VISIBLE
-
-//                mAlertDialog?.hide()
-
-            //upload(userImage,userPdf,userImage)
-
-
-        }
-
-
     }
-
 
 }
