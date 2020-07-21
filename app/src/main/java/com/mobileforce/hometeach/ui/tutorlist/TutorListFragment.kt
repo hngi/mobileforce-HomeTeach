@@ -72,6 +72,9 @@ class TutorListFragment : Fragment(), SelectDateDialog.SelectDateListener {
             override fun onQueryTextChange(newText: String?): Boolean {
                 if (newText != null) {
                     getItemsFromDb(newText.trim())
+                    if (newText.isEmpty()){
+                        binding.tutorAllList.adapter = adapter
+                    }
                 }
                 return true
             }

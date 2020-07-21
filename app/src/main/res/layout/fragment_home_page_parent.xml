@@ -204,13 +204,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/labelToptutors"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
                     android:layout_marginTop="16dp"
-                    android:layout_marginEnd="8dp"
-                    tools:itemCount="3"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    android:layout_marginRight="8dp"
+                    android:layout_centerInParent="true"
+                    android:layout_alignParentStart="true"
                     android:orientation="vertical"
-                    tools:listitem="@layout/list_item_tutor_parent_dash_board"/>
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:itemCount="3"
+                    tools:listitem="@layout/list_item_home_tutors_recycler"
+                    android:layout_alignParentLeft="true" />
 
                 <ProgressBar
                     android:id="@+id/top_tutors_loader"

@@ -1,6 +1,5 @@
 package com.mobileforce.hometeach.ui.home.student.toptutors
 
-import com.mobileforce.hometeach.databinding.ListItemTutorParentDashBoardBinding
 
 /**
  * Created by Mayokun Adeniyi on 21/07/2020.
@@ -11,6 +10,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.mobileforce.hometeach.databinding.ListItemHomeTutorsRecyclerBinding
 import com.mobileforce.hometeach.models.TutorModel
 
 class TopTutorsAdapter(val clickListener: TopTutorsListItemListener) : ListAdapter<TutorModel, TopTutorsListViewHolder>(
@@ -36,7 +36,7 @@ class TopTutorsAdapter(val clickListener: TopTutorsListItemListener) : ListAdapt
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TopTutorsListViewHolder {
         return TopTutorsListViewHolder(
-            ListItemTutorParentDashBoardBinding.inflate(LayoutInflater.from(parent.context))
+            ListItemHomeTutorsRecyclerBinding.inflate(LayoutInflater.from(parent.context))
         )
     }
 
@@ -48,11 +48,11 @@ class TopTutorsAdapter(val clickListener: TopTutorsListItemListener) : ListAdapt
 
 }
 
-class TopTutorsListViewHolder(private val binding: ListItemTutorParentDashBoardBinding) :
+class TopTutorsListViewHolder(private val binding: ListItemHomeTutorsRecyclerBinding) :
     RecyclerView.ViewHolder(binding.root) {
     fun bind(tutorAll: TutorModel, clickListener: TopTutorsListItemListener) {
         binding.tutor = tutorAll
-        binding.clickListener = clickListener
+        binding.listener = clickListener
         binding.executePendingBindings()
     }
 

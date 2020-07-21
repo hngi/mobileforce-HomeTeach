@@ -113,14 +113,13 @@ class HomePageFragment : Fragment() {
             }
         })
         viewModel.tutorList.observe(viewLifecycleOwner, Observer { result ->
-            Log.i("MAYOKUN","FRAGMENT RESULT $result")
             when (result) {
                 is Result.Success -> {
                     bindingParent.topTutorsLoader.visibility = View.GONE
-                    Log.i("MAYOKUN","ONTOP OF NULL CHECKER")
                     if (result.data != null) {
                         val list = result.data
-                        topTutorsAdapter.submitList(list.take(2))
+                        topTutorsAdapter.submitList(list.take(3))
+                        bindingParent.topTutorsRecyclerView.visibility = View.VISIBLE
                         bindingParent.topTutorsRecyclerView.adapter = topTutorsAdapter
                     } else {
                         Snackbar.make(
@@ -132,11 +131,13 @@ class HomePageFragment : Fragment() {
                 }
 
                 is Result.Loading -> {
+                    bindingParent.topTutorsRecyclerView.visibility = View.GONE
                     bindingParent.topTutorsLoader.visibility = View.VISIBLE
                 }
 
                 is Result.Error -> {
                     bindingParent.topTutorsLoader.visibility = View.GONE
+                    bindingParent.topTutorsRecyclerView.visibility = View.GONE
                     Snackbar.make(
                         requireView(),
                         "Oops! An error occured, Swipe down to retry!",
