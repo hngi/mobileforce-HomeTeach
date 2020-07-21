@@ -1,4 +1,4 @@
-from django.urls import path, include
+from django.urls import path, include, re_path
 from . import views
 from django.conf.urls import url
 
@@ -13,10 +13,9 @@ urlpatterns = [
     # password_reset/confirm/
     # password_reset/validate_token/
 
-    #path('api/password_reset', include("django_rest_passwordreset.urls", namespace='password-reset')),
-    url('^', include('django.contrib.auth.urls')),
-    path('rest-auth/', include('rest_auth.urls')),
-
-
+     # password reset
+    path('', include('allauth.urls')),
+   
+    
     ]
 

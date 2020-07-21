@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.response import Response
-from root.settings import PAYSTACK_AUTHORIZATION_KEY
-from pypaystack import Transaction, Customer
+#from root.settings import PAYSTACK_AUTHORIZATION_KEY
+#from pypaystack import Transaction, Customer
 from .serializers import TransactionsSerializer
 from rest_framework.views import APIView
 

@@ -21,6 +21,8 @@ from drf_yasg import openapi
 from rest_framework import permissions
 from django.conf.urls.static import static
 
+from django.conf.urls import url, include
+
 schema_view = get_schema_view(
 	 openapi.Info(
 			title="HomeTeach API",
@@ -33,7 +35,7 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    #path('api/v1/', include('accounts.urls')),
+    path('api/v1/', include('accounts.urls')),
     path('api/v1/', include('confirmation.urls')),
     path('api/v1/', include('api.urls')),
     path('v1/', include('accounts.urls')),
@@ -41,6 +43,7 @@ urlpatterns = [
     path('v1/', include('paystack.urls')),
     path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
 
+    
     
     ]
 
