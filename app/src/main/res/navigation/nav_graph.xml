@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_tutorHomePageFragment_to_tutorsAllFragment"
             app:destination="@id/tutorsAllFragment" />
+        <action
+            android:id="@+id/action_tutorHomePageFragment_to_tutorDetailsFragment"
+            app:destination="@id/tutorDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -79,7 +82,11 @@
         android:id="@+id/tutorsAllFragment"
         android:name="com.mobileforce.hometeach.ui.tutorlist.TutorListFragment"
         android:label="fragment_all_tutors"
-        tools:layout="@layout/fragment_all_tutors" />
+        tools:layout="@layout/fragment_all_tutors" >
+        <action
+            android:id="@+id/action_tutorsAllFragment_to_tutorDetailsFragment"
+            app:destination="@id/tutorDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/studentMakePaymentFragment"
         android:name="com.mobileforce.hometeach.ui.studentpayments.makepayments.StudentMakePaymentFragment"

@@ -64,10 +64,6 @@ class ProfileFragment : Fragment() {
         }
 
 
-        bindingTutor.editButton.setOnClickListener {
-            navController.navigate(R.id.editTutorProfileFragment)
-        }
-
     }
     private fun setUpProfileForTutor(){
         bindingTutor.editButton.setOnClickListener {

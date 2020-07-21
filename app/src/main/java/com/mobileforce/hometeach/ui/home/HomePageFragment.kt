@@ -5,6 +5,7 @@ import android.app.DatePickerDialog
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,6 +23,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.snackbar.Snackbar
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.adapters.RecyclerViewAdapter
 import com.mobileforce.hometeach.adapters.ViewHolder
@@ -30,13 +32,15 @@ import com.mobileforce.hometeach.databinding.*
 import com.mobileforce.hometeach.models.*
 import com.mobileforce.hometeach.ui.classes.adapters.recylerviewadapters.TutorOngoingClassesAdapter
 import com.mobileforce.hometeach.ui.home.student.OngoingClassViewHolderStudentDashBoard
-import com.mobileforce.hometeach.ui.home.student.TopTutorsViewHolderStudentDashBoard
 import com.mobileforce.hometeach.ui.home.student.UpcomingClassViewHolderStudentDashBoard
+import com.mobileforce.hometeach.ui.home.student.toptutors.TopTutorsAdapter
+import com.mobileforce.hometeach.ui.home.student.toptutors.TopTutorsListItemListener
 import com.mobileforce.hometeach.ui.signin.LoginActivity
 import com.mobileforce.hometeach.utils.AppConstants.USER_STUDENT
 import com.mobileforce.hometeach.utils.AppConstants.USER_TUTOR
 
 import com.mobileforce.hometeach.utils.PreferenceHelper
+import com.mobileforce.hometeach.utils.Result
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -55,6 +59,7 @@ class HomePageFragment : Fragment() {
     private lateinit var bindingParent: FragmentHomePageParentBinding
     private lateinit var bindingTutor: FragmentHomePageTutorBinding
     private val viewModel: HomePageViewModel by viewModel()
+    private lateinit var topTutorsAdapter: TopTutorsAdapter
 
     var button_modify: Button? = null
     var textView_date: TextView? = null
@@ -100,6 +105,54 @@ class HomePageFragment : Fragment() {
 //    }
 
     private fun setUpForStudent() {
+        //<---------------------------------TopTutorList Setup------------------------------------------>//
+        viewModel.getTutorList()
+        topTutorsAdapter = TopTutorsAdapter(TopTutorsListItemListener { tutor ->
+            if (tutor != null) {
+                findNavController().navigate(R.id.action_tutorHomePageFragment_to_tutorDetailsFragment)
+            }
+        })
+        viewModel.tutorList.observe(viewLifecycleOwner, Observer { result ->
+            Log.i("MAYOKUN","FRAGMENT RESULT $result")
+            when (result) {
+                is Result.Success -> {
+                    bindingParent.topTutorsLoader.visibility = View.GONE
+                    Log.i("MAYOKUN","ONTOP OF NULL CHECKER")
+                    if (result.data != null) {
+                        val list = result.data
+                        topTutorsAdapter.submitList(list.take(2))
+                        bindingParent.topTutorsRecyclerView.adapter = topTutorsAdapter
+                    } else {
+                        Snackbar.make(
+                            requireView(),
+                            "No Tutors found!",
+                            Snackbar.LENGTH_LONG
+                        ).show()
+                    }
+                }
+
+                is Result.Loading -> {
+                    bindingParent.topTutorsLoader.visibility = View.VISIBLE
+                }
+
+                is Result.Error -> {
+                    bindingParent.topTutorsLoader.visibility = View.GONE
+                    Snackbar.make(
+                        requireView(),
+                        "Oops! An error occured, Swipe down to retry!",
+                        Snackbar.LENGTH_LONG
+                    ).show()
+                }
+            }
+        })
+
+        bindingParent.viewAllTutorText.setOnClickListener {
+            findNavController().navigate(R.id.action_tutorHomePageFragment_to_tutorsAllFragment)
+        }
+
+        //<--------------------------------- End - TopTutorList Setup------------------------------------------>//
+
+
 
         viewModel.user.observe(viewLifecycleOwner, androidx.lifecycle.Observer { user ->
 
@@ -152,46 +205,6 @@ class HomePageFragment : Fragment() {
 
         }
 
-        val topTutorsAdapter = object : RecyclerViewAdapter<TopTutorModel>(topTutorDiffUtil) {
-            override fun getLayoutRes() = R.layout.list_item_tutor_parent_dash_board
-
-            override fun getViewHolder(
-                view: View,
-                recyclerViewAdapter: RecyclerViewAdapter<TopTutorModel>
-            ): ViewHolder<TopTutorModel> {
-
-                return TopTutorsViewHolderStudentDashBoard(
-                    ListItemTutorParentDashBoardBinding.bind(view)
-                )
-            }
-
-        }
-        val topTutors = mutableListOf(
-            TopTutorModel(
-                UUID.randomUUID().toString(),
-                "Rahman Django",
-                4.6,
-                "https://via.placeholder.com/300/09f/fff.png",
-                "Physics",
-                "I teach with calmness and encouragement. My lessons are not boring and i can accomodate student’s with.....Read more"
-            ),
-            TopTutorModel(
-                UUID.randomUUID().toString(),
-                "Enya Emmanuel",
-                5.0,
-                "https://via.placeholder.com/300/09f/fff.png",
-                "Mathematics",
-                "I use modern teaching aid to facilitate my lessons"
-            ),
-            TopTutorModel(
-                UUID.randomUUID().toString(),
-                "Enya Emmanuel",
-                5.0,
-                "https://via.placeholder.com/300/09f/fff.png",
-                "Mathematics",
-                "I use modern teaching aid to facilitate my lessons"
-            )
-        )
 
         val upComingClasses = mutableListOf(
             UpComingClassModel(
@@ -346,19 +359,6 @@ class HomePageFragment : Fragment() {
         }
 
         upComingAdapter.submitList(upComingClasses)
-
-        bindingParent.topTutorsRecyclerView.apply {
-
-            layoutManager = LinearLayoutManager(requireContext())
-            adapter = topTutorsAdapter
-            ViewCompat.setNestedScrollingEnabled(this, false)
-        }
-
-        topTutorsAdapter.submitList(topTutors)
-
-        bindingParent.viewAllTutorText.setOnClickListener {
-            findNavController().navigate(R.id.action_tutorHomePageFragment_to_tutorsAllFragment)
-        }
     }
 
     private fun setUpForTutor() {

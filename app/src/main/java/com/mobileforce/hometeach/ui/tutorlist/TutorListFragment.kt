@@ -46,66 +46,6 @@ class TutorListFragment : Fragment(), SelectDateDialog.SelectDateListener {
 
         viewModel.getTutorList()
 
-        val allTutorsList: MutableList<TutorModel> = mutableListOf()
-        allTutorsList.add(
-            TutorModel(
-                "18de8a6f-f7ff-49cb-998f-aa927e8ae53a",
-                "James Harden",
-                "profile_image",
-                "I teach with calmness and encouragement. My lessons are not boring and i can accommodate student’s with low affinity to studying. I employ modern schema for tutoring with interactive guides and learning systems. Having schooled at different educational organizations coupled with my NCE certificate, I can assure you premium success with me as your Home-Teacher.",
-                "Chemistry Tutor",
-                "2000",
-                2.3
-            )
-        )
-        allTutorsList.add(
-            TutorModel(
-                "48d2c5a9-cc9d-4672-ab5e-fc73d23f71da",
-                "John Wick",
-                "profile_image",
-                "I teach with calmness and encouragement. My lessons are not boring and i can accommodate student’s with low affinity to studying. I employ modern schema for tutoring with interactive guides and learning systems. Having schooled at different educational organizations coupled with my NCE certificate, I can assure you premium success with me as your Home-Teacher.",
-                "English Tutor",
-                "2000",
-                2.3
-            )
-        )
-        allTutorsList.add(
-            TutorModel(
-                "f2aa9dd3-de7a-4cb5-a72b-b74d12571116",
-                "Micheal Kean",
-                "profile_image",
-                "I teach with calmness and encouragement. My lessons are not boring and i can accommodate student’s with low affinity to studying. I employ modern schema for tutoring with interactive guides and learning systems. Having schooled at different educational organizations coupled with my NCE certificate, I can assure you premium success with me as your Home-Teacher.",
-                "Physics Tutor",
-                "2000",
-                2.3
-            )
-        )
-        allTutorsList.add(
-            TutorModel(
-                "22a50d7d-cc79-4dde-a759-e8f4e7d318e2",
-                "Tim Johnson",
-                "profile_image",
-                "I teach with calmness and encouragement. My lessons are not boring and i can accommodate student’s with low affinity to studying. I employ modern schema for tutoring with interactive guides and learning systems. Having schooled at different educational organizations coupled with my NCE certificate, I can assure you premium success with me as your Home-Teacher.",
-                "Chemistry Tutor",
-                "2000",
-                2.3
-            )
-        )
-        allTutorsList.add(
-            TutorModel(
-                "f2aa9dd3-de7a-4cb5-a72b-b74d12571116",
-                "Daniel Kim",
-                "profile_image",
-                "I teach with calmness and encouragement. My lessons are not boring and i can accommodate student’s with low affinity to studying. I employ modern schema for tutoring with interactive guides and learning systems. Having schooled at different educational organizations coupled with my NCE certificate, I can assure you premium success with me as your Home-Teacher.",
-                "Mathematics Tutor",
-                "2000",
-                2.3
-            )
-        )
-
-
-
-
         popupDialog = SelectDateDialog()
         observeViewModels()
         adapter = TutorListRecyclerAdapter(TutorListItemListener { tutor ->
