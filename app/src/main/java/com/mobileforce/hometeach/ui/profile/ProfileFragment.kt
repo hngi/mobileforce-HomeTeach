@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.databinding.FragmentProfileBinding
 import com.mobileforce.hometeach.databinding.FragmentStudentProfileBinding
@@ -55,6 +56,9 @@ class ProfileFragment : Fragment() {
 
     }
     private fun setUpProfileForTutor(){
+        bindingTutor.editButton.setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_to_editTutorProfileFragment)
+        }
         viewModel.getTutorDetails()
         viewModel.getTutorDetails.observe(viewLifecycleOwner, Observer { result ->
             Log.d("Result", result.toString())

@@ -44,6 +44,8 @@ class TutorListFragment : Fragment(), SelectDateDialog.SelectDateListener {
             binding.swipeLayout.isRefreshing = false
         }
 
+        viewModel.getTutorList()
+
         val allTutorsList: MutableList<TutorModel> = mutableListOf()
         allTutorsList.add(
             TutorModel(
@@ -113,7 +115,6 @@ class TutorListFragment : Fragment(), SelectDateDialog.SelectDateListener {
                 viewModel.setTutor(tutor)
             }
         })
-        adapter.submitList(allTutorsList)
 
         binding.tutorAllList.adapter = adapter
 
@@ -123,14 +124,14 @@ class TutorListFragment : Fragment(), SelectDateDialog.SelectDateListener {
         binding.search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (query != null) {
-                    getItemsFromDb(query)
+                    getItemsFromDb(query.trim())
                 }
                 return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 if (newText != null) {
-                    getItemsFromDb(newText)
+                    getItemsFromDb(newText.trim())
                 }
                 return true
             }

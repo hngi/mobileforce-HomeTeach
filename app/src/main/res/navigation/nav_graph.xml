@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/tutorHomePageFragment">
+    app:startDestination="@id/profileFragment">
 
     <fragment
         android:id="@+id/chatListFragment"
@@ -30,7 +30,11 @@
         android:id="@+id/profileFragment"
         android:name="com.mobileforce.hometeach.ui.profile.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_editTutorProfileFragment"
+            app:destination="@id/editTutorProfileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/makeWithdrawalFragment"
         android:name="com.mobileforce.hometeach.ui.withdrawalscreens.withdraw.TutorMakeWithdrawalFragment"
@@ -101,6 +105,11 @@
         android:name="com.mobileforce.hometeach.ui.message.ChatFragment"
         android:label="chat_fragment"
         tools:layout="@layout/chat_fragment" />
+    <fragment
+        android:id="@+id/studentProfileFragment"
+        android:name="com.mobileforce.hometeach.ui.profile.StudentProfileFragment"
+        android:label="fragment_student_profile"
+        tools:layout="@layout/fragment_student_profile" />
 
 
 </navigation>
