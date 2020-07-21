@@ -101,6 +101,11 @@
         android:name="com.mobileforce.hometeach.ui.message.ChatFragment"
         android:label="chat_fragment"
         tools:layout="@layout/chat_fragment" />
+    <fragment
+        android:id="@+id/credentialFragment"
+        android:name="com.mobileforce.hometeach.ui.profile.CredentialDialog"
+        android:label="CredentialFragment"
+        tools:layout="@layout/fragment_credential"/>
 
 
 </navigation>
