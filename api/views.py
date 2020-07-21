@@ -18,7 +18,7 @@ from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404
 from cardvalidator import formatter, luhn
 from .utility.encryption_util import *
-from .serializers import BankInfoSerializer, CreditCardInfoSerializer, VerificationSerializer
+from .serializers import BankInfoSerializer, CreditCardInfoSerializer, VerificationSerializer, RequestActionSerializer
 from .models import BankInfo,CreditCardInfo
 from rest_framework.views import APIView
 import requests 
@@ -61,6 +61,19 @@ def list_user_requests(request):
     serializer = RequestSerializer(requests, many=True)
     return Response(serializer.data)
 
+
+def request_action(request):
+    data = request.data
+    id = data.get('id')
+    request_id = data.get('request_id')
+    action = data.get('action')
+
+    try:
+        user = User.objects.get(id=id)
+    except User.DoesNotExist:
+        user = User.objects.get(id=id)
+    except User.DoesNotExist:
+        return Response('a tutor/user with that id does not exist')
 
 
 class CustomUserViewSet(viewsets.ModelViewSet):
