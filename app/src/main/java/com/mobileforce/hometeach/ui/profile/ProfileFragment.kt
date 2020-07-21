@@ -64,12 +64,11 @@ class ProfileFragment : Fragment() {
         }
 
 
-        bindingTutor.editButton.setOnClickListener {
-            navController.navigate(R.id.editTutorProfileFragment)
-        }
-
     }
     private fun setUpProfileForTutor(){
+        bindingTutor.editButton.setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_to_editTutorProfileFragment)
+        }
         viewModel.getTutorDetails()
         viewModel.getTutorDetails.observe(viewLifecycleOwner, Observer { result ->
             Log.d("Result", result.toString())

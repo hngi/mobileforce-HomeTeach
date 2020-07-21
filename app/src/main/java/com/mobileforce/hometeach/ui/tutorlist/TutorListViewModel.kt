@@ -41,6 +41,7 @@ class TutorListViewModel(
     private var selectedTutor: TutorModel? = null
     private var userEntity: UserEntity? = null
 
+
     private val db = Firebase.firestore
 
 
@@ -74,9 +75,7 @@ class TutorListViewModel(
     /**
      * Get the current user from the db
      */
-    fun getUser() = liveData {
-        emit(userRepository.getUser().value)
-    }
+    fun getUser() = userRepository.getUser()
 
     /**
      * This initially attempts to get data from the cache. If this is empty, it would
