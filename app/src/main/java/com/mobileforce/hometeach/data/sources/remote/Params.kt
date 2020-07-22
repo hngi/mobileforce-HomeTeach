@@ -38,10 +38,10 @@ class Params {
     )
 
     data class CardDetails(
-        val user_id: String,
+        val user: String,
         val card_holder_name: String,
         val card_number: String,
-        val card_cvc: String,
+        val cvv: String,
         val expiry_month: Int,
         val expiry_year: Int
     )
@@ -66,6 +66,9 @@ class Params {
         val dates: List<String>
     )
 
+    data class UserID(
+        val user: String
+    )
     data class UpdateTutorProfile(
         val field: String,
         val major_course: String,

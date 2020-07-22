@@ -121,7 +121,7 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getUserCardDetails(id: String): List<UserCardDetailResponse> {
+    override suspend fun getUserCardDetails(params: Params.UserID): List<UserCardDetailResponse> {
         TODO("Not yet implemented")
     }
 

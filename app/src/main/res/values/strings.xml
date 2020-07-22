@@ -140,7 +140,7 @@
     <string name="your_card_has_been_added">Your card has been added</string>
     <string name="rahman_django">Rahman Django</string>
     <string name="balance_215000_n">Balance 215000 N</string>
-    <string name="your_saved_card">Your saved card</string>
+    <string name="your_saved_card">Your saved cards</string>
     <string name="add_new_card">Add new card</string>
     <string name="clear_all">Clear all</string>
     <string name="withdrawal_history">Withdrawal History</string>

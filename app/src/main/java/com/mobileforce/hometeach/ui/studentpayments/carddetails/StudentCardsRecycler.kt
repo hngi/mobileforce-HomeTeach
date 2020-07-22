@@ -26,7 +26,7 @@ class StudentCardsRecycler : ListAdapter<UserCardDetailResponse, StudentCardsHol
             oldItem: UserCardDetailResponse,
             newItem: UserCardDetailResponse
         ): Boolean {
-            return oldItem.cardNumber == newItem.cardNumber
+            return oldItem.card_number == newItem.card_number
         }
 
         @SuppressLint("DiffUtilEquals")
@@ -60,12 +60,12 @@ class StudentCardsHolder(private val binding: StudentsCardListBinding) :
     }
     @SuppressLint("SetTextI18n")
     fun bind(cardDetailResponse: UserCardDetailResponse) {
-        if (cardDetailResponse.cardNumber.startsWith("4")){
+        if (cardDetailResponse.card_number.startsWith("4")){
             binding.ivCardIcon.setImageResource(R.drawable.ic_visa)
         } else {
             binding.ivCardIcon.setImageResource(R.drawable.ic_master)
         }
-        binding.tvCardNumber.text = binding.root.context.getString(R.string.ellipsis) + cardDetailResponse.cardNumber.substring(12, 15)
+        binding.tvCardNumber.text = binding.root.context.getString(R.string.ellipsis) + cardDetailResponse.card_number.substring(12, 16)
         binding.rbSelectCard.visibility = View.INVISIBLE
     }
 

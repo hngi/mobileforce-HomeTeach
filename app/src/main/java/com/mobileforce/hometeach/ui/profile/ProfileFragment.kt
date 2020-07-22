@@ -70,6 +70,7 @@ class ProfileFragment : Fragment() {
         }
 
 
+
         bindingTutor.editButton.setOnClickListener {
 
             val bundle = bundleOf("imageUrl" to imageUrl,"tutorName" to tutorName)
@@ -78,6 +79,9 @@ class ProfileFragment : Fragment() {
 
     }
     private fun setUpProfileForTutor(){
+        bindingTutor.editButton.setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_to_editTutorProfileFragment)
+        }
         viewModel.getTutorDetails()
         viewModel.getTutorDetails.observe(viewLifecycleOwner, Observer { result ->
             Log.d("Result", result.toString())
