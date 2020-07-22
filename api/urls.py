@@ -18,7 +18,7 @@ urlpatterns = [
     path('rate-tutor/', views.rate_tutor),
     path('top-tutors/', views.top_tutors),
     path('bank-info/', views.BankInfoView),
-    path('bank-info_user/', views.BankInfoByUser),
+    path('bank-info-user/', views.BankInfoByUser),
     path('bank-info/<int:pk>/', views.bank_info_by_id),
     path('credit-cards/', views.card_info),
     path('user-card-details/', views.card_info_by_user),
