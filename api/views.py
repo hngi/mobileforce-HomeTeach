@@ -342,16 +342,23 @@ class VerifyTransactionView(APIView):
 			json = r.json()
 			amount = json['data']['amount']
 			email = json['data']['customer']['email']
-			auth = json['data']['authorization']['authorization_code']
-
-			instance = UserWallet(user=user, total_balance=amount, available_balance=amount)
-			instance.save()	
 			
 			try:
+				auth = json['data']['authorization']['authorization_code']
 				serializer.save(amount=amount, email=email, authorization_code=auth)	
 
 			except:	
-				serializer.save(amount=amount, email=email)	
+				serializer.save(amount=amount, email=email)
+
+			""" saves amount to db if status response is successful """
+			if json['data']['status'] == "success":
+				instance = UserWallet.objects.filter(user=user)
+				if instance.exists():
+					instance[0].available_balance = available_balance + amount
+					instance[0].total_balance = total_balance + amount
+					instance.save()	
+				else:
+					UserWallet.objects.create(user=user, available_balance=amount, total_balance=amount)
 
 			return Response(json, status=status.HTTP_200_OK)
 		return Response(status=status.HTTP_401_UNAUTHORIZED)
@@ -371,18 +378,20 @@ class UserWalletView(APIView):
 		user = request.data['user']
 		user_wallet = self.get_object(user)
 		serializer = UserWalletSerializer(user_wallet, many=True)
-		for user_wallet in serializer.data:
+		for wallet in serializer.data:
 			#user = user_wallet['user']
-			available_balance = user_wallet['available_balance']
-			total_balance = user_wallet['total_balance']
+			available_balance = wallet['available_balance']
+			total_balance = wallet['total_balance']
 
-			data = {
-				#'user': user,
-				'available balance': available_balance,
-				'total balance': total_balance,
-			}
-			
-		return Response(data)
+			data = {'available balance': available_balance, 'total balance': total_balance}
+
+			return Response({'status': 'valid',
+							'data': data}, status=status.HTTP_200_OK)
+		return Response({'status': 'default',
+						'data': {'available_balance': UserWallet().available_balance, 
+						'total balance': UserWallet().total_balance
+						}},
+						status=status.HTTP_404_NOT_FOUND)
 
 '''
 class InitializeTransactionView(APIView):

@@ -313,7 +313,6 @@ class VerificationSerializer(serializers.ModelSerializer):
         fields = ('user', 'email', 'amount', 'reference', 'authorization_code',)
 
 class UserWalletSerializer(serializers.ModelSerializer):
-    #amount = serializers.IntegerField(required=True)
     class Meta:
         model = UserWallet
         fields = ('total_balance', 'available_balance',)
