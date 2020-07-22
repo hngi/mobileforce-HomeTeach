@@ -12,11 +12,12 @@ data class Profile(
     val rating: Rating?,
     val desc: String?,
     val field: String?,
-    val major_course: Any?,
-    val other_courses: Any?,
+    val major_course: String?,
+    val other_courses: String?,
     val state: String?,
     val address: String?,
-    val user_url: String?
+    val user_url: String?,
+    val credentials: String?
 )
 
 data class Rating(val rating: Double?, val count: Int?)
