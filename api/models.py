@@ -121,8 +121,8 @@ class Verification(models.Model):
 
 class UserWallet(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
-	available_balance = models.IntegerField(default=0)
-	total_balance = models.IntegerField(default=0)
+	available_balance = models.DecimalField(dafault=0.0)
+	total_balance = models.DecimalField(default=0.0)
 
 	def __str__(self):
 		return str(self.available_balance)
