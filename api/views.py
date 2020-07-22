@@ -340,19 +340,18 @@ class VerifyTransactionView(APIView):
 			r = requests.get(url+reference,
 							headers={'Authorization': 'Bearer {}'.format(PAYSTACK_AUTHORIZATION_KEY)})
 			json = r.json()
-			
-			#auth = json['data']['authorization']['authorization_code']
-			try:
-				amount = json['data']['amount']
-				email = json['data']['customer']['email']
-				auth = json['data']['authorization']['authorization_code']
+			amount = json['data']['amount']
+			email = json['data']['customer']['email']
+			auth = json['data']['authorization']['authorization_code']
 
+			instance = UserWallet(user=user, total_balance=amount, available_balance=amount)
+			instance.save()	
+			
+			try:
 				serializer.save(amount=amount, email=email, authorization_code=auth)	
 
 			except:	
-				serializer.save(amount=amount, email=email)
-				instance = UserWallet(user=user, total_balance=amount, available_balance=amount)
-				instance.save()		
+				serializer.save(amount=amount, email=email)	
 
 			return Response(json, status=status.HTTP_200_OK)
 		return Response(status=status.HTTP_401_UNAUTHORIZED)
