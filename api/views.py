@@ -344,7 +344,7 @@ class VerifyTransactionView(APIView):
 	def post(self, request, *args, **kwargs):
 		url = "https://api.paystack.co/transaction/verify/"
 		serializer = VerificationSerializer(data=request.data)
-		if serializer.is_valid(raise_exception=True):
+		if serializer.is_valid():
 			user = serializer.validated_data['user']
 			reference = serializer.validated_data['reference']
 			r = requests.get(url+reference,
@@ -356,21 +356,44 @@ class VerifyTransactionView(APIView):
 				amount = json['data']['amount']
 				email = json['data']['customer']['email']
 				auth = json['data']['authorization']['authorization_code']
-				'''
-				obj = UserWallet.objects.get(user=request.user)
-				obj.= auth
-				obj.amount = amount
-				obj.email = email
-				obj.save()
-				'''
-				
+
 				serializer.save(amount=amount, email=email, authorization_code=auth)	
+
 			except:	
 				serializer.save(amount=amount, email=email)
-				instance = UserWallet.objects.create(user=user, total_balance=amount, available_balance=amount)
+				instance = UserWallet(user=user, total_balance=amount, available_balance=amount)
 				instance.save()		
+
 			return Response(json, status=status.HTTP_200_OK)
 		return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+class UserWalletView(APIView):
+	permission_classes = (AllowAny, )
+
+	""" Retrieve wallet statement for a user instance """
+
+	def get_object(self, user):
+		try:
+			return UserWallet.objects.filter(user=user)
+		except UserWallet.DoesNotExist:
+			raise Http404
+
+	def get(self, request, format=None):
+		user = request.data['user']
+		user_wallet = self.get_object(user)
+		serializer = UserWalletSerializer(user_wallet, many=True)
+		for user_wallet in serializer.data:
+			#user = user_wallet['user']
+			available_balance = user_wallet['available_balance']
+			total_balance = user_wallet['total_balance']
+
+			data = {
+				#'user': user,
+				'available balance': available_balance,
+				'total balance': total_balance,
+			}
+			
+		return Response(data)
 
 # class InitializeTransactionView(APIView):
 # 	permission_classes = (AllowAny,)
@@ -387,25 +410,6 @@ class VerifyTransactionView(APIView):
 # 			return Response(payload, status=status.HTTP_200_OK)
 # 		return Response(serializer.errors, status=status.HTTP_401_UNAUTHORIZED)
 
-'''
-class UserWalletView(APIView):
-	permission_classes = (AllowAny, )
-
-	""" Retrieve wallet statement for a user instance """
-
-	def get_object(self, user):
-		try:
-			return UserWallet.objects.filter(user=user)
-		except UserWallet.DoesNotExist:
-			raise Http404
-
-	def get(self, request, format=None):
-		user = request.data['user']
-		user_wallet = self.get_object(user)
-		serializer = UserWalletSerializer(user_wallet)
-		
-		return Response(serializer.data)
-'''
 
 
 			
