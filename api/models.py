@@ -153,7 +153,7 @@ class Verification(models.Model):
 	reference = models.CharField(max_length=150)
 	authorization_code = models.CharField(max_length=150)
 
-	def __unicode__(self):
+	def __str__(self):
 		return self.email
 
 class UserWallet(models.Model):
@@ -161,5 +161,5 @@ class UserWallet(models.Model):
 	available_balance = models.IntegerField(default=0)
 	total_balance = models.IntegerField(default=0)
 
-	def __unicode__(self):
-		return self.user.email
+	def __str__(self):
+		return str(self.available_balance)

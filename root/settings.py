@@ -64,7 +64,7 @@ INSTALLED_APPS = [
     'storages',
     'rest_auth',
     'django_extensions',
-    'pypaystack',
+    #'pypaystack',
 ]
 
 SITE_ID = 1
