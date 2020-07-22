@@ -109,7 +109,7 @@ class TutorProfileViewSet(mixins.ListModelMixin,
     This viewset automatically provides `list`, `create`, `retrieve`,
     `update` and `destroy` actions.
     """
-    parser_classes = (MultiPartParser, FormParser,)
+    # parser_classes = (MultiPartParser, FormParser,)
     queryset = Profile.objects.filter(user__is_tutor=True)
     serializer_class = TutorProfileSerializer
     permission_classes = (AllowAny, )
@@ -126,7 +126,7 @@ class StudentProfileViewSet(mixins.ListModelMixin,
     This viewset automatically provides `list`, `create`, `retrieve`,
     `update` and `destroy` actions.
     """
-    parser_classes = (MultiPartParser, FormParser,)
+    # parser_classes = (MultiPartParser, FormParser,)
     queryset = Profile.objects.filter(user__is_tutor=False)
     serializer_class = StudentProfileSerializer
     permission_classes = (AllowAny,)
