@@ -127,3 +127,7 @@ class UserWallet(models.Model):
 	def __str__(self):
 		return str(self.available_balance)
 
+	@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+	def create_user_wallet(sender, instance, created, **kwargs):
+		if created:
+			UserWallet.objects.create(user=instance)
