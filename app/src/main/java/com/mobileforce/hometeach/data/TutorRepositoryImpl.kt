@@ -5,16 +5,14 @@ import com.mobileforce.hometeach.data.repository.TutorRepository
 import com.mobileforce.hometeach.data.sources.DataSourceFactory
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.LoginResponse
-import com.mobileforce.hometeach.data.sources.remote.wrappers.TutorDetailsResponse
-import com.mobileforce.hometeach.data.sources.remote.wrappers.UpdateTutorResponse
 import com.mobileforce.hometeach.data.sources.remote.wrappers.UploadResponse
-import com.mobileforce.hometeach.utils.UploadaResponse
+import com.mobileforce.hometeach.data.sources.remote.wrappers.UserProfileResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
 
 class TutorRepositoryImpl (private val dataSource: DataSourceFactory): TutorRepository {
-    override suspend fun getTutorDetails(): TutorDetailsResponse {
+    override suspend fun getTutorDetails(): UserProfileResponse {
         val user = dataSource.local().getSingleUserProfile()
         return dataSource.remote().getTutorDetails(user.id.toInt())
     }

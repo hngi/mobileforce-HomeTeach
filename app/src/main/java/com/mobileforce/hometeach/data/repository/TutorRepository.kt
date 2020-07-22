@@ -3,16 +3,14 @@ package com.mobileforce.hometeach.data.repository
 import com.mobileforce.hometeach.data.model.ProfileEntity
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.LoginResponse
-import com.mobileforce.hometeach.data.sources.remote.wrappers.TutorDetailsResponse
-import com.mobileforce.hometeach.data.sources.remote.wrappers.UpdateTutorResponse
 import com.mobileforce.hometeach.data.sources.remote.wrappers.UploadResponse
-import com.mobileforce.hometeach.utils.UploadaResponse
+import com.mobileforce.hometeach.data.sources.remote.wrappers.UserProfileResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
 
 interface TutorRepository {
-    suspend fun getTutorDetails(): TutorDetailsResponse
+    suspend fun getTutorDetails(): UserProfileResponse
 
     suspend fun uploadTutorMedia(id: RequestBody,
                                  profile_pic: MultipartBody.Part,

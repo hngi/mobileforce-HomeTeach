@@ -3,7 +3,6 @@ package com.mobileforce.hometeach.ui.profile
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,8 +17,10 @@ import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.adapters.CircleTransform
 import com.mobileforce.hometeach.databinding.FragmentProfileBinding
 import com.mobileforce.hometeach.databinding.FragmentStudentProfileBinding
-import com.mobileforce.hometeach.utils.*
 import com.mobileforce.hometeach.utils.AppConstants.USER_TUTOR
+import com.mobileforce.hometeach.utils.PreferenceHelper
+import com.mobileforce.hometeach.utils.makeGone
+import com.mobileforce.hometeach.utils.makeVisible
 import com.squareup.picasso.Picasso
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -59,7 +60,7 @@ class ProfileFragment : Fragment() {
                 findNavController().popBackStack()
             }
         } else {
-            setUpProfileForUser()
+            setUpProfileForStudent()
             bindingStudent.toolBar.setNavigationOnClickListener {
                 findNavController().popBackStack()
             }
@@ -71,44 +72,44 @@ class ProfileFragment : Fragment() {
             val bundle = bundleOf("imageUrl" to imageUrl, "tutorName" to tutorName)
             navController.navigate(R.id.editTutorProfileFragment, bundle)
         }
-        viewModel.getTutorDetails()
-        viewModel.getTutorDetails.observe(viewLifecycleOwner, Observer { result ->
-            Log.d("Result", result.toString())
-            when (result) {
-                Result.Loading -> {
+        viewModel.getUserProfile()
 
-                }
-                is Result.Success -> {
-                    bindingTutor.tutorName.text = result.data?.user?.full_name
-                    bindingTutor.tutorNameProfile.text = result.data?.user?.full_name
-                    tutorName = result.data?.user?.full_name.toString()
-                    Picasso.get().load(result.data?.profile_pic).transform(CircleTransform())
-                        .error(R.drawable.profile_image).into(bindingTutor.tutorImage)
-                    imageUrl = result.data?.profile_pic.toString()
-                    bindingTutor.teachersRatingBar.rating = result.data?.rating?.count?.toFloat()!!
-                    bindingTutor.AmountTv.text = result.data.hourly_rate + "/hr"
-                    bindingTutor.tutorDesc.text = result.data.desc
-                    bindingTutor.tutorInterest.text = result.data.other_courses
-                    credentialUrl = result.data.credentials
-                    bindingTutor.TutorSubject.text =
-                        if (!result.data?.major_course.isNullOrEmpty()) result.data?.major_course + " Tutor" else ""
-                    val videourl =
-                        if (!result.data.video.isNullOrEmpty()) result.data.video else "http://www.ebookfrenzy.com/android_book/movie.mp4"
-                    bindingTutor.tutorVideo.setVideoPath(videourl)
-                    mediaController = MediaController(context)
-                    mediaController?.setAnchorView(bindingTutor.tutorVideo)
-                    bindingTutor.tutorVideo.setMediaController(mediaController)
-                    bindingTutor.tutorVideo.start()
+        viewModel.user.observe(viewLifecycleOwner, Observer { user ->
+            user?.let {
+                bindingTutor.tutorName.text = user.full_name
+                bindingTutor.tutorNameProfile.text = user.full_name
+                tutorName = user.full_name
 
-                    if (credentialUrl.isNullOrEmpty()) bindingTutor.credentialGroup.makeGone()
-                    else bindingTutor.credentialGroup.makeVisible()
-                }
-
-                is Result.Error -> {
-
-                    bindingTutor.profileLayout.snack(message = result.exception.localizedMessage)
-                }
             }
+        })
+        viewModel.profile.observe(viewLifecycleOwner, Observer { profile ->
+
+            profile?.let {
+
+                Picasso.get().load(profile.profile_pic).transform(CircleTransform())
+                    .error(R.drawable.profile_image).into(bindingTutor.tutorImage)
+                imageUrl = profile.profile_pic.toString()
+                bindingTutor.teachersRatingBar.rating = profile.rating ?: 0.0f
+                profile.hourly_rate?.let {
+                    bindingTutor.AmountTv.text = String.format("%s/hr", it)
+                }
+                bindingTutor.tutorDesc.text = profile.desc
+                bindingTutor.tutorInterest.text = profile.other_courses
+                credentialUrl = profile.credentials
+                bindingTutor.TutorSubject.text =
+                    if (!profile.major_course.isNullOrEmpty()) profile.major_course + " Tutor" else ""
+                val videoUrl =
+                    if (!profile.videoUrl.isNullOrEmpty()) profile.videoUrl else "http://www.ebookfrenzy.com/android_book/movie.mp4"
+                bindingTutor.tutorVideo.setVideoPath(videoUrl)
+                mediaController = MediaController(context)
+                mediaController?.setAnchorView(bindingTutor.tutorVideo)
+                bindingTutor.tutorVideo.setMediaController(mediaController)
+                bindingTutor.tutorVideo.start()
+
+                if (credentialUrl.isNullOrEmpty()) bindingTutor.credentialGroup.makeGone()
+                else bindingTutor.credentialGroup.makeVisible()
+            }
+
 
         })
 
@@ -123,29 +124,21 @@ class ProfileFragment : Fragment() {
 
     }
 
-    private fun setUpProfileForUser() {
+    private fun setUpProfileForStudent() {
         viewModel.getUserProfile()
-        viewModel.getStudentProfile.observe(viewLifecycleOwner, Observer { result ->
-            Log.d("Result", result.toString())
-            when (result) {
-                Result.Loading -> {
 
-                }
-                is Result.Success -> {
-                    bindingStudent.ProfileName.text = result.data?.user?.fullName
-                    bindingStudent.studentName.text = result.data?.user?.fullName
-                    bindingStudent.descriptionText.text = result.data?.desc
-                    bindingStudent.profileEmail.text = result.data?.user?.email
-                    bindingStudent.profileNumber.text = result.data?.user?.phoneNumber
-                    Picasso.get().load(result.data?.profile_pic).transform(CircleTransform())
-                        .error(R.drawable.profile_image).into(bindingStudent.ProfileImage)
-                }
+        viewModel.user.observe(viewLifecycleOwner, Observer { user ->
+            bindingStudent.ProfileName.text = user.full_name
+            bindingStudent.studentName.text = user.full_name
+            bindingStudent.profileEmail.text = user.email
+            bindingStudent.profileNumber.text = user.phone_number
+        })
 
-                is Result.Error -> {
+        viewModel.profile.observe(viewLifecycleOwner, Observer { profile ->
 
-                    bindingStudent.studentProfileLayout.snack(message = result.exception.localizedMessage)
-                }
-            }
+            bindingStudent.descriptionText.text = profile.desc
+            Picasso.get().load(profile.profile_pic).transform(CircleTransform())
+                .error(R.drawable.profile_image).into(bindingStudent.ProfileImage)
 
         })
 

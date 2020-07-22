@@ -9,7 +9,6 @@ import com.mobileforce.hometeach.data.sources.local.AppDataBase
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
 import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
-import com.mobileforce.hometeach.utils.UploadaResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -41,7 +40,8 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
     override suspend fun clearDb() {
         db.userDao().clearDb()
     }
-    override suspend fun resetPassword(params: Params.PasswordReset):Response<EmailResponse> {
+
+    override suspend fun resetPassword(params: Params.PasswordReset): Response<EmailResponse> {
 
         TODO("Not yet implemented")
     }
@@ -60,7 +60,7 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
 
     override suspend fun getTutorDetails(
         id: Int
-    ): TutorDetailsResponse {
+    ): UserProfileResponse {
         TODO("Not yet implemented")
     }
 
@@ -82,18 +82,18 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
     override suspend fun uploadProfilePic(
         id: Int,
         profile_pic: MultipartBody.Part
-    ):UploadResponse{
+    ): UploadResponse {
         TODO("Not yet implemented")
     }
 
-    override suspend fun uploadVideo(id: Int, video: MultipartBody.Part): UploadResponse{
+    override suspend fun uploadVideo(id: Int, video: MultipartBody.Part): UploadResponse {
         TODO("Not yet implemented")
     }
 
     override suspend fun uploadCredential(
         id: Int,
         credentials: MultipartBody.Part
-    ): UploadResponse{
+    ): UploadResponse {
         TODO("Not yet implemented")
     }
 
@@ -144,14 +144,15 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
             full_name = user.fullName
         )
     }
+
     override suspend fun getUserProfile(
         id: Int
-    ): StudentProfileResponse {
+    ): UserProfileResponse {
         TODO("Not yet implemented")
     }
 
     override suspend fun getSingleUserProfile(): ProfileEntity {
-        return  db.userDao().getUserProfile()
+        return db.userDao().getUserProfile()
     }
 
     override suspend fun getProfileId(): Int {
@@ -172,12 +173,14 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
             profile.hourly_rate,
             profile.desc,
             profile.field,
-            profile.major_course.toString(), //TODO for testing purpose. this should be changed and a type converter written to save to room
-            profile.other_courses.toString(), //TODO for testing purpose. this should be changed and a type converter written to save to room
+            profile.major_course,
+            profile.other_courses,
             profile.state,
             profile.address,
             profile.user_url,
-            rating = profile.rating?.rating, rating_count = profile.rating?.count
+            rating = profile.rating?.rating, rating_count = profile.rating?.count,
+            credentials = profile.credentials,
+            videoUrl = profile.videoUrl
 
         )
     }

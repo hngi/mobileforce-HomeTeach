@@ -27,7 +27,7 @@ interface UserRepository {
 
     suspend fun getProfileList(): List<ProfileResponse>
 
-    suspend fun getTutorDetails(): TutorDetailsResponse
+    suspend fun getTutorDetails(): UserProfileResponse
 
     fun getUser(): LiveData<UserEntity>
 
@@ -59,6 +59,6 @@ interface UserRepository {
 
     suspend fun getSingleUserProfile(): ProfileEntity
 
-    suspend fun getUserProfile() : StudentProfileResponse
+    suspend fun getUserProfile(): UserProfileResponse
 }
 

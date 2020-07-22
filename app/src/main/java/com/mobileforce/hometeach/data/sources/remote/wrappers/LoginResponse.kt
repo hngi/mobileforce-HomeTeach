@@ -17,10 +17,10 @@ data class Profile(
     val state: String?,
     val address: String?,
     val user_url: String?,
-    val credentials: String?
+    val credentials: String?, val videoUrl: String?
 )
 
-data class Rating(val rating: Double?, val count: Int?)
+data class Rating(val rating: Float?, val count: Int?)
 
 data class UserRemote(
     val id: String,
