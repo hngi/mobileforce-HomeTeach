@@ -374,7 +374,7 @@ class UserWalletView(APIView):
 		except UserWallet.DoesNotExist:
 			raise Http404
 
-	def get(self, request, format=None):
+	def post(self, request, format=None):
 		user = request.data['user']
 		user_wallet = self.get_object(user)
 		serializer = UserWalletSerializer(user_wallet, many=True)
@@ -388,7 +388,7 @@ class UserWalletView(APIView):
 			return Response({'status': 'valid',
 							'data': data}, status=status.HTTP_200_OK)
 		return Response({'status': 'default',
-						'data': {'available_balance': UserWallet().available_balance, 
+						'data': {'available balance': UserWallet().available_balance, 
 						'total balance': UserWallet().total_balance
 						}},
 						status=status.HTTP_404_NOT_FOUND)
