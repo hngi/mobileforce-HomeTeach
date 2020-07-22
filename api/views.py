@@ -63,18 +63,18 @@ def list_user_requests(request):
 	return Response(serializer.data)
 
 
-def request_action(request):
-    data = request.data
-    id = data.get('id')
-    request_id = data.get('request_id')
-    action = data.get('action')
+# def request_action(request):
+#     data = request.data
+#     id = data.get('id')
+#     request_id = data.get('request_id')
+#     action = data.get('action')
 
-    try:
-        user = User.objects.get(id=id)
-    except User.DoesNotExist:
-        user = User.objects.get(id=id)
-    except User.DoesNotExist:
-        return Response('a tutor/user with that id does not exist')
+#     try:
+#         user = User.objects.get(id=id)
+#     except User.DoesNotExist:
+#         user = User.objects.get(id=id)
+#     except User.DoesNotExist:
+#         return Response('a tutor/user with that id does not exist')
 
 
 class CustomUserViewSet(viewsets.ModelViewSet):
@@ -350,19 +350,18 @@ class VerifyTransactionView(APIView):
 			r = requests.get(url+reference,
 							headers={'Authorization': 'Bearer {}'.format(PAYSTACK_AUTHORIZATION_KEY)})
 			json = r.json()
-			
-			#auth = json['data']['authorization']['authorization_code']
-			try:
-				amount = json['data']['amount']
-				email = json['data']['customer']['email']
-				auth = json['data']['authorization']['authorization_code']
+			amount = json['data']['amount']
+			email = json['data']['customer']['email']
+			auth = json['data']['authorization']['authorization_code']
 
+			instance = UserWallet(user=user, total_balance=amount, available_balance=amount)
+			instance.save()	
+			
+			try:
 				serializer.save(amount=amount, email=email, authorization_code=auth)	
 
 			except:	
-				serializer.save(amount=amount, email=email)
-				instance = UserWallet(user=user, total_balance=amount, available_balance=amount)
-				instance.save()		
+				serializer.save(amount=amount, email=email)	
 
 			return Response(json, status=status.HTTP_200_OK)
 		return Response(status=status.HTTP_401_UNAUTHORIZED)
@@ -395,24 +394,22 @@ class UserWalletView(APIView):
 			
 		return Response(data)
 
-# class InitializeTransactionView(APIView):
-# 	permission_classes = (AllowAny,)
+'''
+class InitializeTransactionView(APIView):
+	permission_classes = (AllowAny,)
 
-# 	def post(self, request, *args, **kwargs):
-# 		transaction = Transaction(authorization_key=PAYSTACK_AUTHORIZATION_KEY)
-# 		serializer = VerificationSerializer(data=request.data)
-# 		if serializer.is_valid():
-# 			email = serializer.validated_data['email']
-# 			amount = serializer.validated_data['amount']
+	def post(self, request, *args, **kwargs):
+		transaction = Transaction(authorization_key=PAYSTACK_AUTHORIZATION_KEY)
+		serializer = VerificationSerializer(data=request.data)
+		if serializer.is_valid():
+			email = serializer.validated_data['email']
+			amount = serializer.validated_data['amount']
 
-# 			payload = transaction.initialize(email, amount)
+			payload = transaction.initialize(email, amount)
 			
-# 			return Response(payload, status=status.HTTP_200_OK)
-# 		return Response(serializer.errors, status=status.HTTP_401_UNAUTHORIZED)
-
-
-
-			
+			return Response(payload, status=status.HTTP_200_OK)
+		return Response(serializer.errors, status=status.HTTP_401_UNAUTHORIZED)
+'''	
 
 
 
