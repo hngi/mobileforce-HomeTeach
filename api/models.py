@@ -126,3 +126,4 @@ class UserWallet(models.Model):
 
 	def __str__(self):
 		return str(self.available_balance)
+
