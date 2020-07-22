@@ -20,22 +20,26 @@
         android:orientation="vertical"
         app:layout_constraintGuide_end="8dp" />
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/primaryLightColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:title="Add Credit Card Details"
+        app:titleTextColor="@color/black" />
+
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
         app:layout_constraintStart_toStartOf="@id/guideline1"
-        app:layout_constraintEnd_toEndOf="@id/guideline2">
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/primaryLightColor"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.ActionBar"
-            app:title="Add Credit Card Details"
-            app:titleTextColor="@color/black" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -60,10 +64,10 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
                     android:layout_marginLeft="10dp"
                     android:orientation="vertical"
-                    android:padding="10dp"
-                    android:layout_marginStart="10dp">
+                    android:padding="10dp">
 
                     <TextView
                         android:id="@+id/username"
@@ -86,9 +90,9 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/tutor_field_icon"
                     android:layout_marginStart="50dp"
-                    android:layout_marginLeft="50dp" />
+                    android:layout_marginLeft="50dp"
+                    android:src="@drawable/tutor_field_icon" />
             </LinearLayout>
 
             <TextView
@@ -106,12 +110,13 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/edit_text_background"
-                android:hint="@string/card_number"
-                android:gravity="center"
                 android:drawableStart="@drawable/credit_card_icon"
-                android:inputType="text"
-                android:padding="12dp"
                 android:drawableLeft="@drawable/credit_card_icon"
+                android:gravity="center"
+                android:hint="@string/card_number"
+                android:inputType="number"
+                android:maxLength="16"
+                android:padding="12dp"
                 tools:ignore="TextFields" />
 
             <EditText
@@ -120,15 +125,16 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="15dp"
-                android:gravity="center"
                 android:background="@drawable/edit_text_background"
-                android:hint="@string/cvc"
                 android:drawableStart="@drawable/credit_card_icon"
-                android:drawableEnd="@drawable/camera_icon"
-                android:inputType="text"
-                android:padding="12dp"
                 android:drawableLeft="@drawable/credit_card_icon"
+                android:drawableEnd="@drawable/camera_icon"
                 android:drawableRight="@drawable/camera_icon"
+                android:gravity="center"
+                android:hint="@string/cvc"
+                android:inputType="number"
+                android:maxLength="3"
+                android:padding="12dp"
                 tools:ignore="TextFields" />
 
             <LinearLayout
@@ -144,6 +150,7 @@
                     android:layout_margin="10dp"
                     android:background="@drawable/edit_text_background"
                     android:hint="@string/mm"
+                    android:maxLength="2"
                     android:textAlignment="center" />
 
                 <EditText
@@ -156,6 +163,7 @@
                     android:background="@drawable/edit_text_background"
                     android:hint="@string/yy"
                     android:inputType="number"
+                    android:maxLength="2"
                     android:textAlignment="center" />
 
             </LinearLayout>
