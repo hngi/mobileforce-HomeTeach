@@ -60,27 +60,18 @@ class ProfileFragment : Fragment() {
             bindingTutor.toolBar.setNavigationOnClickListener {
                 findNavController().popBackStack()
             }
-
-
         }else{
             setUpProfileForUser()
             bindingStudent.toolBar.setNavigationOnClickListener {
                 findNavController().popBackStack()
             }
         }
-
-
-
-        bindingTutor.editButton.setOnClickListener {
-
-            val bundle = bundleOf("imageUrl" to imageUrl,"tutorName" to tutorName)
-            navController.navigate(R.id.editTutorProfileFragment,bundle)
-        }
-
     }
+
     private fun setUpProfileForTutor(){
         bindingTutor.editButton.setOnClickListener {
-            findNavController().navigate(R.id.action_profileFragment_to_editTutorProfileFragment)
+            val bundle = bundleOf("imageUrl" to imageUrl,"tutorName" to tutorName)
+            navController.navigate(R.id.editTutorProfileFragment, bundle)
         }
         viewModel.getTutorDetails()
         viewModel.getTutorDetails.observe(viewLifecycleOwner, Observer { result ->
