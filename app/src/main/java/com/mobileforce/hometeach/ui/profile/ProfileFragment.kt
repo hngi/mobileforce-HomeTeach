@@ -36,8 +36,8 @@ class ProfileFragment : Fragment() {
     private val viewModel: ProfileViewModel by viewModel()
     private lateinit var bindingStudent: FragmentStudentProfileBinding
     private val pref: PreferenceHelper by inject()
-    var url:String = ""
-     var  tutorName:String = ""
+    var url: String? = ""
+    var tutorName: String = ""
     var imageUrl:String = ""
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
