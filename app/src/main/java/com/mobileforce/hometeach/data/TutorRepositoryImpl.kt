@@ -33,7 +33,7 @@ class TutorRepositoryImpl (private val dataSource: DataSourceFactory): TutorRepo
     override suspend fun updateTutorProfile(
         id: Int,
         params: Params.UpdateTutorProfile
-    ): Response<LoginResponse> {
+    ):LoginResponse{
         return dataSource.remote().updateTutorProfile(id,params)
     }
 
@@ -44,18 +44,18 @@ class TutorRepositoryImpl (private val dataSource: DataSourceFactory): TutorRepo
     override suspend fun uploadProfilePic(
         id: Int,
         profile_pic: MultipartBody.Part
-    ): Response<UploadResponse> {
+    ): UploadResponse{
         return dataSource.remote().uploadProfilePic(id,profile_pic)
     }
 
-    override suspend fun uploadVideo(id: Int, video: MultipartBody.Part): Response<UploadResponse> {
+    override suspend fun uploadVideo(id: Int, video: MultipartBody.Part):UploadResponse {
        return dataSource.remote().uploadVideo(id,video)
     }
 
     override suspend fun uploadCredential(
         id: Int,
         credentials: MultipartBody.Part
-    ): Response<UploadResponse> {
+    ):UploadResponse{
         return dataSource.remote().uploadCredential(id,credentials)
     }
 

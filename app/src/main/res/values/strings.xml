@@ -75,7 +75,7 @@
     <string name="separate_with">(separate with “,”)</string>
     <string name="state_of_origin">State of origin</string>
     <string name="address">Address</string>
-    <string name="rate">Rate</string>
+    <string name="rate">Rate Per Hour</string>
     <string name="credentials">Credentials</string>
     <string name="rahman_djago_resume">Rahman Djago Resume</string>
     <string name="rahman_djago_cv">Rahman Djago CV</string>

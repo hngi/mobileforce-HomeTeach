@@ -107,21 +107,21 @@ class RemoteDataSource(private val api: Api) : DataSource {
     override suspend fun uploadProfilePic(
         id: Int,
         profile_pic: MultipartBody.Part
-    ): Response<UploadResponse> {
+    ): UploadResponse {
         return api.uploadProfilePic(id,profile_pic)
     }
 
     override suspend fun uploadVideo(
         id: Int,
         video: MultipartBody.Part
-    ): Response<UploadResponse> {
+    ): UploadResponse{
        return api.uploadVideo(id,video)
     }
 
     override suspend fun uploadCredential(
         id: Int,
         credentials: MultipartBody.Part
-    ): Response<UploadResponse> {
+    ):UploadResponse{
       return api.uploadCredential(id,credentials)
     }
 
@@ -179,7 +179,7 @@ class RemoteDataSource(private val api: Api) : DataSource {
     override suspend fun updateTutorProfile(
         id: Int,
         params: Params.UpdateTutorProfile
-    ): Response<LoginResponse> {
+    ): LoginResponse {
 
         val map = mapOf(
             "field" to params.field,

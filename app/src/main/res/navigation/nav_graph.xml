@@ -113,10 +113,12 @@
         android:label="chat_fragment"
         tools:layout="@layout/chat_fragment" />
     <fragment
+
         android:id="@+id/studentProfileFragment"
         android:name="com.mobileforce.hometeach.ui.profile.StudentProfileFragment"
         android:label="fragment_student_profile"
         tools:layout="@layout/fragment_student_profile" />
+
 
 
 </navigation>

@@ -74,19 +74,19 @@ interface  Api{
 
     @JvmSuppressWildcards
     @PUT("v1/tutor-profiles/{id}/")
-    suspend fun updateTutorProfile(@Path("id") id:Int, @Body params:Map<String,Any>):Response<LoginResponse>
+    suspend fun updateTutorProfile(@Path("id") id:Int, @Body params:Map<String,Any>):LoginResponse
 
     @JvmSuppressWildcards
     @Multipart
     @PUT("v1/tutor-profiles/{id}/")
-    suspend fun uploadProfilePic(@Path("id") id:Int, @Part profile_pic: MultipartBody.Part):Response<UploadResponse>
+    suspend fun uploadProfilePic(@Path("id") id:Int, @Part profile_pic: MultipartBody.Part):UploadResponse
 
     @JvmSuppressWildcards
     @PUT("v1/tutor-profiles/{id}/")
-    suspend fun uploadVideo(@Path("id") id:Int, @Part video: MultipartBody.Part):Response<UploadResponse>
+    suspend fun uploadVideo(@Path("id") id:Int, @Part video: MultipartBody.Part):UploadResponse
 
     @JvmSuppressWildcards
     @PUT("v1/tutor-profiles/{id}/")
-    suspend fun uploadCredential(@Path("id") id:Int, @Part credentials: MultipartBody.Part):Response<UploadResponse>
+    suspend fun uploadCredential(@Path("id") id:Int, @Part credentials: MultipartBody.Part):UploadResponse
 
 }

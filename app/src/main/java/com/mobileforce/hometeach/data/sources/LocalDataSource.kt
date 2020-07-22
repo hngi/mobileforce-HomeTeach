@@ -82,18 +82,18 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
     override suspend fun uploadProfilePic(
         id: Int,
         profile_pic: MultipartBody.Part
-    ): Response<UploadResponse> {
+    ):UploadResponse{
         TODO("Not yet implemented")
     }
 
-    override suspend fun uploadVideo(id: Int, video: MultipartBody.Part): Response<UploadResponse> {
+    override suspend fun uploadVideo(id: Int, video: MultipartBody.Part): UploadResponse{
         TODO("Not yet implemented")
     }
 
     override suspend fun uploadCredential(
         id: Int,
         credentials: MultipartBody.Part
-    ): Response<UploadResponse> {
+    ): UploadResponse{
         TODO("Not yet implemented")
     }
 
@@ -161,7 +161,7 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
     override suspend fun updateTutorProfile(
         id: Int,
         params: Params.UpdateTutorProfile
-    ): Response<LoginResponse> {
+    ): LoginResponse {
         TODO("Not yet implemented")
     }
 
