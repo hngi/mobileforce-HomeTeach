@@ -11,24 +11,29 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.MediaController
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.button.MaterialButton
 import com.mobileforce.hometeach.R
+import com.mobileforce.hometeach.adapters.CircleTransform
 import com.mobileforce.hometeach.data.model.ProfileEntity
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.databinding.FragmentEditTutorProfileBinding
+import com.mobileforce.hometeach.utils.Result
+import com.mobileforce.hometeach.utils.snack
+import com.squareup.picasso.Picasso
 import com.tiper.MaterialSpinner
 import kotlinx.android.synthetic.main.fragment_edit_tutor_profile.*
 import kotlinx.android.synthetic.main.uploads.view.*
 import org.koin.android.ext.android.get
 import java.io.FileNotFoundException
 import java.io.InputStream
-
 
 
 /**
@@ -41,8 +46,8 @@ class EditTutorProfileFragment : Fragment() {
     val REQUEST_CODE = 1001
     val REQUEST_CODE2 = 1005
     val REQUEST_CODE3 = 1009
-    lateinit var userImage: InputStream
     private lateinit var mDialogView: View
+   private lateinit var mAlertDialog:AlertDialog
 
     private val viewModel: EditTutorViewModel = get<EditTutorViewModel>()
     private val listener by lazy {
@@ -62,7 +67,6 @@ class EditTutorProfileFragment : Fragment() {
         }
     }
 
-    //private val viewModel: EditTutorProfileViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -77,6 +81,7 @@ class EditTutorProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         // Inflates the Spinner displaying the tutor's field
         ArrayAdapter.createFromResource(
             requireContext(),
@@ -90,6 +95,9 @@ class EditTutorProfileFragment : Fragment() {
             }
         }
 
+        binding.tutorName.text = arguments?.getString("tutorName").toString()
+        val imageUrl = arguments?.getString("imageUrl").toString()
+        Picasso.get().load(imageUrl).error(R.drawable.upload_pic).into(binding.profilePic)
         // Inflates the Spinner displaying the states of origin
         ArrayAdapter.createFromResource(
             requireContext(),
@@ -103,10 +111,8 @@ class EditTutorProfileFragment : Fragment() {
             }
         }
 
-
         binding.profilePic.setOnClickListener {
             selectImage()
-
 
 
         }
@@ -118,7 +124,7 @@ class EditTutorProfileFragment : Fragment() {
             selectPdf()
         }
         binding.btSaveProfile.setOnClickListener {
-            val selectedField = binding.spSelectField.selectedItem.toString()
+            var selectedField = binding.spSelectField.selectedItem.toString()
             val majorCourses = binding.etCourseInput.text.toString()
             val otherCourses = binding.etOtherCourseInput.text.toString()
             val stateOfOrigin = binding.spSelectOrigin.selectedItem.toString()
@@ -127,10 +133,39 @@ class EditTutorProfileFragment : Fragment() {
             val description = binding.etDescription.text.toString()
             showDialog()
             mDialogView.progressBar.visibility = View.VISIBLE
-            val data = Params.UpdateTutorProfile(selectedField,majorCourses,otherCourses,stateOfOrigin,address,rate,description)
+            val data = Params.UpdateTutorProfile(
+                selectedField,
+                majorCourses,
+                otherCourses,
+                stateOfOrigin,
+                address,
+                rate,
+                description
+            )
             viewModel.updateTutorProfile(data)
-            mDialogView.progressBar.visibility = View.INVISIBLE
-            mDialogView.successImage.visibility = View.VISIBLE
+            viewModel.updateTutorProfile.observe(viewLifecycleOwner, Observer { result ->
+                Log.d("Result", result.toString())
+                when (result) {
+                    Result.Loading -> {
+
+                    }
+                    is Result.Success -> {
+                        mDialogView.progressBar.visibility = View.INVISIBLE
+                        mDialogView.successImage.visibility = View.VISIBLE
+                        mAlertDialog?.dismiss()
+                        findNavController().navigate(R.id.profileFragment)
+                    }
+                    is Result.Error -> {
+                        mAlertDialog?.dismiss()
+                        Toast.makeText(
+                            activity,
+                            "SORRY AN ERROR OCCURED DURING UPDATE",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+
+            })
 
         }
     }
@@ -149,9 +184,27 @@ class EditTutorProfileFragment : Fragment() {
                         showDialog()
                         mDialogView.progressBar.visibility = View.VISIBLE
                         viewModel.uploadPhoto(stream)
-                        mDialogView.progressBar.visibility = View.INVISIBLE
-                        mDialogView.successImage.visibility = View.VISIBLE
+                        viewModel.uploadPhoto.observe(viewLifecycleOwner, Observer { result ->
+                            Log.d("Result", result.toString())
+                            when (result) {
+                                Result.Loading -> {
 
+                                }
+                                is Result.Success -> {
+                                    mDialogView.progressBar.visibility = View.INVISIBLE
+                                    mDialogView.successImage.visibility = View.VISIBLE
+                                }
+                                is Result.Error -> {
+                                    mAlertDialog?.dismiss()
+                                    Toast.makeText(
+                                        activity,
+                                        "SORRY AN ERROR OCCURED DURING UPDATE",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                            }
+
+                        })
                     }
                 }
             } catch (e: FileNotFoundException) {
@@ -168,9 +221,30 @@ class EditTutorProfileFragment : Fragment() {
                     inputStream?.let { stream ->
                         showDialog()
                         mDialogView.progressBar.visibility = View.VISIBLE
-                      viewModel.uploadVideo(stream)
-                        mDialogView.progressBar.visibility = View.INVISIBLE
-                        mDialogView.successImage.visibility = View.VISIBLE
+                        viewModel.uploadVideo(stream)
+
+                        viewModel.uploadVideo.observe(viewLifecycleOwner, Observer { result ->
+                            Log.d("Result", result.toString())
+                            when (result) {
+                                Result.Loading -> {
+
+                                }
+                                is Result.Success -> {
+                                    mDialogView.progressBar.visibility = View.INVISIBLE
+                                    mDialogView.successImage.visibility = View.VISIBLE
+                                }
+                                is Result.Error -> {
+                                    mAlertDialog?.dismiss()
+                                    Toast.makeText(
+                                        activity,
+                                        "SORRY AN ERROR OCCURED DURING UPDATE",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                            }
+
+                        })
+
                     }
                 }
             } catch (e: FileNotFoundException) {
@@ -188,8 +262,28 @@ class EditTutorProfileFragment : Fragment() {
                         showDialog()
                         mDialogView.progressBar.visibility = View.VISIBLE
                         viewModel.uploadPdf(stream)
-                          mDialogView.progressBar.visibility = View.INVISIBLE
-                        mDialogView.successImage.visibility = View.VISIBLE
+
+                        viewModel.uploadPdf.observe(viewLifecycleOwner, Observer { result ->
+                            Log.d("Result", result.toString())
+                            when (result) {
+                                Result.Loading -> {
+
+                                }
+                                is Result.Success -> {
+                                    mDialogView.progressBar.visibility = View.INVISIBLE
+                                    mDialogView.successImage.visibility = View.VISIBLE
+                                }
+                                is Result.Error -> {
+                                    mAlertDialog?.dismiss()
+                                    Toast.makeText(
+                                        activity,
+                                        "SORRY AN ERROR OCCURED DURING UPDATE",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                            }
+
+                        })
                     }
                 }
             } catch (e: FileNotFoundException) {
@@ -198,8 +292,6 @@ class EditTutorProfileFragment : Fragment() {
         }
 
     }
-
-
 
 
     private fun selectImage() {
@@ -232,7 +324,7 @@ class EditTutorProfileFragment : Fragment() {
             AlertDialog.Builder(it1)
                 .setView(mDialogView)
         }
-        val mAlertDialog = mBuilder?.show()
-    }
+      mAlertDialog = mBuilder?.show()!!
 
+    }
 }

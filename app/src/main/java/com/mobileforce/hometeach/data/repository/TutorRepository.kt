@@ -20,21 +20,21 @@ interface TutorRepository {
                                  video: MultipartBody.Part): Response<UploadResponse>
 
 
-    suspend fun updateTutorProfile(id:Int,params:Params.UpdateTutorProfile):Response<LoginResponse>
+    suspend fun updateTutorProfile(id:Int,params:Params.UpdateTutorProfile):LoginResponse
 
     suspend fun getProfileId(): ProfileEntity
     suspend fun uploadProfilePic(
         id: Int,
         profile_pic: MultipartBody.Part
-    ): Response<UploadResponse>
+    ):UploadResponse
 
     suspend fun uploadVideo(
         id: Int,
         video: MultipartBody.Part
-    ): Response<UploadResponse>
+    ): UploadResponse
 
     suspend fun uploadCredential(
         id: Int,
         credentials: MultipartBody.Part
-    ): Response<UploadResponse>
+    ): UploadResponse
 }

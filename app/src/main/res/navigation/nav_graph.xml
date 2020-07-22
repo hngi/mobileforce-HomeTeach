@@ -103,7 +103,7 @@
         tools:layout="@layout/chat_fragment" />
     <fragment
         android:id="@+id/credentialFragment"
-        android:name="com.mobileforce.hometeach.ui.profile.CredentialDialog"
+        android:name="com.mobileforce.hometeach.ui.CredentialFragment"
         android:label="CredentialFragment"
         tools:layout="@layout/fragment_credential"/>
 

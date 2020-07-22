@@ -1,5 +1,7 @@
 package com.mobileforce.hometeach.ui.profile
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -23,7 +25,6 @@ import com.mobileforce.hometeach.utils.snack
 import com.squareup.picasso.Picasso
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
-import java.net.URL
 
 /**
  * Authored by enyason
@@ -35,7 +36,9 @@ class ProfileFragment : Fragment() {
     private val viewModel: ProfileViewModel by viewModel()
     private lateinit var bindingStudent: FragmentStudentProfileBinding
     private val pref: PreferenceHelper by inject()
-    private var url:String = ""
+    var url:String = ""
+     var  tutorName:String = ""
+    var imageUrl:String = ""
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -68,7 +71,9 @@ class ProfileFragment : Fragment() {
 
 
         bindingTutor.editButton.setOnClickListener {
-            navController.navigate(R.id.editTutorProfileFragment)
+
+            val bundle = bundleOf("imageUrl" to imageUrl,"tutorName" to tutorName)
+            navController.navigate(R.id.editTutorProfileFragment,bundle)
         }
 
     }
@@ -83,11 +88,14 @@ class ProfileFragment : Fragment() {
                 is Result.Success -> {
                     bindingTutor.tutorName.text = result.data?.user?.full_name
                     bindingTutor.tutorNameProfile.text= result.data?.user?.full_name
+                    tutorName = result.data?.user?.full_name.toString()
                     Picasso.get().load(result.data?.profile_pic).transform(CircleTransform()).error(R.drawable.profile_image).into(bindingTutor.tutorImage)
+                    imageUrl = result.data?.profile_pic.toString()
                     bindingTutor.teachersRatingBar.rating = result.data?.rating?.count?.toFloat()!!
                     bindingTutor.AmountTv.text= result.data?.hourly_rate + "/hr"
                     bindingTutor.tutorDesc.text = result.data?.desc
                     bindingTutor.tutorInterest.text = result.data?.other_courses
+                    url = result.data?.credentials
                     bindingTutor.TutorSubject.text = if (!result.data?.major_course.isNullOrEmpty()) result.data?.major_course +" Tutor" else ""
                     var  videourl = if (!result.data?.video.isNullOrEmpty()) result.data?.video  else "http://www.ebookfrenzy.com/android_book/movie.mp4"
                     bindingTutor.tutorVideo.setVideoPath(videourl)
@@ -95,7 +103,6 @@ class ProfileFragment : Fragment() {
                     mediaController?.setAnchorView(bindingTutor.tutorVideo)
                     bindingTutor.tutorVideo.setMediaController(mediaController)
                     bindingTutor.tutorVideo.start()
-                    url = result.data?.credentials
                 }
 
                 is Result.Error -> {
@@ -105,18 +112,13 @@ class ProfileFragment : Fragment() {
             }
 
         })
-//        bindingTutor.viewAll.setOnClickListener {
-//            val mDialog = CredentialDialog.newInstance()
-//            mDialog.show(requireActivity().supportFragmentManager, "credentials")
-//
-//        }
+
         bindingTutor.PdfImage.setOnClickListener {
-            val bundle = bundleOf("pdfUrl" to url)
-            findNavController().navigate(R.id.credentialFragment,bundle)
+
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            startActivity(intent);
         }
-        bindingTutor.editButton.setOnClickListener {
-            findNavController().navigate(R.id.editTutorProfileFragment)
-        }
+
     }
 
     private fun setUpProfileForUser(){
