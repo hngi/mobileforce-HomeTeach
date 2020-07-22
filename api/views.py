@@ -335,7 +335,7 @@ class VerifyTransactionView(APIView):
 			raise Http404
 
 	def get(self, request, format=None):
-		user = self.kwargs['user']
+		user = request.data['user']
 		verification_details = self.get_object(user)
 		serializer = VerificationSerializer(verification_details, many=True)
 		return Response(serializer.data)
@@ -385,7 +385,7 @@ class UserWalletView(APIView):
 			raise Http404
 
 	def get(self, request, format=None):
-		user = self.kwargs['user']
+		user = request.data['user']
 		user_wallet = self.get_object(user)
 		serializer = UserWalletSerializer(user_wallet, many=True)
 		for wallet in serializer.data:
