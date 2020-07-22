@@ -109,13 +109,20 @@ class CreditCardInfo(models.Model):
     def __unicode__(self):
         return f'Bank Information for user: {self.user.full_name}'
 
-class Verify(models.Model):
+class Verification(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
-	amount = models.IntegerField()
-	email = models.EmailField()
+	amount = models.IntegerField(default=0)
+	email = models.EmailField(unique=True)
 	reference = models.CharField(max_length=150)
-	authorization_code = models.IntegerField()
+	authorization_code = models.CharField(max_length=150)
 
-class Wallet(models.Model):
+	def __unicode__(self):
+		return self.email
+
+class UserWallet(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
-	balance = models.IntegerField()
+	available_balance = models.IntegerField(default=0)
+	total_balance = models.IntegerField(default=0)
+
+	def __unicode__(self):
+		return self.user.email
