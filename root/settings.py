@@ -66,6 +66,7 @@ INSTALLED_APPS = [
     'django_extensions',
 ]
 
+
 SITE_ID = 1
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
