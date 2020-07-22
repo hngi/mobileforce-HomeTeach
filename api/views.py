@@ -352,14 +352,15 @@ class VerifyTransactionView(APIView):
 			json = r.json()
 			amount = json['data']['amount']
 			email = json['data']['customer']['email']
-			auth = json['data']['authorization']['authorization_code']
-
+			try:
+				auth = json['data']['authorization']['authorization_code']
+			except KeyError:
+				auth=''
 			instance = UserWallet(user=user, total_balance=amount, available_balance=amount)
 			instance.save()	
 			
 			try:
 				serializer.save(amount=amount, email=email, authorization_code=auth)	
-
 			except:	
 				serializer.save(amount=amount, email=email)	
 
