@@ -2,6 +2,7 @@ package com.mobileforce.hometeach.ui.studentpayments.carddetails
 
 import android.os.Build
 import android.os.Bundle
+import android.text.TextUtils
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.databinding.FragmentStudentAddCardDetailsBinding
 import kotlinx.android.synthetic.main.add_card_dialog.*
+import kotlinx.android.synthetic.main.fragment_student_add_card_details.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
@@ -49,36 +51,42 @@ class StudentAddCardDetailsFragment : Fragment() {
             user?.let {
                 userId = user.id
                 userName = user.full_name
+                username.text = user.full_name
             }
         })
 
         btnSave.setOnClickListener {
-//            if (TextUtils.isEmpty(cardNumber)){
-//                binding.etCardNumber.error = "Input Card Number"
-//            }
-//
-//            if (TextUtils.isEmpty(cardCvc)){
-//                binding.etCvcNumber.error = "Input Card CVV"
-//            }
-//
-//            if (TextUtils.isEmpty(expiryMonth)){
-//                binding.etMonth.error = "Input Expiry Month"
-//            }
-//
-//            if (TextUtils.isEmpty(expiryYear)){
-//                binding.etYear.error = "Input Expiry Year"
-//            }
-            showDialog()
-            // send card details to endpoint
-            val cardDetails = Params.CardDetails(
-                user = userId,
-                card_holder_name = userName,
-                card_number = cardNumber,
-                cvv = cardCvc,
-                expiry_month = Integer.parseInt(expiryMonth.toString()),
-                expiry_year = Integer.parseInt(expiryYear.toString())
-            )
-            viewModel.saveUserCardDetails(cardDetails)
+            when {
+                TextUtils.isEmpty(binding.etCardNumber.text) -> {
+                    binding.etCardNumber.error = "Input Card Number"
+                }
+                TextUtils.isEmpty(binding.etCvcNumber.text) -> {
+                    binding.etCvcNumber.error = "Input Card CVV"
+                }
+                TextUtils.isEmpty(binding.etMonth.text) -> {
+                    binding.etMonth.error = "Input Expiry Month"
+                }
+                TextUtils.isEmpty(binding.etYear.text) -> {
+                    binding.etYear.error = "Input Expiry Year"
+                }
+                else -> {
+                    // send card details to endpoint
+                    val cardDetails = Params.CardDetails(
+                        user = userId,
+                        card_holder_name = userName,
+                        card_number = cardNumber,
+                        cvv = cardCvc,
+                        expiry_month = Integer.parseInt(expiryMonth.toString()),
+                        expiry_year = Integer.parseInt(expiryYear.toString())
+                    )
+                    viewModel.saveUserCardDetails(cardDetails)
+                    binding.etCardNumber.text.clear()
+                    binding.etCvcNumber.text.clear()
+                    binding.etMonth.text.clear()
+                    binding.etYear.text.clear()
+                    showDialog()
+                }
+            }
         }
 
         toolbar.setNavigationOnClickListener {

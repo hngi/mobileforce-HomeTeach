@@ -24,7 +24,6 @@ class StudentCardDetailsFragment : Fragment() {
 
     lateinit var navController: NavController
     lateinit var binding: FragmentStudentCardDetailsBinding
-    //private lateinit var list: MutableList<com.mobileforce.hometeach.ui.studentpayments.UserCardDetailResponse>
     private lateinit var cardList: List<UserCardDetailResponse>
     private lateinit var onClickListener: View.OnClickListener
     private val viewModel: StudentCardDetailsViewModel by viewModel()
@@ -41,39 +40,14 @@ class StudentCardDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        navController = Navigation.findNavController(view)
+        val toolbar = binding.toolbar
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            toolbar.setNavigationIcon(R.drawable.back_arrow)
+        }
 
-        // Get a list of User's saved cards to display in the RV
         viewModel.getUserCardDetails()
         onClickListener = View.OnClickListener {}
-        //cardList = viewModel.getUserCardDetails()
-//        list = mutableListOf()
-//        list.add(
-//            com.mobileforce.hometeach.ui.studentpayments.UserCardDetailResponse(
-//                1,
-//                R.drawable.ic_visa,
-//                "....2019",
-//                true
-//            )
-//        )
-//        list.add(
-//            com.mobileforce.hometeach.ui.studentpayments.UserCardDetailResponse(
-//                2,
-//                R.drawable.ic_master,
-//                "....3200",
-//                false
-//            )
-//        )
-//
-//        var cards = StudentCardModel(
-//            1,
-//            list,
-//            "Rahman Django",
-//            "profile_image",
-//            "215000 N"
-//        )
-//        binding.username.text = cards.tutorName
-//        binding.balance.text = "Balance: "+cards.balance
-//        Picasso.get().load("profile_image").transform(CircleTransform()).placeholder(R.drawable.profile_image).error(R.drawable.profile_image).into(binding.userImage)
 
         viewModel.getUserCardDetails.observe(viewLifecycleOwner, Observer { result ->
             when (result) {
@@ -89,11 +63,6 @@ class StudentCardDetailsFragment : Fragment() {
             }
         })
 
-        navController = Navigation.findNavController(view)
-        val toolbar = binding.toolbar
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            toolbar.setNavigationIcon(R.drawable.back_arrow)
-        }
         val userName = binding.username
         val userImage = binding.userImage
         val btnCancel = binding.btnCancel
