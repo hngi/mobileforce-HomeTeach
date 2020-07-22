@@ -6,6 +6,7 @@ import android.icu.util.Calendar
 import android.os.Build
 import android.os.Bundle
 import android.text.format.DateFormat
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -56,18 +57,18 @@ class TutorDetailsFragment : Fragment(), DatePickerDialog.OnDateSetListener,
         }
 
         binding.requestService.setOnClickListener {
-            val calendar: Calendar = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                Calendar.getInstance()
+            val calendar: Calendar
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                calendar= Calendar.getInstance()
+                day = calendar.get(Calendar.DAY_OF_MONTH)
+                month = calendar.get(Calendar.MONTH)
+                year = calendar.get(Calendar.YEAR)
+                val datePickerDialog =
+                    activity?.let { it1 -> DatePickerDialog(it1, this, year, month,day) }
+                datePickerDialog?.show()
             } else {
-                TODO("VERSION.SDK_INT < N")
+                Log.d("Lower version", "To be implemented")
             }
-            day = calendar.get(Calendar.DAY_OF_MONTH)
-            month = calendar.get(Calendar.MONTH)
-            year = calendar.get(Calendar.YEAR)
-            val datePickerDialog =
-                activity?.let { it1 -> DatePickerDialog(it1, this, year, month,day) }
-            datePickerDialog?.show()
-
         }
 
         binding.viewAll.setOnClickListener {

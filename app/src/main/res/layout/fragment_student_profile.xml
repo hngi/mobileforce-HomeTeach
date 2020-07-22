@@ -207,6 +207,7 @@
         android:backgroundTint="@color/colorAccent"
         android:text="@string/save"
         android:textColor="#fff"
+        android:visibility="invisible"
         app:cornerRadius="15dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
