@@ -281,8 +281,7 @@
     /* tutors styles here */
     
     .tutors {
-        position: relative;
-        bottom: 130px;
+        padding-top: var(--main-padding-top);
     }
     
     .carousel {
@@ -384,7 +383,7 @@
         /* The image used */
         background-image: url("../Assets/General/find_tutor.png");
         /* Set a specific height */
-        height: 500px;
+        height: 100%;
         background-attachment: fixed;
         background-position: center;
         background-repeat: no-repeat;
@@ -403,36 +402,40 @@
     
     .scroll__content {
         margin: auto;
-        width: 50%;
+        width: 100%;
         padding: 0px;
     }
     
     .tutor__header {
         padding-top: 170px;
     }
-    /*     
+    
     .tutor__header h4 {
         color: white;
         text-align: center;
         letter-spacing: -0.28px;
-        width: max-content;
         font-weight: 500;
         font-family: 'Ubuntu', sanswhite-serif;
         font-size: 40px;
         line-height: 41px;
         font-style: normal;
-    } */
+    }
     
     .tutor__header p {
         text-align: center;
         letter-spacing: -0.28px;
-        font-size: 18px;
+        font-size: 20px;
         font-family: 'Ubuntu', sans-serif;
         color: white;
         line-height: 60px;
         font-weight: normal;
     }
     
-    .me {
-        margin-bottom: 3330px;
+    .scroll__content .app__logo {
+        text-align: center;
+    }
+    /* Testimonial Styles here */
+    
+    .testimonial {
+        padding-top: var(--div-padding-top);
     }
