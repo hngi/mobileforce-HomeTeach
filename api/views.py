@@ -18,6 +18,7 @@ from .utility.encryption_util import *
 from .serializers import (BankInfoSerializer, CreditCardInfoSerializer, 
 						VerificationSerializer, CreateRequestSerializer,
 						 FavouriteTutorsSerializer, ClassesSerializer,
+						ClassesRequestSerializer,
 						RequestTutorSerializer, RequestSerializer, TopTutorSerializer,
 						CustomUserSerializer, ProfileSerializer, 
 						TutorProfileSerializer, StudentProfileSerializer, 
@@ -43,11 +44,22 @@ def submit_request(request):
 	else:
 		return Response({'message':'sorry, your request couldnt be sent...', 'sent':False}, status=status.HTTP_501_NOT_IMPLEMENTED)
 
+
 @api_view(['POST', ])
 @permission_classes([AllowAny, ])
 def get_tutor_classes(request):
 	data = request.data
 	serializer = ClassesSerializer(data=data)
+	# print(serializer.test)
+	if serializer.is_valid(raise_exception=True):
+		return Response(serializer.data)
+
+
+@api_view(['POST', ])
+@permission_classes([AllowAny, ])
+def get_tutor_classes_requests(request):
+	data = request.data
+	serializer = ClassesRequestSerializer(data=data)
 	# print(serializer.test)
 	if serializer.is_valid(raise_exception=True):
 		return Response(serializer.data)

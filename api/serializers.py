@@ -114,6 +114,44 @@ class StudentScheduleSerializer(serializers.ModelSerializer):
         model = StudentSchedule
         fields = '__all__'
 
+class ClassesRequestSerializer(serializers.Serializer):
+    tutor_id = serializers.CharField()
+    requests = serializers.SerializerMethodField()
+
+    def get_requests(self, values):
+        data = values
+        dictionary = {k:v for k,v in data.items()}
+        tutor_id = dictionary['tutor_id']
+        try:
+            tutor = User.objects.get(id=tutor_id, is_tutor=True)
+        except User.DoesNotExist:
+            raise serializers.ValidationError('A tutor with that id does not exist')
+        schedule_details = tutor.tutor.all()
+        requests = tutor.requests.all()
+        requests_list = []
+        for request in requests:
+            print(request.schedule.days.all())
+            for day in request.schedule.days.all():
+                data = {    
+                            'accepted':request.accepted,
+                            'declined':request.declined,
+                            'classes_request_id':f'{request.id}-{day.id}',
+                            'subject':request.schedule.subject,
+                            'day':datetime.strftime(day.day, '%d-%m-%Y'),
+                            'from_minute':request.schedule.from_minute,
+                            'to_minute':request.schedule.to_minute,
+                            'from_hour':request.schedule.from_hour,
+                            'to_hour':request.schedule.to_hour,
+                            'grade':request.schedule.grade,
+                            'student_name':request.schedule.user.full_name,
+                            'student_id':str(request.schedule.user.id),
+                            'student_pic':request.schedule.user.profile.profile_pic.url
+                        }
+                requests_list.append(data)
+            requests_list.sort(key = lambda date: (datetime.strptime(date['day'], '%d-%m-%Y'), date['from_hour'], date['from_minute']))
+        return requests_list
+
+
 class ClassesSerializer(serializers.Serializer):
     tutor_id = serializers.CharField()
     schedules = serializers.SerializerMethodField()
@@ -122,7 +160,10 @@ class ClassesSerializer(serializers.Serializer):
         data = values
         dictionary = {k:v for k,v in data.items()}
         tutor_id = dictionary['tutor_id']
-        tutor = User.objects.get(id=tutor_id)
+        try:
+            tutor = User.objects.get(id=tutor_id, is_tutor=True)
+        except User.DoesNotExist:
+            raise serializers.ValidationError('A tutor with that id does not exist')
         schedule_details = tutor.tutor.all()
 
         schedules = []
@@ -144,7 +185,6 @@ class ClassesSerializer(serializers.Serializer):
                 schedules.append(data)
             schedules.sort(key = lambda date: (datetime.strptime(date['day'], '%d-%m-%Y'), date['from_hour'], date['from_minute']))
         return schedules
-
 
 class FavouriteTutorsSerializer(serializers.ModelSerializer):
     tutor_id = serializers.CharField()
