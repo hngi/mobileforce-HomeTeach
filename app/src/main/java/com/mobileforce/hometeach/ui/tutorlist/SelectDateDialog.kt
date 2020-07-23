@@ -84,8 +84,8 @@ class SelectDateDialog : DialogFragment() {
         binding.approveTextview.setOnClickListener {
             listIsClean = true
             val selectedDates = binding.calendarView.selectedDates.map { calendarDay ->
-                "${calendarDay.year}".plus("-").plus("${calendarDay.month}").plus("-")
-                    .plus("${calendarDay.day}")
+                "${calendarDay.day}".plus("-").plus("${calendarDay.month}").plus("-")
+                    .plus("${calendarDay.year}")
             }
 
             binding.calendarView.selectedDates.forEach {
