@@ -7,6 +7,7 @@
     --span-txt-color: #505050;
     --button-bg-color: #2F2E41;
     --main-padding-top: 20px;
+    --div-padding-top: 70px
 }
 
 html {
@@ -93,4 +94,8 @@ button:not(:disabled) {
 
 .hero__img {
     height: 80vh
+}
+
+.about {
+    padding-top: var(--div-padding-top);
 }
