@@ -148,12 +148,13 @@ button:not(:disabled) {
     padding: 50px;
 }
 
-.about__us {
+.about__us p {
     font-size: 16px;
     font-family: 'Ubuntu', sans-serif;
     letter-spacing: -0.28px;
     color: var(--paragraph-txt-color);
     line-height: 130%;
+    font-weight: normal;
 }
 
 
@@ -240,7 +241,7 @@ i.fa {
 }
 
 .works {
-    padding-top: 180px;
+    padding-top: 200px;
 }
 
 .rows {
@@ -253,13 +254,12 @@ i.fa {
 }
 
 .works__row {
-    padding-top: 60px;
+    padding-top: 75px;
 }
 
-
-/* .headers {
+.headers {
     margin: auto !important;
-} */
+}
 
 .headers h4 {
     font-family: 'Ubuntu', sans-serif;
@@ -273,6 +273,7 @@ i.fa {
 
 .headers p {
     font-family: 'Ubuntu', sans-serif;
+    font-weight: normal;
     font-size: 16px;
     color: var(--paragraph-txt-color);
     line-height: 32px;
