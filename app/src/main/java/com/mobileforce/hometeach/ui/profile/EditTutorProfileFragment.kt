@@ -17,7 +17,9 @@ import androidx.navigation.fragment.findNavController
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.databinding.FragmentEditTutorProfileBinding
+import com.mobileforce.hometeach.utils.ApiError
 import com.mobileforce.hometeach.utils.Result
+import com.mobileforce.hometeach.utils.toast
 import com.squareup.picasso.Picasso
 import com.tiper.MaterialSpinner
 import kotlinx.android.synthetic.main.fragment_edit_tutor_profile.*
@@ -143,16 +145,13 @@ class EditTutorProfileFragment : Fragment() {
                     is Result.Success -> {
                         mDialogView.progressBar.visibility = View.INVISIBLE
                         mDialogView.successImage.visibility = View.VISIBLE
-                        mAlertDialog?.dismiss()
+                        mAlertDialog.dismiss()
                         findNavController().navigate(R.id.profileFragment)
                     }
                     is Result.Error -> {
-                        mAlertDialog?.dismiss()
-                        Toast.makeText(
-                            activity,
-                            "SORRY AN ERROR OCCURED DURING UPDATE",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        mAlertDialog.dismiss()
+                        val message = ApiError(result.exception).message
+                        toast(message)
                     }
                 }
 
