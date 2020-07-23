@@ -439,3 +439,18 @@
     .testimonial {
         padding-top: var(--div-padding-top);
     }
+    /* SPonsors styles here */
+    
+    .sponsors {
+        padding-top: var(--div-padding-top);
+    }
+    
+    .supported p {
+        font-family: 'Ubuntu', sans-serif;
+        color: #000000;
+        font-style: italic;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 28px;
+        margin-top: 80px;
+    }
