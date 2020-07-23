@@ -106,13 +106,13 @@ class SignUpActivity : AppCompatActivity() {
         passwordWatcher = object : TextWatcher {
             override fun afterTextChanged(input: Editable?) {
                 input?.let {
-                    if (input.length < 7) {
+                    if (input.length > 7) {
                         textInput_password.error = null
                         passwordValid = true
                     } else {
                         textInput_password.isHelperTextEnabled = true
                         textInput_password.error =
-                            "Password should not be less than 8"
+                            "Password too short"
                         passwordValid = false
                     }
                 }
@@ -166,7 +166,7 @@ class SignUpActivity : AppCompatActivity() {
                 textInput_email.error = "Input a valid email"
             } else if (!passwordValid) {
                 textInput_password.isHelperTextEnabled = true
-                textInput_password.error = "Input a valid password"
+                textInput_password.error = "Password too short"
             } else if (!phoneNumberValid) {
                 textInput_phone_number.isHelperTextEnabled = true
                 textInput_phone_number.error = "Input a valid phone number"

@@ -38,7 +38,7 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
     }
 
     override suspend fun clearDb() {
-        db.userDao().clearDb()
+        db.clearAllTables()
     }
 
     override suspend fun resetPassword(params: Params.PasswordReset): Response<EmailResponse> {
