@@ -19,6 +19,8 @@ class SignUpViewModel(private val userRepository: UserRepository) : ViewModel() 
     private val _signUp = MutableLiveData<Result<Nothing>>()
     val signUp: LiveData<Result<Nothing>> = _signUp
 
+    val credentialsError = MutableLiveData<CredentialsError>()
+
     private val db = Firebase.firestore
 
     fun signUp(params: Params.SignUp) {
@@ -27,20 +29,33 @@ class SignUpViewModel(private val userRepository: UserRepository) : ViewModel() 
             try {
                 val response = userRepository.register(params)
 
-                response.errors?.let {
+                if (response.errors != null) {
+                    response.errors.let {
 
-                    it.email?.let email@{
-                        _signUp.postValue(Result.Error(Throwable(it[0])))
+                        it.email?.let email@{ list ->
 
-                        return@email
+                            credentialsError.postValue(CredentialsError(ErrorField.EMAIL, list[0]))
+                            return@email
+                        }
+
+                        it.phone_number?.let phone@{ list ->
+                            credentialsError.postValue(
+                                CredentialsError(
+                                    ErrorField.PHONE_NUMBER,
+                                    list[0]
+                                )
+                            )
+                            return@phone
+                        }
+
                     }
+                } else {
 
-                } ?: kotlin.run {
                     _signUp.postValue(Result.Success())
 
                     //register user to firebase
 
-                    with(response.user){
+                    with(response.user) {
                         val user = User(
                             token = response.token,
                             email = email,
@@ -56,7 +71,6 @@ class SignUpViewModel(private val userRepository: UserRepository) : ViewModel() 
 
                     }
 
-
                 }
 
             } catch (error: Throwable) {
@@ -64,5 +78,12 @@ class SignUpViewModel(private val userRepository: UserRepository) : ViewModel() 
             }
         }
 
+    }
+
+    data class CredentialsError(val error: ErrorField, val message: String)
+
+    enum class ErrorField {
+        EMAIL,
+        PHONE_NUMBER
     }
 }
