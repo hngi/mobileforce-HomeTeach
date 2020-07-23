@@ -224,18 +224,14 @@ def card_info(request):
 		data = request.data
 		user, card_holder_name, card_number, cvv = data['user'], data['card_holder_name'], data['card_number'], data['cvv']
 		expiry_month, expiry_year = data['expiry_month'], data['expiry_year']
-		if luhn.is_valid(card_number):
-			# card_number = encrypt(card_number)
-			parsed_data = {"user" : user, "card_holder_name": card_holder_name, "card_number": encrypt(card_number), "cvv": encrypt(cvv),
-			"expiry_month": expiry_month, "expiry_year": expiry_year}
-			serializer = CreditCardInfoSerializer(data = parsed_data)
+		parsed_data = {"user" : user, "card_holder_name": card_holder_name, "card_number": encrypt(card_number), "cvv": encrypt(cvv),
+		"expiry_month": expiry_month, "expiry_year": expiry_year}
+		serializer = CreditCardInfoSerializer(data = parsed_data)
 
-			if serializer.is_valid():
-				serializer.save()
-				return Response(serializer.data)
-			return Response(serializer.errors)
-		else:
-			return Response('Card number is not valid')
+		if serializer.is_valid():
+			serializer.save()
+			return Response(serializer.data)
+		return Response(serializer.errors)
 		
 @api_view(['GET', 'PUT', 'DELETE'])
 @permission_classes([AllowAny, ])
