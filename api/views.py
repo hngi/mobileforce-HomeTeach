@@ -16,7 +16,8 @@ from django.shortcuts import get_object_or_404
 from cardvalidator import formatter, luhn
 from .utility.encryption_util import *
 from .serializers import (BankInfoSerializer, CreditCardInfoSerializer, 
-						VerificationSerializer, CreateRequestSerializer, 
+						VerificationSerializer, CreateRequestSerializer,
+						 FavouriteTutorsSerializer,
 						RequestTutorSerializer, RequestSerializer, TopTutorSerializer,
 						CustomUserSerializer, ProfileSerializer, 
 						TutorProfileSerializer, StudentProfileSerializer, 
@@ -24,8 +25,7 @@ from .serializers import (BankInfoSerializer, CreditCardInfoSerializer,
 from .models import (BankInfo, CreditCardInfo, UserWallet,
 		Verification, Profile, Request,Rating, Verification)
 from root.settings import PAYSTACK_AUTHORIZATION_KEY
-#from pypaystack import Transaction
-
+# from pypaystack import Transaction
 
 
 @api_view(['POST', ])
@@ -63,6 +63,45 @@ def list_user_requests(request):
 	serializer = RequestSerializer(requests, many=True)
 	return Response(serializer.data)
 
+@api_view(['POST', ])
+@permission_classes([AllowAny, ])
+def add_favourites(request):
+	data = request.data
+	# student_id = data.get('student_id')
+	# tutor_id = data.get('tutor_id')
+	# try:
+	# 	tutor = User.objects.get(id=tutor_id, tutor=True)
+	# except User.DoesNotExist:
+	# 	return Response('A tutor with that id does not exist')
+
+	# try:
+	# 	student = User.objects.get(id=student_id)
+	# except User.DoesNotExist:
+	# 	return Response('A student with that id does not exist')
+	serializer = FavouriteTutorsSerializer(data=data)
+	if serializer.is_valid(raise_exception=True):
+		data = serializer.save()
+		print(data)
+		if request.data.get('action') == 'add':
+			return Response({'message':f'{data["tutor"]} has been added into your favourites'})
+		else:
+			return Response({'message':f'{data["tutor"]} has been removed from your favourites'})
+	return Response('an error occured while adding into favourites')
+
+
+	serializer = FavouriteTutorsSerializer(tutor=tutor, student=student, data=data)
+# def request_action(request):
+#     data = request.data
+#     id = data.get('id')
+#     request_id = data.get('request_id')
+#     action = data.get('action')
+
+#     try:
+#         user = User.objects.get(id=id)
+#     except User.DoesNotExist:
+#         user = User.objects.get(id=id)
+#     except User.DoesNotExist:
+#         return Response('a tutor/user with that id does not exist')
 
 
 class CustomUserViewSet(viewsets.ModelViewSet):
@@ -85,8 +124,7 @@ class ProfileViewSet(mixins.ListModelMixin,
 	"""
 	queryset = Profile.objects.all()
 	serializer_class = ProfileSerializer
-	permission_classes = (AllowAny,
-						  IsOwnerOrReadOnly,)
+	permission_classes = (AllowAny,)
 
   
 
@@ -98,11 +136,10 @@ class TutorProfileViewSet(mixins.ListModelMixin,
 	This viewset automatically provides `list`, `create`, `retrieve`,
 	`update` and `destroy` actions.
 	"""
-	parser_classes = (MultiPartParser, FormParser,)
+	# parser_classes = (MultiPartParser, FormParser,)
 	queryset = Profile.objects.filter(user__is_tutor=True)
 	serializer_class = TutorProfileSerializer
-	permission_classes = (AllowAny,
-						  IsOwnerOrReadOnly,)
+	permission_classes = (AllowAny, )
 	filter_backends = (filters.DjangoFilterBackend,)
 	filter_fields = ('field','major_course','state',)
 	ordering = ('-full_name',)
@@ -116,11 +153,10 @@ class StudentProfileViewSet(mixins.ListModelMixin,
 	This viewset automatically provides `list`, `create`, `retrieve`,
 	`update` and `destroy` actions.
 	"""
-	parser_classes = (MultiPartParser, FormParser,)
+	# parser_classes = (MultiPartParser, FormParser,)
 	queryset = Profile.objects.filter(user__is_tutor=False)
 	serializer_class = StudentProfileSerializer
-	permission_classes = (AllowAny,
-						  IsOwnerOrReadOnly,)
+	permission_classes = (AllowAny,)
 
 
 @api_view(['POST', ])
@@ -159,6 +195,7 @@ def card_info_by_user(request):
 	serializer = CreditCardInfoSerializer(card_details, many=True)
 
 	user_card_details = []
+	
 	for card_detail in serializer.data:
 		d_id = card_detail['id']
 		user, card_holder_name, card_number, cvv = card_detail['user'], card_detail['card_holder_name'], card_detail['card_number'], card_detail['cvv']
@@ -166,7 +203,7 @@ def card_info_by_user(request):
 		parsed_data = {"id": d_id, "user" : user, "card_holder_name": card_holder_name, "card_number": decrypt(card_number), "cvv": decrypt(cvv),
 		"expiry_month": expiry_month, "expiry_year": expiry_year}
 		user_card_details.append(parsed_data)
-
+	
 	
 	# return Response(serializer.data)
 	return Response(user_card_details)
@@ -187,18 +224,14 @@ def card_info(request):
 		data = request.data
 		user, card_holder_name, card_number, cvv = data['user'], data['card_holder_name'], data['card_number'], data['cvv']
 		expiry_month, expiry_year = data['expiry_month'], data['expiry_year']
-		if luhn.is_valid(card_number):
-			# card_number = encrypt(card_number)
-			parsed_data = {"user" : user, "card_holder_name": card_holder_name, "card_number": encrypt(card_number), "cvv": encrypt(cvv),
-			"expiry_month": expiry_month, "expiry_year": expiry_year}
-			serializer = CreditCardInfoSerializer(data = parsed_data)
+		parsed_data = {"user" : user, "card_holder_name": card_holder_name, "card_number": encrypt(card_number), "cvv": encrypt(cvv),
+		"expiry_month": expiry_month, "expiry_year": expiry_year}
+		serializer = CreditCardInfoSerializer(data = parsed_data)
 
-			if serializer.is_valid():
-				serializer.save()
-				return Response(serializer.data)
-			return Response(serializer.errors)
-		else:
-			return Response('Card number is not valid')
+		if serializer.is_valid():
+			serializer.save()
+			return Response(serializer.data)
+		return Response(serializer.errors)
 		
 @api_view(['GET', 'PUT', 'DELETE'])
 @permission_classes([AllowAny, ])
@@ -226,23 +259,20 @@ def card_info_by_id(request, pk):
 		data = request.data
 		user, card_holder_name, card_number, cvv = data['user'], data['card_holder_name'], data['card_number'], data['cvv']
 		expiry_month, expiry_year = data['expiry_month'], data['expiry_year']
-		if luhn.is_valid(card_number):
-			# card_number = encrypt(card_number)
-			parsed_data = {"user" : user, "card_holder_name": card_holder_name, "card_number": encrypt(card_number), "cvv": encrypt(cvv),
-			"expiry_month": expiry_month, "expiry_year": expiry_year}
-			serializer = CreditCardInfoSerializer(card_detail, data=parsed_data)
 
-			if serializer.is_valid():
-				serializer.save()
-				return Response(serializer.data)
-			return Response(serializer.errors)
+		parsed_data = {"user" : user, "card_holder_name": card_holder_name, "card_number": encrypt(card_number), "cvv": encrypt(cvv),
+		"expiry_month": expiry_month, "expiry_year": expiry_year}
+		serializer = CreditCardInfoSerializer(card_detail, data=parsed_data)
+
+		if serializer.is_valid():
+			serializer.save()
+			return Response(serializer.data)
 		else:
-			return Response('Card number is not valid')
-
-
+			return Response(serializer.errors)
+ 
 	elif request.method == 'DELETE':
 		card_detail.delete()
-		return Response('Card details deleted')        
+		return Response('Card Details deleted')   
 
 
 
@@ -324,7 +354,7 @@ class VerifyTransactionView(APIView):
 		except Verification.DoesNotExist:
 			raise Http404
 
-	def get(self, request, format=None):
+	def post(self, request, format=None):
 		user = request.data['user']
 		verification_details = self.get_object(user)
 		serializer = VerificationSerializer(verification_details, many=True)
@@ -346,7 +376,6 @@ class VerifyTransactionView(APIView):
 			try:
 				auth = json['data']['authorization']['authorization_code']
 				serializer.save(amount=amount, email=email, authorization_code=auth)	
-
 			except:	
 				serializer.save(amount=amount, email=email)
 
@@ -359,8 +388,9 @@ class VerifyTransactionView(APIView):
 					instance.save()	
 				else:
 					UserWallet.objects.create(user=user, available_balance=amount, total_balance=amount)
-
-			return Response(json, status=status.HTTP_200_OK)
+				return Response(json, status=status.HTTP_200_OK)
+			else:
+				return Response(f'An error occurred... An the transaction couldnt be completed')
 		return Response(status=status.HTTP_401_UNAUTHORIZED)
 
 class UserWalletView(APIView):

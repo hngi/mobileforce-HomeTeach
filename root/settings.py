@@ -64,8 +64,8 @@ INSTALLED_APPS = [
     'storages',
     'rest_auth',
     'django_extensions',
-    #'pypaystack',
 ]
+
 
 SITE_ID = 1
 
@@ -211,11 +211,10 @@ MEDIA_URL =  'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, PUBLIC_MEDIA_LOCATION)
 DEFAULT_FILE_STORAGE = 'root.storage_backends.PublicMediaStorage'
 
 # Paystack
-PAYSTACK_AUTHORIZATION_KEY = os.environ.get('PAYSTACK_SECRET_KEY')
+PAYSTACK_AUTHORIZATION_KEY = 'sk_test_72d039a582a3504fdeeffd3930914247ba070db3'
 
 
-
-# ENCRYPT_KEY = b'5R_y8WWIMF7MOhShxQiZFZwXcRGGKKbdGrkPN9iVVpc='
+ENCRYPT_KEY = b'5R_y8WWIMF7MOhShxQiZFZwXcRGGKKbdGrkPN9iVVpc='
 if not ENV:
     del DATABASES['default']['OPTIONS']['sslmode']
 

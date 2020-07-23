@@ -5,7 +5,7 @@ from django.db.models import Avg, Count
 from .models import Request
 from datetime import datetime
 from django.contrib.auth import get_user_model
-from .models import CreditCardInfo, BankInfo, Verification, UserWallet
+from .models import CreditCardInfo, BankInfo, Verification, UserWallet, Favourites
 
 # Students should be able to filter list of Tutors based on field, gender, proximity 
 User = get_user_model()
@@ -100,6 +100,50 @@ class StudentScheduleSerializer(serializers.ModelSerializer):
         model = StudentSchedule
         fields = '__all__'
 
+class FavouriteTutorsSerializer(serializers.ModelSerializer):
+    tutor_id = serializers.CharField()
+    student_id = serializers.CharField()
+    student = serializers.CharField(required=False)
+    tutor = serializers.CharField(required=False)
+    action = serializers.CharField()
+    class Meta:
+        model = Favourites
+        fields = '__all__'
+
+    def save(self):
+        data = self.validated_data
+        student_id = data.get('student_id')
+        tutor_id = data.get('tutor_id')
+        action = data.get('action')
+        print(tutor_id, student_id)
+        try:
+            tutor = User.objects.get(id=tutor_id, is_tutor=True)
+        except User.DoesNotExist:
+            raise serializers.ValidationError('A tutor with that id does not exist')
+
+        try:
+            student = User.objects.get(id=student_id)
+        except User.DoesNotExist:
+            raise serializers.ValidationError('A student with that id does not exist')
+        try:
+            student_favourites = Favourites.objects.get(student=student)
+        except Favourites.DoesNotExist:
+            student_favourites = Favourites.objects.create(student=student)
+        if action == 'add':
+            if student_favourites.tutor.filter(id=tutor_id).exists():
+                raise serializers.ValidationError(f'{tutor.full_name} has already been added into favourites')
+            student_favourites.tutor.add(tutor)
+        if action == 'remove':
+            if student_favourites.tutor.filter(id=tutor_id).exists():
+                student_favourites.tutor.remove(tutor)
+            else:
+                raise serializers.ValidationError(f'{tutor.full_name} isnt among your favourites')
+            
+
+        return {'tutor':tutor.full_name}
+        
+
+        
 
 class RequestTutorSerializer(serializers.ModelSerializer):
     requester = UserSerializer(read_only=True)
@@ -217,6 +261,21 @@ class StudentProfileSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('user','id',
                   'desc', 'profile_pic', 'field', 'major_course', 'other_courses', 'state', 'address', 
                   'user_url')
+
+        def update(self, instance, validated_data):
+            # retrieve CustomUser
+            # user_data = validated_data.pop('user', None)
+            user_data = {k:v for k,v in validated_data.items() if v}
+            if user_data:
+                for attr, value in user_data.items():
+                    setattr(instance.user, attr, value)
+            validated_data.pop('user', None)
+            # retrieve Profile
+            for attr, value in validated_data.items():
+                setattr(instance, attr, value)
+            instance.user.save()
+            instance.save()
+            return instance
 
     def get_full_name(self, obj):
         request = self.context['request']

@@ -7,56 +7,6 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
-FIELD_CHOICES = (
-		('SCIENCE', 'Science'),
-		('COMMERCIAL', 'Commercial'),
-		('ARTS', 'Arts'),
-		('ENGLISH', 'English'),
-		('NON_ACADEMIC', 'Non-Academic'),
-		('TEST_PREPARATION', 'Test Preparation'),
-		('OTHER', 'Other'),
-	)
-
-STATE_CHOICES = (
-		('ABUJA FCT', 'Abuja'),
-		('ABIA', 'Abia'),
-		('ADAMAWA', 'Adamawa'),
-		('AKWA_IBOM', 'Akwa Ibom'),
-		('ANAMBRA', 'Anambra'),
-		('BAUCHI', 'Bauchi'),
-		('BAYELSA', 'Bayelsa'),
-		('BENUE', 'Benue'),
-		('BORNO', 'Borno'),
-		('CROSS_RIVER', 'Cross River'),
-		('DELTA', 'Delta'),
-		('EBONYI', 'Ebonyi'),
-		('EDO', 'Edo'),
-		('EKITI', 'Ekiti'),
-		('ENUGU', 'Enugu'),
-		('GOMBE', 'Gombe'),
-		('IMO', 'Imo'),
-		('JIGAWA', 'Jigawa'),
-		('KADUNA', 'Kaduna'),
-		('KANO', 'Kano'),
-		('KATSINA', 'Kastina'),
-		('KEBBI', 'Kebbi'),
-		('KOGI', 'Kogi'),
-		('KWARA', 'Kwara'),
-		('LAGOS', 'Lagos'),
-		('NASSARAWA', 'Nassarawa'),
-		('NIGER', 'Niger'),
-		('OGUN', 'Ogun'),
-		('ONDO', 'Ondo'),
-		('OSUN', 'Osun'),
-		('OYO', 'Oyo'),
-		('PLATEAU', 'Plateau'),
-		('RIVERS', 'Rivers'),
-		('SOKOTO', 'Sokoto'),
-		('TARABA', 'Taraba'),
-		('YOBE', 'Yobe'),
-		('ZAMFARA', 'Zamfara'),
-	)
-
 
 class Rating(models.Model):
 	tutor = models.ForeignKey(User, related_name='ratings_tutor', on_delete=models.CASCADE)
@@ -88,24 +38,42 @@ class StudentSchedule(models.Model):
 	to_minute = models.CharField(max_length=10)
 	days = models.ManyToManyField(Days, blank=True, null=True)
 
+# images/%Y/%m/%d/
+def get_upload_file_name(userpic,filename):
+    return 'images/%s/%s/' %  (str(userpic.user.email),
+                                 filename)
+
+def get_upload_file_name_videos(userpic,filename):
+    return 'videos/%s/%s/' %  (str(userpic.user.email),
+                                 filename)
+
+def get_upload_file_name_credentials(userpic,filename):
+    return 'docs/%s/%s/' %  (str(userpic.user.email),
+                                 filename)
+
+class Favourites(models.Model):
+	student = models.ForeignKey(User, related_name='favourite_tutors', on_delete=models.CASCADE)
+	tutor = models.ManyToManyField(User)
+
+
 # Create your models here.
 class Profile(models.Model):
 	user = models.OneToOneField(User,
 								on_delete=models.CASCADE)
 	# if user.is_tutor:
-	profile_pic = models.ImageField(upload_to='images/%Y/%m/%d/',
+	profile_pic = models.ImageField(default='default/default.jpg', upload_to=get_upload_file_name,
 									null=True, blank=True)
-	credentials = models.FileField(upload_to='docs/%Y/%m/%d/',
+	credentials = models.FileField(upload_to=get_upload_file_name_credentials,
 								   null=True, blank=True)
-	video = models.FileField(upload_to='videos/%Y/%m/%d/',
+	video = models.FileField(upload_to=get_upload_file_name_videos,
 							 null=True, blank=True)
 	rating = models.ManyToManyField(Rating, blank=True)
 	desc = models.TextField(max_length=255, null=True, blank=True)
-	field = models.CharField(max_length=255, choices = FIELD_CHOICES, blank=True)
+	field = models.CharField(max_length=255, blank=True)
 	hourly_rate = models.CharField(max_length=10000000, default=0)
 	major_course = models.CharField(max_length=255, null=True, blank=True)
 	other_courses = models.CharField(max_length=255, null=True, blank=True)
-	state = models.CharField(max_length=255, choices = STATE_CHOICES, blank=True)
+	state = models.CharField(max_length=255, blank=True)
 	address = models.CharField(max_length=255, null=True, blank=True)	
 
 	def __unicode__(self):
@@ -158,8 +126,13 @@ class Verification(models.Model):
 
 class UserWallet(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
-	available_balance = models.IntegerField(default=0)
-	total_balance = models.IntegerField(default=0)
+	available_balance = models.FloatField(default=0.0)
+	total_balance = models.FloatField(default=0.0)
 
 	def __str__(self):
 		return str(self.available_balance)
+
+	@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+	def create_user_wallet(sender, instance, created, **kwargs):
+		if created:
+			UserWallet.objects.create(user=instance)
