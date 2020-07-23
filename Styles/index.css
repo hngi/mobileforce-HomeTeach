@@ -86,3 +86,11 @@ button:not(:disabled) {
     color: var(--paragraph-txt-color);
     padding-top: var(--main-padding-top);
 }
+
+.app__logo {
+    padding-top: var(--main-padding-top);
+}
+
+.hero__img {
+    height: 80vh
+}
