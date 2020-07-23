@@ -110,13 +110,20 @@ class ProfileFragment : Fragment() {
                 val videoUrl =
                     if (!profile.videoUrl.isNullOrEmpty()) profile.videoUrl else "http://www.ebookfrenzy.com/android_book/movie.mp4"
                 bindingTutor.tutorVideo.setVideoPath(videoUrl)
-//                mediaController = MediaController(context)
-//                mediaController?.setAnchorView(bindingTutor.tutorVideo)
-//                bindingTutor.tutorVideo.setMediaController(mediaController)
+                mediaController = MediaController(context)
+                bindingTutor.tutorVideo.setMediaController(mediaController)
+                mediaController?.setAnchorView(bindingTutor.tutorVideo)
                 bindingTutor.tutorVideo.start()
+
+                profile.field?.let {
+                    bindingTutor.tvField.text = it
+                }
 
                 if (credentialUrl.isNullOrEmpty()) bindingTutor.credentialGroup.makeGone()
                 else bindingTutor.credentialGroup.makeVisible()
+
+                if (profile.desc.isNullOrEmpty()) bindingTutor.groupDescription.makeGone()
+                else bindingTutor.groupDescription.makeVisible()
             }
 
 

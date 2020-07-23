@@ -173,7 +173,7 @@
                         tools:text="N2000/hr" />
 
                     <TextView
-                        android:id="@+id/Science_tv"
+                        android:id="@+id/tvField"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/science"
@@ -190,9 +190,9 @@
                         android:layout_height="30dp"
                         android:layout_marginTop="4dp"
                         android:src="@drawable/ic_calculator"
-                        app:layout_constraintEnd_toEndOf="@+id/Science_tv"
-                        app:layout_constraintStart_toStartOf="@+id/Science_tv"
-                        app:layout_constraintTop_toBottomOf="@id/Science_tv"
+                        app:layout_constraintEnd_toEndOf="@+id/tvField"
+                        app:layout_constraintStart_toStartOf="@+id/tvField"
+                        app:layout_constraintTop_toBottomOf="@id/tvField"
                         tools:ignore="ContentDescription" />
 
                     <TextView

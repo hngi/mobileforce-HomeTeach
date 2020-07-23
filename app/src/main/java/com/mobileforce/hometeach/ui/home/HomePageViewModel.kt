@@ -7,8 +7,8 @@ import androidx.lifecycle.viewModelScope
 import com.mobileforce.hometeach.data.repository.UserRepository
 import com.mobileforce.hometeach.models.TutorModel
 import com.mobileforce.hometeach.utils.*
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.lang.Exception
 
 class HomePageViewModel(private val userRepository: UserRepository, private val preferenceHelper: PreferenceHelper) : ViewModel() {
 
@@ -70,7 +70,7 @@ class HomePageViewModel(private val userRepository: UserRepository, private val 
     }
 
     fun logOut() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             userRepository.logOut()
             preferenceHelper.isLoggedIn = false
         }

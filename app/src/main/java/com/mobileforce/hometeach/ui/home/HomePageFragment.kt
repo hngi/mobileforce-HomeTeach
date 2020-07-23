@@ -2,20 +2,15 @@ package com.mobileforce.hometeach.ui.home
 
 
 import android.app.DatePickerDialog
-
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
-import android.widget.*
-
+import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
-
-import androidx.core.view.ViewCompat
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
@@ -28,7 +23,10 @@ import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.adapters.RecyclerViewAdapter
 import com.mobileforce.hometeach.adapters.ViewHolder
 import com.mobileforce.hometeach.data.sources.local.AppDataBase
-import com.mobileforce.hometeach.databinding.*
+import com.mobileforce.hometeach.databinding.FragmentHomePageParentBinding
+import com.mobileforce.hometeach.databinding.FragmentHomePageTutorBinding
+import com.mobileforce.hometeach.databinding.ListItemClassOngoingParentDashBoardBinding
+import com.mobileforce.hometeach.databinding.ListItemClassUpcomingParentDashBoardBinding
 import com.mobileforce.hometeach.models.*
 import com.mobileforce.hometeach.ui.classes.adapters.recylerviewadapters.TutorOngoingClassesAdapter
 import com.mobileforce.hometeach.ui.home.student.OngoingClassViewHolderStudentDashBoard
@@ -38,7 +36,6 @@ import com.mobileforce.hometeach.ui.home.student.toptutors.TopTutorsListItemList
 import com.mobileforce.hometeach.ui.signin.LoginActivity
 import com.mobileforce.hometeach.utils.AppConstants.USER_STUDENT
 import com.mobileforce.hometeach.utils.AppConstants.USER_TUTOR
-
 import com.mobileforce.hometeach.utils.PreferenceHelper
 import com.mobileforce.hometeach.utils.Result
 import kotlinx.coroutines.launch
@@ -377,13 +374,16 @@ class HomePageFragment : Fragment() {
 
 
         bindingTutor.root.findViewById<LinearLayout>(R.id.mybanks).setOnClickListener {
-            findNavController().navigate(R.id.myBanks)
+            //findNavController().navigate(R.id.myBanks)
+            Toast.makeText(requireContext(), "Not yet implemented: To be done soon", Toast.LENGTH_SHORT).show()
         }
         bindingTutor.root.findViewById<LinearLayout>(R.id.card_details).setOnClickListener {
-            findNavController().navigate(R.id.tutorCardDetails)
+            //findNavController().navigate(R.id.tutorCardDetails)
+            Toast.makeText(requireContext(), "Not yet implemented: To be done soon", Toast.LENGTH_SHORT).show()
         }
         bindingTutor.root.findViewById<LinearLayout>(R.id.withdrawal).setOnClickListener {
-            findNavController().navigate(R.id.makeWithdrawalFragment)
+            //findNavController().navigate(R.id.makeWithdrawalFragment)
+            Toast.makeText(requireContext(), "Not yet implemented: To be done soon", Toast.LENGTH_SHORT).show()
         }
 
         val TutorDashboardModel = mutableListOf<TutorDashboardModel>(
@@ -416,7 +416,9 @@ class HomePageFragment : Fragment() {
 
         viewModel.profile.observe(viewLifecycleOwner, Observer { profile ->
 
-            bindingTutor.reviewCount.text = (profile.rating_count ?: 0).toString()
+            profile?.let {
+                bindingTutor.reviewCount.text = (profile.rating_count ?: 0).toString()
+            }
 
 
         })
