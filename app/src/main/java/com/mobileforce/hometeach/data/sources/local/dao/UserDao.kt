@@ -2,8 +2,8 @@ package com.mobileforce.hometeach.data.sources.local.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.mobileforce.hometeach.data.model.ProfileEntity
-import com.mobileforce.hometeach.data.model.UserEntity
+import com.mobileforce.hometeach.data.sources.local.entities.ProfileEntity
+import com.mobileforce.hometeach.data.sources.local.entities.UserEntity
 
 @Dao
 interface UserDao {

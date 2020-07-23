@@ -1,10 +1,11 @@
 package com.mobileforce.hometeach.data.sources
 
 import androidx.lifecycle.LiveData
-import com.mobileforce.hometeach.data.model.ProfileEntity
-import com.mobileforce.hometeach.data.model.TutorEntity
+import com.mobileforce.hometeach.data.sources.local.entities.ProfileEntity
+import com.mobileforce.hometeach.data.sources.local.entities.TutorEntity
 import com.mobileforce.hometeach.data.model.User
-import com.mobileforce.hometeach.data.model.UserEntity
+import com.mobileforce.hometeach.data.sources.local.entities.TutorDetailsEntity
+import com.mobileforce.hometeach.data.sources.local.entities.UserEntity
 import com.mobileforce.hometeach.data.sources.remote.Api
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
@@ -93,6 +94,10 @@ class RemoteDataSource(private val api: Api) : DataSource {
         return api.getUserCardDetails(map)
     }
 
+    override suspend fun getTutorDetailsForUser(id: Int): Response<TutorDetailsResponse> {
+        return api.getTutorDetailsForUser(id)
+    }
+
 
     override suspend fun uploadTutorMedia(
         id: RequestBody,
@@ -158,6 +163,14 @@ class RemoteDataSource(private val api: Api) : DataSource {
     }
 
     override suspend fun getTutorListDb(): List<TutorEntity> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getTutorDetailsFromDb(id: Int): TutorDetailsEntity {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun saveTutorDetailsToDb(tutorDetailsEntity: TutorDetailsEntity) {
         TODO("Not yet implemented")
     }
 

@@ -1,6 +1,6 @@
 package com.mobileforce.hometeach.data.repository
 
-import com.mobileforce.hometeach.data.model.ProfileEntity
+import com.mobileforce.hometeach.data.sources.local.entities.ProfileEntity
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.LoginResponse
 import com.mobileforce.hometeach.data.sources.remote.wrappers.UploadResponse

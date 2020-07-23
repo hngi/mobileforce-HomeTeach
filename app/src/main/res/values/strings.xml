@@ -163,13 +163,20 @@
     <string name="colon_sign">:</string>
     <string name="cancel_small">Cancel</string>
     <string name="approve_small">Approve</string>
-    <string name="request_service">REQUEST\nSERVICE</string>
+    <string name="request_service">REQUEST \n SERVICE</string>
     <string name="card_number">Card Number</string>
     <string name="mm">MM</string>
     <string name="yy">YY</string>
     <string name="ellipsis">…</string>
     <string name="cvc">CVC</string>
     <string name="no_transaction">No Transaction</string>
+    <string name="book_tutor">Book Tutor</string>
+    <string name="select_date_time"><![CDATA[1. SELECT DATE & TIME]]></string>
+    <string name="tap_to_select_date_amp_time"><![CDATA[Tap to select date & time.]]></string>
+    <string name="tap_to_select_course">Tap dropdown to select course</string>
+    <string name="select_course">2. SELECT COURSE</string>
+    <string name="select_grade">3. SELECT GRADE</string>
+    <string name="tap_to_select_grade">Tap dropdown to select grade</string>
 
     <string-array name="fields_array">
         <item>Science</item>
@@ -218,5 +225,23 @@
         <item>Taraba</item>
         <item>Yobe</item>
         <item>Zamfara</item>
+    </string-array>
+
+    <string-array name="tutor_subjects">
+        <item>Math</item>
+        <item>Physics</item>
+        <item>Chemistry</item>
+        <item>Geography</item>
+        <item>Biology</item>
+        <item>English</item>
+        <item>F-Maths</item>
+        <item>Economics</item>
+    </string-array>
+
+    <string-array name="course_grade">
+        <item>Grade 1 - Basic</item>
+        <item>Grade 2 - Junior</item>
+        <item>Grade 3 - Senior</item>
+        <item>Grade 4 - Adult</item>
     </string-array>
 </resources>

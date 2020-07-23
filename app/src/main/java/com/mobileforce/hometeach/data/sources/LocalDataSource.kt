@@ -1,11 +1,12 @@
 package com.mobileforce.hometeach.data.sources
 
 import androidx.lifecycle.LiveData
-import com.mobileforce.hometeach.data.model.ProfileEntity
-import com.mobileforce.hometeach.data.model.TutorEntity
+import com.mobileforce.hometeach.data.sources.local.entities.ProfileEntity
+import com.mobileforce.hometeach.data.sources.local.entities.TutorEntity
 import com.mobileforce.hometeach.data.model.User
-import com.mobileforce.hometeach.data.model.UserEntity
+import com.mobileforce.hometeach.data.sources.local.entities.UserEntity
 import com.mobileforce.hometeach.data.sources.local.AppDataBase
+import com.mobileforce.hometeach.data.sources.local.entities.TutorDetailsEntity
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
 import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
@@ -123,6 +124,18 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
 
     override suspend fun getUserCardDetails(params: Params.UserID): List<UserCardDetailResponse> {
         TODO("Not yet implemented")
+    }
+
+    override suspend fun getTutorDetailsForUser(id: Int): Response<TutorDetailsResponse> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getTutorDetailsFromDb(id: Int): TutorDetailsEntity? {
+        return db.tutorDetailsDao().getTutorDetails(id)
+    }
+
+    override suspend fun saveTutorDetailsToDb(tutorDetailsEntity: TutorDetailsEntity) {
+        db.tutorDetailsDao().saveTutorDetails(tutorDetailsEntity)
     }
 
     override suspend fun saveUserProfile(profile: Profile) {

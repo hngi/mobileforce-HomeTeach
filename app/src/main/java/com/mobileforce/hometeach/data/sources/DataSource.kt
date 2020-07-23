@@ -1,10 +1,11 @@
 package com.mobileforce.hometeach.data.sources
 
 import androidx.lifecycle.LiveData
-import com.mobileforce.hometeach.data.model.ProfileEntity
-import com.mobileforce.hometeach.data.model.TutorEntity
+import com.mobileforce.hometeach.data.sources.local.entities.ProfileEntity
+import com.mobileforce.hometeach.data.sources.local.entities.TutorEntity
 import com.mobileforce.hometeach.data.model.User
-import com.mobileforce.hometeach.data.model.UserEntity
+import com.mobileforce.hometeach.data.sources.local.entities.TutorDetailsEntity
+import com.mobileforce.hometeach.data.sources.local.entities.UserEntity
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
 import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
@@ -51,6 +52,12 @@ interface DataSource {
     suspend fun saveUserCardDetails(params: Params.CardDetails)
 
     suspend fun getUserCardDetails(params: Params.UserID): List<UserCardDetailResponse>
+
+    suspend fun getTutorDetailsForUser(id: Int): Response<TutorDetailsResponse>
+
+    suspend fun getTutorDetailsFromDb(id: Int): TutorDetailsEntity?
+
+    suspend fun saveTutorDetailsToDb(tutorDetailsEntity: TutorDetailsEntity)
 
     suspend fun uploadTutorMedia(
         id: RequestBody,

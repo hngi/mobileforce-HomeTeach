@@ -1,4 +1,4 @@
-package com.mobileforce.hometeach.data.model
+package com.mobileforce.hometeach.data.sources.local.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

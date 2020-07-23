@@ -1,12 +1,16 @@
 package com.mobileforce.hometeach.models
 
+import android.os.Parcelable
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.mobileforce.hometeach.adapters.CircleTransform
 import com.mobileforce.hometeach.R
 import com.squareup.picasso.Picasso
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class TutorModel(
+    val integerId: Int,
     val id: String,
     val full_name: String,
     val profile_pic: String?,
@@ -14,7 +18,7 @@ data class TutorModel(
     val tutorSubject: String?,
     val hourly_rate: String?,
     var rating: Double?
-)
+) : Parcelable
 
 
 @BindingAdapter("tutor_image")
