@@ -60,16 +60,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
 
-            <FrameLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/videoContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+
                 <VideoView
                     android:id="@+id/tutor_video"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp" />
-            </FrameLayout>
+                    android:layout_height="200dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
             <LinearLayout
