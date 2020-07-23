@@ -377,5 +377,12 @@
             app:layout_constraintTop_toBottomOf="@id/edit_button"
             tools:ignore="UnusedAttribute" />
 
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/credentialGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="Pdf_image,Credentials_tv" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

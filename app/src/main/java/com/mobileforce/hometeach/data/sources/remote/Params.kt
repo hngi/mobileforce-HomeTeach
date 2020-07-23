@@ -18,7 +18,6 @@ class Params {
         val is_tutor: Boolean,
         val phone_number: String,
         val organization_email: String = "akinsolaademolatemitope@gmail.com"
-
     )
 
 
@@ -53,7 +52,6 @@ class Params {
         var totalBalance: String,
         var totalProfileVisits: String,
         var totalReviews: String
-
     )
 
     data class RequestTutorService(
@@ -69,6 +67,7 @@ class Params {
     data class UserID(
         val user: String
     )
+
     data class UpdateTutorProfile(
         val field: String,
         val major_course: String,

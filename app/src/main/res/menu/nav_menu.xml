@@ -5,11 +5,6 @@
         android:icon="@drawable/ic_classes"
         android:title="Books"
         android:id="@+id/books"/>
-
-    <item
-        android:icon="@drawable/ic_withdraw"
-        android:title="Contacts"
-        android:id="@+id/contact"/>
     <item
         android:icon="@drawable/ic_home"
         android:title="Home"

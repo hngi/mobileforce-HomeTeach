@@ -6,13 +6,13 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Patterns
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.ui.signin.LoginActivity
+import com.mobileforce.hometeach.ui.signup.SignUpViewModel.ErrorField
 import com.mobileforce.hometeach.utils.AppConstants.USER_TUTOR
 import com.mobileforce.hometeach.utils.PreferenceHelper
 import com.mobileforce.hometeach.utils.Result
@@ -21,7 +21,6 @@ import com.mobileforce.hometeach.utils.toast
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
-import java.util.regex.Pattern
 
 /**
  * Created by Peculiar C. Umeh on June 2020.
@@ -64,87 +63,70 @@ class SignUpActivity : AppCompatActivity() {
         text_log_in.setOnClickListener {
             navigateTOSignIn()
         }
-        // replace with the ids in your XML
+
         nameWatcher = object : TextWatcher {
             override fun afterTextChanged(input: Editable?) {
-                if (input!!.length > 6 || input.length > 40) {
-                    nameValid = true
-                    textInput_fullname.error = null
-                } else {
-                    textInput_fullname.isHelperTextEnabled = true
-                    textInput_fullname.error = "Name is too short"
-                    nameValid = false
 
-                }
             }
 
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
             }
 
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            override fun onTextChanged(input: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                input?.let {
 
+                    nameValid = try {
+                        it.toString().split(" ")
+                        true
+                    } catch (e: Exception) {
+                        false
+                    }
+
+                }
             }
         }
 
         emailWatcher = object : TextWatcher {
             override fun afterTextChanged(input: Editable?) {
-                if (Patterns.EMAIL_ADDRESS.matcher(input)
-                        .matches() && input!!.indexOf("@") < input!!.length
-                ) {
-                    textInput_email.error = null
-                    emailValid = true
-                } else {
-                    textInput_email.isHelperTextEnabled = true
-                    textInput_email.error = "Invalid Email address"
-                    emailValid = false
-                }
+                emailValid = Patterns.EMAIL_ADDRESS.matcher(input)
+                    .matches() && input!!.indexOf("@") < input!!.length
+                if (emailValid) textInput_email.error = null
+
             }
 
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
             }
 
         }
 
         passwordWatcher = object : TextWatcher {
             override fun afterTextChanged(input: Editable?) {
-                val PASSWORD_PATTEN =
-                    "^(?=.*?[#?!@\$%^&*-]).{6,}\$"
-                if (Pattern.matches(PASSWORD_PATTEN, input)) {
-                    textInput_password.error = null
-                    passwordValid = true
-                } else {
-
-                    textInput_password.isHelperTextEnabled = true
-                    textInput_password.error =
-                        "Hint: Password should not be less than 8 with at least 1 special character"
-                    passwordValid = false
+                input?.let {
+                    if (input.length > 7) {
+                        textInput_password.error = null
+                        passwordValid = true
+                    } else {
+                        textInput_password.isHelperTextEnabled = true
+                        textInput_password.error =
+                            "Password too short"
+                        passwordValid = false
+                    }
                 }
             }
 
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
             }
 
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
         }
         phoneNumberWatcher = object : TextWatcher {
             override fun afterTextChanged(input: Editable?) {
-                if (input!!.length < 14) {
-                    phoneNumberValid = true
-                    textInputLayout.error = null
-                } else {
-                    textInputLayout.isHelperTextEnabled = true
-                    textInputLayout.error = "Invalid Phone Number"
-                    phoneNumberValid = false
-                }
+                phoneNumberValid = input!!.length > 10 || input.length < 15
 
             }
 
@@ -153,37 +135,43 @@ class SignUpActivity : AppCompatActivity() {
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
-
         }
 
-        // replace with the ids in your XML
-        full_name.addTextChangedListener(nameWatcher)
-        pass_word.addTextChangedListener(passwordWatcher)
-        email.addTextChangedListener(emailWatcher)
-        phone_number.addTextChangedListener(phoneNumberWatcher)
+        et_full_name.addTextChangedListener(nameWatcher)
+        et_password.addTextChangedListener(passwordWatcher)
+        et_email.addTextChangedListener(emailWatcher)
+        et_phone_number.addTextChangedListener(phoneNumberWatcher)
 
 
         btn_sign_up.setOnClickListener {
             if (nameValid && emailValid && passwordValid && phoneNumberValid && checkBox.isChecked) {
-
                 prefHelper.userType?.let { userType ->
-
                     //build sign up params
                     val userData = Params.SignUp(
-                        email = email.text.toString(),
-                        password = pass_word.text.toString(),
-                        full_name = full_name.text.toString(),
-                        phone_number = phone_number.text.toString(),
+                        email = et_email.text.toString(),
+                        password = et_password.text.toString(),
+                        full_name = et_full_name.text.toString(),
+                        phone_number = et_phone_number.text.toString(),
                         is_tutor = userType == USER_TUTOR
                     )
                     viewModel.signUp(userData)
-
                 } ?: kotlin.run {
                     toast("Please select an account mode from previous screen to continue.")
                 }
-
-            } else {
-                Toast.makeText(this, "Some fields are empty", Toast.LENGTH_SHORT).show()
+            } else if (!nameValid) {
+                textInput_full_name.isHelperTextEnabled = true
+                textInput_full_name.error = "Full name is required"
+            } else if (!emailValid) {
+                textInput_email.isHelperTextEnabled = true
+                textInput_email.error = "Input a valid email"
+            } else if (!passwordValid) {
+                textInput_password.isHelperTextEnabled = true
+                textInput_password.error = "Password too short"
+            } else if (!phoneNumberValid) {
+                textInput_phone_number.isHelperTextEnabled = true
+                textInput_phone_number.error = "Input a valid phone number"
+            } else if (!checkBox.isChecked) {
+                toast("Agree to terms and condition to continue!")
             }
         }
 
@@ -217,6 +205,20 @@ class SignUpActivity : AppCompatActivity() {
                 }
             }
 
+        })
+
+
+        viewModel.credentialsError.observe(this, Observer {
+
+            if (pd.isShowing) pd.dismiss()
+            when (it.error) {
+                ErrorField.EMAIL -> {
+                    textInput_email.error = it.message
+                }
+                ErrorField.PHONE_NUMBER -> {
+                    textInput_phone_number.error = it.message
+                }
+            }
         })
     }
 

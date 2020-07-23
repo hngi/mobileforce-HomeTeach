@@ -5,10 +5,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.util.Patterns
 import android.view.LayoutInflater
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
@@ -22,11 +20,8 @@ import com.mobileforce.hometeach.ui.ExploreActivity
 import com.mobileforce.hometeach.utils.ApiError
 import com.mobileforce.hometeach.utils.Result
 import com.mobileforce.hometeach.utils.snack
-import kotlinx.android.synthetic.main.forgot_password_layout1.view.*
 import kotlinx.android.synthetic.main.recover_email_layout.view.*
-import kotlinx.android.synthetic.main.recover_phone_layout.view.*
 import org.koin.android.viewmodel.ext.android.viewModel
-import java.util.regex.Pattern
 
 class LoginActivity : AppCompatActivity() {
 
@@ -64,59 +59,42 @@ class LoginActivity : AppCompatActivity() {
 
         emailWatcher = object : TextWatcher {
             override fun afterTextChanged(input: Editable?) {
-                if (Patterns.EMAIL_ADDRESS.matcher(input)
+                emailValid = Patterns.EMAIL_ADDRESS.matcher(input)
                         .matches() && input!!.indexOf("@") < input!!.length
-                ) {
-                    binding.textInputEmailSignin.error = null
-                    emailValid = true
-                } else {
-                    binding.textInputEmailSignin.isHelperTextEnabled = true
-                    binding.textInputEmailSignin.error = "Invalid Email address"
-                    emailValid = false
-                }
             }
 
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
             }
-
         }
 
         passwordWatcher = object : TextWatcher {
             override fun afterTextChanged(input: Editable?) {
-                val PASSWORD_PATTEN =
-                    "^(?=.*?[#?!@\$%^&*-]).{6,}\$"
-                if (Pattern.matches(PASSWORD_PATTEN, input)) {
-                    binding.textInputPasswordField.error = null
-                    passwordValid = true
-                } else {
 
-                    binding.textInputPasswordField.isHelperTextEnabled = true
-                    binding.textInputPasswordField.error =
-                        "Hint: Password should not be less than 6 with at least 1 special character"
-                    passwordValid = false
+                input?.let {
+                    if (input.length > 7) {
+                        passwordValid = true
+                        binding.textInputPasswordField.error = null
+                    } else {
+                        binding.textInputPasswordField.isHelperTextEnabled = true
+                        passwordValid = false
+                    }
                 }
             }
 
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
-
         }
 
         binding.textEditEmail.addTextChangedListener(emailWatcher)
         binding.textEditPassword.addTextChangedListener(passwordWatcher)
 
         observeSignIn()
-
-
     }
 
     override fun onDestroy() {
@@ -131,10 +109,13 @@ class LoginActivity : AppCompatActivity() {
                 password = binding.textEditPassword.text.toString()
             )
             viewModel.signIn(user)
-        } else {
-            Toast.makeText(this, "Some fields are empty", Toast.LENGTH_SHORT).show()
+        } else if (!emailValid) {
+            binding.textInputEmailSignin.isHelperTextEnabled = true
+            binding.textInputEmailSignin.error = "Invalid email address"
+        } else if (!passwordValid) {
+            binding.textInputPasswordField.isHelperTextEnabled = true
+            binding.textInputPasswordField.error = "Password too short"
         }
-
     }
 
 
