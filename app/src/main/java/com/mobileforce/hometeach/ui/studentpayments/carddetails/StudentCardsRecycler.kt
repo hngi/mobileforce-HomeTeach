@@ -65,7 +65,7 @@ class StudentCardsHolder(private val binding: StudentsCardListBinding) :
         } else {
             binding.ivCardIcon.setImageResource(R.drawable.ic_master)
         }
-        binding.tvCardNumber.text = binding.root.context.getString(R.string.ellipsis) + cardDetailResponse.card_number.substring(12, 16)
+        binding.tvCardNumber.text = cardDetailResponse.card_number //binding.root.context.getString(R.string.ellipsis) + .substring(12, 16)
         //binding.rbSelectCard.visibility = View.INVISIBLE
     }
 

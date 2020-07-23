@@ -93,7 +93,6 @@ class StudentAddCardDetailsFragment : Fragment() {
                         expiry_year = Integer.parseInt(expiryYear.toString())
                     )
                     viewModel.saveUserCardDetails(cardDetails)
-
                 }
             }
         }
