@@ -10,6 +10,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "tutors")
 data class TutorEntity(
     @PrimaryKey
+    val integerId: Int,
     val id: String,
     val full_name: String,
     val profile_pic: String?,

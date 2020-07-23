@@ -14,7 +14,7 @@ import retrofit2.http.*
 import java.io.IOException
 
 
-interface  Api{
+interface Api {
 
     @JvmSuppressWildcards
     @POST("v1/login/")
@@ -45,7 +45,7 @@ interface  Api{
     @JvmSuppressWildcards
     @GET("v1/tutor-profiles/{id}/")
     suspend fun getTutorDetails(@Path("id") id: Int): TutorDetailsResponse
-    
+
     @POST("v1/credit-cards/")
     suspend fun saveUserCardDetails(@Body params: Map<String, Any>)
 
@@ -56,7 +56,7 @@ interface  Api{
         @Part profile_pic: MultipartBody.Part,
         @Part credentials: MultipartBody.Part,
         @Part video: MultipartBody.Part
-    ):Response<UploadResponse>
+    ): Response<UploadResponse>
 
 
     @POST("v1/submit-request/")
@@ -67,28 +67,42 @@ interface  Api{
 
     @GET("")
     suspend fun getUserCardDetails(@Path("id") id: Int): List<UserCardDetailResponse>
-   
-  @GET("v1/users/")
+
+    @GET("v1/users/")
     suspend fun getUser(): LiveData<UserEntity>
 
     @GET("v1/profiles/{id}/")
     suspend fun getUserProfile(@Path("id") id: Int): StudentProfileResponse
 
+    suspend fun getTutorProfile()
+
     @JvmSuppressWildcards
     @PUT("v1/tutor-profiles/{id}/")
-    suspend fun updateTutorProfile(@Path("id") id:Int, @Body params:Map<String,Any>):Response<LoginResponse>
+    suspend fun updateTutorProfile(
+        @Path("id") id: Int,
+        @Body params: Map<String, Any>
+    ): Response<LoginResponse>
 
     @JvmSuppressWildcards
     @Multipart
     @PUT("v1/tutor-profiles/{id}/")
-    suspend fun uploadProfilePic(@Path("id") id:Int, @Part profile_pic: MultipartBody.Part):Response<UploadResponse>
+    suspend fun uploadProfilePic(
+        @Path("id") id: Int,
+        @Part profile_pic: MultipartBody.Part
+    ): Response<UploadResponse>
 
     @JvmSuppressWildcards
     @PUT("v1/tutor-profiles/{id}/")
-    suspend fun uploadVideo(@Path("id") id:Int, @Part video: MultipartBody.Part):Response<UploadResponse>
+    suspend fun uploadVideo(
+        @Path("id") id: Int,
+        @Part video: MultipartBody.Part
+    ): Response<UploadResponse>
 
     @JvmSuppressWildcards
     @PUT("v1/tutor-profiles/{id}/")
-    suspend fun uploadCredential(@Path("id") id:Int, @Part credentials: MultipartBody.Part):Response<UploadResponse>
+    suspend fun uploadCredential(
+        @Path("id") id: Int,
+        @Part credentials: MultipartBody.Part
+    ): Response<UploadResponse>
 
 }

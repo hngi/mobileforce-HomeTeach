@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:background="@color/bg_main"
         android:layout_height="wrap_content"
-        tools:context=".ui.fragments.OngoingFragmentTutor">
+        tools:context=".ui.tutordetails.OngoingFragmentTutor">
 
         <LinearLayout
             android:id="@+id/classes"

@@ -1,4 +1,4 @@
-package com.mobileforce.hometeach.ui.fragments
+package com.mobileforce.hometeach.ui.tutordetails
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -55,7 +55,7 @@ class TutorDetailsFragment : Fragment(), SelectDateDialog.SelectDateListener{
     }
 
     override fun onApproveClicked(dialogData: DialogData) {
-        
+
     }
 
 

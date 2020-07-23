@@ -7,6 +7,8 @@ import com.google.gson.annotations.SerializedName
  */
 
 data class TutorNetworkResponse(
+    @SerializedName("id")
+    val integerId: Int,
     val user: TutorUserModel,
     val profile_pic: String,
     @SerializedName("desc")

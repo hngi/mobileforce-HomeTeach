@@ -16,6 +16,7 @@ import android.widget.PopupWindow
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.databinding.FancyDateDialogBinding
 import com.mobileforce.hometeach.databinding.SuccessStudentRequestBinding
@@ -28,7 +29,7 @@ import com.prolificinteractive.materialcalendarview.CalendarDay
 class SelectDateDialog : DialogFragment() {
 
     @SuppressLint("ClickableViewAccessibility", "NewApi")
-    fun showPopupWindow(view: View, fragment: TutorListFragment) {
+    fun showPopupWindow(view: View, fragment: Fragment) {
 
         val inflater = view.context
             .getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater

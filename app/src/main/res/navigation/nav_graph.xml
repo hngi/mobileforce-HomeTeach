@@ -75,7 +75,7 @@
         tools:layout="@layout/fragment_tutor_class" />
     <fragment
         android:id="@+id/tutorDetailsFragment"
-        android:name="com.mobileforce.hometeach.ui.fragments.TutorDetailsFragment"
+        android:name="com.mobileforce.hometeach.ui.tutordetails.TutorDetailsFragment"
         android:label="TutorDetailsFragment"
         tools:layout="@layout/fragment_tutor_details"/>
     <fragment
