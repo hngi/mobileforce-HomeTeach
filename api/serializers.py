@@ -135,6 +135,7 @@ class ClassesRequestSerializer(serializers.Serializer):
                 data = {    
                             'accepted':request.accepted,
                             'declined':request.declined,
+                            'request_id':str(request.id),
                             'date_requested':datetime.strftime(request.date_requested, '%d-%m-%Y'),
                             'classes_request_id':f'{request.id}-{day.id}',
                             'subject':request.schedule.subject,
@@ -172,7 +173,7 @@ class ClassesSerializer(serializers.Serializer):
         for request in requests:
             if request.accepted == True:
                 for day in request.schedule.days.all():
-                    data = {
+                    data = {   
                                 'schedule_id':f'{request.schedule.id}-{day.id}',
                                 'subject':request.schedule.subject,
                                 'day':datetime.strftime(day.day, '%d-%m-%Y'),
