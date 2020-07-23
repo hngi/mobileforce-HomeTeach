@@ -17,12 +17,11 @@ import com.mobileforce.hometeach.utils.toDomainModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
-class TutorListFragment : Fragment(), SelectDateDialog.SelectDateListener {
+class TutorListFragment : Fragment(){
 
     private lateinit var binding: FragmentAllTutorsBinding
     private val viewModel: TutorListViewModel by viewModel()
     private lateinit var adapter: TutorListRecyclerAdapter
-    private lateinit var popupDialog: SelectDateDialog
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,13 +45,11 @@ class TutorListFragment : Fragment(), SelectDateDialog.SelectDateListener {
 
         viewModel.getTutorList()
 
-        popupDialog = SelectDateDialog()
         observeViewModels()
         adapter = TutorListRecyclerAdapter(TutorListItemListener { tutor ->
             if (tutor != null) {
-                val dialog = SelectDateDialog()
-                dialog.showPopupWindow(requireView(), this)
-                viewModel.setTutor(tutor)
+                val action = TutorListFragmentDirections.actionTutorsAllFragmentToBookTutorFragment(tutor)
+                findNavController().navigate(action)
             }
         })
 
@@ -97,9 +94,8 @@ class TutorListFragment : Fragment(), SelectDateDialog.SelectDateListener {
             }
             val newAdapter = TutorListRecyclerAdapter(TutorListItemListener { tutor ->
                 if (tutor != null) {
-                    val dialog = SelectDateDialog()
-                    dialog.showPopupWindow(requireView(), this)
-                    viewModel.setTutor(tutor)
+                    val action = TutorListFragmentDirections.actionTutorsAllFragmentToBookTutorFragment(tutor)
+                    findNavController().navigate(action)
                 }
             })
             newAdapter.submitList(result.map { it.toDomainModel() })
@@ -139,39 +135,5 @@ class TutorListFragment : Fragment(), SelectDateDialog.SelectDateListener {
                 }
             }
         })
-
-        viewModel.getUser().observe(viewLifecycleOwner, Observer { result ->
-            if (result != null){
-                viewModel.setUser(result)
-            }
-        })
-        viewModel.serviceApproved.observe(viewLifecycleOwner, Observer { result ->
-            when (result) {
-                is Result.Success -> {
-                    binding.progressBar.visibility = View.GONE
-                    popupDialog.applyDim(requireView().parent as ViewGroup, 0.5f)
-                    popupDialog.showSuccessDialog(requireView(), result.data)
-                }
-
-                is Result.Loading -> {
-                    popupDialog.clearDim(requireView().parent as ViewGroup)
-                    binding.progressBar.visibility = View.VISIBLE
-                }
-
-                is Result.Error -> {
-                    Snackbar.make(
-                        requireView(),
-                        "Oops! An error occurred! Check your connection and try again ".plus(result.exception),
-                        Snackbar.LENGTH_LONG
-                    ).show()
-                    popupDialog.clearDim(requireView().parent as ViewGroup)
-                    binding.progressBar.visibility = View.GONE
-                }
-            }
-        })
-    }
-
-    override fun onApproveClicked(dialogData: DialogData) {
-        viewModel.getTutorService(dialogData)
     }
 }

@@ -109,6 +109,7 @@ class SelectDateDialog : DialogFragment() {
                 val dialogListener = fragment as SelectDateListener
                 dialogListener.onApproveClicked(dialogData)
                 popupWindow.dismiss()
+                clearDim(viewGroup)
             }
 
         }
