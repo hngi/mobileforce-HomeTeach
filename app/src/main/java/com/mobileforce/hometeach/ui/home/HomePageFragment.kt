@@ -35,6 +35,7 @@ import com.mobileforce.hometeach.utils.AppConstants.USER_STUDENT
 import com.mobileforce.hometeach.utils.AppConstants.USER_TUTOR
 import com.mobileforce.hometeach.utils.PreferenceHelper
 import com.mobileforce.hometeach.utils.Result
+import com.mobileforce.hometeach.utils.toast
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -371,13 +372,16 @@ class HomePageFragment : Fragment() {
 
 
         bindingTutor.root.findViewById<LinearLayout>(R.id.mybanks).setOnClickListener {
-            findNavController().navigate(R.id.myBanks)
+            //findNavController().navigate(R.id.myBanks)
+            toast(message = "Not yet Implemented: To be done soon", length = Toast.LENGTH_SHORT)
         }
         bindingTutor.root.findViewById<LinearLayout>(R.id.card_details).setOnClickListener {
-            findNavController().navigate(R.id.tutorCardDetails)
+            //findNavController().navigate(R.id.tutorCardDetails)
+            toast(message = "Not yet Implemented: To be done soon", length = Toast.LENGTH_SHORT)
         }
         bindingTutor.root.findViewById<LinearLayout>(R.id.withdrawal).setOnClickListener {
-            findNavController().navigate(R.id.makeWithdrawalFragment)
+            //findNavController().navigate(R.id.makeWithdrawalFragment)
+            toast(message = "Not yet Implemented: To be done soon", length = Toast.LENGTH_SHORT)
         }
 
         val TutorDashboardModel = mutableListOf<TutorDashboardModel>(
