@@ -1,45 +1,51 @@
 package com.mobileforce.hometeach.ui.profile
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mobileforce.hometeach.data.repository.TutorRepository
+import com.mobileforce.hometeach.data.model.ProfileEntity
+import com.mobileforce.hometeach.data.model.UserEntity
 import com.mobileforce.hometeach.data.repository.UserRepository
-import com.mobileforce.hometeach.data.sources.remote.wrappers.StudentProfileResponse
-import com.mobileforce.hometeach.data.sources.remote.wrappers.TutorDetailsResponse
-import com.mobileforce.hometeach.utils.Result
+import com.mobileforce.hometeach.data.sources.remote.wrappers.Profile
 import kotlinx.coroutines.launch
 
-class ProfileViewModel(private val tutorRepository: TutorRepository, private val userRepository: UserRepository) : ViewModel()  {
+class ProfileViewModel(
+    private val userRepository: UserRepository
+) : ViewModel() {
 
-    private val _getTutorDetails = MutableLiveData<Result<TutorDetailsResponse>>()
-    val getTutorDetails: LiveData<Result<TutorDetailsResponse>> = _getTutorDetails
+    val user: LiveData<UserEntity> = userRepository.getUser()
 
-    private val _getStudentProfile = MutableLiveData<Result<StudentProfileResponse>>()
-    val getStudentProfile: LiveData<Result<StudentProfileResponse>> = _getStudentProfile
+    val profile: LiveData<ProfileEntity> = userRepository.profileLiveData()
 
 
-    fun getTutorDetails() {
-        _getTutorDetails.postValue(Result.Loading)
-        viewModelScope.launch {
-            try {
-                val response = tutorRepository.getTutorDetails()
-                _getTutorDetails.postValue(Result.Success(response))
-            } catch (error: Throwable) {
-                _getTutorDetails.postValue(Result.Error(error))
-            }
-        }
-
-    }
     fun getUserProfile() {
-        _getStudentProfile.postValue(Result.Loading)
         viewModelScope.launch {
             try {
                 val response = userRepository.getUserProfile()
-                _getStudentProfile.postValue(Result.Success(response))
+
+                //save profile to db
+
+                with(response) {
+                    val profile = Profile(
+                        this.user,
+                        id,
+                        profile_pic,
+                        hourly_rate,
+                        rating,
+                        desc,
+                        field,
+                        major_course,
+                        other_courses,
+                        state,
+                        address,
+                        user_url,
+                        credentials = credentials,
+                        videoUrl = videoUrl
+                    )
+                    userRepository.saveUserProfile(profile)
+                }
+
             } catch (error: Throwable) {
-                _getStudentProfile.postValue(Result.Error(error))
             }
         }
 

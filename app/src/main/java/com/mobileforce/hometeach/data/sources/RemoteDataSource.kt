@@ -9,7 +9,6 @@ import com.mobileforce.hometeach.data.sources.remote.Api
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
 import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
-import com.mobileforce.hometeach.utils.UploadaResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -63,7 +62,7 @@ class RemoteDataSource(private val api: Api) : DataSource {
 
     override suspend fun getTutorDetails(
         id: Int
-    ): TutorDetailsResponse {
+    ): UserProfileResponse {
         return api.getTutorDetails(id)
     }
 
@@ -77,10 +76,10 @@ class RemoteDataSource(private val api: Api) : DataSource {
 
     override suspend fun saveUserCardDetails(params: Params.CardDetails) {
         val map = hashMapOf(
-            "user_id" to params.user,
+            "user" to params.user,
             "card_holder_name" to params.card_holder_name,
             "card_number" to params.card_number,
-            "card_cvv" to params.cvv,
+            "cvv" to params.cvv,
             "expiry_month" to params.expiry_month,
             "expiry_year" to params.expiry_year
         )
@@ -164,7 +163,7 @@ class RemoteDataSource(private val api: Api) : DataSource {
 
     override suspend fun getUserProfile(
         id: Int
-    ): StudentProfileResponse {
+    ): UserProfileResponse {
         return api.getUserProfile(id)
     }
 

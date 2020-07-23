@@ -4,14 +4,11 @@ package com.mobileforce.hometeach.data.sources.remote
 import androidx.lifecycle.LiveData
 import com.mobileforce.hometeach.data.model.UserEntity
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
-import com.mobileforce.hometeach.remotesource.wrappers.*
-import com.mobileforce.hometeach.utils.UploadaResponse
+import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-
 import retrofit2.Response
 import retrofit2.http.*
-import java.io.IOException
 
 
 interface  Api{
@@ -43,7 +40,7 @@ interface  Api{
 
     @JvmSuppressWildcards
     @GET("v1/tutor-profiles/{id}/")
-    suspend fun getTutorDetails(@Path("id") id: Int): TutorDetailsResponse
+    suspend fun getTutorDetails(@Path("id") id: Int): UserProfileResponse
 
     @JvmSuppressWildcards
     @POST("v1/credit-cards/")
@@ -70,7 +67,7 @@ interface  Api{
     suspend fun getUser(): LiveData<UserEntity>
 
     @GET("v1/profiles/{id}/")
-    suspend fun getUserProfile(@Path("id") id: Int): StudentProfileResponse
+    suspend fun getUserProfile(@Path("id") id: Int): UserProfileResponse
 
     @JvmSuppressWildcards
     @PUT("v1/tutor-profiles/{id}/")

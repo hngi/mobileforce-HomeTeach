@@ -7,21 +7,13 @@ import androidx.lifecycle.viewModelScope
 import com.mobileforce.hometeach.data.repository.TutorRepository
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.LoginResponse
-import com.mobileforce.hometeach.data.sources.remote.wrappers.TutorDetailsResponse
 import com.mobileforce.hometeach.data.sources.remote.wrappers.UploadResponse
 import com.mobileforce.hometeach.utils.Result
-import com.mobileforce.hometeach.utils.UploadaResponse
 import kotlinx.coroutines.launch
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import java.io.InputStream
-
-//import okhttp3.RequestBody.Companion.asRequestBody
-//import okhttp3.MediaType.Companion.toMediaTypeOrNull
-//import okhttp3.MultipartBody
-//import okhttp3.RequestBody.Companion.toRequestBody
-
 
 class EditTutorViewModel(private val tutorRepository: TutorRepository) : ViewModel() {
 

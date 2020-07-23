@@ -7,10 +7,9 @@ import com.mobileforce.hometeach.data.model.User
 import com.mobileforce.hometeach.data.model.UserEntity
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
+import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
-import com.mobileforce.hometeach.utils.UploadaResponse
 import retrofit2.Response
 
 
@@ -33,7 +32,7 @@ interface DataSource {
 
     suspend fun getProfileList(): List<ProfileResponse>
 
-    suspend fun getTutorDetails(id: Int): TutorDetailsResponse
+    suspend fun getTutorDetails(id: Int): UserProfileResponse
 
     suspend fun clearDb()
 
@@ -80,7 +79,7 @@ interface DataSource {
 
     fun profileLiveData(): LiveData<ProfileEntity>
 
-    suspend fun getUserProfile(id: Int): StudentProfileResponse
+    suspend fun getUserProfile(id: Int): UserProfileResponse
 
     suspend fun getSingleUserProfile(): ProfileEntity
 
