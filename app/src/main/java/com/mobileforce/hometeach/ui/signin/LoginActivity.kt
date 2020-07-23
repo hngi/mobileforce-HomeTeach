@@ -22,7 +22,6 @@ import com.mobileforce.hometeach.utils.Result
 import com.mobileforce.hometeach.utils.snack
 import kotlinx.android.synthetic.main.recover_email_layout.view.*
 import org.koin.android.viewmodel.ext.android.viewModel
-import java.util.regex.Pattern
 
 class LoginActivity : AppCompatActivity() {
 
@@ -73,8 +72,16 @@ class LoginActivity : AppCompatActivity() {
 
         passwordWatcher = object : TextWatcher {
             override fun afterTextChanged(input: Editable?) {
-                val passwordPattern = "^(?=.*?[#?!@\$%^&*-]).{6,}\$"
-                passwordValid = Pattern.matches(passwordPattern, input)
+
+                input?.let {
+                    if (input.length > 7) {
+                        passwordValid = true
+                        binding.textInputPasswordField.error = null
+                    } else {
+                        binding.textInputPasswordField.isHelperTextEnabled = true
+                        passwordValid = false
+                    }
+                }
             }
 
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -104,10 +111,10 @@ class LoginActivity : AppCompatActivity() {
             viewModel.signIn(user)
         } else if (!emailValid) {
             binding.textInputEmailSignin.isHelperTextEnabled = true
-            binding.textInputEmailSignin.error = "Input a valid email address"
+            binding.textInputEmailSignin.error = "Invalid email address"
         } else if (!passwordValid) {
             binding.textInputPasswordField.isHelperTextEnabled = true
-            binding.textInputPasswordField.error = "Input a valid password"
+            binding.textInputPasswordField.error = "Password too short"
         }
     }
 

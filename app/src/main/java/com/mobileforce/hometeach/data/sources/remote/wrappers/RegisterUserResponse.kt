@@ -9,5 +9,5 @@ class RegisterUserResponse(
     val errors: Errors?
 )
 
-data class Errors(val email: List<String>?)
+data class Errors(val email: List<String>?, val phone_number: List<String>?)
 

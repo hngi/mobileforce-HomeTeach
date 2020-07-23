@@ -79,6 +79,10 @@ fun View.makeVisible() {
     visibility = View.VISIBLE
 }
 
+fun View.makeInvisible() {
+    visibility = View.INVISIBLE
+}
+
 fun Date?.convertTime(): String {
     if (this == null) return ""
     val formatter = SimpleDateFormat("hh:mm a", Locale.US)
