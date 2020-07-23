@@ -1,385 +1,438 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-:root {
-    --main-txt-color: #0CB91E;
-    --paragraph-txt-color: #2F2E41;
-    --span-txt-color: #505050;
-    --button-bg-color: #2F2E41;
-    --main-padding-top: 20px;
-    --div-padding-top: 70px
-}
-
-html {
-    font-family: 'Ubuntu', sans-serif;
-    font-family: 'Open Sans', sans-serif;
-    font-family: 'Poppins', sans-serif;
-}
-
-
-/* Hero styles here */
-
-.hero {
-    background: linear-gradient(0deg, rgba(214, 245, 217, 0.34), rgba(214, 245, 217, 0.34)), url('../Assets/Vectors/Hero-vector.png');
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 902.78px;
-}
-
-header {
-    padding-top: 10px;
-}
-
-.navbar-light .navbar-nav .active>.nav-link {
-    border-bottom: 2px solid #2F2E41;
-    color: var(--main-txt-color);
-}
-
-.navbar-light .navbar-nav .nav-link {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 25px;
-    color: var(--main-txt-color)
-}
-
-.navbar-light .navbar-nav .nav-link:focus,
-.navbar-light .navbar-nav .nav-link:hover {
-    color: var(--main-txt-color)
-}
-
-.phone {
-    position: relative;
-    top: 5px
-}
-
-.home__btn {
-    font-family: 'Poppins', sans-serif;
-    align-items: center;
-    letter-spacing: -0.28px;
-    font-weight: 600;
-    font-size: 16px;
-    box-shadow: 2px 8px 20px rgba(181, 181, 181, 0.2);
-    border-radius: 5px;
-    background-color: var(--button-bg-color);
-    color: white;
-    padding: 12px 13px 12px 13px;
-    border: none;
-    outline: none;
-}
-
-.home__btn:focus,
-.home__btn:focus,
-[type="button"]:focus {
-    outline: none;
-}
-
-.home-teach-hero {
-    margin-top: 150px;
-}
-
-.home-teach-hero h1 {
-    font-family: 'Ubuntu', sans-serif;
-    font-weight: 500px;
-    line-height: 64px;
-    font-size: 50px;
-    color: var(--main-txt-color);
-}
-
-.home-teach-hero p {
-    font-size: 20px;
-    font-family: 'Ubuntu', sans-serif;
-    letter-spacing: -0.28px;
-    color: var(--paragraph-txt-color);
-    padding-top: var(--main-padding-top);
-}
-
-.app__logo {
-    padding-top: var(--main-padding-top);
-}
-
-.hero__img {
-    height: 80vh
-}
-
-
-/* About us section styles here */
-
-.about {
-    padding-top: var(--div-padding-top);
-}
-
-.about__placeholder {
-    background-image: url('../Assets/Vectors/about-bg.png');
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 743.88px;
-    position: relative;
-    top: 0;
-    left: 0;
-}
-
-.image1 {
-    position: relative;
-    top: 30;
-    left: 20;
-}
-
-.image2 {
-    position: absolute;
-    top: 87px;
-    left: 204px;
-}
-
-.captions h4 {
-    color: var(--main-txt-color);
-    text-align: center;
-    letter-spacing: -0.28px;
-    font-weight: 500;
-    font-family: 'Ubuntu', sans-serif;
-    font-size: 32px;
-    line-height: 41px;
-    font-style: normal;
-}
-
-.captions span {
-    color: var(--span-txt-color);
-}
-
-.about__us {
-    background: #FFFFFF;
-    box-shadow: 2px 8px 20px rgba(181, 181, 181, 0.2);
-    border-radius: 20px;
-    padding: 50px;
-}
-
-.about__us p {
-    font-size: 16px;
-    font-family: 'Ubuntu', sans-serif;
-    letter-spacing: -0.28px;
-    color: var(--paragraph-txt-color);
-    line-height: 130%;
-    font-weight: normal;
-}
-
-
-/* Features Styles here */
-
-.features {
-    padding-top: var(--div-padding-top);
-}
-
-.features__placeholder {
-    background: #2F2E41;
-    box-shadow: 2px 8px 20px rgba(181, 181, 181, 0.2);
-    border-radius: 20px;
-    width: 200px;
-    height: 200px;
-    color: white;
-}
-
-i.fa {
-    display: inline-block;
-    border-radius: 60px;
-    box-shadow: 0px 0px 2px #888;
-    background: #D6F5D9;
-    padding: 0.5em 0.6em;
-    position: absolute;
-    top: -30;
-    left: 1;
-}
-
-.center {
-    margin: 0 auto;
-    text-align: center;
-}
-
-.center h6 {
-    font-family: 'Ubuntu', sans-serif;
-    margin-top: 70px;
-    font-size: 22px;
-    line-height: 28px;
-    letter-spacing: -0.28px;
-}
-
-.center p {
-    font-family: 'Ubuntu', sans-serif;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 21px;
-    letter-spacing: -0.28px;
-    color: #FFFFFF;
-    margin-top: 20px;
-}
-
-.features__bg {
-    background-image: url('../Assets/Vectors/features-bg.png');
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 690px;
-    position: relative;
-    top: 0;
-    left: 0;
-}
-
-.image3 {
-    position: relative;
-    top: 0;
-    left: 0;
-}
-
-.image4 {
-    position: absolute;
-    top: 100px;
-    left: 60px;
-}
-
-
-/* How it works styles here */
-
-.how__bg {
-    background: url('../Assets/Vectors/how-bg.png');
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 1413px;
-}
-
-.works {
-    padding-top: 200px;
-}
-
-.rows {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    margin-right: -15px;
-    margin-left: -15px;
-    flex-wrap: wrap;
-}
-
-.works__row {
-    padding-top: 75px;
-}
-
-.headers {
-    margin: auto !important;
-}
-
-.headers h4 {
-    font-family: 'Ubuntu', sans-serif;
-    margin-bottom: 20px;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 30px;
-    line-height: 50px;
-    color: var(--main-txt-color);
-}
-
-.headers p {
-    font-family: 'Ubuntu', sans-serif;
-    font-weight: normal;
-    font-size: 16px;
-    color: var(--paragraph-txt-color);
-    line-height: 32px;
-}
-
-
-/* tutors styles here */
-
-.tutors {
-    position: relative;
-    bottom: 130px;
-}
-
-.carousel {
-    background: #EEE;
-    margin-top: 70px;
-}
-
-.carousel-cell {
-    width: 100%;
-    margin: 0px 50px 0px 50px;
-}
-
-.flickity-page-dots .dot.is-selected {
-    background: var(--main-txt-color);
-}
-
-.flickity-viewport {
-    background: white;
-    height: 270px !important;
-}
-
-.flickity-prev-next-button .flickity-button-icon {
-    color: var(--main-txt-color);
-}
-
-@media screen and ( min-width: 768px) {
-    .carousel-cell img {
-        height: 400px;
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+     :root {
+        --main-txt-color: #0CB91E;
+        --paragraph-txt-color: #2F2E41;
+        --span-txt-color: #505050;
+        --button-bg-color: #2F2E41;
+        --main-padding-top: 20px;
+        --div-padding-top: 70px
     }
-}
-
-.tutor__card {
-    background: #FFFFFF;
-    box-shadow: 2px 8px 20px rgba(181, 181, 181, 0.2);
-    border-radius: 20px;
-    width: 568px;
-    height: 400px;
-    ;
-}
-
-.card {
-    position: relative;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    min-width: 0;
-    word-wrap: break-word;
-    background: #FFFFFF;
-    box-shadow: 2px 8px 20px rgba(181, 181, 181, 0.2);
-    border-radius: 20px;
-    border: none;
-}
-
-.card-title {
-    color: var(--main-txt-color);
-    letter-spacing: -0.28px;
-    font-size: 30px;
-    line-height: 40px;
-    font-weight: 500;
-    text-align: center;
-    font-family: 'Ubuntu', sans-serif;
-}
-
-.card-subtitle {
-    color: #27274C;
-    letter-spacing: -0.28px;
-    text-align: center;
-    font-size: 18px;
-    line-height: 32px;
-    font-weight: normal;
-    font-family: 'Poppins', sans-serif;
-}
-
-.card-text {
-    color: var(--paragraph-txt-color);
-    font-style: normal;
-    text-align: center;
-    letter-spacing: -0.28px;
-    line-height: 25px;
-    /* font-family: 'Ubuntu', sans-serif; */
-    font-size: 16px;
-    padding-top: 5px;
-}
-
-.avatar img {
-    position: absolute;
-    top: 50px;
-    left: 370px;
-    height: 22vh;
-}
+    
+    html {
+        font-family: 'Ubuntu', sans-serif;
+        font-family: 'Open Sans', sans-serif;
+        font-family: 'Poppins', sans-serif;
+    }
+    /* Hero styles here */
+    
+    .hero {
+        background: linear-gradient(0deg, rgba(214, 245, 217, 0.34), rgba(214, 245, 217, 0.34)), url('../Assets/Vectors/Hero-vector.png');
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 902.78px;
+    }
+    
+    header {
+        padding-top: 10px;
+    }
+    
+    .navbar-light .navbar-nav .active>.nav-link {
+        border-bottom: 2px solid #2F2E41;
+        color: var(--main-txt-color);
+    }
+    
+    .navbar-light .navbar-nav .nav-link {
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 25px;
+        color: var(--main-txt-color)
+    }
+    
+    .navbar-light .navbar-nav .nav-link:focus,
+    .navbar-light .navbar-nav .nav-link:hover {
+        color: var(--main-txt-color)
+    }
+    
+    .phone {
+        position: relative;
+        top: 5px
+    }
+    
+    .home__btn {
+        font-family: 'Poppins', sans-serif;
+        align-items: center;
+        letter-spacing: -0.28px;
+        font-weight: 600;
+        font-size: 16px;
+        box-shadow: 2px 8px 20px rgba(181, 181, 181, 0.2);
+        border-radius: 5px;
+        background-color: var(--button-bg-color);
+        color: white;
+        padding: 12px 13px 12px 13px;
+        border: none;
+        outline: none;
+    }
+    
+    .home__btn:focus,
+    .home__btn:focus,
+    [type="button"]:focus {
+        outline: none;
+    }
+    
+    .home-teach-hero {
+        margin-top: 150px;
+    }
+    
+    .home-teach-hero h1 {
+        font-family: 'Ubuntu', sans-serif;
+        font-weight: 500px;
+        line-height: 64px;
+        font-size: 50px;
+        color: var(--main-txt-color);
+    }
+    
+    .home-teach-hero p {
+        font-size: 20px;
+        font-family: 'Ubuntu', sans-serif;
+        letter-spacing: -0.28px;
+        color: var(--paragraph-txt-color);
+        padding-top: var(--main-padding-top);
+    }
+    
+    .app__logo {
+        padding-top: var(--main-padding-top);
+    }
+    
+    .hero__img {
+        height: 80vh
+    }
+    /* About us section styles here */
+    
+    .about {
+        padding-top: var(--div-padding-top);
+    }
+    
+    .about__placeholder {
+        background-image: url('../Assets/Vectors/about-bg.png');
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 743.88px;
+        position: relative;
+        top: 0;
+        left: 0;
+    }
+    
+    .image1 {
+        position: relative;
+        top: 30;
+        left: 20;
+    }
+    
+    .image2 {
+        position: absolute;
+        top: 87px;
+        left: 204px;
+    }
+    
+    .captions h4 {
+        color: var(--main-txt-color);
+        text-align: center;
+        letter-spacing: -0.28px;
+        font-weight: 500;
+        font-family: 'Ubuntu', sans-serif;
+        font-size: 32px;
+        line-height: 41px;
+        font-style: normal;
+    }
+    
+    .captions span {
+        color: var(--span-txt-color);
+    }
+    
+    .about__us {
+        background: #FFFFFF;
+        box-shadow: 2px 8px 20px rgba(181, 181, 181, 0.2);
+        border-radius: 20px;
+        padding: 50px;
+    }
+    
+    .about__us p {
+        font-size: 16px;
+        font-family: 'Ubuntu', sans-serif;
+        letter-spacing: -0.28px;
+        color: var(--paragraph-txt-color);
+        line-height: 130%;
+        font-weight: normal;
+    }
+    /* Features Styles here */
+    
+    .features {
+        padding-top: var(--div-padding-top);
+    }
+    
+    .features__placeholder {
+        background: #2F2E41;
+        box-shadow: 2px 8px 20px rgba(181, 181, 181, 0.2);
+        border-radius: 20px;
+        width: 200px;
+        height: 200px;
+        color: white;
+    }
+    
+    i.fa {
+        display: inline-block;
+        border-radius: 60px;
+        box-shadow: 0px 0px 2px #888;
+        background: #D6F5D9;
+        padding: 0.5em 0.6em;
+        position: absolute;
+        top: -30;
+        left: 1;
+    }
+    
+    .center {
+        margin: 0 auto;
+        text-align: center;
+    }
+    
+    .center h6 {
+        font-family: 'Ubuntu', sans-serif;
+        margin-top: 70px;
+        font-size: 22px;
+        line-height: 28px;
+        letter-spacing: -0.28px;
+    }
+    
+    .center p {
+        font-family: 'Ubuntu', sans-serif;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 21px;
+        letter-spacing: -0.28px;
+        color: #FFFFFF;
+        margin-top: 20px;
+    }
+    
+    .features__bg {
+        background-image: url('../Assets/Vectors/features-bg.png');
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 690px;
+        position: relative;
+        top: 0;
+        left: 0;
+    }
+    
+    .image3 {
+        position: relative;
+        top: 0;
+        left: 0;
+    }
+    
+    .image4 {
+        position: absolute;
+        top: 100px;
+        left: 60px;
+    }
+    /* How it works styles here */
+    
+    .how__bg {
+        background: url('../Assets/Vectors/how-bg.png');
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 1413px;
+    }
+    
+    .works {
+        padding-top: 200px;
+    }
+    
+    .rows {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;
+        flex-wrap: wrap;
+    }
+    
+    .works__row {
+        padding-top: 75px;
+    }
+    
+    .headers {
+        margin: auto !important;
+    }
+    
+    .headers h4 {
+        font-family: 'Ubuntu', sans-serif;
+        margin-bottom: 20px;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 30px;
+        line-height: 50px;
+        color: var(--main-txt-color);
+    }
+    
+    .headers p {
+        font-family: 'Ubuntu', sans-serif;
+        font-weight: normal;
+        font-size: 16px;
+        color: var(--paragraph-txt-color);
+        line-height: 32px;
+    }
+    /* tutors styles here */
+    
+    .tutors {
+        position: relative;
+        bottom: 130px;
+    }
+    
+    .carousel {
+        background: #EEE;
+        margin-top: 70px;
+    }
+    
+    .carousel-cell {
+        width: 100%;
+        margin: 0px 50px 0px 50px;
+    }
+    
+    .flickity-page-dots .dot.is-selected {
+        background: var(--main-txt-color);
+    }
+    
+    .flickity-viewport {
+        background: white;
+        height: 270px !important;
+    }
+    
+    .flickity-prev-next-button .flickity-button-icon {
+        color: var(--main-txt-color);
+    }
+    
+    @media screen and ( min-width: 768px) {
+        .carousel-cell img {
+            height: 400px;
+        }
+    }
+    
+    .tutor__card {
+        background: #FFFFFF;
+        box-shadow: 2px 8px 20px rgba(181, 181, 181, 0.2);
+        border-radius: 20px;
+        width: 568px;
+        height: 400px;
+        ;
+    }
+    
+    .card {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background: #FFFFFF;
+        box-shadow: 2px 8px 20px rgba(181, 181, 181, 0.2);
+        border-radius: 20px;
+        border: none;
+    }
+    
+    .card-title {
+        color: var(--main-txt-color);
+        letter-spacing: -0.28px;
+        font-size: 30px;
+        line-height: 40px;
+        font-weight: 500;
+        text-align: center;
+        font-family: 'Ubuntu', sans-serif;
+    }
+    
+    .card-subtitle {
+        color: #27274C;
+        letter-spacing: -0.28px;
+        text-align: center;
+        font-size: 18px;
+        line-height: 32px;
+        font-weight: normal;
+        font-family: 'Poppins', sans-serif;
+    }
+    
+    .card-text {
+        color: var(--paragraph-txt-color);
+        font-style: normal;
+        text-align: center;
+        letter-spacing: -0.28px;
+        line-height: 25px;
+        font-family: 'Ubuntu', sans-serif;
+        font-size: 16px;
+        padding-top: 5px;
+    }
+    
+    .avatar img {
+        position: absolute;
+        top: 50px;
+        left: 370px;
+        height: 22vh;
+    }
+    /* Find tutor styles here */
+    
+    .find__tutor {
+        padding-top: var(--div-padding-top);
+    }
+    
+    .parallax {
+        /* The image used */
+        background-image: url("../Assets/General/find_tutor.png");
+        /* Set a specific height */
+        height: 500px;
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        /* background-size: cover; */
+    }
+    
+    .scroll {
+        height: 100%;
+        background: url('../Assets/General/t1.png');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        /* background-size: cover; */
+    }
+    
+    .scroll__content {
+        margin: auto;
+        width: 50%;
+        padding: 0px;
+    }
+    
+    .tutor__header {
+        padding-top: 170px;
+    }
+    /*     
+    .tutor__header h4 {
+        color: white;
+        text-align: center;
+        letter-spacing: -0.28px;
+        width: max-content;
+        font-weight: 500;
+        font-family: 'Ubuntu', sanswhite-serif;
+        font-size: 40px;
+        line-height: 41px;
+        font-style: normal;
+    } */
+    
+    .tutor__header p {
+        text-align: center;
+        letter-spacing: -0.28px;
+        font-size: 18px;
+        font-family: 'Ubuntu', sans-serif;
+        color: white;
+        line-height: 60px;
+        font-weight: normal;
+    }
+    
+    .me {
+        margin-bottom: 3330px;
+    }
