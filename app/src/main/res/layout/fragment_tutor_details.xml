@@ -83,7 +83,7 @@
                     android:id="@+id/tutor_video"
                     android:layout_width="match_parent"
                     android:layout_height="170dp"
-                    android:background="@drawable/video_place_holder" />
+                    />
 
                 <LinearLayout
                     android:layout_width="match_parent"

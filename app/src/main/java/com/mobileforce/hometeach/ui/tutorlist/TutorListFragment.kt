@@ -51,6 +51,11 @@ class TutorListFragment : Fragment(){
                 val action = TutorListFragmentDirections.actionTutorsAllFragmentToBookTutorFragment(tutor)
                 findNavController().navigate(action)
             }
+        }, TutorBodyClickListener { tutorModel ->
+            if (tutorModel != null){
+                val action = TutorListFragmentDirections.actionTutorsAllFragmentToTutorDetailsFragment(tutorModel)
+                findNavController().navigate(action)
+            }
         })
 
         binding.tutorAllList.adapter = adapter
@@ -95,6 +100,11 @@ class TutorListFragment : Fragment(){
             val newAdapter = TutorListRecyclerAdapter(TutorListItemListener { tutor ->
                 if (tutor != null) {
                     val action = TutorListFragmentDirections.actionTutorsAllFragmentToBookTutorFragment(tutor)
+                    findNavController().navigate(action)
+                }
+            }, TutorBodyClickListener { tutorModel ->
+                if (tutorModel != null){
+                    val action = TutorListFragmentDirections.actionTutorsAllFragmentToTutorDetailsFragment(tutorModel)
                     findNavController().navigate(action)
                 }
             })
