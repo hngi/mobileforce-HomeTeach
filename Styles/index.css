@@ -238,3 +238,16 @@ i.fa {
     background-repeat: no-repeat;
     height: 1413px;
 }
+
+.works {
+    padding-top: 180px;
+}
+
+.rows {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+    flex-wrap: wrap;
+}
