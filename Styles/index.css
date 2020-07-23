@@ -205,3 +205,14 @@ i.fa {
     color: #FFFFFF;
     margin-top: 20px;
 }
+
+.features__bg {
+    background-image: url('../Assets/Vectors/features-bg.png');
+    background-position: center;
+    /* background-size: cover; */
+    background-repeat: no-repeat;
+    height: 743.88px;
+    position: relative;
+    top: 0;
+    left: 0;
+}
