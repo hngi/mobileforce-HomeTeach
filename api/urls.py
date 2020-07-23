@@ -17,6 +17,7 @@ urlpatterns = [
     path('user-requests/', views.list_user_requests),
     path('rate-tutor/', views.rate_tutor),
     path('top-tutors/', views.top_tutors),
+    path('add-favourites/', views.add_favourites),
     path('bank-info/', views.BankInfoView),
     path('bank-info-user/', views.BankInfoByUser),
     path('bank-info/<int:pk>/', views.bank_info_by_id),
