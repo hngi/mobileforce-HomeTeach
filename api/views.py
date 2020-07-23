@@ -18,7 +18,8 @@ from .utility.encryption_util import *
 from .serializers import (BankInfoSerializer, CreditCardInfoSerializer, 
 						VerificationSerializer, CreateRequestSerializer,
 						 FavouriteTutorsSerializer, ClassesSerializer,
-						ClassesRequestSerializer,
+						ClassesRequestSerializer, StudentsClassesRequestSerializer,
+						StudentsClassesSerializer,
 						RequestTutorSerializer, RequestSerializer, TopTutorSerializer,
 						CustomUserSerializer, ProfileSerializer, 
 						TutorProfileSerializer, StudentProfileSerializer, 
@@ -64,6 +65,27 @@ def get_tutor_classes_requests(request):
 	if serializer.is_valid(raise_exception=True):
 		return Response(serializer.data)
 
+
+@api_view(['POST', ])
+@permission_classes([AllowAny, ])
+def get_student_classes(request):
+	data = request.data
+	serializer = StudentsClassesSerializer(data=data)
+	# print(serializer.test)
+	if serializer.is_valid(raise_exception=True):
+		return Response(serializer.data)
+
+'''get all requests sent to tutors by a student'''
+@api_view(['POST', ])
+@permission_classes([AllowAny, ])
+def get_student_classes_requests(request):
+	data = request.data
+	serializer = StudentsClassesRequestSerializer(data=data)
+	# print(serializer.test)
+	if serializer.is_valid(raise_exception=True):
+		return Response(serializer.data)
+
+
 '''view to list all requests that a tutor has received'''
 @api_view(['GET', ])
 @permission_classes([AllowAny, ])
@@ -92,10 +114,10 @@ def add_favourites(request):
 		data = serializer.save()
 		print(data)
 		if request.data.get('action') == 'add':
-			return Response({'message':f'{data["tutor"]} has been added into your favourites'})
+			return Response({'message':f'{data["tutor"]} has been added into your favourites', 'status':True})
 		else:
-			return Response({'message':f'{data["tutor"]} has been removed from your favourites'})
-	return Response('an error occured while adding into favourites')
+			return Response({'message':f'{data["tutor"]} has been removed from your favourites', 'status':True})
+	return Response({'message':'an error occured while adding into favourites', 'status':False})
 
 def list_favourite_tutors(request):
 	data = request
