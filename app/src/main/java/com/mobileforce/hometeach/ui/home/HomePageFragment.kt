@@ -377,13 +377,16 @@ class HomePageFragment : Fragment() {
 
 
         bindingTutor.root.findViewById<LinearLayout>(R.id.mybanks).setOnClickListener {
-            findNavController().navigate(R.id.myBanks)
+            //findNavController().navigate(R.id.myBanks)
+            Toast.makeText(requireContext(), "Not yet implemented: To be done soon", Toast.LENGTH_SHORT).show()
         }
         bindingTutor.root.findViewById<LinearLayout>(R.id.card_details).setOnClickListener {
-            findNavController().navigate(R.id.tutorCardDetails)
+            //findNavController().navigate(R.id.tutorCardDetails)
+            Toast.makeText(requireContext(), "Not yet implemented: To be done soon", Toast.LENGTH_SHORT).show()
         }
         bindingTutor.root.findViewById<LinearLayout>(R.id.withdrawal).setOnClickListener {
-            findNavController().navigate(R.id.makeWithdrawalFragment)
+            //findNavController().navigate(R.id.makeWithdrawalFragment)
+            Toast.makeText(requireContext(), "Not yet implemented: To be done soon", Toast.LENGTH_SHORT).show()
         }
 
         val TutorDashboardModel = mutableListOf<TutorDashboardModel>(
