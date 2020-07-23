@@ -76,7 +76,7 @@ button:not(:disabled) {
     font-family: 'Ubuntu', sans-serif;
     font-weight: 500px;
     line-height: 64px;
-    font-size: 52px;
+    font-size: 50px;
     color: var(--main-txt-color);
 }
 
@@ -277,4 +277,11 @@ i.fa {
     font-size: 16px;
     color: var(--paragraph-txt-color);
     line-height: 32px;
+}
+
+
+/* tutors styles here */
+
+.tutors {
+    padding-top: var(--div-padding-top);
 }
