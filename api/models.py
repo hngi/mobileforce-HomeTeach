@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+import datetime
 from accounts.models import CustomUser
 from django.contrib.auth import get_user_model
 
@@ -27,11 +28,13 @@ class Request(models.Model):
 		return f'{self.requester.full_name} requests {self.tutor.full_name}'
 
 class Days(models.Model):
-	day = models.CharField(max_length=10)
+	day = models.DateField(default=datetime.datetime.today())
 
 class StudentSchedule(models.Model):
 	user = models.ForeignKey(User,  on_delete=models.CASCADE)
 	tutor = models.ForeignKey(User, related_name='tutor', on_delete=models.CASCADE)
+	subject = models.CharField(max_length=120)
+	grade = models.CharField(max_length=50)
 	from_hour = models.CharField(max_length=10)
 	from_minute = models.CharField(max_length=10)
 	to_hour = models.CharField(max_length=10)

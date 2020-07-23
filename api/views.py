@@ -17,7 +17,7 @@ from cardvalidator import formatter, luhn
 from .utility.encryption_util import *
 from .serializers import (BankInfoSerializer, CreditCardInfoSerializer, 
 						VerificationSerializer, CreateRequestSerializer,
-						 FavouriteTutorsSerializer,
+						 FavouriteTutorsSerializer, ClassesSerializer,
 						RequestTutorSerializer, RequestSerializer, TopTutorSerializer,
 						CustomUserSerializer, ProfileSerializer, 
 						TutorProfileSerializer, StudentProfileSerializer, 
@@ -43,6 +43,14 @@ def submit_request(request):
 	else:
 		return Response({'message':'sorry, your request couldnt be sent...', 'sent':False}, status=status.HTTP_501_NOT_IMPLEMENTED)
 
+@api_view(['POST', ])
+@permission_classes([AllowAny, ])
+def get_tutor_classes(request):
+	data = request.data
+	serializer = ClassesSerializer(data=data)
+	# print(serializer.test)
+	if serializer.is_valid(raise_exception=True):
+		return Response(serializer.data)
 
 '''view to list all requests that a tutor has received'''
 @api_view(['GET', ])
@@ -67,17 +75,6 @@ def list_user_requests(request):
 @permission_classes([AllowAny, ])
 def add_favourites(request):
 	data = request.data
-	# student_id = data.get('student_id')
-	# tutor_id = data.get('tutor_id')
-	# try:
-	# 	tutor = User.objects.get(id=tutor_id, tutor=True)
-	# except User.DoesNotExist:
-	# 	return Response('A tutor with that id does not exist')
-
-	# try:
-	# 	student = User.objects.get(id=student_id)
-	# except User.DoesNotExist:
-	# 	return Response('A student with that id does not exist')
 	serializer = FavouriteTutorsSerializer(data=data)
 	if serializer.is_valid(raise_exception=True):
 		data = serializer.save()
@@ -88,8 +85,10 @@ def add_favourites(request):
 			return Response({'message':f'{data["tutor"]} has been removed from your favourites'})
 	return Response('an error occured while adding into favourites')
 
+def list_favourite_tutors(request):
+	data = request
 
-	serializer = FavouriteTutorsSerializer(tutor=tutor, student=student, data=data)
+
 # def request_action(request):
 #     data = request.data
 #     id = data.get('id')
@@ -232,7 +231,7 @@ def card_info(request):
 			serializer.save()
 			return Response(serializer.data)
 		return Response(serializer.errors)
-		
+
 @api_view(['GET', 'PUT', 'DELETE'])
 @permission_classes([AllowAny, ])
 def card_info_by_id(request, pk):

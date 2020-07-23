@@ -22,7 +22,10 @@ class UpdateUserSerializer(serializers.ModelSerializer):
         model=User
         exclude = ['password', 'last_login']
 
-
+class DaysSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Days
+        fields = '__all__'
 class CreateRequestSerializer(serializers.ModelSerializer):
     id = serializers.CharField(read_only=True)
     requester = serializers.SerializerMethodField(read_only=True)
@@ -33,6 +36,8 @@ class CreateRequestSerializer(serializers.ModelSerializer):
     from_minute = serializers.CharField()
     to_hour = serializers.CharField()
     to_minute = serializers.CharField()
+    subject = serializers.CharField()
+    grade = serializers.CharField()
     dates = serializers.ListField()
     schedule = serializers.CharField(required=False)
 
@@ -63,6 +68,8 @@ class CreateRequestSerializer(serializers.ModelSerializer):
         from_hour = data.get('from_hour')
         from_minute = data.get('from_minute')
         to_hour = data.get('to_hour')
+        subject = data.get('subject')
+        grade = data.get('grade')
         to_minute = data.get('to_minute')
         dates = data.get('dates')
 
@@ -83,10 +90,17 @@ class CreateRequestSerializer(serializers.ModelSerializer):
                                        to_hour=to_hour,
                                        from_minute=from_minute,
                                        to_minute=to_minute,
+                                       subject=subject,
+                                       grade=grade,
                                        )
+
         for date in dates:
-            d = Days.objects.create(day=date)
-            student_schedule.days.add(d)
+            new_date = datetime.strptime(date, '%d-%m-%Y')
+            # d = Days.objects.create(day=date)
+            d = DaysSerializer(data={'day':date})
+            if d.is_valid(raise_exception=True):
+                day = d.save()
+            student_schedule.days.add(day)
         request = Request.objects.create(
             requester=requester,
             tutor=tutor_qs.first(),
@@ -99,6 +113,38 @@ class StudentScheduleSerializer(serializers.ModelSerializer):
     class Meta:
         model = StudentSchedule
         fields = '__all__'
+
+class ClassesSerializer(serializers.Serializer):
+    tutor_id = serializers.CharField()
+    schedules = serializers.SerializerMethodField()
+
+    def get_schedules(self, values):
+        data = values
+        dictionary = {k:v for k,v in data.items()}
+        tutor_id = dictionary['tutor_id']
+        tutor = User.objects.get(id=tutor_id)
+        schedule_details = tutor.tutor.all()
+
+        schedules = []
+        for schedule in schedule_details:
+            for day in schedule.days.all():
+                data = {
+                            'schedule_id':f'{schedule.id}-{day.id}',
+                            'subject':schedule.subject,
+                            'day':datetime.strftime(day.day, '%d-%m-%Y'),
+                            'from_minute':schedule.from_minute,
+                            'to_minute':schedule.to_minute,
+                            'from_hour':schedule.from_hour,
+                            'to_hour':schedule.to_hour,
+                            'grade':schedule.grade,
+                            'student_name':schedule.user.full_name,
+                            'student_id':str(schedule.user.id),
+                            'student_pic':schedule.user.profile.profile_pic.url
+                        }
+                schedules.append(data)
+            schedules.sort(key = lambda date: (datetime.strptime(date['days'], '%d-%m-%Y'), date['from_hour'], date['from_minute']))
+        return schedules
+
 
 class FavouriteTutorsSerializer(serializers.ModelSerializer):
     tutor_id = serializers.CharField()
