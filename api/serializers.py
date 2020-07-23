@@ -135,6 +135,7 @@ class ClassesRequestSerializer(serializers.Serializer):
                 data = {    
                             'accepted':request.accepted,
                             'declined':request.declined,
+                            'date_requested':datetime.strftime(request.date_requested, '%d-%m-%Y'),
                             'classes_request_id':f'{request.id}-{day.id}',
                             'subject':request.schedule.subject,
                             'day':datetime.strftime(day.day, '%d-%m-%Y'),
@@ -148,7 +149,7 @@ class ClassesRequestSerializer(serializers.Serializer):
                             'student_pic':request.schedule.user.profile.profile_pic.url
                         }
                 requests_list.append(data)
-            requests_list.sort(key = lambda date: (datetime.strptime(date['day'], '%d-%m-%Y'), date['from_hour'], date['from_minute']))
+            requests_list.sort(key = lambda date: (date['date_requested'], datetime.strptime(date['day'], '%d-%m-%Y'), date['from_hour'], date['from_minute']))
         return requests_list
 
 
