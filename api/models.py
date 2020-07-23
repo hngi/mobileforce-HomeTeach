@@ -51,6 +51,11 @@ def get_upload_file_name_credentials(userpic,filename):
     return 'docs/%s/%s/' %  (str(userpic.user.email),
                                  filename)
 
+class Favourites(models.Model):
+	student = models.ForeignKey(User, related_name='favourite_tutors', on_delete=models.CASCADE)
+	tutor = models.ManyToManyField(User)
+
+
 # Create your models here.
 class Profile(models.Model):
 	user = models.OneToOneField(User,

@@ -16,7 +16,8 @@ from django.shortcuts import get_object_or_404
 from cardvalidator import formatter, luhn
 from .utility.encryption_util import *
 from .serializers import (BankInfoSerializer, CreditCardInfoSerializer, 
-						VerificationSerializer, CreateRequestSerializer, 
+						VerificationSerializer, CreateRequestSerializer,
+						 FavouriteTutorsSerializer,
 						RequestTutorSerializer, RequestSerializer, TopTutorSerializer,
 						CustomUserSerializer, ProfileSerializer, 
 						TutorProfileSerializer, StudentProfileSerializer, 
@@ -62,7 +63,33 @@ def list_user_requests(request):
 	serializer = RequestSerializer(requests, many=True)
 	return Response(serializer.data)
 
+@api_view(['POST', ])
+@permission_classes([AllowAny, ])
+def add_favourites(request):
+	data = request.data
+	# student_id = data.get('student_id')
+	# tutor_id = data.get('tutor_id')
+	# try:
+	# 	tutor = User.objects.get(id=tutor_id, tutor=True)
+	# except User.DoesNotExist:
+	# 	return Response('A tutor with that id does not exist')
 
+	# try:
+	# 	student = User.objects.get(id=student_id)
+	# except User.DoesNotExist:
+	# 	return Response('A student with that id does not exist')
+	serializer = FavouriteTutorsSerializer(data=data)
+	if serializer.is_valid(raise_exception=True):
+		data = serializer.save()
+		print(data)
+		if request.data.get('action') == 'add':
+			return Response({'message':f'{data["tutor"]} has been added into your favourites'})
+		else:
+			return Response({'message':f'{data["tutor"]} has been removed from your favourites'})
+	return Response('an error occured while adding into favourites')
+
+
+	serializer = FavouriteTutorsSerializer(tutor=tutor, student=student, data=data)
 # def request_action(request):
 #     data = request.data
 #     id = data.get('id')
@@ -88,48 +115,48 @@ class CustomUserViewSet(viewsets.ModelViewSet):
 	parser_class = (FileUploadParser,)
 
 class ProfileViewSet(mixins.ListModelMixin,
-                     mixins.RetrieveModelMixin,
-                     mixins.UpdateModelMixin,
-                     viewsets.GenericViewSet):
-    """
-    This viewset automatically provides `list`, `create`, `retrieve`,
-    `update` and `destroy` actions.
-    """
-    queryset = Profile.objects.all()
-    serializer_class = ProfileSerializer
-    permission_classes = (AllowAny,)
+					 mixins.RetrieveModelMixin,
+					 mixins.UpdateModelMixin,
+					 viewsets.GenericViewSet):
+	"""
+	This viewset automatically provides `list`, `create`, `retrieve`,
+	`update` and `destroy` actions.
+	"""
+	queryset = Profile.objects.all()
+	serializer_class = ProfileSerializer
+	permission_classes = (AllowAny,)
 
   
 
 class TutorProfileViewSet(mixins.ListModelMixin,
-                          mixins.RetrieveModelMixin,
-                          mixins.UpdateModelMixin,
-                          viewsets.GenericViewSet):
-    """
-    This viewset automatically provides `list`, `create`, `retrieve`,
-    `update` and `destroy` actions.
-    """
-    # parser_classes = (MultiPartParser, FormParser,)
-    queryset = Profile.objects.filter(user__is_tutor=True)
-    serializer_class = TutorProfileSerializer
-    permission_classes = (AllowAny, )
-    filter_backends = (filters.DjangoFilterBackend,)
-    filter_fields = ('field','major_course','state',)
-    ordering = ('-full_name',)
+						  mixins.RetrieveModelMixin,
+						  mixins.UpdateModelMixin,
+						  viewsets.GenericViewSet):
+	"""
+	This viewset automatically provides `list`, `create`, `retrieve`,
+	`update` and `destroy` actions.
+	"""
+	# parser_classes = (MultiPartParser, FormParser,)
+	queryset = Profile.objects.filter(user__is_tutor=True)
+	serializer_class = TutorProfileSerializer
+	permission_classes = (AllowAny, )
+	filter_backends = (filters.DjangoFilterBackend,)
+	filter_fields = ('field','major_course','state',)
+	ordering = ('-full_name',)
   
  
 class StudentProfileViewSet(mixins.ListModelMixin,
-                            mixins.RetrieveModelMixin,
-                            mixins.UpdateModelMixin,
-                            viewsets.GenericViewSet):
-    """
-    This viewset automatically provides `list`, `create`, `retrieve`,
-    `update` and `destroy` actions.
-    """
-    # parser_classes = (MultiPartParser, FormParser,)
-    queryset = Profile.objects.filter(user__is_tutor=False)
-    serializer_class = StudentProfileSerializer
-    permission_classes = (AllowAny,)
+							mixins.RetrieveModelMixin,
+							mixins.UpdateModelMixin,
+							viewsets.GenericViewSet):
+	"""
+	This viewset automatically provides `list`, `create`, `retrieve`,
+	`update` and `destroy` actions.
+	"""
+	# parser_classes = (MultiPartParser, FormParser,)
+	queryset = Profile.objects.filter(user__is_tutor=False)
+	serializer_class = StudentProfileSerializer
+	permission_classes = (AllowAny,)
 
 
 @api_view(['POST', ])
@@ -160,26 +187,26 @@ def top_tutors(request):
 @api_view(['POST' ])
 @permission_classes([AllowAny, ])
 def card_info_by_user(request):
-    """
-    This view returns details of all the credit card register to a particular user
-    """
-    user = request.data['user']
-    card_details = CreditCardInfo.objects.filter(user=user)
-    serializer = CreditCardInfoSerializer(card_details, many=True)
+	"""
+	This view returns details of all the credit card register to a particular user
+	"""
+	user = request.data['user']
+	card_details = CreditCardInfo.objects.filter(user=user)
+	serializer = CreditCardInfoSerializer(card_details, many=True)
 
-    user_card_details = []
-    
-    for card_detail in serializer.data:
-        d_id = card_detail['id']
-        user, card_holder_name, card_number, cvv = card_detail['user'], card_detail['card_holder_name'], card_detail['card_number'], card_detail['cvv']
-        expiry_month, expiry_year = card_detail['expiry_month'], card_detail['expiry_year']
-        parsed_data = {"id": d_id, "user" : user, "card_holder_name": card_holder_name, "card_number": decrypt(card_number), "cvv": decrypt(cvv),
-        "expiry_month": expiry_month, "expiry_year": expiry_year}
-        user_card_details.append(parsed_data)
-    
-    
-    # return Response(serializer.data)
-    return Response(user_card_details)
+	user_card_details = []
+	
+	for card_detail in serializer.data:
+		d_id = card_detail['id']
+		user, card_holder_name, card_number, cvv = card_detail['user'], card_detail['card_holder_name'], card_detail['card_number'], card_detail['cvv']
+		expiry_month, expiry_year = card_detail['expiry_month'], card_detail['expiry_year']
+		parsed_data = {"id": d_id, "user" : user, "card_holder_name": card_holder_name, "card_number": decrypt(card_number), "cvv": decrypt(cvv),
+		"expiry_month": expiry_month, "expiry_year": expiry_year}
+		user_card_details.append(parsed_data)
+	
+	
+	# return Response(serializer.data)
+	return Response(user_card_details)
 
 @api_view(['POST', 'GET'])
 @permission_classes([AllowAny, ])
@@ -213,46 +240,43 @@ def card_info(request):
 @api_view(['GET', 'PUT', 'DELETE'])
 @permission_classes([AllowAny, ])
 def card_info_by_id(request, pk):
-    """
-    This view gets credit card detail by id, updates and deletes it
-    """
-    try:
-        card_detail = CreditCardInfo.objects.get(pk=pk)
+	"""
+	This view gets credit card detail by id, updates and deletes it
+	"""
+	try:
+		card_detail = CreditCardInfo.objects.get(pk=pk)
 
-    except CreditCardInfo.DoesNotExist:
-        return Response('There are no Credit card details for this id')
+	except CreditCardInfo.DoesNotExist:
+		return Response('There are no Credit card details for this id')
 
-    if request.method == 'GET':
-        serializer = CreditCardInfoSerializer(card_detail)
-        card_detail = serializer.data
-        d_id = card_detail['id']
-        user, card_holder_name, card_number, cvv = card_detail['user'], card_detail['card_holder_name'], card_detail['card_number'], card_detail['cvv']
-        expiry_month, expiry_year = card_detail['expiry_month'], card_detail['expiry_year']
-        parsed_data = {"id": d_id, "user" : user, "card_holder_name": card_holder_name, "card_number": decrypt(card_number), "cvv": decrypt(cvv),
-        "expiry_month": expiry_month, "expiry_year": expiry_year}
-        return Response(parsed_data)
+	if request.method == 'GET':
+		serializer = CreditCardInfoSerializer(card_detail)
+		card_detail = serializer.data
+		d_id = card_detail['id']
+		user, card_holder_name, card_number, cvv = card_detail['user'], card_detail['card_holder_name'], card_detail['card_number'], card_detail['cvv']
+		expiry_month, expiry_year = card_detail['expiry_month'], card_detail['expiry_year']
+		parsed_data = {"id": d_id, "user" : user, "card_holder_name": card_holder_name, "card_number": decrypt(card_number), "cvv": decrypt(cvv),
+		"expiry_month": expiry_month, "expiry_year": expiry_year}
+		return Response(parsed_data)
 
-    elif request.method == 'PUT':
-        data = request.data
-        user, card_holder_name, card_number, cvv = data['user'], data['card_holder_name'], data['card_number'], data['cvv']
-        expiry_month, expiry_year = data['expiry_month'], data['expiry_year']
-        if luhn.is_valid(card_number):
-            # card_number = encrypt(card_number)
-            parsed_data = {"user" : user, "card_holder_name": card_holder_name, "card_number": encrypt(card_number), "cvv": encrypt(cvv),
-            "expiry_month": expiry_month, "expiry_year": expiry_year}
-            serializer = CreditCardInfoSerializer(card_detail, data=parsed_data)
+	elif request.method == 'PUT':
+		data = request.data
+		user, card_holder_name, card_number, cvv = data['user'], data['card_holder_name'], data['card_number'], data['cvv']
+		expiry_month, expiry_year = data['expiry_month'], data['expiry_year']
 
-            if serializer.is_valid():
-                serializer.save()
-                return Response(serializer.data)
-            return Response(serializer.errors)
-        else:
-            return Response('Card number is not valid')
+		parsed_data = {"user" : user, "card_holder_name": card_holder_name, "card_number": encrypt(card_number), "cvv": encrypt(cvv),
+		"expiry_month": expiry_month, "expiry_year": expiry_year}
+		serializer = CreditCardInfoSerializer(card_detail, data=parsed_data)
 
-
-    elif request.method == 'DELETE':
-        card_detail.delete()
-        return Response('Card details deleted')      
+		if serializer.is_valid():
+			serializer.save()
+			return Response(serializer.data)
+		else:
+			return Response(serializer.errors)
+ 
+	elif request.method == 'DELETE':
+		card_detail.delete()
+		return Response('Card Details deleted')   
 
 
 
@@ -334,7 +358,7 @@ class VerifyTransactionView(APIView):
 		except Verification.DoesNotExist:
 			raise Http404
 
-	def get(self, request, format=None):
+	def post(self, request, format=None):
 		user = request.data['user']
 		verification_details = self.get_object(user)
 		serializer = VerificationSerializer(verification_details, many=True)
@@ -384,7 +408,7 @@ class UserWalletView(APIView):
 		except UserWallet.DoesNotExist:
 			raise Http404
 
-	def get(self, request, format=None):
+	def post(self, request, format=None):
 		user = request.data['user']
 		user_wallet = self.get_object(user)
 		serializer = UserWalletSerializer(user_wallet, many=True)
