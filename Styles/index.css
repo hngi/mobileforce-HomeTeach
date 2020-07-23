@@ -125,3 +125,33 @@ button:not(:disabled) {
     top: 87px;
     left: 204px;
 }
+
+.captions h4 {
+    color: var(--main-txt-color);
+    text-align: center;
+    letter-spacing: -0.28px;
+    font-weight: 500;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 32px;
+    line-height: 41px;
+    font-style: normal;
+}
+
+.captions span {
+    color: var(--span-txt-color);
+}
+
+.about__us {
+    background: #FFFFFF;
+    box-shadow: 2px 8px 20px rgba(181, 181, 181, 0.2);
+    border-radius: 20px;
+    padding: 50px;
+}
+
+.about__us {
+    font-size: 16px;
+    font-family: 'Ubuntu', sans-serif;
+    letter-spacing: -0.28px;
+    color: var(--paragraph-txt-color);
+    line-height: 130%;
+}
