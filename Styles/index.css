@@ -6,7 +6,7 @@
     --paragraph-txt-color: #2F2E41;
     --span-txt-color: #505050;
     --button-bg-color: #2F2E41;
-    --main-padding-top: 15px;
+    --main-padding-top: 20px;
 }
 
 html {
@@ -68,19 +68,21 @@ button:not(:disabled) {
 }
 
 .home-teach-hero {
-    margin-top: 250px;
+    margin-top: 150px;
 }
 
-.palm-view-hero h1 {
+.home-teach-hero h1 {
     font-family: 'Ubuntu', sans-serif;
     font-weight: 500px;
-    line-height: 50px;
+    line-height: 64px;
     font-size: 52px;
     color: var(--main-txt-color);
 }
 
-.palm-view-hero p {
-    font-size: 14px;
-    position: relative;
-    left: 60px;
+.home-teach-hero p {
+    font-size: 20px;
+    font-family: 'Ubuntu', sans-serif;
+    letter-spacing: -0.28px;
+    color: var(--paragraph-txt-color);
+    padding-top: var(--main-padding-top);
 }
