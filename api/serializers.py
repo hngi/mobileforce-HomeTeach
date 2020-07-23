@@ -142,7 +142,7 @@ class ClassesSerializer(serializers.Serializer):
                             'student_pic':schedule.user.profile.profile_pic.url
                         }
                 schedules.append(data)
-            schedules.sort(key = lambda date: (datetime.strptime(date['days'], '%d-%m-%Y'), date['from_hour'], date['from_minute']))
+            schedules.sort(key = lambda date: (datetime.strptime(date['day'], '%d-%m-%Y'), date['from_hour'], date['from_minute']))
         return schedules
 
 
