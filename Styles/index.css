@@ -96,6 +96,32 @@ button:not(:disabled) {
     height: 80vh
 }
 
+
+/* About us section styles here */
+
 .about {
     padding-top: var(--div-padding-top);
+}
+
+.about__placeholder {
+    background-image: url('../Assets/Vectors/about-bg.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 743.88px;
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+.image1 {
+    position: relative;
+    top: 30;
+    left: 20;
+}
+
+.image2 {
+    position: absolute;
+    top: 87px;
+    left: 204px;
 }
