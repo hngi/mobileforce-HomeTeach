@@ -1,37 +1,23 @@
-$(document).ready(function() {
+// 
 
-    $('.items').slick({
-        dots: true,
-        infinite: true,
-        speed: 1000,
-        autoplay: true,
-        autoplaySpeed: 2000,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        responsive: [{
-                breakpoint: 1024,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    infinite: true,
-                    dots: true
-                }
-            },
-            {
-                breakpoint: 600,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1
-                }
-            },
-            {
-                breakpoint: 480,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1
-                }
-            }
+// external js: flickity.pkgd.js
+var $carousel = $('.carousel').flickity({
+    imagesLoaded: true,
+    percentPosition: false,
+});
 
-        ]
+var $imgs = $carousel.find('.carousel-cell img');
+// get transform property
+var docStyle = document.documentElement.style;
+var transformProp = typeof docStyle.transform == 'string' ?
+    'transform' : 'WebkitTransform';
+// get Flickity instance
+var flkty = $carousel.data('flickity');
+
+$carousel.on('scroll.flickity', function() {
+    flkty.slides.forEach(function(slide, i) {
+        var img = $imgs[i];
+        var x = (slide.target + flkty.x) * -1 / 3;
+        img.style[transformProp] = 'translateX(' + x + 'px)';
     });
 });

@@ -13,6 +13,7 @@
 html {
     font-family: 'Ubuntu', sans-serif;
     font-family: 'Open Sans', sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 
@@ -53,10 +54,7 @@ header {
     top: 5px
 }
 
-[type=button]:not(:disabled),
-[type=reset]:not(:disabled),
-[type=submit]:not(:disabled),
-button:not(:disabled) {
+.home__btn {
     font-family: 'Poppins', sans-serif;
     align-items: center;
     letter-spacing: -0.28px;
@@ -66,6 +64,15 @@ button:not(:disabled) {
     border-radius: 5px;
     background-color: var(--button-bg-color);
     color: white;
+    padding: 12px 13px 12px 13px;
+    border: none;
+    outline: none;
+}
+
+.home__btn:focus,
+.home__btn:focus,
+[type="button"]:focus {
+    outline: none;
 }
 
 .home-teach-hero {
@@ -283,5 +290,99 @@ i.fa {
 /* tutors styles here */
 
 .tutors {
-    padding-top: var(--div-padding-top);
+    position: relative;
+    bottom: 130px;
+}
+
+.carousel {
+    background: #EEE;
+    margin-top: 70px;
+}
+
+.carousel-cell {
+    width: 100%;
+    /* full width */
+    /* height: 160px; */
+    /* height of carousel */
+    margin: 0px 50px 0px 50px;
+}
+
+.flickity-page-dots .dot.is-selected {
+    background: var(--main-txt-color);
+}
+
+.flickity-viewport {
+    background: white;
+    height: 270px !important;
+}
+
+.flickity-prev-next-button .flickity-button-icon {
+    color: var(--main-txt-color);
+}
+
+@media screen and ( min-width: 768px) {
+    .carousel-cell img {
+        height: 400px;
+    }
+}
+
+.tutor__card {
+    background: #FFFFFF;
+    box-shadow: 2px 8px 20px rgba(181, 181, 181, 0.2);
+    border-radius: 20px;
+    width: 568px;
+    height: 400px;
+    ;
+}
+
+.card {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background: #FFFFFF;
+    box-shadow: 2px 8px 20px rgba(181, 181, 181, 0.2);
+    border-radius: 20px;
+    border: none;
+}
+
+.card-title {
+    color: var(--main-txt-color);
+    letter-spacing: -0.28px;
+    font-size: 30px;
+    line-height: 40px;
+    font-weight: 500;
+    text-align: center;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.card-subtitle {
+    color: #27274C;
+    letter-spacing: -0.28px;
+    text-align: center;
+    font-size: 18px;
+    line-height: 32px;
+    font-weight: normal;
+    font-family: 'Poppins', sans-serif;
+}
+
+.card-text {
+    color: var(--paragraph-txt-color);
+    font-style: normal;
+    text-align: center;
+    letter-spacing: -0.28px;
+    line-height: 25px;
+    /* font-family: 'Ubuntu', sans-serif; */
+    font-size: 16px;
+    padding-top: 5px;
+}
+
+.avatar img {
+    position: absolute;
+    top: 50px;
+    left: 370px;
+    height: 22vh;
 }
