@@ -1,10 +1,10 @@
 package com.mobileforce.hometeach.data.sources
 
 import androidx.lifecycle.LiveData
-import com.mobileforce.hometeach.data.sources.local.entities.ProfileEntity
-import com.mobileforce.hometeach.data.sources.local.entities.TutorEntity
 import com.mobileforce.hometeach.data.model.User
+import com.mobileforce.hometeach.data.sources.local.entities.ProfileEntity
 import com.mobileforce.hometeach.data.sources.local.entities.TutorDetailsEntity
+import com.mobileforce.hometeach.data.sources.local.entities.TutorEntity
 import com.mobileforce.hometeach.data.sources.local.entities.UserEntity
 import com.mobileforce.hometeach.data.sources.remote.Api
 import com.mobileforce.hometeach.data.sources.remote.Params
@@ -201,8 +201,13 @@ class RemoteDataSource(private val api: Api) : DataSource {
             "address" to params.address,
             "hourly_rate" to params.hourly_rate,
             "desc" to params.desc
-            )
-        return api.updateTutorProfile(id,map)
+        )
+        return api.updateTutorProfile(id, map)
+    }
+
+    override suspend fun getUserWallet(param: Params.UserWallet): UserWalletResponse {
+
+        return api.getUserWallet(param)
     }
 
 }

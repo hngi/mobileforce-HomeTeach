@@ -80,5 +80,5 @@ class Params {
         val desc: String
     )
 
-    data class UserWallet(val userId: String)
+    data class UserWallet(val user: String)
 }

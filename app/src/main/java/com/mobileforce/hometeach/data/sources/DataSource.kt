@@ -1,10 +1,10 @@
 package com.mobileforce.hometeach.data.sources
 
 import androidx.lifecycle.LiveData
-import com.mobileforce.hometeach.data.sources.local.entities.ProfileEntity
-import com.mobileforce.hometeach.data.sources.local.entities.TutorEntity
 import com.mobileforce.hometeach.data.model.User
+import com.mobileforce.hometeach.data.sources.local.entities.ProfileEntity
 import com.mobileforce.hometeach.data.sources.local.entities.TutorDetailsEntity
+import com.mobileforce.hometeach.data.sources.local.entities.TutorEntity
 import com.mobileforce.hometeach.data.sources.local.entities.UserEntity
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
@@ -97,4 +97,5 @@ interface DataSource {
         params: Params.UpdateTutorProfile
     ): LoginResponse
 
+    suspend fun getUserWallet(param: Params.UserWallet): UserWalletResponse = TODO()
 }

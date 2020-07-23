@@ -10,7 +10,10 @@ import com.mobileforce.hometeach.utils.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class HomePageViewModel(private val userRepository: UserRepository, private val preferenceHelper: PreferenceHelper) : ViewModel() {
+class HomePageViewModel(
+    private val userRepository: UserRepository,
+    private val preferenceHelper: PreferenceHelper
+) : ViewModel() {
 
     val user = userRepository.getUser()
     val profile = userRepository.profileLiveData()
@@ -19,17 +22,19 @@ class HomePageViewModel(private val userRepository: UserRepository, private val 
     private val _tutorList = MutableLiveData<Result<List<TutorModel>>>()
     val tutorList = _tutorList.asLiveData()
 
-
+    init {
+        fetchUserWallet()
+    }
 
     /**
      * This initially attempts to get data from the cache. If this is empty, it would
      * fetch from the remote source.
      */
     fun getTutorList() {
-        Log.i("MAYOKUN","GETTING LIST")
+        Log.i("MAYOKUN", "GETTING LIST")
         viewModelScope.launch {
             val listTutors = userRepository.getTutorListDb()
-            Log.i("MAYOKUN","LIST IS LOCAL $listTutors")
+            Log.i("MAYOKUN", "LIST IS LOCAL $listTutors")
             if (listTutors.isNullOrEmpty()) {
                 refreshTutorList()
             } else {
@@ -45,13 +50,13 @@ class HomePageViewModel(private val userRepository: UserRepository, private val 
      */
     fun refreshTutorList() {
         _tutorList.postValue(Result.Loading)
-        Log.i("MAYOKUN","REFRESHING")
+        Log.i("MAYOKUN", "REFRESHING")
         viewModelScope.launch {
             try {
                 val response = userRepository.getTutorList()
                 if (response.isSuccessful) {
                     val tutorListResponse = response.body()
-                    Log.i("MAYOKUN","RESPONSE $tutorListResponse")
+                    Log.i("MAYOKUN", "RESPONSE $tutorListResponse")
                     val listOfTutors = tutorListResponse?.map {
                         it.toDomainModel()
                     }
@@ -60,7 +65,7 @@ class HomePageViewModel(private val userRepository: UserRepository, private val 
                     userRepository.saveTutorList(listOfTutors!!.map { it.toDbEntity() })
 
                 } else {
-                    Log.i("MAYOKUN","NULL RESPONSE")
+                    Log.i("MAYOKUN", "NULL RESPONSE")
                     _tutorList.postValue(Result.Success(null))
                 }
             } catch (exception: Exception) {
@@ -80,6 +85,22 @@ class HomePageViewModel(private val userRepository: UserRepository, private val 
         viewModelScope.launch {
             userRepository.modify()
             preferenceHelper.isLoggedIn = false
+        }
+    }
+
+
+    fun fetchUserWallet() {
+
+        viewModelScope.launch {
+
+            try {
+                userRepository.getUserWallet()
+
+            } catch (e: Exception) {
+
+            }
+
+            //save wallet to db
         }
     }
 

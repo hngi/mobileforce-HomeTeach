@@ -1,10 +1,10 @@
 package com.mobileforce.hometeach.data.repository
 
 import androidx.lifecycle.LiveData
-import com.mobileforce.hometeach.data.sources.local.entities.ProfileEntity
-import com.mobileforce.hometeach.data.sources.local.entities.TutorEntity
 import com.mobileforce.hometeach.data.model.User
+import com.mobileforce.hometeach.data.sources.local.entities.ProfileEntity
 import com.mobileforce.hometeach.data.sources.local.entities.TutorDetailsEntity
+import com.mobileforce.hometeach.data.sources.local.entities.TutorEntity
 import com.mobileforce.hometeach.data.sources.local.entities.UserEntity
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
@@ -18,7 +18,7 @@ interface UserRepository {
 
     suspend fun register(params: Params.SignUp): RegisterUserResponse
 
-    suspend fun passwordReset(params: Params.PasswordReset):Response<EmailResponse>
+    suspend fun passwordReset(params: Params.PasswordReset): Response<EmailResponse>
 
     suspend fun saveUser(user: User)
 
@@ -64,8 +64,11 @@ interface UserRepository {
 
     suspend fun getTutorDetailsForUser(id: Int): Response<TutorDetailsResponse>
 
-    suspend fun getTutorDetailsForUserDb(id: Int) : TutorDetailsEntity?
+    suspend fun getTutorDetailsForUserDb(id: Int): TutorDetailsEntity?
 
     suspend fun saveTutorDetailsForUserDb(tutorDetailsEntity: TutorDetailsEntity)
+
+    suspend fun getUserWallet(): UserWalletResponse
+
 }
 
