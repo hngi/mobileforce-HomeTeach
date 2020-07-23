@@ -1,6 +1,5 @@
 package com.mobileforce.hometeach.ui.signin
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -76,7 +75,9 @@ class SignInViewModel(
                                 other_courses,
                                 state,
                                 address,
-                                user_url
+                                user_url,
+                                credentials = credentials,
+                                videoUrl = videoUrl
                             )
                             userRepository.saveUserProfile(profile)
 

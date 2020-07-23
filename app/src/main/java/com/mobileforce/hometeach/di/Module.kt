@@ -29,7 +29,6 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.net.Proxy
 import java.util.concurrent.TimeUnit
 
 
@@ -86,8 +85,8 @@ val appModule = module {
     factory { SignInViewModel(get(), get()) }
     factory { SignUpViewModel(get()) }
     factory { HomePageViewModel(get(), get()) }
-    factory { TutorListViewModel(get())}
-    factory { ProfileViewModel(get(),get()) }
+    factory { TutorListViewModel(get()) }
+    factory { ProfileViewModel(get()) }
 
     factory { EditTutorViewModel(get()) }
     factory { StudentAddCardDetailsViewModel(get()) }

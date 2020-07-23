@@ -5,16 +5,14 @@ import com.mobileforce.hometeach.data.repository.TutorRepository
 import com.mobileforce.hometeach.data.sources.DataSourceFactory
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.LoginResponse
-import com.mobileforce.hometeach.data.sources.remote.wrappers.TutorDetailsResponse
-import com.mobileforce.hometeach.data.sources.remote.wrappers.UpdateTutorResponse
 import com.mobileforce.hometeach.data.sources.remote.wrappers.UploadResponse
-import com.mobileforce.hometeach.utils.UploadaResponse
+import com.mobileforce.hometeach.data.sources.remote.wrappers.UserProfileResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
 
 class TutorRepositoryImpl (private val dataSource: DataSourceFactory): TutorRepository {
-    override suspend fun getTutorDetails(): TutorDetailsResponse {
+    override suspend fun getTutorDetails(): UserProfileResponse {
         val user = dataSource.local().getSingleUserProfile()
         return dataSource.remote().getTutorDetails(user.id.toInt())
     }
@@ -33,7 +31,7 @@ class TutorRepositoryImpl (private val dataSource: DataSourceFactory): TutorRepo
     override suspend fun updateTutorProfile(
         id: Int,
         params: Params.UpdateTutorProfile
-    ): Response<LoginResponse> {
+    ):LoginResponse{
         return dataSource.remote().updateTutorProfile(id,params)
     }
 
@@ -44,18 +42,18 @@ class TutorRepositoryImpl (private val dataSource: DataSourceFactory): TutorRepo
     override suspend fun uploadProfilePic(
         id: Int,
         profile_pic: MultipartBody.Part
-    ): Response<UploadResponse> {
+    ): UploadResponse{
         return dataSource.remote().uploadProfilePic(id,profile_pic)
     }
 
-    override suspend fun uploadVideo(id: Int, video: MultipartBody.Part): Response<UploadResponse> {
+    override suspend fun uploadVideo(id: Int, video: MultipartBody.Part):UploadResponse {
        return dataSource.remote().uploadVideo(id,video)
     }
 
     override suspend fun uploadCredential(
         id: Int,
         credentials: MultipartBody.Part
-    ): Response<UploadResponse> {
+    ):UploadResponse{
         return dataSource.remote().uploadCredential(id,credentials)
     }
 

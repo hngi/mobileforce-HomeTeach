@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tool="http://schemas.android.com/tools"
     android:orientation="vertical"
     tool:context="com.mobileforce.hometeach.ui.studentpayments.carddetails.StudentCardDetailsFragment">
 
@@ -16,6 +17,9 @@
         app:titleTextColor="@color/black"
         app:popupTheme="@style/ThemeOverlay.AppCompat.ActionBar"
         android:gravity="center_horizontal" />
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -109,10 +113,13 @@
             android:layout_gravity="center"
             android:layout_marginTop="16dp"
             android:background="@drawable/btn_background"
+            android:visibility="invisible"
             android:text="@string/clear_all"
             android:id="@+id/btn_cancel"
             android:layout_margin="10dp"
             android:textColor="@color/white" />
     </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>

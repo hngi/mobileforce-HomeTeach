@@ -7,10 +7,9 @@ import com.mobileforce.hometeach.data.model.User
 import com.mobileforce.hometeach.data.model.UserEntity
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
+import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
-import com.mobileforce.hometeach.utils.UploadaResponse
 import retrofit2.Response
 
 
@@ -22,6 +21,7 @@ interface DataSource {
     suspend fun signUp(params: Params.SignUp): RegisterUserResponse
 
     suspend fun resetPassword(params: Params.PasswordReset): Response<EmailResponse>
+
     suspend fun saveUser(user: User)
 
     fun getUser(): LiveData<UserEntity>
@@ -32,7 +32,7 @@ interface DataSource {
 
     suspend fun getProfileList(): List<ProfileResponse>
 
-    suspend fun getTutorDetails(id: Int): TutorDetailsResponse
+    suspend fun getTutorDetails(id: Int): UserProfileResponse
 
     suspend fun clearDb()
 
@@ -50,7 +50,7 @@ interface DataSource {
 
     suspend fun saveUserCardDetails(params: Params.CardDetails)
 
-    suspend fun getUserCardDetails(id: String): List<UserCardDetailResponse>
+    suspend fun getUserCardDetails(params: Params.UserID): List<UserCardDetailResponse>
 
     suspend fun uploadTutorMedia(
         id: RequestBody,
@@ -62,29 +62,32 @@ interface DataSource {
     suspend fun uploadProfilePic(
         id: Int,
         profile_pic: MultipartBody.Part
-    ): Response<UploadResponse>
+    ): UploadResponse
 
     suspend fun uploadVideo(
         id: Int,
         video: MultipartBody.Part
-    ): Response<UploadResponse>
+    ):UploadResponse
 
     suspend fun uploadCredential(
         id: Int,
         credentials: MultipartBody.Part
-    ): Response<UploadResponse>
+    ): UploadResponse
 
 
     suspend fun saveUserProfile(profile: Profile)
 
     fun profileLiveData(): LiveData<ProfileEntity>
-    suspend fun getUserProfile(id: Int): StudentProfileResponse
+
+    suspend fun getUserProfile(id: Int): UserProfileResponse
+
     suspend fun getSingleUserProfile(): ProfileEntity
 
     suspend fun getProfileId(): Int
+
     suspend fun updateTutorProfile(
         id: Int,
         params: Params.UpdateTutorProfile
-    ): Response<LoginResponse>
+    ): LoginResponse
 
 }

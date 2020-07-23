@@ -18,7 +18,6 @@ class Params {
         val is_tutor: Boolean,
         val phone_number: String,
         val organization_email: String = "akinsolaademolatemitope@gmail.com"
-
     )
 
 
@@ -38,10 +37,10 @@ class Params {
     )
 
     data class CardDetails(
-        val user_id: String,
+        val user: String,
         val card_holder_name: String,
         val card_number: String,
-        val card_cvc: String,
+        val cvv: String,
         val expiry_month: Int,
         val expiry_year: Int
     )
@@ -53,7 +52,6 @@ class Params {
         var totalBalance: String,
         var totalProfileVisits: String,
         var totalReviews: String
-
     )
 
     data class RequestTutorService(
@@ -66,6 +64,10 @@ class Params {
         val subject: String,
         val grade: String,
         val dates: List<String>
+    )
+
+    data class UserID(
+        val user: String
     )
 
     data class UpdateTutorProfile(

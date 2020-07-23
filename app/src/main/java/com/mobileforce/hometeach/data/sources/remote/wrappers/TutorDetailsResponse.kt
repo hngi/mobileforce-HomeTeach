@@ -2,20 +2,20 @@ package com.mobileforce.hometeach.data.sources.remote.wrappers
 
 data class TutorDetailsResponse (
 
-    val user : User,
-    val id : Int,
-    val rating : Rating,
-    val profile_pic : String,
-    val desc : String,
-    val credentials : String,
-    val video : String,
-    val hourly_rate : String,
-    val field : String,
-    val major_course : String,
-    val other_courses : String,
-    val state : String,
-    val address : String,
-    val user_url : String
+    val user: User,
+    val id: Int,
+    val rating: Rating,
+    val profile_pic: String,
+    val desc: String?,
+    val credentials: String?,
+    val video: String?,
+    val hourly_rate: String,
+    val field: String?,
+    val major_course: String?,
+    val other_courses: String?,
+    val state: String?,
+    val address: String?,
+    val user_url: String
 )
 data class User (
 

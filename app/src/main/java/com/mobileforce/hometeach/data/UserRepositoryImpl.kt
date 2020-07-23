@@ -46,7 +46,7 @@ class UserRepositoryImpl(private val dataSource: DataSourceFactory) : UserReposi
         return dataSource.remote().getProfileList()
     }
 
-    override suspend fun getTutorDetails(): TutorDetailsResponse {
+    override suspend fun getTutorDetails(): UserProfileResponse {
         val user = dataSource.local().getSingleUser()
         return dataSource.remote().getTutorDetails(user.id.toDouble().toInt())
     }
@@ -84,8 +84,10 @@ class UserRepositoryImpl(private val dataSource: DataSourceFactory) : UserReposi
 
     }
 
-    override suspend fun getUserCardDetails(id: String): List<UserCardDetailResponse> {
-        return dataSource.remote().getUserCardDetails(id)
+    override suspend fun getUserCardDetails(): List<UserCardDetailResponse> {
+        val user = dataSource.local().getSingleUser()
+        val userId = Params.UserID(user = user.id)
+        return dataSource.remote().getUserCardDetails(userId)
     }
 
     override suspend fun getSingleUser(): UserEntity {
@@ -117,9 +119,15 @@ class UserRepositoryImpl(private val dataSource: DataSourceFactory) : UserReposi
         return dataSource.local().getSingleUserProfile()
     }
 
-    override suspend fun getUserProfile(): StudentProfileResponse {
-        val user = dataSource.local().getSingleUserProfile()
-        return dataSource.remote().getUserProfile(user.id.toInt())
+    override suspend fun getUserProfile(): UserProfileResponse {
+        val user = getSingleUser()
+        val profile = dataSource.local().getSingleUserProfile()
+        return if (user.is_tutor) {
+            dataSource.remote().getTutorDetails(profile.id)
+        } else {
+            dataSource.remote().getUserProfile(profile.id)
+        }
+
     }
 
 

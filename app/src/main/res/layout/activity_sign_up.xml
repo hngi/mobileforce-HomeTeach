@@ -77,7 +77,7 @@
             app:layout_constraintTop_toBottomOf="@+id/text_view" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInput_fullname"
+            android:id="@+id/textInput_full_name"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -95,7 +95,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView7">
 
             <com.google.android.material.textfield.TextInputEditText
-               android:id="@+id/full_name"
+               android:id="@+id/et_full_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/user_icon"
@@ -115,7 +115,7 @@
             android:text="@string/email"
             android:textColor="@color/textColor"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInput_fullname" />
+            app:layout_constraintTop_toBottomOf="@+id/textInput_full_name" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInput_email"
@@ -136,7 +136,7 @@
             app:layout_constraintTop_toBottomOf="@+id/text_email">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/email"
+                android:id="@+id/et_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableStart="@android:drawable/ic_lock_idle_lock"
@@ -178,7 +178,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView_password">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/pass_word"
+                android:id="@+id/et_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/lock"
@@ -227,32 +227,35 @@
 
         <CheckBox
             android:id="@+id/checkBox"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginLeft="32dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
             android:layout_marginRight="32dp"
+            android:textSize="16sp"
             android:fontFamily="@font/ubuntu"
             android:text="@string/i_have_read_the"
             android:textColor="@color/textColor"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView3" />
 
         <TextView
             android:id="@+id/textView2"
-            android:layout_width="161dp"
-            android:layout_height="13dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:fontFamily="@font/ubuntu"
             android:text="@string/terms_and_conditions"
             android:textColor="@color/colorAppAccent"
+            android:textSize="16sp"
+            android:layout_marginStart="16dp"
             app:layout_constraintBottom_toBottomOf="@+id/checkBox"
-            app:layout_constraintEnd_toEndOf="@+id/checkBox"
+            app:layout_constraintStart_toEndOf="@id/checkBox"
             app:layout_constraintTop_toTopOf="@+id/checkBox"
-            app:layout_constraintVertical_bias="0.464" />
+            app:layout_constraintVertical_bias="0.52"
+            android:layout_marginLeft="16dp" />
 
         <TextView
             android:id="@+id/textView3"
@@ -351,22 +354,22 @@
             android:layout_marginLeft="32dp"
             android:layout_marginEnd="32dp"
             android:layout_marginRight="32dp"
-            app:cardBackgroundColor="@android:color/transparent"
+            app:cardBackgroundColor="@null"
             app:cardCornerRadius="9dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_phnoe_number"
-            app:strokeColor="@color/colorAppAccent"
-            app:strokeWidth="2dp">
+            app:strokeColor="@color/secondaryTextColor"
+            app:strokeWidth="1dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textInputLayout"
+                    android:id="@+id/textInput_phone_number"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                    android:layout_width="179dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     app:boxBackgroundColor="@color/colorBackground"
                     app:boxBackgroundMode="filled"
@@ -376,10 +379,11 @@
                     app:boxCornerRadiusTopStart="8dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/country_code_picker"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/phone_number"
+                        android:id="@+id/et_phone_number"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint=""
@@ -388,20 +392,17 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.rilixtech.widget.countrycodepicker.CountryCodePicker
-                    android:layout_width="106dp"
-                    android:layout_height="33dp"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="0dp"
+                    android:id="@+id/country_code_picker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
                     app:ccp_enableHint="true"
                     app:ccp_hideNameCode="true"
                     app:ccp_hidePhoneCode="false"
+                    android:layout_marginStart="8dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/textInputLayout"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginRight="0dp"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginLeft="8dp" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
 

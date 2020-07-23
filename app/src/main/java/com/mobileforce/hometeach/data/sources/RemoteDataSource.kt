@@ -9,7 +9,6 @@ import com.mobileforce.hometeach.data.sources.remote.Api
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
 import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
-import com.mobileforce.hometeach.utils.UploadaResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -63,7 +62,7 @@ class RemoteDataSource(private val api: Api) : DataSource {
 
     override suspend fun getTutorDetails(
         id: Int
-    ): TutorDetailsResponse {
+    ): UserProfileResponse {
         return api.getTutorDetails(id)
     }
 
@@ -77,18 +76,21 @@ class RemoteDataSource(private val api: Api) : DataSource {
 
     override suspend fun saveUserCardDetails(params: Params.CardDetails) {
         val map = hashMapOf(
-            "user_id" to params.user_id,
+            "user" to params.user,
             "card_holder_name" to params.card_holder_name,
             "card_number" to params.card_number,
-            "card_cvv" to params.card_cvc,
+            "cvv" to params.cvv,
             "expiry_month" to params.expiry_month,
             "expiry_year" to params.expiry_year
         )
         api.saveUserCardDetails(map)
     }
 
-    override suspend fun getUserCardDetails(id: String): List<UserCardDetailResponse> {
-        return api.getUserCardDetails(id)
+    override suspend fun getUserCardDetails(params: Params.UserID): List<UserCardDetailResponse> {
+        val map = hashMapOf(
+            "user" to params.user
+        )
+        return api.getUserCardDetails(map)
     }
 
 
@@ -104,21 +106,21 @@ class RemoteDataSource(private val api: Api) : DataSource {
     override suspend fun uploadProfilePic(
         id: Int,
         profile_pic: MultipartBody.Part
-    ): Response<UploadResponse> {
+    ): UploadResponse {
         return api.uploadProfilePic(id,profile_pic)
     }
 
     override suspend fun uploadVideo(
         id: Int,
         video: MultipartBody.Part
-    ): Response<UploadResponse> {
+    ): UploadResponse{
        return api.uploadVideo(id,video)
     }
 
     override suspend fun uploadCredential(
         id: Int,
         credentials: MultipartBody.Part
-    ): Response<UploadResponse> {
+    ):UploadResponse{
       return api.uploadCredential(id,credentials)
     }
 
@@ -161,7 +163,7 @@ class RemoteDataSource(private val api: Api) : DataSource {
 
     override suspend fun getUserProfile(
         id: Int
-    ): StudentProfileResponse {
+    ): UserProfileResponse {
         return api.getUserProfile(id)
     }
 
@@ -176,7 +178,7 @@ class RemoteDataSource(private val api: Api) : DataSource {
     override suspend fun updateTutorProfile(
         id: Int,
         params: Params.UpdateTutorProfile
-    ): Response<LoginResponse> {
+    ): LoginResponse {
 
         val map = mapOf(
             "field" to params.field,

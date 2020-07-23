@@ -38,15 +38,15 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/full_name_header"
+            android:id="@+id/tutor_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="84dp"
+            android:layout_marginLeft="84dp"
+            android:layout_marginTop="32dp"
             android:text="@string/full_name"
             android:textColor="#333333"
-            android:textSize="16sp"
+            android:textSize="20sp"
             app:layout_constraintStart_toEndOf="@id/profile_pic"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -65,7 +65,7 @@
             app:boxStrokeColor="@color/primaryColor"
             app:layout_constraintEnd_toEndOf="@id/guideline2"
             app:layout_constraintStart_toEndOf="@id/profile_pic"
-            app:layout_constraintTop_toBottomOf="@id/full_name_header">
+            app:layout_constraintTop_toBottomOf="@id/tutor_name">
 
             <!--            <com.google.android.material.textfield.TextInputEditText-->
             <!--                android:id="@+id/et_name_input"-->
@@ -440,8 +440,8 @@
                 android:id="@+id/et_rate_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/course_icon"
-                android:drawableLeft="@drawable/course_icon"
+                android:drawableStart="@drawable/nairaicon"
+                android:drawableLeft="@drawable/nairaicon"
                 android:inputType="number" />
         </com.google.android.material.textfield.TextInputLayout>
 

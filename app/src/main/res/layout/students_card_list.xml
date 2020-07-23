@@ -36,21 +36,25 @@
             <TextView
                 android:id="@+id/tv_card_number"
                 android:layout_column="1"
+                android:layout_marginStart="32dp"
                 style="@style/TextAppearance.MaterialComponents.Body1"
                 android:layout_columnWeight="1"
                 android:text=""
                 app:fontFamily="@font/ubuntu"
-                android:textColor="@color/blackColor" />
+                android:textColor="@color/blackColor"
+                android:layout_marginLeft="16dp" />
 
 
             <RadioButton
                 android:id="@+id/rb_select_card"
                 android:layout_column="2"
                 android:layout_gravity="end"
+                android:layout_marginStart="32dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:buttonTint="@color/primaryColor"
-                android:checked="false"/>
+                android:checked="false"
+                android:layout_marginLeft="24dp" />
 
         </GridLayout>
     </LinearLayout>
