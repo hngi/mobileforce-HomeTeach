@@ -93,6 +93,15 @@ class ProfileFragment : Fragment() {
                 profile.hourly_rate?.let {
                     bindingTutor.AmountTv.text = String.format("%s/hr", it)
                 }
+
+                if (profile.desc== "" )
+                {
+                    bindingTutor.descriptionText.visibility =View.INVISIBLE
+                    bindingTutor.TutorDescriptionDetailCard.visibility = View.INVISIBLE
+                    bindingTutor.tutorDesc.text = ""
+                }
+
+
                 bindingTutor.tutorDesc.text = profile.desc
                 bindingTutor.tutorInterest.text = profile.other_courses
                 credentialUrl = profile.credentials
@@ -103,7 +112,6 @@ class ProfileFragment : Fragment() {
                 bindingTutor.tutorVideo.setVideoPath(videoUrl)
                 mediaController = MediaController(context)
                 bindingTutor.tutorVideo.setMediaController(mediaController)
-
                 mediaController?.setAnchorView(bindingTutor.tutorVideo)
                 bindingTutor.tutorVideo.start()
 

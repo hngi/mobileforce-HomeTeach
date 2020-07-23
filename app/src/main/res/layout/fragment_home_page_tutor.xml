@@ -41,7 +41,7 @@
                     android:textSize="20sp"
                     android:layout_height="30dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="140dp"
+                    android:layout_marginLeft="120dp"
                     android:background="@drawable/bell" />
 
             </LinearLayout>
