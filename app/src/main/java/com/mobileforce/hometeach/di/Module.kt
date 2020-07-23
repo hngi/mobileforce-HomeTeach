@@ -20,6 +20,7 @@ import com.mobileforce.hometeach.ui.signup.SignUpViewModel
 import com.mobileforce.hometeach.ui.studentpayments.carddetails.StudentAddCardDetailsViewModel
 import com.mobileforce.hometeach.ui.studentpayments.carddetails.StudentCardDetailsViewModel
 import com.mobileforce.hometeach.ui.studentpayments.makepayments.StudentMakePaymentViewModel
+import com.mobileforce.hometeach.ui.tutordetails.TutorDetailsViewModel
 import com.mobileforce.hometeach.ui.tutorlist.TutorListViewModel
 import com.mobileforce.hometeach.utils.AppConstants.BASE_URL
 import com.mobileforce.hometeach.utils.AppConstants.DATABASE_NAME
@@ -89,6 +90,7 @@ val appModule = module {
     factory { TutorListViewModel(get()) }
     factory { ProfileViewModel(get()) }
     factory { BookTutorViewModel(get()) }
+    factory { TutorDetailsViewModel(get()) }
 
     factory { EditTutorViewModel(get()) }
     factory { StudentAddCardDetailsViewModel(get()) }

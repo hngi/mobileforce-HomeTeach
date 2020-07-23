@@ -107,7 +107,8 @@ class HomePageFragment : Fragment() {
         viewModel.getTutorList()
         topTutorsAdapter = TopTutorsAdapter(TopTutorsListItemListener { tutor ->
             if (tutor != null) {
-                findNavController().navigate(R.id.action_tutorHomePageFragment_to_tutorDetailsFragment)
+                val action = HomePageFragmentDirections.actionTutorHomePageFragmentToTutorDetailsFragment(tutor)
+                findNavController().navigate(action)
             }
         })
         viewModel.tutorList.observe(viewLifecycleOwner, Observer { result ->

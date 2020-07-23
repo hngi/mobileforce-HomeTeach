@@ -1,12 +1,13 @@
 package com.mobileforce.hometeach.data
 
 import androidx.lifecycle.LiveData
-import com.mobileforce.hometeach.data.model.ProfileEntity
-import com.mobileforce.hometeach.data.model.TutorEntity
+import com.mobileforce.hometeach.data.sources.local.entities.ProfileEntity
+import com.mobileforce.hometeach.data.sources.local.entities.TutorEntity
 import com.mobileforce.hometeach.data.model.User
-import com.mobileforce.hometeach.data.model.UserEntity
+import com.mobileforce.hometeach.data.sources.local.entities.UserEntity
 import com.mobileforce.hometeach.data.repository.UserRepository
 import com.mobileforce.hometeach.data.sources.DataSourceFactory
+import com.mobileforce.hometeach.data.sources.local.entities.TutorDetailsEntity
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
 import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
@@ -128,6 +129,18 @@ class UserRepositoryImpl(private val dataSource: DataSourceFactory) : UserReposi
             dataSource.remote().getUserProfile(profile.id)
         }
 
+    }
+
+    override suspend fun getTutorDetailsForUser(id: Int): Response<TutorDetailsResponse> {
+        return dataSource.remote().getTutorDetailsForUser(id)
+    }
+
+    override suspend fun getTutorDetailsForUserDb(id: Int): TutorDetailsEntity? {
+        return dataSource.local().getTutorDetailsFromDb(id)
+    }
+
+    override suspend fun saveTutorDetailsForUserDb(tutorDetailsEntity: TutorDetailsEntity) {
+        dataSource.local().saveTutorDetailsToDb(tutorDetailsEntity)
     }
 
 

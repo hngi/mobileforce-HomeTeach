@@ -1,25 +1,17 @@
 package com.mobileforce.hometeach.ui.tutorlist
 
-import android.util.Log
-import androidx.lifecycle.*
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.firebase.firestore.FieldValue
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
-import com.mobileforce.hometeach.data.model.TutorEntity
-import com.mobileforce.hometeach.data.model.UserEntity
+import com.mobileforce.hometeach.data.sources.local.entities.TutorEntity
 import com.mobileforce.hometeach.data.repository.UserRepository
-import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.models.TutorModel
 import com.mobileforce.hometeach.utils.Result
 import com.mobileforce.hometeach.utils.asLiveData
 import com.mobileforce.hometeach.utils.toDbEntity
 import com.mobileforce.hometeach.utils.toDomainModel
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import java.lang.Exception
 
 /**
@@ -30,12 +22,8 @@ class TutorListViewModel(
     private val userRepository: UserRepository
 ) : ViewModel() {
 
-    //List of all tutors
     private val _tutorList = MutableLiveData<Result<List<TutorModel>>>()
     val tutorList = _tutorList.asLiveData()
-
-
-
 
 
     /**

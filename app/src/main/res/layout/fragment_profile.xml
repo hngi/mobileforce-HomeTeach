@@ -292,7 +292,7 @@
             app:layout_constraintTop_toBottomOf="@id/relative_layout" />
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/Tutor_Description_Detail_card"
+            android:id="@+id/main_card"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -331,9 +331,9 @@
             android:textColor="@android:color/black"
             android:textSize="21sp"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toLeftOf="@id/Tutor_Description_Detail_card"
+            app:layout_constraintLeft_toLeftOf="@id/main_card"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/Tutor_Description_Detail_card" />
+            app:layout_constraintTop_toBottomOf="@id/main_card" />
 
         <ImageView
             android:id="@+id/Pdf_image"

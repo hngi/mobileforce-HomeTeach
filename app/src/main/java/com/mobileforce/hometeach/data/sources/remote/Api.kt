@@ -2,7 +2,7 @@ package com.mobileforce.hometeach.data.sources.remote
 
 
 import androidx.lifecycle.LiveData
-import com.mobileforce.hometeach.data.model.UserEntity
+import com.mobileforce.hometeach.data.sources.local.entities.UserEntity
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
 import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
 import okhttp3.MultipartBody
@@ -41,6 +41,10 @@ interface Api {
     @JvmSuppressWildcards
     @GET("v1/tutor-profiles/{id}/")
     suspend fun getTutorDetails(@Path("id") id: Int): UserProfileResponse
+
+    @JvmSuppressWildcards
+    @GET("v1/tutor-profiles/{id}/")
+    suspend fun getTutorDetailsForUser(@Path("id") id: Int): Response<TutorDetailsResponse>
 
     @JvmSuppressWildcards
     @POST("v1/credit-cards/")

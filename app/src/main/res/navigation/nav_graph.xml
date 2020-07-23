@@ -81,6 +81,9 @@
         <action
             android:id="@+id/action_tutorDetailsFragment_to_bookTutorFragment"
             app:destination="@id/bookTutorFragment" />
+        <argument
+            android:name="tutorModel"
+            app:argType="com.mobileforce.hometeach.models.TutorModel" />
     </fragment>
     <fragment
         android:id="@+id/tutorsAllFragment"

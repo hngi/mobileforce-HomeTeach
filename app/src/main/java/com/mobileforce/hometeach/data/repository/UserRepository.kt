@@ -1,10 +1,11 @@
 package com.mobileforce.hometeach.data.repository
 
 import androidx.lifecycle.LiveData
-import com.mobileforce.hometeach.data.model.ProfileEntity
-import com.mobileforce.hometeach.data.model.TutorEntity
+import com.mobileforce.hometeach.data.sources.local.entities.ProfileEntity
+import com.mobileforce.hometeach.data.sources.local.entities.TutorEntity
 import com.mobileforce.hometeach.data.model.User
-import com.mobileforce.hometeach.data.model.UserEntity
+import com.mobileforce.hometeach.data.sources.local.entities.TutorDetailsEntity
+import com.mobileforce.hometeach.data.sources.local.entities.UserEntity
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
 import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
@@ -60,5 +61,11 @@ interface UserRepository {
     suspend fun getSingleUserProfile(): ProfileEntity
 
     suspend fun getUserProfile(): UserProfileResponse
+
+    suspend fun getTutorDetailsForUser(id: Int): Response<TutorDetailsResponse>
+
+    suspend fun getTutorDetailsForUserDb(id: Int) : TutorDetailsEntity?
+
+    suspend fun saveTutorDetailsForUserDb(tutorDetailsEntity: TutorDetailsEntity)
 }
 

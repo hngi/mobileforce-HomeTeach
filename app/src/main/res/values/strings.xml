@@ -163,7 +163,7 @@
     <string name="colon_sign">:</string>
     <string name="cancel_small">Cancel</string>
     <string name="approve_small">Approve</string>
-    <string name="request_service">REQUEST\nSERVICE</string>
+    <string name="request_service">REQUEST \n SERVICE</string>
     <string name="card_number">Card Number</string>
     <string name="mm">MM</string>
     <string name="yy">YY</string>

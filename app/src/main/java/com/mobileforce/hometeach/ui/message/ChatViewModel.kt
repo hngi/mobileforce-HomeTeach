@@ -7,8 +7,8 @@ import androidx.lifecycle.viewModelScope
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.mobileforce.hometeach.data.model.ProfileEntity
-import com.mobileforce.hometeach.data.model.UserEntity
+import com.mobileforce.hometeach.data.sources.local.entities.ProfileEntity
+import com.mobileforce.hometeach.data.sources.local.entities.UserEntity
 import com.mobileforce.hometeach.data.repository.UserRepository
 import com.mobileforce.hometeach.models.Chat
 import com.mobileforce.hometeach.models.Message

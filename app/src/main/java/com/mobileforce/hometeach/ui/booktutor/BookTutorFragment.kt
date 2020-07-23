@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.snackbar.Snackbar
 import com.mobileforce.hometeach.R
@@ -42,6 +43,9 @@ class BookTutorFragment : Fragment(), SelectDateDialog.SelectDateListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.toolBar.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
         val bookTutorFragmentArgs by navArgs<BookTutorFragmentArgs>()
         val tutor = bookTutorFragmentArgs.tutor
         binding.tutor = tutor
