@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 :root {
     --main-txt-color: #0CB91E;
@@ -250,4 +250,30 @@ i.fa {
     margin-right: -15px;
     margin-left: -15px;
     flex-wrap: wrap;
+}
+
+.works__row {
+    padding-top: 60px;
+}
+
+
+/* .headers {
+    margin: auto !important;
+} */
+
+.headers h4 {
+    font-family: 'Ubuntu', sans-serif;
+    margin-bottom: 20px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 50px;
+    color: var(--main-txt-color);
+}
+
+.headers p {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 16px;
+    color: var(--paragraph-txt-color);
+    line-height: 32px;
 }
