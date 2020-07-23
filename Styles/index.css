@@ -209,10 +209,21 @@ i.fa {
 .features__bg {
     background-image: url('../Assets/Vectors/features-bg.png');
     background-position: center;
-    /* background-size: cover; */
     background-repeat: no-repeat;
-    height: 743.88px;
+    height: 690px;
     position: relative;
     top: 0;
     left: 0;
+}
+
+.image3 {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+.image4 {
+    position: absolute;
+    top: 100px;
+    left: 60px;
 }
