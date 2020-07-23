@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+:root {
+    --main-txt-color: #0CB91E;
+    --paragraph-txt-color: #2F2E41;
+    --span-txt-color-: #505050;
+    --main-padding-top: 15px;
+}
+
+html {
+    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.hero {
+    background: linear-gradient(0deg, rgba(214, 245, 217, 0.34), rgba(214, 245, 217, 0.34)), url('../Assets/Vectors/Hero-vector.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 902.78px;
+}
+
+header {
+    padding: 30px;
+}
+
+.navbar-light .navbar-nav .active>.nav-link {
+    color: var(--main-txt-color);
+}
+
+.active {
+    border-bottom: 2px solid red;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    font-family: 'Open Sans', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 25px;
+    color: var(--main-txt-color)
+}
+
+.phone {
+    position: relative;
+    top: 5px
+}
+
+[type=button]:not(:disabled),
+[type=reset]:not(:disabled),
+[type=submit]:not(:disabled),
+button:not(:disabled) {
+    border-color: #DBA7C1;
+    color: white;
+}
+
+.palm-view-hero {
+    margin-top: 250px;
+    color: white;
+}
+
+.palm-view-hero h1 {
+    font-weight: 500px;
+    line-height: 40px;
+    font-size: 65px;
+    color: #FFFFFF;
+}
+
+.palm-view-hero p {
+    font-size: 14px;
+    position: relative;
+    left: 60px;
+}
