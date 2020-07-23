@@ -97,15 +97,21 @@ class ProfileFragment : Fragment() {
                     imageUrl = result.data?.profile_pic.toString()
                     bindingTutor.teachersRatingBar.rating = result.data?.rating?.count?.toFloat()!!
                     bindingTutor.AmountTv.text= result.data?.hourly_rate + "/hr"
+
+                    if (result.data?.desc == "" )
+                    {
+                        bindingTutor.descriptionText.visibility =View.INVISIBLE
+                        bindingTutor.TutorDescriptionDetailCard.visibility = View.INVISIBLE
+                    }
                     bindingTutor.tutorDesc.text = result.data?.desc
                     bindingTutor.tutorInterest.text = result.data?.other_courses
                     url = result.data?.credentials
                     bindingTutor.TutorSubject.text = if (!result.data?.major_course.isNullOrEmpty()) result.data?.major_course +" Tutor" else ""
                     var  videourl = if (!result.data?.video.isNullOrEmpty()) result.data?.video  else "http://www.ebookfrenzy.com/android_book/movie.mp4"
                     bindingTutor.tutorVideo.setVideoPath(videourl)
-                    mediaController = MediaController(context)
-                    mediaController?.setAnchorView(bindingTutor.tutorVideo)
-                    bindingTutor.tutorVideo.setMediaController(mediaController)
+//                    mediaController = MediaController(context)
+//                    mediaController?.setAnchorView(bindingTutor.tutorVideo)
+//                    bindingTutor.tutorVideo.setMediaController(mediaController)
                     bindingTutor.tutorVideo.start()
                 }
 
