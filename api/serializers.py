@@ -166,26 +166,30 @@ class ClassesSerializer(serializers.Serializer):
         except User.DoesNotExist:
             raise serializers.ValidationError('A tutor with that id does not exist')
         schedule_details = tutor.tutor.all()
+        requests = tutor.requests.all()
 
         schedules = []
-        for schedule in schedule_details:
-            for day in schedule.days.all():
-                data = {
-                            'schedule_id':f'{schedule.id}-{day.id}',
-                            'subject':schedule.subject,
-                            'day':datetime.strftime(day.day, '%d-%m-%Y'),
-                            'from_minute':schedule.from_minute,
-                            'to_minute':schedule.to_minute,
-                            'from_hour':schedule.from_hour,
-                            'to_hour':schedule.to_hour,
-                            'grade':schedule.grade,
-                            'student_name':schedule.user.full_name,
-                            'student_id':str(schedule.user.id),
-                            'student_pic':schedule.user.profile.profile_pic.url
-                        }
-                schedules.append(data)
-            schedules.sort(key = lambda date: (datetime.strptime(date['day'], '%d-%m-%Y'), date['from_hour'], date['from_minute']))
+        for request in requests:
+            if request.accepted == True:
+                for day in request.schedule.days.all():
+                    data = {
+                                'schedule_id':f'{request.schedule.id}-{day.id}',
+                                'subject':request.schedule.subject,
+                                'day':datetime.strftime(day.day, '%d-%m-%Y'),
+                                'from_minute':request.schedule.from_minute,
+                                'to_minute':request.schedule.to_minute,
+                                'from_hour':request.schedule.from_hour,
+                                'to_hour':request.schedule.to_hour,
+                                'grade':request.schedule.grade,
+                                'student_name':request.schedule.user.full_name,
+                                'student_id':str(request.schedule.user.id),
+                                'student_pic':request.schedule.user.profile.profile_pic.url
+                            }
+                    schedules.append(data)
+        schedules.sort(key = lambda date: (datetime.strptime(date['day'], '%d-%m-%Y'), date['from_hour'], date['from_minute']))
         return schedules
+
+          
 
 class FavouriteTutorsSerializer(serializers.ModelSerializer):
     tutor_id = serializers.CharField()

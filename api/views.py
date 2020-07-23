@@ -101,18 +101,33 @@ def list_favourite_tutors(request):
 	data = request
 
 
-# def request_action(request):
-#     data = request.data
-#     id = data.get('id')
-#     request_id = data.get('request_id')
-#     action = data.get('action')
+@api_view(['POST', ])
+@permission_classes([AllowAny, ])
+def request_action(request):
+	data = request.data
+	id = data.get('id')
+	request_id = data.get('request_id')
+	action = data.get('action')
 
-#     try:
-#         user = User.objects.get(id=id)
-#     except User.DoesNotExist:
-#         user = User.objects.get(id=id)
-#     except User.DoesNotExist:
-#         return Response('a tutor/user with that id does not exist')
+	try:
+		user = User.objects.get(id=id)
+	except User.DoesNotExist:
+		user = User.objects.get(id=id)
+	except User.DoesNotExist:
+		return Response('a tutor/user with that id does not exist')
+
+	if action == 'accept':
+		request = user.requests.get(id=request_id)
+		print(request.accepted)
+		request.accepted = True
+		request.save()
+		return Response({'message':f'You have accepted {request.requester.full_name}\'s request'})
+
+	elif action == 'decline':
+		request = user.requests.get(id=request_id)
+		request.declined = True
+		request.save()
+		return Response({'message':f'You have declined {request.requester.full_name}\'s request'})
 
 
 class CustomUserViewSet(viewsets.ModelViewSet):

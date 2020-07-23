@@ -15,6 +15,7 @@ urlpatterns = [
     path('submit-request/', views.submit_request),
     path('tutor-requests/', views.list_requests_tutor),
     path('user-requests/', views.list_user_requests),
+    path('request-action/', views.request_action),
     path('tutor-classes/', views.get_tutor_classes),
     path('tutor-classes-requests/', views.get_tutor_classes_requests),
     path('rate-tutor/', views.rate_tutor),
