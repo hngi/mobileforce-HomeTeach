@@ -392,7 +392,7 @@
     
     .scroll {
         height: 100%;
-        background: url('../Assets/General/t1.png');
+        background: url('../Assets/General/tutor_2.png');
         background-repeat: no-repeat;
         background-attachment: fixed;
         background-position: center;
@@ -453,4 +453,12 @@
         font-size: 20px;
         line-height: 28px;
         margin-top: 80px;
+    }
+    
+    .layer {
+        background: url('../Assets/Vectors/sponsors-layer.png');
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 433.5px;
     }
