@@ -25,6 +25,34 @@
         font-family: 'Poppins', sans-serif;
     }
     /* Hero styles here */
+    /* Media Queries here */
+    
+    @media screen and (max-width: 450px) {
+        .hero {
+            background: linear-gradient(0deg, rgba(214, 245, 217, 0.34), rgba(214, 245, 217, 0.34)), url('../Assets/Vectors/mobile-hero.png') !important;
+            background-position: unset !important;
+            background-size: unset !important;
+            background-repeat: no-repeat !important;
+            height: 652px !important;
+        }
+        .home-teach-hero {
+            margin-top: 50px !important;
+        }
+        .home-teach-hero h1 {
+            font-size: 31px !important;
+            line-height: 43px !important;
+        }
+        .home-teach-hero p {
+            font-size: 16px !important;
+        }
+        .home-teach-hero .app__logo img {
+            height: 40px;
+        }
+        .hero__img {
+            height: 239.64px !important;
+            margin-top: 50px;
+        }
+    }
     
     .hero {
         background: linear-gradient(0deg, rgba(214, 245, 217, 0.34), rgba(214, 245, 217, 0.34)), url('../Assets/Vectors/Hero-vector.png');
@@ -701,16 +729,16 @@
     /* MENU STYLES */
     
     .menu-wrap {
-        position: fixed;
+        position: absolute;
         top: 0;
-        left: 0;
+        left: 1000;
         z-index: 1;
     }
     
     .menu-wrap .toggler {
         position: absolute;
         top: 0;
-        left: 0;
+        left: 00;
         z-index: 2;
         cursor: pointer;
         width: 50px;
@@ -721,7 +749,8 @@
     .menu-wrap .hamburger {
         position: absolute;
         top: 0;
-        left: 0;
+        left: 00;
+        /*move hamburger*/
         z-index: 1;
         width: 60px;
         height: 60px;
@@ -807,7 +836,7 @@
     }
     
     .menu-wrap .menu>div {
-        background: var(--overlay-color);
+        background: #F1FCF2;
         border-radius: 50%;
         width: 200vw;
         height: 200vw;
@@ -839,3 +868,4 @@
         text-decoration: none;
         transition: color 0.4s ease;
     }
+    /* Hamburger 2 style here */
