@@ -77,4 +77,6 @@ class Params {
         val hourly_rate: String,
         val desc: String
     )
+
+    data class TutorClassesRequest (val tutor_id: String)
 }

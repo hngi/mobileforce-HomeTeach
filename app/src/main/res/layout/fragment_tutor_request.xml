@@ -19,5 +19,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/list_item_class_requests_tutor" />
+        tools:listitem="@layout/tutor_request_layout" />
 </androidx.constraintlayout.widget.ConstraintLayout>

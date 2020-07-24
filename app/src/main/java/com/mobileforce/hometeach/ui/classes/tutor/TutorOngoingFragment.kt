@@ -1,13 +1,16 @@
 package com.mobileforce.hometeach.ui.classes.tutor
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import com.mobileforce.hometeach.databinding.FragmentTutorOngoingBinding
 import com.mobileforce.hometeach.models.OngoingClassModelTutor
 import com.mobileforce.hometeach.ui.classes.adapters.recylerviewadapters.TutorOngoingClassesAdapter
+import org.koin.android.ext.android.get
 
 /**
  * A simple [Fragment] subclass.
@@ -18,6 +21,11 @@ class TutorOngoingFragment : Fragment() {
 
     private lateinit var binding: FragmentTutorOngoingBinding
     private lateinit var tutorOngoingClassesAdapter: TutorOngoingClassesAdapter
+
+
+    private val viewModel: TutorOngoingViewModel = get<TutorOngoingViewModel>()
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -43,6 +51,14 @@ class TutorOngoingFragment : Fragment() {
         ongoingClassesList.add(OngoingClassModelTutor(3,"Drama","Tue, 10 July","16:00 - 18:00","Alice Snow","https://via.placeholder.com/300/09f/fff.png",100,6))
         tutorOngoingClassesAdapter.submitList(ongoingClassesList)
         recyclerView.adapter = tutorOngoingClassesAdapter
+
+
+        viewModel.getTutorRequest()
+        viewModel.tutorOngoing.observe(viewLifecycleOwner, Observer {
+
+            Log.d("dev",it.toString())
+        })
+
     }
 
 }
