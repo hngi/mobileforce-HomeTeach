@@ -437,7 +437,7 @@
     /* Testimonial Styles here */
     
     .testimonial {
-        padding-top: var(--div-padding-top);
+        padding-top: 120px;
     }
     /* SPonsors styles here */
     
@@ -461,4 +461,11 @@
         background-size: cover;
         background-repeat: no-repeat;
         height: 433.5px;
+        /* position: relative;
+        top: 70px; */
+    }
+    /* Newsletter styles here */
+    
+    .news-letter {
+        background: #C4F1C8;
     }
