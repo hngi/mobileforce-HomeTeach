@@ -182,33 +182,6 @@
         .center__padding {
             padding: 0% 10% 0% 10%;
         }
-        .m__t {
-            margin-top: 80px;
-        }
-        .image3 img {
-            height: 400px !important;
-        }
-        .image4 img {
-            height: 400px !important;
-        }
-        .features__bg {
-            background-image: url('../Assets/Vectors/features-mobile-bg.png') !important;
-            background-position: center;
-            background-repeat: no-repeat;
-            height: 402px;
-            position: relative;
-            /* margin-top: 40px; */
-        }
-        .image3 {
-            position: relative !important;
-            top: 100px !important;
-            left: -10px !important;
-        }
-        .image4 {
-            position: relative !important;
-            top: -200px !important;
-            left: 33px !important;
-        }
     }
     
     .about {
@@ -269,6 +242,37 @@
         font-weight: normal;
     }
     /* Features Styles here */
+    /* Media Queries here */
+    
+    @media screen and (max-width: 450px) {
+        .m__t {
+            margin-top: 80px;
+        }
+        .image3 img {
+            height: 400px !important;
+        }
+        .image4 img {
+            height: 400px !important;
+        }
+        .features__bg {
+            background-image: url('../Assets/Vectors/features-mobile-bg.png') !important;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 402px;
+            position: relative;
+            /* margin-top: 40px; */
+        }
+        .image3 {
+            position: relative !important;
+            top: 100px !important;
+            left: -10px !important;
+        }
+        .image4 {
+            position: relative !important;
+            top: -200px !important;
+            left: 33px !important;
+        }
+    }
     
     .features {
         padding-top: var(--div-padding-top);
@@ -339,13 +343,51 @@
         left: 60px;
     }
     /* How it works styles here */
+    /* Media Queries here */
+    
+    @media screen and (max-width: 450px) {
+        .how__bg {
+            background: url('../Assets/Vectors/how-mobile-bg.png') !important;
+            background-position: center !important;
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 2109px !important;
+        }
+        .works {
+            padding-top: 270px !important;
+        }
+        .works__img img {
+            height: 170px;
+        }
+        .works__img2 img {
+            height: 220px;
+        }
+        .works__img2 {
+            text-align: center;
+        }
+        .works__img2 img {
+            height: 220px;
+        }
+        .works__img3 img {
+            height: 220px;
+        }
+        .headers h4 {
+            line-height: 35px !important;
+            font-size: 24px !important;
+            margin-top: 35px !important;
+            margin-bottom: 5px !important;
+        }
+        .headers p {
+            line-height: 30px !important;
+            font-size: 14px !important;
+        }
+    }
     
     .how__bg {
         background: url('../Assets/Vectors/how-bg.png');
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
-        height: 1413px;
     }
     
     .works {
