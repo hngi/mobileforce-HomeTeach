@@ -429,6 +429,34 @@
         line-height: 32px;
     }
     /* tutors styles here */
+    /* Media Queries here */
+    
+    @media screen and (max-width: 450px) {
+        .flickity-viewport {
+            background: white;
+            height: 400px !important;
+        }
+        .card {
+            width: 15rem !important;
+        }
+        .card-subtitle {
+            font-size: 12px !important;
+            text-align: center !important;
+        }
+        .card-title {
+            font-size: 24px !important;
+            line-height: 15px !important;
+        }
+        .card-text {
+            font-size: 14px !important;
+            text-align: left !important;
+        }
+        .avatar img {
+            height: 12vh !important;
+            top: 65px !important;
+            left: 237px !important;
+        }
+    }
     
     .tutors {
         padding-top: var(--main-padding-top);
