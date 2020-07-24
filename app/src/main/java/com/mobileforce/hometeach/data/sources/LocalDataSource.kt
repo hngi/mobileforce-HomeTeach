@@ -1,12 +1,9 @@
 package com.mobileforce.hometeach.data.sources
 
 import androidx.lifecycle.LiveData
-import com.mobileforce.hometeach.data.sources.local.entities.ProfileEntity
-import com.mobileforce.hometeach.data.sources.local.entities.TutorEntity
 import com.mobileforce.hometeach.data.model.User
-import com.mobileforce.hometeach.data.sources.local.entities.UserEntity
 import com.mobileforce.hometeach.data.sources.local.AppDataBase
-import com.mobileforce.hometeach.data.sources.local.entities.TutorDetailsEntity
+import com.mobileforce.hometeach.data.sources.local.entities.*
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
 import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
@@ -177,6 +174,14 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
         params: Params.UpdateTutorProfile
     ): LoginResponse {
         TODO("Not yet implemented")
+    }
+
+    override suspend fun saveUserWallet(walletEntity: WalletEntity) {
+        db.walletDao().saveWalletInfo(walletEntity)
+    }
+
+    override fun observeWalletData(): LiveData<WalletEntity> {
+        return db.walletDao().observeWalletInfo()
     }
 
     private fun mapProfileToEntity(profile: Profile): ProfileEntity {

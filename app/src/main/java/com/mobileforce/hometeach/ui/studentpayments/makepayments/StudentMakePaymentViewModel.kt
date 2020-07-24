@@ -15,6 +15,9 @@ class StudentMakePaymentViewModel(private val userRepository: UserRepository) : 
     private val _getUserCardDetails = MutableLiveData<Result<List<UserCardDetailResponse>>>()
     val getUserCardDetails: LiveData<Result<List<UserCardDetailResponse>>> = _getUserCardDetails
 
+    val profofile = userRepository.profileLiveData()
+    val wallet = userRepository.observeWalletData()
+
     fun getUserCardDetails() {
         _getUserCardDetails.postValue(Result.Loading)
         viewModelScope.launch {
