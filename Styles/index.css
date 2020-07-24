@@ -463,6 +463,8 @@
     
     .news-letter {
         background: #C4F1C8;
+        height: 45vh;
+        /* padding: 10px 0px 10px 0px; */
     }
     
     .news__captions h4 {
@@ -540,22 +542,17 @@
         color: #B2AFAF;
     }
     
-    .newsletter_phone {
-        position: absolute;
-        /* top: 0px */
-        /* top: 1500px; */
-        /* bottom: 0; */
-    }
-    
     .newsletter_phone img {
         position: relative;
-        bottom: 500;
+        bottom: 120;
+        left: 310;
+        height: 80vh;
     }
     /* Footer styles here */
     
     .foot {
         background: #BDC3C7;
-        padding: 80px 0px 40px 0px;
+        padding: 120px 0px 60px 0px;
     }
     
     .footer__link ul {
@@ -575,5 +572,13 @@
     
     .footer__link ul li a {
         text-decoration: none;
+        color: #2F2E41;
+    }
+    
+    .copy-right p {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        font-family: 'Ubuntu', sans-serif;
         color: #2F2E41;
     }
