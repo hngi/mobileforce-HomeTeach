@@ -7,13 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.mobileforce.hometeach.R
-import com.mobileforce.hometeach.adapters.CircleTransform
 import com.mobileforce.hometeach.databinding.FragmentWithdrawalBinding
 import com.mobileforce.hometeach.ui.withdrawalscreens.Payment
 import com.mobileforce.hometeach.ui.withdrawalscreens.TutorWithdrawalModel
 import com.mobileforce.hometeach.utils.formatBalance
 import com.mobileforce.hometeach.utils.loadImage
-import com.squareup.picasso.Picasso
 import org.koin.android.viewmodel.ext.android.viewModel
 
 /**
@@ -101,12 +99,6 @@ class WithdrawalFragment : Fragment() {
                 "profile_image",
                 "215000 N"
             )
-        binding.tutorName.text = Tutor.tutorName
-        binding.tutorBalance.text = "Balance: " + Tutor.balance
-        Picasso.get().load("profile_image").transform(CircleTransform())
-            .placeholder(R.drawable.profile_image).error(R.drawable.profile_image)
-            .into(binding.tutorImage)
-
 
         val adapter =
             PaymentRecycler()

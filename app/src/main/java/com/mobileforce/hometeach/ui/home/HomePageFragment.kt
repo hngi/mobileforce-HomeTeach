@@ -377,7 +377,7 @@ class HomePageFragment : Fragment() {
 
 
         bindingTutor.root.findViewById<LinearLayout>(R.id.mybanks).setOnClickListener {
-            findNavController().navigate(R.id.myBanks)
+            //findNavController().navigate(R.id.myBanks)
             toast(message = "Not yet Implemented: To be done soon", length = Toast.LENGTH_SHORT)
         }
         bindingTutor.root.findViewById<LinearLayout>(R.id.card_details).setOnClickListener {
@@ -385,7 +385,7 @@ class HomePageFragment : Fragment() {
             toast(message = "Not yet Implemented: To be done soon", length = Toast.LENGTH_SHORT)
         }
         bindingTutor.root.findViewById<LinearLayout>(R.id.withdrawal).setOnClickListener {
-            findNavController().navigate(R.id.makeWithdrawalFragment)
+            //findNavController().navigate(R.id.makeWithdrawalFragment)
             toast(message = "Not yet Implemented: To be done soon", length = Toast.LENGTH_SHORT)
         }
 

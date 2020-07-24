@@ -50,9 +50,9 @@
         tools:layout="@layout/fragment_tutor_card_details"/>
     <fragment
         android:id="@+id/myBanks"
-        android:name="com.mobileforce.hometeach.ui.withdrawalscreens.mybank.MyBanks"
+        android:name="com.mobileforce.hometeach.ui.withdrawalscreens.mybank.MyBankFragment"
         android:label="MyBanks"
-        tools:layout="@layout/fragment_my_banks"/>
+        tools:layout="@layout/fragment_my_bank" />
     <fragment
         android:id="@+id/addBankFragment"
         android:name="com.mobileforce.hometeach.ui.withdrawalscreens.mybank.TutorAddBankFragment"
