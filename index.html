@@ -473,7 +473,8 @@
                 </div>
             </div>
         </div>
-        <div class="layer"></div>
+        <div class="layer">
+        </div>
     </section>
 
     <!-- News letter sectiom Here -->
@@ -481,14 +482,49 @@
     <section class="news-letter">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
-                    <div class="captions">
-                        <h4>Stay Posted with Home<span>Teach</span></h4>
-                        <p>Subscribe to our Newsletter and get notified when we release app updates </p>
+                <div class="col-md-6 col-lg-6">
+                    <div class="news__captions">
+                        <h4 class="mt-5">Stay Posted with Home<span>Teach</span></h4>
+                        <p>Subscribe to our Newsletter and get notified when <br> we release app updates </p>
                     </div>
+                    <div>
+                        <form id='form' method="" action="#">
+                            <div class="input-group mt-4">
+                                <input type="email" class="form-controls " id='email' placeholder="Enter your email address..." required aria-describedby="basic-addon2" name='email'>
+                                <div class="input-groupappend">
+
+                                    <button class="news__btn mx-3 my-sm-0" type="submit"> Join Now</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-6 newsletter_phone col-lg-6">
+                    <!-- <img src="./Assets/General/newsletter.png" alt=""> -->
                 </div>
             </div>
         </div>
+    </section>
+
+    <section class="foot">
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 footer__link">
+                        <ul>
+                            <li> <a href="">Privacy Policy</a> </li>
+                            <li> <a href="">Terms of service</a> </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-4">
+
+                    </div>
+
+
+                </div>
+            </div>
+        </footer>
     </section>
 
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>

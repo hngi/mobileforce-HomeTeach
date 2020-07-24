@@ -57,7 +57,7 @@
         font-family: 'Poppins', sans-serif;
         align-items: center;
         letter-spacing: -0.28px;
-        font-weight: 600;
+        font-weight: 500;
         font-size: 16px;
         box-shadow: 2px 8px 20px rgba(181, 181, 181, 0.2);
         border-radius: 5px;
@@ -457,15 +457,117 @@
     
     .layer {
         background: url('../Assets/Vectors/sponsors-layer.png');
-        background-position: center;
-        background-size: cover;
-        background-repeat: no-repeat;
-        height: 433.5px;
-        /* position: relative;
-        top: 70px; */
+        padding: 100px;
     }
     /* Newsletter styles here */
     
     .news-letter {
         background: #C4F1C8;
+    }
+    
+    .news__captions h4 {
+        color: var(--main-txt-color);
+        letter-spacing: -0.28px;
+        font-weight: 500;
+        font-family: 'Ubuntu', sans-serif;
+        font-size: 32px;
+        line-height: 41px;
+        font-style: normal;
+    }
+    
+    .news__captions span {
+        color: var(--span-txt-color);
+    }
+    
+    .news__captions p {
+        color: var(--paragraph-txt-color);
+        font-family: 'Ubuntu', sans-serif;
+        font-size: 18px;
+        font-weight: normal;
+        padding-top: 10px;
+    }
+    
+    .news__btn {
+        font-family: 'Ubuntu', sans-serif;
+        align-items: center;
+        letter-spacing: -0.28px;
+        font-weight: 500;
+        font-size: 16px;
+        border-radius: 10px;
+        background-color: var(--button-bg-color);
+        color: white;
+        padding: 7px 20px 7px 20px;
+        border: none;
+        outline: none;
+    }
+    
+    .news__btn:focus,
+    .news__btn:focus,
+    [type="button"]:focus {
+        outline: none;
+    }
+    /* for removing boostrap default blue on input tag */
+    
+    input[type="email"]:focus {
+        border-color: #F9F9F9;
+        box-shadow: none;
+        outline: 0 none;
+    }
+    
+    .input-group>.custom-select:not(:last-child),
+    .input-group>.form-controls:not(:last-child) {
+        background: #FFFFFF;
+        border-radius: 10px;
+    }
+    
+    .form-controls {
+        display: block;
+        width: 50%;
+        height: calc(1.5em + .75rem + 2px);
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #B2AFAF;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+    
+     ::placeholder {
+        color: #B2AFAF;
+    }
+    
+    .newsletter_phone {
+        position: absolute;
+        /* top: 0px */
+        /* top: 1500px; */
+        /* bottom: 0; */
+    }
+    
+    .newsletter_phone img {
+        position: relative;
+        bottom: 500;
+    }
+    /* Footer styles here */
+    
+    .foot {
+        background: #BDC3C7;
+        padding: 40px;
+    }
+    
+    .footer__link ul li {
+        text-decoration: none;
+        padding: 0;
+        display: inline;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+    }
+    
+    .footer__link ul li a {
+        text-decoration: none;
+        color: #2F2E41;
     }
