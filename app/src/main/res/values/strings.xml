@@ -170,6 +170,13 @@
     <string name="ellipsis">…</string>
     <string name="cvc">CVC</string>
     <string name="no_transaction">No Transaction</string>
+    <string name="total_students">TOTAL STUDENTS</string>
+    <string name="profile_visits">PROFILE VISITS</string>
+    <string name="balance">BALANCE</string>
+    <string name="total_reviews">TOTAL REVIEWS</string>
+    <string name="class_schedule">Class Schedule</string>
+    <string name="make_withdrawal">Make Withdrawal</string>
+    <string name="my_banks">My Banks</string>
 
     <string-array name="fields_array">
         <item>Science</item>
