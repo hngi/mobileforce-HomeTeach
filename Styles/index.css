@@ -23,6 +23,7 @@
         font-family: 'Ubuntu', sans-serif;
         font-family: 'Open Sans', sans-serif;
         font-family: 'Poppins', sans-serif;
+        overflow-x: hidden;
     }
     /* Hero styles here */
     /* Media Queries here */
@@ -155,8 +156,8 @@
         .about__placeholder {
             background-image: url('../Assets/Vectors/about-bg.png');
             background-position: unset !important;
-            background-size: cover;
-            background-repeat: no-repeat;
+            /* background-size: cover;
+            background-repeat: no-repeat; */
             height: 463.88px !important;
             position: relative;
             top: 0;
@@ -180,6 +181,33 @@
         }
         .center__padding {
             padding: 0% 10% 0% 10%;
+        }
+        .m__t {
+            margin-top: 80px;
+        }
+        .image3 img {
+            height: 400px !important;
+        }
+        .image4 img {
+            height: 400px !important;
+        }
+        .features__bg {
+            background-image: url('../Assets/Vectors/features-mobile-bg.png') !important;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 402px;
+            position: relative;
+            /* margin-top: 40px; */
+        }
+        .image3 {
+            position: relative !important;
+            top: 100px !important;
+            left: -10px !important;
+        }
+        .image4 {
+            position: relative !important;
+            top: -200px !important;
+            left: 33px !important;
         }
     }
     
