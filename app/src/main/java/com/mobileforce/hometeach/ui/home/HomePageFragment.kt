@@ -369,23 +369,23 @@ class HomePageFragment : Fragment() {
             bindingTutor.username.text = " $user.full_name"
             bindingTutor.totalbalance.text = "BALANCE"
             bindingTutor.totalstudent.text = "TOTAL STUDENT"
-            bindingTutor.totalreviews.text = "TOTAL REVIWS"
-            bindingTutor.totalprofilevisits.text = "TOTAL PROFILE VISITS"
+            bindingTutor.totalreviews.text = "TOTAL REVIEWS"
+            bindingTutor.totalprofilevisits.text = "PROFILE VISITS"
         }
 
 
-        bindingTutor.root.findViewById<LinearLayout>(R.id.mybanks).setOnClickListener {
-            //findNavController().navigate(R.id.myBanks)
-            toast(message = "Not yet Implemented: To be done soon", length = Toast.LENGTH_SHORT)
-        }
-        bindingTutor.root.findViewById<LinearLayout>(R.id.card_details).setOnClickListener {
-            //findNavController().navigate(R.id.tutorCardDetails)
-            toast(message = "Not yet Implemented: To be done soon", length = Toast.LENGTH_SHORT)
-        }
-        bindingTutor.root.findViewById<LinearLayout>(R.id.withdrawal).setOnClickListener {
-            //findNavController().navigate(R.id.makeWithdrawalFragment)
-            toast(message = "Not yet Implemented: To be done soon", length = Toast.LENGTH_SHORT)
-        }
+//        bindingTutor.root.findViewById<LinearLayout>(R.id.mybanks).setOnClickListener {
+//            //findNavController().navigate(R.id.myBanks)
+//            toast(message = "Not yet Implemented: To be done soon", length = Toast.LENGTH_SHORT)
+//        }
+//        bindingTutor.root.findViewById<LinearLayout>(R.id.card_details).setOnClickListener {
+//            //findNavController().navigate(R.id.tutorCardDetails)
+//            toast(message = "Not yet Implemented: To be done soon", length = Toast.LENGTH_SHORT)
+//        }
+//        bindingTutor.root.findViewById<LinearLayout>(R.id.withdrawal).setOnClickListener {
+//            //findNavController().navigate(R.id.makeWithdrawalFragment)
+//            toast(message = "Not yet Implemented: To be done soon", length = Toast.LENGTH_SHORT)
+//        }
 
         val TutorDashboardModel = mutableListOf<TutorDashboardModel>(
             TutorDashboardModel(

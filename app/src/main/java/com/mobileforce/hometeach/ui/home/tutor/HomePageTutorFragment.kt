@@ -40,9 +40,9 @@ class HomePageTutorFragment : Fragment(), OnItemtouch {
         val username = binding.username
         var calendar = binding.calendar
         val modifyBtn = binding.modifyBtn
-        val cardDetail = binding.cardDetails
-        val withdrawal = binding.withdrawal
-        val myBanks = binding.mybanks
+        //val cardDetail = binding.cardDetails
+//        val withdrawal = binding.withdrawal
+//        val myBanks = binding.mybanks
         val tutorClassesRecycler = binding.tutorClasses
 
         // the two variable below are for testing purposes only
@@ -69,18 +69,18 @@ class HomePageTutorFragment : Fragment(), OnItemtouch {
         modifyBtn.setOnClickListener {
      //       date_picker()
         }
-        withdrawal.setOnClickListener {
+//        withdrawal.setOnClickListener {
+//
+//            navController.navigate(R.id.makeWithdrawalFragment)
+//        }
 
-            navController.navigate(R.id.makeWithdrawalFragment)
-        }
-
-        cardDetail.setOnClickListener {
-            navController.navigate(R.id.tutorCardDetails)
-        }
-        mybanks.setOnClickListener {
-
-            navController.navigate(R.id.myBanks)
-        }
+//        cardDetail.setOnClickListener {
+//            navController.navigate(R.id.tutorCardDetails)
+//        }
+//        mybanks.setOnClickListener {
+//
+//            navController.navigate(R.id.myBanks)
+//        }
 
     }
 //
