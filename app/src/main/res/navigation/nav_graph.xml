@@ -40,9 +40,9 @@
     </fragment>
     <fragment
         android:id="@+id/makeWithdrawalFragment"
-        android:name="com.mobileforce.hometeach.ui.withdrawalscreens.withdraw.TutorMakeWithdrawalFragment"
+        android:name="com.mobileforce.hometeach.ui.withdrawalscreens.withdraw.WithdrawalFragment"
         android:label="MakeWithdrawalFragment"
-        tools:layout="@layout/fragment_tutor_make_withdrawal"/>
+        tools:layout="@layout/fragment_withdrawal" />
     <fragment
         android:id="@+id/tutorCardDetails"
         android:name="com.mobileforce.hometeach.ui.withdrawalscreens.carddetails.TutorCardDetailsFragment"
