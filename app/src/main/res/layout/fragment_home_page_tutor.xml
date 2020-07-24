@@ -254,7 +254,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
-                                    android:text="0000"
+                                    tools:text="N 0.00"
                                     android:id="@+id/walletBalance"
                                     android:textColor="@color/white" />
 
@@ -262,6 +262,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
+                                    android:visibility="invisible"
                                     android:text=" N"
                                     android:textColor="@color/white" />
 

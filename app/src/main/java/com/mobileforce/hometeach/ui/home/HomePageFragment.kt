@@ -35,6 +35,7 @@ import com.mobileforce.hometeach.utils.AppConstants.USER_STUDENT
 import com.mobileforce.hometeach.utils.AppConstants.USER_TUTOR
 import com.mobileforce.hometeach.utils.PreferenceHelper
 import com.mobileforce.hometeach.utils.Result
+import com.mobileforce.hometeach.utils.formatBalance
 import com.mobileforce.hometeach.utils.toast
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
@@ -104,7 +105,10 @@ class HomePageFragment : Fragment() {
         viewModel.getTutorList()
         topTutorsAdapter = TopTutorsAdapter(TopTutorsListItemListener { tutor ->
             if (tutor != null) {
-                val action = HomePageFragmentDirections.actionTutorHomePageFragmentToTutorDetailsFragment(tutor)
+                val action =
+                    HomePageFragmentDirections.actionTutorHomePageFragmentToTutorDetailsFragment(
+                        tutor
+                    )
                 findNavController().navigate(action)
             }
         })
@@ -148,7 +152,6 @@ class HomePageFragment : Fragment() {
         }
 
         //<--------------------------------- End - TopTutorList Setup------------------------------------------>//
-
 
 
         viewModel.user.observe(viewLifecycleOwner, androidx.lifecycle.Observer { user ->
@@ -361,6 +364,7 @@ class HomePageFragment : Fragment() {
 
     private fun setUpForTutor() {
 
+        bindingTutor.walletBalance.text = 0.0.formatBalance()
 
         lifecycleScope.launch {
             val user = db.userDao().getUser()
@@ -408,7 +412,7 @@ class HomePageFragment : Fragment() {
         viewModel.user.observe(viewLifecycleOwner, androidx.lifecycle.Observer { user ->
 
 
-        user?.let {
+            user?.let {
                 bindingTutor.username.text = "Welcome ${user.full_name}"
             }
         })
@@ -424,8 +428,7 @@ class HomePageFragment : Fragment() {
 
         viewModel.wallet.observe(viewLifecycleOwner, Observer {
             it?.let {
-
-                bindingTutor.walletBalance.text = it.toString()
+                bindingTutor.walletBalance.text = it.availableBalance.formatBalance()
             }
         })
     }
