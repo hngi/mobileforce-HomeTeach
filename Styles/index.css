@@ -452,8 +452,8 @@
         background: #EDF5EE;
         box-shadow: 2px 8px 20px rgba(181, 181, 181, 0.2);
         border-radius: 20px;
-        height: 400px;
-        width: 400px;
+        height: 450px;
+        width: 450px;
         clip-path: polygon(0 29%, 100% 0, 100% 100%, 0% 100%);
         text-align: center;
         margin: 0 auto;
@@ -465,8 +465,8 @@
     
     .testimonial__avatar img {
         position: relative;
-        top: -380px;
-        left: 10px;
+        top: -410px;
+        left: 20px;
         height: 22vh;
     }
     
@@ -481,7 +481,7 @@
     }
     
     .carousels .flickity-viewport {
-        height: 400px !important;
+        height: 450px !important;
     }
     
     .card-titles {
@@ -493,8 +493,32 @@
         /* text-align: center; */
         position: relative;
         right: -60px;
-        bottom: 35;
+        bottom: 35px;
         font-family: 'Ubuntu', sans-serif;
+    }
+    
+    .card-subtitles {
+        color: #27274C;
+        letter-spacing: -0.28px;
+        /* text-align: center; */
+        font-size: 16px;
+        line-height: 32px;
+        font-weight: normal;
+        font-family: 'Poppins', sans-serif;
+        position: relative;
+        bottom: 40px;
+        left: 63px;
+    }
+    
+    .card-texts {
+        color: var(--paragraph-txt-color);
+        font-style: normal;
+        text-align: left;
+        letter-spacing: -0.28px;
+        line-height: 25px;
+        font-family: 'Ubuntu', sans-serif;
+        font-size: 16px;
+        padding-top: px;
     }
     /* SPonsors styles here */
     
