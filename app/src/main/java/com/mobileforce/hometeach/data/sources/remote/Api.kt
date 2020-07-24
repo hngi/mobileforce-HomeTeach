@@ -2,7 +2,7 @@ package com.mobileforce.hometeach.data.sources.remote
 
 
 import androidx.lifecycle.LiveData
-import com.mobileforce.hometeach.data.model.UserEntity
+import com.mobileforce.hometeach.data.sources.local.entities.UserEntity
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
 import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
 import okhttp3.MultipartBody
@@ -11,7 +11,7 @@ import retrofit2.Response
 import retrofit2.http.*
 
 
-interface  Api{
+interface Api {
 
     @JvmSuppressWildcards
     @POST("v1/login/")
@@ -43,6 +43,10 @@ interface  Api{
     suspend fun getTutorDetails(@Path("id") id: Int): UserProfileResponse
 
     @JvmSuppressWildcards
+    @GET("v1/tutor-profiles/{id}/")
+    suspend fun getTutorDetailsForUser(@Path("id") id: Int): Response<TutorDetailsResponse>
+
+    @JvmSuppressWildcards
     @POST("v1/credit-cards/")
     suspend fun saveUserCardDetails(@Body params: Map<String, Any>)
 
@@ -53,7 +57,7 @@ interface  Api{
         @Part profile_pic: MultipartBody.Part,
         @Part credentials: MultipartBody.Part,
         @Part video: MultipartBody.Part
-    ):Response<UploadResponse>
+    ): Response<UploadResponse>
 
 
     @POST("v1/submit-request/")
@@ -62,7 +66,7 @@ interface  Api{
     @JvmSuppressWildcards
     @POST("v1/user-card-details/")
     suspend fun getUserCardDetails(@Body params: Map<String, String>): List<UserCardDetailResponse>
-   
+
     @GET("v1/users/")
     suspend fun getUser(): LiveData<UserEntity>
 
@@ -85,5 +89,6 @@ interface  Api{
     @JvmSuppressWildcards
     @PUT("v1/tutor-profiles/{id}/")
     suspend fun uploadCredential(@Path("id") id:Int, @Part credentials: MultipartBody.Part):UploadResponse
+
 
 }

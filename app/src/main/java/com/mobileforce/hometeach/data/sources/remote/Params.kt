@@ -61,6 +61,8 @@ class Params {
         val from_minute: String,
         val to_hour: String,
         val to_minute: String,
+        val subject: String,
+        val grade: String,
         val dates: List<String>
     )
 

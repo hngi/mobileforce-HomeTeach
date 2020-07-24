@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
@@ -104,7 +106,8 @@ class HomePageFragment : Fragment() {
         viewModel.getTutorList()
         topTutorsAdapter = TopTutorsAdapter(TopTutorsListItemListener { tutor ->
             if (tutor != null) {
-                findNavController().navigate(R.id.action_tutorHomePageFragment_to_tutorDetailsFragment)
+                val action = HomePageFragmentDirections.actionTutorHomePageFragmentToTutorDetailsFragment(tutor)
+                findNavController().navigate(action)
             }
         })
         viewModel.tutorList.observe(viewLifecycleOwner, Observer { result ->

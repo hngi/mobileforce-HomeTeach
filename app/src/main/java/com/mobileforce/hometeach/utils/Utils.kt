@@ -7,7 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.adapters.CircleTransform
-import com.mobileforce.hometeach.data.model.TutorEntity
+import com.mobileforce.hometeach.data.sources.local.entities.TutorEntity
 import com.mobileforce.hometeach.data.sources.remote.wrappers.TutorNetworkResponse
 import com.mobileforce.hometeach.models.TutorModel
 import com.squareup.picasso.Picasso
@@ -45,21 +45,23 @@ fun <T> MutableLiveData<T>.asLiveData() = this as LiveData<T>
 /**
  * Converts [TutorModel] to a [TutorEntity]
  */
-fun TutorModel.toDbEntity() = TutorEntity(
-    id, full_name, profile_pic, description, tutorSubject, hourly_rate, rating
-)
+fun TutorModel.toDbEntity() =
+    TutorEntity(
+        integerId, id, full_name, profile_pic, description, tutorSubject, hourly_rate, rating
+    )
 
 /**
  * Converts [TutorEntity] to a [TutorModel]
  */
 fun TutorEntity.toDomainModel() = TutorModel(
-    id, full_name, profile_pic, description, tutorSubject, hourly_rate, rating
+    integerId,id, full_name, profile_pic, description, tutorSubject, hourly_rate, rating
 )
 
 fun TutorNetworkResponse.toDomainModel(): TutorModel {
     val ratingModel = this.rating
     val userModel = this.user
     return TutorModel(
+        integerId = this.integerId,
         id = userModel.id,
         full_name = userModel.full_name,
         profile_pic = this.profile_pic,

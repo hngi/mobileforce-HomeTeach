@@ -8,7 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mobileforce.hometeach.databinding.ListItemAllTutorsBinding
 import com.mobileforce.hometeach.models.TutorModel
 
-class TutorListRecyclerAdapter(val clickListener: TutorListItemListener) : ListAdapter<TutorModel, TutorListViewHolder>(
+class TutorListRecyclerAdapter(
+    val clickListener: TutorListItemListener,
+    val bodyClickListener: TutorBodyClickListener
+) : ListAdapter<TutorModel, TutorListViewHolder>(
     DiffClass
 ) {
 
@@ -37,7 +40,7 @@ class TutorListRecyclerAdapter(val clickListener: TutorListItemListener) : ListA
 
     override fun onBindViewHolder(listViewHolder: TutorListViewHolder, position: Int) {
         val tutor = getItem(position)
-        listViewHolder.bind(tutor,clickListener)
+        listViewHolder.bind(tutor, clickListener,bodyClickListener)
     }
 
 
@@ -45,10 +48,12 @@ class TutorListRecyclerAdapter(val clickListener: TutorListItemListener) : ListA
 
 class TutorListViewHolder(private val binding: ListItemAllTutorsBinding) :
     RecyclerView.ViewHolder(binding.root) {
-    fun bind(tutorAll: TutorModel, clickListener: TutorListItemListener) {
+    fun bind(tutorAll: TutorModel, clickListener: TutorListItemListener, bodyClickListener: TutorBodyClickListener) {
         binding.tutor = tutorAll
         binding.executePendingBindings()
         binding.clickListener = clickListener
+        binding.bodyClickListener = bodyClickListener
+
     }
 
 }
@@ -56,5 +61,11 @@ class TutorListViewHolder(private val binding: ListItemAllTutorsBinding) :
 class TutorListItemListener(val clickListener: (tutor: TutorModel?) -> Unit) {
     fun onClick(tutor: TutorModel) {
         clickListener(tutor)
+    }
+}
+
+class TutorBodyClickListener(val clickListener: (tutorModel: TutorModel?) -> Unit) {
+    fun onClick(tutorModel: TutorModel?) {
+        clickListener(tutorModel)
     }
 }
