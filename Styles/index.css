@@ -540,6 +540,29 @@
         background: url('../Assets/Vectors/sponsors-layer.png');
         padding: 100px;
     }
+    
+    .circular_bg {
+        /* position: relative;
+        left: 30; */
+        text-align: end;
+    }
+    
+    .circular_bg img {
+        position: absolute;
+        left: 1220px;
+        top: 5740px;
+        height: 20vh;
+    }
+    
+    .rectangular_bg img {
+        /* position: absolute;
+        left: 1220px;
+        top: 5740px; */
+        height: 30vh;
+        position: absolute;
+        right: 1260px;
+        top: 6150px;
+    }
     /* Newsletter styles here */
     
     .news-letter {
