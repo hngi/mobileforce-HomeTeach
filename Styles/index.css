@@ -526,6 +526,10 @@
         padding-top: var(--div-padding-top);
     }
     
+    .sponsors__holder {
+        padding: 50px 0px 120px 0px;
+    }
+    
     .supported p {
         font-family: 'Ubuntu', sans-serif;
         color: #000000;
