@@ -250,10 +250,12 @@
                                 android:orientation="horizontal">
 
                                 <TextView
+
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
                                     android:text="0000"
+                                    android:id="@+id/walletBalance"
                                     android:textColor="@color/white" />
 
                                 <TextView

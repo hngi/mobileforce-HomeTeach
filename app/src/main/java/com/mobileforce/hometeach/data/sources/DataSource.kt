@@ -2,10 +2,7 @@ package com.mobileforce.hometeach.data.sources
 
 import androidx.lifecycle.LiveData
 import com.mobileforce.hometeach.data.model.User
-import com.mobileforce.hometeach.data.sources.local.entities.ProfileEntity
-import com.mobileforce.hometeach.data.sources.local.entities.TutorDetailsEntity
-import com.mobileforce.hometeach.data.sources.local.entities.TutorEntity
-import com.mobileforce.hometeach.data.sources.local.entities.UserEntity
+import com.mobileforce.hometeach.data.sources.local.entities.*
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
 import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
@@ -98,4 +95,8 @@ interface DataSource {
     ): LoginResponse
 
     suspend fun getUserWallet(param: Params.UserWallet): UserWalletResponse = TODO()
+
+    suspend fun saveUserWallet(walletEntity: WalletEntity) {}
+
+    fun observeWalletData(): LiveData<WalletEntity> = TODO()
 }

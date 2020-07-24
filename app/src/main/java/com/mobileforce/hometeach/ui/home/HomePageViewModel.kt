@@ -1,10 +1,12 @@
 package com.mobileforce.hometeach.ui.home
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mobileforce.hometeach.data.repository.UserRepository
+import com.mobileforce.hometeach.data.sources.local.entities.WalletEntity
 import com.mobileforce.hometeach.models.TutorModel
 import com.mobileforce.hometeach.utils.*
 import kotlinx.coroutines.Dispatchers
@@ -21,6 +23,8 @@ class HomePageViewModel(
     //List of all tutors
     private val _tutorList = MutableLiveData<Result<List<TutorModel>>>()
     val tutorList = _tutorList.asLiveData()
+
+    val wallet: LiveData<WalletEntity> = userRepository.observeWalletData()
 
     init {
         fetchUserWallet()
@@ -94,7 +98,12 @@ class HomePageViewModel(
         viewModelScope.launch {
 
             try {
-                userRepository.getUserWallet()
+                val response = userRepository.getUserWallet()
+
+                if (response.status == "valid") {
+                    //save to db
+                    userRepository.saveWallet(response.data)
+                }
 
             } catch (e: Exception) {
 

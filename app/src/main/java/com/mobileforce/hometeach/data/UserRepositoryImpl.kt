@@ -4,10 +4,7 @@ import androidx.lifecycle.LiveData
 import com.mobileforce.hometeach.data.model.User
 import com.mobileforce.hometeach.data.repository.UserRepository
 import com.mobileforce.hometeach.data.sources.DataSourceFactory
-import com.mobileforce.hometeach.data.sources.local.entities.ProfileEntity
-import com.mobileforce.hometeach.data.sources.local.entities.TutorDetailsEntity
-import com.mobileforce.hometeach.data.sources.local.entities.TutorEntity
-import com.mobileforce.hometeach.data.sources.local.entities.UserEntity
+import com.mobileforce.hometeach.data.sources.local.entities.*
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
 import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
@@ -147,6 +144,20 @@ class UserRepositoryImpl(private val dataSource: DataSourceFactory) : UserReposi
         val user = getSingleUser()
         val param = Params.UserWallet(user = user.id)
         return dataSource.remote().getUserWallet(param)
+    }
+
+    override suspend fun saveWallet(walletData: WalletData) {
+
+        val wallet = WalletEntity(
+            total_balance = walletData.total_balance,
+            availableBalance = walletData.available_balance
+        )
+        dataSource.local().saveUserWallet(wallet)
+
+    }
+
+    override fun observeWalletData(): LiveData<WalletEntity> {
+        return dataSource.local().observeWalletData()
     }
 
 
