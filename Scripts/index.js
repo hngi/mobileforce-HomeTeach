@@ -1,3 +1,15 @@
+$('document').ready(function() {
+    var typed = new Typed('#typed', {
+        strings: ['Anytime... ^1000', 'Anywhere...'],
+        smartBackspace: true,
+        backSpeed: 100,
+        typeSpeed: 200,
+        // fadeOut: true,
+
+        loop: true,
+    });
+})
+
 var $carousel = $('.carousel').flickity({
     imagesLoaded: true,
     percentPosition: false,

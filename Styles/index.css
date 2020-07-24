@@ -11,6 +11,10 @@
         --div-padding-top: 70px
     }
     
+    #typed {
+        display: inline;
+    }
+    
     html {
         font-family: 'Ubuntu', sans-serif;
         font-family: 'Open Sans', sans-serif;
