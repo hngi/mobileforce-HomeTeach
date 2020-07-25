@@ -12,15 +12,10 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.databinding.FragmentStudentCardDetailsBinding
-<<<<<<< HEAD
 import com.mobileforce.hometeach.data.sources.remote.wrappers.UserCardDetailResponse
-import com.mobileforce.hometeach.utils.Result
-=======
-import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
 import com.mobileforce.hometeach.utils.Result
 import com.mobileforce.hometeach.utils.formatBalance
 import com.mobileforce.hometeach.utils.loadImage
->>>>>>> 571221e391ceedd0b127e32b52e5d73a9e805efd
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
