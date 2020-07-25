@@ -25,7 +25,6 @@ class StudentCardDetailsViewModel(private val userRepository: UserRepository) : 
         viewModelScope.launch {
             try {
                 val response = userRepository.getUserCardDetails()
-                _getUserCardDetails.postValue(Result.Success(response))
                 response.forEach {
 
                     val card = CardEntity(
@@ -40,6 +39,9 @@ class StudentCardDetailsViewModel(private val userRepository: UserRepository) : 
 
                     userRepository.saveCardToDb(card)
                 }
+
+                _getUserCardDetails.postValue(Result.Success(response))
+
             } catch (error: Throwable) {
                 _getUserCardDetails.postValue(Result.Error(error))
             }

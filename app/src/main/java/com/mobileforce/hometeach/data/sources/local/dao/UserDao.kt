@@ -34,7 +34,7 @@ interface UserDao {
     fun observeableProfileData(): LiveData<ProfileEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun saveCard(card: CardEntity)
+    suspend fun saveCard(card: CardEntity)
 
     @Query("SELECT * FROM user_card")
     fun observeUserCards(): LiveData<List<CardEntity>>
