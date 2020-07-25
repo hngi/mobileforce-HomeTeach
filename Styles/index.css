@@ -750,6 +750,27 @@
             .supported p {
                 font-size: 18px !important;
             }
+            .sponsors__mobile {
+                display: block !important;
+            }
+            .sponsors {
+                display: none !important;
+            }
+            .kuda_mob {
+                position: relative;
+                bottom: 25px;
+            }
+            .layer {
+                background: url('../Assets/Vectors/sponsors-layer-mob.png') !important;
+                padding: 90px !important;
+            }
+            .sponsors__holder {
+                padding: 10px 0px 0px 0px !important;
+            }
+        }
+        
+        .sponsors__mobile {
+            display: none;
         }
         
         .sponsors {
