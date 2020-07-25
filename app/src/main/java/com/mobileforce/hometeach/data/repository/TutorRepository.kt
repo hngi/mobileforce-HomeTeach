@@ -1,11 +1,8 @@
 package com.mobileforce.hometeach.data.repository
 
-<<<<<<< HEAD
-import com.mobileforce.hometeach.data.model.ProfileEntity
-import com.mobileforce.hometeach.data.model.UserEntity
-=======
+
+import com.mobileforce.hometeach.data.sources.local.entities.UserEntity
 import com.mobileforce.hometeach.data.sources.local.entities.ProfileEntity
->>>>>>> upstream/develop
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.LoginResponse
 import com.mobileforce.hometeach.data.sources.remote.wrappers.StudentRequestResponse

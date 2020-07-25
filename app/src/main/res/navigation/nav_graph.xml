@@ -129,12 +129,11 @@
         android:label="fragment_student_profile"
         tools:layout="@layout/fragment_student_profile" />
     <fragment
-<<<<<<< HEAD
         android:id="@+id/studentDetails"
         android:name="com.mobileforce.hometeach.ui.classes.tutor.StudentDetails"
         android:label="fragment_student_details"
         tools:layout="@layout/fragment_student_details" />
-=======
+    <fragment
         android:id="@+id/bookTutorFragment"
         android:name="com.mobileforce.hometeach.ui.booktutor.BookTutorFragment"
         android:label="BookTutorFragment" >
@@ -142,7 +141,7 @@
             android:name="tutor"
             app:argType="com.mobileforce.hometeach.models.TutorModel" />
     </fragment>
->>>>>>> upstream/develop
+
 
 
 </navigation>
