@@ -41,8 +41,8 @@
             android:id="@+id/tutor_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="84dp"
-            android:layout_marginLeft="84dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginLeft="18dp"
             android:layout_marginTop="32dp"
             android:text="@string/full_name"
             android:textColor="#333333"
@@ -55,8 +55,8 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginLeft="18dp"
             android:paddingBottom="8dp"
             app:boxCornerRadiusBottomEnd="8dp"
             app:boxCornerRadiusBottomStart="8dp"
@@ -83,7 +83,8 @@
             android:layout_marginTop="24dp"
             android:text="@string/description"
             android:textColor="#333333"
-            android:textSize="16sp"
+            android:textSize="18sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/guideline1"
             app:layout_constraintTop_toBottomOf="@id/profile_pic" />
 
@@ -197,7 +198,8 @@
             android:layout_marginTop="16dp"
             android:text="@string/select_field"
             android:textColor="@color/primaryTextColor"
-            android:textSize="16sp"
+            android:textSize="18sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/guideline1"
             app:layout_constraintTop_toBottomOf="@id/dividing_view2" />
 
@@ -234,7 +236,8 @@
             android:layout_height="wrap_content"
             android:text="@string/major_course"
             android:textColor="@color/primaryTextColor"
-            android:textSize="16sp"
+            android:textSize="18sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/guideline1"
             app:layout_constraintTop_toBottomOf="@id/dividing_view3" />
 
@@ -279,7 +282,8 @@
             android:layout_marginTop="16dp"
             android:text="@string/other_courses"
             android:textColor="@color/primaryTextColor"
-            android:textSize="16sp"
+            android:textSize="18sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@id/guideline1"
             app:layout_constraintTop_toBottomOf="@id/dividing_view4" />
 
@@ -337,7 +341,8 @@
             android:layout_marginTop="16dp"
             android:text="@string/state_of_origin"
             android:textColor="@color/primaryTextColor"
-            android:textSize="16sp"
+            android:textSize="18sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@id/guideline1"
             app:layout_constraintTop_toBottomOf="@id/dividing_view5" />
 
@@ -372,7 +377,8 @@
             android:layout_marginTop="16dp"
             android:text="@string/address"
             android:textColor="@color/primaryTextColor"
-            android:textSize="16sp"
+            android:textSize="18sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@id/guideline1"
             app:layout_constraintTop_toBottomOf="@id/dividing_view6" />
 
@@ -417,7 +423,8 @@
             android:layout_marginTop="16dp"
             android:text="@string/rate"
             android:textColor="@color/primaryTextColor"
-            android:textSize="16sp"
+            android:textSize="18sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@id/guideline1"
             app:layout_constraintTop_toBottomOf="@id/dividing_view7" />
 
@@ -440,8 +447,8 @@
                 android:id="@+id/et_rate_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/nairaicon"
-                android:drawableLeft="@drawable/nairaicon"
+                android:drawableStart="@drawable/ic_rate_icon"
+                android:drawableLeft="@drawable/ic_rate_icon"
                 android:inputType="number" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -462,7 +469,8 @@
             android:layout_marginTop="16dp"
             android:text="@string/credentials"
             android:textColor="@color/primaryTextColor"
-            android:textSize="16sp"
+            android:textSize="18sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@id/guideline1"
             app:layout_constraintTop_toBottomOf="@id/dividing_view8" />
 
