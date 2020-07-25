@@ -28,7 +28,7 @@ class Request(models.Model):
 		return f'{self.requester.full_name} requests {self.tutor.full_name}'
 
 class Days(models.Model):
-	day = models.DateField(default=datetime.datetime.today())
+	day = models.DateField()
 
 class StudentSchedule(models.Model):
 	user = models.ForeignKey(User,  on_delete=models.CASCADE)
