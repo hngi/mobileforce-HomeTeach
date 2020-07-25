@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.databinding.StudentsCardListBinding
-import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
+import com.mobileforce.hometeach.data.sources.remote.wrappers.UserCardDetailResponse
 
 class StudentCardsRecycler : ListAdapter<UserCardDetailResponse, StudentCardsHolder>(
     DiffClass

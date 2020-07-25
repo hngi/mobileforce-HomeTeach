@@ -4,7 +4,7 @@ package com.mobileforce.hometeach.data.sources.remote
 import androidx.lifecycle.LiveData
 import com.mobileforce.hometeach.data.sources.local.entities.UserEntity
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
-import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
+import com.mobileforce.hometeach.data.sources.remote.wrappers.UserCardDetailResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -90,5 +90,8 @@ interface Api {
     @PUT("v1/tutor-profiles/{id}/")
     suspend fun uploadCredential(@Path("id") id:Int, @Part credentials: MultipartBody.Part):UploadResponse
 
+    @JvmSuppressWildcards
+    @POST("v1/student-classes/")
+    suspend fun getStudentClass(@Body param: Map<String, String>): UserClassResponse
 
 }

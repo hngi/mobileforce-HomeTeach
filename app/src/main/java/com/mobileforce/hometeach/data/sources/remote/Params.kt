@@ -79,4 +79,8 @@ class Params {
         val hourly_rate: String,
         val desc: String
     )
+
+    data class StudentID(
+        val student_id: String
+    )
 }

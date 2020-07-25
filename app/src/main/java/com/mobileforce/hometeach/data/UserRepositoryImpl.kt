@@ -10,7 +10,7 @@ import com.mobileforce.hometeach.data.sources.DataSourceFactory
 import com.mobileforce.hometeach.data.sources.local.entities.TutorDetailsEntity
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
-import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
+import com.mobileforce.hometeach.data.sources.remote.wrappers.UserCardDetailResponse
 import retrofit2.Response
 
 
@@ -141,6 +141,12 @@ class UserRepositoryImpl(private val dataSource: DataSourceFactory) : UserReposi
 
     override suspend fun saveTutorDetailsForUserDb(tutorDetailsEntity: TutorDetailsEntity) {
         dataSource.local().saveTutorDetailsToDb(tutorDetailsEntity)
+    }
+
+    override suspend fun getStudentClass(): UserClassResponse {
+        val user = dataSource.local().getSingleUser()
+        val studentId = Params.StudentID(student_id = user.id)
+        return dataSource.remote().getStudentClass(studentId)
     }
 
 

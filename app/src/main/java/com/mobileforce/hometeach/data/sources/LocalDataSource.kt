@@ -9,7 +9,7 @@ import com.mobileforce.hometeach.data.sources.local.AppDataBase
 import com.mobileforce.hometeach.data.sources.local.entities.TutorDetailsEntity
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
-import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
+import com.mobileforce.hometeach.data.sources.remote.wrappers.UserCardDetailResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -176,6 +176,10 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
         id: Int,
         params: Params.UpdateTutorProfile
     ): LoginResponse {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getStudentClass(param: Params.StudentID): UserClassResponse {
         TODO("Not yet implemented")
     }
 

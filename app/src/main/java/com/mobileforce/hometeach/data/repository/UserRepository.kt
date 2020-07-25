@@ -8,7 +8,7 @@ import com.mobileforce.hometeach.data.sources.local.entities.TutorDetailsEntity
 import com.mobileforce.hometeach.data.sources.local.entities.UserEntity
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
-import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
+import com.mobileforce.hometeach.data.sources.remote.wrappers.UserCardDetailResponse
 import retrofit2.Response
 
 
@@ -67,5 +67,7 @@ interface UserRepository {
     suspend fun getTutorDetailsForUserDb(id: Int) : TutorDetailsEntity?
 
     suspend fun saveTutorDetailsForUserDb(tutorDetailsEntity: TutorDetailsEntity)
+
+    suspend fun getStudentClass(): UserClassResponse
 }
 
