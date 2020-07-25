@@ -68,7 +68,7 @@ class ProfileFragment : Fragment() {
     }
 
     private fun setUpProfileForTutor() {
-        bindingTutor.editButton.setOnClickListener {
+        bindingTutor.account.editProfile.setOnClickListener {
             val bundle = bundleOf("imageUrl" to imageUrl, "tutorName" to tutorName)
             navController.navigate(R.id.editTutorProfileFragment, bundle)
         }

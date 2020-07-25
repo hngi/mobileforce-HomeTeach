@@ -10,7 +10,6 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_marginBottom="60dp"
         android:layout_height="match_parent">
 
         <com.google.android.material.appbar.AppBarLayout
@@ -235,8 +234,9 @@
                         tools:ignore="UnusedAttribute" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/textView4"
+                        android:layout_width="24dp"
+                        android:layout_height="19dp"
                         android:layout_marginLeft="4dp"
                         android:text="@string/_16"
                         android:textColor="#000000"
@@ -279,6 +279,7 @@
                         app:layout_constraintLeft_toRightOf="@id/round_green"
                         app:layout_constraintTop_toTopOf="@id/round_green"
                         app:layout_constraintVertical_bias="0.86" />
+
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -358,23 +359,30 @@
             app:layout_constraintTop_toBottomOf="@id/Credentials_tv"
             tools:ignore="ContentDescription" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/edit_button"
+
+        <include
+            android:id="@+id/account"
+            layout="@layout/include_account_layout"
             android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_margin="18dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="70dp"
-            android:backgroundTint="@color/colorAccent"
-            android:text="@string/edit_profile"
-            android:textColor="#fff"
-            app:cornerRadius="15dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/Pdf_image"
-            tools:ignore="UnusedAttribute" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toEndOf="@+id/Tutor_Description_Detail_card"
+            app:layout_constraintStart_toStartOf="@+id/Tutor_Description_Detail_card"
+            app:layout_constraintTop_toBottomOf="@id/Pdf_image" />
 
 
+        <include
+            android:id="@+id/general"
+            layout="@layout/include_general_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:layout_marginBottom="60dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/account"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/account"
+            app:layout_constraintTop_toBottomOf="@id/account" />
 
         <androidx.constraintlayout.widget.Group
             android:id="@+id/credentialGroup"
