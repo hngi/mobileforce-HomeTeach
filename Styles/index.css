@@ -823,6 +823,35 @@
             display: none;
         }
         /* Newsletter styles here */
+        /* Media Queries Here */
+        
+        @media screen and (max-width: 450px) {
+            .news__captions h4 {
+                font-size: 24px !important;
+                line-height: 25px !important;
+            }
+            .news__captions p {
+                font-size: 14px !important;
+            }
+            .newsletter_phone img {
+                height: 400px !important;
+                position: relative;
+                bottom: 30px !important;
+                left: 45px !important;
+            }
+            .white__bg {
+                display: block !important;
+                background: white;
+                padding: 120px;
+            }
+            .news-letter {
+                height: 40vh !important;
+            }
+        }
+        
+        .white__bg {
+            display: none;
+        }
         
         .news-letter {
             background: #C4F1C8;
