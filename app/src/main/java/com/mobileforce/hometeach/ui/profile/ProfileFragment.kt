@@ -19,6 +19,7 @@ import com.mobileforce.hometeach.databinding.FragmentProfileBinding
 import com.mobileforce.hometeach.databinding.FragmentStudentProfileBinding
 import com.mobileforce.hometeach.utils.AppConstants.USER_TUTOR
 import com.mobileforce.hometeach.utils.PreferenceHelper
+import com.mobileforce.hometeach.utils.formatBalance
 import com.mobileforce.hometeach.utils.makeGone
 import com.mobileforce.hometeach.utils.makeVisible
 import com.squareup.picasso.Picasso
@@ -68,7 +69,7 @@ class ProfileFragment : Fragment() {
     }
 
     private fun setUpProfileForTutor() {
-        bindingTutor.editButton.setOnClickListener {
+        bindingTutor.account.editProfile.setOnClickListener {
             val bundle = bundleOf("imageUrl" to imageUrl, "tutorName" to tutorName)
             navController.navigate(R.id.editTutorProfileFragment, bundle)
         }
@@ -91,7 +92,8 @@ class ProfileFragment : Fragment() {
                 imageUrl = profile.profile_pic.toString()
                 bindingTutor.teachersRatingBar.rating = profile.rating ?: 0.0f
                 profile.hourly_rate?.let {
-                    bindingTutor.AmountTv.text = String.format("%s/hr", it)
+                    bindingTutor.AmountTv.text =
+                        String.format("%s/hr", it.toDouble().formatBalance())
                 }
 
                 if (profile.desc== "" )
