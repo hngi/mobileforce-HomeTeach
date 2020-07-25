@@ -79,6 +79,7 @@ class Profile(models.Model):
 	state = models.CharField(max_length=255, blank=True)
 	address = models.CharField(max_length=255, null=True, blank=True)	
 
+
 	def __unicode__(self):
 		return f'Profile for user: {self.user.email}'
 		
