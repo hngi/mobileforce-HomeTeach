@@ -661,6 +661,9 @@
         /* Media Queries Here */
         
         @media screen and (max-width: 450px) {
+            .testimonial {
+                padding-top: 40px !important;
+            }
             .flickity-prev-next-button.next {
                 display: none;
             }
@@ -690,7 +693,7 @@
             .circular_bg img {
                 position: absolute;
                 left: 300px !important;
-                top: 6520 !important;
+                top: 7176 !important;
                 height: 10vh !important;
             }
             .rectangular_bg img {
@@ -700,7 +703,7 @@
                 display: block !important;
                 position: absolute;
                 right: 300px !important;
-                top: 7180px !important;
+                top: 7855px !important;
                 height: 10vh !important;
             }
         }
@@ -790,6 +793,7 @@
             }
             .sponsors__mobile {
                 display: block !important;
+                padding-top: 10px;
             }
             .sponsors {
                 display: none !important;
