@@ -12,7 +12,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.databinding.FragmentStudentCardDetailsBinding
-import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
+import com.mobileforce.hometeach.data.sources.remote.wrappers.UserCardDetailResponse
 import com.mobileforce.hometeach.utils.Result
 import com.mobileforce.hometeach.utils.formatBalance
 import com.mobileforce.hometeach.utils.loadImage

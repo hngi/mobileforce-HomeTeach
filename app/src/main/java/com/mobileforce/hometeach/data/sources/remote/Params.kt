@@ -80,5 +80,10 @@ class Params {
         val desc: String
     )
 
+    data class StudentID(
+        val student_id: String
+    )
+
     data class UserWallet(val user: String)
+
 }

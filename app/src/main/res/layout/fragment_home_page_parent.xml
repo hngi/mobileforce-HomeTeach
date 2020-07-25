@@ -90,6 +90,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
+                    android:visibility="invisible"
                     android:text="@string/text_view_all"
                     android:textColor="@color/primaryColor"
                     android:textSize="14sp"
@@ -104,6 +105,20 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
                     tools:listitem="@layout/list_item_class_ongoing_parent_dash_board" />
+
+                <TextView
+                    android:id="@+id/tv_no_ongoing"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/labelOngoingClasses"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:visibility="invisible"
+                    android:gravity="center_vertical"
+                    android:text="@string/you_currently_have_no_ongoing_class"
+                    android:textColor="@color/textColor"
+                    android:textSize="16sp"/>
 
             </RelativeLayout>
 
@@ -141,6 +156,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
+                    android:visibility="invisible"
                     android:text="@string/text_view_all"
                     android:textColor="@color/primaryColor"
                     android:textSize="14sp"
@@ -154,8 +170,21 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
-                    android:orientation="vertical"
                     tools:listitem="@layout/list_item_class_upcoming_parent_dash_board" />
+
+                <TextView
+                    android:id="@+id/tv_no_upcoming"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:visibility="invisible"
+                    android:layout_below="@id/labelUpcomingClasses"
+                    android:gravity="center_vertical"
+                    android:text="@string/you_currently_have_no_upcoming_class"
+                    android:textColor="@color/textColor"
+                    android:textSize="16sp"/>
 
             </RelativeLayout>
 
@@ -265,15 +294,15 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="end"
+                    android:layout_gravity="center_vertical"
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
-                    android:src="@drawable/ic_notify" />
+                    android:src="@drawable/alarm" />
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="end"
+                    android:layout_gravity="center_vertical"
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
                     android:src="@drawable/filter" />
