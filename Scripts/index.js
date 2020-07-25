@@ -25,7 +25,7 @@ var $carousels = $('.carousels').flickity({
     percentPosition: false,
     freeScroll: true,
     contain: true,
-    // autoPlay: true,
+    autoPlay: true,
     pauseAutoPlayOnHover: true,
 
 });

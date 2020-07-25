@@ -553,6 +553,38 @@
     }
     /* Find tutor styles here */
     
+    @media screen and (max-width: 450px) {
+        .find__tutor {
+            display: none;
+        }
+        .flickity-prev-next-button.next {
+            display: none;
+        }
+        .flickity-prev-next-button.previous {
+            display: none;
+        }
+        .testimonial>.container .captions h4 {
+            font-size: 24px !important;
+        }
+        .testimonial__avatar img {
+            position: relative;
+            top: -410px !important;
+            left: 65px !important;
+            height: 15vh !important;
+        }
+        .testimonial-bg {
+            width: 350px !important;
+        }
+        .card-titles {
+            font-size: 24px !important;
+            line-height: 30px !important;
+        }
+        .card-subtitles,
+        .card-texts {
+            font-size: 14px !important;
+        }
+    }
+    
     .find__tutor {
         padding-top: var(--div-padding-top);
     }
