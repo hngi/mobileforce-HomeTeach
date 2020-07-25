@@ -207,6 +207,39 @@
             }
         }
         
+        @media screen and (device-width: 768px) {
+            .about__placeholder {
+                background-position: unset !important;
+                height: 565.88px !important;
+                left: 175 !important;
+            }
+            .image1 {
+                top: 12 !important;
+                left: 12 !important;
+            }
+            .image1 img {
+                height: 500px;
+            }
+            .image2 {
+                left: 124px !important;
+            }
+            .image2 img {
+                height: 500px !important;
+            }
+            .column-reverse {
+                flex-direction: column-reverse !important;
+            }
+            .about__us {
+                width: 560px !important;
+                position: relative !important;
+                left: 60 !important;
+            }
+            .captions {
+                position: relative !important;
+                left: 200!important;
+            }
+        }
+        
         .about {
             padding-top: var(--div-padding-top);
         }
@@ -294,6 +327,24 @@
                 position: relative !important;
                 top: -200px !important;
                 left: 33px !important;
+            }
+        }
+        
+        @media screen and (device-width: 768px) {
+            .features {
+                padding-top: 100px !important;
+            }
+            .flex__wrap {
+                flex-wrap: inherit !important;
+            }
+            .max__content {
+                width: max-content !important;
+            }
+            .center__padding {
+                padding: 0% 50% 0% 50%;
+            }
+            .features__bg {
+                top: 760px !important
             }
         }
         
@@ -1077,7 +1128,7 @@
         .menu-wrap {
             position: absolute;
             top: 0;
-            left: 1000;
+            left: 300;
             z-index: 1;
         }
         
@@ -1166,6 +1217,10 @@
         .menu-wrap .toggler:checked~.menu>div>div {
             opacity: 1;
             transition: opacity 0.4s ease 0.4s;
+        }
+        
+        .menu-wrap .toggler:checked~.menu {
+            height: 83%;
         }
         
         .menu-wrap .menu {
