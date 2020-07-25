@@ -73,7 +73,7 @@ class Profile(models.Model):
 	rating = models.ManyToManyField(Rating, blank=True)
 	desc = models.TextField(max_length=255, null=True, blank=True)
 	field = models.CharField(max_length=255, blank=True)
-	hourly_rate = models.CharField(max_length=10000000, default=0)
+	hourly_rate = models.CharField(max_length=10000000, null=True, blank=True, default=0)
 	major_course = models.CharField(max_length=255, null=True, blank=True)
 	other_courses = models.CharField(max_length=255, null=True, blank=True)
 	state = models.CharField(max_length=255, blank=True)
