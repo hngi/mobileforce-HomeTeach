@@ -8,6 +8,7 @@ import com.mobileforce.hometeach.data.model.UserEntity
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
 import com.mobileforce.hometeach.models.TutorRequestDataModel
+import com.mobileforce.hometeach.models.TutorUpcomingDataModel
 import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -93,7 +94,7 @@ interface DataSource {
 
     suspend fun getTutorClassesRequest(param:Params.TutorClassesRequest):TutorRequestDataModel
 
-    suspend fun getTutorClasses(param:Params.TutorClassesRequest):TutorRequestDataModel
+    suspend fun getTutorClasses(param:Params.TutorClassesRequest): TutorUpcomingDataModel
 
     suspend fun grantStudentRequest(params:Params.StudentRequest):StudentRequestResponse
 }

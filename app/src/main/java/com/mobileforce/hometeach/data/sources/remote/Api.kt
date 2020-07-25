@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import com.mobileforce.hometeach.data.model.UserEntity
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
 import com.mobileforce.hometeach.models.TutorRequestDataModel
+import com.mobileforce.hometeach.models.TutorUpcomingDataModel
 import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -91,7 +92,7 @@ interface  Api{
     suspend fun getTutorClassesRequest(@Body params:Map<String,String>):TutorRequestDataModel
 
     @POST("v1/tutor-classes/")
-    suspend fun getTutorClasses(@Body params:Map<String,String>):TutorRequestDataModel
+    suspend fun getTutorClasses(@Body params:Map<String,String>): TutorUpcomingDataModel
 
     @POST("v1/request-action/")
     suspend fun grantStudentRequest(@Body params: Map<String, Any>):StudentRequestResponse

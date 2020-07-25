@@ -10,6 +10,7 @@ import com.mobileforce.hometeach.data.sources.remote.wrappers.StudentRequestResp
 import com.mobileforce.hometeach.data.sources.remote.wrappers.UploadResponse
 import com.mobileforce.hometeach.data.sources.remote.wrappers.UserProfileResponse
 import com.mobileforce.hometeach.models.TutorRequestDataModel
+import com.mobileforce.hometeach.models.TutorUpcomingDataModel
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -64,7 +65,7 @@ class TutorRepositoryImpl (private val dataSource: DataSourceFactory): TutorRepo
         return dataSource.remote().getTutorClassesRequest(param)
     }
 
-    override suspend fun getTutorClasses(param: Params.TutorClassesRequest):TutorRequestDataModel {
+    override suspend fun getTutorClasses(param: Params.TutorClassesRequest): TutorUpcomingDataModel {
         return dataSource.remote().getTutorClasses(param)
     }
 

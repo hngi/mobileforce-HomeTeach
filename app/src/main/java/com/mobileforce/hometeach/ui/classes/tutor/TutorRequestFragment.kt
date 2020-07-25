@@ -1,5 +1,6 @@
 package com.mobileforce.hometeach.ui.classes.tutor
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -28,10 +29,10 @@ import org.koin.android.ext.android.get
 
 class TutorRequestFragment : Fragment(), OnrequestClick {
     private lateinit var binding: FragmentTutorRequestBinding
-    private lateinit var requestClassesAdapter: TutorRequestAdapter
     private lateinit var requestList: MutableList<Request>
     lateinit var tutorId: String
-    lateinit var navController: NavController
+//    lateinit var navController: NavController
+//    lateinit var adapter:TutorRequestAdapter
 
     private val viewModel: TutorRequestViewModel = get<TutorRequestViewModel>()
 
@@ -44,7 +45,7 @@ class TutorRequestFragment : Fragment(), OnrequestClick {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        navController =  Navigation.findNavController(view)
+//        navController =  Navigation.findNavController(view)
         val recyclerView = binding.recyclerView
         Log.d("coffee", "INSIDE TUTOR REQUEST")
 
@@ -53,9 +54,11 @@ class TutorRequestFragment : Fragment(), OnrequestClick {
 
         }
         requestList = mutableListOf()
+        binding.progressBar.visibility = View.VISIBLE
         viewModel.getTutorRequest()
         viewModel.tutorRequest.observe(viewLifecycleOwner, Observer {
             Log.d("deve",it.requests.toString())
+            binding.progressBar.visibility = View.INVISIBLE
            if (it.requests.isNullOrEmpty()) {
                 Log.d("coffee",it.toString())
                Toast.makeText(activity, "YOU HAVE NO PENDING REQUEST", Toast.LENGTH_SHORT).show()
@@ -81,7 +84,8 @@ class TutorRequestFragment : Fragment(), OnrequestClick {
             "student_name" to datamodel.student_name,
             "student_garde" to datamodel.grade
         )
-        navController.navigate(R.id.studentDetails,bundle)
+//        navController.navigate(R.id.studentDetails,bundle)
+//        val intent = Intent(activity,SudentDetailsActivity::class.java)
     }
 
 

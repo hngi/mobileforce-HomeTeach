@@ -8,6 +8,7 @@ import com.mobileforce.hometeach.data.sources.remote.wrappers.StudentRequestResp
 import com.mobileforce.hometeach.data.sources.remote.wrappers.UploadResponse
 import com.mobileforce.hometeach.data.sources.remote.wrappers.UserProfileResponse
 import com.mobileforce.hometeach.models.TutorRequestDataModel
+import com.mobileforce.hometeach.models.TutorUpcomingDataModel
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -41,7 +42,7 @@ interface TutorRepository {
 
     suspend fun getTutorClassesRequest(param:Params.TutorClassesRequest):TutorRequestDataModel
 
-    suspend fun getTutorClasses(param:Params.TutorClassesRequest):TutorRequestDataModel
+    suspend fun getTutorClasses(param:Params.TutorClassesRequest):TutorUpcomingDataModel
 
     suspend fun getTutorId(): UserEntity
 

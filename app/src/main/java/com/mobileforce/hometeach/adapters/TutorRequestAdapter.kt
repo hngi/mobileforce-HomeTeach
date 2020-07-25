@@ -12,9 +12,11 @@ import com.mobileforce.hometeach.models.Request
 import com.mobileforce.hometeach.models.TutorRequestDataModel
 import kotlinx.android.synthetic.main.list_item_class_requests_tutor.view.subject_name
 import kotlinx.android.synthetic.main.tutor_request_layout.view.*
+import java.text.DateFormat.getDateInstance
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import java.util.*
 
 class TutorRequestAdapter(
     private val itemsList: List<Request>,
@@ -54,6 +56,9 @@ class TutorRequestAdapter(
         fun initialise(datamodel: Request, listener:OnrequestClick ) {
             subject.text = datamodel.subject
             studentName.text = datamodel.student_name
+            val format = SimpleDateFormat("dd-MM-yyyy", Locale.US)
+            val r = format.parse(datamodel.date_requested)
+            date.text = r.toString()
             if (datamodel.accepted) {
                 status.text = "ACCEPTED"
             } else {
