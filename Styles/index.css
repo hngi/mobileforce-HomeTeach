@@ -55,6 +55,29 @@
             }
         }
         
+        @media screen and (device-width: 768px) {
+            .hero {
+                height: 502.78px !important;
+            }
+            .home-teach-hero {
+                margin-top: 80px !important;
+            }
+            .hero__img {
+                height: 30vh !important
+            }
+            .home-teach-hero h1 {
+                font-size: 35px !important;
+                line-height: 50px !important;
+            }
+            .home-teach-hero p {
+                font-size: 18px !important;
+                line-height: 30px !important
+            }
+            .app__logo img {
+                height: 45px !important;
+            }
+        }
+        
         .hero {
             background: linear-gradient(0deg, rgba(214, 245, 217, 0.34), rgba(214, 245, 217, 0.34)), url('../Assets/Vectors/Hero-vector.png');
             background-position: center;
