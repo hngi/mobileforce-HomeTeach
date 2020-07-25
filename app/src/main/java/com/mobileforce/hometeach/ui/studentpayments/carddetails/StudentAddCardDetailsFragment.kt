@@ -15,9 +15,7 @@ import androidx.navigation.Navigation
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.databinding.FragmentStudentAddCardDetailsBinding
-import com.mobileforce.hometeach.utils.ApiError
-import com.mobileforce.hometeach.utils.Result
-import com.mobileforce.hometeach.utils.toast
+import com.mobileforce.hometeach.utils.*
 import kotlinx.android.synthetic.main.add_card_dialog.*
 import kotlinx.android.synthetic.main.fragment_student_add_card_details.*
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -122,6 +120,27 @@ class StudentAddCardDetailsFragment : Fragment() {
                 }
             }
 
+        })
+
+
+
+        viewModel.user.observe(viewLifecycleOwner, Observer {
+
+            it?.let {
+                binding.username.text = it.full_name
+            }
+        })
+
+        viewModel.profofile.observe(viewLifecycleOwner, Observer {
+
+            binding.userImage.loadImage(it.profile_pic, circular = true)
+        })
+
+        viewModel.wallet.observe(viewLifecycleOwner, Observer {
+
+            it?.let {
+                binding.balance.text = it.availableBalance.formatBalance()
+            }
         })
     }
 

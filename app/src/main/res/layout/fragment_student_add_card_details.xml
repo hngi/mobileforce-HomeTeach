@@ -62,7 +62,7 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/profile_image" />
+                    />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -77,7 +77,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="@string/rahman_django"
+                        tools:text="@string/rahman_django"
                         android:textSize="20sp" />
 
                     <TextView
@@ -85,7 +85,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="@string/balance_215000_n"
+                        tools:text="@string/balance_215000_n"
                         android:textSize="20sp" />
                 </LinearLayout>
 

@@ -15,4 +15,5 @@ object AppConstants {
 
     const val IS_FIRST_RUN = "first_run"
 
+    const val DEFAULT_CURRENCY = "₦"
 }

@@ -246,7 +246,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="0000"
+                            android:id="@+id/walletBalance"
+                            tools:text="N23,057.00"
                             android:textColor="@color/white" />
 
                         <TextView
@@ -254,6 +255,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:text="N"
+                            android:visibility="gone"
                             android:textColor="@color/white" />
 
                         <ImageView

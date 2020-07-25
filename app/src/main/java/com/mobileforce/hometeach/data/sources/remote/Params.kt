@@ -83,4 +83,7 @@ class Params {
     data class StudentID(
         val student_id: String
     )
+
+    data class UserWallet(val user: String)
+
 }
