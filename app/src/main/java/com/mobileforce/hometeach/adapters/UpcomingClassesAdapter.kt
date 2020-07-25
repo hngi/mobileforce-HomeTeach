@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.mobileforce.hometeach.R
-import com.mobileforce.hometeach.models.TutorRequestDataModel
 import com.mobileforce.hometeach.models.UpcomingClassesDataModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.upcoming_classes_layout.view.*
@@ -64,5 +63,5 @@ class UpcomingClassesAdapter(private var itemlist: List<UpcomingClassesDataModel
 
 
 interface OnUserClick {
-    fun onUserClick(datamodel: TutorRequestDataModel, position: Int)
+    fun onUserClick(datamodel: UpcomingClassesDataModel, position: Int)
 }

@@ -12,8 +12,10 @@ import kotlinx.coroutines.launch
 
  class TutorRequestViewModel(private val tutorRepository: TutorRepository): ViewModel(){
 
-    private val _tutorRequest = MutableLiveData<List<TutorRequestDataModel>>()
-    val tutorRequest: LiveData<List<TutorRequestDataModel>> = _tutorRequest
+    private val _tutorRequest = MutableLiveData<TutorRequestDataModel>()
+    val tutorRequest: LiveData<TutorRequestDataModel> = _tutorRequest
+     val tutorId =MutableLiveData<String>()
+
 
 
     fun getTutorRequest(){
@@ -21,10 +23,13 @@ import kotlinx.coroutines.launch
             try {
                 val user = tutorRepository.getTutorId()
                 val id = user.id
+                tutorId.postValue(id)
                 val tutor_id = Params.TutorClassesRequest(id)
                 Log.d("dev",tutor_id.toString())
+                Log.d("dev","this is dummy text ")
                 val response = tutorRepository.getTutorClassesRequest(tutor_id)
                 _tutorRequest.postValue(response)
+
             }
             catch (error: Throwable){
 //                _tutorRequest.postValue("Result.Error(error)")

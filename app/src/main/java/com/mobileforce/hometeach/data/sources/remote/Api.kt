@@ -88,10 +88,13 @@ interface  Api{
     suspend fun uploadCredential(@Path("id") id:Int, @Part credentials: MultipartBody.Part):UploadResponse
 
     @POST("v1/tutor-classes-requests/")
-    suspend fun getTutorClassesRequest(@Body params:Map<String,String>):List<TutorRequestDataModel>
+    suspend fun getTutorClassesRequest(@Body params:Map<String,String>):TutorRequestDataModel
 
     @POST("v1/tutor-classes/")
-    suspend fun getTutorClasses(@Body params:Map<String,String>):List<TutorRequestDataModel>
+    suspend fun getTutorClasses(@Body params:Map<String,String>):TutorRequestDataModel
+
+    @POST("v1/request-action/")
+    suspend fun grantStudentRequest(@Body params: Map<String, Any>):StudentRequestResponse
 
 
 

@@ -167,11 +167,15 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getTutorClassesRequest(param: Params.TutorClassesRequest): List<TutorRequestDataModel> {
+    override suspend fun getTutorClassesRequest(param: Params.TutorClassesRequest): TutorRequestDataModel{
         TODO("Not yet implemented")
     }
 
-    override suspend fun getTutorClasses(param: Params.TutorClassesRequest): List<TutorRequestDataModel> {
+    override suspend fun getTutorClasses(param: Params.TutorClassesRequest):TutorRequestDataModel{
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun grantStudentRequest(params: Params.StudentRequest): StudentRequestResponse {
         TODO("Not yet implemented")
     }
 

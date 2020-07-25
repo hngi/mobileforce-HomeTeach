@@ -91,7 +91,9 @@ interface DataSource {
         params: Params.UpdateTutorProfile
     ): LoginResponse
 
-    suspend fun getTutorClassesRequest(param:Params.TutorClassesRequest):List<TutorRequestDataModel>
+    suspend fun getTutorClassesRequest(param:Params.TutorClassesRequest):TutorRequestDataModel
 
-    suspend fun getTutorClasses(param:Params.TutorClassesRequest):List<TutorRequestDataModel>
+    suspend fun getTutorClasses(param:Params.TutorClassesRequest):TutorRequestDataModel
+
+    suspend fun grantStudentRequest(params:Params.StudentRequest):StudentRequestResponse
 }

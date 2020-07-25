@@ -38,6 +38,7 @@ class TutorOngoingFragment : Fragment() {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        Log.d("coffee","INSIDE TUTOR REQUEST")
         val recyclerView = binding.recyclerView
         val ongoingClassesList: MutableList<OngoingClassModelTutor> = mutableListOf()
         ongoingClassesList.add(OngoingClassModelTutor(1,"Physics","Tue, 10 July","16:00 - 18:00","Rahman Django","profile_image",40,1))

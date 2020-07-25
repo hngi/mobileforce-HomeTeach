@@ -41,6 +41,6 @@ class TutorClassFragment : Fragment() {
     }
 
     companion object {
-        private val titles = arrayOf("Requests", "Ongoing")
+        private val titles = arrayOf("Requests", "Upcoming")
     }
 }

@@ -1,17 +1,23 @@
 package com.mobileforce.hometeach.adapters
 
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.mobileforce.hometeach.R
+import com.mobileforce.hometeach.models.Request
 import com.mobileforce.hometeach.models.TutorRequestDataModel
 import kotlinx.android.synthetic.main.list_item_class_requests_tutor.view.subject_name
 import kotlinx.android.synthetic.main.tutor_request_layout.view.*
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 class TutorRequestAdapter(
-    private val itemsList: List<TutorRequestDataModel>,
+    private val itemsList: List<Request>,
     val listener:
     OnrequestClick) : RecyclerView.Adapter<TutorRequestAdapter.RecyclerViewHolder>() {
 
@@ -44,17 +50,17 @@ class TutorRequestAdapter(
         val grade:TextView = itemview.grade
 
 
-        fun initialise(datamodel: TutorRequestDataModel, listener:OnrequestClick ) {
+
+        fun initialise(datamodel: Request, listener:OnrequestClick ) {
             subject.text = datamodel.subject
             studentName.text = datamodel.student_name
             if (datamodel.accepted) {
                 status.text = "ACCEPTED"
             } else {
-                status.text = "DECLINED"
+                status.text = "AWAITING APPROVAL"
             }
             grade.text = datamodel.grade
-            time.text =
-                "${datamodel.from_hour}:${datamodel.from_minute}-${datamodel.to_hour}-${datamodel.to_minute}"
+            time.text = "${datamodel.from_hour}:${datamodel.from_minute}-${datamodel.to_hour}-${datamodel.to_minute}"
 
             itemView.setOnClickListener {
                 listener.onUserClick(datamodel, adapterPosition)
@@ -66,5 +72,5 @@ class TutorRequestAdapter(
 }
 
 interface OnrequestClick {
-    fun onUserClick(datamodel: TutorRequestDataModel, position: Int)
+    fun onUserClick(datamodel: Request, position: Int)
 }

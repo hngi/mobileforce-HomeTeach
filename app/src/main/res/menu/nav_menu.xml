@@ -4,7 +4,7 @@
     <item
         android:icon="@drawable/ic_classes"
         android:title="Books"
-        android:id="@+id/books"/>
+        android:id="@+id/tutorClassFragment"/>
     <item
         android:icon="@drawable/ic_home"
         android:title="Home"

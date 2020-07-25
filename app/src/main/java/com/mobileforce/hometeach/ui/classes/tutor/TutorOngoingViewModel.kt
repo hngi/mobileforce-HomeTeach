@@ -11,8 +11,8 @@ import com.mobileforce.hometeach.models.TutorRequestDataModel
 import kotlinx.coroutines.launch
 
 class TutorOngoingViewModel(private val tutorRepository: TutorRepository): ViewModel() {
-    private val _tutorOngoing= MutableLiveData<List<TutorRequestDataModel>>()
-    val tutorOngoing: LiveData<List<TutorRequestDataModel>> = _tutorOngoing
+    private val _tutorOngoing= MutableLiveData<TutorRequestDataModel>()
+    val tutorOngoing: LiveData<TutorRequestDataModel> = _tutorOngoing
 
     fun getTutorRequest(){
         viewModelScope.launch {

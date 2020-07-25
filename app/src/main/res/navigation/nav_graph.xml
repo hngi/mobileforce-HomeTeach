@@ -118,7 +118,11 @@
         android:name="com.mobileforce.hometeach.ui.profile.StudentProfileFragment"
         android:label="fragment_student_profile"
         tools:layout="@layout/fragment_student_profile" />
-
+    <fragment
+        android:id="@+id/studentDetails"
+        android:name="com.mobileforce.hometeach.ui.classes.tutor.StudentDetails"
+        android:label="fragment_student_details"
+        tools:layout="@layout/fragment_student_details" />
 
 
 </navigation>
