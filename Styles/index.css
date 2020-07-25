@@ -941,6 +941,35 @@
             height: 80vh;
         }
         /* Footer styles here */
+        /* Media Queries Here */
+        
+        @media screen and (max-width: 450px) {
+            footer>.container>.row {
+                text-align: center !important;
+            }
+            .footer__link ul li {
+                display: list-item !important;
+            }
+            .foot {
+                padding: 80px 0px 60px 0px !important;
+            }
+             ::placeholder {
+                font-size: 12px !important;
+            }
+            .footer__m__t {
+                margin-top: 20px;
+            }
+            .footer__m__t1 {
+                margin-top: 50px;
+            }
+            .dot {
+                display: inline !important;
+            }
+        }
+        
+        .dot {
+            display: none;
+        }
         
         .foot {
             background: #BDC3C7;
