@@ -1,16 +1,17 @@
 package com.mobileforce.hometeach.data.sources
 
 import androidx.lifecycle.LiveData
-import com.mobileforce.hometeach.data.model.ProfileEntity
-import com.mobileforce.hometeach.data.model.TutorEntity
 import com.mobileforce.hometeach.data.model.User
-import com.mobileforce.hometeach.data.model.UserEntity
+import com.mobileforce.hometeach.data.sources.local.entities.ProfileEntity
+import com.mobileforce.hometeach.data.sources.local.entities.TutorDetailsEntity
+import com.mobileforce.hometeach.data.sources.local.entities.TutorEntity
+import com.mobileforce.hometeach.data.sources.local.entities.UserEntity
 import com.mobileforce.hometeach.data.sources.remote.Api
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
 import com.mobileforce.hometeach.models.TutorRequestDataModel
 import com.mobileforce.hometeach.models.TutorUpcomingDataModel
-import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
+import com.mobileforce.hometeach.data.sources.remote.wrappers.UserCardDetailResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -95,6 +96,10 @@ class RemoteDataSource(private val api: Api) : DataSource {
         return api.getUserCardDetails(map)
     }
 
+    override suspend fun getTutorDetailsForUser(id: Int): Response<TutorDetailsResponse> {
+        return api.getTutorDetailsForUser(id)
+    }
+
 
     override suspend fun uploadTutorMedia(
         id: RequestBody,
@@ -163,6 +168,14 @@ class RemoteDataSource(private val api: Api) : DataSource {
         TODO("Not yet implemented")
     }
 
+    override suspend fun getTutorDetailsFromDb(id: Int): TutorDetailsEntity {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun saveTutorDetailsToDb(tutorDetailsEntity: TutorDetailsEntity) {
+        TODO("Not yet implemented")
+    }
+
     override suspend fun getUserProfile(
         id: Int
     ): UserProfileResponse {
@@ -190,8 +203,20 @@ class RemoteDataSource(private val api: Api) : DataSource {
             "address" to params.address,
             "hourly_rate" to params.hourly_rate,
             "desc" to params.desc
-            )
-        return api.updateTutorProfile(id,map)
+        )
+        return api.updateTutorProfile(id, map)
+    }
+
+    override suspend fun getUserWallet(param: Params.UserWallet): UserWalletResponse {
+
+        return api.getUserWallet(param)
+    }
+
+    override suspend fun getStudentClass(param: Params.StudentID): UserClassResponse {
+        val map = mapOf(
+            "student_id" to param.student_id
+        )
+        return api.getStudentClass(map)
     }
 
     override suspend fun getTutorClassesRequest(param: Params.TutorClassesRequest):TutorRequestDataModel{

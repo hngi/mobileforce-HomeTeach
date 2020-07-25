@@ -1,7 +1,8 @@
 package com.mobileforce.hometeach.data
 
-import com.mobileforce.hometeach.data.model.ProfileEntity
-import com.mobileforce.hometeach.data.model.UserEntity
+
+import com.mobileforce.hometeach.data.sources.local.entities.UserEntity
+import com.mobileforce.hometeach.data.sources.local.entities.ProfileEntity
 import com.mobileforce.hometeach.data.repository.TutorRepository
 import com.mobileforce.hometeach.data.sources.DataSourceFactory
 import com.mobileforce.hometeach.data.sources.remote.Params

@@ -1,16 +1,14 @@
 package com.mobileforce.hometeach.data.sources
 
 import androidx.lifecycle.LiveData
-import com.mobileforce.hometeach.data.model.ProfileEntity
-import com.mobileforce.hometeach.data.model.TutorEntity
 import com.mobileforce.hometeach.data.model.User
-import com.mobileforce.hometeach.data.model.UserEntity
 import com.mobileforce.hometeach.data.sources.local.AppDataBase
+import com.mobileforce.hometeach.data.sources.local.entities.*
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
 import com.mobileforce.hometeach.models.TutorRequestDataModel
 import com.mobileforce.hometeach.models.TutorUpcomingDataModel
-import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
+import com.mobileforce.hometeach.data.sources.remote.wrappers.UserCardDetailResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -127,6 +125,18 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
         TODO("Not yet implemented")
     }
 
+    override suspend fun getTutorDetailsForUser(id: Int): Response<TutorDetailsResponse> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getTutorDetailsFromDb(id: Int): TutorDetailsEntity? {
+        return db.tutorDetailsDao().getTutorDetails(id)
+    }
+
+    override suspend fun saveTutorDetailsToDb(tutorDetailsEntity: TutorDetailsEntity) {
+        db.tutorDetailsDao().saveTutorDetails(tutorDetailsEntity)
+    }
+
     override suspend fun saveUserProfile(profile: Profile) {
         db.userDao().saveUserProfile(mapProfileToEntity(profile))
     }
@@ -178,6 +188,18 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
 
     override suspend fun grantStudentRequest(params: Params.StudentRequest): StudentRequestResponse {
         TODO("Not yet implemented")
+    }
+    override suspend fun getStudentClass(param: Params.StudentID): UserClassResponse {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun saveUserWallet(walletEntity: WalletEntity) {
+        db.walletDao().saveWalletInfo(walletEntity)
+    }
+
+    override fun observeWalletData(): LiveData<WalletEntity> {
+        return db.walletDao().observeWalletInfo()
+
     }
 
     private fun mapProfileToEntity(profile: Profile): ProfileEntity {

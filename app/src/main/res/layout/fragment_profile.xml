@@ -5,6 +5,7 @@
     android:id="@+id/profileLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_tutor_profile"
     tools:context=".ui.profile.ProfileFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -172,14 +173,11 @@
                         android:id="@+id/Amount_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginRight="8dp"
                         android:text=""
                         android:textColor="#000000"
                         android:textSize="12sp"
                         android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="@+id/Price_tv"
-                        app:layout_constraintStart_toStartOf="@+id/Price_tv"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/Price_tv"
                         tools:text="N2000/hr" />
 
@@ -233,8 +231,9 @@
                         tools:ignore="UnusedAttribute" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/textView4"
+                        android:layout_width="24dp"
+                        android:layout_height="19dp"
                         android:layout_marginLeft="4dp"
                         android:text="@string/_16"
                         android:textColor="#000000"
@@ -255,8 +254,8 @@
 
                     <ImageView
                         android:id="@+id/round_green"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="6dp"
+                        android:layout_height="5dp"
                         android:layout_marginTop="10dp"
                         android:src="@drawable/ic_round_green"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -277,6 +276,7 @@
                         app:layout_constraintLeft_toRightOf="@id/round_green"
                         app:layout_constraintTop_toTopOf="@id/round_green"
                         app:layout_constraintVertical_bias="0.86" />
+
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -356,37 +356,30 @@
             app:layout_constraintTop_toBottomOf="@id/Credentials_tv"
             tools:ignore="ContentDescription" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/edit_button"
+
+        <include
+            android:id="@+id/account"
+            layout="@layout/include_account_layout"
             android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_margin="18dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="70dp"
-            android:backgroundTint="@color/colorAccent"
-            android:text="@string/edit_profile"
-            android:textColor="#fff"
-            app:cornerRadius="15dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/Pdf_image"
-            tools:ignore="UnusedAttribute" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toEndOf="@+id/Tutor_Description_Detail_card"
+            app:layout_constraintStart_toStartOf="@+id/Tutor_Description_Detail_card"
+            app:layout_constraintTop_toBottomOf="@id/Pdf_image" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/no_button"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="#E5E5E5"
-            android:textColor="#fff"
-            android:visibility="gone"
-            app:cornerRadius="15dp"
+
+        <include
+            android:id="@+id/general"
+            layout="@layout/include_general_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:layout_marginBottom="60dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/edit_button"
-            tools:ignore="UnusedAttribute" />
-
+            app:layout_constraintEnd_toEndOf="@+id/account"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/account"
+            app:layout_constraintTop_toBottomOf="@id/account" />
 
         <androidx.constraintlayout.widget.Group
             android:id="@+id/credentialGroup"

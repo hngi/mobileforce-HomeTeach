@@ -118,10 +118,10 @@
     <string name="about">About</string>
     <string name="i_love_mathematics_and_data_science_looking_to_build_my_kids_and_myself_also">I love mathematics and data science looking to build my kids and myself also</string>
     <string name="_09030000000">09030000000</string>
-    <string name="_34_lessons">34 lessons</string>
+    <string name="_34_lessons">0 lessons</string>
     <string name="price">Price</string>
-    <string name="_12_students">12 students</string>
-    <string name="_16">(16)</string>
+    <string name="_12_students">0 student(s)</string>
+    <string name="_16">(0)</string>
     <string name="interests_science_math_physics">Interests: Science, Math, Physics</string>
     <string name="available">Available</string>
     <string name="i_teach_with_calmness_and_encouragement_my_lessons_are_not_boring_and_i_can_accomodate_student_s_with_low_affinity_to_studying_i_employ_modern_schema_for_tutoring_with_interactive_guides_and_learning_systems_having_schooled_at_different_educational_organizations_coupled_with_my_nce_certifcate_i_can_assure_you_premium_success_with_me_as_your_home_teacher">I teach with calmness and encouragement. My lessons are not boring and i can accommodate student’s with low affinity to studying. I employ modern schema for tutoring with interactive guides and learning systems. Having schooled at different educational organizations coupled with my NCE certifcate, I can assure you premium success with me as your Home-Teacher.</string>
@@ -163,13 +163,30 @@
     <string name="colon_sign">:</string>
     <string name="cancel_small">Cancel</string>
     <string name="approve_small">Approve</string>
-    <string name="request_service">REQUEST\nSERVICE</string>
+    <string name="request_service">REQUEST \n SERVICE</string>
     <string name="card_number">Card Number</string>
     <string name="mm">MM</string>
     <string name="yy">YY</string>
     <string name="ellipsis">…</string>
     <string name="cvc">CVC</string>
     <string name="no_transaction">No Transaction</string>
+    <string name="total_students">TOTAL STUDENTS</string>
+    <string name="profile_visits">PROFILE VISITS</string>
+    <string name="balance">BALANCE</string>
+    <string name="total_reviews">TOTAL REVIEWS</string>
+    <string name="class_schedule">Class Schedule</string>
+    <string name="make_withdrawal">Make Withdrawal</string>
+    <string name="my_banks">My Banks</string>
+    <string name="book_tutor">Book Tutor</string>
+    <string name="select_date_time"><![CDATA[1. SELECT DATE & TIME]]></string>
+    <string name="tap_to_select_date_amp_time"><![CDATA[Tap to select date & time.]]></string>
+    <string name="tap_to_select_course">Tap dropdown to select course</string>
+    <string name="select_course">2. SELECT COURSE</string>
+    <string name="select_grade">3. SELECT GRADE</string>
+    <string name="tap_to_select_grade">Tap dropdown to select grade</string>
+    <string name="text_no_chat_history">You currently have no chat history</string>
+    <string name="you_currently_have_no_upcoming_class">You currently have no Upcoming class</string>
+    <string name="you_currently_have_no_ongoing_class">You currently have no Ongoing class</string>
 
     <string-array name="fields_array">
         <item>Science</item>
@@ -218,5 +235,23 @@
         <item>Taraba</item>
         <item>Yobe</item>
         <item>Zamfara</item>
+    </string-array>
+
+    <string-array name="tutor_subjects">
+        <item>Math</item>
+        <item>Physics</item>
+        <item>Chemistry</item>
+        <item>Geography</item>
+        <item>Biology</item>
+        <item>English</item>
+        <item>F-Maths</item>
+        <item>Economics</item>
+    </string-array>
+
+    <string-array name="course_grade">
+        <item>Grade 1 - Basic</item>
+        <item>Grade 2 - Junior</item>
+        <item>Grade 3 - Senior</item>
+        <item>Grade 4 - Adult</item>
     </string-array>
 </resources>

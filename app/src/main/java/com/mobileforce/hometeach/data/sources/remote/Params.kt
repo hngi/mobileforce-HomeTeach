@@ -61,6 +61,8 @@ class Params {
         val from_minute: String,
         val to_hour: String,
         val to_minute: String,
+        val subject: String,
+        val grade: String,
         val dates: List<String>
     )
 
@@ -81,4 +83,11 @@ class Params {
     data class TutorClassesRequest (val tutor_id: String)
 
     data class StudentRequest(val id: String,val request_id:String,val action:String)
+    data class StudentID(
+        val student_id: String
+    )
+
+    data class UserWallet(val user: String)
+
+
 }

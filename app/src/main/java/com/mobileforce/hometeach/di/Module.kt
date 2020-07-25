@@ -13,6 +13,7 @@ import com.mobileforce.hometeach.data.sources.remote.Api
 import com.mobileforce.hometeach.ui.classes.tutor.StudentRequestViewModel
 import com.mobileforce.hometeach.ui.classes.tutor.TutorUpcomingViewModel
 import com.mobileforce.hometeach.ui.classes.tutor.TutorRequestViewModel
+import com.mobileforce.hometeach.ui.booktutor.BookTutorViewModel
 import com.mobileforce.hometeach.ui.home.HomePageViewModel
 import com.mobileforce.hometeach.ui.message.ChatViewModel
 import com.mobileforce.hometeach.ui.profile.EditTutorViewModel
@@ -22,7 +23,10 @@ import com.mobileforce.hometeach.ui.signup.SignUpViewModel
 import com.mobileforce.hometeach.ui.studentpayments.carddetails.StudentAddCardDetailsViewModel
 import com.mobileforce.hometeach.ui.studentpayments.carddetails.StudentCardDetailsViewModel
 import com.mobileforce.hometeach.ui.studentpayments.makepayments.StudentMakePaymentViewModel
+import com.mobileforce.hometeach.ui.tutordetails.TutorDetailsViewModel
 import com.mobileforce.hometeach.ui.tutorlist.TutorListViewModel
+import com.mobileforce.hometeach.ui.withdrawalscreens.mybank.MyBankViewModel
+import com.mobileforce.hometeach.ui.withdrawalscreens.withdraw.WithDrawalViewModel
 import com.mobileforce.hometeach.utils.AppConstants.BASE_URL
 import com.mobileforce.hometeach.utils.AppConstants.DATABASE_NAME
 import com.mobileforce.hometeach.utils.PreferenceHelper
@@ -90,6 +94,10 @@ val appModule = module {
     factory { HomePageViewModel(get(), get()) }
     factory { TutorListViewModel(get()) }
     factory { ProfileViewModel(get()) }
+
+    factory { BookTutorViewModel(get()) }
+    factory { TutorDetailsViewModel(get()) }
+
     factory { EditTutorViewModel(get()) }
     factory { StudentAddCardDetailsViewModel(get()) }
     factory { StudentCardDetailsViewModel(get()) }
@@ -100,4 +108,7 @@ val appModule = module {
     factory { TutorUpcomingViewModel(get()) }
     factory {  StudentRequestViewModel(get()) }
 
+
+    factory { WithDrawalViewModel(get()) }
+    factory { MyBankViewModel(get()) }
 }

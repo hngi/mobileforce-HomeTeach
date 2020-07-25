@@ -40,9 +40,9 @@
     </fragment>
     <fragment
         android:id="@+id/makeWithdrawalFragment"
-        android:name="com.mobileforce.hometeach.ui.withdrawalscreens.withdraw.TutorMakeWithdrawalFragment"
+        android:name="com.mobileforce.hometeach.ui.withdrawalscreens.withdraw.WithdrawalFragment"
         android:label="MakeWithdrawalFragment"
-        tools:layout="@layout/fragment_tutor_make_withdrawal"/>
+        tools:layout="@layout/fragment_withdrawal" />
     <fragment
         android:id="@+id/tutorCardDetails"
         android:name="com.mobileforce.hometeach.ui.withdrawalscreens.carddetails.TutorCardDetailsFragment"
@@ -50,9 +50,9 @@
         tools:layout="@layout/fragment_tutor_card_details"/>
     <fragment
         android:id="@+id/myBanks"
-        android:name="com.mobileforce.hometeach.ui.withdrawalscreens.mybank.MyBanks"
+        android:name="com.mobileforce.hometeach.ui.withdrawalscreens.mybank.MyBankFragment"
         android:label="MyBanks"
-        tools:layout="@layout/fragment_my_banks"/>
+        tools:layout="@layout/fragment_my_bank" />
     <fragment
         android:id="@+id/addBankFragment"
         android:name="com.mobileforce.hometeach.ui.withdrawalscreens.mybank.TutorAddBankFragment"
@@ -75,9 +75,16 @@
         tools:layout="@layout/fragment_tutor_class" />
     <fragment
         android:id="@+id/tutorDetailsFragment"
-        android:name="com.mobileforce.hometeach.ui.fragments.TutorDetailsFragment"
+        android:name="com.mobileforce.hometeach.ui.tutordetails.TutorDetailsFragment"
         android:label="TutorDetailsFragment"
-        tools:layout="@layout/fragment_tutor_details"/>
+        tools:layout="@layout/fragment_tutor_details">
+        <action
+            android:id="@+id/action_tutorDetailsFragment_to_bookTutorFragment"
+            app:destination="@id/bookTutorFragment" />
+        <argument
+            android:name="tutorModel"
+            app:argType="com.mobileforce.hometeach.models.TutorModel" />
+    </fragment>
     <fragment
         android:id="@+id/tutorsAllFragment"
         android:name="com.mobileforce.hometeach.ui.tutorlist.TutorListFragment"
@@ -86,6 +93,9 @@
         <action
             android:id="@+id/action_tutorsAllFragment_to_tutorDetailsFragment"
             app:destination="@id/tutorDetailsFragment" />
+        <action
+            android:id="@+id/action_tutorsAllFragment_to_bookTutorFragment"
+            app:destination="@id/bookTutorFragment" />
     </fragment>
     <fragment
         android:id="@+id/studentMakePaymentFragment"
@@ -119,10 +129,20 @@
         android:label="fragment_student_profile"
         tools:layout="@layout/fragment_student_profile" />
     <fragment
+<<<<<<< HEAD
         android:id="@+id/studentDetails"
         android:name="com.mobileforce.hometeach.ui.classes.tutor.StudentDetails"
         android:label="fragment_student_details"
         tools:layout="@layout/fragment_student_details" />
+=======
+        android:id="@+id/bookTutorFragment"
+        android:name="com.mobileforce.hometeach.ui.booktutor.BookTutorFragment"
+        android:label="BookTutorFragment" >
+        <argument
+            android:name="tutor"
+            app:argType="com.mobileforce.hometeach.models.TutorModel" />
+    </fragment>
+>>>>>>> upstream/develop
 
 
 </navigation>

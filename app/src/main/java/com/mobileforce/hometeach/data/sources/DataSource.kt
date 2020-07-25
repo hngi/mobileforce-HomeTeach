@@ -1,15 +1,13 @@
 package com.mobileforce.hometeach.data.sources
 
 import androidx.lifecycle.LiveData
-import com.mobileforce.hometeach.data.model.ProfileEntity
-import com.mobileforce.hometeach.data.model.TutorEntity
 import com.mobileforce.hometeach.data.model.User
-import com.mobileforce.hometeach.data.model.UserEntity
+import com.mobileforce.hometeach.data.sources.local.entities.*
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
 import com.mobileforce.hometeach.models.TutorRequestDataModel
 import com.mobileforce.hometeach.models.TutorUpcomingDataModel
-import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
+import com.mobileforce.hometeach.data.sources.remote.wrappers.UserCardDetailResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -54,6 +52,12 @@ interface DataSource {
 
     suspend fun getUserCardDetails(params: Params.UserID): List<UserCardDetailResponse>
 
+    suspend fun getTutorDetailsForUser(id: Int): Response<TutorDetailsResponse>
+
+    suspend fun getTutorDetailsFromDb(id: Int): TutorDetailsEntity?
+
+    suspend fun saveTutorDetailsToDb(tutorDetailsEntity: TutorDetailsEntity)
+
     suspend fun uploadTutorMedia(
         id: RequestBody,
         profile_pic: MultipartBody.Part,
@@ -97,4 +101,13 @@ interface DataSource {
     suspend fun getTutorClasses(param:Params.TutorClassesRequest): TutorUpcomingDataModel
 
     suspend fun grantStudentRequest(params:Params.StudentRequest):StudentRequestResponse
+
+    suspend fun getStudentClass(param: Params.StudentID): UserClassResponse
+
+    suspend fun getUserWallet(param: Params.UserWallet): UserWalletResponse = TODO()
+
+    suspend fun saveUserWallet(walletEntity: WalletEntity) {}
+
+    fun observeWalletData(): LiveData<WalletEntity> = TODO()
 }
+

@@ -17,6 +17,9 @@ class StudentAddCardDetailsViewModel(private val userRepository: UserRepository)
     val saveCard: LiveData<Result<Nothing>>
         get() = _saveCard
 
+    val profofile = userRepository.profileLiveData()
+    val wallet = userRepository.observeWalletData()
+
     fun saveUserCardDetails(params: Params.CardDetails) {
 
         _saveCard.value = Result.Loading

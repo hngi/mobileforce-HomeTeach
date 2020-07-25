@@ -42,7 +42,6 @@
         <ImageView
             android:id="@+id/imageView2"
             android:layout_width="wrap_content"
-
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
             android:layout_gravity="end|center_vertical"
@@ -92,6 +91,7 @@
             android:layout_marginTop="16dp"
             android:gravity="center_horizontal"
             android:text="50%\ndone"
+            android:visibility="invisible"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/subject_name" />
@@ -116,7 +116,7 @@
             app:layout_constraintTop_toBottomOf="@+id/subject_name" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/date_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"

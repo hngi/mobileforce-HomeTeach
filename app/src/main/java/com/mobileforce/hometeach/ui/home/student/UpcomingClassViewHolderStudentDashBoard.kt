@@ -1,23 +1,30 @@
 package com.mobileforce.hometeach.ui.home.student
 
-import com.mobileforce.hometeach.R
+import android.util.Log
 import com.mobileforce.hometeach.adapters.ViewHolder
+import com.mobileforce.hometeach.data.sources.remote.wrappers.Request
 import com.mobileforce.hometeach.databinding.ListItemClassUpcomingParentDashBoardBinding
 import com.mobileforce.hometeach.utils.loadImage
-import com.mobileforce.hometeach.models.UpComingClassModel
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class UpcomingClassViewHolderStudentDashBoard(var binding: ListItemClassUpcomingParentDashBoardBinding) :
-    ViewHolder<UpComingClassModel>(binding.root) {
-    override fun bind(element: UpComingClassModel) {
-
+    ViewHolder<Request>(binding.root) {
+    override fun bind(element: Request) {
+        val currentDateTime = System.currentTimeMillis()
+        val dateFormat = SimpleDateFormat("dd-MM-yyyy HH-mm", Locale.US)
+        val requestDateTime = dateFormat.parse(element.day + " " + element.from_hour + ":" + element.from_minute)!!.time
         with(element) {
-
-            binding.subjectName.text = subject
-            binding.tutorName.text = tutorName
-            binding.tutorImage.loadImage(tutorImage, R.drawable.profile_image)
+            if (currentDateTime < requestDateTime) {
+                binding.subjectName.text = subject
+                binding.dateTime.text = "$day-$from_hour:$from_minute"
+                binding.tutorName.text = tutor_name
+                binding.tutorSubject.text = "$subject Tutor"
+                binding.tutorImage.loadImage(tutor_pic)
+            } else {
+                Log.d("TAG", "Time passed")
+            }
         }
-
     }
-
 }

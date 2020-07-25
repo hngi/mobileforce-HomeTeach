@@ -6,9 +6,7 @@ import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,16 +18,12 @@ import co.paystack.android.exceptions.ExpiredAccessCodeException
 import co.paystack.android.model.Card
 import co.paystack.android.model.Charge
 import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.snackbar.SnackbarContentLayout
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.databinding.FragmentStudentMakePaymentBinding
-import com.mobileforce.hometeach.databinding.PaymentReferenceDialogBinding
-import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
+import com.mobileforce.hometeach.data.sources.remote.wrappers.UserCardDetailResponse
 import com.mobileforce.hometeach.ui.studentpayments.carddetails.StudentCardsRecycler
 import com.mobileforce.hometeach.utils.Result
-import com.mobileforce.hometeach.utils.snack
 import kotlinx.android.synthetic.main.fragment_student_make_payment.*
-import kotlinx.android.synthetic.main.payment_reference_dialog.*
 import kotlinx.android.synthetic.main.students_card_list.view.*
 import kotlinx.coroutines.launch
 import org.json.JSONException

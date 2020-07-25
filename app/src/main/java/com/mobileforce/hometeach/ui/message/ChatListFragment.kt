@@ -16,6 +16,8 @@ import com.mobileforce.hometeach.adapters.ViewHolder
 import com.mobileforce.hometeach.databinding.FragmentChatListBinding
 import com.mobileforce.hometeach.models.Chat
 import com.mobileforce.hometeach.models.chatDiffUtil
+import com.mobileforce.hometeach.utils.makeInvisible
+import com.mobileforce.hometeach.utils.makeVisible
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 /**
@@ -81,9 +83,11 @@ class ChatListFragment : Fragment() {
         viewModel.chatList.observe(viewLifecycleOwner, Observer {
 
             it?.let { list ->
+
+                if (list.isEmpty()) binding.textViewEmptyState.makeVisible()
+                else binding.textViewEmptyState.makeInvisible()
                 chatListAdpter.submitList(list)
             }
-
         })
 
 

@@ -1,13 +1,11 @@
 package com.mobileforce.hometeach.data.repository
 
 import androidx.lifecycle.LiveData
-import com.mobileforce.hometeach.data.model.ProfileEntity
-import com.mobileforce.hometeach.data.model.TutorEntity
 import com.mobileforce.hometeach.data.model.User
-import com.mobileforce.hometeach.data.model.UserEntity
+import com.mobileforce.hometeach.data.sources.local.entities.*
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
-import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
+import com.mobileforce.hometeach.data.sources.remote.wrappers.UserCardDetailResponse
 import retrofit2.Response
 
 
@@ -17,7 +15,7 @@ interface UserRepository {
 
     suspend fun register(params: Params.SignUp): RegisterUserResponse
 
-    suspend fun passwordReset(params: Params.PasswordReset):Response<EmailResponse>
+    suspend fun passwordReset(params: Params.PasswordReset): Response<EmailResponse>
 
     suspend fun saveUser(user: User)
 
@@ -60,5 +58,20 @@ interface UserRepository {
     suspend fun getSingleUserProfile(): ProfileEntity
 
     suspend fun getUserProfile(): UserProfileResponse
+
+    suspend fun getTutorDetailsForUser(id: Int): Response<TutorDetailsResponse>
+
+    suspend fun getTutorDetailsForUserDb(id: Int): TutorDetailsEntity?
+
+    suspend fun saveTutorDetailsForUserDb(tutorDetailsEntity: TutorDetailsEntity)
+
+    suspend fun getStudentClass(): UserClassResponse
+
+    suspend fun getUserWallet(): UserWalletResponse
+
+    suspend fun saveWallet(walletData: WalletData)
+
+    fun observeWalletData(): LiveData<WalletEntity>
+
 }
 

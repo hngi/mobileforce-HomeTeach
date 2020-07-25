@@ -1,11 +1,17 @@
-package com.mobileforce.hometeach.data.model
+package com.mobileforce.hometeach.data.sources.local.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "profile")
-data class ProfileEntity(
+/**
+ * Created by Mayokun Adeniyi on 23/07/2020.
+ */
+
+@Entity(tableName = "tutor_details")
+data class TutorDetailsEntity(
     @PrimaryKey val id: Int,
+    val stringId : String?,
+    val full_name: String?,
     val profile_pic: String?,
     val hourly_rate: String?,
     val desc: String?,

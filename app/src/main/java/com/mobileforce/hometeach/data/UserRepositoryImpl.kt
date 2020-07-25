@@ -1,15 +1,13 @@
 package com.mobileforce.hometeach.data
 
 import androidx.lifecycle.LiveData
-import com.mobileforce.hometeach.data.model.ProfileEntity
-import com.mobileforce.hometeach.data.model.TutorEntity
 import com.mobileforce.hometeach.data.model.User
-import com.mobileforce.hometeach.data.model.UserEntity
 import com.mobileforce.hometeach.data.repository.UserRepository
 import com.mobileforce.hometeach.data.sources.DataSourceFactory
+import com.mobileforce.hometeach.data.sources.local.entities.*
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
-import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
+import com.mobileforce.hometeach.data.sources.remote.wrappers.UserCardDetailResponse
 import retrofit2.Response
 
 
@@ -130,5 +128,41 @@ class UserRepositoryImpl(private val dataSource: DataSourceFactory) : UserReposi
 
     }
 
+    override suspend fun getTutorDetailsForUser(id: Int): Response<TutorDetailsResponse> {
+        return dataSource.remote().getTutorDetailsForUser(id)
+    }
 
+    override suspend fun getTutorDetailsForUserDb(id: Int): TutorDetailsEntity? {
+        return dataSource.local().getTutorDetailsFromDb(id)
+    }
+
+    override suspend fun saveTutorDetailsForUserDb(tutorDetailsEntity: TutorDetailsEntity) {
+        dataSource.local().saveTutorDetailsToDb(tutorDetailsEntity)
+    }
+
+    override suspend fun getStudentClass(): UserClassResponse {
+        val user = dataSource.local().getSingleUser()
+        val studentId = Params.StudentID(student_id = user.id)
+        return dataSource.remote().getStudentClass(studentId)
+    }
+
+    override suspend fun getUserWallet(): UserWalletResponse {
+        val user = getSingleUser()
+        val param = Params.UserWallet(user = user.id)
+        return dataSource.remote().getUserWallet(param)
+    }
+
+    override suspend fun saveWallet(walletData: WalletData) {
+
+        val wallet = WalletEntity(
+            total_balance = walletData.total_balance,
+            availableBalance = walletData.available_balance
+        )
+        dataSource.local().saveUserWallet(wallet)
+
+    }
+
+    override fun observeWalletData(): LiveData<WalletEntity> {
+        return dataSource.local().observeWalletData()
+    }
 }
