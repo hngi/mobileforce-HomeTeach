@@ -7,7 +7,6 @@ import com.mobileforce.hometeach.data.sources.DataSourceFactory
 import com.mobileforce.hometeach.data.sources.local.entities.*
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
-import com.mobileforce.hometeach.data.sources.remote.wrappers.UserCardDetailResponse
 import retrofit2.Response
 
 
@@ -164,5 +163,13 @@ class UserRepositoryImpl(private val dataSource: DataSourceFactory) : UserReposi
 
     override fun observeWalletData(): LiveData<WalletEntity> {
         return dataSource.local().observeWalletData()
+    }
+
+    override suspend fun saveCardToDb(cardEntity: CardEntity) {
+        dataSource.local().saveCardToDb(cardEntity)
+    }
+
+    override fun observeUSerCards(): LiveData<List<CardEntity>> {
+        return dataSource.local().observeUserCards()
     }
 }
