@@ -788,6 +788,10 @@
         /* Media Queries Here */
         
         @media screen and (max-width: 450px) {
+            html,
+            body {
+                overflow-x: hidden !important;
+            }
             .supported p {
                 font-size: 18px !important;
             }
