@@ -946,6 +946,13 @@
         /* Media Queries Here */
         
         @media screen and (max-width: 450px) {
+            .menu-wrap {
+                position: absolute;
+                top: 0;
+                left: 300;
+                z-index: 1;
+                display: block !important;
+            }
             .news__captions h4 {
                 font-size: 24px !important;
                 line-height: 25px !important;
@@ -1130,6 +1137,7 @@
             top: 0;
             left: 300;
             z-index: 1;
+            display: none;
         }
         
         .menu-wrap .toggler {

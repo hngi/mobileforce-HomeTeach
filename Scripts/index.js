@@ -1,3 +1,6 @@
+// Initialize AOS HERE
+AOS.init();
+
 $('document').ready(function() {
     var typed = new Typed('#typed', {
         strings: ['Anytime... ^1000', 'Anywhere...'],
