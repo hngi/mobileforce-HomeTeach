@@ -556,8 +556,46 @@
         
         @media screen and (max-width: 450px) {
             .find__tutor {
-                display: none;
+                display: none !important;
             }
+            .find__tutor__mobile {
+                display: block !important;
+                background-image: url("../Assets/General/find_tutor_mobile.png");
+                height: 100%;
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+            .tutors__header {
+                padding-top: 250px;
+            }
+            .tutors__header h4 {
+                color: white;
+                text-align: center;
+                letter-spacing: -0.28px;
+                font-weight: 500;
+                font-family: 'Ubuntu', sanswhite-serif;
+                font-size: 24px;
+                line-height: 41px;
+                font-style: normal;
+            }
+            .tutors__header p {
+                text-align: left;
+                letter-spacing: -0.28px;
+                font-size: 18px;
+                font-family: 'Ubuntu', sans-serif;
+                color: white;
+                padding: 0px 30px 0px 30px;
+                line-height: 30px;
+                font-weight: normal;
+            }
+            .scroll__content .app__logo img {
+                height: 40px;
+                margin-top: 20px;
+            }
+        }
+        
+        .find__tutor__mobile {
+            display: none;
         }
         
         .find__tutor {
@@ -951,7 +989,7 @@
                 display: list-item !important;
             }
             .foot {
-                padding: 80px 0px 60px 0px !important;
+                padding: 80px 0px 20px 0px !important;
             }
              ::placeholder {
                 font-size: 12px !important;
