@@ -346,10 +346,10 @@
 
         <ImageView
             android:id="@+id/Pdf_image"
-            android:layout_width="67dp"
-            android:layout_height="66dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:src="@drawable/pdfimg"
+            android:src="@drawable/ic_pdf"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="@id/Credentials_tv"
             app:layout_constraintRight_toRightOf="@id/Credentials_tv"
@@ -392,5 +392,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:constraint_referenced_ids="description_text,Tutor_Description_Detail_card" />
+
+        <TextView
+            android:id="@+id/documentName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:textColor="@color/textColor"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/Pdf_image"
+            app:layout_constraintStart_toEndOf="@+id/Pdf_image"
+            app:layout_constraintTop_toTopOf="@+id/Pdf_image"
+            tools:text="My Credential" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

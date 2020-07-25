@@ -19,12 +19,13 @@ import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.databinding.FragmentEditTutorProfileBinding
 import com.mobileforce.hometeach.utils.ApiError
 import com.mobileforce.hometeach.utils.Result
+import com.mobileforce.hometeach.utils.loadImage
 import com.mobileforce.hometeach.utils.toast
 import com.squareup.picasso.Picasso
 import com.tiper.MaterialSpinner
 import kotlinx.android.synthetic.main.fragment_edit_tutor_profile.*
 import kotlinx.android.synthetic.main.uploads.view.*
-import org.koin.android.ext.android.get
+import org.koin.android.viewmodel.ext.android.viewModel
 import java.io.FileNotFoundException
 import java.io.InputStream
 
@@ -40,9 +41,9 @@ class EditTutorProfileFragment : Fragment() {
     val REQUEST_CODE2 = 1005
     val REQUEST_CODE3 = 1009
     private lateinit var mDialogView: View
-   private lateinit var mAlertDialog:AlertDialog
+    private lateinit var mAlertDialog: AlertDialog
 
-    private val viewModel: EditTutorViewModel = get<EditTutorViewModel>()
+    private val viewModel: EditTutorViewModel by viewModel()
     private val listener by lazy {
         object : MaterialSpinner.OnItemSelectedListener {
             override fun onItemSelected(
@@ -158,6 +159,30 @@ class EditTutorProfileFragment : Fragment() {
             })
 
         }
+
+        viewModel.profile.observe(viewLifecycleOwner, Observer { profile ->
+
+            profile?.let {
+
+                binding.profilePic.loadImage(
+                    profile.profile_pic,
+                    placeholder = R.drawable.profile_image
+                )
+
+
+                profile.hourly_rate?.let {
+                    binding.etRateInput.setText(it)
+                }
+
+                binding.etDescription.setText(profile.desc)
+                binding.etOtherCourseInput.setText(profile.other_courses)
+                binding.etCourseInput.setText(profile.major_course)
+                binding.etDescription.setText(profile.desc)
+
+            }
+
+
+        })
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -314,7 +339,7 @@ class EditTutorProfileFragment : Fragment() {
             AlertDialog.Builder(it1)
                 .setView(mDialogView)
         }
-      mAlertDialog = mBuilder?.show()!!
+        mAlertDialog = mBuilder?.show()!!
 
     }
 }
