@@ -11,8 +11,10 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.snackbar.Snackbar
+import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 /**
  * Authored by enyason
@@ -89,3 +91,8 @@ fun Date?.convertTime(): String {
     formatter.timeZone = TimeZone.getDefault()
     return formatter.format(this)
 }
+
+fun Double.formatBalance(): String {
+    return NumberFormat.getCurrencyInstance(Locale("en", "NG")).format(this)
+}
+

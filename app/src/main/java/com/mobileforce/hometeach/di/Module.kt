@@ -22,6 +22,8 @@ import com.mobileforce.hometeach.ui.studentpayments.carddetails.StudentCardDetai
 import com.mobileforce.hometeach.ui.studentpayments.makepayments.StudentMakePaymentViewModel
 import com.mobileforce.hometeach.ui.tutordetails.TutorDetailsViewModel
 import com.mobileforce.hometeach.ui.tutorlist.TutorListViewModel
+import com.mobileforce.hometeach.ui.withdrawalscreens.mybank.MyBankViewModel
+import com.mobileforce.hometeach.ui.withdrawalscreens.withdraw.WithDrawalViewModel
 import com.mobileforce.hometeach.utils.AppConstants.BASE_URL
 import com.mobileforce.hometeach.utils.AppConstants.DATABASE_NAME
 import com.mobileforce.hometeach.utils.PreferenceHelper
@@ -98,4 +100,6 @@ val appModule = module {
     factory { StudentMakePaymentViewModel(get()) }
 
     factory { ChatViewModel(get()) }
+    factory { WithDrawalViewModel(get()) }
+    factory { MyBankViewModel(get()) }
 }

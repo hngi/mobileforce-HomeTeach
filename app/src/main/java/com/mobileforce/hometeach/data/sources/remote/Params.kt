@@ -79,4 +79,6 @@ class Params {
         val hourly_rate: String,
         val desc: String
     )
+
+    data class UserWallet(val user: String)
 }

@@ -1,24 +1,28 @@
 package com.mobileforce.hometeach.ui.withdrawalscreens.withdraw
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import com.mobileforce.hometeach.R
-import com.mobileforce.hometeach.adapters.*
 import com.mobileforce.hometeach.databinding.FragmentWithdrawalBinding
 import com.mobileforce.hometeach.ui.withdrawalscreens.Payment
 import com.mobileforce.hometeach.ui.withdrawalscreens.TutorWithdrawalModel
-import com.squareup.picasso.Picasso
+import com.mobileforce.hometeach.utils.formatBalance
+import com.mobileforce.hometeach.utils.loadImage
+import org.koin.android.viewmodel.ext.android.viewModel
 
 /**
  * Authored by enyason
  */
 class WithdrawalFragment : Fragment() {
 
-    private lateinit var payment_list:MutableList<Payment>
+    private lateinit var payment_list: MutableList<Payment>
     private lateinit var binding: FragmentWithdrawalBinding
+
+    private val viewModel: WithDrawalViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,6 +37,27 @@ class WithdrawalFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+        viewModel.profofile.observe(viewLifecycleOwner, Observer {
+
+            binding.tutorImage.loadImage(it.profile_pic, R.drawable.profile_image, circular = true)
+        })
+
+        viewModel.user.observe(viewLifecycleOwner, Observer {
+
+            it?.let {
+                binding.tutorName.text = it.full_name
+            }
+        })
+
+        viewModel.wallet.observe(viewLifecycleOwner, Observer {
+
+            it?.let {
+                binding.tutorBalance.text = it.availableBalance.formatBalance()
+            }
+        })
+
         payment_list = mutableListOf()
         payment_list.add(
             Payment(
@@ -74,10 +99,6 @@ class WithdrawalFragment : Fragment() {
                 "profile_image",
                 "215000 N"
             )
-        binding.tutorName.text = Tutor.tutorName
-        binding.tutorBalance.text = "Balance: "+Tutor.balance
-        Picasso.get().load("profile_image").transform(CircleTransform()).placeholder(R.drawable.profile_image).error(R.drawable.profile_image).into(binding.tutorImage)
-
 
         val adapter =
             PaymentRecycler()

@@ -80,15 +80,23 @@ interface Api {
     @JvmSuppressWildcards
     @Multipart
     @PUT("v1/tutor-profiles/{id}/")
-    suspend fun uploadProfilePic(@Path("id") id:Int, @Part profile_pic: MultipartBody.Part):UploadResponse
+    suspend fun uploadProfilePic(
+        @Path("id") id: Int,
+        @Part profile_pic: MultipartBody.Part
+    ): UploadResponse
 
     @JvmSuppressWildcards
     @PUT("v1/tutor-profiles/{id}/")
-    suspend fun uploadVideo(@Path("id") id:Int, @Part video: MultipartBody.Part):UploadResponse
+    suspend fun uploadVideo(@Path("id") id: Int, @Part video: MultipartBody.Part): UploadResponse
 
     @JvmSuppressWildcards
     @PUT("v1/tutor-profiles/{id}/")
-    suspend fun uploadCredential(@Path("id") id:Int, @Part credentials: MultipartBody.Part):UploadResponse
+    suspend fun uploadCredential(
+        @Path("id") id: Int,
+        @Part credentials: MultipartBody.Part
+    ): UploadResponse
 
+    @POST("v1/user-wallet/")
+    suspend fun getUserWallet(@Body param: Params.UserWallet): UserWalletResponse
 
 }
