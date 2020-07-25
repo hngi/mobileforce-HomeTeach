@@ -2,7 +2,7 @@ package com.mobileforce.hometeach.data.sources.remote.wrappers
 
 import androidx.recyclerview.widget.DiffUtil
 
-data class UserClassResponse(
+data class UserClassRequestResponse(
     val student_id: String,
     val requests: List<Request>
 )

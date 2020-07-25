@@ -4,12 +4,14 @@ import com.mobileforce.hometeach.adapters.ViewHolder
 import com.mobileforce.hometeach.data.sources.remote.wrappers.Request
 import com.mobileforce.hometeach.databinding.ListItemClassOngoingParentDashBoardBinding
 import com.mobileforce.hometeach.utils.loadImage
+import java.net.URL
 import java.text.SimpleDateFormat
 import java.util.*
 
 
 class OngoingClassViewHolderStudentDashBoard(var binding: ListItemClassOngoingParentDashBoardBinding) :
     ViewHolder<Request>(binding.root) {
+
     override fun bind(element: Request) {
         val currentDateTime = System.currentTimeMillis()
         val dateFormat = SimpleDateFormat("dd-MM-yyyy HH-mm", Locale.US)
@@ -22,7 +24,7 @@ class OngoingClassViewHolderStudentDashBoard(var binding: ListItemClassOngoingPa
                 binding.classProgressText.text = binding.classProgressBar.progress.toString() + "%" + "\ndone"
                 binding.tutorName.text = tutor_name
                 binding.tutorSubject.text = "$subject Tutor"
-                binding.tutorImage.loadImage(tutor_pic)
+                binding.tutorImage.loadImage(URL(tutor_pic))
             }
         }
     }

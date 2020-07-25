@@ -5,6 +5,7 @@ import com.mobileforce.hometeach.adapters.ViewHolder
 import com.mobileforce.hometeach.data.sources.remote.wrappers.Request
 import com.mobileforce.hometeach.databinding.ListItemClassUpcomingParentDashBoardBinding
 import com.mobileforce.hometeach.utils.loadImage
+import java.net.URL
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -21,7 +22,7 @@ class UpcomingClassViewHolderStudentDashBoard(var binding: ListItemClassUpcoming
                 binding.dateTime.text = "$day-$from_hour:$from_minute"
                 binding.tutorName.text = tutor_name
                 binding.tutorSubject.text = "$subject Tutor"
-                binding.tutorImage.loadImage(tutor_pic)
+                binding.tutorImage.loadImage(URL(tutor_pic))
             } else {
                 Log.d("TAG", "Time passed")
             }

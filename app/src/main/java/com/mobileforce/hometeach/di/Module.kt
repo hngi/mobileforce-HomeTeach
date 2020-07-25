@@ -11,6 +11,8 @@ import com.mobileforce.hometeach.data.sources.RemoteDataSource
 import com.mobileforce.hometeach.data.sources.local.AppDataBase
 import com.mobileforce.hometeach.data.sources.remote.Api
 import com.mobileforce.hometeach.ui.booktutor.BookTutorViewModel
+import com.mobileforce.hometeach.ui.classes.parentstudent.ParentOngoingViewModel
+import com.mobileforce.hometeach.ui.classes.parentstudent.ParentRequestViewModel
 import com.mobileforce.hometeach.ui.home.HomePageViewModel
 import com.mobileforce.hometeach.ui.message.ChatViewModel
 import com.mobileforce.hometeach.ui.profile.EditTutorViewModel
@@ -102,4 +104,7 @@ val appModule = module {
     factory { ChatViewModel(get()) }
     factory { WithDrawalViewModel(get()) }
     factory { MyBankViewModel(get()) }
+
+    factory { ParentRequestViewModel(get()) }
+    factory { ParentOngoingViewModel(get()) }
 }

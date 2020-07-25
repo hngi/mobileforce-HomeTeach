@@ -160,7 +160,7 @@ class HomePageFragment : Fragment() {
         })
 
         //<--------------------------------- Start - Upcoming and Ongoing class Setup ------------------------------------------>//
-        viewModel.getStudentClass()
+        viewModel.getStudentClassRequest()
         // Adapter for Upcoming classes
         val upComingAdapter = object : RecyclerViewAdapter<Request>(userRequestDiffUtil) {
             override fun getLayoutRes(model: Request): Int =
@@ -194,7 +194,7 @@ class HomePageFragment : Fragment() {
             }
         }
 
-        viewModel.studentClass.observe(viewLifecycleOwner, Observer { result ->
+        viewModel.studentClassRequest.observe(viewLifecycleOwner, Observer { result ->
             when (result) {
                 Result.Loading -> {}
                 is Result.Success -> {
