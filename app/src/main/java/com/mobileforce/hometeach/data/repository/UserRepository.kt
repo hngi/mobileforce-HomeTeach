@@ -5,7 +5,6 @@ import com.mobileforce.hometeach.data.model.User
 import com.mobileforce.hometeach.data.sources.local.entities.*
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
-import com.mobileforce.hometeach.data.sources.remote.wrappers.UserCardDetailResponse
 import retrofit2.Response
 
 
@@ -72,6 +71,10 @@ interface UserRepository {
     suspend fun saveWallet(walletData: WalletData)
 
     fun observeWalletData(): LiveData<WalletEntity>
+
+    suspend fun saveCardToDb(cardEntity: CardEntity)
+
+    fun observeUSerCards(): LiveData<List<CardEntity>>
 
 }
 

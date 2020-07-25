@@ -6,7 +6,6 @@ import com.mobileforce.hometeach.data.sources.local.AppDataBase
 import com.mobileforce.hometeach.data.sources.local.entities.*
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
-import com.mobileforce.hometeach.data.sources.remote.wrappers.UserCardDetailResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -186,6 +185,14 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
 
     override fun observeWalletData(): LiveData<WalletEntity> {
         return db.walletDao().observeWalletInfo()
+    }
+
+    override suspend fun saveCardToDb(cardEntity: CardEntity) {
+        db.userDao().saveCard(cardEntity)
+    }
+
+    override fun observeUserCards(): LiveData<List<CardEntity>> {
+        return db.userDao().observeUserCards()
     }
 
     private fun mapProfileToEntity(profile: Profile): ProfileEntity {

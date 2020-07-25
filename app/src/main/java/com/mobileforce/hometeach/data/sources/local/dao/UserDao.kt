@@ -2,6 +2,7 @@ package com.mobileforce.hometeach.data.sources.local.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.mobileforce.hometeach.data.sources.local.entities.CardEntity
 import com.mobileforce.hometeach.data.sources.local.entities.ProfileEntity
 import com.mobileforce.hometeach.data.sources.local.entities.UserEntity
 
@@ -31,5 +32,11 @@ interface UserDao {
 
     @Query("SELECT * FROM profile")
     fun observeableProfileData(): LiveData<ProfileEntity>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun saveCard(card: CardEntity)
+
+    @Query("SELECT * FROM user_card")
+    fun observeUserCards(): LiveData<List<CardEntity>>
 
 }
