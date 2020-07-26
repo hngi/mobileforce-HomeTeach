@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bg_main"
+        app:elevation="0dp"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$Behavior">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView"
+            style="@style/AppBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginBottom="-40dp"
+            android:elevation="0dp"
+            android:visibility="visible"
+            app:cardBackgroundColor="@color/tab_bg"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_scrollFlags="enterAlways|scroll"
+                app:navigationIcon="@drawable/ic_baseline_arrow_back_24">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="My Bank"
+                    android:textSize="24sp" />
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    android:src="@drawable/ic_notify" />
+
+            </com.google.android.material.appbar.MaterialToolbar>
+        </com.google.android.material.card.MaterialCardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:elevation="50dp"
+            android:orientation="vertical"
+            android:padding="50px"
+            tools:context=".ui.withdraw.WithdrawalFragment">
+
+            <!-- Update blank fragment layout -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:outlineSpotShadowColor="@android:color/transparent"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/card_radius"
+                app:cardElevation="@dimen/card_elevation"
+                app:contentPadding="@dimen/card_margin">
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="fill"
+                    android:columnCount="2"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_column="1"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="end|center_vertical"
+
+                        android:src="@drawable/ic_calculator" />
+
+                    <GridLayout
+                        android:layout_column="0"
+                        android:layout_columnWeight="0"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginTop="10dp"
+                        android:columnCount="3"
+                        android:orientation="horizontal"
+                        android:rowCount="2">
+
+
+                        <ImageView
+                            android:id="@+id/tutor_image"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_row="0"
+                            android:layout_rowSpan="2"
+                            android:layout_column="0"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginRight="10dp"
+                            android:scaleType="centerCrop" />
+
+                        <TextView
+                            android:id="@+id/tutor_name"
+                            style="@style/TextAppearance.MaterialComponents.Body1"
+                            android:layout_row="0"
+                            android:layout_column="1"
+                            android:textColor="@color/blackColor"
+                            android:textStyle="bold"
+                            app:fontFamily="@font/ubuntu" />
+
+                        <TextView
+                            android:id="@+id/tutor_balance"
+                            style="@style/TextAppearance.MaterialComponents.Caption"
+                            android:layout_row="1"
+                            android:layout_column="1"
+                            android:textColor="@color/blackColor"
+                            app:fontFamily="@font/ubuntu" />
+
+                        <ImageView
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            android:layout_row="0"
+                            android:layout_column="2"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_noti_icon" />
+                    </GridLayout>
+                </GridLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+
+                style="@style/TextAppearance.MaterialComponents.Headline6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:gravity="start"
+                android:text="Your saved bank account:"
+                android:textAlignment="viewStart"
+                android:textColor="@color/textColor"
+                app:fontFamily="@font/ubuntu"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/mybank_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:layout_marginBottom="10dp"
+
+                android:orientation="vertical"
+                android:scrollbars="vertical"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="1"
+                tools:listitem="@layout/my_banklist_item" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:outlineSpotShadowColor="@android:color/transparent"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/card_radius"
+                app:cardElevation="@dimen/card_elevation"
+                app:contentPaddingBottom="10dp"
+                app:contentPaddingTop="10dp">
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="fill"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:columnCount="3"
+                    android:orientation="horizontal"
+                    tools:ignore="MissingConstraints">
+
+                    <ImageView
+                        android:layout_column="0"
+                        android:layout_columnWeight="0.2"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_bank"
+                        android:textColor="@color/blackColor"
+                        app:fontFamily="@font/ubuntu" />
+
+                    <TextView
+                        style="@style/TextAppearance.MaterialComponents.Body1"
+                        android:layout_column="1"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="start"
+                        android:text="Add New Bank"
+                        android:textColor="@color/blackColor"
+                        android:textStyle="bold"
+                        app:fontFamily="@font/ubuntu" />
+
+
+                    <ImageView
+                        style="@style/TextAppearance.MaterialComponents.Body1"
+                        android:layout_column="2"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="end"
+                        android:layout_marginRight="20dp"
+                        android:src="@drawable/ic_arrow_right"
+                        android:textColor="@color/primaryColor"
+                        app:fontFamily="@font/ubuntu" />
+                </GridLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/normalButton"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:text="Clear All"
+                android:textColor="#fff"
+                app:backgroundTint="@color/blackColor"
+                app:cornerRadius="10dp" />
+        </LinearLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+</layout>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/tutorHomePageFragment">
+
+    <fragment
+        android:id="@+id/chatListFragment"
+        android:name="com.mobileforce.hometeach.ui.message.ChatListFragment"
+        android:label="fragment_chat_list"
+        tools:layout="@layout/fragment_chat_list">
+        <action
+            android:id="@+id/action_chatListFragment_to_chatFragment"
+            app:destination="@id/chatFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/tutorHomePageFragment"
+        android:name="com.mobileforce.hometeach.ui.home.HomePageFragment"
+        android:label="fragment_home_page"
+        tools:layout="@layout/fragment_home_page" >
+        <action
+            android:id="@+id/action_tutorHomePageFragment_to_books"
+            app:destination="@id/books" />
+        <action
+            android:id="@+id/action_tutorHomePageFragment_to_tutorsAllFragment"
+            app:destination="@id/tutorsAllFragment" />
+        <action
+            android:id="@+id/action_tutorHomePageFragment_to_tutorDetailsFragment"
+            app:destination="@id/tutorDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.mobileforce.hometeach.ui.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_editTutorProfileFragment"
+            app:destination="@id/editTutorProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/makeWithdrawalFragment"
+        android:name="com.mobileforce.hometeach.ui.withdrawalscreens.withdraw.WithdrawalFragment"
+        android:label="MakeWithdrawalFragment"
+        tools:layout="@layout/fragment_withdrawal" />
+    <fragment
+        android:id="@+id/tutorCardDetails"
+        android:name="com.mobileforce.hometeach.ui.withdrawalscreens.carddetails.TutorCardDetailsFragment"
+        android:label="CardDetails"
+        tools:layout="@layout/fragment_tutor_card_details"/>
+    <fragment
+        android:id="@+id/myBanks"
+        android:name="com.mobileforce.hometeach.ui.withdrawalscreens.mybank.MyBankFragment"
+        android:label="MyBanks"
+        tools:layout="@layout/fragment_my_bank" />
+    <fragment
+        android:id="@+id/addBankFragment"
+        android:name="com.mobileforce.hometeach.ui.withdrawalscreens.mybank.TutorAddBankFragment"
+        android:label="AddBankFragment"
+        tools:layout="@layout/fragment_tutor_add_bank"/>
+    <fragment
+        android:id="@+id/tutorAddCardDetails"
+        android:name="com.mobileforce.hometeach.ui.withdrawalscreens.carddetails.TutorAddCardDetailsFragment"
+        android:label="AddCardDetails"
+        tools:layout="@layout/fragment_tutor_add_card_details"/>
+<fragment
+        android:id="@+id/books"
+        android:name="com.mobileforce.hometeach.ui.classes.parentstudent.ParentStudentClassFragment"
+        android:label="fragment_parent_student_class"
+        tools:layout="@layout/fragment_parent_student_class" />
+    <fragment
+        android:id="@+id/tutorClassFragment"
+        android:name="com.mobileforce.hometeach.ui.classes.tutor.TutorClassFragment"
+        android:label="fragment_tutor_class"
+        tools:layout="@layout/fragment_tutor_class" />
+    <fragment
+        android:id="@+id/tutorDetailsFragment"
+        android:name="com.mobileforce.hometeach.ui.tutordetails.TutorDetailsFragment"
+        android:label="TutorDetailsFragment"
+        tools:layout="@layout/fragment_tutor_details">
+        <action
+            android:id="@+id/action_tutorDetailsFragment_to_bookTutorFragment"
+            app:destination="@id/bookTutorFragment" />
+        <argument
+            android:name="tutorModel"
+            app:argType="com.mobileforce.hometeach.models.TutorModel" />
+    </fragment>
+    <fragment
+        android:id="@+id/tutorsAllFragment"
+        android:name="com.mobileforce.hometeach.ui.tutorlist.TutorListFragment"
+        android:label="fragment_all_tutors"
+        tools:layout="@layout/fragment_all_tutors" >
+        <action
+            android:id="@+id/action_tutorsAllFragment_to_tutorDetailsFragment"
+            app:destination="@id/tutorDetailsFragment" />
+        <action
+            android:id="@+id/action_tutorsAllFragment_to_bookTutorFragment"
+            app:destination="@id/bookTutorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/studentMakePaymentFragment"
+        android:name="com.mobileforce.hometeach.ui.studentpayments.makepayments.StudentMakePaymentFragment"
+        android:label="Make Payment"
+        tools:layout="@layout/fragment_student_make_payment"/>
+    <fragment
+        android:id="@+id/studentCardDetails"
+        android:name="com.mobileforce.hometeach.ui.studentpayments.carddetails.StudentCardDetailsFragment"
+        android:label="CardDetails"
+        tools:layout="@layout/fragment_student_card_details"/>
+    <fragment
+        android:id="@+id/studentAddCardDetails"
+        android:name="com.mobileforce.hometeach.ui.studentpayments.carddetails.StudentAddCardDetailsFragment"
+        android:label="AddCardDetails"
+        tools:layout="@layout/fragment_student_add_card_details" />
+    <fragment
+        android:id="@+id/editTutorProfileFragment"
+        android:name="com.mobileforce.hometeach.ui.profile.EditTutorProfileFragment"
+        android:label="EditTutorProfileFragment"
+        tools:layout="@layout/fragment_edit_tutor_profile" />
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.mobileforce.hometeach.ui.message.ChatFragment"
+        android:label="chat_fragment"
+        tools:layout="@layout/chat_fragment" />
+    <fragment
+
+        android:id="@+id/studentProfileFragment"
+        android:name="com.mobileforce.hometeach.ui.profile.StudentProfileFragment"
+        android:label="fragment_student_profile"
+        tools:layout="@layout/fragment_student_profile" />
+    <fragment
+        android:id="@+id/bookTutorFragment"
+        android:name="com.mobileforce.hometeach.ui.booktutor.BookTutorFragment"
+        android:label="BookTutorFragment" >
+        <argument
+            android:name="tutor"
+            app:argType="com.mobileforce.hometeach.models.TutorModel" />
+    </fragment>
+
+
+</navigation>
