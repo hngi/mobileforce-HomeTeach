@@ -210,11 +210,11 @@ class RemoteDataSource(private val api: Api) : DataSource {
         return api.getUserWallet(param)
     }
 
-    override suspend fun getStudentClass(param: Params.StudentID): UserClassResponse {
+    override suspend fun getStudentClassRequest(param: Params.StudentID): UserClassRequestResponse {
         val map = mapOf(
             "student_id" to param.student_id
         )
-        return api.getStudentClass(map)
+        return api.getStudentClassRequest(map)
     }
 
 }

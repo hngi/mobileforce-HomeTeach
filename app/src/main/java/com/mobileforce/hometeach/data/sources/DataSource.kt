@@ -93,7 +93,7 @@ interface DataSource {
         params: Params.UpdateTutorProfile
     ): LoginResponse
 
-    suspend fun getStudentClass(param: Params.StudentID): UserClassResponse
+    suspend fun getStudentClassRequest(param: Params.StudentID): UserClassRequestResponse
 
     suspend fun getUserWallet(param: Params.UserWallet): UserWalletResponse = TODO()
 
