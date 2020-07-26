@@ -45,10 +45,7 @@ class TutorUpcomingAdapter(private val itemsList: List<Schedule>) :
         fun initialise(data:Schedule){
             subject.text=data.subject
             time.text = "${data.from_hour}:${data.from_minute}-${data.to_hour}:${data.to_minute}"
-
-            val format = SimpleDateFormat("dd-MM-yyyy", Locale.US)
-            val r = format.parse(data.)
-            date.text = r.toString()
+            date.text = data.day
 
             Picasso.get().load(data.student_pic).transform(CircleTransform())
                 .error(R.drawable.profile_image).into(studentImage)

@@ -96,9 +96,8 @@ class ProfileFragment : Fragment() {
                         String.format("%s/hr", it.toDouble().formatBalance())
                 }
 
-                if (profile.desc== "" )
-                {
-                    bindingTutor.descriptionText.visibility =View.INVISIBLE
+                if (profile.desc == "") {
+                    bindingTutor.descriptionText.visibility = View.INVISIBLE
                     bindingTutor.TutorDescriptionDetailCard.visibility = View.INVISIBLE
                     bindingTutor.tutorDesc.text = ""
                 }
@@ -121,8 +120,19 @@ class ProfileFragment : Fragment() {
                     bindingTutor.tvField.text = it
                 }
 
-                if (credentialUrl.isNullOrEmpty()) bindingTutor.credentialGroup.makeGone()
-                else bindingTutor.credentialGroup.makeVisible()
+                if (credentialUrl.isNullOrEmpty()) {
+                    bindingTutor.credentialGroup.makeGone()
+                } else {
+
+                    try {
+                        //attempt to extract the document name
+                        val docName = credentialUrl.toString().substringAfterLast("/")
+                        bindingTutor.documentName.text = docName.split(".")[0]
+                    } catch (e: Exception) {
+                    }
+
+                    bindingTutor.credentialGroup.makeVisible()
+                }
 
                 if (profile.desc.isNullOrEmpty()) bindingTutor.groupDescription.makeGone()
                 else bindingTutor.groupDescription.makeVisible()
@@ -131,15 +141,16 @@ class ProfileFragment : Fragment() {
 
         })
 
-        bindingTutor.PdfImage.setOnClickListener {
+        bindingTutor.PdfImage.setOnClickListener { openCredential() }
+        bindingTutor.documentName.setOnClickListener { openCredential() }
 
-            credentialUrl?.let {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(credentialUrl))
-                startActivity(intent)
-            }
+    }
 
+    private fun openCredential() {
+        credentialUrl?.let {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(credentialUrl))
+            startActivity(intent)
         }
-
     }
 
     private fun setUpProfileForStudent() {

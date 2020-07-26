@@ -98,7 +98,7 @@ val appModule = module {
     factory { BookTutorViewModel(get()) }
     factory { TutorDetailsViewModel(get()) }
 
-    factory { EditTutorViewModel(get()) }
+    factory { EditTutorViewModel(get(), get()) }
     factory { StudentAddCardDetailsViewModel(get()) }
     factory { StudentCardDetailsViewModel(get()) }
     factory { StudentMakePaymentViewModel(get()) }

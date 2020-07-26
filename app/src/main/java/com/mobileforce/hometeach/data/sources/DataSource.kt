@@ -73,7 +73,7 @@ interface DataSource {
     suspend fun uploadVideo(
         id: Int,
         video: MultipartBody.Part
-    ):UploadResponse
+    ): UploadResponse
 
     suspend fun uploadCredential(
         id: Int,
@@ -109,5 +109,8 @@ interface DataSource {
     suspend fun saveUserWallet(walletEntity: WalletEntity) {}
 
     fun observeWalletData(): LiveData<WalletEntity> = TODO()
-}
 
+    suspend fun saveCardToDb(cardEntity: CardEntity) {}
+
+    fun observeUserCards(): LiveData<List<CardEntity>> = TODO()
+}

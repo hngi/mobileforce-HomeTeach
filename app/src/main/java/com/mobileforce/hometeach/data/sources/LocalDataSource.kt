@@ -202,6 +202,14 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
 
     }
 
+    override suspend fun saveCardToDb(cardEntity: CardEntity) {
+        db.userDao().saveCard(cardEntity)
+    }
+
+    override fun observeUserCards(): LiveData<List<CardEntity>> {
+        return db.userDao().observeUserCards()
+    }
+
     private fun mapProfileToEntity(profile: Profile): ProfileEntity {
         return ProfileEntity(
             profile.id,

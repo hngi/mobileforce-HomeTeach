@@ -10,7 +10,7 @@ import com.mobileforce.hometeach.data.sources.local.entities.*
 
 
 @Database(
-    entities = [UserEntity::class, TutorEntity::class, ProfileEntity::class, TutorDetailsEntity::class, WalletEntity::class],
+    entities = [UserEntity::class, TutorEntity::class, ProfileEntity::class, TutorDetailsEntity::class, WalletEntity::class, CardEntity::class],
     version = 1,
     exportSchema = true
 )

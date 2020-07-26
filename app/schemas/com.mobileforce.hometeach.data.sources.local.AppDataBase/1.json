@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "7b8e72c4979afe1b8aef4afca019b8e4",
+    "identityHash": "d7821d320e2798ce3d0aa5d267996b5e",
     "entities": [
       {
         "tableName": "user",
@@ -355,12 +355,68 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "user_card",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `user` TEXT NOT NULL, `card_holder_name` TEXT NOT NULL, `card_number` TEXT NOT NULL, `cvv` TEXT NOT NULL, `expiry_month` INTEGER NOT NULL, `expiry_year` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "user",
+            "columnName": "user",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "card_holder_name",
+            "columnName": "card_holder_name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "card_number",
+            "columnName": "card_number",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "cvv",
+            "columnName": "cvv",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "expiry_month",
+            "columnName": "expiry_month",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "expiry_year",
+            "columnName": "expiry_year",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '7b8e72c4979afe1b8aef4afca019b8e4')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'd7821d320e2798ce3d0aa5d267996b5e')"
     ]
   }
 }

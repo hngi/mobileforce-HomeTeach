@@ -56,16 +56,14 @@ class TutorRequestAdapter(
         fun initialise(datamodel: Request, listener:OnrequestClick ) {
             subject.text = datamodel.subject
             studentName.text = datamodel.student_name
-            val format = SimpleDateFormat("dd-MM-yyyy", Locale.US)
-            val r = format.parse(datamodel.date_requested)
-            date.text = r.toString()
+            date.text = datamodel.date_requested
             if (datamodel.accepted) {
                 status.text = "ACCEPTED"
             } else {
                 status.text = "AWAITING APPROVAL"
             }
             grade.text = datamodel.grade
-            time.text = "${datamodel.from_hour}:${datamodel.from_minute}-${datamodel.to_hour}-${datamodel.to_minute}"
+            time.text = "${datamodel.from_hour}:${datamodel.from_minute}-${datamodel.to_hour}:${datamodel.to_minute}"
 
             itemView.setOnClickListener {
                 listener.onUserClick(datamodel, adapterPosition)

@@ -31,7 +31,6 @@ class TutorUpcomingFragment : Fragment() {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        Log.d("coffee","INSIDE TUTOR REQUEST")
         binding.progressBar.visibility = View.VISIBLE
         viewModel.getTutorSchedules()
         viewModel.tutorUpcoming.observe(viewLifecycleOwner, Observer {
@@ -41,19 +40,12 @@ class TutorUpcomingFragment : Fragment() {
                 Toast.makeText(activity, "SORRY YOU HAVE NO CLASSES", Toast.LENGTH_SHORT).show()
             }
             scheduleList = it.schedules
+            binding.progressBar.visibility = View.INVISIBLE
             val adapter = TutorUpcomingAdapter(scheduleList)
             val recyclerView = binding.recyclerView
             recyclerView.adapter = adapter
-            Log.d("coffee",it.schedules.toString())
+
         })
-
-
-//        val recyclerView = binding.recyclerView
-
-//        recyclerView.adapter =
-
-
-
 
     }
 
