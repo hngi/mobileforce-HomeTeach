@@ -152,6 +152,20 @@ def request_action(request):
 		return Response({'message':f'You have declined {request.requester.full_name}\'s request'})
 
 
+class NumberOfStudentsView(APIView):
+	 def get_object(self, id):
+	 	try:
+	 		return Request.objects.filter(pk=id)
+	 	except Requests.DoesNotExist:
+	 		raise Http404
+
+	 def post(self, request, format=None):
+	 	user = self.get_object('id')
+	 	serializer = RequestSerializer(user, many=True)
+	 	return Response(serializer.data)
+
+
+
 class CustomUserViewSet(viewsets.ModelViewSet):
 	"""
 	This viewset automatically provides `list` and `detail` actions.
@@ -393,7 +407,7 @@ def BankInfoView(request):
 			return Response(serializer.data)
 		return Response(serializer.errors)
 
-class VerifyTransactionView(APIView):
+class VerificationDetailView(APIView):
 	permission_classes = (AllowAny,)
 
 	def get_object(self, user):
@@ -402,12 +416,13 @@ class VerifyTransactionView(APIView):
 		except Verification.DoesNotExist:
 			raise Http404
 
-	def post(self, request, format=None):
-		user = request.data['user']
+	def get(self, request, user, format=None):
 		verification_details = self.get_object(user)
 		serializer = VerificationSerializer(verification_details, many=True)
 		return Response(serializer.data)
 
+class VerificationView(APIView):
+	permission_classes = (AllowAny,)
 
 	def post(self, request, *args, **kwargs):
 		url = "https://api.paystack.co/transaction/verify/"
@@ -436,9 +451,7 @@ class VerifyTransactionView(APIView):
 					instance.save()	
 				else:
 					UserWallet.objects.create(user=user, available_balance=amount, total_balance=amount)
-				return Response(json, status=status.HTTP_200_OK)
-			else:
-				return Response(f'An error occurred... An the transaction couldnt be completed')
+			return Response(json, status=status.HTTP_200_OK)
 		return Response(status=status.HTTP_401_UNAUTHORIZED)
 
 class UserWalletView(APIView):
@@ -452,10 +465,9 @@ class UserWalletView(APIView):
 		except UserWallet.DoesNotExist:
 			raise Http404
 
-	def post(self, request, format=None):
-		user = request.data['user']
+	def get(self, request, user, format=None):
 		user_wallet = self.get_object(user)
-		serializer = UserWalletSerializer(user_wallet, many=True)
+		serializer = UserWalletSerializer(user_wallet)
 		for wallet in serializer.data:
 			#user = user_wallet['user']
 			available_balance = wallet['available_balance']
@@ -466,7 +478,7 @@ class UserWalletView(APIView):
 			return Response({'status': 'valid',
 							'data': data}, status=status.HTTP_200_OK)
 		return Response({'status': 'default',
-						'data': {'available_balance': UserWallet().available_balance, 
+						'data': {'available balance': UserWallet().available_balance, 
 						'total balance': UserWallet().total_balance
 						}},
 						status=status.HTTP_404_NOT_FOUND)
