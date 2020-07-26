@@ -114,11 +114,10 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginLeft="16dp"
+                    android:textStyle="bold"
                     android:visibility="invisible"
                     android:gravity="center_vertical"
-                    android:text="@string/you_currently_have_no_ongoing_class"
-                    android:textColor="@color/textColor"
-                    android:textSize="16sp"/>
+                    android:text="@string/you_currently_have_no_ongoing_class"/>
 
             </RelativeLayout>
 
@@ -179,12 +178,11 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginLeft="16dp"
+                    android:textStyle="bold"
                     android:visibility="invisible"
                     android:layout_below="@id/labelUpcomingClasses"
                     android:gravity="center_vertical"
-                    android:text="@string/you_currently_have_no_upcoming_class"
-                    android:textColor="@color/textColor"
-                    android:textSize="16sp"/>
+                    android:text="@string/you_currently_have_no_upcoming_class"/>
 
             </RelativeLayout>
 

@@ -64,7 +64,7 @@ interface UserRepository {
 
     suspend fun saveTutorDetailsForUserDb(tutorDetailsEntity: TutorDetailsEntity)
 
-    suspend fun getStudentClass(): UserClassResponse
+    suspend fun getStudentClassRequest(): UserClassRequestResponse
 
     suspend fun getUserWallet(): UserWalletResponse
 

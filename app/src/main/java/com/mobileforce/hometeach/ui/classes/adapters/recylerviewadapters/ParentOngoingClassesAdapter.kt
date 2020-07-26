@@ -5,16 +5,21 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.mobileforce.hometeach.data.sources.remote.wrappers.Request
+import com.mobileforce.hometeach.data.sources.remote.wrappers.userRequestDiffUtil
 import com.mobileforce.hometeach.databinding.ListItemClassOngoingParentBinding
 import com.mobileforce.hometeach.models.OngoingClassModel
+import com.mobileforce.hometeach.utils.loadImage
+import java.net.URL
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * Created by Mayokun Adeniyi on 28/06/2020.
+ * Modified by MayorJay
  */
 
-class ParentOngoingClassesAdapter: ListAdapter<OngoingClassModel, ParentOngoingClassesAdapter.ViewHolder>(
-    OngoingClassesDiffCallBack()
-) {
+class ParentOngoingClassesAdapter: ListAdapter<Request, ParentOngoingClassesAdapter.ViewHolder>(userRequestDiffUtil) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -24,16 +29,28 @@ class ParentOngoingClassesAdapter: ListAdapter<OngoingClassModel, ParentOngoingC
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val ongoingClassModel = getItem(position)
-        holder.bind(ongoingClassModel)
+        val request = getItem(position)
+        holder.bind(request)
     }
 
-    class ViewHolder(private val binding: ListItemClassOngoingParentBinding): RecyclerView.ViewHolder(binding.root){
+    class ViewHolder(private val binding: ListItemClassOngoingParentBinding): RecyclerView.ViewHolder(binding.root) {
 
-
-        fun bind(classModel: OngoingClassModel){
-            binding.classModel = classModel
-            binding.executePendingBindings()
+        fun bind(request: Request) {
+//            val currentDateTime = System.currentTimeMillis()
+//            val dateFormat = SimpleDateFormat("dd-MM-yyyy HH-mm", Locale.US)
+//            val startRequestDateTime = dateFormat.parse(request.day + " " + request.from_hour + ":" + request.from_minute)!!.time
+//            val endRequestDateTime = dateFormat.parse(request.day + " " + request.to_hour + ":" + request.to_minute)!!.time
+            with(request) {
+                binding.subjectName.text = subject
+                binding.classProgress.progress = 0 //(currentDateTime/endRequestDateTime).toInt() * 100
+                binding.classDate.text = day
+                binding.classTime.text = "$from_hour:$from_minute-$to_hour:$to_minute"
+                binding.tutorImage.loadImage(URL(tutor_pic))
+                binding.tutorName.text = tutor_name
+                binding.tutorSubject.text = "$subject Tutor"
+//                if (startRequestDateTime < currentDateTime || currentDateTime < endRequestDateTime) {
+//                }
+            }
         }
         companion object{
             fun from(parent: ViewGroup): ViewHolder {
@@ -43,22 +60,6 @@ class ParentOngoingClassesAdapter: ListAdapter<OngoingClassModel, ParentOngoingC
                     binding
                 )
             }
-        }
-    }
-
-    /**
-     *  A utility class [DiffUtil] that helps to calculate updates for a [RecyclerView] Adapter.
-     */
-    class OngoingClassesDiffCallBack: DiffUtil.ItemCallback<OngoingClassModel>(){
-        override fun areItemsTheSame(oldItem: OngoingClassModel, newItem: OngoingClassModel): Boolean {
-            return oldItem.id == newItem.id
-        }
-
-        override fun areContentsTheSame(
-            oldItem: OngoingClassModel,
-            newItem: OngoingClassModel
-        ): Boolean {
-            return oldItem == newItem
         }
     }
 }

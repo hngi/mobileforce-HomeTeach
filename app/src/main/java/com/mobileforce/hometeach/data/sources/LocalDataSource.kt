@@ -6,6 +6,9 @@ import com.mobileforce.hometeach.data.sources.local.AppDataBase
 import com.mobileforce.hometeach.data.sources.local.entities.*
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
+import com.mobileforce.hometeach.models.TutorRequestDataModel
+import com.mobileforce.hometeach.models.TutorUpcomingDataModel
+import com.mobileforce.hometeach.data.sources.remote.wrappers.UserCardDetailResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -175,7 +178,20 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getStudentClass(param: Params.StudentID): UserClassResponse {
+    override suspend fun getTutorClassesRequest(param: Params.TutorClassesRequest): TutorRequestDataModel{
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getTutorClasses(param: Params.TutorClassesRequest): TutorUpcomingDataModel {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun grantStudentRequest(params: Params.StudentRequest): StudentRequestResponse {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getStudentClassRequest(param: Params.StudentID): UserClassRequestResponse {
+
         TODO("Not yet implemented")
     }
 
@@ -185,6 +201,7 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
 
     override fun observeWalletData(): LiveData<WalletEntity> {
         return db.walletDao().observeWalletInfo()
+
     }
 
     override suspend fun saveCardToDb(cardEntity: CardEntity) {

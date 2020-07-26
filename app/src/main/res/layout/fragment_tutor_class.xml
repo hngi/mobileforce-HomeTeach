@@ -19,6 +19,7 @@
 
 
         <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/tool_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#D6F5D9"
@@ -40,7 +41,7 @@
                 android:layout_gravity="end"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
-                android:src="@drawable/ic_notify" />
+                android:src="@drawable/alarm" />
 
         </com.google.android.material.appbar.MaterialToolbar>
 
