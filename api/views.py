@@ -104,6 +104,20 @@ def add_favourites(request):
 #         return Response('a tutor/user with that id does not exist')
 
 
+class NumberOfStudentsView(APIView):
+	 def get_object(self, id):
+	 	try:
+	 		return Request.objects.filter(pk=id)
+	 	except Requests.DoesNotExist:
+	 		raise Http404
+
+	 def post(self, request, format=None):
+	 	user = self.get_object('id')
+	 	serializer = RequestSerializer(user, many=True)
+	 	return Response(serializer.data)
+
+
+
 class CustomUserViewSet(viewsets.ModelViewSet):
 	"""
 	This viewset automatically provides `list` and `detail` actions.
@@ -345,7 +359,7 @@ def BankInfoView(request):
 			return Response(serializer.data)
 		return Response(serializer.errors)
 
-class VerifyTransactionView(APIView):
+class VerificationView(APIView):
 	permission_classes = (AllowAny,)
 
 	def get_object(self, user):
@@ -388,9 +402,7 @@ class VerifyTransactionView(APIView):
 					instance.save()	
 				else:
 					UserWallet.objects.create(user=user, available_balance=amount, total_balance=amount)
-				return Response(json, status=status.HTTP_200_OK)
-			else:
-				return Response(f'An error occurred... An the transaction couldnt be completed')
+			return Response(json, status=status.HTTP_200_OK)
 		return Response(status=status.HTTP_401_UNAUTHORIZED)
 
 class UserWalletView(APIView):

@@ -126,8 +126,8 @@ class Verification(models.Model):
 
 class UserWallet(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
-	available_balance = models.FloatField(default=0.0)
-	total_balance = models.FloatField(default=0.0)
+	available_balance = models.FloatField(default=0.00)
+	total_balance = models.FloatField(default=0.00)
 
 	def __str__(self):
 		return str(self.available_balance)

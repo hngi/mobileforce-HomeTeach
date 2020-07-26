@@ -147,11 +147,14 @@ class FavouriteTutorsSerializer(serializers.ModelSerializer):
 
 class RequestTutorSerializer(serializers.ModelSerializer):
     requester = UserSerializer(read_only=True)
-
+    students = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model=Request
-        exclude = ['tutor', 'schedule']
+        exclude = ['tutor', 'schedule', 'students']
+
+    def get_students(self, data):
+        students =  
 
 
 class RequestSerializer(serializers.ModelSerializer):
@@ -217,6 +220,7 @@ class TutorProfileSerializer(serializers.HyperlinkedModelSerializer):
     user_url = serializers.HyperlinkedIdentityField(view_name='customuser-detail')
     user = UserSerializer(read_only=True)
     rating = serializers.SerializerMethodField(read_only=True)
+    student = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model = Profile
@@ -262,20 +266,20 @@ class StudentProfileSerializer(serializers.HyperlinkedModelSerializer):
                   'desc', 'profile_pic', 'field', 'major_course', 'other_courses', 'state', 'address', 
                   'user_url')
 
-        def update(self, instance, validated_data):
-            # retrieve CustomUser
-            # user_data = validated_data.pop('user', None)
-            user_data = {k:v for k,v in validated_data.items() if v}
-            if user_data:
-                for attr, value in user_data.items():
-                    setattr(instance.user, attr, value)
-            validated_data.pop('user', None)
-            # retrieve Profile
-            for attr, value in validated_data.items():
-                setattr(instance, attr, value)
-            instance.user.save()
-            instance.save()
-            return instance
+    def update(self, instance, validated_data):
+        # retrieve CustomUser
+        # user_data = validated_data.pop('user', None)
+        user_data = {k:v for k,v in validated_data.items() if v}
+        if user_data:
+            for attr, value in user_data.items():
+                setattr(instance.user, attr, value)
+        validated_data.pop('user', None)
+        # retrieve Profile
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
+        instance.user.save()
+        instance.save()
+        return instance
 
     def get_full_name(self, obj):
         request = self.context['request']
