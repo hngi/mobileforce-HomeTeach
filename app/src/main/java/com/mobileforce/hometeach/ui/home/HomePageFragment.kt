@@ -111,6 +111,8 @@ class HomePageFragment : Fragment() {
                 findNavController().navigate(action)
             }
         })
+        bindingParent.topTutorsRecyclerView.adapter = topTutorsAdapter
+
         viewModel.tutorList.observe(viewLifecycleOwner, Observer { result ->
             when (result) {
                 is Result.Success -> {
@@ -118,8 +120,6 @@ class HomePageFragment : Fragment() {
                     if (result.data != null) {
                         val list = result.data
                         topTutorsAdapter.submitList(list.take(3))
-                        bindingParent.topTutorsRecyclerView.visibility = View.VISIBLE
-                        bindingParent.topTutorsRecyclerView.adapter = topTutorsAdapter
                     } else {
                         Snackbar.make(
                             requireView(),
@@ -130,13 +130,11 @@ class HomePageFragment : Fragment() {
                 }
 
                 is Result.Loading -> {
-                    bindingParent.topTutorsRecyclerView.visibility = View.GONE
                     bindingParent.topTutorsLoader.visibility = View.VISIBLE
                 }
 
                 is Result.Error -> {
                     bindingParent.topTutorsLoader.visibility = View.GONE
-                    bindingParent.topTutorsRecyclerView.visibility = View.GONE
                     Snackbar.make(
                         requireView(),
                         "Oops! An error occured, Swipe down to retry!",

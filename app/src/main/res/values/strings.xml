@@ -185,8 +185,10 @@
     <string name="select_grade">3. SELECT GRADE</string>
     <string name="tap_to_select_grade">Tap dropdown to select grade</string>
     <string name="text_no_chat_history">You currently have no chat history</string>
-    <string name="you_currently_have_no_upcoming_class">You currently have no upcoming class</string>
-    <string name="you_currently_have_no_ongoing_class">You currently have no ongoing class</string>
+    <string name="you_currently_have_no_upcoming_class">You currently have no Upcoming class</string>
+    <string name="you_currently_have_no_ongoing_class">You currently have no Ongoing class</string>
+    <string name="tap_to_select_a_grade">Tap to select a grade</string>
+    <string name="tap_to_select_a_course">Tap to select a course</string>
     <string name="you_currently_have_no_request">You currently have no request</string>
 
     <string-array name="fields_array">
