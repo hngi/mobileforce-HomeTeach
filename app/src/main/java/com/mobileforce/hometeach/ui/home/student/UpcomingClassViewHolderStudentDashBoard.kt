@@ -18,7 +18,7 @@ class UpcomingClassViewHolderStudentDashBoard(var binding: ListItemClassUpcoming
 //        val requestDateTime = dateFormat.parse(element.day + " " + element.from_hour + ":" + element.from_minute)!!.time
         with(element) {
             binding.subjectName.text = subject
-            binding.dateTime.text = "$day-$from_hour:$from_minute"
+            binding.dateTime.text = date_requested
             binding.tutorName.text = tutor_name
             binding.tutorSubject.text = "$subject Tutor"
             binding.tutorImage.loadImage(URL(tutor_pic))

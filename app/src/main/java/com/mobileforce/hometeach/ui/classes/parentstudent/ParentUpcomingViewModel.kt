@@ -9,7 +9,7 @@ import com.mobileforce.hometeach.utils.Result
 import com.mobileforce.hometeach.utils.asLiveData
 import kotlinx.coroutines.launch
 
-class ParentOngoingViewModel(private val userRepository: UserRepository) : ViewModel() {
+class ParentUpcomingViewModel(private val userRepository: UserRepository) : ViewModel() {
 
     private val _studentClassRequest = MutableLiveData<Result<UserClassRequestResponse>>()
     val studentClassRequest = _studentClassRequest.asLiveData()

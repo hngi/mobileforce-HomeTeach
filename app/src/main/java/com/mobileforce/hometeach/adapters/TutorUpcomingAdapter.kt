@@ -52,7 +52,5 @@ class TutorUpcomingAdapter(private val itemsList: List<Schedule>) :
             Picasso.get().load(data.student_pic).transform(CircleTransform())
                 .error(R.drawable.profile_image).into(studentImage)
         }
-
     }
-
 }
