@@ -325,9 +325,6 @@ class RequestTutorSerializer(serializers.ModelSerializer):
         model=Request
         exclude = ['tutor', 'schedule', 'students']
 
-    def get_students(self, data):
-        students =  
-
 
 class RequestSerializer(serializers.ModelSerializer):
     tutor = UserSerializer(read_only=True)

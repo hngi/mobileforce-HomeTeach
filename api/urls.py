@@ -30,8 +30,9 @@ urlpatterns = [
     path('user-card-details/', views.card_info_by_user),
     path('card-by-id/<int:pk>/', views.card_info_by_id),
     path('verify-transaction/', views.VerificationView.as_view()),
+    path('verify-transaction/<str:user>/', views.VerificationDetailView.as_view()),
     #path('initialize-transaction/', views.InitializeTransactionView.as_view()),
-    path('user-wallet/', views.UserWalletView.as_view()),
+    path('user-wallet/<str:user>/', views.UserWalletView.as_view()),
 ]
 
 urlpatterns += router.urls

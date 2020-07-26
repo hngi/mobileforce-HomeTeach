@@ -407,7 +407,7 @@ def BankInfoView(request):
 			return Response(serializer.data)
 		return Response(serializer.errors)
 
-class VerificationView(APIView):
+class VerificationDetailView(APIView):
 	permission_classes = (AllowAny,)
 
 	def get_object(self, user):
@@ -416,12 +416,13 @@ class VerificationView(APIView):
 		except Verification.DoesNotExist:
 			raise Http404
 
-	def post(self, request, format=None):
-		user = request.data['user']
+	def get(self, request, user, format=None):
 		verification_details = self.get_object(user)
 		serializer = VerificationSerializer(verification_details, many=True)
 		return Response(serializer.data)
 
+class VerificationView(APIView):
+	permission_classes = (AllowAny,)
 
 	def post(self, request, *args, **kwargs):
 		url = "https://api.paystack.co/transaction/verify/"
@@ -464,10 +465,9 @@ class UserWalletView(APIView):
 		except UserWallet.DoesNotExist:
 			raise Http404
 
-	def post(self, request, format=None):
-		user = request.data['user']
+	def get(self, request, user, format=None):
 		user_wallet = self.get_object(user)
-		serializer = UserWalletSerializer(user_wallet, many=True)
+		serializer = UserWalletSerializer(user_wallet)
 		for wallet in serializer.data:
 			#user = user_wallet['user']
 			available_balance = wallet['available_balance']
