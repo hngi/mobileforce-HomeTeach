@@ -36,20 +36,20 @@ class ParentOngoingClassesAdapter: ListAdapter<Request, ParentOngoingClassesAdap
     class ViewHolder(private val binding: ListItemClassOngoingParentBinding): RecyclerView.ViewHolder(binding.root) {
 
         fun bind(request: Request) {
-            val currentDateTime = System.currentTimeMillis()
-            val dateFormat = SimpleDateFormat("dd-MM-yyyy HH-mm", Locale.US)
-            val startRequestDateTime = dateFormat.parse(request.day + " " + request.from_hour + ":" + request.from_minute)!!.time
-            val endRequestDateTime = dateFormat.parse(request.day + " " + request.to_hour + ":" + request.to_minute)!!.time
+//            val currentDateTime = System.currentTimeMillis()
+//            val dateFormat = SimpleDateFormat("dd-MM-yyyy HH-mm", Locale.US)
+//            val startRequestDateTime = dateFormat.parse(request.day + " " + request.from_hour + ":" + request.from_minute)!!.time
+//            val endRequestDateTime = dateFormat.parse(request.day + " " + request.to_hour + ":" + request.to_minute)!!.time
             with(request) {
-                if (startRequestDateTime < currentDateTime || currentDateTime < endRequestDateTime) {
-                    binding.subjectName.text = subject
-                    binding.classProgress.progress = (currentDateTime/endRequestDateTime).toInt() * 100
-                    binding.classDate.text = day
-                    binding.classTime.text = "$from_hour:$from_minute-$to_hour:$to_minute"
-                    binding.tutorImage.loadImage(URL(tutor_pic))
-                    binding.tutorName.text = tutor_name
-                    binding.tutorSubject.text = "$subject Tutor"
-                }
+                binding.subjectName.text = subject
+                binding.classProgress.progress = 0 //(currentDateTime/endRequestDateTime).toInt() * 100
+                binding.classDate.text = day
+                binding.classTime.text = "$from_hour:$from_minute-$to_hour:$to_minute"
+                binding.tutorImage.loadImage(URL(tutor_pic))
+                binding.tutorName.text = tutor_name
+                binding.tutorSubject.text = "$subject Tutor"
+//                if (startRequestDateTime < currentDateTime || currentDateTime < endRequestDateTime) {
+//                }
             }
         }
         companion object{
