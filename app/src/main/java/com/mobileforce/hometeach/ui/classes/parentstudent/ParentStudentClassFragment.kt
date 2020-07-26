@@ -31,19 +31,16 @@ class ParentStudentClassFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        parentViewPagerAdapter =
-            ParentViewPagerFragmentAdapter(
-                this
-            )
-        viewPager = binding.parentViewpager
-        viewPager.adapter = parentViewPagerAdapter
-        val tabLayout = binding.parentTabLayout
-        TabLayoutMediator(tabLayout,viewPager){ tab, position ->
-            tab.text = titles[position]
-        }.attach()
-        binding.toolBar.setNavigationOnClickListener {
-            findNavController().popBackStack()
-        }
+        //parentViewPagerAdapter = ParentViewPagerFragmentAdapter(this)
+//        viewPager = binding.parentViewpager
+//        viewPager.adapter = parentViewPagerAdapter
+//        val tabLayout = binding.parentTabLayout
+//        TabLayoutMediator(tabLayout,viewPager){ tab, position ->
+//            tab.text = titles[position]
+//        }.attach()
+//        binding.toolBar.setNavigationOnClickListener {
+//            findNavController().popBackStack()
+//        }
     }
 
     companion object{

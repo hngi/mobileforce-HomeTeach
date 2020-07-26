@@ -3,8 +3,8 @@
 
     <item
         android:icon="@drawable/ic_classes"
-        android:title="Books"
-        android:id="@+id/tutorClassFragment"/>
+        android:title="Class"
+        android:id="@+id/classes"/>
     <item
         android:icon="@drawable/ic_home"
         android:title="Home"

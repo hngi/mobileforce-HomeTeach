@@ -96,13 +96,16 @@ interface DataSource {
         params: Params.UpdateTutorProfile
     ): LoginResponse
 
+
     suspend fun getTutorClassesRequest(param:Params.TutorClassesRequest):TutorRequestDataModel
 
     suspend fun getTutorClasses(param:Params.TutorClassesRequest): TutorUpcomingDataModel
 
     suspend fun grantStudentRequest(params:Params.StudentRequest):StudentRequestResponse
 
-    suspend fun getStudentClass(param: Params.StudentID): UserClassResponse
+//    suspend fun getStudentClass(param: Params.StudentID): UserClassResponse
+    suspend fun getStudentClassRequest(param: Params.StudentID): UserClassRequestResponse
+
 
     suspend fun getUserWallet(param: Params.UserWallet): UserWalletResponse = TODO()
 

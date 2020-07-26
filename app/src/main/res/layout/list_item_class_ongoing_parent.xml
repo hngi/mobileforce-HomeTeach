@@ -2,12 +2,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data>
-        <variable
-            name="classModel"
-            type="com.mobileforce.hometeach.models.OngoingClassModel" />
-    </data>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -41,7 +35,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:gravity="start"
-                    android:text="@{classModel.subject}"
                     android:layout_marginLeft="0dp"
                     android:layout_marginRight="8dp" />
 
@@ -52,8 +45,7 @@
                     android:layout_height="7dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
-                    android:progressDrawable="@drawable/curved_progress_bar"
-                    android:progress="@{classModel.progress}" />
+                    android:progressDrawable="@drawable/curved_progress_bar"/>
 
                 <GridLayout
                     android:layout_width="match_parent"
@@ -68,6 +60,7 @@
                         android:layout_columnWeight="1"
                         android:layout_row="0"
                         android:text="Next"
+                        android:visibility="invisible"
                         app:fontFamily="@font/ubuntu"
                         android:textColor="@color/blackColor" />
 
@@ -89,7 +82,6 @@
                             android:layout_column="1"
                             android:id="@+id/class_date"
                             android:layout_row="0"
-                            android:text="@{classModel.date}"
                             style="@style/TextAppearance.MaterialComponents.Body1"
                             app:fontFamily="@font/ubuntu"
                             android:layout_marginStart="5dp"
@@ -113,7 +105,6 @@
 
                         <TextView
                             android:id="@+id/class_time"
-                            android:text="@{classModel.time}"
                             android:layout_column="1"
                             android:layout_row="0"
                             android:layout_marginStart="5dp"
@@ -154,7 +145,6 @@
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:layout_row="0"
-                            app:imagecircular="@{classModel.tutorImage}"
                             android:layout_rowSpan="2"
                             android:layout_column="0"
                             android:layout_marginEnd="10dp"
@@ -168,14 +158,12 @@
                             style="@style/TextAppearance.MaterialComponents.Body1"
                             app:fontFamily="@font/ubuntu"
                             android:textStyle="bold"
-                            android:text="@{classModel.tutorName}"
                             android:textColor="@color/blackColor" />
 
                         <TextView
                             android:id="@+id/tutor_subject"
                             android:layout_column="1"
                             android:layout_row="1"
-                            android:text="@{classModel.tutorSubject}"
                             style="@style/TextAppearance.MaterialComponents.Caption"
                             app:fontFamily="@font/ubuntu"
                             android:textColor="@color/blackColor" />

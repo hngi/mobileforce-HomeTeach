@@ -189,7 +189,9 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
     override suspend fun grantStudentRequest(params: Params.StudentRequest): StudentRequestResponse {
         TODO("Not yet implemented")
     }
-    override suspend fun getStudentClass(param: Params.StudentID): UserClassResponse {
+
+    override suspend fun getStudentClassRequest(param: Params.StudentID): UserClassRequestResponse {
+
         TODO("Not yet implemented")
     }
 

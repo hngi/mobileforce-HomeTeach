@@ -41,11 +41,13 @@ class TutorUpcomingAdapter(private val itemsList: List<Schedule>) :
         val subject:TextView = itemview.subject_name
         val date:TextView = itemview.class_date
         val time = itemview.class_time
+        val studentName = itemview.tutor_name
 
         fun initialise(data:Schedule){
             subject.text=data.subject
             time.text = "${data.from_hour}:${data.from_minute}-${data.to_hour}:${data.to_minute}"
             date.text = data.day
+            studentName.text = data.student_name
 
             Picasso.get().load(data.student_pic).transform(CircleTransform())
                 .error(R.drawable.profile_image).into(studentImage)

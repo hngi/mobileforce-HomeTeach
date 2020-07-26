@@ -19,6 +19,7 @@
 
 
         <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/tool_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#D6F5D9"

@@ -34,13 +34,13 @@ class TutorUpcomingFragment : Fragment() {
         binding.progressBar.visibility = View.VISIBLE
         viewModel.getTutorSchedules()
         viewModel.tutorUpcoming.observe(viewLifecycleOwner, Observer {
-
+            binding.progressBar.visibility = View.INVISIBLE
             if (it.schedules.isNullOrEmpty())
             {
                 Toast.makeText(activity, "SORRY YOU HAVE NO CLASSES", Toast.LENGTH_SHORT).show()
             }
             scheduleList = it.schedules
-            binding.progressBar.visibility = View.INVISIBLE
+//            binding.progressBar.visibility = View.INVISIBLE
             val adapter = TutorUpcomingAdapter(scheduleList)
             val recyclerView = binding.recyclerView
             recyclerView.adapter = adapter
