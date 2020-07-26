@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.classes.tutor.TutorRequestFragment">
+    tools:context=".ui.classes.tutor.TutorRequestFragment"
+    tools:visibility="visible">
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -19,5 +20,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/list_item_class_requests_tutor" />
+        tools:listitem="@layout/tutor_request_layout" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/recycler_view"
+        app:layout_constraintEnd_toEndOf="@+id/recycler_view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/recycler_view"
+        tools:visibility="invisible" />
 </androidx.constraintlayout.widget.ConstraintLayout>

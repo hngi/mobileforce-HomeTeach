@@ -9,6 +9,8 @@ import com.mobileforce.hometeach.data.sources.local.entities.UserEntity
 import com.mobileforce.hometeach.data.sources.remote.Api
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
+import com.mobileforce.hometeach.models.TutorRequestDataModel
+import com.mobileforce.hometeach.models.TutorUpcomingDataModel
 import com.mobileforce.hometeach.data.sources.remote.wrappers.UserCardDetailResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -215,6 +217,31 @@ class RemoteDataSource(private val api: Api) : DataSource {
             "student_id" to param.student_id
         )
         return api.getStudentClassRequest(map)
+    }
+
+    override suspend fun getTutorClassesRequest(param: Params.TutorClassesRequest):TutorRequestDataModel{
+        val map = mapOf(
+            "tutor_id" to param.tutor_id
+        )
+        return api.getTutorClassesRequest(map)
+    }
+
+    override suspend fun getTutorClasses(param: Params.TutorClassesRequest): TutorUpcomingDataModel {
+
+        val map = mapOf(
+            "tutor_id" to param.tutor_id
+        )
+        return api.getTutorClasses(map)
+
+    }
+
+    override suspend fun grantStudentRequest(params: Params.StudentRequest): StudentRequestResponse {
+        val map = mapOf(
+            "id" to params.id,
+            "request_id" to params.request_id,
+            "action" to params.action
+        )
+        return api.grantStudentRequest(map)
     }
 
 }

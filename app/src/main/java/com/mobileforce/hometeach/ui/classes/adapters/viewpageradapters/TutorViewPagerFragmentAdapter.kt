@@ -3,7 +3,7 @@ package com.mobileforce.hometeach.ui.classes.adapters.viewpageradapters
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.mobileforce.hometeach.ui.classes.tutor.TutorClassFragment
-import com.mobileforce.hometeach.ui.classes.tutor.TutorOngoingFragment
+import com.mobileforce.hometeach.ui.classes.tutor.TutorUpcomingFragment
 import com.mobileforce.hometeach.ui.classes.tutor.TutorRequestFragment
 
 /**
@@ -19,7 +19,7 @@ class TutorViewPagerFragmentAdapter(fragment: TutorClassFragment) : FragmentStat
                 TutorRequestFragment()
             }
             1 -> {
-                TutorOngoingFragment()
+                TutorUpcomingFragment()
             }
             else -> TutorRequestFragment()
         }
