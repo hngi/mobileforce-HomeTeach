@@ -17,7 +17,9 @@ from cardvalidator import formatter, luhn
 from .utility.encryption_util import *
 from .serializers import (BankInfoSerializer, CreditCardInfoSerializer, 
 						VerificationSerializer, CreateRequestSerializer,
-						 FavouriteTutorsSerializer,
+						 FavouriteTutorsSerializer, ClassesSerializer,
+						ClassesRequestSerializer, StudentsClassesRequestSerializer,
+						StudentsClassesSerializer,
 						RequestTutorSerializer, RequestSerializer, TopTutorSerializer,
 						CustomUserSerializer, ProfileSerializer, 
 						TutorProfileSerializer, StudentProfileSerializer, 
@@ -44,6 +46,46 @@ def submit_request(request):
 		return Response({'message':'sorry, your request couldnt be sent...', 'sent':False}, status=status.HTTP_501_NOT_IMPLEMENTED)
 
 
+@api_view(['POST', ])
+@permission_classes([AllowAny, ])
+def get_tutor_classes(request):
+	data = request.data
+	serializer = ClassesSerializer(data=data)
+	# print(serializer.test)
+	if serializer.is_valid(raise_exception=True):
+		return Response(serializer.data)
+
+
+@api_view(['POST', ])
+@permission_classes([AllowAny, ])
+def get_tutor_classes_requests(request):
+	data = request.data
+	serializer = ClassesRequestSerializer(data=data)
+	# print(serializer.test)
+	if serializer.is_valid(raise_exception=True):
+		return Response(serializer.data)
+
+
+@api_view(['POST', ])
+@permission_classes([AllowAny, ])
+def get_student_classes(request):
+	data = request.data
+	serializer = StudentsClassesSerializer(data=data)
+	# print(serializer.test)
+	if serializer.is_valid(raise_exception=True):
+		return Response(serializer.data)
+
+'''get all requests sent to tutors by a student'''
+@api_view(['POST', ])
+@permission_classes([AllowAny, ])
+def get_student_classes_requests(request):
+	data = request.data
+	serializer = StudentsClassesRequestSerializer(data=data)
+	# print(serializer.test)
+	if serializer.is_valid(raise_exception=True):
+		return Response(serializer.data)
+
+
 '''view to list all requests that a tutor has received'''
 @api_view(['GET', ])
 @permission_classes([AllowAny, ])
@@ -67,41 +109,47 @@ def list_user_requests(request):
 @permission_classes([AllowAny, ])
 def add_favourites(request):
 	data = request.data
-	# student_id = data.get('student_id')
-	# tutor_id = data.get('tutor_id')
-	# try:
-	# 	tutor = User.objects.get(id=tutor_id, tutor=True)
-	# except User.DoesNotExist:
-	# 	return Response('A tutor with that id does not exist')
-
-	# try:
-	# 	student = User.objects.get(id=student_id)
-	# except User.DoesNotExist:
-	# 	return Response('A student with that id does not exist')
 	serializer = FavouriteTutorsSerializer(data=data)
 	if serializer.is_valid(raise_exception=True):
 		data = serializer.save()
 		print(data)
 		if request.data.get('action') == 'add':
-			return Response({'message':f'{data["tutor"]} has been added into your favourites'})
+			return Response({'message':f'{data["tutor"]} has been added into your favourites', 'status':True})
 		else:
-			return Response({'message':f'{data["tutor"]} has been removed from your favourites'})
-	return Response('an error occured while adding into favourites')
+			return Response({'message':f'{data["tutor"]} has been removed from your favourites', 'status':True})
+	return Response({'message':'an error occured while adding into favourites', 'status':False})
+
+def list_favourite_tutors(request):
+	data = request
 
 
-	serializer = FavouriteTutorsSerializer(tutor=tutor, student=student, data=data)
-# def request_action(request):
-#     data = request.data
-#     id = data.get('id')
-#     request_id = data.get('request_id')
-#     action = data.get('action')
+@api_view(['POST', ])
+@permission_classes([AllowAny, ])
+def request_action(request):
+	data = request.data
+	id = data.get('id')
+	request_id = data.get('request_id')
+	action = data.get('action')
 
-#     try:
-#         user = User.objects.get(id=id)
-#     except User.DoesNotExist:
-#         user = User.objects.get(id=id)
-#     except User.DoesNotExist:
-#         return Response('a tutor/user with that id does not exist')
+	try:
+		user = User.objects.get(id=id)
+	except User.DoesNotExist:
+		user = User.objects.get(id=id)
+	except User.DoesNotExist:
+		return Response('a tutor/user with that id does not exist')
+
+	if action == 'accept':
+		request = user.requests.get(id=request_id)
+		print(request.accepted)
+		request.accepted = True
+		request.save()
+		return Response({'message':f'You have accepted {request.requester.full_name}\'s request'})
+
+	elif action == 'decline':
+		request = user.requests.get(id=request_id)
+		request.declined = True
+		request.save()
+		return Response({'message':f'You have declined {request.requester.full_name}\'s request'})
 
 
 class CustomUserViewSet(viewsets.ModelViewSet):
@@ -232,7 +280,7 @@ def card_info(request):
 			serializer.save()
 			return Response(serializer.data)
 		return Response(serializer.errors)
-		
+
 @api_view(['GET', 'PUT', 'DELETE'])
 @permission_classes([AllowAny, ])
 def card_info_by_id(request, pk):
