@@ -65,6 +65,7 @@
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:src="@drawable/ic_time"
+                    android:visibility="invisible"
                     android:layout_marginLeft="10dp"
                     android:layout_marginStart="10dp" />
 
@@ -76,6 +77,7 @@
                     app:fontFamily="@font/ubuntu"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
+                    android:visibility="invisible"
                     tools:text="16:00 - 18:00"
                     android:textColor="@color/blackColor"
                     android:layout_marginLeft="5dp" />

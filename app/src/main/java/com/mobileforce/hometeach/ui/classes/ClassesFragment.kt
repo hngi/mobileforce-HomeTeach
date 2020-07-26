@@ -14,7 +14,6 @@ import com.mobileforce.hometeach.databinding.FragmentParentStudentClassBinding
 import com.mobileforce.hometeach.databinding.FragmentTutorClassBinding
 import com.mobileforce.hometeach.ui.classes.adapters.viewpageradapters.ParentViewPagerFragmentAdapter
 import com.mobileforce.hometeach.ui.classes.adapters.viewpageradapters.TutorViewPagerFragmentAdapter
-import com.mobileforce.hometeach.ui.classes.tutor.TutorClassFragment
 import com.mobileforce.hometeach.utils.AppConstants
 import com.mobileforce.hometeach.utils.AppConstants.USER_STUDENT
 import com.mobileforce.hometeach.utils.PreferenceHelper
@@ -34,8 +33,7 @@ class ClassesFragment : Fragment() {
     private val pref: PreferenceHelper by inject()
     private lateinit var navController: NavController
     companion object{
-        private val studentTitles = arrayOf("Requests","Ongoing")
-        private val tutorTitles = arrayOf("Requests", "Upcoming")
+        private val titles = arrayOf("Requests", "Upcoming")
     }
 
     override fun onCreateView(
@@ -68,7 +66,7 @@ class ClassesFragment : Fragment() {
         tutorViewPager.adapter = tutorViewPagerAdapter
         val tabLayout = bindingTutor.tutorTabLayout
         TabLayoutMediator(tabLayout, tutorViewPager) { tab, position ->
-            tab.text = tutorTitles[position]
+            tab.text = titles[position]
         }.attach()
         bindingTutor.toolBar.setNavigationOnClickListener {
             findNavController().popBackStack()
@@ -81,7 +79,7 @@ class ClassesFragment : Fragment() {
         studentViewPager.adapter = parentViewPagerAdapter
         val tabLayout = bindingStudent.parentTabLayout
         TabLayoutMediator(tabLayout, studentViewPager){ tab, position ->
-            tab.text = studentTitles[position]
+            tab.text = titles[position]
         }.attach()
         bindingStudent.toolBar.setNavigationOnClickListener {
             findNavController().popBackStack()

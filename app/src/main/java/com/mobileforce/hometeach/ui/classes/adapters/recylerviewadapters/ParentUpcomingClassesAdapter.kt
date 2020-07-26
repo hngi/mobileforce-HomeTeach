@@ -2,24 +2,20 @@ package com.mobileforce.hometeach.ui.classes.adapters.recylerviewadapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mobileforce.hometeach.data.sources.remote.wrappers.Request
 import com.mobileforce.hometeach.data.sources.remote.wrappers.userRequestDiffUtil
-import com.mobileforce.hometeach.databinding.ListItemClassOngoingParentBinding
-import com.mobileforce.hometeach.models.OngoingClassModel
+import com.mobileforce.hometeach.databinding.ListItemClassUpcomingParentBinding
 import com.mobileforce.hometeach.utils.loadImage
 import java.net.URL
-import java.text.SimpleDateFormat
-import java.util.*
 
 /**
  * Created by Mayokun Adeniyi on 28/06/2020.
  * Modified by MayorJay
  */
 
-class ParentOngoingClassesAdapter: ListAdapter<Request, ParentOngoingClassesAdapter.ViewHolder>(userRequestDiffUtil) {
+class ParentUpcomingClassesAdapter: ListAdapter<Request, ParentUpcomingClassesAdapter.ViewHolder>(userRequestDiffUtil) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -33,7 +29,7 @@ class ParentOngoingClassesAdapter: ListAdapter<Request, ParentOngoingClassesAdap
         holder.bind(request)
     }
 
-    class ViewHolder(private val binding: ListItemClassOngoingParentBinding): RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(private val binding: ListItemClassUpcomingParentBinding): RecyclerView.ViewHolder(binding.root) {
 
         fun bind(request: Request) {
 //            val currentDateTime = System.currentTimeMillis()
@@ -42,12 +38,10 @@ class ParentOngoingClassesAdapter: ListAdapter<Request, ParentOngoingClassesAdap
 //            val endRequestDateTime = dateFormat.parse(request.day + " " + request.to_hour + ":" + request.to_minute)!!.time
             with(request) {
                 binding.subjectName.text = subject
-                binding.classProgress.progress = 0 //(currentDateTime/endRequestDateTime).toInt() * 100
-                binding.classDate.text = day
-                binding.classTime.text = "$from_hour:$from_minute-$to_hour:$to_minute"
-                binding.tutorImage.loadImage(URL(tutor_pic))
+                binding.dateTime.text = date_requested
                 binding.tutorName.text = tutor_name
                 binding.tutorSubject.text = "$subject Tutor"
+                binding.tutorImage.loadImage(URL(tutor_pic))
 //                if (startRequestDateTime < currentDateTime || currentDateTime < endRequestDateTime) {
 //                }
             }
@@ -55,7 +49,7 @@ class ParentOngoingClassesAdapter: ListAdapter<Request, ParentOngoingClassesAdap
         companion object{
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = ListItemClassOngoingParentBinding.inflate(layoutInflater,parent,false)
+                val binding = ListItemClassUpcomingParentBinding.inflate(layoutInflater,parent,false)
                 return ViewHolder(
                     binding
                 )

@@ -63,7 +63,7 @@ class TutorRequestAdapter(
                 status.text = "AWAITING APPROVAL"
             }
             grade.text = datamodel.grade
-            time.text = "${datamodel.from_hour}:${datamodel.from_minute}-${datamodel.to_hour}:${datamodel.to_minute}"
+            //time.text = "${datamodel.from_hour}:${datamodel.from_minute}-${datamodel.to_hour}:${datamodel.to_minute}"
 
             itemView.setOnClickListener {
                 listener.onUserClick(datamodel, adapterPosition)
