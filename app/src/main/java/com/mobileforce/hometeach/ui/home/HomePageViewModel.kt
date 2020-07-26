@@ -40,10 +40,8 @@ class HomePageViewModel(
      * fetch from the remote source.
      */
     fun getTutorList() {
-        Log.i("MAYOKUN", "GETTING LIST")
         viewModelScope.launch {
             val listTutors = userRepository.getTutorListDb()
-            Log.i("MAYOKUN", "LIST IS LOCAL $listTutors")
             if (listTutors.isNullOrEmpty()) {
                 refreshTutorList()
             } else {
@@ -59,13 +57,11 @@ class HomePageViewModel(
      */
     private fun refreshTutorList() {
         _tutorList.postValue(Result.Loading)
-        Log.i("MAYOKUN", "REFRESHING")
         viewModelScope.launch {
             try {
                 val response = userRepository.getTutorList()
                 if (response.isSuccessful) {
                     val tutorListResponse = response.body()
-                    Log.i("MAYOKUN", "RESPONSE $tutorListResponse")
                     val listOfTutors = tutorListResponse?.map {
                         it.toDomainModel()
                     }
@@ -74,7 +70,6 @@ class HomePageViewModel(
                     userRepository.saveTutorList(listOfTutors!!.map { it.toDbEntity() })
 
                 } else {
-                    Log.i("MAYOKUN", "NULL RESPONSE")
                     _tutorList.postValue(Result.Success(null))
                 }
             } catch (exception: Exception) {

@@ -37,7 +37,7 @@ class SelectDateDialog : DialogFragment() {
         val binding = FancyDateDialogBinding.bind(popupView)
 
         val width = LinearLayout.LayoutParams.MATCH_PARENT
-        val height = LinearLayout.LayoutParams.MATCH_PARENT
+        val height = LinearLayout.LayoutParams.WRAP_CONTENT
 
         val focusable = true
 
