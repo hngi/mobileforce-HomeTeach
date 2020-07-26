@@ -12,6 +12,7 @@ import com.mobileforce.hometeach.adapters.TutorUpcomingAdapter
 import com.mobileforce.hometeach.databinding.FragmentTutorUpcomingBinding
 import com.mobileforce.hometeach.models.Schedule
 import com.mobileforce.hometeach.ui.classes.adapters.recylerviewadapters.TutorOngoingClassesAdapter
+import com.mobileforce.hometeach.utils.makeVisible
 import org.koin.android.ext.android.get
 
 
@@ -35,18 +36,13 @@ class TutorUpcomingFragment : Fragment() {
         viewModel.getTutorSchedules()
         viewModel.tutorUpcoming.observe(viewLifecycleOwner, Observer {
             binding.progressBar.visibility = View.INVISIBLE
-            if (it.schedules.isNullOrEmpty())
-            {
-                Toast.makeText(activity, "SORRY YOU HAVE NO CLASSES", Toast.LENGTH_SHORT).show()
+            if (it.schedules.isNullOrEmpty()) {
+                binding.tvNoUpcoming.makeVisible()
             }
             scheduleList = it.schedules
-//            binding.progressBar.visibility = View.INVISIBLE
             val adapter = TutorUpcomingAdapter(scheduleList)
             val recyclerView = binding.recyclerView
             recyclerView.adapter = adapter
-
         })
-
     }
-
 }

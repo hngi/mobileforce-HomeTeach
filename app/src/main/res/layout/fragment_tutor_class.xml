@@ -41,7 +41,7 @@
                 android:layout_gravity="end"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
-                android:src="@drawable/ic_notify" />
+                android:src="@drawable/alarm" />
 
         </com.google.android.material.appbar.MaterialToolbar>
 
