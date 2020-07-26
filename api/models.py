@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+import datetime
 from accounts.models import CustomUser
 from django.contrib.auth import get_user_model
 
@@ -27,11 +28,13 @@ class Request(models.Model):
 		return f'{self.requester.full_name} requests {self.tutor.full_name}'
 
 class Days(models.Model):
-	day = models.CharField(max_length=10)
+	day = models.DateField()
 
 class StudentSchedule(models.Model):
 	user = models.ForeignKey(User,  on_delete=models.CASCADE)
 	tutor = models.ForeignKey(User, related_name='tutor', on_delete=models.CASCADE)
+	subject = models.CharField(max_length=120)
+	grade = models.CharField(max_length=50)
 	from_hour = models.CharField(max_length=10)
 	from_minute = models.CharField(max_length=10)
 	to_hour = models.CharField(max_length=10)
@@ -70,11 +73,12 @@ class Profile(models.Model):
 	rating = models.ManyToManyField(Rating, blank=True)
 	desc = models.TextField(max_length=255, null=True, blank=True)
 	field = models.CharField(max_length=255, blank=True)
-	hourly_rate = models.CharField(max_length=10000000, default=0)
+	hourly_rate = models.CharField(max_length=10000000, null=True, blank=True, default=0)
 	major_course = models.CharField(max_length=255, null=True, blank=True)
 	other_courses = models.CharField(max_length=255, null=True, blank=True)
 	state = models.CharField(max_length=255, blank=True)
 	address = models.CharField(max_length=255, null=True, blank=True)	
+
 
 	def __unicode__(self):
 		return f'Profile for user: {self.user.email}'
