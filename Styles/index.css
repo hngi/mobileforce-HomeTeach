@@ -637,7 +637,6 @@
                 height: 100%;
                 background-position: center;
                 background-repeat: no-repeat;
-                background-size: cover;
                 margin-top: 40px;
             }
             .tutors__header {
@@ -767,21 +766,8 @@
             .card-texts {
                 font-size: 14px !important;
             }
-            .circular_bg img {
-                position: absolute;
-                left: 300px !important;
-                top: 7176 !important;
-                height: 10vh !important;
-            }
             .rectangular_bg img {
                 display: none;
-            }
-            .rectangular_bg_mobile img {
-                display: block !important;
-                position: absolute;
-                right: 300px !important;
-                top: 7855px !important;
-                height: 10vh !important;
             }
             .flickity-page-dots .dot {
                 display: none !important;
@@ -975,10 +961,22 @@
             .white__bg {
                 display: block !important;
                 background: white;
-                padding: 120px;
+                /* padding: 120px; */
+                max-height: 356px;
+                text-align: center;
+            }
+            .white__bg img {
+                position: relative;
+                bottom: 100px !important;
             }
             .news-letter {
                 height: 40vh !important;
+            }
+            .newsletter_phone {
+                display: none !important;
+            }
+            .footer__link {
+                padding-top: 30px;
             }
         }
         
