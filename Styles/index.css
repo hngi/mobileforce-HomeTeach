@@ -39,13 +39,6 @@
             .home-teach-hero p {
                 font-size: 16px !important;
             }
-            /* .home-teach-hero .app__logo img {
-                height: 40px;
-            } */
-            /* .hero__img {
-                height: 239.64px !important;
-                margin-top: 50px;
-            } */
         }
         
         @media screen and (device-width: 768px) {
@@ -169,17 +162,15 @@
             .column-reverse {
                 flex-direction: column-reverse !important;
             }
-            .about__placeholder {
+            /* .about__placeholder {
                 background-image: url('../Assets/Vectors/about-bg.png');
                 background-position: unset !important;
-                /* background-size: cover;
-            background-repeat: no-repeat; */
                 height: 463.88px !important;
                 position: relative;
                 top: 0;
                 left: 0;
-            }
-            .image1 {
+            } */
+            /* .image1 {
                 position: relative !important;
                 top: 20px !important;
                 left: 10px !important;
@@ -194,6 +185,12 @@
                 position: absolute !important;
                 top: 95px !important;
                 left: 125px !important;
+            } */
+            .image2 {
+                display: none;
+            }
+            .about__placeholder {
+                background: none !important;
             }
             .center__padding {
                 padding: 0% 10% 0% 10%;
@@ -242,7 +239,7 @@
             background-position: center;
             background-size: cover;
             background-repeat: no-repeat;
-            height: 743.88px;
+            /* height: 743.88px; */
             position: relative;
             top: 0;
             left: 0;
@@ -297,31 +294,8 @@
             .m__t {
                 margin-top: 80px;
             }
-            .image3 img {
-                height: 400px !important;
-            }
-            .image4 img {
-                height: 400px !important;
-            }
             .features__bg {
-                background-image: url('../Assets/Vectors/features-mobile-bg.png') !important;
-                background-position: center;
-                background-repeat: no-repeat;
-                height: 402px;
-                position: relative;
-            }
-            .image3 {
-                position: relative !important;
-                top: 100px !important;
-                left: -10px !important;
-            }
-            .image4 {
-                position: relative !important;
-                top: -200px !important;
-                left: 33px !important;
-            }
-            .features__placeholder {
-                height: max-content !important;
+                display: none;
             }
         }
         
@@ -447,11 +421,10 @@
         
         @media screen and (max-width: 576px) {
             .how__bg {
-                /* background: url('../Assets/Vectors/how-mobile-bg.png') !important; */
-                background-position: center !important;
+                /* background-position: center !important; */
                 background-size: cover;
                 background-repeat: no-repeat;
-                height: 2109px !important;
+                height: 2000px !important;
             }
             .works {
                 padding-top: 270px !important;
@@ -531,7 +504,7 @@
         /* tutors styles here */
         /* Media Queries here */
         
-        @media screen and (max-width: 450px) {
+        @media screen and (max-width: 576px) {
             .flickity-viewport {
                 background: white;
                 height: 400px !important;
@@ -654,13 +627,13 @@
         /* Find tutor styles here */
         /* Media Queries Here */
         
-        @media screen and (max-width: 450px) {
+        @media screen and (max-width: 576px) {
             .find__tutor {
                 display: none !important;
             }
             .find__tutor__mobile {
                 display: block !important;
-                background-image: url("../Assets/General/find_tutor_mobile.png");
+                background-image: url("../Assets/General/find_tutor.png");
                 height: 100%;
                 background-position: center;
                 background-repeat: no-repeat;
