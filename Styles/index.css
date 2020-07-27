@@ -46,9 +46,9 @@
             .home-teach-hero p {
                 font-size: 16px !important;
             }
-            .home-teach-hero .app__logo img {
+            /* .home-teach-hero .app__logo img {
                 height: 40px;
-            }
+            } */
             /* .hero__img {
                 height: 239.64px !important;
                 margin-top: 50px;
@@ -163,6 +163,7 @@
         
         .app__logo {
             padding-top: var(--main-padding-top);
+            display: flex;
         }
         
         .hero__img {
