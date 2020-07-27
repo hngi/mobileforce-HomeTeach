@@ -29,13 +29,6 @@
         /* Media Queries here */
         
         @media screen and (max-width: 576px) {
-            .hero {
-                /* background: linear-gradient(0deg, rgba(214, 245, 217, 0.34), rgba(214, 245, 217, 0.34)), url('../Assets/Vectors/mobile-hero.png') !important; */
-                /* background-position: unset !important;
-                background-size: unset !important;
-                background-repeat: no-repeat !important;
-                height: 652px !important; */
-            }
             .home-teach-hero {
                 margin-top: 50px !important;
             }
