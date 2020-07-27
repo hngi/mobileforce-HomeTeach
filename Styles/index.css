@@ -9,7 +9,7 @@
             --button-bg-color: #2F2E41;
             --main-padding-top: 20px;
             --div-padding-top: 70px;
-            /* HAmburger */
+            /* Hamburger */
             --primary-color: rgba(13, 110, 139, 0.75);
             --overlay-color: rgba(24, 39, 51, 0.85);
             --menu-speed: 0.75s;
@@ -28,13 +28,13 @@
         /* Hero styles here */
         /* Media Queries here */
         
-        @media screen and (max-width: 450px) {
+        @media screen and (max-width: 576px) {
             .hero {
-                background: linear-gradient(0deg, rgba(214, 245, 217, 0.34), rgba(214, 245, 217, 0.34)), url('../Assets/Vectors/mobile-hero.png') !important;
-                background-position: unset !important;
+                /* background: linear-gradient(0deg, rgba(214, 245, 217, 0.34), rgba(214, 245, 217, 0.34)), url('../Assets/Vectors/mobile-hero.png') !important; */
+                /* background-position: unset !important;
                 background-size: unset !important;
                 background-repeat: no-repeat !important;
-                height: 652px !important;
+                height: 652px !important; */
             }
             .home-teach-hero {
                 margin-top: 50px !important;
@@ -49,10 +49,10 @@
             .home-teach-hero .app__logo img {
                 height: 40px;
             }
-            .hero__img {
+            /* .hero__img {
                 height: 239.64px !important;
                 margin-top: 50px;
-            }
+            } */
         }
         
         @media screen and (device-width: 768px) {
@@ -83,7 +83,6 @@
             background-position: center;
             background-size: cover;
             background-repeat: no-repeat;
-            height: 902.78px;
         }
         
         header {
@@ -143,7 +142,7 @@
         }
         
         .home-teach-hero {
-            margin-top: 150px;
+            margin-top: 100px;
         }
         
         .home-teach-hero h1 {
@@ -167,12 +166,12 @@
         }
         
         .hero__img {
-            height: 80vh
+            margin-top: px;
         }
         /* About us section styles here */
         /* Media Queries here */
         
-        @media screen and (max-width: 450px) {
+        @media screen and (max-width: 576px) {
             .column-reverse {
                 flex-direction: column-reverse !important;
             }
@@ -300,7 +299,7 @@
         /* Features Styles here */
         /* Media Queries here */
         
-        @media screen and (max-width: 450px) {
+        @media screen and (max-width: 576px) {
             .m__t {
                 margin-top: 80px;
             }
@@ -316,7 +315,6 @@
                 background-repeat: no-repeat;
                 height: 402px;
                 position: relative;
-                /* margin-top: 40px; */
             }
             .image3 {
                 position: relative !important;
@@ -328,6 +326,9 @@
                 top: -200px !important;
                 left: 33px !important;
             }
+            .features__placeholder {
+                height: max-content !important;
+            }
         }
         
         @media screen and (device-width: 768px) {
@@ -335,18 +336,49 @@
                 padding-top: 100px !important;
             }
             .flex__wrap {
-                flex-wrap: inherit !important;
+                flex-wrap: nowrap !important;
             }
             .max__content {
                 width: max-content !important;
             }
-            .center__padding {
+            .center h6 {
+                margin-top: 50px !important;
+            }
+            .center p {
+                line-height: 20px !important;
+            }
+            .features__bg {
+                background-image: none !important;
+            }
+            .image3 {
+                top: 75px !important;
+                left: 55px !important;
+            }
+            .image3 img {
+                height: 450px !important;
+            }
+            .image4 {
+                top: 200px !important;
+                left: 40px !important;
+            }
+            .image4 img {
+                height: 450px !important;
+            }
+            /* .center__padding {
                 padding: 0% 50% 0% 50%;
             }
             .features__bg {
                 top: 760px !important
-            }
+            } */
         }
+        /* .rows {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-wrap: nowrap;
+            flex-wrap: nowrap;
+            margin-right: -15px;
+            margin-left: -15px;
+        } */
         
         .features {
             padding-top: var(--div-padding-top);
@@ -419,9 +451,9 @@
         /* How it works styles here */
         /* Media Queries here */
         
-        @media screen and (max-width: 450px) {
+        @media screen and (max-width: 576px) {
             .how__bg {
-                background: url('../Assets/Vectors/how-mobile-bg.png') !important;
+                /* background: url('../Assets/Vectors/how-mobile-bg.png') !important; */
                 background-position: center !important;
                 background-size: cover;
                 background-repeat: no-repeat;
