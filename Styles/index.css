@@ -19,20 +19,18 @@
             display: inline;
         }
         
-        html {
+        html,
+        body {
             font-family: 'Ubuntu', sans-serif;
             font-family: 'Open Sans', sans-serif;
             font-family: 'Poppins', sans-serif;
             overflow-x: hidden;
+            /* overflow-wrap: inherit; */
         }
         /* Hero styles here */
         /* Media Queries here */
         
         @media screen and (max-width: 576px) {
-            html,
-            body {
-                overflow-x: hidden !important;
-            }
             .home-teach-hero {
                 margin-top: 50px !important;
             }
@@ -199,11 +197,11 @@
             .column-reverse {
                 flex-direction: column-reverse !important;
             }
-            .about__us {
+            /* .about__us {
                 width: 560px !important;
                 position: relative !important;
                 left: 60 !important;
-            }
+            } */
             .captions {
                 position: relative !important;
                 left: 200!important;
@@ -286,9 +284,9 @@
             .flex__wrap {
                 flex-wrap: nowrap !important;
             }
-            .max__content {
+            /* .max__content {
                 width: max-content !important;
-            }
+            } */
             .center h6 {
                 margin-top: 50px !important;
             }
@@ -820,10 +818,6 @@
         /* Media Queries Here */
         
         @media screen and (max-width: 576px) {
-            html,
-            body {
-                overflow-x: hidden !important;
-            }
             .supported p {
                 font-size: 18px !important;
             }
@@ -927,13 +921,13 @@
             .white__bg {
                 display: block !important;
                 background: white;
-                /* padding: 120px; */
-                max-height: 356px;
+                padding: 0px;
+                max-height: 390px;
                 text-align: center;
             }
             .white__bg img {
                 position: relative;
-                bottom: 100px !important;
+                bottom: 70px !important;
             }
             .news-letter {
                 height: 40vh !important;
