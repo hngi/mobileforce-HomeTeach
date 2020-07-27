@@ -5,6 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mobileforce.hometeach.data.sources.remote.wrappers.Request
+import com.mobileforce.hometeach.data.sources.remote.wrappers.StudentClass
+import com.mobileforce.hometeach.data.sources.remote.wrappers.studentClassDiffUtil
 import com.mobileforce.hometeach.data.sources.remote.wrappers.userRequestDiffUtil
 import com.mobileforce.hometeach.databinding.ListItemClassUpcomingParentBinding
 import com.mobileforce.hometeach.utils.loadImage
@@ -15,7 +17,7 @@ import java.net.URL
  * Modified by MayorJay
  */
 
-class ParentUpcomingClassesAdapter: ListAdapter<Request, ParentUpcomingClassesAdapter.ViewHolder>(userRequestDiffUtil) {
+class ParentUpcomingClassesAdapter: ListAdapter<StudentClass, ParentUpcomingClassesAdapter.ViewHolder>(studentClassDiffUtil) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -25,20 +27,20 @@ class ParentUpcomingClassesAdapter: ListAdapter<Request, ParentUpcomingClassesAd
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val request = getItem(position)
-        holder.bind(request)
+        val studentClass = getItem(position)
+        holder.bind(studentClass)
     }
 
     class ViewHolder(private val binding: ListItemClassUpcomingParentBinding): RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(request: Request) {
+        fun bind(studentClass: StudentClass) {
 //            val currentDateTime = System.currentTimeMillis()
 //            val dateFormat = SimpleDateFormat("dd-MM-yyyy HH-mm", Locale.US)
 //            val startRequestDateTime = dateFormat.parse(request.day + " " + request.from_hour + ":" + request.from_minute)!!.time
 //            val endRequestDateTime = dateFormat.parse(request.day + " " + request.to_hour + ":" + request.to_minute)!!.time
-            with(request) {
+            with(studentClass) {
                 binding.subjectName.text = subject
-                binding.dateTime.text = date_requested
+                binding.dateTime.text = "$day $from_hour:$from_minute-$to_hour:$to_minute"
                 binding.tutorName.text = tutor_name
                 binding.tutorSubject.text = "$subject Tutor"
                 binding.tutorImage.loadImage(URL(tutor_pic))

@@ -219,6 +219,13 @@ class RemoteDataSource(private val api: Api) : DataSource {
         return api.getStudentClassRequest(map)
     }
 
+    override suspend fun getStudentClasses(param: Params.StudentID): UserClassesResponse {
+        val map = mapOf(
+            "student_id" to param.student_id
+        )
+        return api.getStudentClasses(map)
+    }
+
     override suspend fun getTutorClassesRequest(param: Params.TutorClassesRequest):TutorRequestDataModel{
         val map = mapOf(
             "tutor_id" to param.tutor_id

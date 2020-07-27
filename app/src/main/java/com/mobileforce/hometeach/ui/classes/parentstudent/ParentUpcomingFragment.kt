@@ -31,24 +31,24 @@ class ParentUpcomingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        viewModel.getStudentClassRequest()
+        viewModel.getStudentClasses()
         parentUpcomingClassesAdapter = ParentUpcomingClassesAdapter()
 
-        viewModel.studentClassRequest.observe(viewLifecycleOwner, Observer { result ->
+        viewModel.studentClasses.observe(viewLifecycleOwner, Observer { result ->
             when (result) {
                 Result.Loading -> {}
                 is Result.Success -> {
                     binding.recyclerView.apply {
                         adapter = parentUpcomingClassesAdapter
                     }
-                    val requests = result.data!!.requests
-                    if (requests.isEmpty()) {
+                    val classes = result.data!!.StudentClasses
+                    if (classes.isNullOrEmpty()) {
                         binding.tvNoUpcoming.makeVisible()
                         binding.recyclerView.makeInvisible()
                     } else {
                         binding.tvNoUpcoming.makeInvisible()
                         binding.recyclerView.makeVisible()
-                        parentUpcomingClassesAdapter.submitList(requests)
+                        parentUpcomingClassesAdapter.submitList(classes)
                     }
                 }
                 is Result.Error -> {

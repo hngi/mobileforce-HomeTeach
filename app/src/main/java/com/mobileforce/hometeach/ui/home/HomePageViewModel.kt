@@ -1,6 +1,5 @@
 package com.mobileforce.hometeach.ui.home
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.mobileforce.hometeach.data.repository.UserRepository
 import com.mobileforce.hometeach.data.sources.remote.wrappers.UserClassRequestResponse
 import com.mobileforce.hometeach.data.sources.local.entities.WalletEntity
+import com.mobileforce.hometeach.data.sources.remote.wrappers.UserClassesResponse
 import com.mobileforce.hometeach.models.TutorModel
 import com.mobileforce.hometeach.utils.*
 import kotlinx.coroutines.Dispatchers
@@ -26,8 +26,8 @@ class HomePageViewModel(
     val tutorList = _tutorList.asLiveData()
 
     //Student class response for upcoming and ongoing class
-    private val _studentClassRequest = MutableLiveData<Result<UserClassRequestResponse>>()
-    val studentClassRequest = _studentClassRequest.asLiveData()
+    private val _studentClass = MutableLiveData<Result<UserClassesResponse>>()
+    val studentClass = _studentClass.asLiveData()
 
     val wallet: LiveData<WalletEntity> = userRepository.observeWalletData()
 
@@ -79,17 +79,17 @@ class HomePageViewModel(
     }
 
     /**
-     * This function fetches an instance of [UserClassRequestResponse] from the remote source.
+     * This function fetches an instance of [UserClassesResponse] from the remote source.
      * From which we can get the details about upcoming and ongoing classes
      */
-    fun getStudentClassRequest() {
-        _studentClassRequest.postValue(Result.Loading)
+    fun getStudentClasses() {
+        _studentClass.postValue(Result.Loading)
         viewModelScope.launch {
             try {
-                val response = userRepository.getStudentClassRequest()
-                _studentClassRequest.postValue(Result.Success(response))
+                val response = userRepository.getStudentClasses()
+                _studentClass.postValue(Result.Success(response))
             } catch (error: Throwable) {
-                _studentClassRequest.postValue(Result.Error(error))
+                _studentClass.postValue(Result.Error(error))
             }
         }
     }

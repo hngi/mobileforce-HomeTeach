@@ -48,6 +48,7 @@ interface UserRepository {
     suspend fun getSingleUser(): UserEntity
 
     suspend fun saveUserProfile(profile: Profile)
+
     fun profileLiveData(): LiveData<ProfileEntity>
 
     suspend fun modify()
@@ -65,6 +66,8 @@ interface UserRepository {
     suspend fun saveTutorDetailsForUserDb(tutorDetailsEntity: TutorDetailsEntity)
 
     suspend fun getStudentClassRequest(): UserClassRequestResponse
+
+    suspend fun getStudentClasses(): UserClassesResponse
 
     suspend fun getUserWallet(): UserWalletResponse
 

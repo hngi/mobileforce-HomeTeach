@@ -103,9 +103,9 @@ interface DataSource {
 
     suspend fun grantStudentRequest(params:Params.StudentRequest):StudentRequestResponse
 
-//    suspend fun getStudentClass(param: Params.StudentID): UserClassResponse
     suspend fun getStudentClassRequest(param: Params.StudentID): UserClassRequestResponse
 
+    suspend fun getStudentClasses(param: Params.StudentID): UserClassesResponse
 
     suspend fun getUserWallet(param: Params.UserWallet): UserWalletResponse = TODO()
 
