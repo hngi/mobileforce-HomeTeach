@@ -102,6 +102,9 @@ interface Api {
     @POST("v1/student-classes-requests/")
     suspend fun getStudentClassRequest(@Body param: Map<String, String>): UserClassRequestResponse
 
+    @POST("v1/student-classes/")
+    suspend fun getStudentClasses(@Body param: Map<String, String>): UserClassesResponse
+
     @POST("v1/tutor-classes-requests/")
     suspend fun getTutorClassesRequest(@Body params:Map<String,String>):TutorRequestDataModel
 

@@ -195,6 +195,10 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
         TODO("Not yet implemented")
     }
 
+    override suspend fun getStudentClasses(param: Params.StudentID): UserClassesResponse {
+        TODO("Not yet implemented")
+    }
+
     override suspend fun saveUserWallet(walletEntity: WalletEntity) {
         db.walletDao().saveWalletInfo(walletEntity)
     }

@@ -21,8 +21,8 @@ import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.adapters.RecyclerViewAdapter
 import com.mobileforce.hometeach.adapters.ViewHolder
 import com.mobileforce.hometeach.data.sources.local.AppDataBase
-import com.mobileforce.hometeach.data.sources.remote.wrappers.Request
-import com.mobileforce.hometeach.data.sources.remote.wrappers.userRequestDiffUtil
+import com.mobileforce.hometeach.data.sources.remote.wrappers.StudentClass
+import com.mobileforce.hometeach.data.sources.remote.wrappers.studentClassDiffUtil
 import com.mobileforce.hometeach.databinding.FragmentHomePageParentBinding
 import com.mobileforce.hometeach.databinding.FragmentHomePageTutorBinding
 import com.mobileforce.hometeach.databinding.ListItemClassOngoingParentDashBoardBinding
@@ -158,16 +158,16 @@ class HomePageFragment : Fragment() {
         })
 
         //<--------------------------------- Start - Upcoming and Ongoing class Setup ------------------------------------------>//
-        viewModel.getStudentClassRequest()
+        viewModel.getStudentClasses()
         // Adapter for Upcoming classes
-        val upComingAdapter = object : RecyclerViewAdapter<Request>(userRequestDiffUtil) {
-            override fun getLayoutRes(model: Request): Int =
+        val upComingAdapter = object : RecyclerViewAdapter<StudentClass>(studentClassDiffUtil) {
+            override fun getLayoutRes(model: StudentClass): Int =
                 R.layout.list_item_class_upcoming_parent_dash_board
 
             override fun getViewHolder(
                 view: View,
-                recyclerViewAdapter: RecyclerViewAdapter<Request>
-            ): ViewHolder<Request> {
+                recyclerViewAdapter: RecyclerViewAdapter<StudentClass>
+            ): ViewHolder<StudentClass> {
 
                 return UpcomingClassViewHolderStudentDashBoard(
                     ListItemClassUpcomingParentDashBoardBinding.bind(view)
@@ -177,14 +177,14 @@ class HomePageFragment : Fragment() {
 
         // Adapter for ongoing classes
         val onGoingAdapter = object :
-            RecyclerViewAdapter<Request>(userRequestDiffUtil) {
-            override fun getLayoutRes(model: Request): Int =
+            RecyclerViewAdapter<StudentClass>(studentClassDiffUtil) {
+            override fun getLayoutRes(model: StudentClass): Int =
                 R.layout.list_item_class_ongoing_parent_dash_board
 
             override fun getViewHolder(
                 view: View,
-                recyclerViewAdapter: RecyclerViewAdapter<Request>
-            ): ViewHolder<Request> {
+                recyclerViewAdapter: RecyclerViewAdapter<StudentClass>
+            ): ViewHolder<StudentClass> {
 
                 return OngoingClassViewHolderStudentDashBoard(
                     ListItemClassOngoingParentDashBoardBinding.bind(view)
@@ -192,7 +192,7 @@ class HomePageFragment : Fragment() {
             }
         }
 
-        viewModel.studentClassRequest.observe(viewLifecycleOwner, Observer { result ->
+        viewModel.studentClass.observe(viewLifecycleOwner, Observer { result ->
             when (result) {
                 Result.Loading -> {}
                 is Result.Success -> {
@@ -205,8 +205,8 @@ class HomePageFragment : Fragment() {
                         layoutManager = LinearLayoutManager(requireContext(), HORIZONTAL, false)
                         adapter = onGoingAdapter
                     }
-                    val requests = result.data!!.requests
-                    if (requests.isEmpty()) {
+                    val classes = result.data!!.StudentClasses
+                    if (classes.isNullOrEmpty()) {
                         bindingParent.tvNoOngoing.makeVisible()
                         bindingParent.tvNoUpcoming.makeVisible()
                         bindingParent.ongoingClassesRecyclerView.makeInvisible()
@@ -216,8 +216,8 @@ class HomePageFragment : Fragment() {
                         bindingParent.tvNoUpcoming.makeInvisible()
                         bindingParent.ongoingClassesRecyclerView.makeVisible()
                         bindingParent.upcomingClassesRecyclerView.makeVisible()
-                        upComingAdapter.submitList(requests)
-                        onGoingAdapter.submitList(requests)
+                        upComingAdapter.submitList(classes)
+                        onGoingAdapter.submitList(classes)
                     }
                 }
                 is Result.Error -> {
