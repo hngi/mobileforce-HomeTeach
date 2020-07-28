@@ -29,7 +29,7 @@
         /* Hero styles here */
         /* Media Queries here */
         
-        @media screen and (max-width: 576px) {
+        @media screen and (max-width: 576px) and (min-width: 275px) {
             .home-teach-hero {
                 margin-top: 50px !important;
             }
@@ -167,7 +167,7 @@
         /* About us section styles here */
         /* Media Queries here */
         
-        @media screen and (max-width: 576px) {
+        @media screen and (max-width: 576px) and (min-width: 275px) {
             .column-reverse {
                 flex-direction: column-reverse !important;
             }
@@ -280,7 +280,7 @@
         /* Features Styles here */
         /* Media Queries here */
         
-        @media screen and (max-width: 576px) {
+        @media screen and (max-width: 576px) and (min-width: 275px) {
             .m__t {
                 margin-top: 80px;
             }
@@ -384,7 +384,7 @@
         /* How it works styles here */
         /* Media Queries here */
         
-        @media screen and (max-width: 576px) {
+        @media screen and (max-width: 576px) and (min-width: 275px) {
             .how__bg {
                 /* background-position: center !important; */
                 background-size: cover;
@@ -481,7 +481,7 @@
         /* tutors styles here */
         /* Media Queries here */
         
-        @media screen and (max-width: 576px) {
+        @media screen and (max-width: 576px) and (min-width: 275px) {
             .flickity-viewport {
                 background: white;
                 height: 400px !important;
@@ -604,7 +604,7 @@
         /* Find tutor styles here */
         /* Media Queries Here */
         
-        @media screen and (max-width: 576px) {
+        @media screen and (max-width: 576px) and (min-width: 275px) {
             .find__tutor {
                 display: none !important;
             }
@@ -713,7 +713,7 @@
         /* Testimonial Styles here */
         /* Media Queries Here */
         
-        @media screen and (max-width: 576px) {
+        @media screen and (max-width: 576px) and (min-width: 275px) {
             .testimonial {
                 padding-top: 40px !important;
             }
@@ -830,7 +830,7 @@
         /* SPonsors styles here */
         /* Media Queries Here */
         
-        @media screen and (max-width: 576px) {
+        @media screen and (max-width: 576px) and (min-width: 275px) {
             .supported p {
                 font-size: 18px !important;
             }
@@ -910,7 +910,7 @@
         /* Newsletter styles here */
         /* Media Queries Here */
         
-        @media screen and (max-width: 576px) {
+        @media screen and (max-width: 576px) and (min-width: 275px) {
             .menu-wrap {
                 position: absolute;
                 top: 0;
@@ -1064,7 +1064,7 @@
         /* Footer styles here */
         /* Media Queries Here */
         
-        @media screen and (max-width: 576px) {
+        @media screen and (max-width: 576px) and (min-width: 275px) {
             footer>.container>.row {
                 text-align: center !important;
             }
