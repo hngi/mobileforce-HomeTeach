@@ -15,13 +15,12 @@ import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.data.sources.remote.Params
-import com.mobileforce.hometeach.ui.HomeNavigationDrawerActivity
+import com.mobileforce.hometeach.ui.navdrawer.HomeNavigationDrawerActivity
 import com.mobileforce.hometeach.databinding.ActivityLoginBinding
 import com.mobileforce.hometeach.ui.ExploreActivity
 import com.mobileforce.hometeach.utils.ApiError
 import com.mobileforce.hometeach.utils.Result
 import com.mobileforce.hometeach.utils.snack
-import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_login.view.*
 import kotlinx.android.synthetic.main.recover_email_layout.view.*
 import org.koin.android.viewmodel.ext.android.viewModel
