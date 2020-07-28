@@ -136,13 +136,14 @@ class ProfileFragment : Fragment() {
 
                 profile.students_count?.let {
 
-                    if (it > 1) {
-                        bindingTutor.studentCount.text =
-                            String.format("%s students", profile.students_count)
-                    } else {
+                    if (it == 1) {
                         bindingTutor.studentCount.text =
                             String.format("%s student", profile.students_count)
+                    } else {
+                        bindingTutor.studentCount.text =
+                            String.format("%s students", profile.students_count)
                     }
+
                 } ?: kotlin.run {
                     bindingTutor.studentCount.text = String.format("%s students", 0)
                 }
