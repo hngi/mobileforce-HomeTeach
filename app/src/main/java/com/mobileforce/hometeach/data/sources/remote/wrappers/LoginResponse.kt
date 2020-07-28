@@ -35,3 +35,9 @@ data class UserRemote(
     val is_admin: Boolean,
     val timestamp: String
 )
+
+data class StudentProfileResponse(
+    val user: UserRemote,
+    val id: Int,
+    val profile_pic: String?
+)

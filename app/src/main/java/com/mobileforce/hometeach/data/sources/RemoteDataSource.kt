@@ -187,7 +187,7 @@ class RemoteDataSource(private val api: Api) : DataSource {
     }
 
     override suspend fun getProfileId(): Int {
-        TODO("Not yet implemeaddressaddressnted")
+        TODO("Not yet implemented")
     }
 
     override suspend fun updateTutorProfile(
@@ -208,8 +208,25 @@ class RemoteDataSource(private val api: Api) : DataSource {
     }
 
     override suspend fun getUserWallet(param: Params.UserWallet): UserWalletResponse {
-
         return api.getUserWallet(param)
+    }
+
+    override suspend fun uploadStudentProfilePic(
+        id: Int,
+        profilePic: MultipartBody.Part
+    ): UploadResponse {
+        return api.uploadStudentProfilePic(id, profilePic)
+    }
+
+    override suspend fun updateStudentProfile(
+        id: Int,
+        params: Params.UpdateStudentProfile
+    ): UserProfileResponse {
+        val map = mapOf(
+            "desc" to params.desc,
+            "phone_number" to params.phone_number
+        )
+        return api.updateStudentProfile(id, map)
     }
 
     override suspend fun getStudentClassRequest(param: Params.StudentID): UserClassRequestResponse {

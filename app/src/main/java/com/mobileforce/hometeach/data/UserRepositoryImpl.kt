@@ -7,6 +7,7 @@ import com.mobileforce.hometeach.data.sources.DataSourceFactory
 import com.mobileforce.hometeach.data.sources.local.entities.*
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
+import okhttp3.MultipartBody
 import retrofit2.Response
 
 
@@ -177,5 +178,19 @@ class UserRepositoryImpl(private val dataSource: DataSourceFactory) : UserReposi
 
     override fun observeUSerCards(): LiveData<List<CardEntity>> {
         return dataSource.local().observeUserCards()
+    }
+
+    override suspend fun updateStudentProfile(
+        id: Int,
+        params: Params.UpdateStudentProfile
+    ): UserProfileResponse {
+        return dataSource.remote().updateStudentProfile(id, params)
+    }
+
+    override suspend fun uploadStudentProfilePic(
+        id: Int,
+        profilePic: MultipartBody.Part
+    ): UploadResponse {
+        return dataSource.remote().uploadStudentProfilePic(id, profilePic)
     }
 }

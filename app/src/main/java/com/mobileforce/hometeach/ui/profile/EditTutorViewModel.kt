@@ -50,7 +50,6 @@ class EditTutorViewModel(
     fun updateTutorProfile(params: Params.UpdateTutorProfile) {
         _postTutorDetails.postValue(Result.Loading)
         viewModelScope.launch {
-
             try {
                 val profileEntity = tutorRepository.getProfileId()
                 val id = profileEntity.id
@@ -59,7 +58,6 @@ class EditTutorViewModel(
             } catch (error: Throwable) {
                 _postTutorDetails.postValue(Result.Error(error))
             }
-
         }
     }
 

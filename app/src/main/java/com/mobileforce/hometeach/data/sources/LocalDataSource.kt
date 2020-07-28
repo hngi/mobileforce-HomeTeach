@@ -216,6 +216,20 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
         return db.userDao().observeUserCards()
     }
 
+    override suspend fun uploadStudentProfilePic(
+        id: Int,
+        profilePic: MultipartBody.Part
+    ): UploadResponse {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun updateStudentProfile(
+        id: Int,
+        params: Params.UpdateStudentProfile
+    ): UserProfileResponse {
+        TODO("Not yet implemented")
+    }
+
     private fun mapProfileToEntity(profile: Profile): ProfileEntity {
         return ProfileEntity(
             profile.id,

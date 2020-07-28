@@ -90,4 +90,9 @@ class Params {
 
     data class UserWallet(val user: String)
 
+    data class UpdateStudentProfile(
+        val desc: String,
+        val phone_number: String
+    )
+
 }
