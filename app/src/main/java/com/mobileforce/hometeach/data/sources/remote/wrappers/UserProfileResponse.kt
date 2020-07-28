@@ -12,5 +12,9 @@ data class UserProfileResponse(
     val other_courses: String?,
     val state: String?,
     val address: String?,
-    val user_url: String?, val credentials: String?, val videoUrl: String?
+    val user_url: String?,
+    val credentials: String?,
+    val videoUrl: String?,
+    val students: Int?,
+    val profile_visits: Int?
 )

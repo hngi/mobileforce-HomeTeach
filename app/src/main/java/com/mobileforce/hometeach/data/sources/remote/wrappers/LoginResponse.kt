@@ -17,7 +17,7 @@ data class Profile(
     val state: String?,
     val address: String?,
     val user_url: String?,
-    val credentials: String?, val videoUrl: String?
+    val credentials: String?, val videoUrl: String?, val students: Int?, val profile_visits: Int?
 )
 
 data class Rating(val rating: Float?, val count: Int?)

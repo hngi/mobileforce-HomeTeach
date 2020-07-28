@@ -77,7 +77,8 @@ class SignInViewModel(
                                 address,
                                 user_url,
                                 credentials = credentials,
-                                videoUrl = videoUrl
+                                videoUrl = videoUrl,
+                                students = students, profile_visits = profile_visits
                             )
                             userRepository.saveUserProfile(profile)
 

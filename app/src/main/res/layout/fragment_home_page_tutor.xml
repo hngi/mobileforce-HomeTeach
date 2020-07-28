@@ -76,7 +76,6 @@
                     android:padding="15dp">
 
                     <TextView
-                        android:id="@+id/totalstudent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
@@ -89,6 +88,7 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/totalStudent"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -156,7 +156,6 @@
                     android:padding="15dp">
 
                     <TextView
-                        android:id="@+id/totalprofilevisits"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
@@ -169,6 +168,7 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/totalProfileVisits"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"

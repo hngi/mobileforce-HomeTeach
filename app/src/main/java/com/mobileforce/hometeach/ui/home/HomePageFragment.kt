@@ -12,7 +12,6 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
@@ -29,7 +28,6 @@ import com.mobileforce.hometeach.databinding.FragmentHomePageTutorBinding
 import com.mobileforce.hometeach.databinding.ListItemClassOngoingParentDashBoardBinding
 import com.mobileforce.hometeach.databinding.ListItemClassUpcomingParentDashBoardBinding
 import com.mobileforce.hometeach.models.TutorClassesDataModel
-import com.mobileforce.hometeach.models.TutorDashboardModel
 import com.mobileforce.hometeach.ui.home.student.OngoingClassViewHolderStudentDashBoard
 import com.mobileforce.hometeach.ui.home.student.UpcomingClassViewHolderStudentDashBoard
 import com.mobileforce.hometeach.ui.home.student.toptutors.TopTutorsAdapter
@@ -39,7 +37,6 @@ import com.mobileforce.hometeach.utils.*
 import com.mobileforce.hometeach.utils.AppConstants.USER_STUDENT
 import com.mobileforce.hometeach.utils.AppConstants.USER_TUTOR
 import com.mobileforce.hometeach.utils.Result
-import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.text.SimpleDateFormat
@@ -246,15 +243,6 @@ class HomePageFragment : Fragment() {
 
     private fun setUpForTutor() {
         bindingTutor.walletBalance.text = 0.0.formatBalance()
-        lifecycleScope.launch {
-            val user = db.userDao().getUser()
-            bindingTutor.username.text = " $user.full_name"
-            bindingTutor.totalbalance.text = "BALANCE"
-            bindingTutor.totalstudent.text = "TOTAL STUDENT"
-            bindingTutor.totalreviews.text = "TOTAL REVIEW"
-            bindingTutor.totalprofilevisits.text = "PROFILE VISITS"
-        }
-
 
 //        bindingTutor.root.findViewById<LinearLayout>(R.id.mybanks).setOnClickListener {
 //            //findNavController().navigate(R.id.myBanks)
@@ -269,15 +257,7 @@ class HomePageFragment : Fragment() {
 //            toast(message = "Not yet Implemented: To be done soon", length = Toast.LENGTH_SHORT)
 //        }
 
-        val TutorDashboardModel = mutableListOf<TutorDashboardModel>(
-            TutorDashboardModel(
-                UUID.randomUUID().toString(),
-                "TOTAL STUDENT",
-                "BALANCE",
-                "PROFILE VISITS",
-                "TOTAL REVIEWS"
-            )
-        )
+
         bindingTutor.modifyBtn.setOnClickListener {
             dataPicker()
         }
@@ -301,6 +281,19 @@ class HomePageFragment : Fragment() {
 
             profile?.let {
                 bindingTutor.reviewCount.text = (profile.rating_count ?: 0).toString()
+
+                profile.students_count?.let {
+                    bindingTutor.totalStudent.text = String.format("%s", profile.students_count)
+                } ?: kotlin.run {
+                    bindingTutor.totalStudent.text = String.format("%s", 0)
+                }
+
+                profile.profile_visits?.let {
+                    bindingTutor.totalProfileVisits.text =
+                        String.format("%s", profile.profile_visits)
+                } ?: kotlin.run {
+                    bindingTutor.totalProfileVisits.text = String.format("%s", 0)
+                }
             }
 
 
