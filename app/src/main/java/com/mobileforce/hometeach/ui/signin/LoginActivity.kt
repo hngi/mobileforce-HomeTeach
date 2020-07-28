@@ -15,8 +15,8 @@ import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.data.sources.remote.Params
+import com.mobileforce.hometeach.ui.HomeNavigationDrawerActivity
 import com.mobileforce.hometeach.databinding.ActivityLoginBinding
-import com.mobileforce.hometeach.ui.BottomNavigationActivity
 import com.mobileforce.hometeach.ui.ExploreActivity
 import com.mobileforce.hometeach.utils.ApiError
 import com.mobileforce.hometeach.utils.Result
@@ -172,7 +172,8 @@ class LoginActivity : AppCompatActivity() {
 
 
     private fun navigateToDashBoard() {
-        startActivity(Intent(this, BottomNavigationActivity::class.java))
+        startActivity(Intent(this, HomeNavigationDrawerActivity::class.java))
+        //finish()
         finish()
     }
 

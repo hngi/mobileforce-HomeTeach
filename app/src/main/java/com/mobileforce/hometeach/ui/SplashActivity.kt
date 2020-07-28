@@ -23,7 +23,7 @@ class SplashActivity : AppCompatActivity() {
         } else {
 
             if (pref.isLoggedIn) {
-                startActivity(Intent(this, BottomNavigationActivity::class.java))
+                startActivity(Intent(this, HomeNavigationDrawerActivity::class.java))
 
             } else {
                 startActivity(Intent(this, LoginActivity::class.java))
