@@ -52,6 +52,7 @@ class UserLoginSerializer(ModelSerializer):
     email = EmailField(max_length=100, write_only=True)
     token = serializers.SerializerMethodField(read_only=True)
     profile = serializers.SerializerMethodField(read_only=True)
+    is_tutor = serializers.BooleanField()
 
     class Meta:
         model = CustomUser
@@ -59,6 +60,7 @@ class UserLoginSerializer(ModelSerializer):
             'email',
             'token',
             'profile',
+            'is_tutor',
             'password',
         ]
         extra_kwargs = {"password": {"write_only": True}}
@@ -78,11 +80,17 @@ class UserLoginSerializer(ModelSerializer):
         data = self.validated_data
         email = data.get("email")
         password = data["password"]
+        is_tutor = data["is_tutor"]
         if not email:
             raise ValidationError("Email cannot be blank")
         user = User.objects.filter(email=email)
+        istutor = user.filter(is_tutor=is_tutor)
         if user.exists():
             user_obj = User.objects.get(email=email)
+            if user_obj.is_tutor == True:
+                pass   
+            else:
+                raise ValidationError("This email address is not registered as a tutor.")
         else:
             raise ValidationError("Invalid username or Password")
 
