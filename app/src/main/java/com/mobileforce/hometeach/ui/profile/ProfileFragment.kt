@@ -171,6 +171,11 @@ class ProfileFragment : Fragment() {
 
         })
 
+
+        bindingStudent.layoutAccount.editProfile.setOnClickListener {
+            navController.navigate(R.id.studentProfileFragment)
+        }
+
     }
 
 }
