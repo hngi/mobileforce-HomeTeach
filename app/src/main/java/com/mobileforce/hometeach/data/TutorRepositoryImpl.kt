@@ -52,7 +52,7 @@ class TutorRepositoryImpl (private val dataSource: DataSourceFactory): TutorRepo
     }
 
     override suspend fun uploadVideo(id: Int, video: MultipartBody.Part):UploadResponse {
-       return dataSource.remote().uploadVideo(id,video)
+        return dataSource.remote().uploadVideo(id, video)
     }
 
     override suspend fun uploadCredential(
@@ -76,6 +76,11 @@ class TutorRepositoryImpl (private val dataSource: DataSourceFactory): TutorRepo
 
     override suspend fun grantStudentRequest(params: Params.StudentRequest): StudentRequestResponse {
         return dataSource.remote().grantStudentRequest(params)
+    }
+
+    override suspend fun updateProfileVisitsCount(param: Params.TutorProfileVisitsCount) {
+
+        dataSource.remote().updateTutorProfileVisitsCount(param)
     }
 
 

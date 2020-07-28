@@ -13,6 +13,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.data.sources.remote.Params
@@ -73,7 +74,6 @@ class EditTutorProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
         // Inflates the Spinner displaying the tutor's field
         ArrayAdapter.createFromResource(

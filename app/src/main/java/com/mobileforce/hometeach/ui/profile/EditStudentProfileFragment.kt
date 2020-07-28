@@ -11,6 +11,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.data.sources.remote.Params
@@ -33,8 +35,9 @@ class EditStudentProfileFragment : Fragment() {
     private val viewModel: EditStudentProfileViewModel by viewModel()
     private lateinit var binding: FragmentEditStudentProfileBinding
     private val Request_Code = 1000
-    private lateinit var mDialogView: View
-    private lateinit var mAlertDialog: AlertDialog
+//    private lateinit var mDialogView: View
+//    private lateinit var mAlertDialog: AlertDialog
+    private lateinit var navController: NavController
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,6 +49,10 @@ class EditStudentProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        navController = Navigation.findNavController(view)
+        binding.toolBar.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
 
         viewModel.user.observe(viewLifecycleOwner, Observer { user ->
             binding.studentName.text = user.full_name
@@ -53,20 +60,20 @@ class EditStudentProfileFragment : Fragment() {
         })
         viewModel.profile.observe(viewLifecycleOwner, Observer { profile ->
             binding.etAbout.setText(profile.desc)
-            binding.profilePic.loadImage(URL(profile.profile_pic)) //.setImageResource(profile.profile_pic!!.toInt())
+            //binding.profilePic.loadImage(URL(profile.profile_pic)) //.setImageResource(profile.profile_pic!!.toInt())
         })
 
         viewModel.updateStudentProfile.observe(viewLifecycleOwner, Observer { result ->
             when (result) {
                 Result.Loading -> {}
                 is Result.Success -> {
-                    mDialogView.progressBar.visibility = View.INVISIBLE
-                    mDialogView.successImage.visibility = View.VISIBLE
-                    mAlertDialog.dismiss()
+//                    mDialogView.progressBar.visibility = View.INVISIBLE
+//                    mDialogView.successImage.visibility = View.VISIBLE
+//                    mAlertDialog.dismiss()
                     findNavController().navigate(R.id.profileFragment)
                 }
                 is Result.Error -> {
-                    mAlertDialog.dismiss()
+                    //mAlertDialog.dismiss()
                     val message = ApiError(result.exception).message
                     toast(message)
                 }
@@ -77,11 +84,11 @@ class EditStudentProfileFragment : Fragment() {
             when (result) {
                 Result.Loading -> {}
                 is Result.Success -> {
-                    mDialogView.progressBar.visibility = View.INVISIBLE
-                    mDialogView.successImage.visibility = View.VISIBLE
+//                    mDialogView.progressBar.visibility = View.INVISIBLE
+//                    mDialogView.successImage.visibility = View.VISIBLE
                 }
                 is Result.Error -> {
-                    mAlertDialog.dismiss()
+                    //mAlertDialog.dismiss()
                     toast(message = "Oops! An error occurred")
                 }
             }
@@ -106,12 +113,12 @@ class EditStudentProfileFragment : Fragment() {
     }
 
     private fun showDialog() {
-        mDialogView = LayoutInflater.from(activity).inflate(R.layout.uploads, null)
-        val mBuilder = activity?.let { it1 ->
-            AlertDialog.Builder(it1)
-                .setView(mDialogView)
-        }
-        mAlertDialog = mBuilder?.show()!!
+//        mDialogView = LayoutInflater.from(activity).inflate(R.layout.uploads, null)
+//        val mBuilder = activity?.let { it1 ->
+//            AlertDialog.Builder(it1)
+//                .setView(mDialogView)
+//        }
+//        mAlertDialog = mBuilder?.show()!!
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -123,8 +130,8 @@ class EditStudentProfileFragment : Fragment() {
                     val inputStream: InputStream? =
                         context?.contentResolver?.openInputStream(it.data!!)
                     inputStream?.let { stream ->
-                        showDialog()
-                        mDialogView.progressBar.visibility = View.VISIBLE
+                        //showDialog()
+                        //mDialogView.progressBar.visibility = View.VISIBLE
                         viewModel.uploadStudentPhoto(stream)
                     }
                 }

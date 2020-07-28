@@ -39,9 +39,7 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".ui.BottomNavigationActivity" >
-        </activity>
-
+        <activity android:name=".ui.HomeNavigationDrawerActivity" />
         <!-- metadata for PayStack -->
         <meta-data
             android:name="co.paystack.android.PublicKey"

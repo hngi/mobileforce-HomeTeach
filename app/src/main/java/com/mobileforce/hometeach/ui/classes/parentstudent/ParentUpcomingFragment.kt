@@ -1,10 +1,10 @@
 package com.mobileforce.hometeach.ui.classes.parentstudent
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.mobileforce.hometeach.databinding.FragmentParentUpcomingBinding
 import com.mobileforce.hometeach.ui.classes.adapters.recylerviewadapters.ParentUpcomingClassesAdapter
@@ -36,7 +36,8 @@ class ParentUpcomingFragment : Fragment() {
 
         viewModel.studentClasses.observe(viewLifecycleOwner, Observer { result ->
             when (result) {
-                Result.Loading -> {}
+                Result.Loading -> {
+                }
                 is Result.Success -> {
                     binding.recyclerView.apply {
                         adapter = parentUpcomingClassesAdapter

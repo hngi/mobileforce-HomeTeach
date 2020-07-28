@@ -24,7 +24,7 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/top_card_view"
         android:layout_width="0dp"
-        android:layout_height="120dp"
+        android:layout_height="50dp"
         app:cardBackgroundColor="@color/tab_bg"
         app:layout_constraintLeft_toLeftOf="@id/guideline1"
         app:layout_constraintRight_toRightOf="@id/guideline2"
@@ -51,11 +51,10 @@
                 app:navigationIcon="@drawable/ic_baseline_arrow_back_24">
 
                 <TextView
-                    android:id="@+id/student_Name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="@string/rahman_django"
+                    android:text="@string/edit_profile"
                     android:textColor="@color/textColor"
                     android:textSize="24sp" />
 
@@ -105,6 +104,7 @@
         app:layout_constraintTop_toBottomOf="@id/full_name_header">
 
         <TextView
+            android:id="@+id/student_Name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/rahman_django"

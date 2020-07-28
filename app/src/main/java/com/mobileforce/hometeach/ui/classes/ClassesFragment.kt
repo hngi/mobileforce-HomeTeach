@@ -32,7 +32,8 @@ class ClassesFragment : Fragment() {
     private lateinit var tutorViewPager: ViewPager2
     private val pref: PreferenceHelper by inject()
     private lateinit var navController: NavController
-    companion object{
+
+    companion object {
         private val titles = arrayOf("Requests", "Upcoming")
     }
 
@@ -78,7 +79,7 @@ class ClassesFragment : Fragment() {
         studentViewPager = bindingStudent.parentViewpager
         studentViewPager.adapter = parentViewPagerAdapter
         val tabLayout = bindingStudent.parentTabLayout
-        TabLayoutMediator(tabLayout, studentViewPager){ tab, position ->
+        TabLayoutMediator(tabLayout, studentViewPager) { tab, position ->
             tab.text = titles[position]
         }.attach()
         bindingStudent.toolBar.setNavigationOnClickListener {

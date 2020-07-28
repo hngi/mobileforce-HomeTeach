@@ -4,10 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.mobileforce.hometeach.data.sources.remote.wrappers.Request
 import com.mobileforce.hometeach.data.sources.remote.wrappers.StudentClass
 import com.mobileforce.hometeach.data.sources.remote.wrappers.studentClassDiffUtil
-import com.mobileforce.hometeach.data.sources.remote.wrappers.userRequestDiffUtil
 import com.mobileforce.hometeach.databinding.ListItemClassUpcomingParentBinding
 import com.mobileforce.hometeach.utils.loadImage
 import java.net.URL
@@ -17,7 +15,8 @@ import java.net.URL
  * Modified by MayorJay
  */
 
-class ParentUpcomingClassesAdapter: ListAdapter<StudentClass, ParentUpcomingClassesAdapter.ViewHolder>(studentClassDiffUtil) {
+class ParentUpcomingClassesAdapter :
+    ListAdapter<StudentClass, ParentUpcomingClassesAdapter.ViewHolder>(studentClassDiffUtil) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -31,7 +30,8 @@ class ParentUpcomingClassesAdapter: ListAdapter<StudentClass, ParentUpcomingClas
         holder.bind(studentClass)
     }
 
-    class ViewHolder(private val binding: ListItemClassUpcomingParentBinding): RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(private val binding: ListItemClassUpcomingParentBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(studentClass: StudentClass) {
 //            val currentDateTime = System.currentTimeMillis()
@@ -48,10 +48,12 @@ class ParentUpcomingClassesAdapter: ListAdapter<StudentClass, ParentUpcomingClas
 //                }
             }
         }
-        companion object{
+
+        companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = ListItemClassUpcomingParentBinding.inflate(layoutInflater,parent,false)
+                val binding =
+                    ListItemClassUpcomingParentBinding.inflate(layoutInflater, parent, false)
                 return ViewHolder(
                     binding
                 )

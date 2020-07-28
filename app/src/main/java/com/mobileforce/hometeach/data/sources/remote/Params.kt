@@ -8,7 +8,8 @@ class Params {
 
     data class SignIn(
         val email: String,
-        val password: String
+        val password: String,
+        val is_tutor: Boolean
     )
 
     data class SignUp(
@@ -80,9 +81,9 @@ class Params {
         val desc: String
     )
 
-    data class TutorClassesRequest (val tutor_id: String)
+    data class TutorClassesRequest(val tutor_id: String)
 
-    data class StudentRequest(val id: String,val request_id:String,val action:String)
+    data class StudentRequest(val id: String, val request_id: String, val action: String)
 
     data class StudentID(
         val student_id: String
@@ -94,5 +95,7 @@ class Params {
         val desc: String,
         val phone_number: String
     )
+
+    data class TutorProfileVisitsCount(val tutor_id: String)
 
 }

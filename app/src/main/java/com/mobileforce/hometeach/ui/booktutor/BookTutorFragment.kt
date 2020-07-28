@@ -55,17 +55,23 @@ class BookTutorFragment : Fragment(), SelectDateDialog.SelectDateListener {
             popupDialog.showPopupWindow(requireView(), this)
         }
         binding.bookTutorButton.setOnClickListener {
-           if (courseSet && gradeSet && calendarDialogData != null){
-               val subject = binding.courseSpinner.text.toString().trim()
-               val grade = binding.gradeSpinner.text.toString().trim()
-               viewModel.getTutorService(calendarDialogData!!,subject,grade)
-           }else if (!courseSet){
-               Toast.makeText(requireContext(),"Please select a course!",Toast.LENGTH_SHORT).show()
-           }else if (!gradeSet){
-               Toast.makeText(requireContext(),"Please select a grade!",Toast.LENGTH_SHORT).show()
-           }else if (calendarDialogData == null){
-               Toast.makeText(requireContext(),"Please select the time and date!",Toast.LENGTH_SHORT).show()
-           }
+            if (courseSet && gradeSet && calendarDialogData != null) {
+                val subject = binding.courseSpinner.text.toString().trim()
+                val grade = binding.gradeSpinner.text.toString().trim()
+                viewModel.getTutorService(calendarDialogData!!, subject, grade)
+            } else if (!courseSet) {
+                Toast.makeText(requireContext(), "Please select a course!", Toast.LENGTH_SHORT)
+                    .show()
+            } else if (!gradeSet) {
+                Toast.makeText(requireContext(), "Please select a grade!", Toast.LENGTH_SHORT)
+                    .show()
+            } else if (calendarDialogData == null) {
+                Toast.makeText(
+                    requireContext(),
+                    "Please select the time and date!",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
     }
 
@@ -78,7 +84,7 @@ class BookTutorFragment : Fragment(), SelectDateDialog.SelectDateListener {
             binding.courseSpinner.dismiss()
         }
 
-        binding.gradeSpinner.setOnSpinnerOutsideTouchListener {view: View, motionEvent: MotionEvent ->
+        binding.gradeSpinner.setOnSpinnerOutsideTouchListener { view: View, motionEvent: MotionEvent ->
             binding.gradeSpinner.dismiss()
         }
 
