@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mobileforce.hometeach.data.repository.UserRepository
-import com.mobileforce.hometeach.data.sources.remote.wrappers.UserClassRequestResponse
 import com.mobileforce.hometeach.data.sources.local.entities.WalletEntity
 import com.mobileforce.hometeach.data.sources.remote.wrappers.UserClassesResponse
 import com.mobileforce.hometeach.models.TutorModel

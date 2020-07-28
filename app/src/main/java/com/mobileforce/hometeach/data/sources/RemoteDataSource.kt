@@ -209,7 +209,7 @@ class RemoteDataSource(private val api: Api) : DataSource {
 
     override suspend fun getUserWallet(param: Params.UserWallet): UserWalletResponse {
 
-        return api.getUserWallet(param)
+        return api.getUserWallet(param.user)
     }
 
     override suspend fun getStudentClassRequest(param: Params.StudentID): UserClassRequestResponse {

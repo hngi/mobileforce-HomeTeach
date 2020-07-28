@@ -96,11 +96,11 @@ interface DataSource {
     ): LoginResponse
 
 
-    suspend fun getTutorClassesRequest(param:Params.TutorClassesRequest):TutorRequestDataModel
+    suspend fun getTutorClassesRequest(param: Params.TutorClassesRequest): TutorRequestDataModel
 
-    suspend fun getTutorClasses(param:Params.TutorClassesRequest): TutorUpcomingDataModel
+    suspend fun getTutorClasses(param: Params.TutorClassesRequest): TutorUpcomingDataModel
 
-    suspend fun grantStudentRequest(params:Params.StudentRequest):StudentRequestResponse
+    suspend fun grantStudentRequest(params: Params.StudentRequest): StudentRequestResponse
 
     suspend fun getStudentClassRequest(param: Params.StudentID): UserClassRequestResponse
 

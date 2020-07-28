@@ -108,7 +108,7 @@ val appModule = module {
     factory { ChatViewModel(get()) }
     factory { TutorRequestViewModel(get()) }
     factory { TutorUpcomingViewModel(get()) }
-    factory {  StudentRequestViewModel(get()) }
+    factory { StudentRequestViewModel(get()) }
 
 
     factory { WithDrawalViewModel(get()) }

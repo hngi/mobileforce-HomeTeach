@@ -7,8 +7,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.Button
 import android.widget.RelativeLayout
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
@@ -27,7 +28,8 @@ import com.mobileforce.hometeach.databinding.FragmentHomePageParentBinding
 import com.mobileforce.hometeach.databinding.FragmentHomePageTutorBinding
 import com.mobileforce.hometeach.databinding.ListItemClassOngoingParentDashBoardBinding
 import com.mobileforce.hometeach.databinding.ListItemClassUpcomingParentDashBoardBinding
-import com.mobileforce.hometeach.models.*
+import com.mobileforce.hometeach.models.TutorClassesDataModel
+import com.mobileforce.hometeach.models.TutorDashboardModel
 import com.mobileforce.hometeach.ui.home.student.OngoingClassViewHolderStudentDashBoard
 import com.mobileforce.hometeach.ui.home.student.UpcomingClassViewHolderStudentDashBoard
 import com.mobileforce.hometeach.ui.home.student.toptutors.TopTutorsAdapter
@@ -36,9 +38,7 @@ import com.mobileforce.hometeach.ui.signin.LoginActivity
 import com.mobileforce.hometeach.utils.*
 import com.mobileforce.hometeach.utils.AppConstants.USER_STUDENT
 import com.mobileforce.hometeach.utils.AppConstants.USER_TUTOR
-import com.mobileforce.hometeach.utils.PreferenceHelper
 import com.mobileforce.hometeach.utils.Result
-import com.mobileforce.hometeach.utils.formatBalance
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -194,7 +194,8 @@ class HomePageFragment : Fragment() {
 
         viewModel.studentClass.observe(viewLifecycleOwner, Observer { result ->
             when (result) {
-                Result.Loading -> {}
+                Result.Loading -> {
+                }
                 is Result.Success -> {
                     bindingParent.upcomingClassesRecyclerView.apply {
                         layoutManager = LinearLayoutManager(requireContext(), HORIZONTAL, false)

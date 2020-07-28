@@ -13,7 +13,6 @@ import com.mobileforce.hometeach.adapters.ViewHolder
 import com.mobileforce.hometeach.databinding.ChatFragmentBinding
 import com.mobileforce.hometeach.models.Message
 import com.mobileforce.hometeach.models.messageDiffUtil
-import com.mobileforce.hometeach.ui.HomeNavigationDrawerActivity
 import com.mobileforce.hometeach.utils.loadImage
 import com.mobileforce.hometeach.utils.toast
 import org.koin.android.viewmodel.ext.android.sharedViewModel

@@ -76,7 +76,10 @@ interface Api {
 
     @JvmSuppressWildcards
     @PUT("v1/tutor-profiles/{id}/")
-    suspend fun updateTutorProfile(@Path("id") id:Int, @Body params:Map<String,Any>):LoginResponse
+    suspend fun updateTutorProfile(
+        @Path("id") id: Int,
+        @Body params: Map<String, Any>
+    ): LoginResponse
 
     @JvmSuppressWildcards
     @Multipart
@@ -113,8 +116,8 @@ interface Api {
     @POST("v1/request-action/")
     suspend fun grantStudentRequest(@Body params: Map<String, Any>): StudentRequestResponse
 
-    @POST("v1/user-wallet/")
-    suspend fun getUserWallet(@Body param: Params.UserWallet): UserWalletResponse
+    @GET("v1/user-wallet/{id}/")
+    suspend fun getUserWallet(@Path("id") id: String): UserWalletResponse
 
     @POST("v1/profile-count-update/")
     suspend fun updateTutorProfileVisit(@Body param: Params.TutorProfileVisitsCount)
