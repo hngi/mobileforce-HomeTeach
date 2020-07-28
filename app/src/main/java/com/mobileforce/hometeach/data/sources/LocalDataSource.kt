@@ -241,9 +241,12 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
             profile.state,
             profile.address,
             profile.user_url,
-            rating = profile.rating?.rating, rating_count = profile.rating?.count,
+            rating = profile.rating?.rating,
+            rating_count = profile.rating?.count,
             credentials = profile.credentials,
-            videoUrl = profile.videoUrl
+            videoUrl = profile.videoUrl,
+            students_count = profile.students,
+            profile_visits = profile.profile_visits
 
         )
     }

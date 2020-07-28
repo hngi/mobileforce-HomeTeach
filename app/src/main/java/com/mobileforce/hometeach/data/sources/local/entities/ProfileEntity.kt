@@ -18,5 +18,7 @@ data class ProfileEntity(
     val rating: Float?,
     val rating_count: Int?,
     val credentials: String?,
-    val videoUrl: String?
+    val videoUrl: String?,
+    val students_count: Int?,
+    val profile_visits: Int?
 )

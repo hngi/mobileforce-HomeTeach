@@ -76,7 +76,6 @@
                     android:padding="15dp">
 
                     <TextView
-                        android:id="@+id/totalstudent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
@@ -89,6 +88,7 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/totalStudent"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -156,7 +156,6 @@
                     android:padding="15dp">
 
                     <TextView
-                        android:id="@+id/totalprofilevisits"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
@@ -169,6 +168,7 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/totalProfileVisits"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -372,6 +372,7 @@
             </androidx.cardview.widget.CardView>
 
             <TextView
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
@@ -387,6 +388,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
+            android:visibility="gone"
             android:layout_height="260dp">
 
             <androidx.constraintlayout.widget.Guideline
@@ -411,6 +413,7 @@
                 app:layout_constraintGuide_begin="12dp" />
 
             <androidx.cardview.widget.CardView
+                android:visibility="gone"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
@@ -449,7 +452,9 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
+            android:id="@+id/layoutTutorClasses"
             android:layout_width="match_parent"
+            android:visibility="gone"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
@@ -457,6 +462,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
+                android:layout_marginTop="8dp"
                 android:layout_marginLeft="8dp"
                 android:textColor="@color/textColor"
                 android:text="@string/classes"
@@ -464,13 +470,15 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
                 tools:listitem="@layout/tutors_classes"
-                android:id="@+id/tutor_classes"/>
+                android:id="@+id/tutor_classes" />
 
         </LinearLayout>
 
         <TextView
+            android:layout_marginTop="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="12dp"

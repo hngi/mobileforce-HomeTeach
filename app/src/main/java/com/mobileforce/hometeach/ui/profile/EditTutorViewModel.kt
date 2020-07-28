@@ -46,7 +46,6 @@ class EditTutorViewModel(
     var videoSuccess = false
 
 
-
     fun updateTutorProfile(params: Params.UpdateTutorProfile) {
         _postTutorDetails.postValue(Result.Loading)
         viewModelScope.launch {
@@ -61,8 +60,7 @@ class EditTutorViewModel(
         }
     }
 
-    fun uploadPhoto(profile_pic: InputStream)
-    {
+    fun uploadPhoto(profile_pic: InputStream) {
         _postTutorImage.postValue(Result.Loading)
         viewModelScope.launch {
             val profileEntity = tutorRepository.getProfileId()
@@ -74,7 +72,7 @@ class EditTutorViewModel(
                 )
             )
             try {
-                val response = tutorRepository.uploadProfilePic(id,image)
+                val response = tutorRepository.uploadProfilePic(id, image)
                 _postTutorImage.postValue(Result.Success(response))
             } catch (error: Throwable) {
                 _postTutorImage.postValue(Result.Error(error))
@@ -84,19 +82,19 @@ class EditTutorViewModel(
     }
 
 
-    fun uploadVideo(video: InputStream)
-    {
+    fun uploadVideo(video: InputStream) {
         _postTutorVideo.postValue(Result.Loading)
         viewModelScope.launch {
             val profileEntity = tutorRepository.getProfileId()
             val id = profileEntity.id
-         val Video = MultipartBody.Part.createFormData(
+            val Video = MultipartBody.Part.createFormData(
                 "video", "myVideo.mp4", RequestBody.create(
                     MediaType.parse("video/*"),
-                    video.readBytes()              )
+                    video.readBytes()
+                )
             )
             try {
-                val response = tutorRepository.uploadProfilePic(id,Video)
+                val response = tutorRepository.uploadProfilePic(id, Video)
                 _postTutorVideo.postValue(Result.Success(response))
             } catch (error: Throwable) {
                 _postTutorDetails.postValue(Result.Error(error))
@@ -105,9 +103,7 @@ class EditTutorViewModel(
     }
 
 
-
-    fun uploadPdf(credentials: InputStream)
-    {
+    fun uploadPdf(credentials: InputStream) {
         _postTutorCredentials.postValue(Result.Loading)
         viewModelScope.launch {
             val profileEntity = tutorRepository.getProfileId()
@@ -117,9 +113,9 @@ class EditTutorViewModel(
                     MediaType.parse("application/pdf"),
                     credentials.readBytes()
                 )
-          )
+            )
             try {
-                val response = tutorRepository.uploadProfilePic(id,pdf)
+                val response = tutorRepository.uploadProfilePic(id, pdf)
                 _postTutorCredentials.postValue(Result.Success(response))
             } catch (error: Throwable) {
                 _postTutorCredentials.postValue(Result.Error(error))

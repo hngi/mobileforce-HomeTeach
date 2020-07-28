@@ -12,14 +12,15 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.snackbar.Snackbar
 import com.mobileforce.hometeach.R
+import com.mobileforce.hometeach.adapters.OnrequestClick
 import com.mobileforce.hometeach.adapters.RecyclerViewAdapter
+import com.mobileforce.hometeach.adapters.TutorRequestAdapter
 import com.mobileforce.hometeach.adapters.ViewHolder
 import com.mobileforce.hometeach.data.sources.local.AppDataBase
 import com.mobileforce.hometeach.data.sources.remote.wrappers.StudentClass
@@ -28,8 +29,9 @@ import com.mobileforce.hometeach.databinding.FragmentHomePageParentBinding
 import com.mobileforce.hometeach.databinding.FragmentHomePageTutorBinding
 import com.mobileforce.hometeach.databinding.ListItemClassOngoingParentDashBoardBinding
 import com.mobileforce.hometeach.databinding.ListItemClassUpcomingParentDashBoardBinding
+import com.mobileforce.hometeach.models.Request
 import com.mobileforce.hometeach.models.TutorClassesDataModel
-import com.mobileforce.hometeach.models.TutorDashboardModel
+import com.mobileforce.hometeach.ui.classes.tutor.TutorRequestViewModel
 import com.mobileforce.hometeach.ui.home.student.OngoingClassViewHolderStudentDashBoard
 import com.mobileforce.hometeach.ui.home.student.UpcomingClassViewHolderStudentDashBoard
 import com.mobileforce.hometeach.ui.home.student.toptutors.TopTutorsAdapter
@@ -39,7 +41,6 @@ import com.mobileforce.hometeach.utils.*
 import com.mobileforce.hometeach.utils.AppConstants.USER_STUDENT
 import com.mobileforce.hometeach.utils.AppConstants.USER_TUTOR
 import com.mobileforce.hometeach.utils.Result
-import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.text.SimpleDateFormat
@@ -58,6 +59,8 @@ class HomePageFragment : Fragment() {
     private lateinit var bindingTutor: FragmentHomePageTutorBinding
     private val viewModel: HomePageViewModel by viewModel()
     private lateinit var topTutorsAdapter: TopTutorsAdapter
+
+    private val viewModelRequestViewModel: TutorRequestViewModel by viewModel()
 
     var button_modify: Button? = null
     private var textViewDate: TextView? = null
@@ -246,14 +249,39 @@ class HomePageFragment : Fragment() {
 
     private fun setUpForTutor() {
         bindingTutor.walletBalance.text = 0.0.formatBalance()
-        lifecycleScope.launch {
-            val user = db.userDao().getUser()
-            bindingTutor.username.text = " $user.full_name"
-            bindingTutor.totalbalance.text = "BALANCE"
-            bindingTutor.totalstudent.text = "TOTAL STUDENT"
-            bindingTutor.totalreviews.text = "TOTAL REVIEW"
-            bindingTutor.totalprofilevisits.text = "PROFILE VISITS"
-        }
+        viewModelRequestViewModel.getTutorRequest()
+
+        viewModelRequestViewModel.tutorRequest.observe(viewLifecycleOwner, Observer {
+
+            it?.let {
+
+                if (it.requests.isNotEmpty()) {
+
+                    val filter = it.requests.filter { request ->
+                        request.accepted
+                    }
+
+                    if (filter.isNotEmpty()) {
+                        val requestAdapter = TutorRequestAdapter(filter, object : OnrequestClick {
+                            override fun onUserClick(datamodel: Request, position: Int) {
+
+                            }
+                        })
+
+                        bindingTutor.tutorClasses.apply {
+                            layoutManager = LinearLayoutManager(requireContext(), HORIZONTAL, false)
+                            adapter = requestAdapter
+                        }
+                        bindingTutor.layoutTutorClasses.makeVisible()
+                    }
+
+
+                }
+
+            }
+
+
+        })
 
 
 //        bindingTutor.root.findViewById<LinearLayout>(R.id.mybanks).setOnClickListener {
@@ -269,15 +297,7 @@ class HomePageFragment : Fragment() {
 //            toast(message = "Not yet Implemented: To be done soon", length = Toast.LENGTH_SHORT)
 //        }
 
-        val TutorDashboardModel = mutableListOf<TutorDashboardModel>(
-            TutorDashboardModel(
-                UUID.randomUUID().toString(),
-                "TOTAL STUDENT",
-                "BALANCE",
-                "PROFILE VISITS",
-                "TOTAL REVIEWS"
-            )
-        )
+
         bindingTutor.modifyBtn.setOnClickListener {
             dataPicker()
         }
@@ -301,6 +321,19 @@ class HomePageFragment : Fragment() {
 
             profile?.let {
                 bindingTutor.reviewCount.text = (profile.rating_count ?: 0).toString()
+
+                profile.students_count?.let {
+                    bindingTutor.totalStudent.text = String.format("%s", profile.students_count)
+                } ?: kotlin.run {
+                    bindingTutor.totalStudent.text = String.format("%s", 0)
+                }
+
+                profile.profile_visits?.let {
+                    bindingTutor.totalProfileVisits.text =
+                        String.format("%s", profile.profile_visits)
+                } ?: kotlin.run {
+                    bindingTutor.totalProfileVisits.text = String.format("%s", 0)
+                }
             }
 
 

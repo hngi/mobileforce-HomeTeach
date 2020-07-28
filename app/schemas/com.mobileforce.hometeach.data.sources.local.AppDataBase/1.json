@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "d7821d320e2798ce3d0aa5d267996b5e",
+    "identityHash": "82e9839cc02640b5650f9d9132eea229",
     "entities": [
       {
         "tableName": "user",
@@ -118,7 +118,7 @@
       },
       {
         "tableName": "profile",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `profile_pic` TEXT, `hourly_rate` TEXT, `desc` TEXT, `field` TEXT, `major_course` TEXT, `other_courses` TEXT, `state` TEXT, `address` TEXT, `user_url` TEXT, `rating` REAL, `rating_count` INTEGER, `credentials` TEXT, `videoUrl` TEXT, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `profile_pic` TEXT, `hourly_rate` TEXT, `desc` TEXT, `field` TEXT, `major_course` TEXT, `other_courses` TEXT, `state` TEXT, `address` TEXT, `user_url` TEXT, `rating` REAL, `rating_count` INTEGER, `credentials` TEXT, `videoUrl` TEXT, `students_count` INTEGER, `profile_visits` INTEGER, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -202,6 +202,18 @@
             "fieldPath": "videoUrl",
             "columnName": "videoUrl",
             "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "students_count",
+            "columnName": "students_count",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "profile_visits",
+            "columnName": "profile_visits",
+            "affinity": "INTEGER",
             "notNull": false
           }
         ],
@@ -416,7 +428,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'd7821d320e2798ce3d0aa5d267996b5e')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '82e9839cc02640b5650f9d9132eea229')"
     ]
   }
 }

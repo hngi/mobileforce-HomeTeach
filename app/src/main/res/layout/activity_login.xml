@@ -2,9 +2,9 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/signInLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/signInLayout"
     android:background="@drawable/background_explore"
     tools:context=".ui.signin.LoginActivity"
     tools:targetApi="11">
@@ -22,38 +22,37 @@
             android:id="@+id/login_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="16dp"
             android:fontFamily="@font/ubuntu"
-            android:text="Log in "
+            android:text="Log in as"
             android:textColor="@color/primaryTextColor"
             android:textSize="36sp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/imageView7"
             app:layout_constraintHorizontal_bias="0.543"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="@+id/imageView7"
+            app:layout_constraintTop_toBottomOf="@+id/imageView7" />
 
         <ImageView
             android:id="@+id/imageView7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="48dp"
             android:src="@drawable/splash_logo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/login_text"
+            app:layout_constraintTop_toTopOf="parent"
             tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/text_email_field"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="28dp"
+            android:layout_height="13dp"
             android:layout_marginStart="32dp"
             android:layout_marginLeft="32dp"
-            android:layout_marginTop="40dp"
             android:text="@string/email"
             android:textColor="@color/primaryTextColor"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView7" />
+            app:layout_constraintTop_toBottomOf="@+id/toggleButton" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInput_email_signin"
@@ -134,14 +133,14 @@
             android:id="@+id/checkBox2"
             android:layout_width="150dp"
             android:layout_height="52dp"
-            android:visibility="invisible"
             android:layout_marginStart="32dp"
             android:layout_marginLeft="32dp"
-            android:text="@string/save_password"
             android:layout_weight="1"
             android:fontFamily="@font/ubuntu"
+            android:text="@string/save_password"
             android:textColor="@color/primaryTextColor"
             android:textSize="@dimen/small_text"
+            android:visibility="invisible"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInput_password_field" />
 
@@ -228,7 +227,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="@+id/imageView7"
             app:layout_constraintStart_toStartOf="@+id/imageView7"
-            app:layout_constraintTop_toBottomOf="@+id/imageView7"
+            app:layout_constraintTop_toBottomOf="@+id/login_text"
             app:singleSelection="true">
 
             <Button

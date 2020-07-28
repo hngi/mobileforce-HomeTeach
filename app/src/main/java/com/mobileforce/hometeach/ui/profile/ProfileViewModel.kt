@@ -3,9 +3,9 @@ package com.mobileforce.hometeach.ui.profile
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.mobileforce.hometeach.data.repository.UserRepository
 import com.mobileforce.hometeach.data.sources.local.entities.ProfileEntity
 import com.mobileforce.hometeach.data.sources.local.entities.UserEntity
-import com.mobileforce.hometeach.data.repository.UserRepository
 import com.mobileforce.hometeach.data.sources.remote.wrappers.Profile
 import kotlinx.coroutines.launch
 
@@ -40,7 +40,7 @@ class ProfileViewModel(
                         address,
                         user_url,
                         credentials = credentials,
-                        videoUrl = videoUrl
+                        videoUrl = videoUrl, students = students, profile_visits = profile_visits
                     )
                     userRepository.saveUserProfile(profile)
                 }
