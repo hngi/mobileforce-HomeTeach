@@ -289,7 +289,7 @@
             }
         }
         
-        @media screen and (max-width: 991px) and (min-width: 767px) {
+        @media screen and (max-width: 768px) and (min-width: 575px) {
             .column {
                 flex-direction: column;
             }
@@ -421,7 +421,7 @@
             }
         }
         
-        @media screen and (max-width: 991px) and (min-width: 767px) {
+        @media screen and (max-width: 768px) and (min-width: 575px) {
             .how__bg {
                 height: 208% !important;
             }
@@ -953,6 +953,24 @@
             }
         }
         
+        @media screen and (max-width: 768px) and (min-width: 575px) {
+            .newsletter_phone img {
+                left: unset !important;
+            }
+             ::placeholder {
+                font-size: 10px !important;
+            }
+        }
+        
+        @media screen and (max-width: 991px) and (min-width: 767px) {
+            .newsletter_phone img {
+                left: unset !important;
+            }
+             ::placeholder {
+                font-size: 10px !important;
+            }
+        }
+        
         .white__bg {
             display: none;
         }
@@ -1040,9 +1058,8 @@
         
         .newsletter_phone img {
             position: relative;
-            bottom: 120;
-            left: 310;
-            height: 80vh;
+            bottom: 120px;
+            left: 310px;
         }
         /* Footer styles here */
         /* Media Queries Here */
@@ -1068,6 +1085,24 @@
             }
             .dot {
                 display: inline !important;
+            }
+        }
+        
+        @media screen and (max-width: 768px) and (min-width: 575px) {
+            .footer__link ul li {
+                font-size: 13px !important;
+            }
+            .copy-right p {
+                font-size: 13px !important;
+            }
+        }
+        
+        @media screen and (max-width: 991px) and (min-width: 767px) {
+            .footer__link ul li {
+                font-size: 13px !important;
+            }
+            .copy-right p {
+                font-size: 13px !important;
             }
         }
         
