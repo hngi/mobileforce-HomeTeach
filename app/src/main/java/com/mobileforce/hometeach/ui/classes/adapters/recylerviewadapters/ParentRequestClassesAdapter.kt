@@ -34,11 +34,11 @@ class ParentRequestClassesAdapter :
         fun bind(request: Request) {
             with(request) {
                 binding.subjectName.text = subject
-                binding.classDate.text = day
-                binding.classTime.text = "$from_hour:$from_minute-$to_hour:$to_minute"
+                binding.classDate.text = date_requested
+                //binding.classTime.text = "$from_hour:$from_minute-$to_hour:$to_minute"
                 binding.tutorName.text = "Tutor: $tutor_name"
-                binding.tvGrade.text = "Grade $grade"
-                binding.tvStatus.text = if (accepted) "Status: Accepted" else "Status: Declined"
+                binding.tvGrade.text = grade
+                binding.tvStatus.text = if (accepted) "Status: Accepted" else "Status: Awaiting Approval"
             }
         }
 

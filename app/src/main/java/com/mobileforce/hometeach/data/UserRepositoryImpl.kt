@@ -145,6 +145,12 @@ class UserRepositoryImpl(private val dataSource: DataSourceFactory) : UserReposi
         return dataSource.remote().getStudentClassRequest(studentId)
     }
 
+    override suspend fun getStudentClasses(): UserClassesResponse {
+        val user = dataSource.local().getSingleUser()
+        val studentId = Params.StudentID(student_id = user.id)
+        return dataSource.remote().getStudentClasses(studentId)
+    }
+
     override suspend fun getUserWallet(): UserWalletResponse {
         val user = getSingleUser()
         val param = Params.UserWallet(user = user.id)

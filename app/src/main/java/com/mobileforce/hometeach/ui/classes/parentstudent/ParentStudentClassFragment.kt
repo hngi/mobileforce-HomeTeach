@@ -26,7 +26,7 @@ class ParentStudentClassFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentParentStudentClassBinding.inflate(layoutInflater)
+        //binding = FragmentParentStudentClassBinding.inflate(layoutInflater)
         return binding.root
     }
 

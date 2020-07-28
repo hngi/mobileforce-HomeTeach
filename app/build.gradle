@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId "com.mobileforce.hometeach"
-        minSdkVersion 16
+        minSdkVersion 17
         targetSdkVersion 30
         versionCode 2
         versionName "1.1"
@@ -128,6 +128,9 @@ dependencies {
     //multidex
     def multidex_version = "2.0.1"
     implementation "androidx.multidex:multidex:$multidex_version"
+
+    //Skydoves Spinner
+    implementation "com.github.skydoves:powerspinner:1.1.0"
 
 
 }
