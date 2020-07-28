@@ -1,217 +1,255 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/student_profile_layout"
-    android:background="#68E5E5E5"
-    tools:context=".ui.profile.StudentProfileFragment">
+    android:layout_height="match_parent">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
 
-
-    <com.google.android.material.card.MaterialCardView
-        style="@style/ProfileCardStyle"
+        android:id="@+id/student_profile_layout"
         android:layout_width="match_parent"
-        android:layout_height="164dp"
-        app:cardBackgroundColor="@color/tab_bg"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent"
+        android:background="#68E5E5E5"
+        android:paddingBottom="66dp"
+        tools:context=".ui.profile.StudentProfileFragment">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appBarLayout"
-            style="@style/Widget.MaterialComponents.AppBarLayout.Surface"
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView3"
+            style="@style/ProfileCardStyle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:elevation="0dp"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$Behavior"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_height="164dp"
+            app:cardBackgroundColor="@color/tab_bg"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/tool_bar"
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBarLayout"
+                style="@style/Widget.MaterialComponents.AppBarLayout.Surface"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#D6F5D9"
-                app:layout_scrollFlags="enterAlways|scroll"
-                app:navigationIcon="@drawable/ic_baseline_arrow_back_24">
+                app:elevation="0dp"
+                app:layout_behavior="com.google.android.material.appbar.AppBarLayout$Behavior"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    android:id="@+id/student_Name"
-                    android:layout_width="wrap_content"
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/tool_bar"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="John Doe"
-                    android:textColor="#000000"
-                    android:textSize="24sp" />
+                    android:background="#D6F5D9"
+                    app:layout_scrollFlags="enterAlways|scroll"
+                    app:navigationIcon="@drawable/ic_baseline_arrow_back_24">
 
+                    <TextView
+                        android:id="@+id/student_Name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="John Doe"
+                        android:textColor="#000000"
+                        android:textSize="24sp" />
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:src="@drawable/alarm" />
+
+                </com.google.android.material.appbar.MaterialToolbar>
+            </com.google.android.material.appbar.AppBarLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/materialCardView2"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_margin="@dimen/card_margin"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            app:cardCornerRadius="@dimen/card_radius"
+            app:cardElevation="@dimen/card_elevation"
+            app:contentPadding="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/materialCardView3"
+            app:layout_constraintVertical_bias="0.100000024">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+
+                android:layout_height="match_parent">
 
                 <ImageView
+                    android:id="@+id/Profile_Image"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/Profile_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10sp"
+                    android:layout_marginLeft="15dp"
+                    android:drawableEnd="@drawable/ic_round_green"
+                    android:drawableRight="@drawable/ic_round_green"
+                    android:text=""
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@id/Profile_Image"
+                    app:layout_constraintLeft_toRightOf="@id/Profile_Image"
+                    app:layout_constraintTop_toTopOf="@id/Profile_Image"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:id="@+id/profile_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginRight="16dp"
-                    android:src="@drawable/alarm" />
-
-            </com.google.android.material.appbar.MaterialToolbar>
-        </com.google.android.material.appbar.AppBarLayout>
-    </com.google.android.material.card.MaterialCardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/materialCardView2"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_margin="@dimen/card_margin"
-        app:cardCornerRadius="@dimen/card_radius"
-        app:cardElevation="@dimen/card_elevation"
-        app:contentPadding="4dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.19999999">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/Profile_Image"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_margin="10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/Profile_name"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="10sp"
-                android:layout_marginLeft="15dp"
-                android:drawableEnd="@drawable/ic_round_green"
-                android:drawableRight="@drawable/ic_round_green"
-                android:text=""
-                android:textSize="25sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@id/Profile_Image"
-                app:layout_constraintLeft_toRightOf="@id/Profile_Image"
-                app:layout_constraintTop_toTopOf="@id/Profile_Image"
-                app:layout_constraintVertical_bias="0.0" />
-
-            <TextView
-                android:id="@+id/profile_email"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="@id/Profile_name"
-                app:layout_constraintTop_toBottomOf="@id/Profile_name"
-                app:layout_constraintVertical_bias="0.0" />
+                    android:text=""
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="@id/Profile_name"
+                    app:layout_constraintTop_toBottomOf="@id/Profile_name"
+                    app:layout_constraintVertical_bias="0.0" />
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
 
-    <TextView
-        android:id="@+id/PhoneNumber_Tv"
-        style="@style/TextAppearance.AppCompat.Medium"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10sp"
-        android:text="@string/phone_number"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="@id/materialCardView2"
-        app:layout_constraintTop_toBottomOf="@id/materialCardView2" />
+        <TextView
+            android:id="@+id/PhoneNumber_Tv"
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/phone_number"
+            android:textColor="@color/textColor"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="@id/materialCardView2"
+            app:layout_constraintTop_toBottomOf="@+id/materialCardView2" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/PhoneNumber_cardView"
-        android:layout_width="0dp"
-        android:layout_height="80dp"
-        android:layout_margin="@dimen/card_margin"
-        app:cardCornerRadius="@dimen/card_radius"
-        app:cardElevation="@dimen/card_elevation"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/PhoneNumber_Tv">
+        <androidx.cardview.widget.CardView
+            android:id="@+id/PhoneNumber_cardView"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_margin="@dimen/card_margin"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginRight="30dp"
+            app:cardCornerRadius="@dimen/card_radius"
+            app:cardElevation="@dimen/card_elevation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/PhoneNumber_Tv">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="12dp">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="12dp">
 
-            <TextView
-                android:id="@+id/profile_number"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/profile_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
-    <TextView
-        android:id="@+id/About_Tv"
-        style="@style/TextAppearance.AppCompat.Medium"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10sp"
-        android:text="@string/about"
-        app:layout_constraintLeft_toLeftOf="@id/PhoneNumber_cardView"
-        app:layout_constraintTop_toBottomOf="@id/PhoneNumber_cardView" />
+        <TextView
+            android:id="@+id/About_Tv"
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10sp"
+            android:textColor="@color/textColor"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="@string/about"
+            app:layout_constraintLeft_toLeftOf="@id/PhoneNumber_cardView"
+            app:layout_constraintTop_toBottomOf="@id/PhoneNumber_cardView" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/About_cardView"
-        android:layout_width="0dp"
-        android:layout_height="80dp"
-        android:layout_margin="@dimen/card_margin"
-        app:cardCornerRadius="@dimen/card_radius"
-        app:cardElevation="@dimen/card_elevation"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/About_Tv">
+        <androidx.cardview.widget.CardView
+            android:id="@+id/About_cardView"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_margin="@dimen/card_margin"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginRight="30dp"
+            app:cardCornerRadius="@dimen/card_radius"
+            app:cardElevation="@dimen/card_elevation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/About_Tv">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="12dp"
-            android:background="@color/white">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="12dp"
+                android:background="@color/white">
 
-            <TextView
-                android:id="@+id/description_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/description_text"
+                    android:layout_width="0dp"
+                    android:layout_height="23dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
-    <com.google.android.material.button.MaterialButton
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_margin="18dp"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@color/colorAccent"
-        android:text="@string/save"
-        android:textColor="#fff"
-        android:visibility="invisible"
-        app:cornerRadius="15dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/About_cardView"
-        tools:ignore="UnusedAttribute" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <include
+            android:id="@+id/layoutAccount"
+            layout="@layout/include_account_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="18dp"
+            android:layout_marginRight="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/About_cardView" />
+
+        <include
+            android:id="@+id/layoutGeneral"
+            layout="@layout/include_general_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="@+id/About_cardView"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/About_cardView"
+            app:layout_constraintTop_toBottomOf="@+id/layoutAccount" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
+
