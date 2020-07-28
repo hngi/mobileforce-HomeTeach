@@ -28,12 +28,15 @@
         <action
             android:id="@+id/action_tutorHomePageFragment_to_tutorDetailsFragment"
             app:destination="@id/tutorDetailsFragment" />
+        <action
+            android:id="@+id/action_tutorHomePageFragment_to_studentMakePaymentFragment"
+            app:destination="@id/studentMakePaymentFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.mobileforce.hometeach.ui.profile.ProfileFragment"
-        android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" >
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile">
         <action
             android:id="@+id/action_profileFragment_to_editTutorProfileFragment"
             app:destination="@id/editTutorProfileFragment" />
@@ -130,7 +133,7 @@
     <fragment
         android:id="@+id/studentProfileFragment"
         android:name="com.mobileforce.hometeach.ui.profile.StudentProfileFragment"
-        android:label="fragment_student_profile"
+        android:label="Profile"
         tools:layout="@layout/fragment_student_profile" />
     <fragment
         android:id="@+id/studentDetails"

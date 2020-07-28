@@ -19,6 +19,7 @@ import com.mobileforce.hometeach.ui.classes.tutor.TutorUpcomingViewModel
 import com.mobileforce.hometeach.ui.home.HomePageViewModel
 import com.mobileforce.hometeach.ui.message.ChatViewModel
 import com.mobileforce.hometeach.ui.profile.EditStudentProfileViewModel
+import com.mobileforce.hometeach.ui.navdrawer.NavDrawerViewModel
 import com.mobileforce.hometeach.ui.profile.EditTutorViewModel
 import com.mobileforce.hometeach.ui.profile.ProfileViewModel
 import com.mobileforce.hometeach.ui.signin.SignInViewModel
@@ -36,6 +37,7 @@ import com.mobileforce.hometeach.utils.PreferenceHelper
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
+import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -97,6 +99,7 @@ val appModule = module {
     factory { HomePageViewModel(get(), get()) }
     factory { TutorListViewModel(get()) }
     factory { ProfileViewModel(get()) }
+    viewModel { NavDrawerViewModel(get(),get(),get()) }
     factory { BookTutorViewModel(get()) }
     factory { TutorDetailsViewModel(get(), get()) }
     factory { EditTutorViewModel(get(), get()) }
