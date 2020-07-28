@@ -451,6 +451,25 @@
             }
         }
         
+        @media screen and (device-width: 1024px) {
+            .avatar img {
+                height: 12vh !important;
+            }
+            .testimonial__avatar img {
+                height: 12vh !important;
+            }
+            .newsletter_phone img {
+                bottom: 100px !important;
+                left: 175px !important;
+            }
+            .how__bg {
+                height: 110% !important;
+            }
+            .news-letter {
+                height: 25vh !important;
+            }
+        }
+        
         .how__bg {
             background: url('../Assets/Vectors/how-bg.png');
             background-position: center;
