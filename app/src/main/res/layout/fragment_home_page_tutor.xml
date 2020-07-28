@@ -454,6 +454,7 @@
         <LinearLayout
             android:id="@+id/layoutTutorClasses"
             android:layout_width="match_parent"
+            android:visibility="gone"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
@@ -469,13 +470,15 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
                 tools:listitem="@layout/tutors_classes"
-                android:id="@+id/tutor_classes"/>
+                android:id="@+id/tutor_classes" />
 
         </LinearLayout>
 
         <TextView
+            android:layout_marginTop="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="12dp"

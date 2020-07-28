@@ -18,7 +18,9 @@ import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.snackbar.Snackbar
 import com.mobileforce.hometeach.R
+import com.mobileforce.hometeach.adapters.OnrequestClick
 import com.mobileforce.hometeach.adapters.RecyclerViewAdapter
+import com.mobileforce.hometeach.adapters.TutorRequestAdapter
 import com.mobileforce.hometeach.adapters.ViewHolder
 import com.mobileforce.hometeach.data.sources.local.AppDataBase
 import com.mobileforce.hometeach.data.sources.remote.wrappers.StudentClass
@@ -27,7 +29,9 @@ import com.mobileforce.hometeach.databinding.FragmentHomePageParentBinding
 import com.mobileforce.hometeach.databinding.FragmentHomePageTutorBinding
 import com.mobileforce.hometeach.databinding.ListItemClassOngoingParentDashBoardBinding
 import com.mobileforce.hometeach.databinding.ListItemClassUpcomingParentDashBoardBinding
+import com.mobileforce.hometeach.models.Request
 import com.mobileforce.hometeach.models.TutorClassesDataModel
+import com.mobileforce.hometeach.ui.classes.tutor.TutorRequestViewModel
 import com.mobileforce.hometeach.ui.home.student.OngoingClassViewHolderStudentDashBoard
 import com.mobileforce.hometeach.ui.home.student.UpcomingClassViewHolderStudentDashBoard
 import com.mobileforce.hometeach.ui.home.student.toptutors.TopTutorsAdapter
@@ -55,6 +59,8 @@ class HomePageFragment : Fragment() {
     private lateinit var bindingTutor: FragmentHomePageTutorBinding
     private val viewModel: HomePageViewModel by viewModel()
     private lateinit var topTutorsAdapter: TopTutorsAdapter
+
+    private val viewModelRequestViewModel: TutorRequestViewModel by viewModel()
 
     var button_modify: Button? = null
     private var textViewDate: TextView? = null
@@ -243,6 +249,40 @@ class HomePageFragment : Fragment() {
 
     private fun setUpForTutor() {
         bindingTutor.walletBalance.text = 0.0.formatBalance()
+        viewModelRequestViewModel.getTutorRequest()
+
+        viewModelRequestViewModel.tutorRequest.observe(viewLifecycleOwner, Observer {
+
+            it?.let {
+
+                if (it.requests.isNotEmpty()) {
+
+                    val filter = it.requests.filter { request ->
+                        request.accepted
+                    }
+
+                    if (filter.isNotEmpty()) {
+                        val requestAdapter = TutorRequestAdapter(filter, object : OnrequestClick {
+                            override fun onUserClick(datamodel: Request, position: Int) {
+
+                            }
+                        })
+
+                        bindingTutor.tutorClasses.apply {
+                            layoutManager = LinearLayoutManager(requireContext(), HORIZONTAL, false)
+                            adapter = requestAdapter
+                        }
+                        bindingTutor.layoutTutorClasses.makeVisible()
+                    }
+
+
+                }
+
+            }
+
+
+        })
+
 
 //        bindingTutor.root.findViewById<LinearLayout>(R.id.mybanks).setOnClickListener {
 //            //findNavController().navigate(R.id.myBanks)
