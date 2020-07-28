@@ -8,7 +8,7 @@ import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.databinding.BottonNavLayoutBinding
 
 
-class BottomNavigationActivity : AppCompatActivity() {
+class HomeNavigationDrawerActivity : AppCompatActivity() {
 
     lateinit var binding: BottonNavLayoutBinding
 
