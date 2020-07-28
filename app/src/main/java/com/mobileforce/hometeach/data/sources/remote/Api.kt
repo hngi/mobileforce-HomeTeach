@@ -116,7 +116,7 @@ interface Api {
     @POST("v1/request-action/")
     suspend fun grantStudentRequest(@Body params: Map<String, Any>): StudentRequestResponse
 
-    @GET("v1/user-wallet/{id}")
+    @GET("v1/user-wallet/{id}/")
     suspend fun getUserWallet(@Path("id") id: String): UserWalletResponse
 
 }
