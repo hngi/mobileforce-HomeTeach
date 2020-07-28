@@ -21,7 +21,8 @@ class RemoteDataSource(private val api: Api) : DataSource {
     override suspend fun logIn(params: Params.SignIn): LoginResponse {
         val map = hashMapOf(
             "email" to params.email,
-            "password" to params.password
+            "password" to params.password,
+            "is_tutor" to params.is_tutor
         )
         return api.login(map)
     }
