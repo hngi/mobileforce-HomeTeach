@@ -1,28 +1,51 @@
 package com.mobileforce.hometeach.ui.profile
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mobileforce.hometeach.data.repo.TutorRepository
-import com.mobileforce.hometeach.remotesource.wrappers.TutorDetailsResponse
-import com.mobileforce.hometeach.utils.Result
+import com.mobileforce.hometeach.data.sources.local.entities.ProfileEntity
+import com.mobileforce.hometeach.data.sources.local.entities.UserEntity
+import com.mobileforce.hometeach.data.repository.UserRepository
+import com.mobileforce.hometeach.data.sources.remote.wrappers.Profile
 import kotlinx.coroutines.launch
 
-class ProfileViewModel(private val tutorRepository: TutorRepository) : ViewModel()  {
+class ProfileViewModel(
+    private val userRepository: UserRepository
+) : ViewModel() {
 
-    private val _getTutorDetails = MutableLiveData<Result<TutorDetailsResponse>>()
-    val getTutorDetails: LiveData<Result<TutorDetailsResponse>> = _getTutorDetails
+    val user: LiveData<UserEntity> = userRepository.getUser()
+
+    val profile: LiveData<ProfileEntity> = userRepository.profileLiveData()
 
 
-    fun getTutorDetails() {
-        _getTutorDetails.postValue(Result.Loading)
+    fun getUserProfile() {
         viewModelScope.launch {
             try {
-                val response = tutorRepository.getTutorDetails()
-                _getTutorDetails.postValue(Result.Success(response))
+                val response = userRepository.getUserProfile()
+
+                //save profile to db
+
+                with(response) {
+                    val profile = Profile(
+                        this.user,
+                        id,
+                        profile_pic,
+                        hourly_rate,
+                        rating,
+                        desc,
+                        field,
+                        major_course,
+                        other_courses,
+                        state,
+                        address,
+                        user_url,
+                        credentials = credentials,
+                        videoUrl = videoUrl
+                    )
+                    userRepository.saveUserProfile(profile)
+                }
+
             } catch (error: Throwable) {
-                _getTutorDetails.postValue(Result.Error(error))
             }
         }
 

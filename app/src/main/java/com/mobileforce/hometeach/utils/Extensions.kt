@@ -11,6 +11,10 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.snackbar.Snackbar
+import java.text.NumberFormat
+import java.text.SimpleDateFormat
+import java.util.*
+
 
 /**
  * Authored by enyason
@@ -22,7 +26,7 @@ import com.google.android.material.snackbar.Snackbar
  * @param placeholder is the default image that shows when actual image is being loaded or in case of an error
  * @param circular determines if a circular transformation is used to achieve a circular image view
  */
-fun ImageView.loadImage(image: Any, placeholder: Int = 0, circular: Boolean = false) {
+fun ImageView.loadImage(image: Any?, placeholder: Int = 0, circular: Boolean = false) {
     Glide
         .with(context)
         .load(image)
@@ -68,3 +72,27 @@ fun Activity.toast(message: String?, length: Int = Toast.LENGTH_SHORT) {
 fun Fragment.toast(message: String?, length: Int = Toast.LENGTH_SHORT) {
     Toast.makeText(requireContext(), message, length).show()
 }
+
+fun View.makeGone() {
+    visibility = View.GONE
+}
+
+fun View.makeVisible() {
+    visibility = View.VISIBLE
+}
+
+fun View.makeInvisible() {
+    visibility = View.INVISIBLE
+}
+
+fun Date?.convertTime(): String {
+    if (this == null) return ""
+    val formatter = SimpleDateFormat("hh:mm a", Locale.US)
+    formatter.timeZone = TimeZone.getDefault()
+    return formatter.format(this)
+}
+
+fun Double.formatBalance(): String {
+    return NumberFormat.getCurrencyInstance(Locale("en", "NG")).format(this)
+}
+

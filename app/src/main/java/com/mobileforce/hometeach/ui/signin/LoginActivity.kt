@@ -2,30 +2,26 @@ package com.mobileforce.hometeach.ui.signin
 
 import android.app.ProgressDialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.util.Patterns
 import android.view.LayoutInflater
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.lifecycle.Observer
+import com.google.android.material.snackbar.Snackbar
 import com.mobileforce.hometeach.R
-import com.mobileforce.hometeach.databinding.ActivityLoginBinding
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.ui.HomeNavigationDrawerActivity
+import com.mobileforce.hometeach.databinding.ActivityLoginBinding
 import com.mobileforce.hometeach.ui.ExploreActivity
+import com.mobileforce.hometeach.utils.ApiError
 import com.mobileforce.hometeach.utils.Result
 import com.mobileforce.hometeach.utils.snack
-import kotlinx.android.synthetic.main.forgot_password_layout1.view.*
-import kotlinx.android.synthetic.main.forgot_password_layout1.view.apply_btn
 import kotlinx.android.synthetic.main.recover_email_layout.view.*
-import kotlinx.android.synthetic.main.recover_phone_layout.view.*
 import org.koin.android.viewmodel.ext.android.viewModel
-import java.util.regex.Pattern
 
 class LoginActivity : AppCompatActivity() {
 
@@ -58,80 +54,52 @@ class LoginActivity : AppCompatActivity() {
             navigateToSignUp()
         }
         binding.forgotPassword.setOnClickListener {
-            forgotPassword()
+            showEmailDialog()
         }
-
-        val mDialogView = LayoutInflater.from(this).inflate(R.layout.forgot_password_layout1, null)
-        val selected = mDialogView.radio_group.checkedRadioButtonId
-        when (selected) {
-            mDialogView.recover_email_chBox.id -> {
-                mDialogView.apply_btn.setBackgroundResource(R.drawable.apply_background)
-            }
-            mDialogView.recover_phone_chBox.id -> {
-                mDialogView.apply_btn.setBackgroundResource(R.drawable.apply_background)
-            }
-        }
-
-//        if (mDialogView.recover_email_chBox.isChecked) {
-//            mDialogView.apply.setBackgroundResource(R.drawable.apply_background)
-//        } else if (mDialogView.recover_phone_chBox.isChecked) {
-//            mDialogView.apply.setBackgroundResource(R.drawable.apply_background)
-//        } else {
-//
-//        }
 
         emailWatcher = object : TextWatcher {
             override fun afterTextChanged(input: Editable?) {
-                if (Patterns.EMAIL_ADDRESS.matcher(input)
+                emailValid = Patterns.EMAIL_ADDRESS.matcher(input)
                         .matches() && input!!.indexOf("@") < input!!.length
-                ) {
-                    binding.textInputEmailSignin.error = null
-                    emailValid = true
-                } else {
-                    binding.textInputEmailSignin.isHelperTextEnabled = true
-                    binding.textInputEmailSignin.error = "Invalid Email address"
-                    emailValid = false
-                }
             }
 
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
             }
-
         }
-        
+
         passwordWatcher = object : TextWatcher {
             override fun afterTextChanged(input: Editable?) {
-                val PASSWORD_PATTEN =
-                    "^(?=.*?[#?!@\$%^&*-]).{6,}\$"
-                if (Pattern.matches(PASSWORD_PATTEN, input)) {
-                    binding.textInputPasswordField.error = null
-                    passwordValid = true
-                } else {
 
-                    binding.textInputPasswordField.isHelperTextEnabled = true
-                    binding.textInputPasswordField.error =
-                        "Hint: Password should not be less than 6 with at least 1 special character"
-                    passwordValid = false
+                input?.let {
+                    if (input.length > 7) {
+                        passwordValid = true
+                        binding.textInputPasswordField.error = null
+                    } else {
+                        binding.textInputPasswordField.isHelperTextEnabled = true
+                        passwordValid = false
+                    }
                 }
             }
 
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
-
         }
 
         binding.textEditEmail.addTextChangedListener(emailWatcher)
         binding.textEditPassword.addTextChangedListener(passwordWatcher)
 
+        observeSignIn()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        progressDialog.dismiss()
     }
 
     private fun triggerSignInProcess() {
@@ -141,13 +109,14 @@ class LoginActivity : AppCompatActivity() {
                 password = binding.textEditPassword.text.toString()
             )
             viewModel.signIn(user)
-        } else {
-            Toast.makeText(this, "Some fields are empty", Toast.LENGTH_SHORT).show()
+        } else if (!emailValid) {
+            binding.textInputEmailSignin.isHelperTextEnabled = true
+            binding.textInputEmailSignin.error = "Invalid email address"
+        } else if (!passwordValid) {
+            binding.textInputPasswordField.isHelperTextEnabled = true
+            binding.textInputPasswordField.error = "Password too short"
         }
-
-        observeSignIn()
     }
-
 
 
     private fun observeSignIn() {
@@ -172,7 +141,8 @@ class LoginActivity : AppCompatActivity() {
 
                 is Result.Error -> {
                     progressDialog.hide()
-                    binding.signInLayout.snack(message = result.exception.localizedMessage)
+                    val message = ApiError(result.exception).message
+                    binding.signInLayout.snack(message = message, length = Snackbar.LENGTH_LONG)
                 }
             }
         })
@@ -182,73 +152,40 @@ class LoginActivity : AppCompatActivity() {
     private fun navigateToDashBoard() {
         startActivity(Intent(this, HomeNavigationDrawerActivity::class.java))
         //finish()
+        finish()
     }
 
 
     private fun navigateToSignUp() {
-        //startActivity(Intent(this, SignUpActivity::class.java))
         startActivity(Intent(this, ExploreActivity::class.java))
     }
 
-    private fun forgotPassword() {
 
-
-        val mDialogView = LayoutInflater.from(this).inflate(R.layout.forgot_password_layout1, null)
-        //AlertDialogBuilder
+    private fun showEmailDialog() {
+        val mDialogView = LayoutInflater.from(this).inflate(R.layout.recover_email_layout, null)
 
         val mBuilder = AlertDialog.Builder(this)
             .setView(mDialogView)
-        //show dialog
+
         val mAlertDialog = mBuilder.show()
+        val submit = mDialogView.findViewById<AppCompatButton>(R.id.submit)
 
+        submit.setOnClickListener {
 
-        mDialogView.apply_btn.setOnClickListener {
-            mAlertDialog.dismiss()
+            val email = mDialogView.email.text.toString()
+            val data = Params.PasswordReset(email)
+            viewModel.resetPassword(data)
 
-            if (mDialogView.recover_email_chBox.isChecked) {
-                showEmailDialog()
-            } else if (mDialogView.recover_phone_chBox.isChecked) {
-                showPhoneDialog()
+            if (viewModel.success) {
+                mAlertDialog.hide()
+                binding.signInLayout.snack(message = "A PASSSWORD RESET LINK HAS BEEN SENT TO YOUR MAIL")
+
             } else {
+                mAlertDialog.hide()
+                binding.signInLayout.snack(message = "SORRY, THIS EMAIL IS NOT REGISTERED OR YOU HAVE A POOR INTERNET CONNECTION")
 
             }
         }
     }
-
-    private fun showEmailDialog() {
-        val mDialogView = LayoutInflater.from(this).inflate(R.layout.recover_email_layout, null)
-        //AlertDialogBuilder
-        val mBuilder = AlertDialog.Builder(this)
-            .setView(mDialogView)
-        //show dialog
-        val mAlertDialog = mBuilder.show()
-        val email = mDialogView.emailtext.text.toString()
-        val data = Params.PasswordReset(email)
-        val submit = mDialogView.findViewById<AppCompatButton>(R.id.submit)
-       submit.setOnClickListener {
-           viewModel.resetPassword(data)
-          // reset()
-           mAlertDialog.hide()
-       }
-    }
-
-    private fun showPhoneDialog() {
-        val mDialogView = LayoutInflater.from(this).inflate(R.layout.recover_phone_layout, null)
-        //AlertDialogBuilder
-        val mBuilder = AlertDialog.Builder(this)
-            .setView(mDialogView)
-        //show dialog
-        val mAlertDialog = mBuilder.show()
-        val phone = mDialogView.phone.text.toString()
-    }
-
-    fun reset(){
-        viewModel.reset.observe(this, Observer {
-          Log.d("api",it.toString())
-        }
-        )
-
-    }
-
 
 }

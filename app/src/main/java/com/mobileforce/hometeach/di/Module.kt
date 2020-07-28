@@ -1,27 +1,37 @@
 package com.mobileforce.hometeach.di
 
 import androidx.room.Room
-import com.mobileforce.hometeach.utils.AppConstants.BASE_URL
-import com.mobileforce.hometeach.utils.AppConstants.DATABASE_NAME
-import com.mobileforce.hometeach.data.UserRepositoryImpl
-import com.mobileforce.hometeach.data.repository.UserRepository
 import com.mobileforce.hometeach.data.TutorRepositoryImpl
-import com.mobileforce.hometeach.data.repo.TutorRepository
+import com.mobileforce.hometeach.data.UserRepositoryImpl
+import com.mobileforce.hometeach.data.repository.TutorRepository
+import com.mobileforce.hometeach.data.repository.UserRepository
 import com.mobileforce.hometeach.data.sources.DataSourceFactory
 import com.mobileforce.hometeach.data.sources.LocalDataSource
 import com.mobileforce.hometeach.data.sources.RemoteDataSource
 import com.mobileforce.hometeach.data.sources.local.AppDataBase
-import com.mobileforce.hometeach.utils.PreferenceHelper
 import com.mobileforce.hometeach.data.sources.remote.Api
-
+import com.mobileforce.hometeach.ui.classes.tutor.StudentRequestViewModel
+import com.mobileforce.hometeach.ui.classes.tutor.TutorUpcomingViewModel
+import com.mobileforce.hometeach.ui.classes.tutor.TutorRequestViewModel
+import com.mobileforce.hometeach.ui.booktutor.BookTutorViewModel
+import com.mobileforce.hometeach.ui.classes.parentstudent.ParentUpcomingViewModel
+import com.mobileforce.hometeach.ui.classes.parentstudent.ParentRequestViewModel
 import com.mobileforce.hometeach.ui.home.HomePageViewModel
+import com.mobileforce.hometeach.ui.message.ChatViewModel
+import com.mobileforce.hometeach.ui.profile.EditTutorViewModel
 import com.mobileforce.hometeach.ui.profile.ProfileViewModel
 import com.mobileforce.hometeach.ui.signin.SignInViewModel
 import com.mobileforce.hometeach.ui.signup.SignUpViewModel
-import com.mobileforce.hometeach.ui.tutorlist.TutorListViewModel
 import com.mobileforce.hometeach.ui.studentpayments.carddetails.StudentAddCardDetailsViewModel
 import com.mobileforce.hometeach.ui.studentpayments.carddetails.StudentCardDetailsViewModel
 import com.mobileforce.hometeach.ui.studentpayments.makepayments.StudentMakePaymentViewModel
+import com.mobileforce.hometeach.ui.tutordetails.TutorDetailsViewModel
+import com.mobileforce.hometeach.ui.tutorlist.TutorListViewModel
+import com.mobileforce.hometeach.ui.withdrawalscreens.mybank.MyBankViewModel
+import com.mobileforce.hometeach.ui.withdrawalscreens.withdraw.WithDrawalViewModel
+import com.mobileforce.hometeach.utils.AppConstants.BASE_URL
+import com.mobileforce.hometeach.utils.AppConstants.DATABASE_NAME
+import com.mobileforce.hometeach.utils.PreferenceHelper
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -55,9 +65,9 @@ val appModule = module {
         }
         val httpClient = OkHttpClient.Builder()
             .addInterceptor(logger)
-            .connectTimeout(30, TimeUnit.SECONDS) //Backend is really slow
-            .writeTimeout(30, TimeUnit.SECONDS)
-            .readTimeout(30, TimeUnit.SECONDS)
+            .connectTimeout(120, TimeUnit.SECONDS) //Backend is really slow
+            .writeTimeout(120, TimeUnit.SECONDS)
+            .readTimeout(120, TimeUnit.SECONDS)
             .build()
 
         httpClient
@@ -84,10 +94,26 @@ val appModule = module {
     factory { SignInViewModel(get(), get()) }
     factory { SignUpViewModel(get()) }
     factory { HomePageViewModel(get(), get()) }
-    factory { TutorListViewModel(get(),get()) }
+    factory { TutorListViewModel(get()) }
     factory { ProfileViewModel(get()) }
+
+    factory { BookTutorViewModel(get()) }
+    factory { TutorDetailsViewModel(get()) }
+
+    factory { EditTutorViewModel(get(), get()) }
     factory { StudentAddCardDetailsViewModel(get()) }
     factory { StudentCardDetailsViewModel(get()) }
     factory { StudentMakePaymentViewModel(get()) }
 
+    factory { ChatViewModel(get()) }
+    factory { TutorRequestViewModel(get()) }
+    factory { TutorUpcomingViewModel(get()) }
+    factory {  StudentRequestViewModel(get()) }
+
+
+    factory { WithDrawalViewModel(get()) }
+    factory { MyBankViewModel(get()) }
+
+    factory { ParentRequestViewModel(get()) }
+    factory { ParentUpcomingViewModel(get()) }
 }

@@ -1,4 +1,3 @@
 package com.mobileforce.hometeach.data.sources.remote.wrappers
 
-class EditTutorProfileResponse {
-}
+data class EditTutorProfileResponse (val user:String)

@@ -3,11 +3,14 @@ package com.mobileforce.hometeach.data.sources
 import androidx.lifecycle.LiveData
 import com.mobileforce.hometeach.data.model.User
 import com.mobileforce.hometeach.data.sources.local.AppDataBase
-import com.mobileforce.hometeach.data.model.UserEntity
+import com.mobileforce.hometeach.data.sources.local.entities.*
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
-import com.mobileforce.hometeach.remotesource.wrappers.*
-
+import com.mobileforce.hometeach.models.TutorRequestDataModel
+import com.mobileforce.hometeach.models.TutorUpcomingDataModel
+import com.mobileforce.hometeach.data.sources.remote.wrappers.UserCardDetailResponse
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Response
 
 class LocalDataSource(private val db: AppDataBase) : DataSource {
@@ -34,7 +37,12 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
         return db.userDao().getSingleUser()
     }
 
-    override suspend fun resetPassword(params: Params.PasswordReset): EmailResponse {
+    override suspend fun clearDb() {
+        db.clearAllTables()
+    }
+
+    override suspend fun resetPassword(params: Params.PasswordReset): Response<EmailResponse> {
+
         TODO("Not yet implemented")
     }
 
@@ -49,26 +57,92 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
     override suspend fun getProfileList(): List<ProfileResponse> {
         TODO("Not yet implemented")
     }
+
     override suspend fun getTutorDetails(
         id: Int
-    ): TutorDetailsResponse {
+    ): UserProfileResponse {
         TODO("Not yet implemented")
-    }
-    override suspend fun clearDb() {
-        db.userDao().clearDb()
     }
 
 
-    override suspend fun getTutorList(): Response<TutorListResponse> {
+    override suspend fun getTutorList(): Response<List<TutorNetworkResponse>> {
         TODO("Not yet implemented")
+    }
+
+
+    override suspend fun uploadTutorMedia(
+        id: RequestBody,
+        profile_pic: MultipartBody.Part,
+        credentials: MultipartBody.Part,
+        video: MultipartBody.Part
+    ): Response<UploadResponse> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun uploadProfilePic(
+        id: Int,
+        profile_pic: MultipartBody.Part
+    ): UploadResponse {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun uploadVideo(id: Int, video: MultipartBody.Part): UploadResponse {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun uploadCredential(
+        id: Int,
+        credentials: MultipartBody.Part
+    ): UploadResponse {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun requestTutorService(params: Params.RequestTutorService): Response<TutorServiceRequestResponse> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun saveTutorList(tutorList: List<TutorEntity>) {
+        db.tutorListDao().saveTutors(tutorList)
+    }
+
+    override fun searchTutors(query: String): LiveData<List<TutorEntity>> {
+        return db.tutorListDao().getSearchTutor(query)
+    }
+
+    override suspend fun clearTutorListDb() {
+        db.tutorListDao().clearDatabase()
+    }
+
+    override suspend fun getTutorListDb(): List<TutorEntity> {
+        return db.tutorListDao().getTutors()
     }
 
     override suspend fun saveUserCardDetails(params: Params.CardDetails) {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getUserCardDetails(id: Int): List<UserCardDetailResponse> {
+    override suspend fun getUserCardDetails(params: Params.UserID): List<UserCardDetailResponse> {
         TODO("Not yet implemented")
+    }
+
+    override suspend fun getTutorDetailsForUser(id: Int): Response<TutorDetailsResponse> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getTutorDetailsFromDb(id: Int): TutorDetailsEntity? {
+        return db.tutorDetailsDao().getTutorDetails(id)
+    }
+
+    override suspend fun saveTutorDetailsToDb(tutorDetailsEntity: TutorDetailsEntity) {
+        db.tutorDetailsDao().saveTutorDetails(tutorDetailsEntity)
+    }
+
+    override suspend fun saveUserProfile(profile: Profile) {
+        db.userDao().saveUserProfile(mapProfileToEntity(profile))
+    }
+
+    override fun profileLiveData(): LiveData<ProfileEntity> {
+        return db.userDao().observeableProfileData()
     }
 
 
@@ -80,6 +154,84 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
             phone_number = user.phoneNumber,
             token = user.token,
             full_name = user.fullName
+        )
+    }
+
+    override suspend fun getUserProfile(
+        id: Int
+    ): UserProfileResponse {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getSingleUserProfile(): ProfileEntity {
+        return db.userDao().getUserProfile()
+    }
+
+    override suspend fun getProfileId(): Int {
+        return db.userDao().getUserProfile().id
+    }
+
+    override suspend fun updateTutorProfile(
+        id: Int,
+        params: Params.UpdateTutorProfile
+    ): LoginResponse {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getTutorClassesRequest(param: Params.TutorClassesRequest): TutorRequestDataModel{
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getTutorClasses(param: Params.TutorClassesRequest): TutorUpcomingDataModel {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun grantStudentRequest(params: Params.StudentRequest): StudentRequestResponse {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getStudentClassRequest(param: Params.StudentID): UserClassRequestResponse {
+
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getStudentClasses(param: Params.StudentID): UserClassesResponse {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun saveUserWallet(walletEntity: WalletEntity) {
+        db.walletDao().saveWalletInfo(walletEntity)
+    }
+
+    override fun observeWalletData(): LiveData<WalletEntity> {
+        return db.walletDao().observeWalletInfo()
+
+    }
+
+    override suspend fun saveCardToDb(cardEntity: CardEntity) {
+        db.userDao().saveCard(cardEntity)
+    }
+
+    override fun observeUserCards(): LiveData<List<CardEntity>> {
+        return db.userDao().observeUserCards()
+    }
+
+    private fun mapProfileToEntity(profile: Profile): ProfileEntity {
+        return ProfileEntity(
+            profile.id,
+            profile.profile_pic,
+            profile.hourly_rate,
+            profile.desc,
+            profile.field,
+            profile.major_course,
+            profile.other_courses,
+            profile.state,
+            profile.address,
+            profile.user_url,
+            rating = profile.rating?.rating, rating_count = profile.rating?.count,
+            credentials = profile.credentials,
+            videoUrl = profile.videoUrl
+
         )
     }
 }

@@ -1,29 +1,35 @@
 package com.mobileforce.hometeach.ui.message
 
 import android.view.View
-import com.mobileforce.hometeach.utils.loadImage
-import com.mobileforce.hometeach.models.Chat
+import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.adapters.ViewHolder
+import com.mobileforce.hometeach.models.Chat
+import com.mobileforce.hometeach.utils.convertTime
+import com.mobileforce.hometeach.utils.loadImage
 import kotlinx.android.synthetic.main.chat_list_message_item.view.*
 
 /**
  * Authored by enyason
  */
 
-class ChatListViewHolder(view: View, private val chatListItemClickListener: (String) -> Unit) :
+class ChatListViewHolder(view: View, private val chatListItemClickListener: (Chat) -> Unit) :
     ViewHolder<Chat>(view) {
     override fun bind(element: Chat) {
 
         with(itemView) {
 
-            roundedUserImage.loadImage(element.senderPhoto)
+            roundedUserImage.loadImage(
+                element.senderPhoto,
+                placeholder = R.drawable.profile_image,
+                circular = true
+            )
             lastMessage.text = element.lastMessage
-            lastMessageTime.text = element.lastMessageTime
+            lastMessageTime.text = element.lastMessageTime.convertTime()
             userName.text = element.senderName
 
 
             setOnClickListener {
-                chatListItemClickListener(element.chatId)
+                chatListItemClickListener(element)
             }
         }
     }

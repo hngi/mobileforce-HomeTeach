@@ -17,6 +17,7 @@ import com.mobileforce.hometeach.databinding.FragmentHomePageTutorBinding
 import com.mobileforce.hometeach.models.TutorClassesDataModel
 import kotlinx.android.synthetic.main.fragment_home_page_tutor.*
 import java.util.*
+import java.util.Calendar.MONTH
 
 class HomePageTutorFragment : Fragment(), OnItemtouch {
     private lateinit var tutor_classes_list: List<TutorClassesDataModel>
@@ -39,9 +40,9 @@ class HomePageTutorFragment : Fragment(), OnItemtouch {
         val username = binding.username
         var calendar = binding.calendar
         val modifyBtn = binding.modifyBtn
-        val cardDetail = binding.cardDetails
-        val withdrawal = binding.withdrawal
-        val myBanks = binding.mybanks
+        //val cardDetail = binding.cardDetails
+//        val withdrawal = binding.withdrawal
+//        val myBanks = binding.mybanks
         val tutorClassesRecycler = binding.tutorClasses
 
         // the two variable below are for testing purposes only
@@ -66,50 +67,50 @@ class HomePageTutorFragment : Fragment(), OnItemtouch {
         tutorClassesRecycler.setHasFixedSize(true)
 
         modifyBtn.setOnClickListener {
-            date_picker()
+     //       date_picker()
         }
-        withdrawal.setOnClickListener {
+//        withdrawal.setOnClickListener {
+//
+//            navController.navigate(R.id.makeWithdrawalFragment)
+//        }
 
-            navController.navigate(R.id.makeWithdrawalFragment)
-        }
-
-        cardDetail.setOnClickListener {
-            navController.navigate(R.id.tutorCardDetails)
-        }
-        mybanks.setOnClickListener {
-
-            navController.navigate(R.id.myBanks)
-        }
+//        cardDetail.setOnClickListener {
+//            navController.navigate(R.id.tutorCardDetails)
+//        }
+//        mybanks.setOnClickListener {
+//
+//            navController.navigate(R.id.myBanks)
+//        }
 
     }
+//
+//    fun date_picker() {
+//        val c = Calendar.getInstance()
+//        val year = c.get(Calendar.YEAR)
+//        val month = c.get(Calendar.MONTH)
+//        val day = c.get(Calendar.DAY_OF_MONTH)
+//
+//
+//        val dpd = activity?.let {
+//            DatePickerDialog(
+//                it,
+//                DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
 
-    fun date_picker() {
-        val c = Calendar.getInstance()
-        val year = c.get(Calendar.YEAR)
-        val month = c.get(Calendar.MONTH)
-        val day = c.get(Calendar.DAY_OF_MONTH)
+//                  MONTH[monthOfYear]
+//                  dayOfMonth
+    //MONTHS[monthOfYear]
 
-
-        val dpd = activity?.let {
-            DatePickerDialog(
-                it,
-                DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
-
-//                    MONTHS[monthOfYear]
-//                   dayOfMonth
-                    //MONTHS[monthOfYear]
-
-                },
-                year,
-                month,
-                day
-            )
-        }
-
-        if (dpd != null) {
-            dpd.show()
-        }
-    }
+//                },
+//                year,
+//                month,
+//                day
+//            )
+//        }
+//
+//        if (dpd != null) {
+//            dpd.show()
+//        }
+//    }
 
     override fun OnUserclicked(datamodel: TutorClassesDataModel, position: Int) {
         //OPEN INTENT  OR FRAGMENT TO EDIT THE TUTORS CLASSES

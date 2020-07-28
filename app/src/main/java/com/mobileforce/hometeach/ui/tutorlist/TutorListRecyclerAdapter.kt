@@ -6,23 +6,26 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mobileforce.hometeach.databinding.ListItemAllTutorsBinding
-import com.mobileforce.hometeach.models.TutorAllModel
+import com.mobileforce.hometeach.models.TutorModel
 
-class TutorListRecyclerAdapter : ListAdapter<TutorAllModel, TutorListViewHolder>(
+class TutorListRecyclerAdapter(
+    val clickListener: TutorListItemListener,
+    val bodyClickListener: TutorBodyClickListener
+) : ListAdapter<TutorModel, TutorListViewHolder>(
     DiffClass
 ) {
 
-    companion object DiffClass : DiffUtil.ItemCallback<TutorAllModel>() {
+    companion object DiffClass : DiffUtil.ItemCallback<TutorModel>() {
         override fun areItemsTheSame(
-            oldItem: TutorAllModel,
-            newItem: TutorAllModel
+            oldItem: TutorModel,
+            newItem: TutorModel
         ): Boolean {
-            return oldItem.tutorName == newItem.tutorName
+            return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(
-            oldItem: TutorAllModel,
-            newItem: TutorAllModel
+            oldItem: TutorModel,
+            newItem: TutorModel
         ): Boolean {
             return oldItem == newItem
         }
@@ -37,7 +40,7 @@ class TutorListRecyclerAdapter : ListAdapter<TutorAllModel, TutorListViewHolder>
 
     override fun onBindViewHolder(listViewHolder: TutorListViewHolder, position: Int) {
         val tutor = getItem(position)
-        listViewHolder.bind(tutor)
+        listViewHolder.bind(tutor, clickListener,bodyClickListener)
     }
 
 
@@ -45,12 +48,24 @@ class TutorListRecyclerAdapter : ListAdapter<TutorAllModel, TutorListViewHolder>
 
 class TutorListViewHolder(private val binding: ListItemAllTutorsBinding) :
     RecyclerView.ViewHolder(binding.root) {
-    fun bind(tutorAll: TutorAllModel) {
+    fun bind(tutorAll: TutorModel, clickListener: TutorListItemListener, bodyClickListener: TutorBodyClickListener) {
         binding.tutor = tutorAll
         binding.executePendingBindings()
-        binding.outlineButton.setOnClickListener {
-            println(tutorAll.id)
-        }
+        binding.clickListener = clickListener
+        binding.bodyClickListener = bodyClickListener
+
     }
 
+}
+
+class TutorListItemListener(val clickListener: (tutor: TutorModel?) -> Unit) {
+    fun onClick(tutor: TutorModel) {
+        clickListener(tutor)
+    }
+}
+
+class TutorBodyClickListener(val clickListener: (tutorModel: TutorModel?) -> Unit) {
+    fun onClick(tutorModel: TutorModel?) {
+        clickListener(tutorModel)
+    }
 }

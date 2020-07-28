@@ -1,17 +1,18 @@
 package com.mobileforce.hometeach.ui.withdrawalscreens.mybank
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.mobileforce.hometeach.R
-import com.mobileforce.hometeach.adapters.CircleTransform
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.mobileforce.hometeach.databinding.FragmentMyBankBinding
 import com.mobileforce.hometeach.ui.withdrawalscreens.MyBank
 import com.mobileforce.hometeach.ui.withdrawalscreens.MyBankModel
-import com.squareup.picasso.Picasso
-
+import com.mobileforce.hometeach.utils.formatBalance
+import com.mobileforce.hometeach.utils.loadImage
+import org.koin.android.viewmodel.ext.android.viewModel
 
 
 /**
@@ -21,8 +22,10 @@ import com.squareup.picasso.Picasso
  */
 class MyBankFragment : Fragment() {
 
-    private lateinit var bank_list:MutableList<MyBank>
+    private lateinit var bank_list: MutableList<MyBank>
     private lateinit var binding: FragmentMyBankBinding
+
+    private val viewModel: MyBankViewModel by viewModel()
 
 
     override fun onCreateView(
@@ -35,8 +38,14 @@ class MyBankFragment : Fragment() {
         return binding.root
         //return inflater.inflate(R.layout.fragment_my_bank, container, false)
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.toolbar.setNavigationOnClickListener {
+
+            findNavController().popBackStack()
+        }
         bank_list = mutableListOf()
         bank_list.add(
             MyBank(
@@ -62,16 +71,32 @@ class MyBankFragment : Fragment() {
             "profile_image",
             "215000 N"
         )
-        binding.tutorName.text = banks.tutorName
-        binding.tutorBalance.text = "Balance: "+banks.balance
-        Picasso.get().load("profile_image").transform(CircleTransform()).placeholder(R.drawable.profile_image).error(R.drawable.profile_image).into(binding.tutorImage)
-
 
         val adapter =
             MyBankRecycler()
         adapter.submitList(banks.banks)
         binding.mybankRecyclerView.adapter = adapter
         binding.mybankRecyclerView.hasFixedSize()
+
+
+        viewModel.profofile.observe(viewLifecycleOwner, Observer {
+
+            binding.tutorImage.loadImage(it.profile_pic, circular = true)
+        })
+
+        viewModel.user.observe(viewLifecycleOwner, Observer {
+
+            it?.let {
+                binding.tutorName.text = it.full_name
+            }
+        })
+
+        viewModel.wallet.observe(viewLifecycleOwner, Observer {
+
+            it?.let {
+                binding.tutorBalance.text = it.availableBalance.formatBalance()
+            }
+        })
     }
 
 

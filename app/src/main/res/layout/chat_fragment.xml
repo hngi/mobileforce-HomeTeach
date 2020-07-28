@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/bg_main"
+    android:background="@drawable/background_chatpage"
     tools:context=".ui.message.ChatFragment">
 
     <androidx.constraintlayout.widget.Guideline
@@ -49,6 +49,7 @@
 
     <ImageButton
         android:id="@+id/ib_profile_icon"
+        android:visibility="invisible"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:src="@drawable/profile_icon"
@@ -74,6 +75,7 @@
     <include
         android:id="@+id/vw_message_input"
         android:layout_width="0dp"
+        android:layout_marginBottom="8dp"
         android:layout_height="wrap_content"
         layout="@layout/view_message_input"
         app:layout_constraintStart_toStartOf="@id/guideline1"

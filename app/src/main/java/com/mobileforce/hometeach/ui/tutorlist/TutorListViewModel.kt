@@ -1,9 +1,16 @@
 package com.mobileforce.hometeach.ui.tutorlist
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.mobileforce.hometeach.data.sources.local.entities.TutorEntity
 import com.mobileforce.hometeach.data.repository.UserRepository
-import com.mobileforce.hometeach.utils.PreferenceHelper
+import com.mobileforce.hometeach.models.TutorModel
+import com.mobileforce.hometeach.utils.Result
+import com.mobileforce.hometeach.utils.asLiveData
+import com.mobileforce.hometeach.utils.toDbEntity
+import com.mobileforce.hometeach.utils.toDomainModel
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
@@ -12,19 +19,59 @@ import java.lang.Exception
  */
 
 class TutorListViewModel(
-    private val userRepository: UserRepository,
-    private val preferenceHelper: PreferenceHelper
+    private val userRepository: UserRepository
 ) : ViewModel() {
 
+    private val _tutorList = MutableLiveData<Result<List<TutorModel>>>()
+    val tutorList = _tutorList.asLiveData()
 
 
-    private fun getTutorList(){
+    /**
+     * This function fetches a fresh list of [TutorModel] from the remote source.
+     * This is called also when the user swipes down on the screen.
+     */
+    fun refreshTutorList() {
+        _tutorList.postValue(Result.Loading)
         viewModelScope.launch {
             try {
-               val response = userRepository.getTutorList()
-            }catch (exception: Exception){
+                val response = userRepository.getTutorList()
+                if (response.isSuccessful) {
+                    val tutorListResponse = response.body()
+                    val listOfTutors = tutorListResponse?.map {
+                        it.toDomainModel()
+                    }
+                    _tutorList.postValue(Result.Success(listOfTutors))
+                    userRepository.clearTutorListDb()
+                    userRepository.saveTutorList(listOfTutors!!.map { it.toDbEntity() })
 
+                } else {
+                    _tutorList.postValue(Result.Success(null))
+                }
+            } catch (exception: Exception) {
+                _tutorList.postValue(Result.Error(exception))
             }
         }
     }
+
+    /**
+     * This initially attempts to get data from the cache. If this is empty, it would
+     * fetch from the remote source.
+     */
+    fun getTutorList() {
+        viewModelScope.launch {
+            val listTutors = userRepository.getTutorListDb()
+            if (listTutors.isNullOrEmpty()) {
+                refreshTutorList()
+            } else {
+                _tutorList.postValue(Result.Success(listTutors.map { it.toDomainModel() }))
+            }
+        }
+    }
+
+
+    fun searchForTutor(query: String): LiveData<List<TutorEntity>> {
+        return userRepository.searchTutor(query)
+    }
 }
+
+
