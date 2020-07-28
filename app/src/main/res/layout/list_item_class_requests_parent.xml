@@ -84,13 +84,14 @@
                         android:layout_marginStart="5dp"
                         style="@style/TextAppearance.MaterialComponents.Body1"
                         app:fontFamily="@font/ubuntu"
-                        android:visibility="invisible"
+                        android:textColor="@color/textColor"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         tools:text="16:00 - 18:00"
-                        android:textColor="@color/textColor"
+                        android:visibility="invisible"
                         android:layout_marginLeft="5dp" />
                 </LinearLayout>
+
                 <TextView
                     android:id="@+id/tutor_name"
                     android:layout_height="wrap_content"

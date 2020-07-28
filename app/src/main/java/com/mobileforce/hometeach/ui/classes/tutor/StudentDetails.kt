@@ -1,14 +1,12 @@
 package com.mobileforce.hometeach.ui.classes.tutor
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import com.mobileforce.hometeach.R
-import com.mobileforce.hometeach.adapters.CircleTransform
-import com.mobileforce.hometeach.databinding.FragmentProfileBinding
 import com.mobileforce.hometeach.databinding.FragmentStudentDetailsBinding
 import com.squareup.picasso.Picasso
 
@@ -32,7 +30,7 @@ class StudentDetails : Fragment() {
         Picasso.get().load(imageUrl).error(R.drawable.profile_image).into(binding.studentPic)
 
         binding.studentGrade.text = arguments?.getString("student_garde")
-            binding.studentName.text = arguments?.getString("student_name")
+        binding.studentName.text = arguments?.getString("student_name")
 
     }
 }

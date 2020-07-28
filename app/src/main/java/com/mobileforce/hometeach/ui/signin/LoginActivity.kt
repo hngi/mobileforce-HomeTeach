@@ -68,7 +68,7 @@ class LoginActivity : AppCompatActivity() {
 
 
 
-        Log.d("login",isTutor.toString())
+        Log.d("login", isTutor.toString())
 
         binding.textRegisterNow.setOnClickListener {
             navigateToSignUp()

@@ -20,10 +20,10 @@
     <TextView
         android:id="@+id/student_name"
         android:layout_width="0dp"
-        android:text="MIAKIL YUSUF"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="MIAKIL YUSUF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

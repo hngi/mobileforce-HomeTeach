@@ -1,12 +1,10 @@
 package com.mobileforce.hometeach.ui.classes.tutor
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.mobileforce.hometeach.adapters.TutorUpcomingAdapter
 import com.mobileforce.hometeach.databinding.FragmentTutorUpcomingBinding
@@ -20,7 +18,7 @@ class TutorUpcomingFragment : Fragment() {
     private lateinit var binding: FragmentTutorUpcomingBinding
     private lateinit var tutorOngoingClassesAdapter: TutorOngoingClassesAdapter
     private val viewModel: TutorUpcomingViewModel = get<TutorUpcomingViewModel>()
-    lateinit var scheduleList:List<Schedule>
+    lateinit var scheduleList: List<Schedule>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

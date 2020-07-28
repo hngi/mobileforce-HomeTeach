@@ -111,13 +111,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/labelOngoingClasses"
-                    android:layout_marginTop="16dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginLeft="16dp"
-                    android:textStyle="bold"
-                    android:visibility="invisible"
+                    android:layout_marginTop="16dp"
                     android:gravity="center_vertical"
-                    android:text="@string/you_currently_have_no_ongoing_class"/>
+                    android:text="@string/you_currently_have_no_ongoing_class"
+                    android:textStyle="bold"
+                    android:visibility="invisible" />
 
             </RelativeLayout>
 
@@ -175,14 +175,14 @@
                     android:id="@+id/tv_no_upcoming"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_below="@id/labelUpcomingClasses"
                     android:layout_marginStart="16dp"
                     android:layout_marginLeft="16dp"
-                    android:textStyle="bold"
-                    android:visibility="invisible"
-                    android:layout_below="@id/labelUpcomingClasses"
+                    android:layout_marginTop="16dp"
                     android:gravity="center_vertical"
-                    android:text="@string/you_currently_have_no_upcoming_class"/>
+                    android:text="@string/you_currently_have_no_upcoming_class"
+                    android:textStyle="bold"
+                    android:visibility="invisible" />
 
             </RelativeLayout>
 

@@ -6,7 +6,6 @@ import com.mobileforce.hometeach.data.sources.local.entities.UserEntity
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
 import com.mobileforce.hometeach.models.TutorRequestDataModel
 import com.mobileforce.hometeach.models.TutorUpcomingDataModel
-import com.mobileforce.hometeach.data.sources.remote.wrappers.UserCardDetailResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -77,7 +76,10 @@ interface Api {
 
     @JvmSuppressWildcards
     @PUT("v1/tutor-profiles/{id}/")
-    suspend fun updateTutorProfile(@Path("id") id:Int, @Body params:Map<String,Any>):LoginResponse
+    suspend fun updateTutorProfile(
+        @Path("id") id: Int,
+        @Body params: Map<String, Any>
+    ): LoginResponse
 
     @JvmSuppressWildcards
     @Multipart
@@ -106,15 +108,18 @@ interface Api {
     suspend fun getStudentClasses(@Body param: Map<String, String>): UserClassesResponse
 
     @POST("v1/tutor-classes-requests/")
-    suspend fun getTutorClassesRequest(@Body params:Map<String,String>):TutorRequestDataModel
+    suspend fun getTutorClassesRequest(@Body params: Map<String, String>): TutorRequestDataModel
 
     @POST("v1/tutor-classes/")
-    suspend fun getTutorClasses(@Body params:Map<String,String>): TutorUpcomingDataModel
+    suspend fun getTutorClasses(@Body params: Map<String, String>): TutorUpcomingDataModel
 
     @POST("v1/request-action/")
-    suspend fun grantStudentRequest(@Body params: Map<String, Any>):StudentRequestResponse
+    suspend fun grantStudentRequest(@Body params: Map<String, Any>): StudentRequestResponse
 
-    @POST("v1/user-wallet/")
-    suspend fun getUserWallet(@Body param: Params.UserWallet): UserWalletResponse
+    @GET("v1/user-wallet/{id}/")
+    suspend fun getUserWallet(@Path("id") id: String): UserWalletResponse
+
+    @POST("v1/profile-count-update/")
+    suspend fun updateTutorProfileVisit(@Body param: Params.TutorProfileVisitsCount)
 
 }
