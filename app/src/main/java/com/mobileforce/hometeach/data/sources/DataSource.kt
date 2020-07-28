@@ -115,4 +115,6 @@ interface DataSource {
     suspend fun saveCardToDb(cardEntity: CardEntity) {}
 
     fun observeUserCards(): LiveData<List<CardEntity>> = TODO()
+
+    suspend fun updateTutorProfileVisitsCount(params: Params.TutorProfileVisitsCount) {}
 }

@@ -119,4 +119,7 @@ interface Api {
     @GET("v1/user-wallet/{id}/")
     suspend fun getUserWallet(@Path("id") id: String): UserWalletResponse
 
+    @POST("v1/profile-count-update/")
+    suspend fun updateTutorProfileVisit(@Body param: Params.TutorProfileVisitsCount)
+
 }

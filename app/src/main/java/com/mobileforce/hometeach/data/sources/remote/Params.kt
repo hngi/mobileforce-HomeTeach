@@ -91,4 +91,7 @@ class Params {
 
     data class UserWallet(val user: String)
 
+    data class TutorProfileVisitsCount(val tutor_id: String)
+
+
 }
