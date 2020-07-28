@@ -86,10 +86,12 @@ class UserLoginSerializer(ModelSerializer):
         user = User.objects.filter(email=email)
         if user.exists():
             user_obj = User.objects.get(email=email)
-            if user_obj.is_tutor == True and is_tutor == "True":
-                pass   
+            if user_obj.is_tutor == is_tutor:
+                pass
+            elif is_tutor:
+                raise ValidationError("This email address is not registered as a tutor.")   
             else:
-                raise ValidationError("This email address is not registered as a tutor.")
+                raise ValidationError("This email address is not registered as a student.")
         else:
             raise ValidationError("Invalid username or Password")
 
