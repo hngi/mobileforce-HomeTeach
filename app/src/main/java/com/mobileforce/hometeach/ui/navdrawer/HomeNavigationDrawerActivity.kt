@@ -77,8 +77,8 @@ class HomeNavigationDrawerActivity : AppCompatActivity() {
 
     private fun setupStudent() {
         viewModel.user.observe(this, Observer { user ->
-            navHeaderMainBinding.fullName.text = user.full_name
-            navHeaderMainBinding.emailNav.text = user.email
+//            navHeaderMainBinding.fullName.text = user.full_name
+//            navHeaderMainBinding.emailNav.text = user.email
         })
 
         navView.setNavigationItemSelectedListener { item ->
