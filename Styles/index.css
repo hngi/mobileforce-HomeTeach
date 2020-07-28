@@ -42,16 +42,10 @@
             }
         }
         
-        @media screen and (device-width: 768px) {
-            .hero {
-                height: 502.78px !important;
-            }
+        @media screen and (max-width: 768px) and (min-width: 575px) {
             .home-teach-hero {
                 margin-top: 60px !important;
             }
-            /* .hero__img {
-                height: 30vh !important
-            } */
             .home-teach-hero h1 {
                 font-size: 35px !important;
                 line-height: 50px !important;
@@ -60,9 +54,23 @@
                 font-size: 18px !important;
                 line-height: 30px !important
             }
-            /* .app__logo img {
-                height: 45px !important;
-            } */
+        }
+        
+        @media screen and (max-width: 991px) and (min-width: 767px) {
+            .hero {
+                height: 502.78px !important;
+            }
+            .home-teach-hero {
+                margin-top: 60px !important;
+            }
+            .home-teach-hero h1 {
+                font-size: 35px !important;
+                line-height: 50px !important;
+            }
+            .home-teach-hero p {
+                font-size: 18px !important;
+                line-height: 30px !important
+            }
         }
         
         .hero {
@@ -174,36 +182,41 @@
             }
         }
         
-        @media screen and (device-width: 768px) {
+        @media screen and (max-width: 768px) and (min-width: 575px) {
+            .column-reverse {
+                flex-direction: column-reverse;
+            }
+            .col-md-5 {
+                max-width: 100% !important;
+            }
+            .col-lg-5 {
+                max-width: 100% !important;
+            }
+            .img-flui {
+                height: auto;
+            }
             .about__placeholder {
                 background-position: unset !important;
-                height: 565.88px !important;
-                left: 175 !important;
+                background-size: unset !important;
             }
-            .image1 {
-                top: 12 !important;
-                left: 12 !important;
-            }
-            .image1 img {
-                height: 500px;
-            }
-            .image2 {
-                left: 124px !important;
-            }
-            .image2 img {
-                height: 500px !important;
-            }
+        }
+        
+        @media screen and (max-width: 991px) and (min-width: 767px) {
             .column-reverse {
-                flex-direction: column-reverse !important;
+                flex-direction: column-reverse;
             }
-            /* .about__us {
-                width: 560px !important;
-                position: relative !important;
-                left: 60 !important;
-            } */
-            .captions {
-                position: relative !important;
-                left: 200!important;
+            .col-md-5 {
+                max-width: 100% !important;
+            }
+            .col-lg-5 {
+                max-width: 100% !important;
+            }
+            .about__placeholder {
+                background-position: unset !important;
+                background-size: unset !important;
+            }
+            .img-flui {
+                height: auto;
             }
         }
         
@@ -276,38 +289,27 @@
             }
         }
         
-        @media screen and (device-width: 768px) {
-            .features {
-                padding-top: 100px !important;
+        @media screen and (max-width: 991px) and (min-width: 767px) {
+            .column {
+                flex-direction: column;
             }
-            .flex__wrap {
-                flex-wrap: nowrap !important;
-            }
-            /* .max__content {
-                width: max-content !important;
-            } */
-            .center h6 {
-                margin-top: 50px !important;
-            }
-            .center p {
-                line-height: 20px !important;
+            .col-md-6 {
+                max-width: 100% !important;
             }
             .features__bg {
-                background-image: none !important;
+                background-position: unset !important;
             }
-            .image3 {
-                top: 75px !important;
-                left: 55px !important;
+        }
+        
+        @media screen and (max-width: 991px) and (min-width: 767px) {
+            .column {
+                flex-direction: column;
             }
-            .image3 img {
-                height: 450px !important;
+            .col-md-6 {
+                max-width: 100% !important;
             }
-            .image4 {
-                top: 200px !important;
-                left: 40px !important;
-            }
-            .image4 img {
-                height: 450px !important;
+            .features__bg {
+                background-position: unset !important;
             }
         }
         
