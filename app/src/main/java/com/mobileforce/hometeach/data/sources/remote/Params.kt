@@ -81,14 +81,17 @@ class Params {
         val desc: String
     )
 
-    data class TutorClassesRequest (val tutor_id: String)
+    data class TutorClassesRequest(val tutor_id: String)
 
-    data class StudentRequest(val id: String,val request_id:String,val action:String)
+    data class StudentRequest(val id: String, val request_id: String, val action: String)
 
     data class StudentID(
         val student_id: String
     )
 
     data class UserWallet(val user: String)
+
+    data class TutorProfileCount(val tutorId: String)
+
 
 }
