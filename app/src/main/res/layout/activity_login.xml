@@ -2,9 +2,9 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/signInLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/signInLayout"
     android:background="@drawable/background_explore"
     tools:context=".ui.signin.LoginActivity"
     tools:targetApi="11">
@@ -133,14 +133,14 @@
             android:id="@+id/checkBox2"
             android:layout_width="150dp"
             android:layout_height="52dp"
-            android:visibility="invisible"
             android:layout_marginStart="32dp"
             android:layout_marginLeft="32dp"
-            android:text="@string/save_password"
             android:layout_weight="1"
             android:fontFamily="@font/ubuntu"
+            android:text="@string/save_password"
             android:textColor="@color/primaryTextColor"
             android:textSize="@dimen/small_text"
+            android:visibility="invisible"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInput_password_field" />
 
