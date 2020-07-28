@@ -8,7 +8,8 @@ class Params {
 
     data class SignIn(
         val email: String,
-        val password: String
+        val password: String,
+        val is_tutor: Boolean
     )
 
     data class SignUp(
