@@ -11,6 +11,7 @@ import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
 import com.mobileforce.hometeach.models.TutorRequestDataModel
 import com.mobileforce.hometeach.models.TutorUpcomingDataModel
+import com.mobileforce.hometeach.data.sources.remote.wrappers.UserCardDetailResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -21,7 +22,7 @@ class RemoteDataSource(private val api: Api) : DataSource {
         val map = hashMapOf(
             "email" to params.email,
             "password" to params.password,
-            "is_tutor" to false
+            "is_tutor" to params.is_tutor
         )
         return api.login(map)
     }

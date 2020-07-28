@@ -13,7 +13,7 @@ import com.mobileforce.hometeach.adapters.ViewHolder
 import com.mobileforce.hometeach.databinding.ChatFragmentBinding
 import com.mobileforce.hometeach.models.Message
 import com.mobileforce.hometeach.models.messageDiffUtil
-import com.mobileforce.hometeach.ui.BottomNavigationActivity
+import com.mobileforce.hometeach.ui.HomeNavigationDrawerActivity
 import com.mobileforce.hometeach.utils.loadImage
 import com.mobileforce.hometeach.utils.toast
 import org.koin.android.viewmodel.ext.android.sharedViewModel
@@ -39,15 +39,6 @@ class ChatFragment : Fragment() {
         return binding.root
     }
 
-    override fun onResume() {
-        super.onResume()
-        (requireActivity() as BottomNavigationActivity).hideBottomBar()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        (requireActivity() as BottomNavigationActivity).makeBottomBarVisible()
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

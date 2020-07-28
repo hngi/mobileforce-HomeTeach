@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.util.Patterns
 import android.view.LayoutInflater
 import androidx.appcompat.app.AlertDialog
@@ -14,12 +15,14 @@ import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.data.sources.remote.Params
+import com.mobileforce.hometeach.ui.HomeNavigationDrawerActivity
 import com.mobileforce.hometeach.databinding.ActivityLoginBinding
-import com.mobileforce.hometeach.ui.BottomNavigationActivity
 import com.mobileforce.hometeach.ui.ExploreActivity
 import com.mobileforce.hometeach.utils.ApiError
 import com.mobileforce.hometeach.utils.Result
 import com.mobileforce.hometeach.utils.snack
+import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_login.view.*
 import kotlinx.android.synthetic.main.recover_email_layout.view.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -30,6 +33,7 @@ class LoginActivity : AppCompatActivity() {
 
     private var emailValid = false
     private var passwordValid = false
+    private var isTutor = false
 
     private lateinit var emailWatcher: TextWatcher
     private lateinit var passwordWatcher: TextWatcher
@@ -49,6 +53,23 @@ class LoginActivity : AppCompatActivity() {
         binding.signIn.setOnClickListener {
             triggerSignInProcess()
         }
+
+
+        binding.toggleButton.check(R.id.button1)
+        binding.toggleButton.button1.setOnClickListener {
+            isTutor = false
+            binding.toggleButton.uncheck(R.id.button12)
+            binding.toggleButton.check(R.id.button1)
+        }
+        binding.toggleButton.button12.setOnClickListener {
+            isTutor = true
+            binding.toggleButton.uncheck(R.id.button1)
+            binding.toggleButton.check(R.id.button12)
+        }
+
+
+
+        Log.d("login",isTutor.toString())
 
         binding.textRegisterNow.setOnClickListener {
             navigateToSignUp()
@@ -106,7 +127,8 @@ class LoginActivity : AppCompatActivity() {
         if (emailValid && passwordValid) {
             val user = Params.SignIn(
                 email = binding.textEditEmail.text.toString(),
-                password = binding.textEditPassword.text.toString()
+                password = binding.textEditPassword.text.toString(),
+                is_tutor = isTutor
             )
             viewModel.signIn(user)
         } else if (!emailValid) {
@@ -150,7 +172,8 @@ class LoginActivity : AppCompatActivity() {
 
 
     private fun navigateToDashBoard() {
-        startActivity(Intent(this, BottomNavigationActivity::class.java))
+        startActivity(Intent(this, HomeNavigationDrawerActivity::class.java))
+        //finish()
         finish()
     }
 

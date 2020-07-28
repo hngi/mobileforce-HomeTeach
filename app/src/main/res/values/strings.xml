@@ -190,6 +190,9 @@
     <string name="tap_to_select_a_grade">Tap to select a grade</string>
     <string name="tap_to_select_a_course">Tap to select a course</string>
     <string name="you_currently_have_no_request">You currently have no request</string>
+    <string name="nav_header_desc">Drawer Header</string>
+    <string name="nav_header_title">Mark Essien</string>
+    <string name="nav_header_subtitle">markessien@gmail.com</string>
 
     <string-array name="fields_array">
         <item>Science</item>
