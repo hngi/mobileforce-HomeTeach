@@ -3,12 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-        <variable
-            name="requestClass"
-            type="com.mobileforce.hometeach.models.RequestClassModel" />
-    </data>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,11 +11,12 @@
             android:id="@+id/card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:elevation="4dp"
+            app:cardElevation="4dp"
             android:layout_margin="@dimen/card_margin"
             app:cardBackgroundColor="@color/cardBackground"
             app:cardCornerRadius="@dimen/card_radius"
             app:contentPadding="@dimen/card_margin">
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -38,7 +33,6 @@
                     android:textColor="@color/textColor"
                     android:textStyle="bold"
                     tools:text="Mathematics"
-                    android:text="@{requestClass.subjectName}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -48,8 +42,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{@string/naira_symbol(requestClass.price)}"
                     android:layout_marginTop="8dp"
+                    android:visibility="invisible"
                     tools:text="N2000/hr"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true" />
@@ -60,6 +54,7 @@
                     android:id="@+id/linear_layout"
                     android:layout_marginTop="13dp"
                     android:layout_below="@id/subject_name">
+
                     <ImageView
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
@@ -67,35 +62,36 @@
 
                     <TextView
                         android:id="@+id/class_date"
-                        android:text="@{requestClass.date}"
                         style="@style/TextAppearance.MaterialComponents.Body1"
                         app:fontFamily="@font/ubuntu"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         tools:text="Tue, 10 July"
                         android:layout_marginStart="5dp"
-                        android:textColor="@color/blackColor"
+                        android:textColor="@color/textColor"
                         android:layout_marginLeft="5dp" />
 
                     <ImageView
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         android:src="@drawable/ic_time"
+                        android:visibility="invisible"
                         android:layout_marginLeft="10dp"
                         android:layout_marginStart="10dp" />
 
                     <TextView
                         android:id="@+id/class_time"
-                        android:text="@{requestClass.time}"
                         android:layout_marginStart="5dp"
                         style="@style/TextAppearance.MaterialComponents.Body1"
                         app:fontFamily="@font/ubuntu"
+                        android:textColor="@color/textColor"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         tools:text="16:00 - 18:00"
-                        android:textColor="@color/blackColor"
+                        android:visibility="invisible"
                         android:layout_marginLeft="5dp" />
                 </LinearLayout>
+
                 <TextView
                     android:id="@+id/tutor_name"
                     android:layout_height="wrap_content"
@@ -105,14 +101,13 @@
                     app:fontFamily="@font/ubuntu"
                     tools:text="Tutor: Jake Wharton"
                     android:layout_marginTop="10dp"
-                    android:text="@{`Tutor: `.concat(requestClass.tutorName)}"
-                    android:textColor="@color/blackColor" />
+                    android:textColor="@color/textColor" />
                 <TextView
+                    android:id="@+id/tv_grade"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     tools:text="Grade 2"
-                    android:text="@{`Grade `.concat(String.valueOf(requestClass.grade))}"
-                    android:textColor="#000000"
+                    android:textColor="@color/textColor"
                     android:layout_marginTop="10sp"
                     android:layout_alignParentEnd="true"
                     android:layout_below="@id/linear_layout"
@@ -125,31 +120,29 @@
                     android:layout_below="@id/tutor_name"
                     android:layout_marginTop="15dp"
                     android:text="@string/confirm"
-                    showButton="@{requestClass.showButtons}"
                     android:id="@+id/confirm_button"
                     android:textColor="#FFFFFF"
+                    android:visibility="gone"
                     android:layout_marginLeft="35dp"
                     android:layout_marginStart="35dp"/>
                 <com.google.android.material.button.MaterialButton
                     android:layout_width="130dp"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="#FFFFFF"
                     android:layout_below="@id/tutor_name"
                     android:layout_marginTop="15dp"
+                    android:visibility="gone"
                     android:text="@string/cancel"
-                    showButton="@{requestClass.showButtons}"
                     android:layout_alignParentEnd="true"
                     android:textColor="@color/primaryColor"
                     android:layout_marginRight="35dp"
                     android:layout_marginEnd="35dp"
                     android:layout_alignParentRight="true" />
                 <TextView
+                    android:id="@+id/tv_status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    setColor="@{requestClass.status}"
-                    showText="@{requestClass.showButtons}"
-                    android:text="@{`Status: `.concat(requestClass.status)}"
+                    android:textColor="@color/textColor"
                     android:layout_below="@id/confirm_button"
                     tools:text="Status: Awaiting Approval"
                     style="@style/TextAppearance.MaterialComponents.Body1"/>

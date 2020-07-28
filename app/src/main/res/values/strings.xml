@@ -118,10 +118,10 @@
     <string name="about">About</string>
     <string name="i_love_mathematics_and_data_science_looking_to_build_my_kids_and_myself_also">I love mathematics and data science looking to build my kids and myself also</string>
     <string name="_09030000000">09030000000</string>
-    <string name="_34_lessons">34 lessons</string>
+    <string name="_34_lessons">0 lessons</string>
     <string name="price">Price</string>
-    <string name="_12_students">12 students</string>
-    <string name="_16">(16)</string>
+    <string name="_12_students">0 student(s)</string>
+    <string name="_16">(0)</string>
     <string name="interests_science_math_physics">Interests: Science, Math, Physics</string>
     <string name="available">Available</string>
     <string name="i_teach_with_calmness_and_encouragement_my_lessons_are_not_boring_and_i_can_accomodate_student_s_with_low_affinity_to_studying_i_employ_modern_schema_for_tutoring_with_interactive_guides_and_learning_systems_having_schooled_at_different_educational_organizations_coupled_with_my_nce_certifcate_i_can_assure_you_premium_success_with_me_as_your_home_teacher">I teach with calmness and encouragement. My lessons are not boring and i can accommodate student’s with low affinity to studying. I employ modern schema for tutoring with interactive guides and learning systems. Having schooled at different educational organizations coupled with my NCE certifcate, I can assure you premium success with me as your Home-Teacher.</string>
@@ -185,6 +185,14 @@
     <string name="select_grade">3. SELECT GRADE</string>
     <string name="tap_to_select_grade">Tap dropdown to select grade</string>
     <string name="text_no_chat_history">You currently have no chat history</string>
+    <string name="you_currently_have_no_upcoming_class">You currently have no upcoming class</string>
+    <string name="you_currently_have_no_ongoing_class">You currently have no ongoing class</string>
+    <string name="tap_to_select_a_grade">Tap to select a grade</string>
+    <string name="tap_to_select_a_course">Tap to select a course</string>
+    <string name="you_currently_have_no_request">You currently have no request</string>
+    <string name="nav_header_desc">Drawer Header</string>
+    <string name="nav_header_title">Mark Essien</string>
+    <string name="nav_header_subtitle">markessien@gmail.com</string>
 
     <string-array name="fields_array">
         <item>Science</item>

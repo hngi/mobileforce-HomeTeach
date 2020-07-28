@@ -1,4 +1,4 @@
-package com.mobileforce.hometeach.remotesource.wrappers
+package com.mobileforce.hometeach.data.sources.remote.wrappers
 
 class UserCardDetailResponse (
     val id: Int,

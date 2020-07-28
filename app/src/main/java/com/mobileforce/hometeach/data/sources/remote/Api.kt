@@ -4,7 +4,8 @@ package com.mobileforce.hometeach.data.sources.remote
 import androidx.lifecycle.LiveData
 import com.mobileforce.hometeach.data.sources.local.entities.UserEntity
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
-import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
+import com.mobileforce.hometeach.models.TutorRequestDataModel
+import com.mobileforce.hometeach.models.TutorUpcomingDataModel
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -98,6 +99,22 @@ interface Api {
         @Path("id") id: Int,
         @Part credentials: MultipartBody.Part
     ): UploadResponse
+
+    @JvmSuppressWildcards
+    @POST("v1/student-classes-requests/")
+    suspend fun getStudentClassRequest(@Body param: Map<String, String>): UserClassRequestResponse
+
+    @POST("v1/student-classes/")
+    suspend fun getStudentClasses(@Body param: Map<String, String>): UserClassesResponse
+
+    @POST("v1/tutor-classes-requests/")
+    suspend fun getTutorClassesRequest(@Body params: Map<String, String>): TutorRequestDataModel
+
+    @POST("v1/tutor-classes/")
+    suspend fun getTutorClasses(@Body params: Map<String, String>): TutorUpcomingDataModel
+
+    @POST("v1/request-action/")
+    suspend fun grantStudentRequest(@Body params: Map<String, Any>): StudentRequestResponse
 
     @GET("v1/user-wallet/{id}")
     suspend fun getUserWallet(@Path("id") id: String): UserWalletResponse

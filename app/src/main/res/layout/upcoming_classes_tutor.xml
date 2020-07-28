@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/card_margin"
+        android:elevation="4dp"
+        app:cardBackgroundColor="@color/cardBackground"
+        app:cardCornerRadius="@dimen/card_radius"
+        app:contentPadding="@dimen/card_margin">
+        <!-- Card contents -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/subject_name"
+                style="@style/TextAppearance.MaterialComponents.Headline6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="0dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:gravity="start"
+                android:text=""
+                android:textAlignment="viewStart"
+                android:textColor="@color/textColor"
+                android:textStyle="bold"
+                app:fontFamily="@font/ubuntu"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ProgressBar
+                android:id="@+id/class_progress"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="7dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:progressDrawable="@drawable/curved_progress_bar" />
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="fill"
+                android:columnCount="3"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TextAppearance.MaterialComponents.Body1"
+                    android:layout_row="0"
+                    android:layout_column="0"
+                    android:layout_columnWeight="1"
+                    android:text="Next"
+                    android:textColor="@color/blackColor"
+                    app:fontFamily="@font/ubuntu" />
+
+                <GridLayout
+                    android:layout_row="0"
+                    android:layout_column="1"
+                    android:layout_columnWeight="1"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:columnCount="2"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_row="0"
+                        android:layout_column="0"
+                        android:src="@drawable/ic_calender" />
+
+                    <TextView
+                        android:id="@+id/class_date"
+                        style="@style/TextAppearance.MaterialComponents.Body1"
+                        android:layout_row="0"
+                        android:layout_column="1"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:text=""
+                        android:textColor="@color/blackColor"
+                        app:fontFamily="@font/ubuntu" />
+                    </GridLayout>
+
+                <GridLayout
+                    android:layout_row="0"
+                    android:layout_column="2"
+                    android:layout_columnWeight="1"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:columnCount="2"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_row="0"
+                        android:layout_column="0"
+                        android:src="@drawable/ic_time" />
+
+                    <TextView
+                        android:id="@+id/class_time"
+                        style="@style/TextAppearance.MaterialComponents.Body1"
+                        android:layout_row="0"
+                        android:layout_column="1"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:text=""
+                        android:textColor="@color/blackColor"
+                        app:fontFamily="@font/ubuntu" />
+                    </GridLayout>
+                </GridLayout>
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="fill"
+                    android:columnCount="2"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_column="1"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="end|center_vertical"
+                        android:src="@drawable/ic_calculator" />
+
+                    <GridLayout
+                        android:layout_column="0"
+                        android:layout_columnWeight="0"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginTop="10dp"
+                        android:columnCount="2"
+                        android:orientation="horizontal"
+                        android:rowCount="2">
+
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/tutor_image"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_row="0"
+                            android:layout_rowSpan="2"
+                            android:layout_column="0"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginRight="10dp"
+                            android:scaleType="centerCrop" />
+
+                        <TextView
+                            android:id="@+id/tutor_name"
+                            style="@style/TextAppearance.MaterialComponents.Body1"
+                            android:layout_row="0"
+                            android:layout_column="1"
+                            android:layout_gravity="center"
+                            android:text=""
+                            android:textColor="@color/blackColor"
+                            android:textStyle="bold"
+                            app:fontFamily="@font/ubuntu" />
+
+                        <TextView
+                            android:id="@+id/tutor_subject"
+                            style="@style/TextAppearance.MaterialComponents.Caption"
+                            android:layout_row="1"
+                            android:layout_column="1"
+                            android:text=""
+                            android:textColor="@color/blackColor"
+                            app:fontFamily="@font/ubuntu" />
+                    </GridLayout>
+                </GridLayout>
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>

@@ -6,9 +6,7 @@ import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,23 +18,17 @@ import co.paystack.android.exceptions.ExpiredAccessCodeException
 import co.paystack.android.model.Card
 import co.paystack.android.model.Charge
 import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.snackbar.SnackbarContentLayout
 import com.mobileforce.hometeach.R
+import com.mobileforce.hometeach.data.sources.remote.wrappers.UserCardDetailResponse
 import com.mobileforce.hometeach.databinding.FragmentStudentMakePaymentBinding
-import com.mobileforce.hometeach.databinding.PaymentReferenceDialogBinding
-import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
 import com.mobileforce.hometeach.ui.studentpayments.carddetails.StudentCardsRecycler
-import com.mobileforce.hometeach.utils.Result
-import com.mobileforce.hometeach.utils.snack
 import kotlinx.android.synthetic.main.fragment_student_make_payment.*
-import kotlinx.android.synthetic.main.payment_reference_dialog.*
 import kotlinx.android.synthetic.main.students_card_list.view.*
 import kotlinx.coroutines.launch
 import org.json.JSONException
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.io.BufferedReader
 import java.io.InputStreamReader
-import java.lang.Exception
 import java.net.URL
 import java.util.*
 import kotlin.collections.ArrayList
@@ -66,18 +58,19 @@ class StudentMakePaymentFragment : Fragment() {
         binding = FragmentStudentMakePaymentBinding.inflate(inflater, container, false)
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.getUserCardDetails()
-        viewModel.user.observe(viewLifecycleOwner, androidx.lifecycle.Observer {user ->
+        viewModel.user.observe(viewLifecycleOwner, androidx.lifecycle.Observer { user ->
             user?.let {
                 userEmail = user.email
             }
         })
 
         onClickListener = View.OnClickListener {
-            if (TextUtils.isEmpty(et_amount.text)){
+            if (TextUtils.isEmpty(et_amount.text)) {
                 layout_amount.error = "Input an amount"
             } else {
                 val holder = it.tag as RecyclerView.ViewHolder
@@ -104,35 +97,28 @@ class StudentMakePaymentFragment : Fragment() {
                     try {
                         startAFreshCharge(true)
                     } catch (e: Exception) {
-                        val message = String.format("An error occurred while charging card: %s %s", e::class.java.simpleName, e.message)
+                        val message = String.format(
+                            "An error occurred while charging card: %s %s",
+                            e::class.java.simpleName,
+                            e.message
+                        )
                         displayErrorDialog(message)
                     }
                 }
             }
         }
 
-        viewModel.getUserCardDetails.observe(viewLifecycleOwner, androidx.lifecycle.Observer { result ->
-            when (result) {
-                Result.Loading -> {}
-                is Result.Success -> {
-                    for (card in result.data!!){
-                        cardList.add(card)
-                    }
-                    binding.studentcardsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-                    binding.studentcardsRecyclerView.hasFixedSize()
-                    val adapter = StudentCardsRecycler()
-                    adapter.submitList(result.data)
-                    binding.studentcardsRecyclerView.adapter = adapter
-                    adapter.setOnclickListener(onClickListener)
-                }
-            }
-        })
+        val adapter = StudentCardsRecycler()
+        adapter.setOnclickListener(onClickListener)
 
-//        val adapter2 = StudentPaymentsRecycler()
-//        adapter2.submitList(student.payment)
-//        binding.paymentsRecyclerView .adapter = adapter2
-//        binding.paymentsRecyclerView.hasFixedSize()
-}
+        binding.studentcardsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.studentcardsRecyclerView.hasFixedSize()
+        binding.studentcardsRecyclerView.adapter = adapter
+
+        viewModel.cards.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            adapter.submitList(it)
+        })
+    }
 
     private fun loadCardFromForm(): Card? {
         val card = Card.Builder(cardNumber, 0, 0, "").build()
@@ -142,7 +128,7 @@ class StudentMakePaymentFragment : Fragment() {
         return card
     }
 
-    private fun startAFreshCharge(local: Boolean){
+    private fun startAFreshCharge(local: Boolean) {
         charge = Charge()
         charge.card = loadCardFromForm()
 
@@ -156,15 +142,15 @@ class StudentMakePaymentFragment : Fragment() {
             charge.reference = "ChargedFromAndroid_" + Calendar.getInstance().timeInMillis
             try {
                 charge.putCustomField("Charged From", "Android SDK")
-            } catch (e: JSONException){
+            } catch (e: JSONException) {
                 e.printStackTrace()
             }
             chargeCard()
         }
     }
 
-    private fun chargeCard(){
-        PaystackSdk.chargeCard(requireActivity(), charge, object: Paystack.TransactionCallback {
+    private fun chargeCard() {
+        PaystackSdk.chargeCard(requireActivity(), charge, object : Paystack.TransactionCallback {
             override fun onSuccess(transaction: Transaction?) {
                 dismissProgressDialog()
                 this@StudentMakePaymentFragment.transaction = transaction
@@ -181,22 +167,29 @@ class StudentMakePaymentFragment : Fragment() {
 
             override fun onError(error: Throwable?, transaction: Transaction?) {
                 this@StudentMakePaymentFragment.transaction = transaction
-                if (error is ExpiredAccessCodeException){
+                if (error is ExpiredAccessCodeException) {
                     startAFreshCharge(false)
                     chargeCard()
                     return
                 }
                 dismissProgressDialog()
 
-                if (transaction?.reference != null){
-                    Toast.makeText(activity, transaction.reference + " concluded with error: " + error?.message, Toast.LENGTH_LONG).show()
-                    val message = String.format("%s  concluded with error: %s %s",
-                        transaction.reference, error!!::class.java.simpleName, error.message)
+                if (transaction?.reference != null) {
+                    Toast.makeText(
+                        activity,
+                        transaction.reference + " concluded with error: " + error?.message,
+                        Toast.LENGTH_LONG
+                    ).show()
+                    val message = String.format(
+                        "%s  concluded with error: %s %s",
+                        transaction.reference, error!!::class.java.simpleName, error.message
+                    )
                     displayErrorDialog(message)
                     //verifyOnServer(transaction.reference)
-                } else{
+                } else {
                     Toast.makeText(activity, error?.message, Toast.LENGTH_LONG).show()
-                    val message = String.format("Error: %s %s", error!!::class.java.simpleName, error.message)
+                    val message =
+                        String.format("Error: %s %s", error!!::class.java.simpleName, error.message)
                     displayErrorDialog(message)
                 }
                 displayReferenceDialog()
@@ -212,9 +205,17 @@ class StudentMakePaymentFragment : Fragment() {
 
     private fun displayReferenceDialog() {
         if (transaction?.reference != null) {
-            Snackbar.make(binding.materialCardView, String.format("Reference: %s", transaction?.reference), Snackbar.LENGTH_LONG)
+            Snackbar.make(
+                binding.materialCardView,
+                String.format("Reference: %s", transaction?.reference),
+                Snackbar.LENGTH_LONG
+            )
         } else {
-            Snackbar.make(binding.materialCardView, getString(R.string.no_transaction), Snackbar.LENGTH_LONG)
+            Snackbar.make(
+                binding.materialCardView,
+                getString(R.string.no_transaction),
+                Snackbar.LENGTH_LONG
+            )
         }
     }
 

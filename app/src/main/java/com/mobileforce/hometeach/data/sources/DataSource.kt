@@ -5,7 +5,8 @@ import com.mobileforce.hometeach.data.model.User
 import com.mobileforce.hometeach.data.sources.local.entities.*
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
-import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
+import com.mobileforce.hometeach.models.TutorRequestDataModel
+import com.mobileforce.hometeach.models.TutorUpcomingDataModel
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -71,7 +72,7 @@ interface DataSource {
     suspend fun uploadVideo(
         id: Int,
         video: MultipartBody.Part
-    ):UploadResponse
+    ): UploadResponse
 
     suspend fun uploadCredential(
         id: Int,
@@ -94,9 +95,24 @@ interface DataSource {
         params: Params.UpdateTutorProfile
     ): LoginResponse
 
+
+    suspend fun getTutorClassesRequest(param: Params.TutorClassesRequest): TutorRequestDataModel
+
+    suspend fun getTutorClasses(param: Params.TutorClassesRequest): TutorUpcomingDataModel
+
+    suspend fun grantStudentRequest(params: Params.StudentRequest): StudentRequestResponse
+
+    suspend fun getStudentClassRequest(param: Params.StudentID): UserClassRequestResponse
+
+    suspend fun getStudentClasses(param: Params.StudentID): UserClassesResponse
+
     suspend fun getUserWallet(param: Params.UserWallet): UserWalletResponse = TODO()
 
     suspend fun saveUserWallet(walletEntity: WalletEntity) {}
 
     fun observeWalletData(): LiveData<WalletEntity> = TODO()
+
+    suspend fun saveCardToDb(cardEntity: CardEntity) {}
+
+    fun observeUserCards(): LiveData<List<CardEntity>> = TODO()
 }

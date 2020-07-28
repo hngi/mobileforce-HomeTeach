@@ -11,9 +11,8 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mobileforce.hometeach.R
+import com.mobileforce.hometeach.data.sources.remote.wrappers.UserCardDetailResponse
 import com.mobileforce.hometeach.databinding.FragmentStudentCardDetailsBinding
-import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
-import com.mobileforce.hometeach.utils.Result
 import com.mobileforce.hometeach.utils.formatBalance
 import com.mobileforce.hometeach.utils.loadImage
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -33,7 +32,7 @@ class StudentCardDetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding =  FragmentStudentCardDetailsBinding.inflate(inflater, container, false)
+        binding = FragmentStudentCardDetailsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -45,20 +44,22 @@ class StudentCardDetailsFragment : Fragment() {
             toolbar.setNavigationIcon(R.drawable.back_arrow)
         }
 
-        viewModel.getUserCardDetails()
         onClickListener = View.OnClickListener {}
 
-        viewModel.getUserCardDetails.observe(viewLifecycleOwner, Observer { result ->
-            when (result) {
-                Result.Loading -> {}
-                is Result.Success -> {
-                    binding.rvCreditCards.layoutManager = LinearLayoutManager(requireContext())
-                    binding.rvCreditCards.hasFixedSize()
-                    val adapter = StudentCardsRecycler()
-                    adapter.submitList(result.data)
-                    binding.rvCreditCards.adapter = adapter
-                    adapter.setOnclickListener(onClickListener)
-                }
+        val cardsAdapter = StudentCardsRecycler()
+        cardsAdapter.setOnclickListener(onClickListener)
+        binding.rvCreditCards.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            hasFixedSize()
+            adapter = cardsAdapter
+        }
+
+        viewModel.getUserCardDetails()
+
+
+        viewModel.cards.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                cardsAdapter.submitList(it)
             }
         })
 
@@ -68,7 +69,7 @@ class StudentCardDetailsFragment : Fragment() {
         val addCard = binding.addCard
         val balance = binding.balance
 
-        viewModel.user.observe(viewLifecycleOwner, androidx.lifecycle.Observer {user ->
+        viewModel.user.observe(viewLifecycleOwner, androidx.lifecycle.Observer { user ->
             user?.let {
                 userName.text = user.full_name
             }

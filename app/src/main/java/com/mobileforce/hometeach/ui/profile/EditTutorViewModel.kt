@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mobileforce.hometeach.data.repository.TutorRepository
+import com.mobileforce.hometeach.data.repository.UserRepository
+import com.mobileforce.hometeach.data.sources.local.entities.ProfileEntity
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.LoginResponse
 import com.mobileforce.hometeach.data.sources.remote.wrappers.UploadResponse
@@ -15,7 +17,14 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import java.io.InputStream
 
-class EditTutorViewModel(private val tutorRepository: TutorRepository) : ViewModel() {
+class EditTutorViewModel(
+    private val tutorRepository: TutorRepository,
+    private val userRepository: UserRepository
+) : ViewModel() {
+
+
+    val profile: LiveData<ProfileEntity> = userRepository.profileLiveData()
+
 
     private val _postTutorDetails = MutableLiveData<Result<LoginResponse>>()
     val updateTutorProfile: LiveData<Result<LoginResponse>> = _postTutorDetails

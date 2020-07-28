@@ -7,7 +7,6 @@ import com.mobileforce.hometeach.data.sources.DataSourceFactory
 import com.mobileforce.hometeach.data.sources.local.entities.*
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
-import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
 import retrofit2.Response
 
 
@@ -140,6 +139,18 @@ class UserRepositoryImpl(private val dataSource: DataSourceFactory) : UserReposi
         dataSource.local().saveTutorDetailsToDb(tutorDetailsEntity)
     }
 
+    override suspend fun getStudentClassRequest(): UserClassRequestResponse {
+        val user = dataSource.local().getSingleUser()
+        val studentId = Params.StudentID(student_id = user.id)
+        return dataSource.remote().getStudentClassRequest(studentId)
+    }
+
+    override suspend fun getStudentClasses(): UserClassesResponse {
+        val user = dataSource.local().getSingleUser()
+        val studentId = Params.StudentID(student_id = user.id)
+        return dataSource.remote().getStudentClasses(studentId)
+    }
+
     override suspend fun getUserWallet(): UserWalletResponse {
         val user = getSingleUser()
         val param = Params.UserWallet(user = user.id)
@@ -160,5 +171,11 @@ class UserRepositoryImpl(private val dataSource: DataSourceFactory) : UserReposi
         return dataSource.local().observeWalletData()
     }
 
+    override suspend fun saveCardToDb(cardEntity: CardEntity) {
+        dataSource.local().saveCardToDb(cardEntity)
+    }
 
+    override fun observeUSerCards(): LiveData<List<CardEntity>> {
+        return dataSource.local().observeUserCards()
+    }
 }

@@ -1,12 +1,12 @@
 package com.mobileforce.hometeach.ui.home
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mobileforce.hometeach.data.repository.UserRepository
 import com.mobileforce.hometeach.data.sources.local.entities.WalletEntity
+import com.mobileforce.hometeach.data.sources.remote.wrappers.UserClassesResponse
 import com.mobileforce.hometeach.models.TutorModel
 import com.mobileforce.hometeach.utils.*
 import kotlinx.coroutines.Dispatchers
@@ -24,6 +24,10 @@ class HomePageViewModel(
     private val _tutorList = MutableLiveData<Result<List<TutorModel>>>()
     val tutorList = _tutorList.asLiveData()
 
+    //Student class response for upcoming and ongoing class
+    private val _studentClass = MutableLiveData<Result<UserClassesResponse>>()
+    val studentClass = _studentClass.asLiveData()
+
     val wallet: LiveData<WalletEntity> = userRepository.observeWalletData()
 
     init {
@@ -35,10 +39,8 @@ class HomePageViewModel(
      * fetch from the remote source.
      */
     fun getTutorList() {
-        Log.i("MAYOKUN", "GETTING LIST")
         viewModelScope.launch {
             val listTutors = userRepository.getTutorListDb()
-            Log.i("MAYOKUN", "LIST IS LOCAL $listTutors")
             if (listTutors.isNullOrEmpty()) {
                 refreshTutorList()
             } else {
@@ -52,15 +54,13 @@ class HomePageViewModel(
      * This function fetches a fresh list of [TutorModel] from the remote source.
      * This is called also when the user swipes down on the screen.
      */
-    fun refreshTutorList() {
+    private fun refreshTutorList() {
         _tutorList.postValue(Result.Loading)
-        Log.i("MAYOKUN", "REFRESHING")
         viewModelScope.launch {
             try {
                 val response = userRepository.getTutorList()
                 if (response.isSuccessful) {
                     val tutorListResponse = response.body()
-                    Log.i("MAYOKUN", "RESPONSE $tutorListResponse")
                     val listOfTutors = tutorListResponse?.map {
                         it.toDomainModel()
                     }
@@ -69,11 +69,26 @@ class HomePageViewModel(
                     userRepository.saveTutorList(listOfTutors!!.map { it.toDbEntity() })
 
                 } else {
-                    Log.i("MAYOKUN", "NULL RESPONSE")
                     _tutorList.postValue(Result.Success(null))
                 }
             } catch (exception: Exception) {
                 _tutorList.postValue(Result.Error(exception))
+            }
+        }
+    }
+
+    /**
+     * This function fetches an instance of [UserClassesResponse] from the remote source.
+     * From which we can get the details about upcoming and ongoing classes
+     */
+    fun getStudentClasses() {
+        _studentClass.postValue(Result.Loading)
+        viewModelScope.launch {
+            try {
+                val response = userRepository.getStudentClasses()
+                _studentClass.postValue(Result.Success(response))
+            } catch (error: Throwable) {
+                _studentClass.postValue(Result.Error(error))
             }
         }
     }
@@ -93,7 +108,7 @@ class HomePageViewModel(
     }
 
 
-    fun fetchUserWallet() {
+    private fun fetchUserWallet() {
 
         viewModelScope.launch {
 

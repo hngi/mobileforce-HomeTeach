@@ -276,23 +276,32 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
 
-                        <com.tiper.MaterialSpinner
+                        <com.skydoves.powerspinner.PowerSpinnerView
                             android:id="@+id/course_spinner"
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
                             android:layout_marginLeft="8dp"
+                            android:hint="@string/tap_to_select_a_course"
+                            android:padding="10dp"
+                            android:textSize="14.5sp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:spinner_arrow_gravity="end"
+                            app:spinner_arrow_padding="8dp"
+                            app:spinner_divider_color="@color/primaryLightColor"
+                            app:spinner_divider_show="true"
+                            app:spinner_divider_size="0.4dp"
+                            app:spinner_item_array="@array/tutor_subjects"
                             android:layout_marginTop="16dp"
+                            app:spinner_popup_animation="dropdown"
                             android:layout_marginEnd="8dp"
+                            app:spinner_popup_background="@color/white"
                             android:layout_marginRight="8dp"
                             android:layout_marginBottom="16dp"
-                            android:src="@drawable/ic_right_arrow"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@+id/imageView42"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:spinnerMode="dropdown" />
+                            app:spinner_popup_elevation="14dp" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
@@ -344,23 +353,30 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
 
-                        <com.tiper.MaterialSpinner
+                        <com.skydoves.powerspinner.PowerSpinnerView
                             android:id="@+id/grade_spinner"
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
                             android:layout_marginLeft="8dp"
                             android:layout_marginTop="16dp"
+                            android:hint="@string/tap_to_select_a_grade"
+                            android:padding="10dp"
+                            android:textSize="14.5sp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:spinner_arrow_padding="8dp"
+                            app:spinner_divider_color="@color/primaryLightColor"
+                            app:spinner_divider_show="true"
+                            app:spinner_divider_size="0.4dp"
                             android:layout_marginEnd="8dp"
+                            app:spinner_item_array="@array/course_grade"
+                            app:spinner_popup_background="@color/white"
                             android:layout_marginRight="8dp"
                             android:layout_marginBottom="16dp"
-                            android:src="@drawable/ic_right_arrow"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@+id/imageView89"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:spinnerMode="dropdown" />
+                            app:spinner_popup_elevation="14dp" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>

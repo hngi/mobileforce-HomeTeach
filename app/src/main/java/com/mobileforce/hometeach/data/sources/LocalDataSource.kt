@@ -6,7 +6,8 @@ import com.mobileforce.hometeach.data.sources.local.AppDataBase
 import com.mobileforce.hometeach.data.sources.local.entities.*
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
-import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
+import com.mobileforce.hometeach.models.TutorRequestDataModel
+import com.mobileforce.hometeach.models.TutorUpcomingDataModel
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -176,12 +177,42 @@ class LocalDataSource(private val db: AppDataBase) : DataSource {
         TODO("Not yet implemented")
     }
 
+    override suspend fun getTutorClassesRequest(param: Params.TutorClassesRequest): TutorRequestDataModel {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getTutorClasses(param: Params.TutorClassesRequest): TutorUpcomingDataModel {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun grantStudentRequest(params: Params.StudentRequest): StudentRequestResponse {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getStudentClassRequest(param: Params.StudentID): UserClassRequestResponse {
+
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getStudentClasses(param: Params.StudentID): UserClassesResponse {
+        TODO("Not yet implemented")
+    }
+
     override suspend fun saveUserWallet(walletEntity: WalletEntity) {
         db.walletDao().saveWalletInfo(walletEntity)
     }
 
     override fun observeWalletData(): LiveData<WalletEntity> {
         return db.walletDao().observeWalletInfo()
+
+    }
+
+    override suspend fun saveCardToDb(cardEntity: CardEntity) {
+        db.userDao().saveCard(cardEntity)
+    }
+
+    override fun observeUserCards(): LiveData<List<CardEntity>> {
+        return db.userDao().observeUserCards()
     }
 
     private fun mapProfileToEntity(profile: Profile): ProfileEntity {

@@ -3,21 +3,19 @@ package com.mobileforce.hometeach.ui.booktutor
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.snackbar.Snackbar
-import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.databinding.BookTutorFormBinding
 import com.mobileforce.hometeach.ui.tutorlist.DialogData
 import com.mobileforce.hometeach.ui.tutorlist.SelectDateDialog
 import com.mobileforce.hometeach.utils.Result
-import com.tiper.MaterialSpinner
 import org.koin.android.viewmodel.ext.android.viewModel
 
 /**
@@ -38,6 +36,7 @@ class BookTutorFragment : Fragment(), SelectDateDialog.SelectDateListener {
         savedInstanceState: Bundle?
     ): View? {
         binding = BookTutorFormBinding.inflate(layoutInflater)
+        setupSpinners()
         return binding.root
     }
 
@@ -51,85 +50,52 @@ class BookTutorFragment : Fragment(), SelectDateDialog.SelectDateListener {
         binding.tutor = tutor
         viewModel.setTutor(tutor)
         observeViewModels()
-        setupSpinners()
         popupDialog = SelectDateDialog()
         binding.selectTimeDateCard.setOnClickListener {
             popupDialog.showPopupWindow(requireView(), this)
         }
         binding.bookTutorButton.setOnClickListener {
-           if (courseSet && gradeSet && calendarDialogData != null){
-               val subject = binding.courseSpinner.selectedItem as String
-               val grade = binding.gradeSpinner.selectedItem as String
-               viewModel.getTutorService(calendarDialogData!!,subject,grade)
-           }else if (!courseSet){
-               Toast.makeText(requireContext(),"Please select a course!",Toast.LENGTH_SHORT).show()
-           }else if (!gradeSet){
-               Toast.makeText(requireContext(),"Please select a grade!",Toast.LENGTH_SHORT).show()
-           }else if (calendarDialogData == null){
-               Toast.makeText(requireContext(),"Please select the time and date!",Toast.LENGTH_SHORT).show()
-           }
+            if (courseSet && gradeSet && calendarDialogData != null) {
+                val subject = binding.courseSpinner.text.toString().trim()
+                val grade = binding.gradeSpinner.text.toString().trim()
+                viewModel.getTutorService(calendarDialogData!!, subject, grade)
+            } else if (!courseSet) {
+                Toast.makeText(requireContext(), "Please select a course!", Toast.LENGTH_SHORT)
+                    .show()
+            } else if (!gradeSet) {
+                Toast.makeText(requireContext(), "Please select a grade!", Toast.LENGTH_SHORT)
+                    .show()
+            } else if (calendarDialogData == null) {
+                Toast.makeText(
+                    requireContext(),
+                    "Please select the time and date!",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
     }
 
     private fun setupSpinners() {
-        val courseListener by lazy {
-            object : MaterialSpinner.OnItemSelectedListener {
-                override fun onItemSelected(
-                    parent: MaterialSpinner,
-                    view: View?,
-                    position: Int,
-                    id: Long
-                ) {
-                    courseSet = true
-                    parent.focusSearch(View.FOCUS_UP)?.requestFocus()
-                }
 
-                override fun onNothingSelected(parent: MaterialSpinner) {
-                    courseSet = false
-                }
-            }
+        binding.gradeSpinner.lifecycleOwner = viewLifecycleOwner
+        binding.courseSpinner.lifecycleOwner = viewLifecycleOwner
+
+        binding.courseSpinner.setOnSpinnerOutsideTouchListener { view: View, event: MotionEvent ->
+            binding.courseSpinner.dismiss()
         }
 
-        val gradeListener by lazy {
-            object : MaterialSpinner.OnItemSelectedListener {
-                override fun onItemSelected(
-                    parent: MaterialSpinner,
-                    view: View?,
-                    position: Int,
-                    id: Long
-                ) {
-                    gradeSet = true
-                    parent.focusSearch(View.FOCUS_UP)?.requestFocus()
-                }
-
-                override fun onNothingSelected(parent: MaterialSpinner) {
-                    gradeSet = false
-                }
-            }
-        }
-        ArrayAdapter.createFromResource(
-            requireContext(),
-            R.array.tutor_subjects,
-            android.R.layout.simple_spinner_item
-        ).let {
-            it.setDropDownViewResource(android.R.layout.select_dialog_singlechoice)
-            binding.courseSpinner.apply {
-                adapter = it
-                onItemSelectedListener = courseListener
-            }
+        binding.gradeSpinner.setOnSpinnerOutsideTouchListener { view: View, motionEvent: MotionEvent ->
+            binding.gradeSpinner.dismiss()
         }
 
-        ArrayAdapter.createFromResource(
-            requireContext(),
-            R.array.course_grade,
-            android.R.layout.simple_spinner_item
-        ).let {
-            it.setDropDownViewResource(android.R.layout.select_dialog_singlechoice)
-            binding.gradeSpinner.apply {
-                adapter = it
-                onItemSelectedListener = gradeListener
-            }
+        binding.courseSpinner.setOnSpinnerItemSelectedListener<String> { position: Int, item: String ->
+            courseSet = true
         }
+        binding.gradeSpinner.setOnSpinnerItemSelectedListener<String> { position: Int, item: String ->
+            gradeSet = true
+        }
+
+
     }
 
     @SuppressLint("NewApi")

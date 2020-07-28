@@ -1,12 +1,17 @@
 package com.mobileforce.hometeach.data
 
-import com.mobileforce.hometeach.data.sources.local.entities.ProfileEntity
+
 import com.mobileforce.hometeach.data.repository.TutorRepository
 import com.mobileforce.hometeach.data.sources.DataSourceFactory
+import com.mobileforce.hometeach.data.sources.local.entities.ProfileEntity
+import com.mobileforce.hometeach.data.sources.local.entities.UserEntity
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.LoginResponse
+import com.mobileforce.hometeach.data.sources.remote.wrappers.StudentRequestResponse
 import com.mobileforce.hometeach.data.sources.remote.wrappers.UploadResponse
 import com.mobileforce.hometeach.data.sources.remote.wrappers.UserProfileResponse
+import com.mobileforce.hometeach.models.TutorRequestDataModel
+import com.mobileforce.hometeach.models.TutorUpcomingDataModel
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -47,14 +52,30 @@ class TutorRepositoryImpl (private val dataSource: DataSourceFactory): TutorRepo
     }
 
     override suspend fun uploadVideo(id: Int, video: MultipartBody.Part):UploadResponse {
-       return dataSource.remote().uploadVideo(id,video)
+        return dataSource.remote().uploadVideo(id, video)
     }
 
     override suspend fun uploadCredential(
         id: Int,
         credentials: MultipartBody.Part
-    ):UploadResponse{
-        return dataSource.remote().uploadCredential(id,credentials)
+    ): UploadResponse {
+        return dataSource.remote().uploadCredential(id, credentials)
+    }
+
+    override suspend fun getTutorClassesRequest(param: Params.TutorClassesRequest): TutorRequestDataModel {
+        return dataSource.remote().getTutorClassesRequest(param)
+    }
+
+    override suspend fun getTutorClasses(param: Params.TutorClassesRequest): TutorUpcomingDataModel {
+        return dataSource.remote().getTutorClasses(param)
+    }
+
+    override suspend fun getTutorId(): UserEntity {
+        return dataSource.local().getSingleUser()
+    }
+
+    override suspend fun grantStudentRequest(params: Params.StudentRequest): StudentRequestResponse {
+        return dataSource.remote().grantStudentRequest(params)
     }
 
 

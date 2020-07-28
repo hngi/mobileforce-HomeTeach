@@ -17,10 +17,8 @@ import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.adapters.CircleTransform
 import com.mobileforce.hometeach.databinding.FragmentProfileBinding
 import com.mobileforce.hometeach.databinding.FragmentStudentProfileBinding
+import com.mobileforce.hometeach.utils.*
 import com.mobileforce.hometeach.utils.AppConstants.USER_TUTOR
-import com.mobileforce.hometeach.utils.PreferenceHelper
-import com.mobileforce.hometeach.utils.makeGone
-import com.mobileforce.hometeach.utils.makeVisible
 import com.squareup.picasso.Picasso
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -68,7 +66,7 @@ class ProfileFragment : Fragment() {
     }
 
     private fun setUpProfileForTutor() {
-        bindingTutor.editButton.setOnClickListener {
+        bindingTutor.account.editProfile.setOnClickListener {
             val bundle = bundleOf("imageUrl" to imageUrl, "tutorName" to tutorName)
             navController.navigate(R.id.editTutorProfileFragment, bundle)
         }
@@ -91,12 +89,12 @@ class ProfileFragment : Fragment() {
                 imageUrl = profile.profile_pic.toString()
                 bindingTutor.teachersRatingBar.rating = profile.rating ?: 0.0f
                 profile.hourly_rate?.let {
-                    bindingTutor.AmountTv.text = String.format("%s/hr", it)
+                    bindingTutor.AmountTv.text =
+                        String.format("%s/hr", it.toDouble().formatBalance())
                 }
 
-                if (profile.desc== "" )
-                {
-                    bindingTutor.descriptionText.visibility =View.INVISIBLE
+                if (profile.desc == "") {
+                    bindingTutor.descriptionText.visibility = View.INVISIBLE
                     bindingTutor.TutorDescriptionDetailCard.visibility = View.INVISIBLE
                     bindingTutor.tutorDesc.text = ""
                 }
@@ -119,8 +117,19 @@ class ProfileFragment : Fragment() {
                     bindingTutor.tvField.text = it
                 }
 
-                if (credentialUrl.isNullOrEmpty()) bindingTutor.credentialGroup.makeGone()
-                else bindingTutor.credentialGroup.makeVisible()
+                if (credentialUrl.isNullOrEmpty()) {
+                    bindingTutor.credentialGroup.makeGone()
+                } else {
+
+                    try {
+                        //attempt to extract the document name
+                        val docName = credentialUrl.toString().substringAfterLast("/")
+                        bindingTutor.documentName.text = docName.split(".")[0]
+                    } catch (e: Exception) {
+                    }
+
+                    bindingTutor.credentialGroup.makeVisible()
+                }
 
                 if (profile.desc.isNullOrEmpty()) bindingTutor.groupDescription.makeGone()
                 else bindingTutor.groupDescription.makeVisible()
@@ -129,15 +138,16 @@ class ProfileFragment : Fragment() {
 
         })
 
-        bindingTutor.PdfImage.setOnClickListener {
+        bindingTutor.PdfImage.setOnClickListener { openCredential() }
+        bindingTutor.documentName.setOnClickListener { openCredential() }
 
-            credentialUrl?.let {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(credentialUrl))
-                startActivity(intent)
-            }
+    }
 
+    private fun openCredential() {
+        credentialUrl?.let {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(credentialUrl))
+            startActivity(intent)
         }
-
     }
 
     private fun setUpProfileForStudent() {
@@ -153,10 +163,25 @@ class ProfileFragment : Fragment() {
         viewModel.profile.observe(viewLifecycleOwner, Observer { profile ->
 
             bindingStudent.descriptionText.text = profile.desc
-            Picasso.get().load(profile.profile_pic).transform(CircleTransform())
-                .error(R.drawable.profile_image).into(bindingStudent.ProfileImage)
+            bindingStudent.ProfileImage.loadImage(
+                profile.profile_pic,
+                R.drawable.profile_image,
+                circular = true
+            )
+
+            if (!profile.desc.isNullOrEmpty()) {
+                bindingStudent.descriptionText.text = profile.desc
+            } else {
+
+            }
+
 
         })
+
+
+        bindingStudent.layoutAccount.editProfile.setOnClickListener {
+
+        }
 
     }
 

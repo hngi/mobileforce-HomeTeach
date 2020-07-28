@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mobileforce.hometeach.data.repository.UserRepository
+import com.mobileforce.hometeach.data.sources.local.entities.ProfileEntity
+import com.mobileforce.hometeach.data.sources.local.entities.UserEntity
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.ProfileResponse
 import com.mobileforce.hometeach.utils.PreferenceHelper
@@ -15,6 +17,9 @@ class EditTutorProfileViewModel(
     private val userRepository: UserRepository,
     private val preferenceHelper: PreferenceHelper
 ) : ViewModel() {
+
+    val user: LiveData<UserEntity> = userRepository.getUser()
+    val profile: LiveData<ProfileEntity> = userRepository.profileLiveData()
 
     private val _editTutorProfile = MutableLiveData<Result<Nothing>>()
     val editTutorProfile: LiveData<Result<Nothing>>

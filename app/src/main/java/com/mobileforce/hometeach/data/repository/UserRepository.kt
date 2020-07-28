@@ -5,7 +5,6 @@ import com.mobileforce.hometeach.data.model.User
 import com.mobileforce.hometeach.data.sources.local.entities.*
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
-import com.mobileforce.hometeach.remotesource.wrappers.UserCardDetailResponse
 import retrofit2.Response
 
 
@@ -49,6 +48,7 @@ interface UserRepository {
     suspend fun getSingleUser(): UserEntity
 
     suspend fun saveUserProfile(profile: Profile)
+
     fun profileLiveData(): LiveData<ProfileEntity>
 
     suspend fun modify()
@@ -65,11 +65,19 @@ interface UserRepository {
 
     suspend fun saveTutorDetailsForUserDb(tutorDetailsEntity: TutorDetailsEntity)
 
+    suspend fun getStudentClassRequest(): UserClassRequestResponse
+
+    suspend fun getStudentClasses(): UserClassesResponse
+
     suspend fun getUserWallet(): UserWalletResponse
 
     suspend fun saveWallet(walletData: WalletData)
 
     fun observeWalletData(): LiveData<WalletEntity>
+
+    suspend fun saveCardToDb(cardEntity: CardEntity)
+
+    fun observeUSerCards(): LiveData<List<CardEntity>>
 
 }
 

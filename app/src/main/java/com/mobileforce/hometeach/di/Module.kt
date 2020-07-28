@@ -11,6 +11,11 @@ import com.mobileforce.hometeach.data.sources.RemoteDataSource
 import com.mobileforce.hometeach.data.sources.local.AppDataBase
 import com.mobileforce.hometeach.data.sources.remote.Api
 import com.mobileforce.hometeach.ui.booktutor.BookTutorViewModel
+import com.mobileforce.hometeach.ui.classes.parentstudent.ParentRequestViewModel
+import com.mobileforce.hometeach.ui.classes.parentstudent.ParentUpcomingViewModel
+import com.mobileforce.hometeach.ui.classes.tutor.StudentRequestViewModel
+import com.mobileforce.hometeach.ui.classes.tutor.TutorRequestViewModel
+import com.mobileforce.hometeach.ui.classes.tutor.TutorUpcomingViewModel
 import com.mobileforce.hometeach.ui.home.HomePageViewModel
 import com.mobileforce.hometeach.ui.message.ChatViewModel
 import com.mobileforce.hometeach.ui.profile.EditTutorViewModel
@@ -91,15 +96,24 @@ val appModule = module {
     factory { HomePageViewModel(get(), get()) }
     factory { TutorListViewModel(get()) }
     factory { ProfileViewModel(get()) }
+
     factory { BookTutorViewModel(get()) }
     factory { TutorDetailsViewModel(get()) }
 
-    factory { EditTutorViewModel(get()) }
+    factory { EditTutorViewModel(get(), get()) }
     factory { StudentAddCardDetailsViewModel(get()) }
     factory { StudentCardDetailsViewModel(get()) }
     factory { StudentMakePaymentViewModel(get()) }
 
     factory { ChatViewModel(get()) }
+    factory { TutorRequestViewModel(get()) }
+    factory { TutorUpcomingViewModel(get()) }
+    factory { StudentRequestViewModel(get()) }
+
+
     factory { WithDrawalViewModel(get()) }
     factory { MyBankViewModel(get()) }
+
+    factory { ParentRequestViewModel(get()) }
+    factory { ParentUpcomingViewModel(get()) }
 }

@@ -25,7 +25,7 @@ class StudentAddCardDetailsViewModel(private val userRepository: UserRepository)
         _saveCard.value = Result.Loading
         viewModelScope.launch {
             try {
-                userRepository.saveUserCardDetails(params)
+                val response = userRepository.saveUserCardDetails(params)
                 _saveCard.postValue(Result.Success())
             } catch (e: Throwable) {
                 _saveCard.postValue(Result.Error(e))
