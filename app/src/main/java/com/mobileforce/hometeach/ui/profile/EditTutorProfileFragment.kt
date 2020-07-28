@@ -31,9 +31,8 @@ import java.io.InputStream
 
 
 /**
- * Authored by MayorJay
+ * Created by MayorJay
  */
-
 class EditTutorProfileFragment : Fragment() {
     lateinit var navController: NavController
     lateinit var binding: FragmentEditTutorProfileBinding
@@ -155,20 +154,15 @@ class EditTutorProfileFragment : Fragment() {
                         toast(message)
                     }
                 }
-
             })
-
         }
 
         viewModel.profile.observe(viewLifecycleOwner, Observer { profile ->
-
             profile?.let {
-
                 binding.profilePic.loadImage(
                     profile.profile_pic,
                     placeholder = R.drawable.profile_image
                 )
-
 
                 profile.hourly_rate?.let {
                     binding.etRateInput.setText(it)
@@ -178,10 +172,7 @@ class EditTutorProfileFragment : Fragment() {
                 binding.etOtherCourseInput.setText(profile.other_courses)
                 binding.etCourseInput.setText(profile.major_course)
                 binding.etDescription.setText(profile.desc)
-
             }
-
-
         })
     }
 
@@ -340,6 +331,5 @@ class EditTutorProfileFragment : Fragment() {
                 .setView(mDialogView)
         }
         mAlertDialog = mBuilder?.show()!!
-
     }
 }

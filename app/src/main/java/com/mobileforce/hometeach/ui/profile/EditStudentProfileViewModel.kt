@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mobileforce.hometeach.data.repository.UserRepository
+import com.mobileforce.hometeach.data.sources.local.entities.ProfileEntity
+import com.mobileforce.hometeach.data.sources.local.entities.UserEntity
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.UploadResponse
 import com.mobileforce.hometeach.data.sources.remote.wrappers.UserProfileResponse
@@ -15,10 +17,16 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import java.io.InputStream
 
+/**
+ * Created by MayorJay
+ */
 class EditStudentProfileViewModel(private val userRepository: UserRepository) : ViewModel() {
 
+    val profile: LiveData<ProfileEntity> = userRepository.profileLiveData()
+    val user: LiveData<UserEntity> = userRepository.getUser()
+
     private val _updateStudentProfile = MutableLiveData<Result<UserProfileResponse>>()
-    val updateTutorProfile: LiveData<Result<UserProfileResponse>> = _updateStudentProfile
+    val updateStudentProfile: LiveData<Result<UserProfileResponse>> = _updateStudentProfile
 
     private val _uploadStudentPhoto = MutableLiveData<Result<UploadResponse>>()
     val uploadStudentPhoto: LiveData<Result<UploadResponse>> = _uploadStudentPhoto
