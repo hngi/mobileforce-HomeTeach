@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -13,10 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#68E5E5E5"
+        android:paddingBottom="66dp"
         tools:context=".ui.profile.StudentProfileFragment">
 
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView3"
             style="@style/ProfileCardStyle"
             android:layout_width="match_parent"
             android:layout_height="164dp"
@@ -72,14 +72,16 @@
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_margin="@dimen/card_margin"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             app:cardCornerRadius="@dimen/card_radius"
             app:cardElevation="@dimen/card_elevation"
             app:contentPadding="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.19999999">
+            app:layout_constraintTop_toTopOf="@+id/materialCardView3"
+            app:layout_constraintVertical_bias="0.100000024">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -131,21 +133,27 @@
             style="@style/TextAppearance.AppCompat.Medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10sp"
+            android:layout_marginTop="12dp"
             android:text="@string/phone_number"
+            android:textColor="@color/textColor"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="@id/materialCardView2"
-            app:layout_constraintTop_toBottomOf="@id/materialCardView2" />
+            app:layout_constraintTop_toBottomOf="@+id/materialCardView2" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/PhoneNumber_cardView"
             android:layout_width="0dp"
             android:layout_height="80dp"
             android:layout_margin="@dimen/card_margin"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginRight="30dp"
             app:cardCornerRadius="@dimen/card_radius"
             app:cardElevation="@dimen/card_elevation"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/PhoneNumber_Tv">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -172,6 +180,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10sp"
+            android:textColor="@color/textColor"
+            android:textSize="18sp"
+            android:textStyle="bold"
             android:text="@string/about"
             app:layout_constraintLeft_toLeftOf="@id/PhoneNumber_cardView"
             app:layout_constraintTop_toBottomOf="@id/PhoneNumber_cardView" />
@@ -181,10 +192,16 @@
             android:layout_width="0dp"
             android:layout_height="80dp"
             android:layout_margin="@dimen/card_margin"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginRight="30dp"
             app:cardCornerRadius="@dimen/card_radius"
             app:cardElevation="@dimen/card_elevation"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/About_Tv">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -195,8 +212,8 @@
 
                 <TextView
                     android:id="@+id/description_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_height="23dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -211,9 +228,13 @@
             layout="@layout/include_account_layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginLeft="18dp"
             android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toEndOf="@+id/About_cardView"
-            app:layout_constraintStart_toStartOf="@+id/About_cardView"
+            android:layout_marginEnd="18dp"
+            android:layout_marginRight="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/About_cardView" />
 
         <include

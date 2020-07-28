@@ -17,11 +17,8 @@ import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.adapters.CircleTransform
 import com.mobileforce.hometeach.databinding.FragmentProfileBinding
 import com.mobileforce.hometeach.databinding.FragmentStudentProfileBinding
+import com.mobileforce.hometeach.utils.*
 import com.mobileforce.hometeach.utils.AppConstants.USER_TUTOR
-import com.mobileforce.hometeach.utils.PreferenceHelper
-import com.mobileforce.hometeach.utils.formatBalance
-import com.mobileforce.hometeach.utils.makeGone
-import com.mobileforce.hometeach.utils.makeVisible
 import com.squareup.picasso.Picasso
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -166,14 +163,24 @@ class ProfileFragment : Fragment() {
         viewModel.profile.observe(viewLifecycleOwner, Observer { profile ->
 
             bindingStudent.descriptionText.text = profile.desc
-            Picasso.get().load(profile.profile_pic).transform(CircleTransform())
-                .error(R.drawable.profile_image).into(bindingStudent.ProfileImage)
+            bindingStudent.ProfileImage.loadImage(
+                profile.profile_pic,
+                R.drawable.profile_image,
+                circular = true
+            )
+
+            if (!profile.desc.isNullOrEmpty()) {
+                bindingStudent.descriptionText.text = profile.desc
+            } else {
+
+            }
+
 
         })
 
 
         bindingStudent.layoutAccount.editProfile.setOnClickListener {
-            navController.navigate(R.id.studentProfileFragment)
+
         }
 
     }

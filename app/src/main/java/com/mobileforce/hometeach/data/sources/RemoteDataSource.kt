@@ -11,7 +11,6 @@ import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
 import com.mobileforce.hometeach.models.TutorRequestDataModel
 import com.mobileforce.hometeach.models.TutorUpcomingDataModel
-import com.mobileforce.hometeach.data.sources.remote.wrappers.UserCardDetailResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -21,7 +20,8 @@ class RemoteDataSource(private val api: Api) : DataSource {
     override suspend fun logIn(params: Params.SignIn): LoginResponse {
         val map = hashMapOf(
             "email" to params.email,
-            "password" to params.password
+            "password" to params.password,
+            "is_tutor" to false
         )
         return api.login(map)
     }
