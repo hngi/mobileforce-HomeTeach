@@ -425,11 +425,29 @@
             .how__bg {
                 height: 208% !important;
             }
+            .avatar img {
+                height: 12vh !important;
+            }
+            .testimonial__avatar img {
+                height: 12vh !important;
+            }
+            .newsletter_phone img {
+                bottom: 50px !important;
+            }
         }
         
         @media screen and (max-width: 991px) and (min-width: 767px) {
             .how__bg {
                 height: 208% !important;
+            }
+            .avatar img {
+                height: 12vh !important;
+            }
+            .testimonial__avatar img {
+                height: 12vh !important;
+            }
+            .newsletter_phone img {
+                bottom: 50px !important;
             }
         }
         
@@ -481,7 +499,7 @@
         /* tutors styles here */
         /* Media Queries here */
         
-        @media screen and (max-width: 576px) and (min-width: 275px) {
+        @media screen and (max-width: 576px) and (min-width: 0px) {
             .flickity-viewport {
                 background: white;
                 height: 400px !important;
