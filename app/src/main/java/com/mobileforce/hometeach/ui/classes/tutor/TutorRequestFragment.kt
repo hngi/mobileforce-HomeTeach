@@ -1,11 +1,11 @@
 package com.mobileforce.hometeach.ui.classes.tutor
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -41,10 +41,10 @@ class TutorRequestFragment : Fragment(), OnrequestClick {
         viewModel.getTutorRequest()
         viewModel.tutorRequest.observe(viewLifecycleOwner, Observer {
             binding.progressBar.visibility = View.INVISIBLE
-           if (it.requests.isNullOrEmpty()) {
-               binding.tvNoRequest.makeVisible()
+            if (it.requests.isNullOrEmpty()) {
+                binding.tvNoRequest.makeVisible()
             }
-           requestList = it.requests as MutableList<Request>
+            requestList = it.requests as MutableList<Request>
             val adapter = TutorRequestAdapter(requestList, this)
             recyclerView.adapter = adapter
         })

@@ -3,12 +3,10 @@ package com.mobileforce.hometeach.ui.classes.adapters.recylerviewadapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.mobileforce.hometeach.data.sources.remote.wrappers.Request
 import com.mobileforce.hometeach.data.sources.remote.wrappers.userRequestDiffUtil
 import com.mobileforce.hometeach.databinding.ListItemClassRequestsParentBinding
-import com.mobileforce.hometeach.models.RequestClassModel
 
 /**
  * Created by Mayokun Adeniyi on 29/06/2020.
@@ -38,7 +36,8 @@ class ParentRequestClassesAdapter :
                 //binding.classTime.text = "$from_hour:$from_minute-$to_hour:$to_minute"
                 binding.tutorName.text = "Tutor: $tutor_name"
                 binding.tvGrade.text = grade
-                binding.tvStatus.text = if (accepted) "Status: Accepted" else "Status: Awaiting Approval"
+                binding.tvStatus.text =
+                    if (accepted) "Status: Accepted" else "Status: Awaiting Approval"
             }
         }
 

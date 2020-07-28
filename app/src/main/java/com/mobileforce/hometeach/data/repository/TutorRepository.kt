@@ -1,8 +1,8 @@
 package com.mobileforce.hometeach.data.repository
 
 
-import com.mobileforce.hometeach.data.sources.local.entities.UserEntity
 import com.mobileforce.hometeach.data.sources.local.entities.ProfileEntity
+import com.mobileforce.hometeach.data.sources.local.entities.UserEntity
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.LoginResponse
 import com.mobileforce.hometeach.data.sources.remote.wrappers.StudentRequestResponse
@@ -41,9 +41,9 @@ interface TutorRepository {
         credentials: MultipartBody.Part
     ): UploadResponse
 
-    suspend fun getTutorClassesRequest(param:Params.TutorClassesRequest):TutorRequestDataModel
+    suspend fun getTutorClassesRequest(param: Params.TutorClassesRequest): TutorRequestDataModel
 
-    suspend fun getTutorClasses(param:Params.TutorClassesRequest):TutorUpcomingDataModel
+    suspend fun getTutorClasses(param: Params.TutorClassesRequest): TutorUpcomingDataModel
 
     suspend fun getTutorId(): UserEntity
 

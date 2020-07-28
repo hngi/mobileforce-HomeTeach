@@ -10,12 +10,12 @@ import com.mobileforce.hometeach.data.sources.LocalDataSource
 import com.mobileforce.hometeach.data.sources.RemoteDataSource
 import com.mobileforce.hometeach.data.sources.local.AppDataBase
 import com.mobileforce.hometeach.data.sources.remote.Api
-import com.mobileforce.hometeach.ui.classes.tutor.StudentRequestViewModel
-import com.mobileforce.hometeach.ui.classes.tutor.TutorUpcomingViewModel
-import com.mobileforce.hometeach.ui.classes.tutor.TutorRequestViewModel
 import com.mobileforce.hometeach.ui.booktutor.BookTutorViewModel
-import com.mobileforce.hometeach.ui.classes.parentstudent.ParentUpcomingViewModel
 import com.mobileforce.hometeach.ui.classes.parentstudent.ParentRequestViewModel
+import com.mobileforce.hometeach.ui.classes.parentstudent.ParentUpcomingViewModel
+import com.mobileforce.hometeach.ui.classes.tutor.StudentRequestViewModel
+import com.mobileforce.hometeach.ui.classes.tutor.TutorRequestViewModel
+import com.mobileforce.hometeach.ui.classes.tutor.TutorUpcomingViewModel
 import com.mobileforce.hometeach.ui.home.HomePageViewModel
 import com.mobileforce.hometeach.ui.message.ChatViewModel
 import com.mobileforce.hometeach.ui.profile.EditTutorViewModel
@@ -108,7 +108,7 @@ val appModule = module {
     factory { ChatViewModel(get()) }
     factory { TutorRequestViewModel(get()) }
     factory { TutorUpcomingViewModel(get()) }
-    factory {  StudentRequestViewModel(get()) }
+    factory { StudentRequestViewModel(get()) }
 
 
     factory { WithDrawalViewModel(get()) }

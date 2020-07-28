@@ -57,12 +57,12 @@
         android:id="@+id/addBankFragment"
         android:name="com.mobileforce.hometeach.ui.withdrawalscreens.mybank.TutorAddBankFragment"
         android:label="AddBankFragment"
-        tools:layout="@layout/fragment_tutor_add_bank"/>
+        tools:layout="@layout/fragment_tutor_add_bank" />
     <fragment
         android:id="@+id/tutorAddCardDetails"
         android:name="com.mobileforce.hometeach.ui.withdrawalscreens.carddetails.TutorAddCardDetailsFragment"
         android:label="AddCardDetails"
-        tools:layout="@layout/fragment_tutor_add_card_details"/>
+        tools:layout="@layout/fragment_tutor_add_card_details" />
     <fragment
         android:id="@+id/classes"
         android:name="com.mobileforce.hometeach.ui.classes.ClassesFragment"
@@ -136,7 +136,7 @@
     <fragment
         android:id="@+id/bookTutorFragment"
         android:name="com.mobileforce.hometeach.ui.booktutor.BookTutorFragment"
-        android:label="BookTutorFragment" >
+        android:label="BookTutorFragment">
         <argument
             android:name="tutor"
             app:argType="com.mobileforce.hometeach.models.TutorModel" />
