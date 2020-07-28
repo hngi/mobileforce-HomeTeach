@@ -84,10 +84,9 @@ class UserLoginSerializer(ModelSerializer):
         if not email:
             raise ValidationError("Email cannot be blank")
         user = User.objects.filter(email=email)
-        istutor = user.filter(is_tutor=is_tutor)
         if user.exists():
             user_obj = User.objects.get(email=email)
-            if user_obj.is_tutor == True:
+            if user_obj.is_tutor == True and is_tutor == "True":
                 pass   
             else:
                 raise ValidationError("This email address is not registered as a tutor.")
