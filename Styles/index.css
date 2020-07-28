@@ -25,7 +25,6 @@
             font-family: 'Open Sans', sans-serif;
             font-family: 'Poppins', sans-serif;
             overflow-x: hidden;
-            /* overflow-wrap: inherit; */
         }
         /* Hero styles here */
         /* Media Queries here */
@@ -48,11 +47,11 @@
                 height: 502.78px !important;
             }
             .home-teach-hero {
-                margin-top: 80px !important;
+                margin-top: 60px !important;
             }
-            .hero__img {
+            /* .hero__img {
                 height: 30vh !important
-            }
+            } */
             .home-teach-hero h1 {
                 font-size: 35px !important;
                 line-height: 50px !important;
@@ -61,9 +60,9 @@
                 font-size: 18px !important;
                 line-height: 30px !important
             }
-            .app__logo img {
+            /* .app__logo img {
                 height: 45px !important;
-            }
+            } */
         }
         
         .hero {
