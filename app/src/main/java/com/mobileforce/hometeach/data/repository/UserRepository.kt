@@ -5,6 +5,7 @@ import com.mobileforce.hometeach.data.model.User
 import com.mobileforce.hometeach.data.sources.local.entities.*
 import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
+import okhttp3.MultipartBody
 import retrofit2.Response
 
 
@@ -78,6 +79,13 @@ interface UserRepository {
     suspend fun saveCardToDb(cardEntity: CardEntity)
 
     fun observeUSerCards(): LiveData<List<CardEntity>>
+
+    suspend fun updateStudentProfile(id: Int, params: Params.UpdateStudentProfile): UserProfileResponse
+
+    suspend fun uploadStudentProfilePic(
+        id: Int,
+        profilePic: MultipartBody.Part
+    ): UploadResponse
 
 }
 

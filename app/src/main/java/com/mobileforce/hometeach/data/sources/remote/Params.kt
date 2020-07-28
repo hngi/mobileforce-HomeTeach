@@ -91,7 +91,11 @@ class Params {
 
     data class UserWallet(val user: String)
 
-    data class TutorProfileVisitsCount(val tutor_id: String)
+    data class UpdateStudentProfile(
+        val desc: String,
+        val phone_number: String
+    )
 
+    data class TutorProfileVisitsCount(val tutor_id: String)
 
 }

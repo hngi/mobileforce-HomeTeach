@@ -13,6 +13,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.mobileforce.hometeach.R
 import com.mobileforce.hometeach.data.sources.remote.Params
@@ -31,9 +32,8 @@ import java.io.InputStream
 
 
 /**
- * Authored by MayorJay
+ * Created by MayorJay
  */
-
 class EditTutorProfileFragment : Fragment() {
     lateinit var navController: NavController
     lateinit var binding: FragmentEditTutorProfileBinding
@@ -74,7 +74,6 @@ class EditTutorProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
         // Inflates the Spinner displaying the tutor's field
         ArrayAdapter.createFromResource(
@@ -155,20 +154,15 @@ class EditTutorProfileFragment : Fragment() {
                         toast(message)
                     }
                 }
-
             })
-
         }
 
         viewModel.profile.observe(viewLifecycleOwner, Observer { profile ->
-
             profile?.let {
-
                 binding.profilePic.loadImage(
                     profile.profile_pic,
                     placeholder = R.drawable.profile_image
                 )
-
 
                 profile.hourly_rate?.let {
                     binding.etRateInput.setText(it)
@@ -178,10 +172,7 @@ class EditTutorProfileFragment : Fragment() {
                 binding.etOtherCourseInput.setText(profile.other_courses)
                 binding.etCourseInput.setText(profile.major_course)
                 binding.etDescription.setText(profile.desc)
-
             }
-
-
         })
     }
 
@@ -340,6 +331,5 @@ class EditTutorProfileFragment : Fragment() {
                 .setView(mDialogView)
         }
         mAlertDialog = mBuilder?.show()!!
-
     }
 }

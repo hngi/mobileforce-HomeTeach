@@ -116,5 +116,9 @@ interface DataSource {
 
     fun observeUserCards(): LiveData<List<CardEntity>> = TODO()
 
+    suspend fun uploadStudentProfilePic(id: Int, profilePic: MultipartBody.Part): UploadResponse
+
+    suspend fun updateStudentProfile(id: Int, params: Params.UpdateStudentProfile): UserProfileResponse
+
     suspend fun updateTutorProfileVisitsCount(params: Params.TutorProfileVisitsCount) {}
 }

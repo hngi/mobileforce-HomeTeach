@@ -18,6 +18,7 @@ import com.mobileforce.hometeach.ui.classes.tutor.TutorRequestViewModel
 import com.mobileforce.hometeach.ui.classes.tutor.TutorUpcomingViewModel
 import com.mobileforce.hometeach.ui.home.HomePageViewModel
 import com.mobileforce.hometeach.ui.message.ChatViewModel
+import com.mobileforce.hometeach.ui.profile.EditStudentProfileViewModel
 import com.mobileforce.hometeach.ui.navdrawer.NavDrawerViewModel
 import com.mobileforce.hometeach.ui.profile.EditTutorViewModel
 import com.mobileforce.hometeach.ui.profile.ProfileViewModel
@@ -99,24 +100,19 @@ val appModule = module {
     factory { TutorListViewModel(get()) }
     factory { ProfileViewModel(get()) }
     viewModel { NavDrawerViewModel(get(),get(),get()) }
-
     factory { BookTutorViewModel(get()) }
     factory { TutorDetailsViewModel(get(), get()) }
-
     factory { EditTutorViewModel(get(), get()) }
     factory { StudentAddCardDetailsViewModel(get()) }
     factory { StudentCardDetailsViewModel(get()) }
     factory { StudentMakePaymentViewModel(get()) }
-
     factory { ChatViewModel(get()) }
     factory { TutorRequestViewModel(get()) }
     factory { TutorUpcomingViewModel(get()) }
     factory { StudentRequestViewModel(get()) }
-
-
     factory { WithDrawalViewModel(get()) }
     factory { MyBankViewModel(get()) }
-
     factory { ParentRequestViewModel(get()) }
     factory { ParentUpcomingViewModel(get()) }
+    factory { EditStudentProfileViewModel(get()) }
 }

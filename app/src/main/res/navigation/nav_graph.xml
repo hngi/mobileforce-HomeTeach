@@ -121,12 +121,16 @@
         android:label="EditTutorProfileFragment"
         tools:layout="@layout/fragment_edit_tutor_profile" />
     <fragment
+        android:id="@+id/editStudentProfileFragment"
+        android:name="com.mobileforce.hometeach.ui.profile.EditStudentProfileFragment"
+        android:label="EditStudentProfileFragment"
+        tools:layout="@layout/fragment_edit_student_profile"/>
+    <fragment
         android:id="@+id/chatFragment"
         android:name="com.mobileforce.hometeach.ui.message.ChatFragment"
         android:label="chat_fragment"
         tools:layout="@layout/chat_fragment" />
     <fragment
-
         android:id="@+id/studentProfileFragment"
         android:name="com.mobileforce.hometeach.ui.profile.StudentProfileFragment"
         android:label="Profile"

@@ -172,17 +172,13 @@ class ProfileFragment : Fragment() {
             if (!profile.desc.isNullOrEmpty()) {
                 bindingStudent.descriptionText.text = profile.desc
             } else {
-
             }
-
-
         })
 
+        bindingStudent.toolBar
 
         bindingStudent.layoutAccount.editProfile.setOnClickListener {
-
+            navController.navigate(R.id.editStudentProfileFragment)
         }
-
     }
-
 }

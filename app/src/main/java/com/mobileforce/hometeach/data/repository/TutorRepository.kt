@@ -28,6 +28,7 @@ interface TutorRepository {
     suspend fun updateTutorProfile(id: Int, params: Params.UpdateTutorProfile): LoginResponse
 
     suspend fun getProfileId(): ProfileEntity
+
     suspend fun uploadProfilePic(
         id: Int,
         profile_pic: MultipartBody.Part
