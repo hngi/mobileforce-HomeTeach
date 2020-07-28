@@ -117,6 +117,6 @@ interface Api {
     suspend fun getUserWallet(@Body param: Params.UserWallet): UserWalletResponse
 
     @POST("v1/profile-count-update/")
-    suspend fun updateTutorProfileVisit(@Body param: Params.TutorProfileCount)
+    suspend fun updateTutorProfileVisit(@Body param: Params.TutorProfileVisitsCount)
 
 }

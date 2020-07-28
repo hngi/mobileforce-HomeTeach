@@ -11,7 +11,6 @@ import com.mobileforce.hometeach.data.sources.remote.Params
 import com.mobileforce.hometeach.data.sources.remote.wrappers.*
 import com.mobileforce.hometeach.models.TutorRequestDataModel
 import com.mobileforce.hometeach.models.TutorUpcomingDataModel
-import com.mobileforce.hometeach.data.sources.remote.wrappers.UserCardDetailResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -115,21 +114,21 @@ class RemoteDataSource(private val api: Api) : DataSource {
         id: Int,
         profile_pic: MultipartBody.Part
     ): UploadResponse {
-        return api.uploadProfilePic(id,profile_pic)
+        return api.uploadProfilePic(id, profile_pic)
     }
 
     override suspend fun uploadVideo(
         id: Int,
         video: MultipartBody.Part
-    ): UploadResponse{
-       return api.uploadVideo(id,video)
+    ): UploadResponse {
+        return api.uploadVideo(id, video)
     }
 
     override suspend fun uploadCredential(
         id: Int,
         credentials: MultipartBody.Part
-    ):UploadResponse{
-      return api.uploadCredential(id,credentials)
+    ): UploadResponse {
+        return api.uploadCredential(id, credentials)
     }
 
 
@@ -227,7 +226,7 @@ class RemoteDataSource(private val api: Api) : DataSource {
         return api.getStudentClasses(map)
     }
 
-    override suspend fun getTutorClassesRequest(param: Params.TutorClassesRequest):TutorRequestDataModel{
+    override suspend fun getTutorClassesRequest(param: Params.TutorClassesRequest): TutorRequestDataModel {
         val map = mapOf(
             "tutor_id" to param.tutor_id
         )
@@ -250,6 +249,10 @@ class RemoteDataSource(private val api: Api) : DataSource {
             "action" to params.action
         )
         return api.grantStudentRequest(map)
+    }
+
+    override suspend fun updateTutorProfileVisitsCount(params: Params.TutorProfileVisitsCount) {
+        api.updateTutorProfileVisit(params)
     }
 
 }
