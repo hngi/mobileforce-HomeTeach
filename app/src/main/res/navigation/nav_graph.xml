@@ -17,8 +17,8 @@
     <fragment
         android:id="@+id/tutorHomePageFragment"
         android:name="com.mobileforce.hometeach.ui.home.HomePageFragment"
-        android:label="fragment_home_page"
-        tools:layout="@layout/fragment_home_page" >
+        android:label="Home"
+        tools:layout="@layout/fragment_home_page">
         <action
             android:id="@+id/action_tutorHomePageFragment_to_books"
             app:destination="@id/classes" />
@@ -63,15 +63,15 @@
         android:name="com.mobileforce.hometeach.ui.withdrawalscreens.carddetails.TutorAddCardDetailsFragment"
         android:label="AddCardDetails"
         tools:layout="@layout/fragment_tutor_add_card_details"/>
-<fragment
+    <fragment
         android:id="@+id/classes"
         android:name="com.mobileforce.hometeach.ui.classes.ClassesFragment"
-        android:label="fragment_parent_student_class"
+        android:label="Classes"
         tools:layout="@layout/fragment_parent_student_class" />
     <fragment
         android:id="@+id/tutorClassFragment"
         android:name="com.mobileforce.hometeach.ui.classes.tutor.TutorClassFragment"
-        android:label="fragment_tutor_class"
+        android:label="Classes"
         tools:layout="@layout/fragment_tutor_class" />
     <fragment
         android:id="@+id/tutorDetailsFragment"
@@ -141,7 +141,15 @@
             android:name="tutor"
             app:argType="com.mobileforce.hometeach.models.TutorModel" />
     </fragment>
-
+    <fragment
+        android:id="@+id/parentStudentClassFragment"
+        android:name="com.mobileforce.hometeach.ui.classes.parentstudent.ParentStudentClassFragment"
+        android:label="Classes"
+        tools:layout="@layout/fragment_parent_student_class" />
+    <fragment
+        android:id="@+id/homePageTutorFragment"
+        android:name="com.mobileforce.hometeach.ui.home.tutor.HomePageTutorFragment"
+        android:label="Home" />
 
 
 </navigation>

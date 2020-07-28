@@ -7,6 +7,8 @@
         <item name="colorPrimaryDark">@color/primaryDarkColor</item>
         <item name="colorOnPrimary">@color/primaryTextColor</item>
         <item name="colorSecondary">@color/secondaryColor</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
         <item name="colorSecondaryVariant">@color/secondaryLightColor</item>
         <item name="colorOnSecondary">@color/secondaryTextColor</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -25,6 +27,7 @@
         <item name="cornerSizeBottomRight">30dp</item>
         <item name="cornerSizeBottomLeft">30dp</item>
     </style>
+
     <style name="AppTheme.NoActionBar" parent="AppTheme">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -71,4 +74,9 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSizeBottomLeft">50dp</item>
     </style>
+
+    <style name="Theme.HomeTeach.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.HomeTeach.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 </resources>

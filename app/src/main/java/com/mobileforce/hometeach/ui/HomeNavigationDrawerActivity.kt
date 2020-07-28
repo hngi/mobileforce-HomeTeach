@@ -1,37 +1,45 @@
 package com.mobileforce.hometeach.ui
 
 import android.os.Bundle
+import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.Navigation.findNavController
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.navigation.NavigationView
 import com.mobileforce.hometeach.R
-import com.mobileforce.hometeach.databinding.BottonNavLayoutBinding
-import com.mobileforce.hometeach.utils.makeGone
-import com.mobileforce.hometeach.utils.makeVisible
 
 
 class HomeNavigationDrawerActivity : AppCompatActivity() {
 
-    lateinit var binding: BottonNavLayoutBinding
+    private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = BottonNavLayoutBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_home_navigation_drawer)
+        val toolbar: Toolbar = findViewById(R.id.toolbarNav)
+        setSupportActionBar(toolbar)
 
-        val navController = findNavController(this, R.id.nav_host_fragment)
+        val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
+        val navView: NavigationView = findViewById(R.id.nav_view)
+        val navController = findNavController(R.id.nav_host_fragment)
 
-        binding.bottomNavigationView.setupWithNavController(navController)
-
+        appBarConfiguration = AppBarConfiguration(setOf(
+            R.id.classes, R.id.tutorHomePageFragment, R.id.profileFragment), drawerLayout)
+        setupActionBarWithNavController(navController, appBarConfiguration)
+        navView.setupWithNavController(navController)
 
     }
 
-    fun hideBottomBar() {
-        binding.materialCardView.makeGone()
-    }
 
-    fun makeBottomBarVisible() {
-        binding.materialCardView.makeVisible()
 
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.nav_host_fragment)
+        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 }
