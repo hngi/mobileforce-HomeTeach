@@ -10,12 +10,16 @@
         android:title="Home"
         android:id="@+id/tutorHomePageFragment"/>
     <item
-        android:icon="@drawable/ic_message"
-        android:title="Notification"
-        android:id="@+id/chatListFragment"/>
-    <item
         android:icon="@drawable/ic_profile"
         android:title="Profile"
         android:id="@+id/profileFragment"/>
+    <item
+        android:icon="@drawable/ic_payment_card"
+        android:id="@+id/studentMakePaymentFragment"
+        android:title="Payment"/>
+    <item
+        android:title="Logout"
+        android:icon="@drawable/ic_baseline_power_settings_new_24"
+        android:id="@+id/logout"/>
 
 </menu>

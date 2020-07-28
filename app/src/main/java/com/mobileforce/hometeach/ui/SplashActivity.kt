@@ -3,6 +3,7 @@ package com.mobileforce.hometeach.ui
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.mobileforce.hometeach.ui.navdrawer.HomeNavigationDrawerActivity
 import com.mobileforce.hometeach.ui.signin.LoginActivity
 import com.mobileforce.hometeach.utils.PreferenceHelper
 import org.koin.android.ext.android.inject
