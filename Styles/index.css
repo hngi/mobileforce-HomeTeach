@@ -24,12 +24,16 @@
             font-family: 'Ubuntu', sans-serif;
             font-family: 'Open Sans', sans-serif;
             font-family: 'Poppins', sans-serif;
-            overflow-x: hidden;
+            /* overflow-x: hidden; */
         }
         /* Hero styles here */
         /* Media Queries here */
         
         @media screen and (max-width: 576px) and (min-width: 275px) {
+            html,
+            body {
+                overflow-x: hidden;
+            }
             .home-teach-hero {
                 margin-top: 50px !important;
             }
@@ -43,6 +47,10 @@
         }
         
         @media screen and (max-width: 768px) and (min-width: 575px) {
+            html,
+            body {
+                overflow-x: hidden;
+            }
             .home-teach-hero {
                 margin-top: 60px !important;
             }
@@ -57,6 +65,10 @@
         }
         
         @media screen and (max-width: 991px) and (min-width: 767px) {
+            html,
+            body {
+                overflow-x: hidden;
+            }
             .hero {
                 height: 502.78px !important;
             }
