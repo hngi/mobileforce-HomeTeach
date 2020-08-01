@@ -1106,8 +1106,8 @@
         }
         
         .newsletter_phone img {
-            position: relative;
-            bottom: 120px;
+            position: absolute;
+            bottom: -150px;
             left: 310px;
         }
         /* Footer styles here */
